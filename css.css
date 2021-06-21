@@ -21,6 +21,7 @@ body {
        padding-left: 25px;
        color: white;
        font-size: 200%;
+       height: 95vh;
 }
 
 .menu {
@@ -32,4 +33,8 @@ body {
 
 ul {
      text-align: center;
+}
+
+a {
+     color: red;
 }
