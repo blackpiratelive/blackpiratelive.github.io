@@ -1,1 +1,1 @@
-# blackpiratelive.github.io
+# blackpirate.live
