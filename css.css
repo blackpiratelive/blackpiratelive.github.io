@@ -9,7 +9,8 @@
 .heading {
            text-align: center;
            color: white;
-           font-family: HelveticaRounded-Bold;
+           font-family: 'StandardBold';
+    font-weight: bold;
            
 }
 
@@ -20,7 +21,7 @@ body {
        padding-right: 25px;
        padding-left: 25px;
        color: white;
-       font-size: 200%;
+       font-size: 150%;
        height: 95vh;
 }
 
@@ -44,4 +45,9 @@ p {
 }
 .warning {
            color: rgb(255, 69, 58);
+}
+h2 {
+    text-align: center;
+    font-family: 'StandardBold';
+    font-weight: bold;
 }
