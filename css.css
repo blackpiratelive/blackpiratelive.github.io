@@ -62,3 +62,10 @@ a:visited { text-decoration: none;
 }
 a:hover { text-decoration: underline; }
 a:active { text-decoration: underline; }
+
+h3 {
+    font-family: 'StandardBold';
+}
+.contact-list {
+    text-align: left;
+}
