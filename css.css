@@ -41,6 +41,8 @@ a {
 }
 p {
     font-family: 'ReadinessRegular';
+    padding-right: 15px;
+    padding-left: 15px;
 
 }
 .warning {
@@ -54,3 +56,9 @@ h2 {
 li {
     font-family: 'ReadinessRegular';
 }
+a:link { text-decoration: none; }
+a:visited { text-decoration: none;
+    color: rgb(o, 64, 221);
+}
+a:hover { text-decoration: underline; }
+a:active { text-decoration: underline; }
