@@ -69,4 +69,6 @@ h3 {
 }
 .contact-list {
     text-align: left;
+    padding-right: 15px;
+    padding-left: 15px;
 }
