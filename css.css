@@ -72,3 +72,24 @@ h3 {
     padding-right: 15px;
     padding-left: 15px;
 }
+.buttonbooks {
+    background-color: rgb(48 209 88); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+.buttonbooks:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.blacklink {
+             color: black;
+             text-decoration: underline overline black;
+
+}
