@@ -7,19 +7,25 @@
                 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
                 <!-- HTML5 -->
                 <meta charset="UTF-8"/>
-		<style type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css.css">
+
+
+        <style type="text/css">
                     .bodyContainer {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     padding-left: 32px;
     padding-right: 32px;
+                        color: white;
 }
 
 .notebookFor {
     font-size: 18px;
+    color: white;
     font-weight: 700;
     text-align: center;
-    color: rgb(119, 119, 119);
+
     margin: 24px 0px 0px;
     padding: 0px;
 }
@@ -28,7 +34,7 @@
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    color: #333333;
+    color: #b8b8b8;
     margin-top: 22px;
     padding: 0px;
 }
@@ -47,7 +53,7 @@
     font-size: 16px;
     font-weight: 500;
     text-align: center;
-    color: #333333;
+    color: #b8b8b8;
     margin-top: 22px;
     margin-bottom: 24px;
     padding: 0px;
@@ -57,7 +63,7 @@
     font-size: 24px;
     font-weight: 700;
     text-align: left;
-    color: #333333;
+    color: rgb(247, 206, 0);
     margin-top: 24px;
     padding: 0px;
 }
@@ -66,7 +72,7 @@
     font-size: 18px;
     font-weight: 700;
     text-align: left;
-    color: #333333;
+    color: white;
     margin-top: 20px;
     padding: 0px;
 }
@@ -75,7 +81,7 @@
     font-size: 18px;
     font-weight: 500;
     text-align: left;
-    color: #333333;
+    color: white;
     margin: 2px 0px 0px;
     padding: 0px;
 }
@@ -125,6 +131,30 @@ hr {
 		<title></title>
 	</head>
     <body>
+    <!-- Load font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- The navigation menu -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about">About</a>
+        <a href="resources">Resources</a>
+        <div class="subnav">
+            <button class="subnavbtn">Blog <i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+                <a href="https://www.blackpirateblogs.live">External Blog</a>
+                <a href="blog">Internal Blog</a>
+            </div>
+        </div>
+        <div class="subnav">
+            <button class="subnavbtn">Book Highlights<i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+                <a href="book-highlights/normal-people">Normal People</a>
+                <a href="book-highlights">Other Books</a>
+            </div>
+        </div>
+        <a href="contact">Contact</a>
+    </div>
         <div class="bodyContainer">
             <div class="notebookFor">
 Notebook for
