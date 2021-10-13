@@ -13,6 +13,9 @@
     font-weight: bold;
            
 }
+.heading:hover {
+    color: yellow;
+}
 
 body {
        background-color:rgb(44, 44, 46);
@@ -30,6 +33,11 @@ body {
         padding-left: 14px;
         padding-right: 14px;
 
+}
+
+.menu-link:hover {
+    color: yellow;
+    font-size: 35px;
 }
 
 ul {
@@ -63,7 +71,10 @@ a:link { text-decoration: none; }
 a:visited { text-decoration: none;
     color: rgb(o, 64, 221);
 }
-a:hover { text-decoration: underline; }
+a:hover { text-decoration: underline;
+          color: yellow;
+    font-size: 30px;
+}
 a:active { text-decoration: underline; }
 
 h3 {
@@ -75,7 +86,7 @@ h3 {
     padding-left: 15px;
 }
 .buttonbooks {
-    background-color: rgb(48 209 88); /* Green */
+    background-color: rgb(10, 132, 255);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -84,17 +95,21 @@ h3 {
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
-    border-radius: 20%;
+    border-radius: 5%;
 }
 .buttonbooks:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: #087eae;
     color: white;
+    border-radius: 15%;
 }
 
 .blacklink {
              color: black;
              text-decoration: underline overline black;
 
+}
+.blacklink:hover {
+    font-size: 25px;
 }
 .center {
           text-align: center;
@@ -165,4 +180,9 @@ h3 {
 /* When you move the mouse over the subnav container, open the subnav content */
 .subnav:hover .subnav-content {
     display: block;
+}
+
+hr {
+    border-top: 4px solid rgb(10, 132, 255);
+    border-radius: 3px;
 }
