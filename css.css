@@ -40,7 +40,9 @@ a {
      color: rgb(10, 132, 255);
 }
 p {
-    font-family: 'ReadinessRegular';
+    font-family: 'OpenSauceSansRegular';
+    font-weight: normal;
+    font-style: normal;
     padding-right: 15px;
     padding-left: 15px;
 
