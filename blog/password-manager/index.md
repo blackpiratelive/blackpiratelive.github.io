@@ -12,7 +12,7 @@ Since I was a student and my parents didn't give any kind of pocket money to spe
 
 ### Disclaimer
 
-Before starting I want to clear some things first. This review is based on my overall experience. I have only android devices and windows. Your mileage may vary if you are in apple ecosystem. If you dont agree with me feel free to [send me an email](../contact/)
+Before starting I want to clear some things first. This review is based on my overall experience. I have only android devices and windows. Your mileage may vary if you are in apple ecosystem. If you dont agree with me feel free to [send me an email](../../contact/)
 
 ---
 * **LastPass**: 
