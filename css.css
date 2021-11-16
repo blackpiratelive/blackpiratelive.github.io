@@ -37,7 +37,7 @@ body {
 
 .menu-link:hover {
     color: yellow;
-    font-size: 35px;
+    
 }
 
 ul {
@@ -73,7 +73,7 @@ a:visited { text-decoration: none;
 }
 a:hover { text-decoration: underline;
           color: yellow;
-    font-size: 30px;
+   
 }
 a:active { text-decoration: underline; }
 
@@ -197,4 +197,42 @@ hr {
 .date {
 				font-size: 70%
 				
+}
+
+.footer {
+				      text-align:center;
+				      font-size: 50%;
+				      position: fixed;
+				      left: 0;
+				      botton: 0;
+				      width: 100%;
+				      color: white;
+				
+}
+.button-book {
+				           text-align:center;
+				           
+}
+.button-decoration {
+				border: none;
+  color: blue;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radious: 4px;
+
+}
+.button-decoration:hover {
+				background-color: #008CBA;
+  color: white;
+}
+
+.footer-home {
+				text-align:center;
+				font-size: 50%;
 }
