@@ -1,3 +1,15 @@
+:root {
+        --bg-color: #2D3140;
+        --link-color: #E6A420;
+        --text-color: white;
+        --button-color: #E6A420;
+        --heading-color: #de6231;
+        --visited-color: #998356;
+        --button-text: #37394F;
+        --divider-color: #37394f;
+}
+
+
 @font-face {
   font-family: 'Helvetica';
   src: url('fonts/Helvetica.ttf');
@@ -8,17 +20,17 @@
 
 .heading {
            text-align: center;
-           color: white;
+           color: var(--heading-color);
            font-family: 'StandardBold';
     font-weight: bold;
            
 }
 .heading:hover {
-    color: yellow;
+    color: var(--button-color);
 }
 
 body {
-       background-color:rgb(44, 44, 46);
+       background-color: var(--bg-color);
        padding-top: 50px;
        padding-bottom: 50px;
        padding-right: 25px;
@@ -36,7 +48,7 @@ body {
 }
 
 .menu-link:hover {
-    color: yellow;
+    color: var(--button-color);
     
 }
 
@@ -45,7 +57,7 @@ ul {
 }
 
 a {
-     color: rgb(10, 132, 255);
+     color: var(--link-color);
 }
 p {
     font-family: 'OpenSauceSansRegular';
@@ -56,7 +68,7 @@ p {
 
 }
 .warning {
-           color: rgb(255, 69, 58);
+           color: var(--heading-color);
            text-align: center;
 }
 h2 {
@@ -69,10 +81,10 @@ li {
 }
 a:link { text-decoration: none; }
 a:visited { text-decoration: none;
-    color: rgb(o, 64, 221);
+    color: var(--visited-color);
 }
 a:hover { text-decoration: underline;
-          color: yellow;
+          color: var(--button-color);
    
 }
 a:active { text-decoration: underline; }
@@ -86,9 +98,9 @@ h3 {
     padding-left: 15px;
 }
 .buttonbooks {
-    background-color: rgb(10, 132, 255);
+    background-color: var(--button-color);
     border: none;
-    color: white;
+    color: var(--button-text);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -183,12 +195,13 @@ h3 {
 }
 
 hr {
-    border-top: 4px solid rgb(10, 132, 255);
+    height: 3px;
+    background-color: var(--divider-color);
     border-radius: 3px;
 }
 .blog-home {
 				
-				color: #ffeb3b;
+				color: var(--link-color);
 			
 				
 				
@@ -215,7 +228,7 @@ hr {
 }
 .button-decoration {
 				border: none;
-  color: blue;
+  background-color: var(--button-color);
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -228,11 +241,15 @@ hr {
 
 }
 .button-decoration:hover {
-				background-color: #008CBA;
-  color: white;
+				background-color: white;
+  color: var(--button-text);
 }
 
 .footer-home {
 				text-align:center;
 				font-size: 50%;
+}
+
+.button-text {
+               color: var(--button-text);
 }
