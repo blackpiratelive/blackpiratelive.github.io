@@ -235,7 +235,10 @@ hr {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  transition-duration: 0.4s;
+  transition: all 0.5s;
+  cursor: pointer;
+  
+
   cursor: pointer;
   border-radious: 4px;
 
@@ -252,4 +255,27 @@ hr {
 
 .button-text {
                color: var(--button-text);
+}
+
+.button{
+				cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+				
+}
+.button:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button-decoration:hover .button {
+				padding-right: 25px;
+}
+.button-decoration:hover .button:after {
+  opacity: 1;
+  right: 0;
 }
