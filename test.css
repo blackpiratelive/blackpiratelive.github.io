@@ -1,0 +1,26 @@
+body {
+        background-color:black;
+
+}
+
+header {
+        text-align:center;
+        
+}
+.nav-menu {
+            display:inline;
+}
+a {
+    color: white;
+
+}
+a:hover {
+            color:yellow;
+
+}
+h1 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+
+}

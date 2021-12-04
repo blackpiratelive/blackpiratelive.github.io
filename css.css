@@ -81,7 +81,7 @@ li {
 }
 a:link { text-decoration: none; }
 a:visited { text-decoration: none;
-    color: var(--visited-color);
+    
 }
 a:hover { text-decoration: underline;
           color: var(--button-color);
@@ -227,8 +227,8 @@ hr {
 				           
 }
 .button-decoration {
-				border: none;
-  background-color: var(--button-color);
+				border: 3px solid var(--button-color);
+  background-color:var(--bg-color);
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -237,15 +237,8 @@ hr {
   margin: 4px 2px;
   transition: all 0.5s;
   cursor: pointer;
-  
+  border-radius: 5px;
 
-  cursor: pointer;
-  border-radious: 4px;
-
-}
-.button-decoration:hover {
-				background-color: white;
-  color: var(--button-text);
 }
 
 .footer-home {
@@ -254,7 +247,7 @@ hr {
 }
 
 .button-text {
-               color: var(--button-text);
+               color: var(--button-color);
 }
 
 .button{
@@ -278,4 +271,7 @@ hr {
 .button-decoration:hover .button:after {
   opacity: 1;
   right: 0;
+}
+.align-left {
+                text-align:left;
 }
