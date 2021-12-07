@@ -1,12 +1,12 @@
 :root {
-        --bg-color: #2D3140;
-        --link-color: #E6A420;
-        --text-color: white;
-        --button-color: #E6A420;
-        --heading-color: #de6231;
+        --bg-color: #f1e8e6;
+        --link-color: #f55951;
+        --text-color: #361d32;
+        --button-color: #543c52;
+        --heading-color: #f55951;
         --visited-color: #000000;
-        --button-text: #37394F;
-        --divider-color: #37394f;
+        --button-text: #543c52;
+        --divider-color: #edd2cb;
 }
 
 
