@@ -279,3 +279,6 @@ hr {
 .align-left {
                 text-align:left;
 }
+.description {
+    font-size: 0.7em;
+}

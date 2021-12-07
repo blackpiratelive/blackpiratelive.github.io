@@ -10,7 +10,7 @@
         --footer-color: #361d32;
         --warning-color: #54d2d2;
         --hover-color: #f8aa4b;
-        --hover-heading-color: #54d2d2;
+        --hover-heading-color: #ff6150;
 }
 
 
@@ -203,7 +203,7 @@ hr {
     background-color: var(--divider-color);
     border-radius: 3px;
 }
-.blog-home {
+.blog-home-heading {
 				
 				color: var(--link-color);
 			
@@ -278,4 +278,23 @@ hr {
 }
 .align-left {
                 text-align:left;
+}
+
+#column1 {
+    display:flex;
+    flex-direction:column;
+}
+#column2{
+    display:flex;
+    flex-direction:column;
+}
+
+#row1{
+    display:flex;
+    flex-direction:row;
+justify-content: space-around;
+}
+
+.description {
+                font-size: 0.7em;
 }
