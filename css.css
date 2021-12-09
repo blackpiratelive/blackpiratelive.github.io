@@ -238,7 +238,7 @@ hr {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 2px #543c52;
   transition: all 0.5s;
   cursor: pointer;
   border-radius: 5px;
