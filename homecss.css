@@ -1,3 +1,7 @@
+:root {
+        --author-color: #AEAEAE;
+}
+
 body {
 
        font-size: 1.7vw;
@@ -55,4 +59,7 @@ h5 {
     margin-left: 25%;
     margin-right: 25%;
     color: white;
+}
+.author {
+            color: var(--author-color);
 }
