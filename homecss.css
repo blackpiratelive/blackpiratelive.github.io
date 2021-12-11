@@ -1,19 +1,19 @@
 body {
 
-       font-size: 3vw;
+       font-size: 1.7vw;
        background-color: black;
        color:white;
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: 'Arimo', sans-serif;
+           font-family: Helvetica;
 }
 h1 {
 
-     font-size:10vw;
+     font-size:5vw;
      
 }
 p {
-    font-family: 'Arimo', sans-serif;
+   
 }
 .menu {
         font-family: 'Dosis', sans-serif;
@@ -26,5 +26,33 @@ a{
   color: yellow;
 }
 h3 {
-    font-size:7vw;
+    font-size:3vw;
+}
+::selection {
+    color: black;
+    background: yellow;
+  }
+
+h5 {
+    font-size: 1.8vw;
+}
+.li-link {
+
+}
+/* This changes links in contact page only */
+.contact-link {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2.3vw;
+}
+/* This is the end text in book page */
+.end {
+    text-align: center;
+    color: yellow;
+    font-weight: bolder;
+}
+.end-hr {
+    border: 0.5vw dotted;
+    margin-left: 25%;
+    margin-right: 25%;
+    color: white;
 }
