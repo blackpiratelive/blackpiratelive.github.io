@@ -2,22 +2,36 @@
         --author-color: #AEAEAE;
         /* background color refers to the background of the webpage and its greyish */
         --background-color: rgb(44,44,46);
+        --text-normal: #dcddde;
+        --accent-link: rgb(50,215,75 );
+        --yellow: rgb(255,214,10);
+        --light-blue: rgb(90,200,245)
        
 }
 
 body {
 
-       font-size: 1.7vw;
-       background-color: rgb(44,44,46);
-       color:white;
+       font-size: 3.7vw;
+       background-color: var(--background-color);
+       color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: Helvetica;
+           font-family: 'Lora', sans-serif;;
 }
 h1 {
 
-     font-size:5vw;
+     font-size:8vw;
+     font-family: 'Cinzel Decorative', sans-serif;
+     color: rgb(255,55,95); 
      
+     
+}
+hr {
+     color: var(--yellow);
+}
+h2{
+font-family: 'Arimo', sans-serif;
+color: var(--light-blue);
 }
 p {
    
@@ -26,22 +40,22 @@ p {
         font-family: 'Dosis', sans-serif;
 }
 .date {
-        font-size:1.2vw;
+        font-size:3.2vw;
         color: grey;
 }
 a{
-  color: yellow;
+  color: var(--accent-link);
 }
 h3 {
-    font-size:3vw;
+    font-size:6vw;
 }
 ::selection {
     color: black;
-    background: yellow;
+    background: var(--yellow);
   }
 
 h5 {
-    font-size: 1.8vw;
+    font-size: 3.8vw;
 }
 .li-link {
 
@@ -54,7 +68,7 @@ h5 {
 /* This is the end text in book page */
 .end {
     text-align: center;
-    color: yellow;
+    color: var(--yellow) ;
     font-weight: bolder;
 }
 .end-hr {
