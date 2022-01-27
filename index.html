@@ -10,43 +10,7 @@
 
 </head>
 <body>
-<script>
-(function () {
-   var CharacterPos = 0;
-   var MsgBuffer = "";
-   var TypeDelay = 100; 
-   var NxtMsgDelay = 1000;
-   var MsgIndex = 0;
-   var delay;
-   var MsgArray = ["Hello, stranger from internet","Welcome to my website","BlackPirate"];
-
-   function StartTyping() {
-      var id = document.getElementById("typing-text");
-      if (CharacterPos != MsgArray[MsgIndex].length) {
-         MsgBuffer  = MsgBuffer + MsgArray[MsgIndex].charAt(CharacterPos);
-         id.value = MsgBuffer+"_";
-         delay = TypeDelay;
-         id.scrollTop = id.scrollHeight; 
-      } else {
-         delay = NxtMsgDelay;
-         MsgBuffer   = "";
-         CharacterPos = -1;
-         if (MsgIndex!=MsgArray.length-1){
-           MsgIndex++;
-         }else {
-           MsgIndex = 0;
-         }
-       }
-       CharacterPos++;
-       setTimeout(StartTyping,delay);
-   }
-StartTyping();
-})();
-</script>
-<div class="type_box" style="perspective:500px;-webkit-perspective:500px;">
-   <textarea id="typing-text" aria-label="typing text" readonly></textarea>
-</div>
-
+<h1>BlackPirate</h1>
 <h5><a href="/contact/" class="menu">/contact</a></h5>
 <h5><a href="/blog/" class="menu">/blog</a></h5>
 <h5><a href="/resources/" class="menu">/resources</a></h5>
