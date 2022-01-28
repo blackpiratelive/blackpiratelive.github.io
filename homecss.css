@@ -12,7 +12,7 @@
 
 body {
 
-       font-size: 5vw;
+       font-size: 3vw;
        background-color: var(--background-color);
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
@@ -21,7 +21,7 @@ body {
 }
 h1 {
 
-     font-size:8vw;
+     font-size: 6vw;
      font-family: 'Cinzel Decorative', sans-serif;
      color: rgb(255,55,95); 
      
@@ -41,7 +41,7 @@ p {
         font-family: 'IBM Plex Serif', sans-serif;
 }
 .date {
-        font-size:3.2vw;
+        font-size:2.7vw;
         color: grey;
 }
 a{
@@ -49,7 +49,7 @@ a{
   text-decoration: none;
 }
 h3 {
-    font-size:6vw;
+    font-size:4vw;
 }
 ::selection {
     color: black;
@@ -57,7 +57,7 @@ h3 {
   }
 
 h5 {
-    font-size: 5.8vw;
+    font-size: 3.5vw;
 }
 .li-link {
 
