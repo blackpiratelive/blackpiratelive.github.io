@@ -5,8 +5,8 @@
         --text-normal: #dcddde;
         --accent-link: rgb(50,215,75 );
         --yellow: rgb(255,214,10);
-        --light-blue: rgb(90,200,245);
-        --warning: rgb(255,69,58);
+        --light-blue: rgb(90,200,245)
+       
 }
 
 body {
@@ -16,7 +16,7 @@ body {
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: 'Open Sans', sans-serif;;
+           font-family: 'Lora', sans-serif;;
 }
 h1 {
 
@@ -37,7 +37,7 @@ p {
    
 }
 .menu {
-        font-family: 'IBM Plex Serif', sans-serif;
+        font-family: 'Dosis', sans-serif;
 }
 .date {
         font-size:3.2vw;
@@ -45,7 +45,6 @@ p {
 }
 a{
   color: var(--accent-link);
-  text-decoration: none;
 }
 h3 {
     font-size:6vw;
@@ -80,8 +79,4 @@ h5 {
 }
 .author {
             color: var(--author-color);
-}
-.warning {
-  color: var(--warning);
-  text-align: center;
 }
