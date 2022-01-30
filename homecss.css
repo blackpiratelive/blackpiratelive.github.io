@@ -8,9 +8,6 @@
         --light-blue: rgb(90,200,245);
         --warning: rgb(255,69,58);
         --heading-red: rgb(255,55,95);
-        --gray3: rgb(72,72,74);
-        --gray4: rgb(58,58,60);
-        --gray5: rgb(44,44,46);
 }
 
 body {
@@ -71,11 +68,8 @@ h5 {
 }
 /* This changes links in contact page only */
 .contact-link {
-    font-family: 'Arimo', sans-serif;
-    font-size: 5.5vmin;
-    text-shadow: 2px 2px 2px rgb(72,72,74),
-    			 2px 2px 2px var(--warning) ;
-	text-decoration:underline;
+    font-family: 'Dosis', sans-serif;
+    font-size: 4.5vmin;
 }
 /* This is the end text in book page */
 .end {
@@ -102,9 +96,4 @@ h5 {
        0% {color: var(--heading-red);}
        20% {color: var(--heading-red);}
        100% {color: var(--yellow);}
-}
-.contact-bg{
-				background-color: var(--gray5);
-				padding: 15px 15px 15px 15px;
-				border-radius: 15px;
 }
