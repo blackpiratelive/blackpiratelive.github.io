@@ -8,6 +8,9 @@
         --light-blue: rgb(90,200,245);
         --warning: rgb(255,69,58);
         --heading-red: rgb(255,55,95);
+        --gray3: rgb(72,72,74);
+        --gray4: rgb(58,58,60);
+        --gray5: rgb(44,44,46);
 }
 
 body {
@@ -24,9 +27,33 @@ h1 {
      
      font-family: 'Cinzel Decorative', sans-serif;
      color: rgb(255,55,95); 
+     animation: logo 10s infinite both;
      
      
 }
+/* This animation only applies to the logo */
+@keyframes logo {
+				0% {
+					color: var(--warning);
+				
+					}
+					20% {
+						color: var(--yellow);
+						}
+						40% {
+							color: var(--accent-link);
+							}
+							60% {
+								color: var(--light-blue);
+								}
+								80% {
+									color: white}
+									}
+									100% {
+										color: var(--heading-red);
+										
+										}
+} 
 hr {
      color: var(--yellow);
 }
@@ -39,10 +66,17 @@ p {
 }
 .menu {
         font-family: 'IBM Plex Serif', sans-serif;
-        border-left: solid 2px var(--accent-link);
-        border-bottom: solid 4.5px var(--accent-link);
+        border-left: solid 1px var(--accent-link);
+        border-bottom: solid 2.5px var(--accent-link);
         background-color: rgb(44,44,46);
-        padding: 14px 14px 14px 14px;
+        padding: 5px 10px 20px 14px;
+        border-radius: 5px;
+        display: inline-block;
+        width: 28vmin;
+        height: 2.5vmin;
+        text-shadow: 1px 1px 1px var(--yellow),
+        			  1px 1px 1px var(--warning),
+        			  1px 1px 1px var(--light-blue);
 }
 .date {
         font-size:2.7vmin;
@@ -68,8 +102,11 @@ h5 {
 }
 /* This changes links in contact page only */
 .contact-link {
-    font-family: 'Dosis', sans-serif;
-    font-size: 4.5vmin;
+    font-family: 'Arimo', sans-serif;
+    font-size: 5.5vmin;
+    text-shadow: 2px 2px 2px rgb(72,72,74),
+    			 2px 2px 2px var(--warning) ;
+	text-decoration:underline;
 }
 /* This is the end text in book page */
 .end {
@@ -96,4 +133,9 @@ h5 {
        0% {color: var(--heading-red);}
        20% {color: var(--heading-red);}
        100% {color: var(--yellow);}
+}
+.contact-bg{
+				background-color: var(--gray5);
+				padding: 15px 15px 15px 15px;
+				border-radius: 15px;
 }
