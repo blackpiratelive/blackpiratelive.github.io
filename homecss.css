@@ -28,14 +28,9 @@ h1 {
      font-family: 'Cinzel Decorative', sans-serif;
      color: rgb(255,55,95); 
      animation: logo 10s infinite both;
-     position: fixed;
+     
      top: 0px;
-     background-color:var(--background-color);
      display:inline-block;
-     width: 100vw;
-     height: 15vmin;
-     margin: auto;
-     padding-top: 15px;
     
      
      
