@@ -11,6 +11,9 @@
         --gray3: rgb(72,72,74);
         --gray4: rgb(58,58,60);
         --gray5: rgb(44,44,46);
+        --white-gray2: rgb(174,174,178);
+        --white-gray: rgb(142,142,147);
+        --white-gray3: rgb(199,199,204);
 }
 
 body {
@@ -147,8 +150,12 @@ h5 {
 				border-radius: 15px;
 }
 .update-bg{
-  background-color: var(--gray3);
-  padding: 15px 15px 15px 15px;
+  background-color: black;
+  padding: 10px 15px 15px 15px;
   border-radius: 15px;
+  color: var(--white-gray2);
   
+}
+.update-h2 {
+				color: var(--white-gray3);
 }
