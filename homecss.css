@@ -16,6 +16,12 @@
         --white-gray3: rgb(199,199,204);
 }
 
+/* Custom Fonts */
+@font-face {
+             font-family: "Helvetica-neue-regular-local";
+             src: url("fonts/Helvetica-Neue-Regular.woff") format("woff");
+}
+
 body {
 
        font-size: 4.5vmin;
@@ -23,7 +29,7 @@ body {
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: 'Open Sans', sans-serif;;
+           font-family: Helvetica-neue-regular-local;
 }
 h1 {
 
