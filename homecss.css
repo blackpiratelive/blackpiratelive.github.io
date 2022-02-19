@@ -22,6 +22,11 @@
              src: url("fonts/Helvetica-Neue-Regular.woff") format("woff");
 }
 
+@font-face {
+             font-family: "Newrocker";
+             src: url("fonts/Newrocker.ttf");
+}
+
 body {
 
        font-size: 4.5vmin;
@@ -34,7 +39,7 @@ body {
 h1 {
 
      
-     font-family: 'Cinzel Decorative', sans-serif;
+     font-family: Newrocker;
      color: rgb(255,55,95); 
      animation: logo 10s infinite both;
      
