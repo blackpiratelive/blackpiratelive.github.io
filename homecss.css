@@ -27,6 +27,11 @@
              src: url("fonts/Newrocker.ttf");
 }
 
+@font-face {
+             font-family: "MoonFlowerBold";
+             src: url("fonts/MoonFlowerBold.ttf");
+}
+
 body {
 
        font-size: 4.5vmin;
