@@ -183,3 +183,11 @@ h5 {
 				color: var(--white-gray3);
 				font-family: MoonFlowerBold;
 }
+
+.candle {
+                 margin-right: 5%;
+}
+.book-icon {
+                        float: left;
+                        margin: 10px;
+}
