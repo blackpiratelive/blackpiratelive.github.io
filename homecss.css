@@ -44,12 +44,13 @@ body {
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: Raleway-Regular-local;
+           font-family: Raleway-Regular-local, sans-serif;
+           font-display: fallback;
 }
 h1 {
 
      
-     font-family: Newrocker;
+     font-family: Newrocker, sans-serif;
      color: rgb(255,55,95); 
      animation: logo 10s infinite both;
      
@@ -86,14 +87,14 @@ hr {
      color: var(--yellow);
 }
 h2{
-font-family: 'Arimo', sans-serif;
+font-family: Helvetica-neue-regular-local, sans-serif;
 color: var(--light-blue);
 }
 p {
    
 }
 .menu {
-        font-family: 'IBM Plex Serif', sans-serif;
+        font-family: Helvetica-neue-regular-local, sans-serif;
         border-left: solid 1px var(--accent-link);
         border-bottom: solid 2.5px var(--accent-link);
         background-color: rgb(44,44,46);
@@ -133,7 +134,7 @@ h5 {
 }
 /* This changes links in contact page only */
 .contact-link {
-    font-family: 'Arimo', sans-serif;
+    font-family: Helvetica-neue-regular-local, sans-serif;
     font-size: 5.5vmin;
     text-shadow: 2px 2px 2px rgb(72,72,74),
     			 2px 2px 2px var(--warning) ;
