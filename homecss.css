@@ -32,6 +32,11 @@
              src: url("fonts/MoonFlowerBold.ttf");
 }
 
+@font-face {
+             font-family: "Raleway-Regular-local";
+             src: url("fonts/Raleway-Regular.ttf");
+}
+
 body {
 
        font-size: 4.5vmin;
@@ -39,7 +44,7 @@ body {
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: Helvetica-neue-regular-local;
+           font-family: Raleway-Regular-local;
 }
 h1 {
 
