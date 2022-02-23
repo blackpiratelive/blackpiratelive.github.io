@@ -101,7 +101,7 @@ p {
         padding: 5px 10px 20px 14px;
         border-radius: 5px;
         display: inline-block;
-        width: 28vmin;
+        width: 35vmin;
         height: 2.5vmin;
         text-shadow: 1px 1px 1px var(--yellow),
         			  1px 1px 1px var(--warning),
