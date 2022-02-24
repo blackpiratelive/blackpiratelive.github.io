@@ -52,6 +52,7 @@ body {
        font-weight: regular;
            font-family: Helvetica-local, sans-serif;
            font-display: fallback;
+            line-height: 1.5em;
 }
 h1 {
 
