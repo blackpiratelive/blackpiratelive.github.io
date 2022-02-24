@@ -37,6 +37,12 @@
              src: url("fonts/Raleway-Regular.ttf");
 }
 
+@font-face {
+             font-family: "Helvetica-local";
+             src: url("fonts/Helvetica.ttf");
+}
+
+
 body {
 
        font-size: 4.5vmin;
@@ -44,7 +50,7 @@ body {
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
        font-weight: regular;
-           font-family: Raleway-Regular-local, sans-serif;
+           font-family: Helvetica-local, sans-serif;
            font-display: fallback;
 }
 h1 {
