@@ -250,4 +250,5 @@ h5.h5-bigger {
 }
 .gallery-container {
   display: inline-grid;
+  grid-template-columns: 1fr 1fr;
 }
