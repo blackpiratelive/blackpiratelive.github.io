@@ -245,3 +245,6 @@ h5.h5-bigger {
   clear: both;
   display: table;
 }
+.img-gallery {
+  width: 100%;
+}
