@@ -252,4 +252,5 @@ h5.h5-bigger {
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 7%;
+  row-gap: 7%;
 }
