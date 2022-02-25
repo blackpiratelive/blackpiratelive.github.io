@@ -236,7 +236,7 @@ h5.h5-bigger {
 .container {
   margin: auto;
 }
-.img-100-width.img-gallery {
+.img-100-width img-gallery {
   width: 100%;
   border-radius: 5%;
 }
