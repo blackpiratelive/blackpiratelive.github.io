@@ -248,3 +248,6 @@ h5.h5-bigger {
 .img-gallery {
   width: 100%;
 }
+.gallery-container {
+  display: inline-grid;
+}
