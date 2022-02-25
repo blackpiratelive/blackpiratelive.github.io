@@ -236,7 +236,7 @@ h5.h5-bigger {
 .container {
   margin: auto;
 }
-.img-100-width {
+.img-100-width.img-gallery {
   width: 100%;
   border-radius: 5%;
 }
@@ -245,13 +245,9 @@ h5.h5-bigger {
   clear: both;
   display: table;
 }
-.img-gallery {
-  width: 100%;
-}
 .gallery-container {
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 7%;
   row-gap: 5%;
-  border-radius: 5%;
 }
