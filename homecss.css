@@ -253,4 +253,5 @@ h5.h5-bigger {
   grid-template-columns: 1fr 1fr;
   column-gap: 7%;
   row-gap: 5%;
+  border-radius: 5%;
 }
