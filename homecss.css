@@ -1,7 +1,7 @@
 :root {
         --author-color: #AEAEAE;
         /* background color refers to the background of the webpage and its greyish */
-        --background-color: rgb(28,28,30);
+        --background-color: black;
         --text-normal: #dcddde;
         --accent-link: rgb(50,215,75 );
         --yellow: rgb(255,214,10);
