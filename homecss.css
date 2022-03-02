@@ -141,7 +141,7 @@ h5 {
 }
 /* This changes links in contact page only */
 .contact-link {
-    font-family: Helvetica-neue-regular-local, sans-serif;
+    font-family: Helvetica-local, sans-serif;
     font-size: 5.5vmin;
     text-shadow: 2px 2px 2px rgb(72,72,74),
     			 2px 2px 2px var(--warning) ;
