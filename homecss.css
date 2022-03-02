@@ -183,12 +183,12 @@ h5 {
   padding: 10px 15px 15px 15px;
   border-radius: 15px;
   color: var(--white-gray2);
-  font-family: Helvetica-local;
+  font-family: MoonFlowerBold;
   
 }
 .update-h2 {
 				color: var(--white-gray3);
-				font-family: Helvetica-local;
+				font-family: MoonFlowerBold;
 }
 
 .candle {
