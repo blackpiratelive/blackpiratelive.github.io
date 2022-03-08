@@ -45,7 +45,7 @@
 
 body {
 
-       font-size: 4.5vmin;
+       
        background-color: var(--background-color);
        color: var(--text-normal);
        padding: 5vw 5vw 5vw 5vw;
@@ -176,14 +176,16 @@ h5 {
 .contact-bg{
 				background-color: var(--gray5);
 				padding: 15px 15px 15px 15px;
-				border-radius: 15px;
+				border-radius: 1.2em;
+        box-shadow: 0em 0em 1.5em 0em rgba(0,0,0,.25);
 }
 .update-bg{
   background-color: black;
-  padding: 10px 15px 15px 15px;
-  border-radius: 15px;
+  padding: 1em 1.5em;
+  border-radius: 1.2em;
   color: var(--white-gray2);
   font-family: MoonFlowerBold;
+  box-shadow: 0em 0em 2em 0em rgba(0,0,0,.7);
   
 }
 .update-h2 {
@@ -255,4 +257,13 @@ h5.h5-bigger {
   grid-template-columns: 1fr 1fr;
   column-gap: 7%;
   row-gap: 5%;
+}
+.menu-list {
+  list-style: none;
+}
+.menu-li {
+  float: left;
+}
+.clear-both {
+  clear: both;
 }
