@@ -30,7 +30,7 @@ body {
 h1 {
 
      
-     font-family: Helvetica-local, sans-serif;
+     font-family: serif;
      color: rgb(255,55,95); 
      animation: logo 10s infinite both;
      top: 0;
@@ -65,7 +65,7 @@ hr {
      color: var(--yellow);
 }
 h2{
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: Verdana, Geneva, Tahoma, serif;
         color: var(--light-blue);
 }
 .menu-div {
@@ -81,6 +81,7 @@ a{
 }
 h3 {
     font-size:5vmin;
+	font-family: serif;
 }
 ::selection {
     color: black;
@@ -89,10 +90,11 @@ h3 {
 
 h5 {
     font-size: 4.5vmin;
+	font-family: serif;
 }
 /* This changes links in contact page only */
 .contact-link {
-    font-family: Helvetica-local, sans-serif;
+    font-family: serif;
     font-size: 2.1em;
     text-shadow: 2px 2px 2px rgb(72,72,74),
     			 2px 2px 2px var(--warning) ;
