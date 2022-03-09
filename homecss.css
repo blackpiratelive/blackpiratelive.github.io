@@ -17,42 +17,15 @@
 }
 
 /* Custom Fonts */
-@font-face {
-             font-family: "Helvetica-neue-regular-local";
-             src: url("fonts/Helvetica-Neue-Regular.woff") format("woff");
-}
-
-@font-face {
-             font-family: "Newrocker";
-             src: url("fonts/Newrocker.ttf");
-}
-
-@font-face {
-             font-family: "MoonFlowerBold";
-             src: url("fonts/MoonFlowerBold.ttf");
-}
-
-@font-face {
-             font-family: "Raleway-Regular-local";
-             src: url("fonts/Raleway-Regular.ttf");
-}
-
-@font-face {
-             font-family: "Helvetica-local";
-             src: url("fonts/Helvetica-light.otf");
-}
-
 
 body {
-
-       
        background-color: var(--background-color);
-       color: var(--text-normal);
-       padding: 5vw 5vw 5vw 5vw;
-       font-weight: regular;
-           font-family: Helvetica-local, sans-serif;
-           font-display: fallback;
-            line-height: 1.5em;
+      color: var(--text-normal);
+      padding: 5vw 5vw 5vw 5vw;
+      font-family: sans-serif;
+      font-display: fallback;
+      line-height: 1.5em;
+      font-size: 1.2em;
 }
 h1 {
 
@@ -60,8 +33,7 @@ h1 {
      font-family: Helvetica-local, sans-serif;
      color: rgb(255,55,95); 
      animation: logo 10s infinite both;
-     
-     top: 0px;
+     top: 0;
      display:inline-block;
     
      
@@ -83,42 +55,24 @@ h1 {
 								color: var(--light-blue);
 								}
 								80% {
-									color: white}
-									}
+									color: white
+                }
 									100% {
 										color: var(--heading-red);
-										
 										}
-} 
+}
 hr {
      color: var(--yellow);
 }
 h2{
-font-family: Helvetica-local, sans-serif;
-color: var(--light-blue);
-}
-p {
-   
-}
-.menu {
-        font-family: Helvetica-local, sans-serif;
-        border-left: solid 1px var(--accent-link);
-        border-bottom: solid 2.5px var(--accent-link);
-        background-color: rgb(44,44,46);
-        padding: 5px 10px 20px 14px;
-        border-radius: 5px;
-        display: inline-block;
-        width: 35vmin;
-        height: 2.5vmin;
-        text-shadow: 1px 1px 1px var(--yellow),
-        			  1px 1px 1px var(--warning),
-        			  1px 1px 1px var(--light-blue);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: var(--light-blue);
 }
 .menu-div {
 			padding-top: 7vmin;
 }
 .date {
-        font-size:2.7vmin;
+        font-size:1em;
         color: grey;
 }
 a{
@@ -136,13 +90,10 @@ h3 {
 h5 {
     font-size: 4.5vmin;
 }
-.li-link {
-
-}
 /* This changes links in contact page only */
 .contact-link {
     font-family: Helvetica-local, sans-serif;
-    font-size: 5.5vmin;
+    font-size: 2.1em;
     text-shadow: 2px 2px 2px rgb(72,72,74),
     			 2px 2px 2px var(--warning) ;
 	text-decoration:underline;
@@ -175,22 +126,23 @@ h5 {
 }
 .contact-bg{
 				background-color: var(--gray5);
-				padding: 15px 15px 15px 15px;
+				padding: 1.5em 1.5em;
 				border-radius: 1.2em;
-        box-shadow: 0em 0em 1.5em 0em rgba(0,0,0,.25);
+        box-shadow: 0.3em 0.3em 0.7em 0em rgba(0, 0, 0, 0.25);
 }
 .update-bg{
+  font-size: 0.9em;
   background-color: black;
   padding: 1em 1.5em;
   border-radius: 1.2em;
   color: var(--white-gray2);
-  font-family: MoonFlowerBold;
-  box-shadow: 0em 0em 2em 0em rgba(0,0,0,.7);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-shadow: 1em 1em 2em 0em rgba(0,0,0,.7);
   
 }
 .update-h2 {
 				color: var(--white-gray3);
-				font-family: MoonFlowerBold;
+				font-family: serif;
 }
 
 .candle {
@@ -266,4 +218,18 @@ h5.h5-bigger {
 }
 .clear-both {
   clear: both;
+}
+/* Minimum width */
+@media (min-width: 960px) {
+  .float-left-layout {
+          float: left;
+          width: 40%;
+  }
+  .right-margin {
+          margin-right: 1%;
+          width: 45%;
+  }
+  body {
+          font-size: 1.3em;
+  }
 }
