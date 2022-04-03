@@ -223,6 +223,14 @@ h5.h5-bigger {
 }
 /* Minimum width */
 @media (min-width: 960px) {
+
+  /* Grid layouts */
+.grid-container{
+  display:grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+
   .float-left-layout {
           float: left;
           width: 40%;
@@ -235,3 +243,11 @@ h5.h5-bigger {
           font-size: 1.3em;
   }
 }
+
+/* Grid layouts 
+.grid-container{
+                  display:grid;
+                  gap: 1.5rem;
+                  grid-template-columns: 1fr 1fr;
+}
+*/
