@@ -251,3 +251,11 @@ h5.h5-bigger {
                   grid-template-columns: 1fr 1fr;
 }
 */
+/* Blog Styles */
+.blog-heading {
+                text-align: center;
+                font-size: 2em;
+}
+.blog-date {
+  text-align: center;
+}
