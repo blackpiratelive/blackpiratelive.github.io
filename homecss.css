@@ -223,6 +223,17 @@ h5.h5-bigger {
 .clear-both {
   clear: both;
 }
+
+/* Heading Image Style */
+.heading-img {
+  height: auto;
+  width: 80vmin;
+  margin: 0;
+  padding: 0;
+}
+
+
+
 /* Minimum width */
 @media (min-width: 960px) {
 
@@ -245,6 +256,9 @@ h5.h5-bigger {
           font-size: 1.3em;
           padding: 4vw;
   }
+  .heading-img {
+    height: 4em;
+    width: auto;
 }
 
 /* Grid layouts 
@@ -264,9 +278,3 @@ h5.h5-bigger {
 }
 
 
-/* Heading Image Style */
-.heading-img {
-  height: 7em;
-  margin: 0;
-  padding: 0;
-}
