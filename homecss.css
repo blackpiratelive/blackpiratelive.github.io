@@ -21,7 +21,8 @@
 body {
        background-color: var(--background-color);
       color: var(--text-normal);
-      padding: 5vw 5vw 5vw 5vw;
+      padding: 1em;
+      margin: 0;
       font-family: sans-serif;
       font-display: fallback;
       line-height: 1.5em;
@@ -129,7 +130,7 @@ h5 {
 }
 .contact-bg{
 				background-color: var(--gray5);
-				padding: 1.5em 1.5em;
+				padding: 1em;
 				border-radius: 1.2em;
         box-shadow: 0.3em 0.3em 0.7em 0em rgba(0, 0, 0, 0.25);
 }
@@ -242,6 +243,7 @@ h5.h5-bigger {
   }
   body {
           font-size: 1.3em;
+          padding: 4vw;
   }
 }
 
@@ -259,4 +261,12 @@ h5.h5-bigger {
 }
 .blog-date {
   text-align: center;
+}
+
+
+/* Heading Image Style */
+.heading-img {
+  height: 7em;
+  margin: 0;
+  padding: 0;
 }
