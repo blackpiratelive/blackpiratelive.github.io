@@ -85,14 +85,16 @@ h3 {
     font-size:5vmin;
 	font-family: serif;
 }
+
 ::selection {
     color: black;
     background: var(--yellow);
   }
 
 h5 {
-    font-size: 4.5vmin;
+    font-size: 1.25em;
 	font-family: serif;
+  line-height: 150%;
 }
 /* This changes links in contact page only */
 .contact-link {
@@ -260,6 +262,7 @@ h5.h5-bigger {
     height: 4em;
     width: auto;
 }
+}
 
 /* Grid layouts 
 .grid-container{
@@ -276,5 +279,7 @@ h5.h5-bigger {
 .blog-date {
   text-align: center;
 }
-
-
+.part-1 {
+         
+          display: block;
+}
