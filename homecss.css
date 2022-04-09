@@ -16,7 +16,6 @@
         --white-gray3: rgb(199,199,204);
 }
 
-/* Custom Fonts */
 
 body {
        background-color: var(--background-color);
@@ -28,18 +27,34 @@ body {
       line-height: 1.5em;
       font-size: 1.2em;
 }
-h1 {
 
-     
+
+/* Heading tags styling */
+h1 {
      font-family: serif;
      color: rgb(255,55,95); 
      animation: logo 10s infinite both;
      top: 0;
-     display:inline-block;
-    
-     
-     
+     display:inline-block;   
 }
+h2{
+  font-family: Verdana, Geneva, Tahoma, serif;
+  color: var(--light-blue);
+  line-height: 1.3;
+}
+h3 {
+  font-size:5vmin;
+font-family: serif;
+}
+h5 {
+  font-size: 1.25em;
+font-family: serif;
+line-height: 150%;
+}
+/* End */
+
+
+
 /* This animation only applies to the logo */
 @keyframes logo {
 				0% {
@@ -65,11 +80,7 @@ h1 {
 hr {
      color: var(--yellow);
 }
-h2{
-        font-family: Verdana, Geneva, Tahoma, serif;
-        color: var(--light-blue);
-        line-height: 1.3;
-}
+
 .menu-div {
 			padding-top: 7vmin;
 }
@@ -77,33 +88,48 @@ h2{
         font-size:1em;
         color: grey;
 }
+
+
+/* This part is for styling <a> tags */
+
+
 a{
   color: var(--accent-link);
   text-decoration: none;
 }
-h3 {
-    font-size:5vmin;
-	font-family: serif;
+li > a:hover::after {
+  content: ' >>';
+  font-size: 0.8em;
 }
+p > a:hover::after {
+  content: ' >>';
+  font-size: 0.8em;
+}
+i > a:hover::after {
+  content: ' >>';
+  font-size: 0.8em;
+}
+/* This changes links in contact page only */
+.contact-link {
+  font-family: serif;
+  font-size: 2.1em;
+  text-shadow: 2px 2px 2px rgb(72,72,74),
+         2px 2px 2px var(--warning) ;
+text-decoration:underline;
+}
+
+
+/* End of styling <a> tags */
+
+
 
 ::selection {
     color: black;
     background: var(--yellow);
   }
 
-h5 {
-    font-size: 1.25em;
-	font-family: serif;
-  line-height: 150%;
-}
-/* This changes links in contact page only */
-.contact-link {
-    font-family: serif;
-    font-size: 2.1em;
-    text-shadow: 2px 2px 2px rgb(72,72,74),
-    			 2px 2px 2px var(--warning) ;
-	text-decoration:underline;
-}
+
+
 /* This is the end text in book page */
 .end {
     text-align: center;
@@ -258,10 +284,6 @@ h5.h5-bigger {
           font-size: 1.3em;
           padding: 4vw;
   }
-  .heading-img {
-    height: 4em;
-    width: auto;
-}
 }
 
 /* Grid layouts 
@@ -282,4 +304,20 @@ h5.h5-bigger {
 .part-1 {
          
           display: block;
+}
+.heading-blackpirate::after {
+  content: '.tech';
+  font-size: 0.5em;
+}
+.quote {
+  font-style: italic;
+}
+.quote::after {
+  content: '"';
+  font-size: 1.7em;
+}
+.quote::before {
+  content: '"';
+  font-size: 1.7em;
+  font-style: normal;
 }
