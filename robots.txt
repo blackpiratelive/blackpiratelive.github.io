@@ -1,0 +1,3 @@
+User-Agent: *Disallow:Sitemap: https://blackpirate.tech/sitemap.xml
+User-Agent: search.marginalia.nu 
+IP address: 81.170.128.52
