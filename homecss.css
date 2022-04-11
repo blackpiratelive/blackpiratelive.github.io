@@ -97,7 +97,10 @@ a{
   color: var(--accent-link);
   text-decoration: none;
 }
-a:hover { text-decoration: underline;}
+a:hover { 
+  text-decoration: underline;
+  text-underline-offset: 20%;
+}
 
 /* This changes links in contact page only */
 .contact-link {
@@ -296,7 +299,7 @@ h5.h5-bigger {
           display: block;
 }
 .heading-blackpirate::after {
-  content: '.tech';
+  content: '.com';
   font-size: 0.5em;
 }
 .quote {
