@@ -322,3 +322,69 @@ h5.h5-bigger {
 .yesterweb {
   display: inline;
 }
+
+/* Form Styling */
+.success-page {
+width: 30%;
+margin-left: 33%;
+min-height: 25vh;
+text-align: center;
+place-items: center;
+display: grid;
+}
+a.success-page-link{
+  display: block;
+}
+a.success-page-link::before {
+  content: '< ';
+}
+.success-img{
+  place-items: center;
+  display: grid;
+  border-radius: 50%;
+  margin-bottom: 1em;
+}
+
+input {
+  background-color: var(--gray5);
+  color: white;
+  border-bottom:  solid 1px var(--accent-link);
+  border-radius: .5em;
+  min-height: 2.8em;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 50%;
+  padding: 0.4em;
+}
+textarea {
+  background-color: var(--gray5);
+  color: white;
+  border-bottom: solid 1px var(--accent-link);
+  border-radius: 0.5em;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  min-height: 10em;
+  min-width: 95%;
+  padding: 10px;
+
+}
+
+input:focus {
+  outline:none;
+  border-bottom: solid 1px var(--light-blue);
+}
+textarea:focus {
+  outline:none;
+  border-bottom: solid 1px var(--light-blue);
+}
+.submit-button {
+  background-color: var(--accent-link);
+  color: black;
+  width: 5em;
+  height: 2.5em;
+  border-radius: 0.3em;
+  font-size: 1.3em;
+  border: none;
+}

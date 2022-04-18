@@ -22,31 +22,27 @@
 </center>
 <div class="clear-both"></div>
 <hr>
-
-
-
-
-
-<form name="contact" method="POST" data-netlify="true">
-    <p>
-      <label>Your Name: <input type="text" name="name" /></label>
-    </p>
-    <p>
-      <label>Your Email: <input type="email" name="email" /></label>
-    </p>
-    <p>
-      <label>Your Role: <select name="role[]" multiple>
-        <option value="leader">Leader</option>
-        <option value="follower">Follower</option>
-      </select></label>
-    </p>
-    <p>
-      <label>Message: <textarea name="message"></textarea></label>
-    </p>
-    <p>
-      <button type="submit">Send</button>
-    </p>
-  </form>
+<br>
+<form name="contact-me" method="POST" data-netlify="true" action="/success/">
+  <div class="form-text">
+    <label for="your-name">Your Name: </label>
+    <input type="text" name="name" id="your-name" required placeholder="Jhon Doe">
+  </div>
+  <br>
+  <div class="form-text">
+    <label for="your-email">Your Email:</label>
+    <input type="email" name="email" id="your-email" required placeholder="anything@yourdomain.tld">
+  </div>
+  <br>
+  <div class="form-text">
+    <label for="textarea">Message: </label>
+    <textarea name="message" id="textarea" required placeholder="Start by writting a joke"></textarea>
+  </div>
+  <br>
+  <div>
+    <button type="submit" class="submit-button">Submit</button>
+  </div>
+</form>
   
 
 
