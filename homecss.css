@@ -277,6 +277,7 @@ h5.h5-bigger {
           font-size: 1.3em;
           padding: 4vw;
   }
+ 
 }
 
 /* Grid layouts 
@@ -325,12 +326,11 @@ h5.h5-bigger {
 
 /* Form Styling */
 .success-page {
-width: 30%;
-margin-left: 33%;
-min-height: 25vh;
+width: 80%;
 text-align: center;
 place-items: center;
 display: grid;
+margin-left: 3%;
 }
 a.success-page-link{
   display: block;
@@ -387,4 +387,11 @@ textarea:focus {
   border-radius: 0.3em;
   font-size: 1.3em;
   border: none;
+}
+@media (min-width: 960px) {
+  .success-page {
+    margin-left: 33%;
+    width: 30%;
+    min-height: 25vh;
+  }
 }
