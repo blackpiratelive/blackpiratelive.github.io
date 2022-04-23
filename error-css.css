@@ -1,0 +1,47 @@
+:root {
+    --bg-clr: #312F2F;
+    --font-clr: #D9DCD6;
+    --blue-clr: #3A7CA5;
+    --green-clr: #439775;
+}
+
+body {
+    background-color: var(--bg-clr);
+    color: var(--font-clr);
+    font-family: sans-serif;
+    margin: 10%;
+}
+a {
+    color: var(--font-clr);
+    display: block;
+    word-wrap: nowrap;
+    text-decoration: none;
+    text-align: center;
+
+}
+h1, p { 
+    text-align: center;
+
+}
+.button {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    justify-content: center;
+
+}
+.child {
+    background-color: var(--blue-clr);
+    border-radius: 16px;
+    padding: 1.5em;
+    width: 45%;
+    min-height: fit-content;
+    max-height: max-content;
+}
+h1 {
+    font-weight: 800;
+}
+.child:hover {
+    background-color: var(--green-clr);
+   
+}
