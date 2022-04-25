@@ -464,6 +464,7 @@ textarea:focus {
 }
 .update-page-ol {
   transform: rotate(180deg);
+  margin-left: 2.6rem;
 }
 .update-page-ol > li {
   transform: rotate(-180deg);
