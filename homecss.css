@@ -306,6 +306,10 @@ h5.h5-bigger {
                 font-size: 2em;
                 line-height: 1.3;
 }
+h4 {
+  color: var(--yellow);
+  font-size: 1.5rem;
+}
 .blog-date {
   text-align: center;
 }
@@ -321,9 +325,11 @@ h5.h5-bigger {
 }
 .table-of-contents > ul {
   color: var(--accent-link);
+  text-decoration: underline;
+  text-underline-offset: 20%;
 }
-.table-of-contents > ul > li::after {
-  content: ' >';
+.table-of-contents > ul > li:hover::after {
+  content: ' #';
 }
 .table-of-contents {
   margin: auto;
@@ -468,4 +474,8 @@ textarea:focus {
 }
 .update-page-ol > li {
   transform: rotate(-180deg);
+}
+.blog-quote {
+  border-left: solid var(--yellow);
+  padding-left: 1em;
 }
