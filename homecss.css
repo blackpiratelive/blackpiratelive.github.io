@@ -327,13 +327,14 @@ h4 {
   color: var(--accent-link);
   text-decoration: underline;
   text-underline-offset: 20%;
+  text-align: justify;
 }
 .table-of-contents > ul > li:hover::after {
   content: ' #';
 }
 .table-of-contents {
   margin: auto;
-  width: 40%;
+  width: 85%;
   display: grid;
   align-items: center;
   align-content: center;
@@ -461,6 +462,9 @@ textarea:focus {
   }
   .updates > center > img {
     margin-top: 5rem;
+  }
+  .table-of-contents {
+    width: 40%;
   }
   
 }
