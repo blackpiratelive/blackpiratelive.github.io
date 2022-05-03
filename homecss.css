@@ -250,8 +250,8 @@ h5.h5-bigger {
 .gallery-container {
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 7%;
-  row-gap: 5%;
+  column-gap: 2%;
+  row-gap: 2%;
 }
 .menu-list {
   list-style: none;
