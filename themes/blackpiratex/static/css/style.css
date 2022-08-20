@@ -104,13 +104,10 @@ a:hover {
 .footer > img {
     width: min-content;
 }
-.footer-img {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    gap: 0.5rem;
+.footer-images {
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 /* end of footer styling */
 
