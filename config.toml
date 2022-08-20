@@ -1,0 +1,4 @@
+baseURL = 'https://blackpiratex.com'
+languageCode = 'en-us'
+title = 'BlackPirateX'
+theme = 'blackpiratex'
