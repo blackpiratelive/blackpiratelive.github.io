@@ -36,7 +36,13 @@ a {
     color: var(--accent-clr);
     text-decoration: none;
     font-family: monospace;
+    white-space: pre-wrap; /* CSS3 */    
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */    
+    white-space: -o-pre-wrap; /* Opera 7 */    
+    word-wrap: break-word; /* Internet Explorer 5.5+ */ 
 }
+
 a:hover {
     text-decoration: underline;
     color: var(--accent-clr-hvr);
@@ -72,7 +78,6 @@ a:hover {
     background-color: var(--accent-clr);
     padding: 1rem;
     top: 0;
-    position: sticky;
 }
 .nav-menu-item > a {
     color: var(--background-clr);
@@ -91,6 +96,7 @@ a:hover {
     font-size: 0.85rem;
     margin: auto;
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
     align-items: center;
     flex-direction: column;
@@ -100,6 +106,9 @@ a:hover {
 }
 .footer-img {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     gap: 0.5rem;
 }
@@ -122,4 +131,9 @@ a:hover {
 }
 .quote::after {
     content: close-quote;
+}
+@media (min-width: 600px) {
+    .nav-menu {
+        position: sticky;
+    }
 }
