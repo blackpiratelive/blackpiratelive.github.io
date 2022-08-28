@@ -1,12 +1,15 @@
 /* root stuff */
 :root {
-    --pop-color: rgb(28, 28, 30);
-    --text-color: white;
+    --accent: rgb(50,215,75);
+    --accent-low-opacity: rgba(223,223,225, 0.25);
+    --text-clr: rgb(223, 223, 225);
     --background-clr: rgb(28,28,30);
-    --accent-clr: rgb(120, 185, 249);
-    --accent-clr-hvr: rgb(179, 215, 250);
-
-
+    --tob-bg: rgb(142,142,147);
+    --accent-black-bg: rgb(10,132, 255);
+    --code-background-color: #272822;
+    --accent-clr-hvr: rgb(182, 221, 187);
+    --accent-2: rgb(255,214,10);
+    --warning-clr: rgb(255,69,58);
 }
 
 /* end of root */
@@ -17,9 +20,29 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--background-clr);
-    color: white;
-    font-family: monospace;
+    color: var(--text-clr);
+    font-family: sans-serif;
     font-size: 1.1rem;
+}
+.main-heading {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    text-shadow: 0.15rem 0.15rem 0.25rem var(--accent);
+    padding: 1rem;
+    background: linear-gradient(45deg, var(--background-clr) 80%, var(--accent-low-opacity));
+    color: white;
+    margin: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    font-family: serif;
+    color: var(--accent-2);
 }
 h1 {
     text-align: center;
@@ -33,9 +56,9 @@ p {
 
 /* link styling */
 a {
-    color: var(--accent-clr);
+    color: var(--accent);
     text-decoration: none;
-    font-family: monospace;
+    font-family: sans-serif;
     white-space: pre-wrap; /* CSS3 */    
     white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
     white-space: -pre-wrap; /* Opera 4-6 */    
@@ -75,7 +98,7 @@ a:hover {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
-    background-color: var(--accent-clr);
+    background-color: var(--accent);
     padding: 1rem;
     top: 0;
 }
@@ -85,7 +108,7 @@ a:hover {
 }
 .nav-menu-item > a:hover {
     background-color: var(--background-clr);
-    color: var(--accent-clr);
+    color: var(--accent);
     text-decoration: none;
 }
 /* end  of navbar styling */
@@ -106,7 +129,6 @@ a:hover {
 }
 .footer-images {
     text-align: center;
-    margin-bottom: 2rem;
     margin-top: 1rem;
 }
 /* end of footer styling */
@@ -133,4 +155,12 @@ a:hover {
     .nav-menu {
         position: sticky;
     }
+}
+/* heading styling */
+.main-heading::after {
+    content: ".com";
+    text-shadow: none;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
 }
