@@ -23,4 +23,4 @@ Here are some links that I find are cool.
 - Courses from IIT in different languages - https://spoken-tutorial.org/
 - Top 100 free kindle ebooks (updates daily, works only on desktop) - https://www.amazon.com/gp/bestsellers/digital-text?tf=1&pldnSite=1
 - Get a free TLD - https://nic.eu.org/
-- Non-commercial search engine to find persoanl website - https://search.marginalia.nu/
+- Non-commercial search engine to find personal website - https://search.marginalia.nu/
