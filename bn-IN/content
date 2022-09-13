@@ -4,8 +4,8 @@ date: 2022-08-19T16:24:22+05:30
 ---
 
 {{< box >}}
-Hey, stranger on the internet. Hope you're doing well. My name is Sudip. This is a website I made to have a place where I would write down weird stuff that comes to my mind. I'm also learning front end web development in my free time. Mostly CSS, and this is the place where I'd experiment with those. I started to learn Javascript recently, it's harder than last two. Also I dont like eye candy stuff much. I want website to be functional and load faster. That is why I've chosen to build static website. I've written/stolen all the codes of this website. Another thing, if this domain doesnt work try https://blackpiratelive.github.io, it should work at any case.
+নমস্কার, ইন্টারনেটের আগন্তুক। আশা করি আপনি ভালো আছেন। আমি সুদীপ। আমি এই ওয়েবসাইট টা তৈরি করেছি আমার মাথায় যা কিছু আসে তা এখানে লেখার জন্য। আমি আমার ফাঁকা সময়ে ফ্রন্ট এন্ড ডেভলপমেন্ট শিখছি। প্রধানত CSS, আর এই ওয়েবসাইট এ আমি সেগুলোর প্রাকটিস করি। কিছুদিন হলো আমি জাভাস্ক্ৰিপ্ট শেখা শুরু করেছি, কিন্তু এটা আগেরগুলোর থেকে অনেকটা কঠিন।  আমার ওয়েবসাইট খুব বেশি সুন্দর হবে না। কারণ, ওয়েবসাইট এর পেজ লোডিং স্পিড আমার কাছে বেশি গুরুত্বপূর্ণ। একারণেই এই ওয়েবসাইট টা স্ট্যাটিক।  ওয়েবসাইট এর সমস্ত কোড আমি লিখেছি (বা অন্য জায়গা থেকে ধার করেছি)। আরেকটা কথা, যদি এই ওয়েবসাইট তা কাজ না করে তাহলে এই লিংক https://blackpiratelive.github.io বাবহার করুন।
 
-I am a student currently studying. Making website is one of my hobbies. And I love ducks and cats.
+আমি একজন ছাত্র। ওয়েবসাইট তৈরী করা আমার শখের মধ্যে পরে। হাঁস এবং বিড়াল আমার প্রিয় প্রাণী।
 {{< /box >}}
 {{< image-rounded >}}/media/duck.gif{{< /image-rounded >}}
