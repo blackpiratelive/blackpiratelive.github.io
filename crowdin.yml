@@ -2,4 +2,4 @@ files:
   - source: /*
     translation: '%original_path%'
   - source: /content/*
-    translation: '%original_path%'
+    translation: content/%original_file_name%
