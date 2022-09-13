@@ -1,0 +1,5 @@
+files:
+  - source: /*
+    translation: '%original_path%'
+  - source: /content/*
+    translation: '%original_path%'
