@@ -1,16 +1,15 @@
 /* root stuff */
 :root {
-    --accent: #3E54AC;
-    --link-color: #3E54AC;
+    --accent: rgb(50,215,75);
     --accent-low-opacity: rgba(223,223,225, 0.25);
-    --text-clr: black;
-    --background-clr: white;
+    --text-clr: rgb(223, 223, 225);
+    --background-clr: rgb(28,28,30);
     --tob-bg: rgb(142,142,147);
     --accent-black-bg: rgb(10,132, 255);
     --code-background-color: #272822;
-    --accent-clr-hvr: grey;
-    --accent-2: white;
-    --warning-clr: #BFACE2;
+    --accent-clr-hvr: rgb(182, 221, 187);
+    --accent-2: rgb(255,214,10);
+    --warning-clr: rgb(255,69,58);
 }
 
 /* end of root */
@@ -41,15 +40,12 @@ body {
 }
 .main-heading {
     margin-top: 0px;
-    font-family: sans-serif;
-    font-weight: 900;
     margin-bottom: 0px;
     text-align: center;
     text-shadow: 0.15rem 0.15rem 0.25rem var(--accent);
     padding: 1rem;
-    background-color: white;
-    border: 1px white;
-    color: var(--text-color);
+    background: linear-gradient(45deg, var(--background-clr) 80%, var(--accent-low-opacity));
+    color: white;
     margin: none;
 }
 h1,
@@ -59,14 +55,8 @@ h4,
 h5,
 h6 {
 
-    font-family: sans-serif;
+    font-family: serif;
     color: var(--accent-2);
-    border: 2px solid black;
-    border-radius: 15px;
-    padding: 0.5rem 1rem;
-    background-color: var(--accent);
-    text-align: center;
-    margin: auto;
 }
 h1 {
     text-align: center;
@@ -79,13 +69,9 @@ p {
 }
 
 /* link styling */
-.nav-menu-item a {
-    text-decoration: none;
-}
 a {
-    color: var(--link-color);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    color: var(--accent);
+    text-decoration: none;
     font-family: sans-serif;
     white-space: pre-wrap; /* CSS3 */    
     white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
@@ -211,22 +197,4 @@ a:hover {
     font-family: sans-serif;
     font-weight: 400;
     font-size: 1rem;
-}
-th {
-    border: 1px solid black;
-    margin: none;
-    padding: 0.5rem;
-    min-width: fit-content;
-}
-.question {
-    width: 1rem;
-}
-tr {
-    border: 1px solid black;
-    margin: none;
-}
-.table-of-question-answer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
