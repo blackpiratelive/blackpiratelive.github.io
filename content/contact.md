@@ -3,7 +3,7 @@ title: "Contact"
 date: 2022-08-19T16:45:52+05:30
 ---
 {{< box-start >}}
-[Email](mailto:sudip@blackpiratex.com) - If you want to reach me quickly, this is best option. I would appriciate it if you do not send spam.
+[Email](mailto:sudip@blackpiratex.com) - If you want to reach me quickly, this is best option. I would appreciate it if you do not send spam.
 
 [Discord](https://discordapp.com/users/929940200950497370) - I am online here quite often. Feel free to DM me here.
 
