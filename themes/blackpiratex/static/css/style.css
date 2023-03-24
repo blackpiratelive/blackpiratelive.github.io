@@ -43,16 +43,16 @@ body {
     margin-top: 0px;
     font-family: sans-serif;
     font-weight: 900;
+    max-width: fit-content;
     margin-bottom: 0px;
     text-align: center;
-    text-shadow: 0.15rem 0.15rem 0.25rem var(--accent);
     padding: 1rem;
     background-color: white;
     border: 1px white;
     color: var(--text-color);
-    margin: none;
+    margin: auto;
 }
-h1,
+
 h2,
 h3,
 h4,
@@ -61,12 +61,12 @@ h6 {
 
     font-family: sans-serif;
     color: var(--accent-2);
-    border: 2px solid black;
     border-radius: 15px;
     padding: 0.5rem 1rem;
     background-color: var(--accent);
     text-align: center;
     margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 h1 {
     text-align: center;
@@ -124,19 +124,22 @@ a:hover {
 /* start of navbar styling */
 .nav-menu {
     display: flex;
+    row-gap: 2rem;
+    column-gap: 0.75rem;
     flex-wrap: wrap;
-    gap: 0.75rem;
     justify-content: center;
-    background-color: var(--accent);
     padding: 1rem;
     top: 0;
 }
 .nav-menu-item > a {
     color: var(--background-clr);
     font-weight: 700;
+    border: 2px solid var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: var(--accent);
     font-family: sans-serif;
-    padding-left: 0.15rem;
-    padding-right: 0.15rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 .nav-menu-item > a:hover {
     background-color: var(--background-clr);
@@ -148,6 +151,7 @@ a:hover {
 }
 .status-nav::after{
     content: "NEW";
+    left: 3rem;
     position: absolute;
     font-style: italic;
     text-transform: lowercase;
@@ -158,6 +162,13 @@ a:hover {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     border-radius: 50%;
+}
+.header-divider {
+    width: 100%;
+    background-color: black;
+    height: 1px;
+    margin: auto;
+    max-width: 900px;
 }
 /* end  of navbar styling */
 
@@ -199,11 +210,6 @@ a:hover {
 .quote::after {
     content: close-quote;
 }
-@media (min-width: 600px) {
-    .nav-menu {
-        position: sticky;
-    }
-}
 /* heading styling */
 .main-heading::after {
     content: ".com";
@@ -229,4 +235,30 @@ tr {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.bottom-buttons > a {
+    background-color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    color: var(--background-clr);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    font-size: 1rem;
+    font-weight: 300;
+}
+.bottom-buttons > a:hover {
+    color: var(--accent);
+    background-color: var(--background-clr);
+    transition: all 300ms;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    
+}
+.bottom-nav-container {
+    display: flex;
+    column-gap: 0.75rem;
+    row-gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
 }
