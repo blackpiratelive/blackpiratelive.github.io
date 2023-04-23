@@ -65,7 +65,7 @@ h6 {
     padding: 0.5rem 1rem;
     background-color: var(--accent);
     text-align: center;
-    margin: auto;
+    margin: 1rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 h1 {
