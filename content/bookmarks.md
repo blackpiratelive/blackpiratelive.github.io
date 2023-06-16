@@ -12,6 +12,10 @@ Here are some links that I find are cool.
 - https://blackpirate.be.eu.org
 - https://sambot.blackpiratex.com/ (obselete)
 - [https://smandalofficial.zohosites.com](https://web.archive.org/web/20190827162235/http://smandalofficial.zohosites.com/) (offline - clicking on it will show archived version)
+
+## Friends
+- https://saqibmir1.github.io/
+
 ## Cool Web 1.0 Websites That I Like:
 - https://sadgrl.online
 - https://bugswriter.com
