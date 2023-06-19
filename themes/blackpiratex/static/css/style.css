@@ -283,3 +283,13 @@ tr {
         width: 60%;
     }
 }
+.quote-author {
+    text-align: right;
+    font-size: 0.8rem;
+    color: grey;
+}
+.quote-div {
+    width: fit-content;
+    margin: auto;
+   
+}
