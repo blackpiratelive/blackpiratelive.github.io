@@ -2,7 +2,16 @@
 
 {{- partial "header.html" . -}}
 <div class="main-content">
+
+        
+        {{ $me := resources.Get "img/me.jpg" }}
+    {{ $me := $me.Resize "300x webp q50" }}
+    <img src="{{ $me.RelPermalink }}" alt="" srcset="" class="mepic">
+
+<p class="image-caption">Me. As seen by my <a href="">friend</a>.</p>
+<br>
 <p class="quote">
+    
 The Days Of Me Forgetting Are Over, And The Days Of Me Remembering Have Just Begun.
 </p>
 <br>

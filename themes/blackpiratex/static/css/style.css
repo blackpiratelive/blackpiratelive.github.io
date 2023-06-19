@@ -2,6 +2,7 @@
 :root {
     --accent: #3E54AC;
     --link-color: #3E54AC;
+    --link-color-low-contrast: #727da8;
     --accent-low-opacity: rgba(223,223,225, 0.25);
     --text-clr: black;
     --background-clr: white;
@@ -14,7 +15,6 @@
 }
 
 /* end of root */
-
 
 /* animations */
 @keyframes new-nav-animation {
@@ -261,4 +261,25 @@ tr {
     justify-content: center;
     flex-wrap: wrap;
     padding: 1rem;
+}
+
+.mepic {
+    overflow: hidden;
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 30%
+}
+.image-caption {
+    text-align: center;
+    font-size: 0.8rem;
+    color: grey;
+}
+.image-caption > a {
+    color: var(--link-color-low-contrast);
+}
+@media (max-width: 600px) {
+    .mepic {
+        width: 60%;
+    }
 }
