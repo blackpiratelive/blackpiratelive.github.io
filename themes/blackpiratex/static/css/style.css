@@ -17,6 +17,24 @@
 /* end of root */
 
 /* animations */
+@keyframes gradient {
+    0% {
+      background-position: 100% 0%;
+    }
+    25% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 0% 100%;
+    }
+    75% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 100% 0%;
+    }
+  }
+
 @keyframes new-nav-animation {
     0% {
         color: var(--warning-clr);
@@ -292,4 +310,34 @@ tr {
     width: fit-content;
     margin: auto;
    
+}
+.qwebring {
+    border-radius: 9px;
+    background: #ffffff;
+    box-shadow: inset 5px 5px 10px #bfbfbf,
+                inset -5px -5px 10px #ffffff;
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
+}
+.indian-q {
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: linear-gradient(to top right, #FF671F, white, #046A38);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+  
+    text-fill-color: transparent;
+    animation: gradient 4s ease-in-out infinite;
+}
+.indian-webring {
+    font-weight: 900;
+}
+.webring-join-link {
+    text-align: center;
+    padding: 0.25rem;
+    border-radius: 6px;
+    margin: auto;
 }
