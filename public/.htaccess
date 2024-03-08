@@ -1,0 +1,8 @@
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile /.htpassword
+Require valid-user
+
+<Files "/index.html">
+  Require valid-user
+</Files>

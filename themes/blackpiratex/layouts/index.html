@@ -61,6 +61,22 @@ All the codes of this website can be found
 </table>
 </div>
 <br>
+<h2>Featured Gallery</h2>
+<div class="featured-gallery-parent" id="featured-gallery">
+{{ $images := resources.Match "gallery/*.jpg" }}
+
+{{ range $images }}
+{{ $processed := .Crop "300x400"}}
+{{ $processed := .Resize "200x q30" }}
+<img src="{{ $processed.RelPermalink }}" alt="{{ .Name }}">
+{{ end }}
+</div>
+
+
+
+
+
+<br>
 <h2>Featured Blog Posts</h2>
 <ul>
   <li><a href="https://blog.blackpiratex.com/making-microblogging-website-using-hugo-and-netlify/">Making Microblogging Website Using Hugo & Netlify</a> - A guide on how to make a completely static microblogging website using Hugo and Netlify</li>
@@ -82,4 +98,14 @@ All the codes of this website can be found
         <a href="https://webring.blackpiratex.com" class="webring-join-link">Let's go!!!</a>
 </div>
 
+</div>
+<script>
+  $("#featured-gallery").justifiedGallery(
+    {
+        rowHeight : 110,
+        margins : 3,
+        captions : true
+    }
+  );
+</script>
 {{- partial "footer.html" . -}}
