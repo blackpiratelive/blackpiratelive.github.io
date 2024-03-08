@@ -8,6 +8,7 @@ Here are some links that I find are cool.
 - https://blog.blackpiratex.com
 - https://status.blackpiratex.com
 - https://notes.blackpiratex.com
+- https://quotes.blackpiratex.com
 - https://sudipx.in
 - https://blackpirate.be.eu.org
 - https://sambot.blackpiratex.com/ (obselete)
@@ -20,6 +21,13 @@ Here are some links that I find are cool.
 - https://sadgrl.online
 - https://bugswriter.com
 - https://cinni.net/
+
+## Favourite Blogs
+- https://www.vipshek.com/blog/
+- https://www.izzy.co/blog.html
+- https://heather-buchel.com/
+- https://www.arp242.net/
+
 
 ## Useful Resources: 
 - Funny Username Generator - https://foulomatic.hnldesign.nl/
