@@ -50,11 +50,11 @@ This list contains opensource apps that I have used over the years which are not
 
 ## Services That I Use
 
-**Password Manager**: Right now I use [Keepass](https://keepass.info/) as my password manager. I have used all the major password managers in the past. Really liked Bitwarden but quit due to lag on android apps. I use [Keepass2Android](https://play.google.com/store/apps/details?id=keepass2android.keepass2android) and [Keepassdx](https://www.keepassdx.com/)on Android, and [KeepassXC](https://keepassxc.org/) on Windows and Linux.
+**Password Manager**: Right now I use [Keepass](https://keepass.info/) as my password manager. I have used all the major password managers in the past. Really liked Bitwarden but quit due to lag on android apps. I use [Keepass2Android](https://play.google.com/store/apps/details?id=keepass2android.keepass2android) and [Keepassdx](https://www.keepassdx.com/) on Android, and [KeepassXC](https://keepassxc.org/) on Windows and Linux.
 
 **Cloud Storage:** For cloud storage I use both free and open source as well as proprietary solutions. Google photos is my choice for keeping my photos and videos. I use [Disroot Cloud](https://cloud.disroot.org) for miscellaneous stuffs. 
 
-**Email:** I use [protonmail](https://proton.me) (free) for my email. I also use Discord email for newsletters. I do have gmail accounts and those are for very important stuffs. I also use [SimpleLogin](https://simplelogin.io) for email aliasing and to host email on my domain. 
+**Email:** I use [protonmail](https://proton.me) (free) for my email. I also use [Disroot email](https://disroot.org) for newsletters. I do have gmail accounts and those are for very important stuffs. I also use [SimpleLogin](https://simplelogin.io) for email aliasing and to host email on my domain. 
 
 **Contact and Calender Sync:** I use [Fruux](https://fruux.com/) to sync my contacts and Calender. It gets the job done, I have no complaints. 
 
