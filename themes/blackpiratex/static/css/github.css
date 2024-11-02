@@ -28,9 +28,6 @@ border-radius: 2px;
 
 
 .nav-menu-item {
- border: 1px solid #85BEFF;
- padding: 0.5rem;
- border-radius: 2px;
 color: #17181C;
 
 }
@@ -38,6 +35,6 @@ color: #17181C;
 .nav-menu-item a {
 color: #17181C;
 text-decoration: underline;
-font-size: 0.75rem; 
+font-size: 1.25rem; 
 font-weight: 600;
 }
