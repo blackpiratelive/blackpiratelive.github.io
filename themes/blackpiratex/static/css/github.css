@@ -2,13 +2,14 @@ body {
 background-color: #17181C;
 color: #F8F8F9; 
 font-family: sans-serif;
-margin: 0.25em
+margin: 1em;
 }
 a { 
 color: #85BEFF;
 }
 h2, h3, h4, h5, h6 {
 
-border-buttom: 1px solid #F8F8F9
+border: 5px solid #F8F8F9;
+
 }
 
