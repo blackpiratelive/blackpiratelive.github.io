@@ -29,6 +29,10 @@ Here are some links that I find are cool.
 - https://www.arp242.net/
 
 
+## Tools
+- https://willus.com/k2pdfopt/download/ - Convert PDF files to readable on kindle.
+- https://www.goatcounter.com/ - Open Source and free analytics for website
+
 ## Useful Resources: 
 - Funny Username Generator - https://foulomatic.hnldesign.nl/
 - Simpsons series episodes - https://archive.org/details/thesimpletons
