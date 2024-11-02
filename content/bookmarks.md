@@ -48,6 +48,20 @@ This list contains opensource apps that I have used over the years which are not
 10. [Pano Scrobbler](https://github.com/kawaiiDango/pano-scrobbler) - This is my choice of app for scrobbling music I'm currently playing. Very reliable and has lots of feature. _Even let's you view monthly statistics without premium._
 
 
+## Services That I Use
+
+**Password Manager**: Right now I use [Keepass](https://keepass.info/) as my password manager. I have used all the major password managers in the past. Really liked Bitwarden but quit due to lag on android apps. I use [Keepass2Android](https://play.google.com/store/apps/details?id=keepass2android.keepass2android) and [Keepassdx](https://www.keepassdx.com/)on Android, and [KeepassXC](https://keepassxc.org/) on Windows and Linux.
+
+**Cloud Storage:** For cloud storage I use both free and open source as well as proprietary solutions. Google photos is my choice for keeping my photos and videos. I use [Disroot Cloud](https://cloud.disroot.org) for miscellaneous stuffs. 
+
+**Email:** I use [protonmail](https://proton.me) (free) for my email. I also use Discord email for newsletters. I do have gmail accounts and those are for very important stuffs. I also use [SimpleLogin](https://simplelogin.io) for email aliasing and to host email on my domain. 
+
+**Contact and Calender Sync:** I use [Fruux](https://fruux.com/) to sync my contacts and Calender. It gets the job done, I have no complaints. 
+
+**Search:** For searching the web I use [Brave Search](https://search.brave.com) on my Firefox. Sometimes Google also. I have used [Ecosia](https://www.ecosia.org/) in the past and its also good. 
+
+**DNS:** My choice of DNS is [NextDNS](https://nextdns.io/). It's highly configurable and privacy friendly(?). I also sometimes use Adguard DNS (dns.adguard.com). 
+
 ## Useful Resources: 
 - Funny Username Generator - https://foulomatic.hnldesign.nl/
 - Simpsons series episodes - https://archive.org/details/thesimpletons
