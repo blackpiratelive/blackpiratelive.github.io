@@ -1,113 +1,22 @@
-{{- partial "head.html" . -}}
-
-{{- partial "header.html" . -}}
-<div class="all-content">
-
-        
-        {{ $me := resources.Get "img/me.jpg" }}
-    {{ $me := $me.Resize "300x webp q50" }}
-    <img src="{{ $me.RelPermalink }}" alt="" srcset="" class="mepic">
-
-<p class="image-caption">Me. As seen by my <a href="https://instagram.com/_its_ryuk">friend</a>.</p>
-<br>
-<div class="quote-div">
-<p class="quote">
-    
-The Days Of Me Forgetting Are Over, And The Days Of Me Remembering Have Just Begun.
-</p>
-<p class="quote-author">- Ringo, Pulp Fiction</p>
-</div>
-<br>
-<div class="welcome-div">
-  Welcome to my website, This is a place for me to to keep and write
-            about stuffs I care about, you can start by reading my latest posts
-            below or by exploring recent
-<a href="https://notes.blackpiratex.com">books hightlights & notes</a>. You can also find all
-                the photos taken by me in my
-<a href="https://gallery.blackpiratex.com/">gallery</a>.
-<br/>
-My website isn't ugly, its
-<a href="https://bestmotherfucking.website/" rel="noreferrer nofollow">minimal</a>.
-<br/>
-All the codes of this website can be found
-<a href="https://github.com/blackpiratelive/blackpiratelive.github.io">here</a>. Feel free to use this code.
-</div>
-<br>
-
-  
-<br>
-<div class="table-of-question-answer">
-<table>
-    <tr>
-        <th class="question">Movies?</th>
-        <th class="answer">The Shawshank Redemption, Pulp Fiction, Inception</th>
-    </tr>
-    <tr>
-        <th class="question">TV Show?</th>
-        <th class="answer">Breaking Bad, Family Guy, Mirzapur</th>
-    </tr>
-    <tr>
-        <th class="question">Games?</th>
-        <th class="answer">Minecraft, Dead Cells, 20 Minutes Till Dwan</th>
-    </tr>
-    <tr>
-        <th class="question">Hobbies?</th>
-        <th class="answer">Fountain pens, Journaling, Computers, Photography</th>
-    </tr>
-    <tr>
-        <th class="question">Music?</th>
-        <th class="answer">All Time Low, Neil Diamond, Coldplay, <a href="https://music.blackpiratex.com">Music I'm listening right now</a></th>
-    </tr>
-</table>
-</div>
-<br>
-<h2>Featured Gallery</h2>
-<div class="featured-gallery-parent" id="featured-gallery">
-{{ $images := resources.Match "gallery/*.jpg" }}
-
-{{ range $images }}
-{{ $processed := .Crop "300x400"}}
-{{ $processed := .Resize "200x q30" }}
-<img src="{{ $processed.RelPermalink }}" alt="{{ .Name }}">
-{{ end }}
-</div>
-<br>
-<p class="center-text"><a href="https://gallery.blackpiratex.com/">View all images ></a></p>
-
-
-
-
-
-<br>
-<h2>Featured Blog Posts</h2>
-<ul>
-  <li><a href="https://blog.blackpiratex.com/making-microblogging-website-using-hugo-and-netlify/">Making Microblogging Website Using Hugo & Netlify</a> - A guide on how to make a completely static microblogging website using Hugo and Netlify</li>
-  <li><a href="https://blog.blackpiratex.com/setting-up-my-website-on-hugo/">Setting Up My Website on Hugo</a> - A step by step process by which I have set up my website using Hugo static site generator.</li>
-  <li><a href="https://blog.blackpiratex.com/simplelogin-best-way-to-manage-your-emails/">Simplelogin - Best Way to Manage Your Emails</a> - How I manage my emails using Simplelogin, and an overview of my favourite features.</li>
-
-  <li><a href="https://blog.blackpiratex.com/digital-journaling-is-better-than-physical-journaling/">Digital Journaling Is Better Than Physical Journaling</a> - Why I think you should write journals digitally.</li>
-
-</ul>
-<p class="center-text"><a href="https://blog.blackpiratex.com/">View all blogs ></a></p>
-<br>
-<h2>Chatbox</h2>
-<div class="chatbox-div">
-<iframe src="https://www5.cbox.ws/box/?boxid=949784&boxtag=bUrhBA" class="chatbox" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
-</div>
-<br>
-<div class="qwebring">
-        <p class="indian-q">Join <span class="indian-webring">Indian Webring</span>!!</p>
-        <a href="https://webring.blackpiratex.com" class="webring-join-link">Let's go!!!</a>
-</div>
-
-</div>
-<script>
-  $("#featured-gallery").justifiedGallery(
-    {
-        rowHeight : 110,
-        margins : 3,
-        captions : true
-    }
-  );
-</script>
-{{- partial "footer.html" . -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work In progress</title>
+</head>
+<body>
+    <h1>Website work in progress</h1>
+    <h2>Useful Links</h2>
+    <ul>
+        <li><a href="https://blog.blackpiratex.com/">Blog</a></li>
+        <li>https://status.blackpiratex.com/</li>
+        <li>https://music.blackpiratex.com/</li>
+        <li>https://gallery.blackpiratex.com/</li>
+        <li>notes.blackpiratex.com</li>
+        <li><a href="https://github.com/blackpirateapps">Github</a></li>
+        <li><a href="https://instagram.com/su_dip2187">Instagram</a></li>
+        <li><a href="https://youtube.com/channel404/">Youtube</a></li>
+    </ul>
+</body>
+</html>

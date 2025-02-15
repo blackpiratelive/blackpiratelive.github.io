@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-	<meta name="generator" content="Hugo 0.123.7"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <link rel="icon" type="image/x-icon" href="/media/fevicon.svg">
-        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-        <link rel="stylesheet" href="css/justifiedGallery.min.css">
-        <script src="js/jquery.justifiedGallery.min.js"></script>
-        <link rel="stylesheet" href="/css/simple.css">
-        <title>BlackPirateX</title>
-
-    </head>
-    <body><div class="full-page">
+{{- partial "head.html" . -}}
+<div class="full-page">
     <div class="heading">
         <h1>BlackPirateX</h1>
     </div>
@@ -41,9 +28,9 @@
     <div class="sidebar-right">
     <div class="about">
         <div class="mypic">
-            
-            
-            <img src="/img/me_huf9f4718a13016a00ccaf33072458839d_78488_300x0_resize_q50_h2_box.webp" alt="" srcset="" class="mepic">
+            {{ $me := resources.Get "img/me.jpg" }}
+            {{ $me := $me.Resize "300x webp q50" }}
+            <img src="{{ $me.RelPermalink }}" alt="" srcset="" class="mepic">
             <p class="img-caption">Me, as seen by my <a href="">my friend.</a></p>
         </div>
         <h3 class="sidebar-heading">About Me!</h3>

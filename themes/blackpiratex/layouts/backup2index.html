@@ -1,0 +1,50 @@
+{{- partial "head.html" . -}}
+<div class="sidebar">
+
+<div class="first-column">
+  <div class="heading">
+  <h1 class="main-heading text-3xl font-bold underline">BlackPirateX</h1>
+</div>
+        {{ $me := resources.Get "img/me.jpg" }}
+    {{ $me := $me.Resize "300x webp q50" }}
+    <img src="{{ $me.RelPermalink }}" alt="" srcset="" class="mepic">
+
+<p class="image-caption">Me. As seen by my <a href="https://instagram.com/_its_ryuk">friend</a>.</p>
+<br>
+
+<h2>Featured Gallery</h2>
+<div class="featured-gallery-parent" id="featured-gallery">
+{{ $images := resources.Match "gallery/*.jpg" }}
+
+{{ range $images }}
+{{ $processed := .Crop "300x400"}}
+{{ $processed := .Resize "200x q30" }}
+<img src="{{ $processed.RelPermalink }}" alt="{{ .Name }}">
+{{ end }}
+</div>
+<br>
+<p class="center-text"><a href="https://gallery.blackpiratex.com/">View all images ></a></p>
+</div>
+
+<div class="second-column">
+  <h1>About</h1>
+  <p>This is a test</p>
+  <h1>Contact</h1>
+</div>
+
+</div>
+
+
+
+
+
+<script>
+    $("#featured-gallery").justifiedGallery(
+      {
+          rowHeight : 110,
+          margins : 3,
+          captions : true
+      }
+    );
+  </script>
+  {{- partial "footer.html" . -}}
