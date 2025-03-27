@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work In progress</title>
-</head>
+{{- partial "head.html" . -}}
+
 <body>
-    <h1>BlackPirateX - Homepage of Sudip</h1>
+    
+    <div class="whole">
+        {{- partial "header.html" . -}}
     {{ $me := resources.Get "img/me.jpg" }}
             {{ $me := $me.Resize "300x webp q50" }}
             <img src="{{ $me.RelPermalink }}" alt="" srcset="" class="mepic">
@@ -22,9 +19,10 @@
         <li><a href="https://gallery.blackpiratex.com/">Gallery</a>- get a overview of my photography</li>
         <li><a href="https://notes.blackpiratex.com/">Notes</a> - Notes of the books that I read</li>
         <li><a href="https://blackpiratex.com/app-list.html">Apps</a> - List of my apps</li>
-        <li><a href="https://github.com/blackpirateapps">Github</a></li>
-        <li><a href="https://instagram.com/su_dip2187">Instagram</a></li>
-        <li><a href="https://youtube.com/channel404/">Youtube</a></li>
+       
     </ul>
+    {{- partial "footer.html" . -}}
+
+</div>
 </body>
 </html>
