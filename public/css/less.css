@@ -1,3 +1,7 @@
+* {
+    font-family: sans-serif;
+}
+
 .browse {
     display: flex;
     flex-direction: row;
@@ -9,10 +13,14 @@
 .browse-left-heading {
     font-size: 1.5em;
     font-weight: bold;
+    border-bottom: black solid 2px;
+    margin-bottom: 0.5rem;
 }
 .browse-right-heading {
     font-size: 1.5em;
     font-weight: bold;
+    border-bottom: black solid 2px;
+    margin-bottom: 0.5rem;
 
 }
 .whole {

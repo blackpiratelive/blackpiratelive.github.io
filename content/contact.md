@@ -7,7 +7,6 @@ If you want to reach me quickly,  email me at **sudip (at) blackpiratex.com** th
 I am no longer using discord. I mostly use Whatsapp to chat, if you want to get in touch, send me an email first, so we can exchange numbers.
 {{< box-end >}}
 
-
 {{< contact-form >}}
 Contact Form
 {{< /contact-form >}}
