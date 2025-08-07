@@ -26,8 +26,7 @@
         <li><a href="https://blackpiratex.com/app-list.html">Apps</a> - List of my apps</li>
        
     </ul>
-<!-- 1. Place the iframe where you want it on your page -->
-<!-- 1. Place the iframe where you want it on your page -->
+<!-- 1. The iframe that displays your content -->
 <iframe 
     id="hugo-embed-iframe"
     src="https://status.blackpiratex.com/embed/"
@@ -36,17 +35,25 @@
     style="border:none; overflow:hidden;">
 </iframe>
 
-<!-- 2. Add this script to your page -->
+<!-- 2. The script that makes it auto-resize -->
 <script>
     window.addEventListener('message', function(event) {
+        // Make sure the message is from your embed page for security
+        if (event.origin !== 'https://status.blackpiratex.com') {
+            return;
+        }
+
+        // Check if the message contains the height data
         if (event.data && event.data.source === 'hugo-embed') {
             const iframe = document.getElementById('hugo-embed-iframe');
             if (iframe) {
+                // Set the iframe height to match its content, with a little extra padding
                 iframe.style.height = (event.data.frameHeight + 20) + 'px';
             }
         }
     });
 </script>
+
 
 
  
