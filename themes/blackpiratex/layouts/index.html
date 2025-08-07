@@ -26,24 +26,24 @@
         <li><a href="https://blackpiratex.com/app-list.html">Apps</a> - List of my apps</li>
        
     </ul>
-<!-- 1. The iframe that displays your content -->
+<!-- 1. Place the iframe where you want it on your page -->
 <iframe 
     id="hugo-embed-iframe"
-    src="https://status.blackpiratex.com/embed/"
+    src="https://your-website-url.com/embed/"
     width="100%" 
     scrolling="no"
     style="border:none; overflow:hidden;">
 </iframe>
 
-<!-- 2. The script that makes it auto-resize -->
+<!-- 2. Add this script to your page -->
 <script>
     window.addEventListener('message', function(event) {
-        // Make sure the message is from your embed page for security
-        if (event.origin !== 'https://status.blackpiratex.com') {
-            return;
-        }
+        // Optional: Check the origin of the message for security
+        // if (event.origin !== 'https://your-website-url.com') {
+        //     return;
+        // }
 
-        // Check if the message contains the height data
+        // Check if the message is from our specific iframe
         if (event.data && event.data.source === 'hugo-embed') {
             const iframe = document.getElementById('hugo-embed-iframe');
             if (iframe) {
