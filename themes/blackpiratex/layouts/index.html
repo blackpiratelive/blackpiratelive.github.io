@@ -27,8 +27,34 @@
        
     </ul>
 
-        <iframe src="https://status.blackpiratex.com/embed" style="border:0px #dddd solid;" name="myiFrame" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="100%" allowfullscreen></iframe>
-    {{- partial "footer.html" . -}}
+        <!-- 1. Place the iframe where you want it on your page -->
+<iframe 
+    id="hugo-embed-iframe"
+    src="https://status.blackpiratex.com/embed/"
+    width="100%" 
+    scrolling="no"
+    style="border:none; overflow:hidden;">
+</iframe>
+
+<!-- 2. Add this script to your page -->
+<script>
+    window.addEventListener('message', function(event) {
+        // Optional: Check the origin of the message for security
+        // if (event.origin !== 'https://your-website-url.com') {
+        //     return;
+        // }
+
+        // Check if the message is from our specific iframe
+        if (event.data && event.data.source === 'hugo-embed') {
+            const iframe = document.getElementById('hugo-embed-iframe');
+            if (iframe) {
+                // Add a little extra padding for safety
+                iframe.style.height = (event.data.frameHeight + 20) + 'px';
+            }
+        }
+    });
+</script>
+    {{- partial "footer.html" . -}
 
 </div>
 </body>
