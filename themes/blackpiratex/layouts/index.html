@@ -27,18 +27,29 @@
        
     </ul>
 <!-- 1. Place the iframe where you want it on your page -->
+<!-- 1. Place the iframe where you want it on your page -->
 <iframe 
     id="hugo-embed-iframe"
-    src="https://status.blackpiratex.com/embed/"
+    src="https://your-website-url.com/embed/"
     width="100%" 
     scrolling="no"
     style="border:none; overflow:hidden;">
 </iframe>
 
 <!-- 2. Add this script to your page -->
+<script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.source === 'hugo-embed') {
+            const iframe = document.getElementById('hugo-embed-iframe');
+            if (iframe) {
+                iframe.style.height = (event.data.frameHeight + 20) + 'px';
+            }
+        }
+    });
+</script>age -->
 
 
-    {{- partial "footer.html" . -}
+ 
 
 </div>
 </body>
