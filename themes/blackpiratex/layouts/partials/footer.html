@@ -72,6 +72,23 @@ Want to join the ring? Click here for
     <script data-goatcounter="https://blackpiratex.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <br>
+<script>
+  async function trackPageView() {
+    try {
+      await fetch('https://simpler-analytics.vercel.app/api/analytics', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: window.location.href }),
+      });
+    } catch (error) {
+      console.error('Error tracking page view:', error);
+    }
+  }
+  trackPageView();
+</script>
+<p>Uses my own analytics </p>
+
+
     <hr>
     <p>Made by Blackpiratex</p>
     <p>This website uses goatcounter for analytics</p>
