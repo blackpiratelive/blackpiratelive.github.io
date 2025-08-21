@@ -73,26 +73,39 @@ Want to join the ring? Click here for
         async src="//gc.zgo.at/count.js"></script>
     <br>
 
+
 <script>
-(function() {
-  try {
-    var d = atob('L2FwaS9icHg='); // This is btoa('/api/bpx')
-    var p = { u: window.location.href, r: document.referrer };
-    var b = new Blob([JSON.stringify({ data: p })], { type: 'application/json' });
-    if (navigator.sendBeacon) {
-      // sendBeacon returns false if the browser can't queue the request
-      var success = navigator.sendBeacon(d, b);
-      if (!success) {
-        console.error('Analytics beacon call failed to queue. The browser might be blocking it.');
-      }
+(async function() {
+  // Use the full URL for this test
+  const endpoint = 'https://simpler-69bpx.vercel.app/api/bpx';
+  const payload = {
+    data: {
+      u: window.location.href,
+      r: document.referrer
     }
-  } catch(e) {
-    // This will catch any other errors in the script
-    console.error('Analytics script error:', e);
+  };
+
+  console.log('Attempting to send analytics data to:', endpoint);
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'cors' // This is important
+    });
+
+    if (response.ok) {
+      console.log('Analytics data sent successfully.');
+    } else {
+      console.error('Analytics server responded with an error:', response.status, response.statusText);
+    }
+  } catch (error) {
+    // This is the important part!
+    console.error('A network error occurred while sending analytics data. This is likely a CORS or adblocker issue.', error);
   }
 })();
 </script>
-
 
 
 <p>Uses my own analytics </p>
