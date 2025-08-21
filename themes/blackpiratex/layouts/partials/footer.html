@@ -72,20 +72,29 @@ Want to join the ring? Click here for
     <script data-goatcounter="https://blackpiratex.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <br>
+
 <script>
 (function() {
   try {
-    var d = atob('L2FwaS9icHg=');
+    var d = atob('L2FwaS9icHg='); // This is btoa('/api/bpx')
     var p = { u: window.location.href, r: document.referrer };
     var b = new Blob([JSON.stringify({ data: p })], { type: 'application/json' });
     if (navigator.sendBeacon) {
-      navigator.sendBeacon(d, b);
+      // sendBeacon returns false if the browser can't queue the request
+      var success = navigator.sendBeacon(d, b);
+      if (!success) {
+        console.error('Analytics beacon call failed to queue. The browser might be blocking it.');
+      }
     }
   } catch(e) {
-    // Fail silently if anything goes wrong.
+    // This will catch any other errors in the script
+    console.error('Analytics script error:', e);
   }
 })();
 </script>
+
+
+
 <p>Uses my own analytics </p>
 
 
