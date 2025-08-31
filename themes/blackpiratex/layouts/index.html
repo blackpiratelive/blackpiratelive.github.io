@@ -35,6 +35,41 @@
     style="border:none; overflow:hidden;">
 </iframe>
 
+
+
+<!-- 1. Iframe Container: Place this where you want the guestbook to appear -->
+<iframe
+  id="guestbook-iframe"
+  src="https://post-to-status.vercel.app/embed-light.html"
+  style="width: 100%; border: none; overflow: hidden;"
+  scrolling="no"
+  title="Guestbook Form"
+></iframe>
+
+<!-- 2. JavaScript for Automatic Height Adjustment: Place this before your closing </body> tag -->
+<script>
+  window.addEventListener('message', function(event) {
+    // For security, you might want to check the origin of the message
+    // if (event.origin !== 'https://your-vercel-url.com') return;
+
+    // Check if the message is the one we expect from our guestbook embed
+    if (event.data && event.data.type === 'guestbookHeight') {
+      const iframe = document.getElementById('guestbook-iframe');
+      if (iframe) {
+        // Set the iframe height to the value sent from the embed page
+        iframe.style.height = event.data.height + 'px';
+      }
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
 <!-- 2. Add this script to your page -->
 <script>
     window.addEventListener('message', function(event) {
