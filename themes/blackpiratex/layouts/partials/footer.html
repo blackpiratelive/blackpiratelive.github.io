@@ -74,39 +74,8 @@ Want to join the ring? Click here for
     <br>
 
 
-<script>
-(async function() {
-  // Use the full URL for this test
-  const endpoint = 'https://simpler-69bpx.vercel.app/api/bpx';
-  const payload = {
-    data: {
-      u: window.location.href,
-      r: document.referrer
-    }
-  };
 
-  console.log('Attempting to send analytics data to:', endpoint);
-
-  try {
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      mode: 'cors' // This is important
-    });
-
-    if (response.ok) {
-      console.log('Analytics data sent successfully.');
-    } else {
-      console.error('Analytics server responded with an error:', response.status, response.statusText);
-    }
-  } catch (error) {
-    // This is the important part!
-    console.error('A network error occurred while sending analytics data. This is likely a CORS or adblocker issue.', error);
-  }
-})();
-</script>
-
+<script async defer src="https://simpler-69bpx.vercel.app/api/pizzle.js"></script>
 
 <p>Uses my own analytics </p>
 
