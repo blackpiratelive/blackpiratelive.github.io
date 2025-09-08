@@ -72,6 +72,27 @@
 
 
 
+<script>
+    window.addEventListener('message', event => {
+        // For security, you can check the origin of the message
+        // if (event.origin !== "") return;
+
+        // Check that the message contains height and URL data
+        if (event.data.frameHeight && event.data.frameUrl) {
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(iframe => {
+                // Find the specific iframe that sent the message
+                const iframeUrl = new URL(iframe.src);
+                const messageUrl = new URL(event.data.frameUrl);
+                if (iframeUrl.pathname === messageUrl.pathname) {
+                    iframe.style.height = event.data.frameHeight + 'px';
+                }
+            });
+        }
+    });
+</script>
+
+
  
 {{- partial "footer.html" . -}}
 </div>
