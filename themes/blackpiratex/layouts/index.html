@@ -1,100 +1,528 @@
-{{- partial "head.html" . -}}
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudip - Personal Website</title>
+    <style>
+        body {
+            font-family: Times New Roman, serif;
+            background: #f0f0f0;
+            color: black;
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-<body>
-    
-    <div class="whole">
-        {{- partial "header.html" . -}}
-    {{ $me := resources.Get "img/me.jpg" }}
-            {{ $me := $me.Resize "300x webp q50" }}
-            <img src="{{ $me.RelPermalink }}" alt="" srcset="" class="mepic">
+        .profile-img {
+            width: 280px;
+            height: 380px;
+            object-fit: cover;
+            background: #e0e0e0;
+            border: 3px solid black;
+            box-shadow: 8px 8px 0 #1E90FF;
+            display: block;
+            margin: 0 auto 2rem auto;
+            transition: all 0.3s ease;
+        }
 
-    <h2>Work in Progress</h2>
-        <br>
-        <h2> Let's be friends on <a href="https://signal.me/#eu/ZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC" >Signal</a> 🔥 </h2>
-        <a href="https://guestbook.blackpiratex.com"><img src="/img/ResizedImage_2025-08-06_21-57-55_2453.webp"></a>
-        <h2> SIGN MY GUESTBOOK <a href="https://guestbook.blackpiratex.com">here</a> </h2>
-      
-    <h3>"Days of me forgetting are over, days of me remembering have just began."</h3>
-    <p>Hey, This is Sudip, currently at my early twenties. This is a website that I made to put myself to the world. I am Zoology graduate. Making website is one of my hobbies. And I love ducks and cats. </p>
-    <h2>Useful Links</h2>
-    <ul>
-        <li><a href="https://blog.blackpiratex.com/">Blog</a> - Read my blogs, I write very infrequently</li>
-        <li><a href="https://status.blackpiratex.com/">Status</a> - One liner thoughts that come to my mind, this is my twitter</li>
-        <li><a href="https://music.blackpiratex.com/">Music</a> - get a overview of my music listening</li>
-        <li><a href="https://gallery.blackpiratex.com/">Gallery</a>- get a overview of my photography</li>
-        <li><a href="https://notes.blackpiratex.com/">Notes</a> - Notes of the books that I read</li>
-        <li><a href="https://blackpiratex.com/app-list.html">Apps</a> - List of my apps</li>
-       
-    </ul>
-<!-- 1. Place the iframe where you want it on your page -->
-<iframe 
-    id="hugo-embed-iframe"
-    src="https://status.blackpiratex.com/embed/"
-    width="100%" 
-    scrolling="no"
-    style="border:none; overflow:hidden;">
-</iframe>
+        .profile-img:hover {
+            box-shadow: 12px 12px 0 #FF6B6B;
+            transform: translate(-2px, -2px);
+        }
 
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-<h1>Last book that I've Read </h1>
-<iframe 
-    src="https://notes.blackpiratex.com/embed.html" 
-    title="Latest Read Book" 
-    width="100%" 
-    style="border:1px solid #e5e7eb; border-radius: 0.5rem; transition: height 0.3s ease-out;"
-    frameborder="0"
-    scrolling="no">
-</iframe>
+        .tagline {
+            text-align: center;
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
 
+        .intro {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+        }
 
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1.5rem 2rem;
+            border: 3px dashed #FF6B6B;
+            background: linear-gradient(135deg, #FFE66D 0%, #FF6B6B 100%);
+            max-width: 600px;
+            font-size: 1.15rem;
+            color: black;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
 
+        .cta-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border-top: 3px double black;
+            border-bottom: 3px double black;
+            background: linear-gradient(45deg, #FFE66D 0%, #FF6B6B 50%, #4ECDC4 100%);
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% 200%;
+        }
 
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-<!-- 2. Add this script to your page -->
-<script>
-    window.addEventListener('message', function(event) {
-        // Optional: Check the origin of the message for security
-        // if (event.origin !== 'https://your-website-url.com') {
-        //     return;
-        // }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            background: #1E90FF;
+            color: white;
+            text-decoration: none;
+            border: 3px solid black;
+            font-weight: bold;
+            box-shadow: 6px 6px 0 black;
+            transition: all 0.3s ease;
+            animation: wiggle 1s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
 
-        // Check if the message is from our specific iframe
-        if (event.data && event.data.source === 'hugo-embed') {
-            const iframe = document.getElementById('hugo-embed-iframe');
-            if (iframe) {
-                // Set the iframe height to match its content, with a little extra padding
-                iframe.style.height = (event.data.frameHeight + 20) + 'px';
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .btn::after {
+            content: '★';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 3rem;
+            color: yellow;
+            animation: starPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.3; }
+        }
+
+        .btn:hover {
+            background: #FF6B6B;
+            transform: scale(1.15) rotate(0deg);
+            box-shadow: 10px 10px 0 black;
+            animation: shake 0.3s ease infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: scale(1.15) translateX(0); }
+            25% { transform: scale(1.15) translateX(-5px); }
+            75% { transform: scale(1.15) translateX(5px); }
+        }
+
+        .btn-outline {
+            background: #FFE66D;
+            color: black;
+            border: 3px solid black;
+            animation: wiggle 1s ease-in-out infinite reverse;
+        }
+
+        .btn-outline:hover {
+            background: #4ECDC4;
+            color: black;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 2rem 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 4px double black;
+            padding-bottom: 0.3rem;
+            background: linear-gradient(90deg, #FFE66D, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+
+        li a {
+            display: grid;
+            grid-template-columns: 180px auto 1fr;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 3px solid black;
+            box-shadow: 6px 6px 0 #1E90FF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        li a:hover::before {
+            left: 100%;
+        }
+
+        li a:hover {
+            box-shadow: 8px 8px 0 #FF6B6B;
+            transform: translate(-2px, -2px);
+            background: #FFFACD;
+        }
+
+        li:nth-child(even) a {
+            box-shadow: 6px 6px 0 #FF6B6B;
+        }
+
+        li:nth-child(even) a:hover {
+            box-shadow: 8px 8px 0 #4ECDC4;
+        }
+
+        li:nth-child(3n) a {
+            box-shadow: 6px 6px 0 #95E1D3;
+        }
+
+        li:nth-child(3n) a:hover {
+            box-shadow: 8px 8px 0 #FFE66D;
+        }
+
+        .link-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: black;
+            text-decoration: none;
+            text-align: right;
+            padding-right: 1rem;
+            border-right: 3px dotted black;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        li a:hover .link-title {
+            animation: shake 0.5s ease;
+            color: #FF6B6B;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .link-arrow {
+            font-size: 1.8rem;
+            color: #1E90FF;
+            transition: all 0.3s ease;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        li a:hover .link-arrow {
+            transform: translateX(15px) scale(1.3);
+            color: #FF6B6B;
+            animation: none;
+        }
+
+        .link-desc {
+            color: #333;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            li a {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .link-title {
+                text-align: left;
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 3px dotted black;
+                padding-bottom: 0.5rem;
+            }
+
+            .link-arrow {
+                display: none;
             }
         }
-    });
-</script>
 
-
-
-<script>
-    window.addEventListener('message', event => {
-        // For security, you can check the origin of the message
-        // if (event.origin !== "") return;
-
-        // Check that the message contains height and URL data
-        if (event.data.frameHeight && event.data.frameUrl) {
-            const iframes = document.querySelectorAll('iframe');
-            iframes.forEach(iframe => {
-                // Find the specific iframe that sent the message
-                const iframeUrl = new URL(iframe.src);
-                const messageUrl = new URL(event.data.frameUrl);
-                if (iframeUrl.pathname === messageUrl.pathname) {
-                    iframe.style.height = event.data.frameHeight + 'px';
-                }
-            });
+        iframe {
+            border: 1px solid #ccc;
+            background: white;
+            width: 100%;
+            margin-top: 1rem;
         }
-    });
-</script>
 
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
 
- 
-{{- partial "footer.html" . -}}
-</div>
+            .profile-img {
+                width: 100%;
+                max-width: 280px;
+                height: auto;
+                aspect-ratio: 3/4;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .intro {
+                padding: 0;
+            }
+        }
+        
+        
+          .embed-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 400;
+            text-align: center;
+            padding: 1rem;
+            border: 4px solid black;
+            background: linear-gradient(90deg, #FF6B6B, #FFE66D, #4ECDC4, #1E90FF);
+            background-size: 300% 300%;
+            animation: rainbowSlide 4s ease infinite;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .embed-section h2::before {
+            content: '✨';
+            position: absolute;
+            left: 10px;
+            animation: spin 3s linear infinite;
+        }
+
+        .embed-section h2::after {
+            content: '✨';
+            position: absolute;
+            right: 10px;
+            animation: spin 3s linear infinite reverse;
+        }
+
+        @keyframes rainbowSlide {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .embed-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 3px dashed #FF6B6B;
+            background: white;
+            box-shadow: 0 0 0 3px white, 0 0 0 6px black;
+        }        a {
+            color: #1E90FF;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #4169E1;
+        }
+
+        a:hover {
+            color: #0066CC;
+            background: #F0F8FF;
+        }
+        
+    </style>
+</head>
+<body>
+	
+	{{- partial "header.html" . -}}
+    {{ $me := resources.Get "img/me.jpg" }}
+            {{ $me := $me.Resize "300x webp q50" }}
+	
+    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img">
+    
+    <h1>Hi, I'm Sudip</h1>
+    
+    <p class="tagline">Zoology Graduate • Web Enthusiast • Duck & Cat Lover</p>
+    
+    <p class="intro">
+        Currently in my early twenties. This is a website that I made to put myself to the world. 
+        Making websites is one of my hobbies. Welcome to my corner of the internet.
+    </p>
+
+    <div class="quote">
+        "Days of me forgetting are over, days of me remembering have just began."
+    </div>
+
+    <div class="cta-section">
+        <a href="https://signal.me/#eu/ZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC" class="btn">
+            Connect on Signal 🔥
+        </a>
+        <a href="https://guestbook.blackpiratex.com" class="btn btn-outline">
+            Sign My Guestbook ✍️
+        </a>
+    </div>
+
+    <hr>
+
+    <h2>Useful Links</h2>
+    
+    <ul>
+        <li>
+            <a href="https://blog.blackpiratex.com/">
+                <span class="link-title">Blog</span>
+                <span class="link-arrow">→</span>
+                <span class="link-desc">Read my blogs, I write very infrequently</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://status.blackpiratex.com/">
+                <span class="link-title">Status</span>
+                <span class="link-arrow">→</span>
+                <span class="link-desc">One liner thoughts that come to my mind, this is my twitter</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://music.blackpiratex.com/">
+                <span class="link-title">Music</span>
+                <span class="link-arrow">→</span>
+                <span class="link-desc">Get an overview of my music listening</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://gallery.blackpiratex.com/">
+                <span class="link-title">Gallery</span>
+                <span class="link-arrow">→</span>
+                <span class="link-desc">Get an overview of my photography</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://notes.blackpiratex.com/">
+                <span class="link-title">Notes</span>
+                <span class="link-arrow">→</span>
+                <span class="link-desc">Notes of the books that I read</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://blackpiratex.com/app-list.html">
+                <span class="link-title">Apps</span>
+                <span class="link-arrow">→</span>
+                <span class="link-desc">List of my apps</span>
+            </a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>Latest Thoughts</h2>
+    <iframe 
+        id="hugo-embed-iframe"
+        src="https://status.blackpiratex.com/embed/"
+        scrolling="no"
+        style="min-height: 400px;">
+    </iframe>
+
+    <hr>
+
+    <h2>Last Book I've Read</h2>
+    <iframe 
+        src="https://notes.blackpiratex.com/embed.html" 
+        title="Latest Read Book" 
+        scrolling="no"
+        style="min-height: 300px;">
+    </iframe>
+
+    {{- partial "footer.html" . -}}
+    
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.source === 'hugo-embed') {
+                const iframe = document.getElementById('hugo-embed-iframe');
+                if (iframe) {
+                    iframe.style.height = (event.data.frameHeight + 20) + 'px';
+                }
+            }
+        });
+
+        window.addEventListener('message', event => {
+            if (event.data.frameHeight && event.data.frameUrl) {
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    const iframeUrl = new URL(iframe.src);
+                    const messageUrl = new URL(event.data.frameUrl);
+                    if (iframeUrl.pathname === messageUrl.pathname) {
+                        iframe.style.height = event.data.frameHeight + 'px';
+                    }
+                });
+            }
+        });
+    </script>
+    
+    
+    
 </body>
 </html>
