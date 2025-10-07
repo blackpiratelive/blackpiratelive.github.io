@@ -1,6 +1,172 @@
-<br>
-<hr>
+<style>
+    .footer {
+        background: white;
+        border-top: 5px solid black;
+        padding: 2rem;
+        margin-top: 3rem;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .footer hr {
+        border: none;
+        border-top: 3px double black;
+        margin: 2rem 0;
+    }
+
+    .browse {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+
+    .browse-left, .browse-right {
+        background: #F0F8FF;
+        padding: 1.5rem;
+        border: 3px solid black;
+        box-shadow: 6px 6px 0 #1E90FF;
+    }
+
+    .browse-left-heading, .browse-right-heading {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #1E90FF;
+        border-bottom: 3px solid black;
+        padding-bottom: 0.5rem;
+    }
+
+    .browse-link {
+        margin: 0.5rem 0;
+    }
+
+    .browse-link a {
+        color: black;
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.3rem 0;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+        padding-left: 0.5rem;
+    }
+
+    .browse-link a:hover {
+        border-left-color: #FF6B6B;
+        padding-left: 1rem;
+        color: #FF6B6B;
+    }
+
+    .footer h2 {
+        font-size: 1.8rem;
+        margin: 2rem 0 1rem 0;
+        color: #1E90FF;
+        text-align: center;
+        border-bottom: 3px solid black;
+        padding-bottom: 0.5rem;
+    }
+
+    .webring, #my-webring {
+        text-align: center;
+        padding: 1rem;
+        margin: 1rem 0;
+        background: #FFE66D;
+        border: 3px solid black;
+        box-shadow: 4px 4px 0 #FF6B6B;
+    }
+
+    .webring a {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 0.3rem 0.8rem;
+        border: 2px solid black;
+        background: white;
+        display: inline-block;
+        margin: 0.3rem;
+        transition: all 0.2s ease;
+    }
+
+    .webring a:hover {
+        background: #4ECDC4;
+        transform: translateY(-2px);
+        box-shadow: 2px 2px 0 black;
+    }
+
+    #bucket-webring {
+        width: 100%;
+        max-width: 100%;
+        height: 3rem;
+        border: 3px solid black !important;
+        margin: 1rem 0;
+        box-shadow: 4px 4px 0 #95E1D3;
+    }
+
+    .footer center {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .footer img {
+        max-width: 100%;
+        height: auto;
+        border: 3px solid black;
+    }
+
+    .footer p {
+        text-align: center;
+        margin: 0.5rem 0;
+        color: #333;
+    }
+
+    .footer p a {
+        color: #1E90FF;
+        text-decoration: underline;
+    }
+
+    .footer p a:hover {
+        color: #FF6B6B;
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            padding: 1rem;
+        }
+
+        .browse {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .browse-left, .browse-right {
+            padding: 1rem;
+            box-shadow: 4px 4px 0 #1E90FF;
+        }
+
+        .browse-left-heading, .browse-right-heading {
+            font-size: 1.2rem;
+        }
+
+        .footer h2 {
+            font-size: 1.5rem;
+        }
+
+        .webring {
+            padding: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .webring a {
+            display: block;
+            margin: 0.5rem 0;
+        }
+    }
+</style>
+
 <div class="footer">
+    <hr>
+    
     <div class="browse">
         <div class="browse-left">
             <div class="browse-left-heading">Browse</div>
@@ -10,14 +176,13 @@
                 <div class="browse-link"><a href="https://music.blackpiratex.com">Music🎧</a></div>
                 <div class="browse-link"><a href="https://notes.blackpiratex.com">Notes📚</a></div>
                 <div class="browse-link"><a href="https://status.blackpiratex.com">Status🎯</a></div>
-                <div class="browse-link"><a href="/bookmarks/">Bookmarks📑</a></div>
+                <div class="browse-link"><a href="/bookmarks/">Bookmarks🔖</a></div>
                 <div class="browse-link"><a href="/contact/">Contact💌</a></div>
                 <div class="browse-link"><a href="/credits/">Credits🤝</a></div>
                 <div class="browse-link"><a href="/about/">About🙋‍♂️</a></div>
-
-
             </div>
         </div>
+        
         <div class="browse-right">
             <div class="browse-right-heading">Follow</div>
             <div class="browse-right-links">
@@ -27,61 +192,52 @@
                 <div class="browse-link"><a href="https://links.blackpiratex.com/mastodon">Mastodon🌑</a></div>
                 <div class="browse-link"><a href="https://links.blackpiratex.com/wa">WhatsApp🗨️</a></div>
                 <div class="browse-link"><a href="https://links.blackpiratex.com/last.fm">Last.fm🎵</a></div>
-
             </div>
-            </div>
+        </div>
     </div>
-    <br>
+
     <h2>Webring</h2>
+    
     <div id="my-webring"></div>
-<script async src="https://webring.blackpiratex.com/public/widget.js"></script>
+    <script async src="https://webring.blackpiratex.com/public/widget.js"></script>
 
-    <p><a href="https://hotlinewebring.club/bpx/previous">Previous</a> -- HOTLINE WEBRING -- <a href="https://hotlinewebring.club/bpx/next">Next</a> </p>
-    <div class="webring" ><a href='https://webring.dinhe.net/prev/https://blackpiratex.com'>Previous</a>
-        Retronut Webring
-<a href='https://webring.dinhe.net/next/https://blackpiratex.com'>Next</a>
+    <div class="webring">
+        <a href="https://hotlinewebring.club/bpx/previous">Previous</a>
+        HOTLINE WEBRING
+        <a href="https://hotlinewebring.club/bpx/next">Next</a>
     </div>
 
-<iframe id="bucket-webring" style="width: 100%; height: 3rem; border: none;" src="https://webring.bucketfish.me/embed.html?name=your name&lightmode=true"></iframe>
+    <div class="webring">
+        <a href='https://webring.dinhe.net/prev/https://blackpiratex.com'>Previous</a>
+        Retronut Webring
+        <a href='https://webring.dinhe.net/next/https://blackpiratex.com'>Next</a>
+    </div>
 
+    <iframe id="bucket-webring" src="https://webring.bucketfish.me/embed.html?name=your name&lightmode=true"></iframe>
 
-    
-<!-- Begin Tilde.Club Ring Fragment-->
-<center>
-<font size="2">
-</font></p><center><font size="2">
-<center>
-<br><img src="http://tilde.club/~harper/webring.png"  border="0" usemap="#notepad.map" max-width="100%"><br>
-</center>
-<br>
-Click for the [
-<a href="http://tilde.club/~harper/link.html?action=random" target="_top">Random page</a> ]
-<br>
-Want to join the ring? Click here for
-<a href="http://tilde.club/~harper/link.html?action=info" target="_top">info</a>.
-<br></font></center>
-<map name="notepad.map">
-<area shape="rect" coords="0, 0, 60, 70" target="_top" href="http://tilde.club/~harper/link.html?action=join">
-<area shape="rect" coords="130, 0, 417, 75" target="_top" href="http://tilde.club/~harper/link.html?action=random">
-<area shape="rect" coords="465, 0, 549, 75" target="_top" href="http://tilde.club/~harper/link.html?action=join">
-</map>
-</center>
-<!-- End Webring Fragment-->
+    <div class="webring">
+        <center>
+            <img src="http://tilde.club/~harper/webring.png" border="0" usemap="#notepad.map" alt="Tilde Club Webring">
+            <br>
+            Click for the [<a href="http://tilde.club/~harper/link.html?action=random" target="_top">Random page</a>]
+            <br>
+            Want to join the ring? Click here for <a href="http://tilde.club/~harper/link.html?action=info" target="_top">info</a>.
+        </center>
+        <map name="notepad.map">
+            <area shape="rect" coords="0, 0, 60, 70" target="_top" href="http://tilde.club/~harper/link.html?action=join">
+            <area shape="rect" coords="130, 0, 417, 75" target="_top" href="http://tilde.club/~harper/link.html?action=random">
+            <area shape="rect" coords="465, 0, 549, 75" target="_top" href="http://tilde.club/~harper/link.html?action=join">
+        </map>
+    </div>
 
+    <script data-goatcounter="https://blackpiratex.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script async defer src="https://simpler-69bpx.vercel.app/api/pizzle.js"></script>
 
-    <script data-goatcounter="https://blackpiratex.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-    <br>
-
-
-
-<script async defer src="https://simpler-69bpx.vercel.app/api/pizzle.js"></script>
-
-<p>Uses my own analytics </p>
-
+    <p>Uses my own analytics</p>
 
     <hr>
+    
     <p>Made by Blackpiratex</p>
     <p>This website uses goatcounter for analytics</p>
-    <p>Website is made using <a href="https://gohugo.io">Hugo</a> and love on Linux Mint</a>. Follow me on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.</p>
+    <p>Website is made using <a href="https://gohugo.io">Hugo</a> and love on Linux Mint. Follow me on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.</p>
 </div>

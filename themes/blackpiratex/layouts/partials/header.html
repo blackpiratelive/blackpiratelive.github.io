@@ -1,3 +1,93 @@
+<div class="menu">
+    <nav>
+        <a href="/">🏠 Home</a>
+        <a href="/contact">💌 Contact</a>
+        <a href="/bookmarks">📑 Bookmarks</a>
+        <a href="/about">🙋‍♂️ About</a>
+    </nav>
+</div>
 
-<h1>BlackPirateX - Homepage of Sudip</h1>
-<p><a href="/">🏠Home</a> // <a href="/contact" >💌Contact</a> // <a href="/bookmarks">📑Bookmarks</a> // <a href="/about">🙋‍♂️About</a></p>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Times New Roman, serif;
+        background: #f0f0f0;
+        color: black;
+        line-height: 1.6;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .menu {
+        background: #1E90FF;
+        padding: 1rem 2rem;
+        border-bottom: 5px solid black;
+        margin-bottom: 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        width: 100%;
+    }
+
+    .menu nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border: 2px solid white;
+        background: transparent;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .menu a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: white;
+        transition: width 0.3s ease;
+        z-index: -1;
+    }
+
+    .menu a:hover::before {
+        width: 100%;
+    }
+
+    .menu a:hover {
+        color: #1E90FF;
+    }
+
+    @media (max-width: 768px) {
+        .menu {
+            padding: 1rem;
+        }
+
+        .menu nav {
+            gap: 0.5rem;
+        }
+
+        .menu a {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
