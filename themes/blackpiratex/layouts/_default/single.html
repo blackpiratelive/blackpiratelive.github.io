@@ -3,198 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <title>{{ .Title }} - Sudip</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: Times New Roman, serif;
+            background: #f0f0f0;
+            color: black;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .menu {
+            background: #1E90FF;
+            padding: 1rem 2rem;
+            border-bottom: 5px solid black;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            width: 100%;
+        }
+
+        .menu nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
         }
-        
-        header {
-            margin-bottom: 3rem;
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            background: transparent;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        
-        nav {
+
+        .menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: white;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .menu a:hover::before {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: #1E90FF;
+        }
+
+        .content {
+            padding: 0 2rem 2rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .whole {
+            width: 100%;
+        }
+
+        article {
+            background: white;
+            padding: 2rem;
+            border: 3px solid black;
+            box-shadow: 8px 8px 0 #1E90FF;
             margin-bottom: 2rem;
         }
-        
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin-right: 1.5rem;
-            font-size: 0.95rem;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-        
+
         h1 {
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            color: #FF6B6B;
+            border-bottom: 4px double black;
+            padding-bottom: 0.5rem;
         }
-        
+
         h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.8rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
+            border-bottom: 4px double black;
+            padding-bottom: 0.3rem;
+            background: linear-gradient(90deg, #FFE66D, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
         h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.4rem;
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
+            color: #1E90FF;
         }
-        
+
         .meta {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dotted #ccc;
         }
-        
-        .content {
+
+        .content-body {
             font-size: 1.05rem;
-            line-height: 1.7;
+            line-height: 1.8;
         }
-        
-        .content p {
+
+        .content-body p {
             margin-bottom: 1.5rem;
         }
-        
-        .content ul, .content ol {
-            margin-left: 1.5rem;
+
+        .content-body ul, .content-body ol {
+            margin-left: 2rem;
             margin-bottom: 1.5rem;
         }
-        
-        .content li {
-            margin-bottom: 0.5rem;
+
+        .content-body li {
+            margin-bottom: 0.75rem;
         }
-        
-        .content a {
-            color: #0066cc;
+
+        .content-body a {
+            color: #1E90FF;
             text-decoration: none;
+            border-bottom: 2px solid #1E90FF;
+            transition: all 0.3s ease;
         }
-        
-        .content a:hover {
-            text-decoration: underline;
+
+        .content-body a:hover {
+            background: #FFE66D;
+            color: black;
         }
-        
-        .content blockquote {
-            border-left: 3px solid #ddd;
+
+        .content-body blockquote {
+            border-left: 5px solid #FF6B6B;
             padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            color: #666;
+            margin: 2rem 0;
+            color: #333;
             font-style: italic;
+            background: #FFE66D;
+            padding: 1rem 1.5rem;
         }
-        
-        .content code {
+
+        .content-body code {
             background-color: #f5f5f5;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #ccc;
+            font-family: "Courier New", monospace;
             font-size: 0.9em;
         }
-        
-        .content pre {
+
+        .content-body pre {
             background-color: #f5f5f5;
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border: 2px solid black;
             overflow-x: auto;
             margin-bottom: 1.5rem;
         }
-        
-        .content pre code {
+
+        .content-body pre code {
             background-color: transparent;
             padding: 0;
+            border: none;
         }
-        
-        .content img {
+
+        .content-body img {
             max-width: 100%;
             height: auto;
-            margin: 1.5rem 0;
-            border-radius: 5px;
+            margin: 2rem 0;
+            border: 3px solid black;
+            box-shadow: 6px 6px 0 #4ECDC4;
         }
-        
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #eee;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
+
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: #666;
+            padding: 0.8rem 1.5rem;
+            background: #4ECDC4;
+            color: black;
             text-decoration: none;
-            font-size: 0.95rem;
+            border: 3px solid black;
+            font-weight: bold;
+            box-shadow: 4px 4px 0 black;
+            transition: all 0.3s ease;
         }
-        
+
         .back-link:hover {
-            color: #333;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 black;
+            background: #95E1D3;
         }
-        
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-top: 5px solid black;
+            margin-top: 3rem;
+        }
+
         @media (max-width: 768px) {
-            body {
-                padding: 1.5rem 1rem;
+            .content {
+                padding: 0 1rem 1rem 1rem;
             }
-            
+
+            .menu nav {
+                gap: 0.5rem;
+            }
+
+            .menu a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            article {
+                padding: 1.5rem;
+                box-shadow: 4px 4px 0 #1E90FF;
+            }
+
             h1 {
-                font-size: 1.75rem;
+                font-size: 1.8rem;
             }
-            
+
             h2 {
-                font-size: 1.35rem;
+                font-size: 1.5rem;
             }
-            
-            nav a {
-                display: block;
-                margin-bottom: 0.5rem;
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .content-body {
+                font-size: 1rem;
+            }
+
+            .back-link {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    {{ partial "header.html" . }}
-    </header>
-    
-    <main>
-        <a href="javascript:history.back()" class="back-link">← Back</a>
-        
-        <article>
-            <h1>{{ .Title }}</h1>
+    <div class="whole">
+        {{ partial "header.html" . }}
+
+        <div class="content">
+            <a href="javascript:history.back()" class="back-link">← Back</a>
             
-            <div class="meta">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-                {{ if .Params.tags }}
-                • {{ range .Params.tags }}#{{ . }} {{ end }}
-                {{ end }}
-            </div>
-            
-            <div class="content">
-                {{ .Content }}
-            </div>
-        </article>
-    </main>
-    
-    <footer>
-        <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
-    </footer>
+            <article>
+                <h1>{{ .Title }}</h1>
+                
+                <div class="meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                    {{ if .Params.tags }}
+                    • {{ range .Params.tags }}<span style="color: #1E90FF;">#{{ . }}</span> {{ end }}
+                    {{ end }}
+                </div>
+                
+                <div class="content-body">
+                    {{ .Content }}
+                </div>
+            </article>
+        </div>
+
+        {{ partial "footer.html" . }}
+    </div>
 </body>
 </html>
