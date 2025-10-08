@@ -2,7 +2,7 @@
     .footer {
         background: white;
         border-top: 1px solid #ccc;
-        padding: 2rem 1rem;
+        padding: 2rem 0;
         margin-top: 3rem;
         max-width: 900px;
         margin-left: auto;
@@ -27,8 +27,8 @@
     }
 
     .footer-nav {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 2rem;
         margin-bottom: 2rem;
         font-size: 0.9rem;
@@ -171,11 +171,10 @@
 
     @media (max-width: 768px) {
         .footer {
-            padding: 1rem 0.5rem;
+            padding: 1rem 0;
         }
 
         .footer-nav {
-            flex-direction: column;
             gap: 1.5rem;
         }
 
