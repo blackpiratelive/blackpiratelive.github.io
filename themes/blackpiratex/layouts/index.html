@@ -1,4 +1,4 @@
-<!-- index.html -->
+<!-- index.html (host) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +17,6 @@
 
     body.dark { background: #1a1a1a; color: #e0e0e0; }
 
-    /* Shared centered container */
     .container {
       max-width: 900px;
       margin-left: auto;
@@ -26,11 +25,7 @@
       padding-right: 1rem;
     }
 
-    /* Page padding for top/bottom breathing room */
-    main.container {
-      padding-top: 1rem;
-      padding-bottom: 2rem;
-    }
+    main.container { padding-top: 1rem; padding-bottom: 2rem; }
 
     .dark-toggle { display: none; }
 
@@ -41,11 +36,7 @@
     body.dark a { color: #4bb583; }
     body.dark a:visited { color: #3a9d6f; }
 
-    hr {
-      border: none;
-      border-top: 1px solid #ccc;
-      margin: 2rem 0;
-    }
+    hr { border: none; border-top: 1px solid #ccc; margin: 2rem 0; }
     body.dark hr { border-top-color: #444; }
 
     h1, h2 { font-weight: normal; color: #2d8659; }
@@ -70,29 +61,11 @@
       margin: 1rem 0;
       background: white;
     }
-    body.dark iframe {
-      border-color: #444;
-      background: #2a2a2a;
-    }
-
-    @media (max-width: 768px) {
-      main.container { padding-top: 0.75rem; }
-    }
-
-    /* Simple avatar styling if needed */
-    .profile-img {
-      display: block;
-      margin: 0 auto 1rem auto;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    body.dark .profile-img { border-color: #444; }
+    body.dark iframe { border-color: #444; background: #2a2a2a; }
   </style>
 </head>
 <body>
-  <div class="center">
-    {{ partial "header.html" . }}
-  </div>
+  {{ partial "header.html" . }}
 
   <main class="container">
     {{ $me := resources.Get "img/me.jpg" }}
@@ -104,9 +77,7 @@
 
     <p>Currently in early twenties. This is a website made to put myself to the world. Zoology graduate, building websites as a hobby, and loves ducks and cats.</p>
 
-    <blockquote>
-      Days of me forgetting are over, days of me remembering have just began.
-    </blockquote>
+    <blockquote>Days of me forgetting are over, days of me remembering have just began.</blockquote>
 
     <p class="center">
       <a href="https://signal.me/euZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC">Connect on Signal</a>
@@ -116,52 +87,30 @@
 
     <hr/>
 
-    <h2>Useful Links</h2>
-    <ul>
-      <li><b>Blog</b> – Read infrequent posts: <a href="https://blog.blackpiratex.com">Read Blogs</a></li>
-      <li><b>Status</b> – One-liners; like Twitter: <a href="https://status.blackpiratex.com">View Status</a></li>
-      <li><b>Music</b> – Listening overview: <a href="https://music.blackpiratex.com">Check Music</a></li>
-      <li><b>Gallery</b> – Photography overview: <a href="https://gallery.blackpiratex.com">Browse Gallery</a></li>
-      <li><b>Notes</b> – Book notes: <a href="https://notes.blackpiratex.com">Read Notes</a></li>
-      <li><b>Apps</b> – List of apps: <a href="https://blackpiratex.com/app-list.html">View Apps</a></li>
-    </ul>
-
-    <hr/>
-
     <h2>Latest Thoughts</h2>
     <iframe id="hugo-embed-iframe" src="https://status.blackpiratex.com/embed" scrolling="no" style="min-height: 400px"></iframe>
 
     <hr/>
 
     <h2>Last Book I've Read</h2>
-    <iframe src="https://notes.blackpiratex.com/embed.html" title="Latest Read Book" scrolling="no" style="min-height: 300px"></iframe>
+    <iframe src="/embed.html" title="Latest Read Book" scrolling="no" style="min-height: 300px"></iframe>
   </main>
 
   {{ partial "footer.html" . }}
 
   <script>
-    // Dark preference on load for this page too (in case header didn't run yet)
+    // Dark preference on load
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark');
     }
 
-    // Cross-origin iframe auto-height
+    // Auto-height for specific embed
     window.addEventListener('message', function (event) {
-      if (event.data && event.data.source === 'hugo-embed') {
-        const iframe = document.getElementById('hugo-embed-iframe');
-        if (iframe) {
-          iframe.style.height = (event.data.frameHeight + 20) + 'px';
-        }
-      }
-    });
-
-    // Generic resize for other iframes sending frameUrl + frameHeight
-    window.addEventListener('message', (event) => {
       if (event.data?.frameHeight && event.data?.frameUrl) {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach((iframe) => {
           try {
-            const iframeUrl = new URL(iframe.src);
+            const iframeUrl = new URL(iframe.src, window.location.origin);
             const messageUrl = new URL(event.data.frameUrl);
             if (iframeUrl.pathname === messageUrl.pathname) {
               iframe.style.height = event.data.frameHeight + 'px';
@@ -170,6 +119,54 @@
         });
       }
     });
+
+    // THEME SYNC: post the current theme to all iframes
+    function getCurrentThemeSnapshot() {
+      const dark = document.body.classList.contains('dark');
+      return {
+        type: 'theme',
+        dark,
+        colors: dark ? {
+          bg: '#1a1a1a',
+          text: '#e0e0e0',
+          accent: '#4bb583',
+          accentVisited: '#3a9d6f',
+          borderSoft: '#444444'
+        } : {
+          bg: '#ffffff',
+          text: '#000000',
+          accent: '#2d8659',
+          accentVisited: '#1f5d3d',
+          borderSoft: '#cccccc'
+        }
+      };
+    }
+
+    function postThemeToEmbeds() {
+      const msg = getCurrentThemeSnapshot();
+      document.querySelectorAll('iframe').forEach((f) => {
+        try { f.contentWindow.postMessage(msg, '*'); } catch (e) {}
+      });
+    }
+
+    window.addEventListener('load', () => {
+      postThemeToEmbeds();
+      setTimeout(postThemeToEmbeds, 300);
+    });
+
+    // Hook theme toggle button if present
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if (t && t.classList && t.classList.contains('theme-toggle')) {
+        setTimeout(postThemeToEmbeds, 0);
+      }
+    });
+
+    // Reflect OS scheme changes as well
+    try {
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      mql.addEventListener('change', () => postThemeToEmbeds());
+    } catch (e) {}
   </script>
 </body>
 </html>
