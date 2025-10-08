@@ -1,17 +1,27 @@
 <style>
     .footer {
         background: white;
-        border-top: 5px solid black;
+        border-top: 2px solid #ccc;
         padding: 2rem;
         margin-top: 3rem;
         max-width: 100%;
         overflow-x: hidden;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark .footer {
+        background: #1a1a1a;
+        border-top-color: #444;
     }
 
     .footer hr {
         border: none;
-        border-top: 3px double black;
+        border-top: 1px solid #ccc;
         margin: 2rem 0;
+    }
+
+    body.dark .footer hr {
+        border-top-color: #444;
     }
 
     .browse {
@@ -23,19 +33,28 @@
     }
 
     .browse-left, .browse-right {
-        background: #F0F8FF;
         padding: 1.5rem;
-        border: 3px solid black;
-        box-shadow: 6px 6px 0 #1E90FF;
+        border: 1px solid #ccc;
+    }
+
+    body.dark .browse-left,
+    body.dark .browse-right {
+        border-color: #444;
     }
 
     .browse-left-heading, .browse-right-heading {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: bold;
         margin-bottom: 1rem;
-        color: #1E90FF;
-        border-bottom: 3px solid black;
+        color: #2d8659;
+        border-bottom: 2px solid #2d8659;
         padding-bottom: 0.5rem;
+    }
+
+    body.dark .browse-left-heading,
+    body.dark .browse-right-heading {
+        color: #4bb583;
+        border-bottom-color: #4bb583;
     }
 
     .browse-link {
@@ -43,64 +62,86 @@
     }
 
     .browse-link a {
-        color: black;
-        text-decoration: none;
-        display: inline-block;
-        padding: 0.3rem 0;
+        color: #2d8659;
+        text-decoration: underline;
         transition: all 0.2s ease;
-        border-left: 3px solid transparent;
-        padding-left: 0.5rem;
+    }
+
+    .browse-link a:visited {
+        color: #1f5d3d;
+    }
+
+    body.dark .browse-link a {
+        color: #4bb583;
+    }
+
+    body.dark .browse-link a:visited {
+        color: #3a9d6f;
     }
 
     .browse-link a:hover {
-        border-left-color: #FF6B6B;
-        padding-left: 1rem;
-        color: #FF6B6B;
+        color: #1f5d3d;
+    }
+
+    body.dark .browse-link a:hover {
+        color: #5fcf9a;
     }
 
     .footer h2 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         margin: 2rem 0 1rem 0;
-        color: #1E90FF;
+        color: #2d8659;
         text-align: center;
-        border-bottom: 3px solid black;
+        border-bottom: 2px solid #2d8659;
         padding-bottom: 0.5rem;
+        font-weight: normal;
+    }
+
+    body.dark .footer h2 {
+        color: #4bb583;
+        border-bottom-color: #4bb583;
     }
 
     .webring, #my-webring {
         text-align: center;
         padding: 1rem;
         margin: 1rem 0;
-        background: #FFE66D;
-        border: 3px solid black;
-        box-shadow: 4px 4px 0 #FF6B6B;
+        border: 1px solid #ccc;
+    }
+
+    body.dark .webring,
+    body.dark #my-webring {
+        border-color: #444;
     }
 
     .webring a {
-        color: black;
+        color: #2d8659;
         font-weight: bold;
-        text-decoration: none;
-        padding: 0.3rem 0.8rem;
-        border: 2px solid black;
-        background: white;
-        display: inline-block;
-        margin: 0.3rem;
-        transition: all 0.2s ease;
+        text-decoration: underline;
+    }
+
+    body.dark .webring a {
+        color: #4bb583;
     }
 
     .webring a:hover {
-        background: #4ECDC4;
-        transform: translateY(-2px);
-        box-shadow: 2px 2px 0 black;
+        color: #1f5d3d;
+    }
+
+    body.dark .webring a:hover {
+        color: #5fcf9a;
     }
 
     #bucket-webring {
         width: 100%;
         max-width: 100%;
         height: 3rem;
-        border: 3px solid black !important;
+        border: 1px solid #ccc;
         margin: 1rem 0;
-        box-shadow: 4px 4px 0 #95E1D3;
+    }
+
+    body.dark #bucket-webring {
+        border-color: #444;
     }
 
     .footer center {
@@ -111,22 +152,34 @@
     .footer img {
         max-width: 100%;
         height: auto;
-        border: 3px solid black;
+        border: 1px solid #ccc;
+    }
+
+    body.dark .footer img {
+        border-color: #444;
+        opacity: 0.9;
     }
 
     .footer p {
         text-align: center;
         margin: 0.5rem 0;
-        color: #333;
     }
 
     .footer p a {
-        color: #1E90FF;
+        color: #2d8659;
         text-decoration: underline;
     }
 
+    body.dark .footer p a {
+        color: #4bb583;
+    }
+
     .footer p a:hover {
-        color: #FF6B6B;
+        color: #1f5d3d;
+    }
+
+    body.dark .footer p a:hover {
+        color: #5fcf9a;
     }
 
     @media (max-width: 768px) {
@@ -141,7 +194,6 @@
 
         .browse-left, .browse-right {
             padding: 1rem;
-            box-shadow: 4px 4px 0 #1E90FF;
         }
 
         .browse-left-heading, .browse-right-heading {
@@ -149,17 +201,12 @@
         }
 
         .footer h2 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .webring {
             padding: 0.8rem;
             font-size: 0.9rem;
-        }
-
-        .webring a {
-            display: block;
-            margin: 0.5rem 0;
         }
     }
 </style>

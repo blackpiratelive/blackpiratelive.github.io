@@ -16,24 +16,31 @@
 
     body {
         font-family: Times New Roman, serif;
-        background: #f0f0f0;
+        background: white;
         color: black;
         line-height: 1.6;
         padding: 0;
         margin: 0;
         overflow-x: hidden;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+        background: #1a1a1a;
+        color: #e0e0e0;
     }
 
     .menu {
-        background: #1E90FF;
+        background: #2d8659;
         padding: 1rem 2rem;
-        border-bottom: 5px solid black;
+        border-bottom: 2px solid #1f5d3d;
         margin-bottom: 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         width: 100%;
+    }
+
+    body.dark .menu {
+        background: #1f5d3d;
+        border-bottom-color: #2d8659;
     }
 
     .menu nav {
@@ -50,30 +57,11 @@
         text-decoration: none;
         font-weight: bold;
         padding: 0.5rem 1rem;
-        border: 2px solid white;
-        background: transparent;
         transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .menu a::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        background: white;
-        transition: width 0.3s ease;
-        z-index: -1;
-    }
-
-    .menu a:hover::before {
-        width: 100%;
     }
 
     .menu a:hover {
-        color: #1E90FF;
+        background: rgba(255, 255, 255, 0.2);
     }
 
     @media (max-width: 768px) {
