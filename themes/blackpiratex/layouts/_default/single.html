@@ -1,294 +1,166 @@
+<!-- single.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }} - Sudip</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ .Title }} - Sudip</title>
+  <style>
+    /* Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: Times New Roman, serif;
-            background: #f0f0f0;
-            color: black;
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: "Times New Roman", serif;
+      background: white;
+      color: black;
+      line-height: 1.6;
+      margin: 0;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark { background: #1a1a1a; color: #e0e0e0; }
 
-        .menu {
-            background: #1E90FF;
-            padding: 1rem 2rem;
-            border-bottom: 5px solid black;
-            margin-bottom: 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            width: 100%;
-        }
+    /* Centered container */
+    .container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
 
-        .menu nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    main.container {
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+    }
 
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border: 2px solid white;
-            background: transparent;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+    /* Links */
+    a { color: #2d8659; text-decoration: underline; }
+    a:visited { color: #1f5d3d; }
+    body.dark a { color: #4bb583; }
+    body.dark a:visited { color: #3a9d6f; }
 
-        .menu a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: white;
-            transition: width 0.3s ease;
-            z-index: -1;
-        }
+    /* Headings */
+    h1, h2, h3 { font-weight: normal; color: #2d8659; }
+    body.dark h1, body.dark h2, body.dark h3 { color: #4bb583; }
 
-        .menu a:hover::before {
-            width: 100%;
-        }
+    /* Meta row */
+    .meta {
+      color: #666;
+      font-size: 0.95rem;
+      margin: 0.5rem 0 1.25rem 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.75rem;
+    }
+    body.dark .meta {
+      color: #bdbdbd;
+      border-bottom-color: #444;
+    }
 
-        .menu a:hover {
-            color: #1E90FF;
-        }
+    /* Content body */
+    .content-body { font-size: 1.05rem; line-height: 1.85; }
+    .content-body p { margin: 1rem 0; }
+    .content-body ul, .content-body ol { margin: 0.75rem 0 1.25rem 1.25rem; }
+    .content-body li { margin: 0.4rem 0; }
 
-        .content {
-            padding: 0 2rem 2rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    blockquote {
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #2d8659;
+      font-style: italic;
+    }
+    body.dark blockquote { border-left-color: #4bb583; }
 
-        .whole {
-            width: 100%;
-        }
+    code {
+      background-color: #f5f5f5;
+      padding: 0.15rem 0.4rem;
+      border: 1px solid #ccc;
+      font-family: "Courier New", monospace;
+      font-size: 0.92em;
+      border-radius: 2px;
+    }
+    body.dark code {
+      background-color: #2a2a2a;
+      border-color: #444;
+    }
 
-        article {
-            background: white;
-            padding: 2rem;
-            border: 3px solid black;
-            box-shadow: 8px 8px 0 #1E90FF;
-            margin-bottom: 2rem;
-        }
+    pre {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+    body.dark pre {
+      background-color: #222;
+      border-color: #444;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #FF6B6B;
-            border-bottom: 4px double black;
-            padding-bottom: 0.5rem;
-        }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            border-bottom: 4px double black;
-            padding-bottom: 0.3rem;
-            background: linear-gradient(90deg, #FFE66D, #FF6B6B, #4ECDC4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 2rem 0;
+    }
+    body.dark hr { border-top-color: #444; }
 
-        h3 {
-            font-size: 1.4rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #1E90FF;
-        }
+    .center { text-align: center; }
 
-        .meta {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px dotted #ccc;
-        }
+    /* Back link styled like theme links */
+    .back-link {
+      display: inline-block;
+      margin: 0 0 1rem 0;
+    }
 
-        .content-body {
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .content-body p {
-            margin-bottom: 1.5rem;
-        }
-
-        .content-body ul, .content-body ol {
-            margin-left: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-body li {
-            margin-bottom: 0.75rem;
-        }
-
-        .content-body a {
-            color: #1E90FF;
-            text-decoration: none;
-            border-bottom: 2px solid #1E90FF;
-            transition: all 0.3s ease;
-        }
-
-        .content-body a:hover {
-            background: #FFE66D;
-            color: black;
-        }
-
-        .content-body blockquote {
-            border-left: 5px solid #FF6B6B;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            color: #333;
-            font-style: italic;
-            background: #FFE66D;
-            padding: 1rem 1.5rem;
-        }
-
-        .content-body code {
-            background-color: #f5f5f5;
-            padding: 0.2rem 0.5rem;
-            border: 1px solid #ccc;
-            font-family: "Courier New", monospace;
-            font-size: 0.9em;
-        }
-
-        .content-body pre {
-            background-color: #f5f5f5;
-            padding: 1.5rem;
-            border: 2px solid black;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-body pre code {
-            background-color: transparent;
-            padding: 0;
-            border: none;
-        }
-
-        .content-body img {
-            max-width: 100%;
-            height: auto;
-            margin: 2rem 0;
-            border: 3px solid black;
-            box-shadow: 6px 6px 0 #4ECDC4;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: #4ECDC4;
-            color: black;
-            text-decoration: none;
-            border: 3px solid black;
-            font-weight: bold;
-            box-shadow: 4px 4px 0 black;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 black;
-            background: #95E1D3;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-top: 5px solid black;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 0 1rem 1rem 1rem;
-            }
-
-            .menu nav {
-                gap: 0.5rem;
-            }
-
-            .menu a {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
-            }
-
-            article {
-                padding: 1.5rem;
-                box-shadow: 4px 4px 0 #1E90FF;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            h3 {
-                font-size: 1.2rem;
-            }
-
-            .content-body {
-                font-size: 1rem;
-            }
-
-            .back-link {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      main.container { padding-top: 0.75rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="whole">
-        {{ partial "header.html" . }}
 
-        <div class="content">
-            <a href="javascript:history.back()" class="back-link">← Back</a>
-            
-            <article>
-                <h1>{{ .Title }}</h1>
-                
-                <div class="meta">
-                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-                    {{ if .Params.tags }}
-                    • {{ range .Params.tags }}<span style="color: #1E90FF;">#{{ . }}</span> {{ end }}
-                    {{ end }}
-                </div>
-                
-                <div class="content-body">
-                    {{ .Content }}
-                </div>
-            </article>
-        </div>
+  {{ partial "header.html" . }}
 
-        {{ partial "footer.html" . }}
-    </div>
+  <main class="container">
+    <a href="javascript:history.back()" class="back-link">← Back</a>
+
+    <article>
+      <h1>{{ .Title }}</h1>
+
+      <div class="meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        {{- with .Params.tags -}}
+          &nbsp;•&nbsp;
+          {{- range $i, $t := . -}}
+            {{- if $i }}, {{ end -}}<span>{{ $t }}</span>
+          {{- end -}}
+        {{- end -}}
+      </div>
+
+      <div class="content-body">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <hr/>
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  <script>
+    // Respect OS dark preference on load
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    }
+  </script>
 </body>
 </html>
