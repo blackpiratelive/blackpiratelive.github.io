@@ -242,91 +242,130 @@
 
   {{ partial "footer.html" . }}
 
-  <script>
-    // Respect OS dark preference on load
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
+<!-- index.html (replace the previous <script> block that loads latest read and stats with this) -->
+<script>
+  // Respect OS dark preference on load
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark');
+  }
+
+  // Auto-height for status iframe (unchanged)
+  window.addEventListener('message', function (event) {
+    if (event.data?.frameHeight && event.data?.frameUrl) {
+      const iframes = document.querySelectorAll('iframe');
+      iframes.forEach((iframe) => {
+        try {
+          const iframeUrl = new URL(iframe.src, window.location.origin);
+          const messageUrl = new URL(event.data.frameUrl);
+          if (iframeUrl.pathname === messageUrl.pathname) {
+            iframe.style.height = event.data.frameHeight + 'px';
+          }
+        } catch (e) {}
+      });
+    }
+  });
+
+  // Small fetch helper with timeout and clearer errors
+  async function fetchJSON(url, opts = {}, timeoutMs = 5000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'omit',
+        cache: 'no-store',
+        signal: controller.signal,
+        ...opts
+      });
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`${res.status} ${res.statusText} ${text}`.trim());
+      }
+      return await res.json();
+    } finally {
+      clearTimeout(id);
+    }
+  }
+
+  async function loadLatestReadAndStats() {
+    const skeleton = document.getElementById('lr-skeleton');
+    const content = document.getElementById('lr-content');
+    const error = document.getElementById('lr-error');
+    const badge = document.getElementById('lr-badge');
+    const coverEl = document.getElementById('lr-cover');
+    const titleEl = document.getElementById('lr-title');
+    const authorEl = document.getElementById('lr-author');
+    const quoteEl = document.getElementById('lr-quote');
+    const yearList = document.getElementById('year-list');
+    const yearTitle = document.getElementById('year-title');
+    const yearBooks = document.getElementById('year-books');
+
+    const latestUrl = 'https://notes.blackpiratex.com/api/latest-read';
+    const statsUrl = 'https://notes.blackpiratex.com/api/stats';
+
+    let latest = null, stats = null, latestErr = null, statsErr = null;
+
+    // Fetch in parallel but handle independently so one failure doesn't block the other
+    await Promise.all([
+      fetchJSON(latestUrl).then(d => latest = d).catch(e => latestErr = e),
+      fetchJSON(statsUrl).then(d => stats = d).catch(e => statsErr = e)
+    ]);
+
+    // If both failed, show error and exit
+    if (!latest && !stats) {
+      skeleton.style.display = 'none';
+      error.textContent = 'Could not load latest read book. Check API CORS and availability.';
+      error.style.display = 'block';
+      return;
     }
 
-    // Auto-height for status iframe
-    window.addEventListener('message', function (event) {
-      if (event.data?.frameHeight && event.data?.frameUrl) {
-        const iframes = document.querySelectorAll('iframe');
-        iframes.forEach((iframe) => {
-          try {
-            const iframeUrl = new URL(iframe.src, window.location.origin);
-            const messageUrl = new URL(event.data.frameUrl);
-            if (iframeUrl.pathname === messageUrl.pathname) {
-              iframe.style.height = event.data.frameHeight + 'px';
-            }
-          } catch (e) {}
-        });
-      }
-    });
+    // Render latest read if available
+    if (latest) {
+      const coverUrl = latest.coverUrl || 'https://placehold.co/80x112/ffffff/cccccc?text=NA';
+      coverEl.src = coverUrl;
+      coverEl.alt = `Cover of ${latest.title || 'book'}`;
+      titleEl.textContent = latest.title || 'Untitled';
+      authorEl.textContent = latest.author || 'Unknown author';
+      quoteEl.textContent = latest.highlight || '';
+      content.style.display = 'flex';
+    } else {
+      // Show partial error inline but keep going if stats exists
+      content.style.display = 'none';
+      error.style.display = 'block';
+      error.textContent = 'Could not load latest read book.';
+    }
 
-    async function loadLatestReadAndStats() {
-      const skeleton = document.getElementById('lr-skeleton');
-      const content = document.getElementById('lr-content');
-      const error = document.getElementById('lr-error');
-      const badge = document.getElementById('lr-badge');
-      const coverEl = document.getElementById('lr-cover');
-      const titleEl = document.getElementById('lr-title');
-      const authorEl = document.getElementById('lr-author');
-      const quoteEl = document.getElementById('lr-quote');
+    // Render stats if available
+    if (stats && stats.booksByYear) {
+      const currentYear = new Date().getFullYear().toString();
+      const thisYearBooks = Array.isArray(stats.booksByYear[currentYear]) ? stats.booksByYear[currentYear] : [];
 
-      const yearList = document.getElementById('year-list');
-      const yearTitle = document.getElementById('year-title');
-      const yearBooks = document.getElementById('year-books');
+      const totalPages = thisYearBooks.reduce((sum, b) => sum + (b.pageCount || 0), 0);
+      badge.textContent = `${thisYearBooks.length} books • ${totalPages.toLocaleString()} pages`;
 
-      try {
-        const [latestReadRes, statsRes] = await Promise.all([
-          fetch('https://notes.blackpiratex.com/api/latest-read', { credentials: 'omit', mode: 'cors' }),
-          fetch('https://notes.blackpiratex.com/api/stats', { credentials: 'omit', mode: 'cors' })
-        ]);
-
-        if (!latestReadRes.ok) throw new Error('latest-read failed: ' + latestReadRes.status);
-        if (!statsRes.ok) throw new Error('stats failed: ' + statsRes.status);
-
-        const latest = await latestReadRes.json();
-        const stats = await statsRes.json();
-
-        // Fill latest read card
-        const coverUrl = latest.coverUrl || 'https://placehold.co/80x112/ffffff/cccccc?text=NA';
-        coverEl.src = coverUrl;
-        coverEl.alt = `Cover of ${latest.title || 'book'}`;
-        titleEl.textContent = latest.title || 'Untitled';
-        authorEl.textContent = latest.author || 'Unknown author';
-        quoteEl.textContent = latest.highlight || '';
-
-        // Compute this year's pages and list books
-        const currentYear = new Date().getFullYear().toString();
-        const thisYearBooks = (stats.booksByYear && stats.booksByYear[currentYear]) || [];
-        const totalPages = thisYearBooks.reduce((sum, b) => sum + (b.pageCount || 0), 0);
-
-        badge.textContent = `${thisYearBooks.length} books • ${totalPages.toLocaleString()} pages`;
-
-        // Render book list
-        yearBooks.innerHTML = '';
-        thisYearBooks.forEach((b) => {
-          const li = document.createElement('li');
-          const authors = Array.isArray(b.authors) ? b.authors.join(', ') : (b.authors || '');
-          li.textContent = `${b.title}${authors ? ' — ' + authors : ''}`;
-          yearBooks.appendChild(li);
-        });
-        yearTitle.textContent = `Books read in ${currentYear}`;
-        yearList.style.display = 'block';
-
-        // Show content
-        skeleton.style.display = 'none';
-        content.style.display = 'flex';
-      } catch (e) {
-        console.error(e);
-        skeleton.style.display = 'none';
-        error.style.display = 'block';
+      yearBooks.innerHTML = '';
+      thisYearBooks.forEach((b) => {
+        const li = document.createElement('li');
+        const authors = Array.isArray(b.authors) ? b.authors.join(', ') : (b.authors || '');
+        li.textContent = `${b.title}${authors ? ' — ' + authors : ''}${b.pageCount ? ' (' + b.pageCount + 'p)' : ''}`;
+        yearBooks.appendChild(li);
+      });
+      yearTitle.textContent = `Books read in ${currentYear}`;
+      yearList.style.display = 'block';
+    } else {
+      // If stats missing, at least clear badge gracefully
+      if (!latest) {
+        badge.textContent = '—';
+      } else {
+        badge.textContent = 'Stats unavailable';
       }
     }
 
-    loadLatestReadAndStats();
-  </script>
+    skeleton.style.display = 'none';
+  }
+
+  loadLatestReadAndStats();
+</script>
 </body>
 </html>
