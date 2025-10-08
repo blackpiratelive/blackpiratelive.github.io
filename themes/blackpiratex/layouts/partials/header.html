@@ -1,139 +1,103 @@
+<!-- header.html -->
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-        font-family: Times New Roman, serif;
-        background: white;
-        color: black;
-        line-height: 1.6;
-        padding: 0;
-        margin: 0;
-        overflow-x: hidden;
-        transition: background 0.3s, color 0.3s;
-    }
+  body {
+    font-family: "Times New Roman", serif;
+    background: white;
+    color: black;
+    line-height: 1.6;
+    margin: 0;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
 
-    body.dark {
-        background: #1a1a1a;
-        color: #e0e0e0;
-    }
+  body.dark { background: #1a1a1a; color: #e0e0e0; }
 
-    .menu {
-        border-bottom: 1px solid #ccc;
-        padding: 1rem 0;
-        margin-bottom: 2rem;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  /* Shared container to center content */
+  .container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
-    body.dark .menu {
-        border-bottom-color: #444;
-    }
+  .menu {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
 
-    .menu nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
+  /* Make menu use the same centered container */
+  .menu > nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-    .menu-links {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-    }
+  .menu-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 
-    .menu a {
-        color: #2d8659;
-        text-decoration: underline;
-        transition: all 0.2s ease;
-    }
+  .menu a {
+    color: #2d8659;
+    text-decoration: underline;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+  }
 
-    body.dark .menu a {
-        color: #4bb583;
-    }
+  body.dark .menu { border-bottom-color: #444; }
+  body.dark .menu a { color: #4bb583; }
+  .menu a:hover { color: #1f5d3d; }
+  body.dark .menu a:hover { color: #5fcf9a; }
 
-    .menu a:hover {
-        color: #1f5d3d;
-    }
+  .theme-toggle {
+    background: none;
+    border: 1px solid #2d8659;
+    color: #2d8659;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    font-family: "Times New Roman", serif;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
 
-    body.dark .menu a:hover {
-        color: #5fcf9a;
-    }
+  body.dark .theme-toggle { border-color: #4bb583; color: #4bb583; }
+  .theme-toggle:hover { background: #2d8659; color: white; }
+  body.dark .theme-toggle:hover { background: #4bb583; color: black; }
 
-    .theme-toggle {
-        background: none;
-        border: 1px solid #2d8659;
-        color: #2d8659;
-        padding: 0.3rem 0.8rem;
-        cursor: pointer;
-        font-family: Times New Roman, serif;
-        font-size: 0.9rem;
-        transition: all 0.2s ease;
-    }
-
-    body.dark .theme-toggle {
-        border-color: #4bb583;
-        color: #4bb583;
-    }
-
-    .theme-toggle:hover {
-        background: #2d8659;
-        color: white;
-    }
-
-    body.dark .theme-toggle:hover {
-        background: #4bb583;
-        color: black;
-    }
-
-    @media (max-width: 768px) {
-        .menu {
-            padding: 0.8rem 0;
-        }
-
-        .menu nav {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .menu-links {
-            gap: 1rem;
-        }
-
-        .menu a {
-            font-size: 0.95rem;
-        }
-    }
+  @media (max-width: 768px) {
+    .menu { padding: 0.8rem 0; }
+    .menu > nav { flex-direction: column; align-items: flex-start; }
+    .menu-links { gap: 1rem; }
+  }
 </style>
 
 <div class="menu">
-    <nav>
-        <div class="menu-links">
-            <a href="/">🏠 Home</a>
-            <a href="/contact">💌 Contact</a>
-            <a href="/bookmarks">📑 Bookmarks</a>
-            <a href="/about">🙋‍♂️ About</a>
-        </div>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
-    </nav>
+  <nav class="container">
+    <div class="menu-links">
+      <a href="/">Home</a>
+      <a href="/contact">Contact</a>
+      <a href="/bookmarks">Bookmarks</a>
+      <a href="/about">About</a>
+    </div>
+    <div>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark</button>
+    </div>
+  </nav>
 </div>
 
 <script>
-    // Check device preference on load
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-        document.querySelector('.theme-toggle').textContent = '☀️ Light';
-    }
+  // Check device preference on load
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark');
+    document.querySelector('.theme-toggle').textContent = 'Light';
+  }
 
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
-        const btn = document.querySelector('.theme-toggle');
-        btn.textContent = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
-    }
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const btn = document.querySelector('.theme-toggle');
+    btn.textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
+  }
 </script>

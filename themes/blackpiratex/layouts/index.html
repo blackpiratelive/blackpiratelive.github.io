@@ -1,232 +1,175 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudip - BlackPirateX</title>
-    <style>
-        body {
-            font-family: Times New Roman, serif;
-            background: white;
-            color: black;
-            line-height: 1.6;
-            padding: 1rem;
-            margin: 0;
-            max-width: 900px;
-            margin: 0 auto;
-            transition: background 0.3s, color 0.3s;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sudip - BlackPirateX</title>
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      background: white;
+      color: black;
+      line-height: 1.6;
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
 
-        body.dark {
-            background: #1a1a1a;
-            color: #e0e0e0;
-        }
+    body.dark { background: #1a1a1a; color: #e0e0e0; }
 
-        .dark-toggle {
-            display: none;
-        }
+    /* Shared centered container */
+    .container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+    /* Page padding for top/bottom breathing room */
+    main.container {
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+    }
 
-        a {
-            color: #2d8659;
-            text-decoration: underline;
-        }
+    .dark-toggle { display: none; }
 
-        a:visited {
-            color: #1f5d3d;
-        }
+    img { max-width: 100%; height: auto; }
 
-        body.dark a {
-            color: #4bb583;
-        }
+    a { color: #2d8659; text-decoration: underline; }
+    a:visited { color: #1f5d3d; }
+    body.dark a { color: #4bb583; }
+    body.dark a:visited { color: #3a9d6f; }
 
-        body.dark a:visited {
-            color: #3a9d6f;
-        }
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 2rem 0;
+    }
+    body.dark hr { border-top-color: #444; }
 
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 2rem 0;
-        }
+    h1, h2 { font-weight: normal; color: #2d8659; }
+    body.dark h1, body.dark h2 { color: #4bb583; }
 
-        body.dark hr {
-            border-top-color: #444;
-        }
+    ul { list-style-type: disc; padding-left: 2rem; }
+    li { margin: 0.5rem 0; }
 
-        h1, h2 {
-            font-weight: normal;
-            color: #2d8659;
-        }
+    blockquote {
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #2d8659;
+      font-style: italic;
+    }
+    body.dark blockquote { border-left-color: #4bb583; }
 
-        body.dark h1,
-        body.dark h2 {
-            color: #4bb583;
-        }
+    .center { text-align: center; }
 
-        ul {
-            list-style-type: disc;
-            padding-left: 2rem;
-        }
+    iframe {
+      width: 100%;
+      border: 1px solid #ccc;
+      margin: 1rem 0;
+      background: white;
+    }
+    body.dark iframe {
+      border-color: #444;
+      background: #2a2a2a;
+    }
 
-        li {
-            margin: 0.5rem 0;
-        }
+    @media (max-width: 768px) {
+      main.container { padding-top: 0.75rem; }
+    }
 
-        blockquote {
-            margin: 1rem 0;
-            padding-left: 1rem;
-            border-left: 3px solid #2d8659;
-            font-style: italic;
-        }
-
-        body.dark blockquote {
-            border-left-color: #4bb583;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        iframe {
-            width: 100%;
-            border: 1px solid #ccc;
-            margin: 1rem 0;
-        }
-
-        body.dark iframe {
-            border-color: #444;
-            background: #2a2a2a;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 0.75rem;
-            }
-        }
-    </style>
+    /* Simple avatar styling if needed */
+    .profile-img {
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    body.dark .profile-img { border-color: #444; }
+  </style>
 </head>
 <body>
-    <div class="center">
+  <div class="center">
     {{ partial "header.html" . }}
-        {{ $me := resources.Get "img/me.jpg" }}
-            {{ $me := $me.Resize "300x webp q50" }}
-	
-    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img">
-    </div>
+  </div>
+
+  <main class="container">
+    {{ $me := resources.Get "img/me.jpg" }}
+    {{ $me = $me.Resize "300x webp q50" }}
+    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img"/>
 
     <h1 class="center">Hi, I'm Sudip</h1>
-    
     <p class="center"><i>Zoology Graduate • Web Enthusiast • Duck & Cat Lover</i></p>
-    
-    <p>
-        Currently in my early twenties. This is a website that I made to put myself to the world. 
-        I am a Zoology graduate. Making websites is one of my hobbies. And I love ducks and cats.
-    </p>
+
+    <p>Currently in early twenties. This is a website made to put myself to the world. Zoology graduate, building websites as a hobby, and loves ducks and cats.</p>
 
     <blockquote>
-        "Days of me forgetting are over, days of me remembering have just began."
+      Days of me forgetting are over, days of me remembering have just began.
     </blockquote>
 
     <p class="center">
-        <a href="https://signal.me/#eu/ZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC">🔥 Connect on Signal</a> | 
-        <a href="https://guestbook.blackpiratex.com">✍️ Sign My Guestbook</a>
+      <a href="https://signal.me/euZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC">Connect on Signal</a>
+      &nbsp;•&nbsp;
+      <a href="https://guestbook.blackpiratex.com">Sign My Guestbook</a>
     </p>
 
-    <hr>
+    <hr/>
 
     <h2>Useful Links</h2>
-    
     <ul>
-        <li>
-            <b>Blog</b> - Read my blogs, I write very infrequently
-            <br><a href="https://blog.blackpiratex.com/">→ Read Blogs</a>
-        </li>
-        
-        <li>
-            <b>Status</b> - One liner thoughts that come to my mind, this is my twitter
-            <br><a href="https://status.blackpiratex.com/">→ View Status</a>
-        </li>
-        
-        <li>
-            <b>Music</b> - Get an overview of my music listening
-            <br><a href="https://music.blackpiratex.com/">→ Check Music</a>
-        </li>
-        
-        <li>
-            <b>Gallery</b> - Get an overview of my photography
-            <br><a href="https://gallery.blackpiratex.com/">→ Browse Gallery</a>
-        </li>
-        
-        <li>
-            <b>Notes</b> - Notes of the books that I read
-            <br><a href="https://notes.blackpiratex.com/">→ Read Notes</a>
-        </li>
-        
-        <li>
-            <b>Apps</b> - List of my apps
-            <br><a href="https://blackpiratex.com/app-list.html">→ View Apps</a>
-        </li>
+      <li><b>Blog</b> – Read infrequent posts: <a href="https://blog.blackpiratex.com">Read Blogs</a></li>
+      <li><b>Status</b> – One-liners; like Twitter: <a href="https://status.blackpiratex.com">View Status</a></li>
+      <li><b>Music</b> – Listening overview: <a href="https://music.blackpiratex.com">Check Music</a></li>
+      <li><b>Gallery</b> – Photography overview: <a href="https://gallery.blackpiratex.com">Browse Gallery</a></li>
+      <li><b>Notes</b> – Book notes: <a href="https://notes.blackpiratex.com">Read Notes</a></li>
+      <li><b>Apps</b> – List of apps: <a href="https://blackpiratex.com/app-list.html">View Apps</a></li>
     </ul>
 
-    <hr>
+    <hr/>
 
     <h2>Latest Thoughts</h2>
-    <iframe 
-        id="hugo-embed-iframe"
-        src="https://status.blackpiratex.com/embed/"
-        scrolling="no"
-        style="min-height: 400px;">
-    </iframe>
+    <iframe id="hugo-embed-iframe" src="https://status.blackpiratex.com/embed" scrolling="no" style="min-height: 400px"></iframe>
 
-    <hr>
+    <hr/>
 
     <h2>Last Book I've Read</h2>
-    <iframe 
-        src="https://notes.blackpiratex.com/embed.html" 
-        title="Latest Read Book" 
-        scrolling="no"
-        style="min-height: 300px;">
-    </iframe>
-{{ partial "footer.html" . }}
-    <script>
-        // Check device preference on load
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark');
-            document.querySelector('.dark-toggle').textContent = '☀️ Light';
+    <iframe src="https://notes.blackpiratex.com/embed.html" title="Latest Read Book" scrolling="no" style="min-height: 300px"></iframe>
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  <script>
+    // Dark preference on load for this page too (in case header didn't run yet)
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    }
+
+    // Cross-origin iframe auto-height
+    window.addEventListener('message', function (event) {
+      if (event.data && event.data.source === 'hugo-embed') {
+        const iframe = document.getElementById('hugo-embed-iframe');
+        if (iframe) {
+          iframe.style.height = (event.data.frameHeight + 20) + 'px';
         }
+      }
+    });
 
-        function toggleDark() {
-            document.body.classList.toggle('dark');
-            const btn = document.querySelector('.dark-toggle');
-            btn.textContent = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
-        }
-
-        window.addEventListener('message', function(event) {
-            if (event.data && event.data.source === 'hugo-embed') {
-                const iframe = document.getElementById('hugo-embed-iframe');
-                if (iframe) {
-                    iframe.style.height = (event.data.frameHeight + 20) + 'px';
-                }
+    // Generic resize for other iframes sending frameUrl + frameHeight
+    window.addEventListener('message', (event) => {
+      if (event.data?.frameHeight && event.data?.frameUrl) {
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach((iframe) => {
+          try {
+            const iframeUrl = new URL(iframe.src);
+            const messageUrl = new URL(event.data.frameUrl);
+            if (iframeUrl.pathname === messageUrl.pathname) {
+              iframe.style.height = event.data.frameHeight + 'px';
             }
+          } catch (e) {}
         });
-
-        window.addEventListener('message', event => {
-            if (event.data.frameHeight && event.data.frameUrl) {
-                const iframes = document.querySelectorAll('iframe');
-                iframes.forEach(iframe => {
-                    const iframeUrl = new URL(iframe.src);
-                    const messageUrl = new URL(event.data.frameUrl);
-                    if (iframeUrl.pathname === messageUrl.pathname) {
-                        iframe.style.height = event.data.frameHeight + 'px';
-                    }
-                });
-            }
-        });
-    </script>
+      }
+    });
+  </script>
 </body>
 </html>
