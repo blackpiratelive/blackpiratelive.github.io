@@ -1,12 +1,3 @@
-<div class="menu">
-    <nav>
-        <a href="/">🏠 Home</a>
-        <a href="/contact">💌 Contact</a>
-        <a href="/bookmarks">📑 Bookmarks</a>
-        <a href="/about">🙋‍♂️ About</a>
-    </nav>
-</div>
-
 <style>
     * {
         margin: 0;
@@ -31,51 +22,118 @@
     }
 
     .menu {
-        background: #2d8659;
-        padding: 1rem 2rem;
-        border-bottom: 2px solid #1f5d3d;
+        border-bottom: 1px solid #ccc;
+        padding: 1rem;
         margin-bottom: 2rem;
-        width: 100%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     body.dark .menu {
-        background: #1f5d3d;
-        border-bottom-color: #2d8659;
+        border-bottom-color: #444;
     }
 
     .menu nav {
         display: flex;
-        justify-content: center;
-        gap: 2rem;
+        justify-content: space-between;
+        align-items: center;
         flex-wrap: wrap;
-        max-width: 800px;
-        margin: 0 auto;
+        gap: 1rem;
+    }
+
+    .menu-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
     }
 
     .menu a {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 0.5rem 1rem;
-        transition: all 0.3s ease;
+        color: #2d8659;
+        text-decoration: underline;
+        transition: all 0.2s ease;
+    }
+
+    body.dark .menu a {
+        color: #4bb583;
     }
 
     .menu a:hover {
-        background: rgba(255, 255, 255, 0.2);
+        color: #1f5d3d;
+    }
+
+    body.dark .menu a:hover {
+        color: #5fcf9a;
+    }
+
+    .theme-toggle {
+        background: none;
+        border: 1px solid #2d8659;
+        color: #2d8659;
+        padding: 0.3rem 0.8rem;
+        cursor: pointer;
+        font-family: Times New Roman, serif;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+    }
+
+    body.dark .theme-toggle {
+        border-color: #4bb583;
+        color: #4bb583;
+    }
+
+    .theme-toggle:hover {
+        background: #2d8659;
+        color: white;
+    }
+
+    body.dark .theme-toggle:hover {
+        background: #4bb583;
+        color: black;
     }
 
     @media (max-width: 768px) {
         .menu {
-            padding: 1rem;
+            padding: 0.8rem;
         }
 
         .menu nav {
-            gap: 0.5rem;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .menu-links {
+            gap: 1rem;
         }
 
         .menu a {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
     }
 </style>
+
+<div class="menu">
+    <nav>
+        <div class="menu-links">
+            <a href="/">🏠 Home</a>
+            <a href="/contact">💌 Contact</a>
+            <a href="/bookmarks">📑 Bookmarks</a>
+            <a href="/about">🙋‍♂️ About</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+    </nav>
+</div>
+
+<script>
+    // Check device preference on load
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        document.querySelector('.theme-toggle').textContent = '☀️ Light';
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+        const btn = document.querySelector('.theme-toggle');
+        btn.textContent = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
+    }
+</script>

@@ -1,10 +1,12 @@
 <style>
     .footer {
         background: white;
-        border-top: 2px solid #ccc;
-        padding: 2rem;
+        border-top: 1px solid #ccc;
+        padding: 2rem 1rem;
         margin-top: 3rem;
-        max-width: 100%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
         overflow-x: hidden;
         transition: background 0.3s, color 0.3s;
     }
@@ -24,100 +26,85 @@
         border-top-color: #444;
     }
 
-    .browse {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    .footer-nav {
+        display: flex;
+        justify-content: space-between;
         gap: 2rem;
         margin-bottom: 2rem;
-        max-width: 100%;
+        font-size: 0.9rem;
     }
 
-    .browse-left, .browse-right {
-        padding: 1.5rem;
-        border: 1px solid #ccc;
+    .footer-nav-section {
+        flex: 1;
     }
 
-    body.dark .browse-left,
-    body.dark .browse-right {
-        border-color: #444;
-    }
-
-    .browse-left-heading, .browse-right-heading {
-        font-size: 1.3rem;
+    .footer-nav-section h3 {
+        font-size: 1rem;
         font-weight: bold;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         color: #2d8659;
-        border-bottom: 2px solid #2d8659;
-        padding-bottom: 0.5rem;
     }
 
-    body.dark .browse-left-heading,
-    body.dark .browse-right-heading {
+    body.dark .footer-nav-section h3 {
         color: #4bb583;
-        border-bottom-color: #4bb583;
     }
 
-    .browse-link {
-        margin: 0.5rem 0;
-    }
-
-    .browse-link a {
+    .footer-nav-section a {
+        display: block;
         color: #2d8659;
         text-decoration: underline;
-        transition: all 0.2s ease;
+        margin: 0.3rem 0;
+        font-size: 0.85rem;
     }
 
-    .browse-link a:visited {
+    body.dark .footer-nav-section a {
+        color: #4bb583;
+    }
+
+    .footer-nav-section a:visited {
         color: #1f5d3d;
     }
 
-    body.dark .browse-link a {
-        color: #4bb583;
-    }
-
-    body.dark .browse-link a:visited {
+    body.dark .footer-nav-section a:visited {
         color: #3a9d6f;
     }
 
-    .browse-link a:hover {
+    .footer-nav-section a:hover {
         color: #1f5d3d;
     }
 
-    body.dark .browse-link a:hover {
+    body.dark .footer-nav-section a:hover {
         color: #5fcf9a;
     }
 
     .footer h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin: 2rem 0 1rem 0;
         color: #2d8659;
         text-align: center;
-        border-bottom: 2px solid #2d8659;
-        padding-bottom: 0.5rem;
         font-weight: normal;
     }
 
     body.dark .footer h2 {
         color: #4bb583;
-        border-bottom-color: #4bb583;
     }
 
-    .webring, #my-webring {
+    .webring {
         text-align: center;
         padding: 1rem;
         margin: 1rem 0;
         border: 1px solid #ccc;
+        font-size: 0.9rem;
     }
 
-    body.dark .webring,
-    body.dark #my-webring {
+    body.dark .webring {
         border-color: #444;
     }
 
     .webring a {
         color: #2d8659;
-        font-weight: bold;
         text-decoration: underline;
+        margin: 0 0.5rem;
     }
 
     body.dark .webring a {
@@ -132,15 +119,14 @@
         color: #5fcf9a;
     }
 
-    #bucket-webring {
-        width: 100%;
-        max-width: 100%;
-        height: 3rem;
-        border: 1px solid #ccc;
+    #my-webring {
+        text-align: center;
+        padding: 1rem;
         margin: 1rem 0;
+        border: 1px solid #ccc;
     }
 
-    body.dark #bucket-webring {
+    body.dark #my-webring {
         border-color: #444;
     }
 
@@ -163,6 +149,7 @@
     .footer p {
         text-align: center;
         margin: 0.5rem 0;
+        font-size: 0.9rem;
     }
 
     .footer p a {
@@ -184,29 +171,21 @@
 
     @media (max-width: 768px) {
         .footer {
-            padding: 1rem;
+            padding: 1rem 0.5rem;
         }
 
-        .browse {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .browse-left, .browse-right {
-            padding: 1rem;
-        }
-
-        .browse-left-heading, .browse-right-heading {
-            font-size: 1.2rem;
+        .footer-nav {
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .footer h2 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .webring {
             padding: 0.8rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     }
 </style>
@@ -214,32 +193,28 @@
 <div class="footer">
     <hr>
     
-    <div class="browse">
-        <div class="browse-left">
-            <div class="browse-left-heading">Browse</div>
-            <div class="browse-left-links">
-                <div class="browse-link"><a href="https://blog.blackpiratex.com/">Blog🖊️</a></div>
-                <div class="browse-link"><a href="https://gallery.blackpiratex.com">Gallery📸</a></div>
-                <div class="browse-link"><a href="https://music.blackpiratex.com">Music🎧</a></div>
-                <div class="browse-link"><a href="https://notes.blackpiratex.com">Notes📚</a></div>
-                <div class="browse-link"><a href="https://status.blackpiratex.com">Status🎯</a></div>
-                <div class="browse-link"><a href="/bookmarks/">Bookmarks🔖</a></div>
-                <div class="browse-link"><a href="/contact/">Contact💌</a></div>
-                <div class="browse-link"><a href="/credits/">Credits🤝</a></div>
-                <div class="browse-link"><a href="/about/">About🙋‍♂️</a></div>
-            </div>
+    <div class="footer-nav">
+        <div class="footer-nav-section">
+            <h3>Browse</h3>
+            <a href="https://blog.blackpiratex.com/">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks/">Bookmarks</a>
+            <a href="/contact/">Contact</a>
+            <a href="/credits/">Credits</a>
+            <a href="/about/">About</a>
         </div>
         
-        <div class="browse-right">
-            <div class="browse-right-heading">Follow</div>
-            <div class="browse-right-links">
-                <div class="browse-link"><a href="https://links.blackpiratex.com/github">Github💻</a></div>
-                <div class="browse-link"><a href="https://links.blackpiratex.com/pixelfed">PixelFed📷</a></div>
-                <div class="browse-link"><a href="https://links.blackpiratex.com/yt">Youtube🎥</a></div>
-                <div class="browse-link"><a href="https://links.blackpiratex.com/mastodon">Mastodon🌑</a></div>
-                <div class="browse-link"><a href="https://links.blackpiratex.com/wa">WhatsApp🗨️</a></div>
-                <div class="browse-link"><a href="https://links.blackpiratex.com/last.fm">Last.fm🎵</a></div>
-            </div>
+        <div class="footer-nav-section">
+            <h3>Follow</h3>
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">PixelFed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
         </div>
     </div>
 
@@ -249,26 +224,30 @@
     <script async src="https://webring.blackpiratex.com/public/widget.js"></script>
 
     <div class="webring">
-        <a href="https://hotlinewebring.club/bpx/previous">Previous</a>
-        HOTLINE WEBRING
+        <a href="https://hotlinewebring.club/bpx/previous">Previous</a> • 
+        <a href="https://hotlinewebring.club">HOTLINE WEBRING</a> • 
         <a href="https://hotlinewebring.club/bpx/next">Next</a>
     </div>
 
     <div class="webring">
-        <a href='https://webring.dinhe.net/prev/https://blackpiratex.com'>Previous</a>
-        Retronut Webring
+        <a href='https://webring.dinhe.net/prev/https://blackpiratex.com'>Previous</a> • 
+        <a href="https://webring.dinhe.net">Retronut Webring</a> • 
         <a href='https://webring.dinhe.net/next/https://blackpiratex.com'>Next</a>
     </div>
 
-    <iframe id="bucket-webring" src="https://webring.bucketfish.me/embed.html?name=your name&lightmode=true"></iframe>
+    <div class="webring">
+        <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Previous</a> • 
+        <a href="https://webring.bucketfish.me">Bucketfish Webring</a> • 
+        <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a> • 
+        <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+    </div>
 
     <div class="webring">
         <center>
             <img src="http://tilde.club/~harper/webring.png" border="0" usemap="#notepad.map" alt="Tilde Club Webring">
             <br>
-            Click for the [<a href="http://tilde.club/~harper/link.html?action=random" target="_top">Random page</a>]
-            <br>
-            Want to join the ring? Click here for <a href="http://tilde.club/~harper/link.html?action=info" target="_top">info</a>.
+            <a href="http://tilde.club/~harper/link.html?action=random" target="_top">Random</a> • 
+            <a href="http://tilde.club/~harper/link.html?action=info" target="_top">Info</a>
         </center>
         <map name="notepad.map">
             <area shape="rect" coords="0, 0, 60, 70" target="_top" href="http://tilde.club/~harper/link.html?action=join">

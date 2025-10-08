@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudip - BlackPirateX</title>
+    <title>Sudip - Personal Website</title>
     <style>
         body {
             font-family: Times New Roman, serif;
@@ -12,9 +12,9 @@
             line-height: 1.6;
             padding: 0;
             margin: 0;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 0 1rem;
             transition: background 0.3s, color 0.3s;
         }
 
@@ -24,28 +24,7 @@
         }
 
         .dark-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            background: #2d8659;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-family: Times New Roman, serif;
-            font-size: 1rem;
-        }
-
-        .dark-toggle:hover {
-            background: #236b47;
-        }
-
-        body.dark .dark-toggle {
-            background: #3a9d6f;
-        }
-
-        body.dark .dark-toggle:hover {
-            background: #4bb583;
+            display: none;
         }
 
         img {
@@ -127,21 +106,15 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 0.5rem;
+                padding: 0 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-
-{{ partial "header.html" . }}
-    <button class="dark-toggle" onclick="toggleDark()">🌙 Dark</button>
-
     <div class="center">
-        {{ $me := resources.Get "img/me.jpg" }}
-            {{ $me := $me.Resize "300x webp q50" }}
-	
-    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img">
+    {{ partial "header.html" . }}
+        <img src="https://via.placeholder.com/280x380/e0e0e0/666666?text=Sudip" alt="Sudip" width="280" height="380">
     </div>
 
     <h1 class="center">Hi, I'm Sudip</h1>
@@ -217,10 +190,14 @@
         scrolling="no"
         style="min-height: 300px;">
     </iframe>
-
-
 {{ partial "footer.html" . }}
     <script>
+        // Check device preference on load
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+            document.querySelector('.dark-toggle').textContent = '☀️ Light';
+        }
+
         function toggleDark() {
             document.body.classList.toggle('dark');
             const btn = document.querySelector('.dark-toggle');
