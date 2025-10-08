@@ -173,7 +173,6 @@
   </style>
 </head>
 <body>
-  {{ partial "header.html" . }}
 
   <main class="container">
     {{ $me := resources.Get "img/me.jpg" }}
@@ -253,7 +252,7 @@
       <ul id="year-books" class="year-books"></ul>
     </div>
   </main>
-
+{{ partial "header.html" . }}
   {{ partial "footer.html" . }}
 
 <!-- index.html (replace the previous <script> block that loads latest read and stats with this) -->
