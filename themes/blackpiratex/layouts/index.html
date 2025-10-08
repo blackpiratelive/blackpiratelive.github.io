@@ -1,4 +1,4 @@
-<!-- index.html (replace only the "Last Book I've Read" iframe section with this block; keep the rest) -->
+<!-- index.html (full file with fixes and direct API integration) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +25,17 @@
     }
     main.container { padding-top: 1rem; padding-bottom: 2rem; }
 
+    img { max-width: 100%; height: auto; }
+
+    /* Center the profile image */
+    .profile-img {
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    body.dark .profile-img { border-color: #444; }
+
     a { color: #2d8659; text-decoration: underline; }
     a:visited { color: #1f5d3d; }
     body.dark a { color: #4bb583; }
@@ -35,6 +46,9 @@
 
     h1, h2 { font-weight: normal; color: #2d8659; }
     body.dark h1, body.dark h2 { color: #4bb583; }
+
+    ul { list-style-type: disc; padding-left: 2rem; }
+    li { margin: 0.5rem 0; }
 
     blockquote {
       margin: 1rem 0;
@@ -54,7 +68,7 @@
     }
     body.dark iframe { border-color: #444; background: #2a2a2a; }
 
-    /* Latest Read card to match embed look */
+    /* Latest Read card and lists */
     .latest-read.card {
       background: white;
       border: 1px solid #ccc;
@@ -65,7 +79,6 @@
       background: #1a1a1a;
       border-color: #444;
     }
-
     .lr-header {
       display: flex;
       justify-content: space-between;
@@ -87,14 +100,12 @@
       color: inherit;
       opacity: 0.9;
     }
-
     .lr-row { display: flex; gap: 1rem; }
     .lr-cover {
       width: 80px; height: 112px; object-fit: cover;
       border: 1px solid #ccc; background: #fff; flex-shrink: 0;
     }
     body.dark .lr-cover { background: #2a2a2a; border-color: #444; }
-
     .lr-info { flex: 1; min-width: 0; padding-top: 0.25rem; }
     .lr-title {
       font-weight: normal; font-size: 1rem; color: inherit;
@@ -105,7 +116,6 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     body.dark .lr-author { color: #4bb583; }
-
     .lr-quote {
       margin-top: 0.5rem;
       border-left: 3px solid #2d8659;
@@ -125,7 +135,26 @@
       overflow: hidden;
     }
 
-    /* Skeleton while loading */
+    /* Year list */
+    .year-list.card {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 2px;
+      margin-top: 1rem;
+    }
+    body.dark .year-list.card { background: #1a1a1a; border-color: #444; }
+    .year-list h3 {
+      margin: 0 0 0.75rem 0;
+      font-weight: normal;
+      color: #2d8659;
+      font-size: 1.05rem;
+    }
+    body.dark .year-list h3 { color: #4bb583; }
+    .year-books { list-style: disc; padding-left: 1.2rem; margin: 0; }
+    .year-books li { margin: 0.4rem 0; }
+
+    /* Skeleton */
     .lr-skeleton .sk-line { height: 12px; background: #e8e8e8; border: 1px solid #ccc; margin-bottom: 0.5rem; }
     .lr-skeleton .sk-line.title { height: 14px; width: 85%; }
     .lr-skeleton .sk-line.author { width: 70%; }
@@ -156,7 +185,9 @@
 
     <p>Currently in early twenties. This is a website made to put myself to the world. Zoology graduate, building websites as a hobby, and loves ducks and cats.</p>
 
-    <blockquote>Days of me forgetting are over, days of me remembering have just began.</blockquote>
+    <blockquote>
+      Days of me forgetting are over, days of me remembering have just began.
+    </blockquote>
 
     <p class="center">
       <a href="https://signal.me/euZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC">Connect on Signal</a>
@@ -172,8 +203,7 @@
     <hr/>
 
     <h2>Last Book I've Read</h2>
-
-    <!-- Latest Read Card (direct API) -->
+    <!-- Direct API Latest Read Card -->
     <div id="latest-read" class="latest-read card">
       <div class="lr-header">
         <div class="lr-label">Latest Read</div>
@@ -202,6 +232,12 @@
         <div id="lr-error" style="display:none;">Could not load latest read book.</div>
       </div>
     </div>
+
+    <!-- Current Year Books -->
+    <div class="year-list card" id="year-list" style="display:none;">
+      <h3 id="year-title"></h3>
+      <ul id="year-books" class="year-books"></ul>
+    </div>
   </main>
 
   {{ partial "footer.html" . }}
@@ -228,48 +264,69 @@
       }
     });
 
-    // Fetch from notes.blackpiratex.com APIs directly
-    async function loadLatestRead() {
+    async function loadLatestReadAndStats() {
       const skeleton = document.getElementById('lr-skeleton');
       const content = document.getElementById('lr-content');
       const error = document.getElementById('lr-error');
       const badge = document.getElementById('lr-badge');
+      const coverEl = document.getElementById('lr-cover');
+      const titleEl = document.getElementById('lr-title');
+      const authorEl = document.getElementById('lr-author');
+      const quoteEl = document.getElementById('lr-quote');
+
+      const yearList = document.getElementById('year-list');
+      const yearTitle = document.getElementById('year-title');
+      const yearBooks = document.getElementById('year-books');
 
       try {
         const [latestReadRes, statsRes] = await Promise.all([
-          fetch('https://notes.blackpiratex.com/api/latest-read', { credentials: 'omit' }),
-          fetch('https://notes.blackpiratex.com/api/stats', { credentials: 'omit' })
+          fetch('https://notes.blackpiratex.com/api/latest-read', { credentials: 'omit', mode: 'cors' }),
+          fetch('https://notes.blackpiratex.com/api/stats', { credentials: 'omit', mode: 'cors' })
         ]);
 
-        if (!latestReadRes.ok) throw new Error('latest-read failed');
-        if (!statsRes.ok) throw new Error('stats failed');
+        if (!latestReadRes.ok) throw new Error('latest-read failed: ' + latestReadRes.status);
+        if (!statsRes.ok) throw new Error('stats failed: ' + statsRes.status);
 
         const latest = await latestReadRes.json();
         const stats = await statsRes.json();
 
-        const currentYear = new Date().getFullYear().toString();
-        const booksThisYear = (stats.booksByYear && stats.booksByYear[currentYear]) || [];
-        const totalBooks = booksThisYear.length;
-        const totalPages = booksThisYear.reduce((sum, b) => sum + (b.pageCount || 0), 0);
-
-        badge.textContent = `${totalBooks} books • ${totalPages.toLocaleString()} pages`;
-
+        // Fill latest read card
         const coverUrl = latest.coverUrl || 'https://placehold.co/80x112/ffffff/cccccc?text=NA';
-        document.getElementById('lr-cover').src = coverUrl;
-        document.getElementById('lr-cover').alt = `Cover of ${latest.title || 'book'}`;
-        document.getElementById('lr-title').textContent = latest.title || 'Untitled';
-        document.getElementById('lr-author').textContent = latest.author || 'Unknown author';
-        document.getElementById('lr-quote').textContent = latest.highlight || '';
+        coverEl.src = coverUrl;
+        coverEl.alt = `Cover of ${latest.title || 'book'}`;
+        titleEl.textContent = latest.title || 'Untitled';
+        authorEl.textContent = latest.author || 'Unknown author';
+        quoteEl.textContent = latest.highlight || '';
 
+        // Compute this year's pages and list books
+        const currentYear = new Date().getFullYear().toString();
+        const thisYearBooks = (stats.booksByYear && stats.booksByYear[currentYear]) || [];
+        const totalPages = thisYearBooks.reduce((sum, b) => sum + (b.pageCount || 0), 0);
+
+        badge.textContent = `${thisYearBooks.length} books • ${totalPages.toLocaleString()} pages`;
+
+        // Render book list
+        yearBooks.innerHTML = '';
+        thisYearBooks.forEach((b) => {
+          const li = document.createElement('li');
+          const authors = Array.isArray(b.authors) ? b.authors.join(', ') : (b.authors || '');
+          li.textContent = `${b.title}${authors ? ' — ' + authors : ''}`;
+          yearBooks.appendChild(li);
+        });
+        yearTitle.textContent = `Books read in ${currentYear}`;
+        yearList.style.display = 'block';
+
+        // Show content
         skeleton.style.display = 'none';
         content.style.display = 'flex';
       } catch (e) {
+        console.error(e);
         skeleton.style.display = 'none';
         error.style.display = 'block';
       }
     }
 
-    loadLatestRead();
+    loadLatestReadAndStats();
   </script>
 </body>
 </html>
