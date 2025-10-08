@@ -1,4 +1,4 @@
-<!-- index.html (host) -->
+<!-- index.html (replace only the "Last Book I've Read" iframe section with this block; keep the rest) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,6 @@
       margin: 0;
       transition: background 0.3s, color 0.3s;
     }
-
     body.dark { background: #1a1a1a; color: #e0e0e0; }
 
     .container {
@@ -24,12 +23,7 @@
       padding-left: 1rem;
       padding-right: 1rem;
     }
-
     main.container { padding-top: 1rem; padding-bottom: 2rem; }
-
-    .dark-toggle { display: none; }
-
-    img { max-width: 100%; height: auto; }
 
     a { color: #2d8659; text-decoration: underline; }
     a:visited { color: #1f5d3d; }
@@ -41,9 +35,6 @@
 
     h1, h2 { font-weight: normal; color: #2d8659; }
     body.dark h1, body.dark h2 { color: #4bb583; }
-
-    ul { list-style-type: disc; padding-left: 2rem; }
-    li { margin: 0.5rem 0; }
 
     blockquote {
       margin: 1rem 0;
@@ -62,6 +53,94 @@
       background: white;
     }
     body.dark iframe { border-color: #444; background: #2a2a2a; }
+
+    /* Latest Read card to match embed look */
+    .latest-read.card {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 2px;
+    }
+    body.dark .latest-read.card {
+      background: #1a1a1a;
+      border-color: #444;
+    }
+
+    .lr-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .lr-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #1f5d3d;
+    }
+    body.dark .lr-label { color: #3a9d6f; }
+    .lr-badge {
+      font-size: 0.85rem;
+      white-space: nowrap;
+      color: inherit;
+      opacity: 0.9;
+    }
+
+    .lr-row { display: flex; gap: 1rem; }
+    .lr-cover {
+      width: 80px; height: 112px; object-fit: cover;
+      border: 1px solid #ccc; background: #fff; flex-shrink: 0;
+    }
+    body.dark .lr-cover { background: #2a2a2a; border-color: #444; }
+
+    .lr-info { flex: 1; min-width: 0; padding-top: 0.25rem; }
+    .lr-title {
+      font-weight: normal; font-size: 1rem; color: inherit;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0.25rem;
+    }
+    .lr-author {
+      font-size: 0.95rem; color: #2d8659; margin-bottom: 0.75rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    body.dark .lr-author { color: #4bb583; }
+
+    .lr-quote {
+      margin-top: 0.5rem;
+      border-left: 3px solid #2d8659;
+      padding-left: 0.75rem;
+      background: transparent;
+    }
+    body.dark .lr-quote { border-left-color: #4bb583; }
+    .lr-quote p {
+      margin: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: inherit;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Skeleton while loading */
+    .lr-skeleton .sk-line { height: 12px; background: #e8e8e8; border: 1px solid #ccc; margin-bottom: 0.5rem; }
+    .lr-skeleton .sk-line.title { height: 14px; width: 85%; }
+    .lr-skeleton .sk-line.author { width: 70%; }
+    .lr-skeleton .sk-line.q1 { width: 100%; }
+    .lr-skeleton .sk-line.q2 { width: 55%; }
+    .lr-skeleton .sk-cover { width: 80px; height: 112px; background: #e8e8e8; border: 1px solid #ccc; }
+    body.dark .lr-skeleton .sk-line,
+    body.dark .lr-skeleton .sk-cover { background: #2a2a2a; border-color: #444; }
+
+    @media (max-width: 640px){
+      .lr-cover { width: 60px; height: 90px; }
+      .lr-skeleton .sk-cover { width: 60px; height: 90px; }
+      .lr-row { gap: 0.75rem; }
+      .lr-badge, .lr-label { font-size: 0.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -93,18 +172,47 @@
     <hr/>
 
     <h2>Last Book I've Read</h2>
-    <iframe src="/embed.html" title="Latest Read Book" scrolling="no" style="min-height: 300px"></iframe>
+
+    <!-- Latest Read Card (direct API) -->
+    <div id="latest-read" class="latest-read card">
+      <div class="lr-header">
+        <div class="lr-label">Latest Read</div>
+        <div class="lr-badge" id="lr-badge">Loading…</div>
+      </div>
+      <div class="lr-body">
+        <div class="lr-row lr-skeleton" id="lr-skeleton">
+          <div class="sk-cover"></div>
+          <div class="lr-info">
+            <div class="sk-line title"></div>
+            <div class="sk-line author"></div>
+            <div class="sk-line q1"></div>
+            <div class="sk-line q2"></div>
+          </div>
+        </div>
+        <div class="lr-row" id="lr-content" style="display:none;">
+          <img id="lr-cover" class="lr-cover" alt="Book cover"/>
+          <div class="lr-info">
+            <div class="lr-title" id="lr-title"></div>
+            <div class="lr-author" id="lr-author"></div>
+            <blockquote class="lr-quote">
+              <p id="lr-quote"></p>
+            </blockquote>
+          </div>
+        </div>
+        <div id="lr-error" style="display:none;">Could not load latest read book.</div>
+      </div>
+    </div>
   </main>
 
   {{ partial "footer.html" . }}
 
   <script>
-    // Dark preference on load
+    // Respect OS dark preference on load
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark');
     }
 
-    // Auto-height for specific embed
+    // Auto-height for status iframe
     window.addEventListener('message', function (event) {
       if (event.data?.frameHeight && event.data?.frameUrl) {
         const iframes = document.querySelectorAll('iframe');
@@ -120,53 +228,48 @@
       }
     });
 
-    // THEME SYNC: post the current theme to all iframes
-    function getCurrentThemeSnapshot() {
-      const dark = document.body.classList.contains('dark');
-      return {
-        type: 'theme',
-        dark,
-        colors: dark ? {
-          bg: '#1a1a1a',
-          text: '#e0e0e0',
-          accent: '#4bb583',
-          accentVisited: '#3a9d6f',
-          borderSoft: '#444444'
-        } : {
-          bg: '#ffffff',
-          text: '#000000',
-          accent: '#2d8659',
-          accentVisited: '#1f5d3d',
-          borderSoft: '#cccccc'
-        }
-      };
-    }
+    // Fetch from notes.blackpiratex.com APIs directly
+    async function loadLatestRead() {
+      const skeleton = document.getElementById('lr-skeleton');
+      const content = document.getElementById('lr-content');
+      const error = document.getElementById('lr-error');
+      const badge = document.getElementById('lr-badge');
 
-    function postThemeToEmbeds() {
-      const msg = getCurrentThemeSnapshot();
-      document.querySelectorAll('iframe').forEach((f) => {
-        try { f.contentWindow.postMessage(msg, '*'); } catch (e) {}
-      });
-    }
+      try {
+        const [latestReadRes, statsRes] = await Promise.all([
+          fetch('https://notes.blackpiratex.com/api/latest-read', { credentials: 'omit' }),
+          fetch('https://notes.blackpiratex.com/api/stats', { credentials: 'omit' })
+        ]);
 
-    window.addEventListener('load', () => {
-      postThemeToEmbeds();
-      setTimeout(postThemeToEmbeds, 300);
-    });
+        if (!latestReadRes.ok) throw new Error('latest-read failed');
+        if (!statsRes.ok) throw new Error('stats failed');
 
-    // Hook theme toggle button if present
-    document.addEventListener('click', (e) => {
-      const t = e.target;
-      if (t && t.classList && t.classList.contains('theme-toggle')) {
-        setTimeout(postThemeToEmbeds, 0);
+        const latest = await latestReadRes.json();
+        const stats = await statsRes.json();
+
+        const currentYear = new Date().getFullYear().toString();
+        const booksThisYear = (stats.booksByYear && stats.booksByYear[currentYear]) || [];
+        const totalBooks = booksThisYear.length;
+        const totalPages = booksThisYear.reduce((sum, b) => sum + (b.pageCount || 0), 0);
+
+        badge.textContent = `${totalBooks} books • ${totalPages.toLocaleString()} pages`;
+
+        const coverUrl = latest.coverUrl || 'https://placehold.co/80x112/ffffff/cccccc?text=NA';
+        document.getElementById('lr-cover').src = coverUrl;
+        document.getElementById('lr-cover').alt = `Cover of ${latest.title || 'book'}`;
+        document.getElementById('lr-title').textContent = latest.title || 'Untitled';
+        document.getElementById('lr-author').textContent = latest.author || 'Unknown author';
+        document.getElementById('lr-quote').textContent = latest.highlight || '';
+
+        skeleton.style.display = 'none';
+        content.style.display = 'flex';
+      } catch (e) {
+        skeleton.style.display = 'none';
+        error.style.display = 'block';
       }
-    });
+    }
 
-    // Reflect OS scheme changes as well
-    try {
-      const mql = window.matchMedia('(prefers-color-scheme: dark)');
-      mql.addEventListener('change', () => postThemeToEmbeds());
-    } catch (e) {}
+    loadLatestRead();
   </script>
 </body>
 </html>
