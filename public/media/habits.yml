@@ -1,0 +1,18 @@
+- name: Veggie Breakfast
+  completed_dates:
+  - '2025-08-10'
+- name: Read books
+  completed_dates:
+  - '2024-08-10'
+  - '2024-08-11'
+  - '2025-07-15'
+  - '2025-07-16'
+  - '2025-07-17'
+  - '2025-08-02'
+  - '2025-08-03'
+  - '2025-08-05'
+- name: Caffeine free
+  completed_dates:
+  - '2025-08-01'
+- name: Morning workout
+  completed_dates: []

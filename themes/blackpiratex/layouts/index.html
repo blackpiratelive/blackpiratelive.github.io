@@ -1,387 +1,226 @@
-<!-- index.html (full file with fixes and direct API integration) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sudip - BlackPirateX</title>
-  <style>
-    body {
-      font-family: "Times New Roman", serif;
-      background: white;
-      color: black;
-      line-height: 1.6;
-      margin: 0;
-      transition: background 0.3s, color 0.3s;
-    }
-    body.dark { background: #1a1a1a; color: #e0e0e0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alex's page</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.5;
+        }
 
-    .container {
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    main.container { padding-top: 1rem; padding-bottom: 2rem; }
+        .header-section {
+            margin-bottom: 30px;
+        }
 
-    img { max-width: 100%; height: auto; }
+        .intro-section {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
 
-    /* Center the profile image */
-    .profile-img {
-      display: block;
-      margin: 0 auto 1rem auto;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    body.dark .profile-img { border-color: #444; }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border: 4px solid #2563eb;
+            flex-shrink: 0;
+        }
 
-    a { color: #2d8659; text-decoration: underline; }
-    a:visited { color: #1f5d3d; }
-    body.dark a { color: #4bb583; }
-    body.dark a:visited { color: #3a9d6f; }
+        .intro-text {
+            flex: 1;
+        }
 
-    hr { border: none; border-top: 1px solid #ccc; margin: 2rem 0; }
-    body.dark hr { border-top-color: #444; }
+        @media (max-width: 600px) {
+            .intro-section {
+                flex-direction: column;
+            }
 
-    h1, h2 { font-weight: normal; color: #2d8659; }
-    body.dark h1, body.dark h2 { color: #4bb583; }
+            .profile-img {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 20px;
+                display: block;
+            }
+        }
 
-    ul { list-style-type: disc; padding-left: 2rem; }
-    li { margin: 0.5rem 0; }
+        h1 {
+            color: #e0e0e0;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 8px;
+            font-size: 2em;
+        }
 
-    blockquote {
-      margin: 1rem 0;
-      padding-left: 1rem;
-      border-left: 3px solid #2d8659;
-      font-style: italic;
-    }
-    body.dark blockquote { border-left-color: #4bb583; }
+        h2 {
+            color: #d0d0d0;
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
 
-    .center { text-align: center; }
+        p {
+            margin: 12px 0;
+        }
 
-    iframe {
-      width: 100%;
-      border: 1px solid #ccc;
-      margin: 1rem 0;
-      background: white;
-    }
-    body.dark iframe { border-color: #444; background: #2a2a2a; }
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
 
-    /* Latest Read card and lists */
-    .latest-read.card {
-      background: white;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      border-radius: 2px;
-    }
-    body.dark .latest-read.card {
-      background: #1a1a1a;
-      border-color: #444;
-    }
-    .lr-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .lr-label {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #1f5d3d;
-    }
-    body.dark .lr-label { color: #3a9d6f; }
-    .lr-badge {
-      font-size: 0.85rem;
-      white-space: nowrap;
-      color: inherit;
-      opacity: 0.9;
-    }
-    .lr-row { display: flex; gap: 1rem; }
-    .lr-cover {
-      width: 80px; height: 112px; object-fit: cover;
-      border: 1px solid #ccc; background: #fff; flex-shrink: 0;
-    }
-    body.dark .lr-cover { background: #2a2a2a; border-color: #444; }
-    .lr-info { flex: 1; min-width: 0; padding-top: 0.25rem; }
-    .lr-title {
-      font-weight: normal; font-size: 1rem; color: inherit;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0.25rem;
-    }
-    .lr-author {
-      font-size: 0.95rem; color: #2d8659; margin-bottom: 0.75rem;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    body.dark .lr-author { color: #4bb583; }
-    .lr-quote {
-      margin-top: 0.5rem;
-      border-left: 3px solid #2d8659;
-      padding-left: 0.75rem;
-      background: transparent;
-    }
-    body.dark .lr-quote { border-left-color: #4bb583; }
-    .lr-quote p {
-      margin: 0;
-      font-size: 0.95rem;
-      font-style: italic;
-      line-height: 1.5;
-      color: inherit;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+        li {
+            margin: 8px 0;
+        }
 
-    /* Year list */
-    .year-list.card {
-      background: white;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      border-radius: 2px;
-      margin-top: 1rem;
-    }
-    body.dark .year-list.card { background: #1a1a1a; border-color: #444; }
-    .year-list h3 {
-      margin: 0 0 0.75rem 0;
-      font-weight: normal;
-      color: #2d8659;
-      font-size: 1.05rem;
-    }
-    body.dark .year-list h3 { color: #4bb583; }
-    .year-books { list-style: disc; padding-left: 1.2rem; margin: 0; }
-    .year-books li { margin: 0.4rem 0; }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
 
-    /* Skeleton */
-    .lr-skeleton .sk-line { height: 12px; background: #e8e8e8; border: 1px solid #ccc; margin-bottom: 0.5rem; }
-    .lr-skeleton .sk-line.title { height: 14px; width: 85%; }
-    .lr-skeleton .sk-line.author { width: 70%; }
-    .lr-skeleton .sk-line.q1 { width: 100%; }
-    .lr-skeleton .sk-line.q2 { width: 55%; }
-    .lr-skeleton .sk-cover { width: 80px; height: 112px; background: #e8e8e8; border: 1px solid #ccc; }
-    body.dark .lr-skeleton .sk-line,
-    body.dark .lr-skeleton .sk-cover { background: #2a2a2a; border-color: #444; }
+        a:hover {
+            text-decoration: underline;
+        }
 
-    @media (max-width: 640px){
-      .lr-cover { width: 60px; height: 90px; }
-      .lr-skeleton .sk-cover { width: 60px; height: 90px; }
-      .lr-row { gap: 0.75rem; }
-      .lr-badge, .lr-label { font-size: 0.8rem; }
-    }
-    
- .justified {
- text-align: justified;} 
-  </style>
+        .box {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .links {
+            margin: 20px 0;
+        }
+
+        .links a {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            margin: 5px 5px 5px 0;
+            border: 1px solid #1d4ed8;
+        }
+
+        .links a:hover {
+            background: #1d4ed8;
+            text-decoration: none;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #444;
+            margin: 30px 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .subtitle {
+            color: #888;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+        }
+
+        td:first-child {
+            font-weight: bold;
+            width: 30%;
+            background: #333;
+        }
+    </style>
 </head>
 <body>
-
-  <main class="container">
-    {{ $me := resources.Get "img/me.jpg" }}
+    <div class="header-section">
+        <h1>welcome to my page!</h1>
+        <p class="subtitle">last updated: oct 2025</p>
+    </div>
+ {{ $me := resources.Get "img/me.jpg" }}
     {{ $me = $me.Resize "300x webp q50" }}
-    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img"/>
-
-    <h1 class="center">Hi, I'm Sudip</h1>
-    <p class="center"><i>Zoology Graduate • Web Enthusiast • Duck & Cat Lover • Computer Nerd</i></p>
-<br>
-    <p class="justified" >I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. This is a website I made to put myself to the world. I have finished my Zoology graduation on 2025, now preparing for govt job exams. This website has been started around 2020, there are other websites that I have made previously which you can check under bookmarks. Building websites is my hobby, and I love ducks and cats. This website and its associated website is big, with lots of content. Browse as you may like, and if you think we have something common, don't forget to send me an email or drop a message on <a href="https://go.blackpiratex.com/signal">Signal</a> or <a href="https://go.blackpiratex.com/wa">WhatsApp</a>. I'd love to make friends.</p>
-
-    <blockquote>
-      Days of me forgetting are over, days of me remembering have just began.
-    </blockquote>
-
-    <p class="center">
-      <a href="https://signal.me/euZPhSnH9hQx1WtHL1PPexXdLWbuFgNXm67RP9buIAse3bqTOzBDVDFKiQrHtFSgoC">Connect on Signal</a>
-      &nbsp;•&nbsp;
-      <a href="https://guestbook.blackpiratex.com">Sign My Guestbook</a>
-    </p>
-
-    <hr/>
-<!-- index.html (only the Useful Links section block; insert where needed) -->
-<hr/>
-
-<h2>Useful Links</h2>
-<ul>
-  <li><b>Blog</b> – Read infrequent posts: <a href="https://blog.blackpiratex.com">Read Blogs</a></li>
-  <li><b>Status</b> – One-liner thoughts: <a href="https://status.blackpiratex.com">View Status</a></li>
-  <li><b>Music</b> – Listening overview: <a href="https://music.blackpiratex.com">Check Music</a></li>
-  <li><b>Gallery</b> – Photography overview: <a href="https://gallery.blackpiratex.com">Browse Gallery</a></li>
-  <li><b>Notes</b> – Book notes: <a href="https://notes.blackpiratex.com">Read Notes</a></li>
-  <li><b>Apps</b> – List of apps: <a href="https://blackpiratex.com/app-list.html">View Apps</a></li>
-</ul>
-
-
-
-    <h2>Latest Thoughts</h2>
-    <iframe id="hugo-embed-iframe" src="https://status.blackpiratex.com/embed" scrolling="no" style="min-height: 400px"></iframe>
-
-    <hr/>
-
-    <h2>Last Book I've Read</h2>
-    <!-- Direct API Latest Read Card -->
-    <div id="latest-read" class="latest-read card">
-      <div class="lr-header">
-        <div class="lr-label">Latest Read</div>
-        <div class="lr-badge" id="lr-badge">Loading…</div>
-      </div>
-      <div class="lr-body">
-        <div class="lr-row lr-skeleton" id="lr-skeleton">
-          <div class="sk-cover"></div>
-          <div class="lr-info">
-            <div class="sk-line title"></div>
-            <div class="sk-line author"></div>
-            <div class="sk-line q1"></div>
-            <div class="sk-line q2"></div>
-          </div>
+    <div class="intro-section">
+        <img src="{{ $me.RelPermalink }}" alt="profile picture" class="profile-img">
+        <div class="intro-text">
+            <p>hey there! i'm Sudip. thanks for stopping by my little corner of the internet.</p>
+            <p>i made this page because i wanted somewhere to put stuff about me and things i like. it's pretty simple free from algorithm which i think that's nice sometimes.</p>
         </div>
-        <div class="lr-row" id="lr-content" style="display:none;">
-          <img id="lr-cover" class="lr-cover" alt="Book cover"/>
-          <div class="lr-info">
-            <div class="lr-title" id="lr-title"></div>
-            <div class="lr-author" id="lr-author"></div>
-            <blockquote class="lr-quote">
-              <p id="lr-quote"></p>
-            </blockquote>
-          </div>
-        </div>
-        <div id="lr-error" style="display:none;">Could not load latest read book.</div>
-      </div>
     </div>
 
-    <!-- Current Year Books -->
-    <div class="year-list card" id="year-list" style="display:none;">
-      <h3 id="year-title"></h3>
-      <ul id="year-books" class="year-books"></ul>
+    <hr>
+
+    <h2>about me</h2>
+    
+    <div class="box">
+        <p><b>who am i?</b> just a regular guy who likes computers, going places, and taking pictures. i'm pretty social and love meeting new people and hearing about what they're into.</p>
+        
+        <p>i spend a lot of time working with tech stuff but i also really need to get outside and explore. good balance i guess?</p>
     </div>
-  </main>
-{{ partial "header.html" . }}
-  {{ partial "footer.html" . }}
 
-<!-- index.html (replace the previous <script> block that loads latest read and stats with this) -->
-<script>
-  // Respect OS dark preference on load
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.classList.add('dark');
-  }
+    <h2>things i'm into</h2>
 
-  // Auto-height for status iframe (unchanged)
-  window.addEventListener('message', function (event) {
-    if (event.data?.frameHeight && event.data?.frameUrl) {
-      const iframes = document.querySelectorAll('iframe');
-      iframes.forEach((iframe) => {
-        try {
-          const iframeUrl = new URL(iframe.src, window.location.origin);
-          const messageUrl = new URL(event.data.frameUrl);
-          if (iframeUrl.pathname === messageUrl.pathname) {
-            iframe.style.height = event.data.frameHeight + 'px';
-          }
-        } catch (e) {}
-      });
-    }
-  });
+    <table>
+        <tr>
+            <td>computers 💻</td>
+            <td>i like building stuff and learning how things work. coding is fun. also really into mechanical keyboards (yeah i'm one of those people)</td>
+        </tr>
+        <tr>
+            <td>travelling ✈️</td>
+            <td>always planning the next trip. i love exploring new cities, trying local food, meeting people. have a map with pins on my wall.</td>
+        </tr>
+        <tr>
+            <td>photography 📷</td>
+            <td>still learning but i really enjoy it. mostly street photography and landscapes. trying to get better at composition.</td>
+        </tr>
+    </table>
 
-  // Small fetch helper with timeout and clearer errors
-  async function fetchJSON(url, opts = {}, timeoutMs = 5000) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-      const res = await fetch(url, {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'omit',
-        cache: 'no-store',
-        signal: controller.signal,
-        ...opts
-      });
-      if (!res.ok) {
-        const text = await res.text().catch(() => '');
-        throw new Error(`${res.status} ${res.statusText} ${text}`.trim());
-      }
-      return await res.json();
-    } finally {
-      clearTimeout(id);
-    }
-  }
+    <h2>random facts</h2>
+    
+    <ul>
+        <li>i am a coffee guy, although i take it moderately</li>
+        <li>my photo library is like 50% food pictures</li>
+        <li>i've been to 12 countries (trying to make it 15 by next year)</li>
+        <li>i actually enjoy long flights because i can finally catch up on movies</li>
+        <li>always down for a good conversation about literally anything</li>
+    </ul>
 
-  async function loadLatestReadAndStats() {
-    const skeleton = document.getElementById('lr-skeleton');
-    const content = document.getElementById('lr-content');
-    const error = document.getElementById('lr-error');
-    const badge = document.getElementById('lr-badge');
-    const coverEl = document.getElementById('lr-cover');
-    const titleEl = document.getElementById('lr-title');
-    const authorEl = document.getElementById('lr-author');
-    const quoteEl = document.getElementById('lr-quote');
-    const yearList = document.getElementById('year-list');
-    const yearTitle = document.getElementById('year-title');
-    const yearBooks = document.getElementById('year-books');
+    <hr>
 
-    const latestUrl = 'https://notes.blackpiratex.com/api/latest-read';
-    const statsUrl = 'https://notes.blackpiratex.com/api/stats';
+    <h2>find me online</h2>
+    
+    <div class="links">
+        <a href="#">github</a>
+        <a href="#">instagram</a>
+        <a href="#">email me</a>
+        <a href="#">blog</a>
+    </div>
 
-    let latest = null, stats = null, latestErr = null, statsErr = null;
+    <p>feel free to reach out if you want to chat about travel, tech, photography, or just say hi!</p>
 
-    // Fetch in parallel but handle independently so one failure doesn't block the other
-    await Promise.all([
-      fetchJSON(latestUrl).then(d => latest = d).catch(e => latestErr = e),
-      fetchJSON(statsUrl).then(d => stats = d).catch(e => statsErr = e)
-    ]);
+    <div class="footer">
+        <p>made by me in 2025</p>
+        <p>thanks for visiting :)</p>
+    </div>
 
-    // If both failed, show error and exit
-    if (!latest && !stats) {
-      skeleton.style.display = 'none';
-      error.textContent = 'Could not load latest read book. Check API CORS and availability.';
-      error.style.display = 'block';
-      return;
-    }
-
-    // Render latest read if available
-    if (latest) {
-      const coverUrl = latest.coverUrl || 'https://placehold.co/80x112/ffffff/cccccc?text=NA';
-      coverEl.src = coverUrl;
-      coverEl.alt = `Cover of ${latest.title || 'book'}`;
-      titleEl.textContent = latest.title || 'Untitled';
-      authorEl.textContent = latest.author || 'Unknown author';
-      quoteEl.textContent = latest.highlight || '';
-      content.style.display = 'flex';
-    } else {
-      // Show partial error inline but keep going if stats exists
-      content.style.display = 'none';
-      error.style.display = 'block';
-      error.textContent = 'Could not load latest read book.';
-    }
-
-    // Render stats if available
-    if (stats && stats.booksByYear) {
-      const currentYear = new Date().getFullYear().toString();
-      const thisYearBooks = Array.isArray(stats.booksByYear[currentYear]) ? stats.booksByYear[currentYear] : [];
-
-      const totalPages = thisYearBooks.reduce((sum, b) => sum + (b.pageCount || 0), 0);
-      badge.textContent = `${thisYearBooks.length} books • ${totalPages.toLocaleString()} pages`;
-
-      yearBooks.innerHTML = '';
-      thisYearBooks.forEach((b) => {
-        const li = document.createElement('li');
-        const authors = Array.isArray(b.authors) ? b.authors.join(', ') : (b.authors || '');
-        li.textContent = `${b.title}${authors ? ' — ' + authors : ''}${b.pageCount ? ' (' + b.pageCount + 'p)' : ''}`;
-        yearBooks.appendChild(li);
-      });
-      yearTitle.textContent = `Books read in ${currentYear}`;
-      yearList.style.display = 'block';
-    } else {
-      // If stats missing, at least clear badge gracefully
-      if (!latest) {
-        badge.textContent = '—';
-      } else {
-        badge.textContent = 'Stats unavailable';
-      }
-    }
-
-    skeleton.style.display = 'none';
-  }
-
-  loadLatestReadAndStats();
-</script>
 </body>
 </html>
