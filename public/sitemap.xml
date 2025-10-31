@@ -17,6 +17,9 @@
     <loc>http://localhost:1313/about/</loc>
     <lastmod>2022-08-19T16:24:22+05:30</lastmod>
   </url><url>
+    <loc>http://localhost:1313/now/</loc>
+    <lastmod>2022-08-19T16:24:22+05:30</lastmod>
+  </url><url>
     <loc>http://localhost:1313/hobbies/</loc>
   </url><url>
     <loc>http://localhost:1313/music/</loc>

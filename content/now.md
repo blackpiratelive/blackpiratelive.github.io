@@ -1,3 +1,8 @@
+---
+title: "now"
+date: 2022-08-19T16:24:22+05:30
+---
+
 # what i am doing
 ---
 - preparing for govt job exams
