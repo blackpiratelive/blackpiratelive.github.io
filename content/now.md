@@ -3,27 +3,27 @@ title: "now"
 date: 2022-08-19T16:24:22+05:30
 ---
 
-# what i am doing
+## what i am doing
 ---
 - preparing for govt job exams
 
-### previously 
+#### previously 
 - studied in bankura christian college (zoology honours, 2022-2025)
 
 
 
-# where i am 
+## where i am 
 ---
 - midnapore, west bengal
 
-### previously
+#### previously
 - bankura, west bengal
 
 
 
-# relationship status
+## relationship status
 ---
 - single
 
-### previously 
+#### previously 
 - single
