@@ -155,9 +155,6 @@
   </style>
 </head>
 <body>
-
-  {{ partial "header.html" . }}
-
   <main class="container">
     <a href="javascript:history.back()" class="back-link">← Back</a>
 
@@ -183,12 +180,5 @@
   </main>
 
   {{ partial "footer.html" . }}
-
-  <script>
-    // Respect OS dark preference on load
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-    }
-  </script>
 </body>
 </html>
