@@ -157,7 +157,7 @@
         <h1>welcome to my page!</h1>
         <p class="subtitle">last updated: oct 2025</p>
     </div>
- {{ $me := resources.Get "img/me-1.jpg" }}
+ {{ $me := resources.Get "img/me-2.jpg" }}
     {{ $me = $me.Resize "300x webp q50" }}
     <div class="intro-section">
         <img src="{{ $me.RelPermalink }}" alt="profile picture" class="profile-img">
