@@ -168,137 +168,20 @@
     </div>
 
     <hr>
+
 <!-- Today's Mood -->
-<div id="moodWidget" style="margin: 2rem 0; padding: 1.5rem; background: #fafafa; border-left: 3px solid #333; font-family: inherit;">
-    <!-- Loading State -->
-    <div id="moodLoading" style="color: #666; font-size: 0.95rem;">
-        loading today's mood...
-    </div>
-    
-    <!-- Mood Display (hidden initially) -->
-    <div id="moodContent" style="display: none;">
-        <div style="margin-bottom: 0.5rem;">
-            <span style="font-weight: 600;">today's mood:</span>
-            <span id="moodEmoji" style="font-size: 1.5rem; margin-left: 0.5rem;"></span>
-            <span id="moodLabel" style="margin-left: 0.5rem; font-style: italic;"></span>
-        </div>
-        <div id="moodDate" style="font-size: 0.85rem; color: #666; margin-bottom: 0.75rem;"></div>
-        <div id="moodActivities" style="font-size: 0.9rem; color: #555;"></div>
-    </div>
-    
-    <!-- No Entry State (hidden initially) -->
-    <div id="moodNoEntry" style="display: none; color: #666; font-size: 0.95rem;">
-        no mood logged today yet
-    </div>
-    
-    <!-- Error State (hidden initially) -->
-    <div id="moodError" style="display: none; color: #999; font-size: 0.9rem;">
-        couldn't load mood data
-    </div>
-    
-    <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ddd; font-size: 0.85rem;">
-        <a href="https://mood-tracker.blackpiratex.com" style="color: #333; text-decoration: none;">view full mood tracker →</a>
+<div class="box" >
+    <div id="mood">loading today's mood...</div>
+    <div>
+        <a href="https://mood-tracker.blackpiratex.com">view full mood tracker →</a>
     </div>
 </div>
 
 <script>
-(function() {
-    // Your exact mood emojis with labels
-    const moodLabels = {
-        '😭': { label: 'terrible' },
-        '😢': { label: 'very sad' },
-        '😔': { label: 'sad' },
-        '😐': { label: 'neutral' },
-        '🙂': { label: 'okay' },
-        '😊': { label: 'good' },
-        '😄': { label: 'happy' },
-        '😁': { label: 'very happy' },
-        '🤩': { label: 'amazing' },
-        '🥳': { label: 'fantastic' }
-    };
-
-    async function loadMood() {
-        try {
-            const response = await fetch('/api/mood');
-            
-            if (!response.ok) {
-                throw new Error('Failed to fetch');
-            }
-
-            const data = await response.json();
-            displayMood(data);
-
-        } catch (error) {
-            console.error('Mood fetch error:', error);
-            showError();
-        }
-    }
-
-    function displayMood(data) {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${year}-${month}-${day}`;
-
-        const todayEntry = data.entries.find(entry => {
-            if (!entry.dateKey) return false;
-            const entryDate = entry.dateKey.split('T')[0];
-            return entryDate === todayStr;
-        });
-
-        document.getElementById('moodLoading').style.display = 'none';
-
-        if (!todayEntry) {
-            document.getElementById('moodNoEntry').style.display = 'block';
-            return;
-        }
-
-        // Display exact emoji from database
-        const moodEmoji = todayEntry.mood;
-        document.getElementById('moodEmoji').textContent = moodEmoji;
-        
-        // Get label for this emoji
-        const moodInfo = moodLabels[moodEmoji] || { label: 'logged' };
-        document.getElementById('moodLabel').textContent = moodInfo.label;
-        
-        const date = new Date(todayEntry.date || todayEntry.dateKey);
-        document.getElementById('moodDate').textContent = date.toLocaleDateString('en-US', { 
-            weekday: 'long',
-            month: 'short',
-            day: 'numeric'
-        }).toLowerCase();
-
-        // Activities
-        const entryActivities = data.entryActivities.filter(ea => ea.entry_id === todayEntry.id);
-        const activitiesContainer = document.getElementById('moodActivities');
-        
-        if (entryActivities.length > 0) {
-            activitiesContainer.innerHTML = 'activities: ' + entryActivities.map(ea => 
-                escapeHtml(ea.activity_name)
-            ).join(', ');
-        }
-
-        document.getElementById('moodContent').style.display = 'block';
-    }
-
-    function showError() {
-        document.getElementById('moodLoading').style.display = 'none';
-        document.getElementById('moodError').style.display = 'block';
-    }
-
-    function escapeHtml(text) {
-        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-        return text.replace(/[&<>"']/g, m => map[m]);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadMood);
-    } else {
-        loadMood();
-    }
-})();
+fetch('/api/mood').then(r => r.text()).then(h => document.getElementById('mood').innerHTML = h);
 </script>
+
+
 
 <hr>
 
