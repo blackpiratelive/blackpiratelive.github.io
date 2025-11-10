@@ -235,21 +235,20 @@
     }
 
     function displayMood(data) {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
+        // Get today's date in YYYY-MM-DD format
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
         const todayStr = `${year}-${month}-${day}`;
 
-        // Find today's entry
-        let todayEntry = data.entries.find(entry => entry.dateKey === todayStr);
-        
-        if (!todayEntry) {
-            todayEntry = data.entries.find(entry => {
-                const entryDate = entry.date.split('T')[0];
-                return entryDate === todayStr;
-            });
-        }
+        // Find today's entry by extracting date from ISO timestamp
+        const todayEntry = data.entries.find(entry => {
+            if (!entry.dateKey) return false;
+            // Extract YYYY-MM-DD from ISO timestamp (e.g., "2025-11-10T12:51:35.465Z")
+            const entryDate = entry.dateKey.split('T')[0];
+            return entryDate === todayStr;
+        });
 
         document.getElementById('moodLoading').style.display = 'none';
 
@@ -264,7 +263,7 @@
         document.getElementById('moodLabel').textContent = moodData.label;
         document.getElementById('moodLabel').style.color = moodData.color;
         
-        const date = new Date(todayEntry.date);
+        const date = new Date(todayEntry.date || todayEntry.dateKey);
         document.getElementById('moodDate').textContent = date.toLocaleDateString('en-US', { 
             weekday: 'long',
             month: 'short',
