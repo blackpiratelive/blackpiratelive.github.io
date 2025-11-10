@@ -168,53 +168,53 @@
     </div>
 
     <hr>
-    
-   <!-- Today's Mood Widget -->
-<div id="moodWidget" class="mood-widget" style="margin: 2rem 0; padding: 1.5rem; background: #f5f5f5; border-radius: 12px; border-left: 4px solid #667eea;">
+<!-- Today's Mood -->
+<div id="moodWidget" style="margin: 2rem 0; padding: 1.5rem; background: #fafafa; border-left: 3px solid #333; font-family: inherit;">
     <!-- Loading State -->
-    <div id="moodLoading" style="text-align: center; color: #666;">
-        <span style="font-size: 1.2rem;">🔄</span> Loading today's mood...
+    <div id="moodLoading" style="color: #666; font-size: 0.95rem;">
+        loading today's mood...
     </div>
     
     <!-- Mood Display (hidden initially) -->
     <div id="moodContent" style="display: none;">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-            <div id="moodEmoji" style="font-size: 3rem;"></div>
-            <div style="flex: 1;">
-                <div style="font-weight: 600; font-size: 1.1rem; color: #333;" id="moodLabel"></div>
-                <div style="font-size: 0.9rem; color: #666;" id="moodDate"></div>
-            </div>
+        <div style="margin-bottom: 0.5rem;">
+            <span style="font-weight: 600;">today's mood:</span>
+            <span id="moodEmoji" style="font-size: 1.5rem; margin-left: 0.5rem;"></span>
+            <span id="moodLabel" style="margin-left: 0.5rem; font-style: italic;"></span>
         </div>
-        <div id="moodActivities" style="margin-top: 1rem; display: flex; flex-wrap: gap-0.5rem;"></div>
+        <div id="moodDate" style="font-size: 0.85rem; color: #666; margin-bottom: 0.75rem;"></div>
+        <div id="moodActivities" style="font-size: 0.9rem; color: #555;"></div>
     </div>
     
     <!-- No Entry State (hidden initially) -->
-    <div id="moodNoEntry" style="display: none; text-align: center; color: #666;">
-        <span style="font-size: 2rem;">📝</span>
-        <div style="margin-top: 0.5rem;">No mood logged today yet</div>
+    <div id="moodNoEntry" style="display: none; color: #666; font-size: 0.95rem;">
+        no mood logged today yet
     </div>
     
     <!-- Error State (hidden initially) -->
-    <div id="moodError" style="display: none; text-align: center; color: #999;">
-        <span style="font-size: 1.5rem;">⚠️</span>
-        <div style="margin-top: 0.5rem; font-size: 0.9rem;">Couldn't load mood data</div>
+    <div id="moodError" style="display: none; color: #999; font-size: 0.9rem;">
+        couldn't load mood data
     </div>
     
-    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: right;">
-        <a href="https://mood-tracker.blackpiratex.com" target="_blank" rel="noopener" style="font-size: 0.85rem; color: #667eea; text-decoration: none;">
-            view full mood tracker →
-        </a>
+    <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ddd; font-size: 0.85rem;">
+        <a href="https://mood-tracker.blackpiratex.com" style="color: #333; text-decoration: none;">view full mood tracker →</a>
     </div>
 </div>
 
 <script>
 (function() {
-    const moodEmojis = {
-        1: { emoji: '😢', label: 'Very Bad', color: '#ef4444' },
-        2: { emoji: '😕', label: 'Bad', color: '#f97316' },
-        3: { emoji: '😐', label: 'Okay', color: '#eab308' },
-        4: { emoji: '🙂', label: 'Good', color: '#22c55e' },
-        5: { emoji: '😄', label: 'Great', color: '#3b82f6' }
+    // Your exact mood emojis with labels
+    const moodLabels = {
+        '😭': { label: 'terrible' },
+        '😢': { label: 'very sad' },
+        '😔': { label: 'sad' },
+        '😐': { label: 'neutral' },
+        '🙂': { label: 'okay' },
+        '😊': { label: 'good' },
+        '😄': { label: 'happy' },
+        '😁': { label: 'very happy' },
+        '🤩': { label: 'amazing' },
+        '🥳': { label: 'fantastic' }
     };
 
     async function loadMood() {
@@ -235,17 +235,14 @@
     }
 
     function displayMood(data) {
-        // Get today's date in YYYY-MM-DD format
         const now = new Date();
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');
         const day = String(now.getDate()).padStart(2, '0');
         const todayStr = `${year}-${month}-${day}`;
 
-        // Find today's entry by extracting date from ISO timestamp
         const todayEntry = data.entries.find(entry => {
             if (!entry.dateKey) return false;
-            // Extract YYYY-MM-DD from ISO timestamp (e.g., "2025-11-10T12:51:35.465Z")
             const entryDate = entry.dateKey.split('T')[0];
             return entryDate === todayStr;
         });
@@ -257,27 +254,29 @@
             return;
         }
 
-        // Show mood
-        const moodData = moodEmojis[todayEntry.mood] || moodEmojis[3];
-        document.getElementById('moodEmoji').textContent = moodData.emoji;
-        document.getElementById('moodLabel').textContent = moodData.label;
-        document.getElementById('moodLabel').style.color = moodData.color;
+        // Display exact emoji from database
+        const moodEmoji = todayEntry.mood;
+        document.getElementById('moodEmoji').textContent = moodEmoji;
+        
+        // Get label for this emoji
+        const moodInfo = moodLabels[moodEmoji] || { label: 'logged' };
+        document.getElementById('moodLabel').textContent = moodInfo.label;
         
         const date = new Date(todayEntry.date || todayEntry.dateKey);
         document.getElementById('moodDate').textContent = date.toLocaleDateString('en-US', { 
             weekday: 'long',
             month: 'short',
             day: 'numeric'
-        });
+        }).toLowerCase();
 
         // Activities
         const entryActivities = data.entryActivities.filter(ea => ea.entry_id === todayEntry.id);
         const activitiesContainer = document.getElementById('moodActivities');
         
         if (entryActivities.length > 0) {
-            activitiesContainer.innerHTML = entryActivities.map(ea => 
-                `<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #667eea; color: white; border-radius: 16px; font-size: 0.85rem;">${escapeHtml(ea.activity_name)}</span>`
-            ).join('');
+            activitiesContainer.innerHTML = 'activities: ' + entryActivities.map(ea => 
+                escapeHtml(ea.activity_name)
+            ).join(', ');
         }
 
         document.getElementById('moodContent').style.display = 'block';
@@ -293,7 +292,6 @@
         return text.replace(/[&<>"']/g, m => map[m]);
     }
 
-    // Load on page ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadMood);
     } else {
