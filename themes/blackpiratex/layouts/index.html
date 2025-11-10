@@ -168,6 +168,142 @@
     </div>
 
     <hr>
+    
+   <!-- Today's Mood Widget -->
+<div id="moodWidget" class="mood-widget" style="margin: 2rem 0; padding: 1.5rem; background: #f5f5f5; border-radius: 12px; border-left: 4px solid #667eea;">
+    <!-- Loading State -->
+    <div id="moodLoading" style="text-align: center; color: #666;">
+        <span style="font-size: 1.2rem;">🔄</span> Loading today's mood...
+    </div>
+    
+    <!-- Mood Display (hidden initially) -->
+    <div id="moodContent" style="display: none;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div id="moodEmoji" style="font-size: 3rem;"></div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 1.1rem; color: #333;" id="moodLabel"></div>
+                <div style="font-size: 0.9rem; color: #666;" id="moodDate"></div>
+            </div>
+        </div>
+        <div id="moodActivities" style="margin-top: 1rem; display: flex; flex-wrap: gap-0.5rem;"></div>
+    </div>
+    
+    <!-- No Entry State (hidden initially) -->
+    <div id="moodNoEntry" style="display: none; text-align: center; color: #666;">
+        <span style="font-size: 2rem;">📝</span>
+        <div style="margin-top: 0.5rem;">No mood logged today yet</div>
+    </div>
+    
+    <!-- Error State (hidden initially) -->
+    <div id="moodError" style="display: none; text-align: center; color: #999;">
+        <span style="font-size: 1.5rem;">⚠️</span>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">Couldn't load mood data</div>
+    </div>
+    
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: right;">
+        <a href="https://mood-tracker.blackpiratex.com" target="_blank" rel="noopener" style="font-size: 0.85rem; color: #667eea; text-decoration: none;">
+            view full mood tracker →
+        </a>
+    </div>
+</div>
+
+<script>
+(function() {
+    const moodEmojis = {
+        1: { emoji: '😢', label: 'Very Bad', color: '#ef4444' },
+        2: { emoji: '😕', label: 'Bad', color: '#f97316' },
+        3: { emoji: '😐', label: 'Okay', color: '#eab308' },
+        4: { emoji: '🙂', label: 'Good', color: '#22c55e' },
+        5: { emoji: '😄', label: 'Great', color: '#3b82f6' }
+    };
+
+    async function loadMood() {
+        try {
+            const response = await fetch('/api/mood');
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch');
+            }
+
+            const data = await response.json();
+            displayMood(data);
+
+        } catch (error) {
+            console.error('Mood fetch error:', error);
+            showError();
+        }
+    }
+
+    function displayMood(data) {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const todayStr = `${year}-${month}-${day}`;
+
+        // Find today's entry
+        let todayEntry = data.entries.find(entry => entry.dateKey === todayStr);
+        
+        if (!todayEntry) {
+            todayEntry = data.entries.find(entry => {
+                const entryDate = entry.date.split('T')[0];
+                return entryDate === todayStr;
+            });
+        }
+
+        document.getElementById('moodLoading').style.display = 'none';
+
+        if (!todayEntry) {
+            document.getElementById('moodNoEntry').style.display = 'block';
+            return;
+        }
+
+        // Show mood
+        const moodData = moodEmojis[todayEntry.mood] || moodEmojis[3];
+        document.getElementById('moodEmoji').textContent = moodData.emoji;
+        document.getElementById('moodLabel').textContent = moodData.label;
+        document.getElementById('moodLabel').style.color = moodData.color;
+        
+        const date = new Date(todayEntry.date);
+        document.getElementById('moodDate').textContent = date.toLocaleDateString('en-US', { 
+            weekday: 'long',
+            month: 'short',
+            day: 'numeric'
+        });
+
+        // Activities
+        const entryActivities = data.entryActivities.filter(ea => ea.entry_id === todayEntry.id);
+        const activitiesContainer = document.getElementById('moodActivities');
+        
+        if (entryActivities.length > 0) {
+            activitiesContainer.innerHTML = entryActivities.map(ea => 
+                `<span style="display: inline-block; padding: 0.25rem 0.75rem; background: #667eea; color: white; border-radius: 16px; font-size: 0.85rem;">${escapeHtml(ea.activity_name)}</span>`
+            ).join('');
+        }
+
+        document.getElementById('moodContent').style.display = 'block';
+    }
+
+    function showError() {
+        document.getElementById('moodLoading').style.display = 'none';
+        document.getElementById('moodError').style.display = 'block';
+    }
+
+    function escapeHtml(text) {
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Load on page ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadMood);
+    } else {
+        loadMood();
+    }
+})();
+</script>
+
+<hr>
 
     <h2>about me</h2>
     
