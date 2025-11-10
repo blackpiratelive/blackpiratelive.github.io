@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
 
     const MOOD_API_TOKEN = process.env.MOOD_API_TOKEN;
-    const MOOD_API_URL = 'https://mood-tracker.blackpiratex.com/api/external';
+    const MOOD_API_URL = 'https://mood-tracker.blackpiratex.com/api/external';  // ✅ Added https://
 
     if (!MOOD_API_TOKEN) {
         return res.status(500).json({ error: 'API token not configured' });
@@ -30,6 +30,8 @@ export default async function handler(req, res) {
         });
 
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Mood API Error:', response.status, errorText);
             throw new Error(`Mood API Error: ${response.status}`);
         }
 
@@ -38,6 +40,9 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error('Error fetching mood:', error);
-        return res.status(500).json({ error: 'Failed to fetch mood data' });
+        return res.status(500).json({ 
+            error: 'Failed to fetch mood data',
+            details: error.message 
+        });
     }
 }
