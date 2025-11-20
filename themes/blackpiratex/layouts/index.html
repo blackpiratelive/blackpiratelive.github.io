@@ -182,6 +182,36 @@ fetch('/api/mood').then(r => r.text()).then(h => document.getElementById('mood')
 </script>
 
 
+<h2>My thoughts NOW</h2>
+<div id="latest-posts"></div>
+
+<script>
+  // Fetch the 5 latest posts from Vercel function
+  fetch('https://now.blackpiratex.com/api/get-latest-posts')
+    .then(res => res.json())
+    .then(posts => {
+      const container = document.getElementById('latest-posts');
+      
+      // Clear container
+      container.innerHTML = '';
+      
+      // Create a simple list
+      const ul = document.createElement('ul');
+      posts.forEach(post => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${post.title}</strong><br>${post.content}<br><em>${post.date}</em>`;
+        ul.appendChild(li);
+      });
+      container.appendChild(ul);
+    })
+    .catch(err => {
+      document.getElementById('latest-posts').textContent = 'Failed to load posts';
+      console.error(err);
+    });
+</script>
+
+
+
 
 <hr>
 
