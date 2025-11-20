@@ -273,6 +273,69 @@ fetch('https://now.blackpiratex.com/api/get-latest-posts')
   });
 </script>
 
+<div id="rotating-post" style="
+    font-family: sans-serif;
+    color: #eee;
+    background-color: #1a1a1a;
+    padding: 1em;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 1em auto;
+    min-height: 120px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+">
+  Loading...
+</div>
+
+<script>
+fetch('https://your-vercel-domain.vercel.app/api/get-latest-posts')
+  .then(res => res.json())
+  .then(posts => {
+    if (!posts.length) return;
+
+    const container = document.getElementById('rotating-post');
+    let currentIndex = 0;
+
+    function showPost(index) {
+      const post = posts[index];
+
+      // Format date
+      const date = new Date(post.date);
+      const formattedDate = date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+
+      let html = `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
+      html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;"><em>${formattedDate}</em></p>`;
+
+      if (post.tags && post.tags.length) {
+        html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
+      }
+
+      const fullUrl = 'https://now.blackpiratex.com' + post.url;
+      html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank" style="color:#00ccff; text-decoration:none;">View</a></p>`;
+
+      container.innerHTML = html;
+    }
+
+    // Show first post immediately
+    showPost(currentIndex);
+
+    // Rotate posts every 5 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % posts.length;
+      showPost(currentIndex);
+    }, 5000);
+  })
+  .catch(err => {
+    document.getElementById('rotating-post').textContent = 'Failed to load posts';
+    console.error(err);
+  });
+</script>
+
+
 
 
     <h2>find me online</h2>
