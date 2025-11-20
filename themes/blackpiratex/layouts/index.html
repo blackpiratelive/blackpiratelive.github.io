@@ -226,53 +226,6 @@ fetch('/api/mood').then(r => r.text()).then(h => document.getElementById('mood')
     <hr>
 
 <h2>my thoughts now</h2>
-<div id="latest-posts" style="font-family: sans-serif; line-height: 1.5;">
-  Loading...
-</div>
-
-<script>
-fetch('https://now.blackpiratex.com/api/get-latest-posts')
-  .then(res => res.json())
-  .then(posts => {
-    const container = document.getElementById('latest-posts');
-    container.innerHTML = ''; // clear loading text
-
-    posts.forEach(post => {
-      const postDiv = document.createElement('div');
-      postDiv.style.marginBottom = '1.5em';
-      postDiv.style.padding = '0.5em';
-      postDiv.style.borderBottom = '1px solid #ddd';
-
-      // Format date
-      const date = new Date(post.date);
-      const formattedDate = date.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
-
-      // Build content HTML
-      let html = `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
-      html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; "><em>${formattedDate}</em></p>`;
-
-      if (post.tags && post.tags.length) {
-        html += `<p style="margin:0 0 0.5em 0; font-size:0.9em;">Tags: ${post.tags.join(', ')}</p>`;
-      }
-
-      // View link
-      const fullUrl = 'https://now.blackpiratex.com' + post.url;
-      html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank" style="text-decoration:none;">View</a></p>`;
-
-      postDiv.innerHTML = html;
-      container.appendChild(postDiv);
-    });
-  })
-  .catch(err => {
-    document.getElementById('latest-posts').textContent = 'Failed to load posts';
-    console.error(err);
-  });
-</script>
-
 <div id="rotating-post" style="
     font-family: sans-serif;
     color: #eee;
@@ -370,7 +323,7 @@ fetch('https://now.blackpiratex.com/api/get-latest-posts')
   });
 </script>
 
-
+<hr>
 
 
     <h2>find me online</h2>
