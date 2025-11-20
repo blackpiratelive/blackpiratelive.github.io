@@ -153,81 +153,68 @@
             background: #333;
         }
 
-        /* Dynamic content boxes with fixed height */
-        .dynamic-box {
+        /* Dynamic content boxes with collapsible content */
+        .dynamic-box-wrapper {
             background: #2a2a2a;
             border: 2px solid #444;
             padding: 20px;
             margin: 25px 0;
-            height: 180px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             transition: opacity 0.5s ease-in-out;
             opacity: 0;
-            overflow-y: auto;
-            overflow-x: hidden;
         }
 
-        .dynamic-box.loaded {
+        .dynamic-box-wrapper.loaded {
             opacity: 1;
         }
 
-        .dynamic-box a {
+        .dynamic-box-content {
+            max-height: 150px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .dynamic-box-content.expanded {
+            max-height: none;
+        }
+
+        .expand-btn {
+            display: none;
+            background: transparent;
+            color: #2563eb;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 10px;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .expand-btn:hover {
+            color: #1d4ed8;
+        }
+
+        .expand-btn.visible {
+            display: inline-block;
+        }
+
+        .dynamic-box-wrapper a {
             color: #2563eb;
         }
 
-        .dynamic-box a:hover {
+        .dynamic-box-wrapper a:hover {
             text-decoration: underline;
         }
 
-        /* Custom scrollbar for dynamic boxes */
-        .dynamic-box::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .dynamic-box::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 4px;
-        }
-
-        .dynamic-box::-webkit-scrollbar-thumb {
-            background: #2563eb;
-            border-radius: 4px;
-        }
-
-        .dynamic-box::-webkit-scrollbar-thumb:hover {
-            background: #1d4ed8;
-        }
-
-        /* Mood box with fixed height */
+        /* Mood box - natural height */
         .mood-box {
             background: #2a2a2a;
             border: 2px solid #444;
             padding: 20px;
             margin: 25px 0;
-            height: 140px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .mood-box::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .mood-box::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 4px;
-        }
-
-        .mood-box::-webkit-scrollbar-thumb {
-            background: #2563eb;
-            border-radius: 4px;
-        }
-
-        .mood-box::-webkit-scrollbar-thumb:hover {
-            background: #1d4ed8;
         }
 
         /* Button styling */
@@ -287,13 +274,44 @@
 
     <!-- Random Thought -->
     <h2>a random thought</h2>
-    <div id="random-thought" class="dynamic-box"></div>
+    <div class="dynamic-box-wrapper" id="random-thought-wrapper">
+        <div class="dynamic-box-content" id="random-thought"></div>
+        <button class="expand-btn" id="random-thought-btn" onclick="toggleExpand('random-thought')">⬇️ expand</button>
+    </div>
 
     <script>
     const randomContainer = document.getElementById('random-thought');
+    const randomWrapper = document.getElementById('random-thought-wrapper');
+    const randomBtn = document.getElementById('random-thought-btn');
+
+    function checkOverflow(contentId, btnId) {
+        const content = document.getElementById(contentId);
+        const btn = document.getElementById(btnId);
+        if (content.scrollHeight > 150) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }
+
+    function toggleExpand(id) {
+        const content = document.getElementById(id);
+        const btn = document.getElementById(id + '-btn');
+        
+        if (content.classList.contains('expanded')) {
+            content.classList.remove('expanded');
+            btn.textContent = '⬇️ expand';
+        } else {
+            content.classList.add('expanded');
+            btn.textContent = '⬆️ collapse';
+        }
+    }
 
     function fetchRandomThought() {
-        randomContainer.style.opacity = 0;
+        randomWrapper.style.opacity = 0;
+        randomContainer.classList.remove('expanded');
+        randomBtn.classList.remove('visible');
+        randomBtn.textContent = '⬇️ expand';
 
         fetch('https://now.blackpiratex.com/api/get-random-post')
             .then(res => res.json())
@@ -316,9 +334,10 @@
                 html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank">view full post →</a></p>`;
 
                 randomContainer.innerHTML = html;
-                randomContainer.scrollTop = 0;
-                randomContainer.classList.add('loaded');
-                randomContainer.style.opacity = 1;
+                randomWrapper.classList.add('loaded');
+                randomWrapper.style.opacity = 1;
+                
+                setTimeout(() => checkOverflow('random-thought', 'random-thought-btn'), 100);
             })
             .catch(err => {
                 randomContainer.textContent = 'Failed to load post';
@@ -375,7 +394,10 @@
 
     <!-- Latest Thoughts Rotating -->
     <h2>my thoughts now</h2>
-    <div id="rotating-post" class="dynamic-box"></div>
+    <div class="dynamic-box-wrapper" id="rotating-post-wrapper">
+        <div class="dynamic-box-content" id="rotating-post"></div>
+        <button class="expand-btn" id="rotating-post-btn" onclick="toggleExpand('rotating-post')">⬇️ expand</button>
+    </div>
 
     <div class="btn-group">
         <button id="prev-post" class="btn">⬅️ Previous</button>
@@ -389,6 +411,8 @@
             if (!posts.length) return;
 
             const container = document.getElementById('rotating-post');
+            const wrapper = document.getElementById('rotating-post-wrapper');
+            const btn = document.getElementById('rotating-post-btn');
             let currentIndex = 0;
             let intervalId;
 
@@ -414,12 +438,16 @@
             }
 
             function showPost(index) {
-                container.style.opacity = 0;
+                wrapper.style.opacity = 0;
+                container.classList.remove('expanded');
+                btn.classList.remove('visible');
+                btn.textContent = '⬇️ expand';
+                
                 setTimeout(() => {
                     container.innerHTML = formatPost(posts[index]);
-                    container.scrollTop = 0;
-                    container.classList.add('loaded');
-                    container.style.opacity = 1;
+                    wrapper.classList.add('loaded');
+                    wrapper.style.opacity = 1;
+                    setTimeout(() => checkOverflow('rotating-post', 'rotating-post-btn'), 100);
                 }, 250);
             }
 
@@ -458,13 +486,21 @@
 
     <!-- Random Highlight -->
     <h2>random book highlight</h2>
-    <div id="random-highlight" class="dynamic-box"></div>
+    <div class="dynamic-box-wrapper" id="random-highlight-wrapper">
+        <div class="dynamic-box-content" id="random-highlight"></div>
+        <button class="expand-btn" id="random-highlight-btn" onclick="toggleExpand('random-highlight')">⬇️ expand</button>
+    </div>
 
     <script>
     const highlightContainer = document.getElementById('random-highlight');
+    const highlightWrapper = document.getElementById('random-highlight-wrapper');
+    const highlightBtn = document.getElementById('random-highlight-btn');
 
     function fetchRandomHighlight() {
-        highlightContainer.style.opacity = 0;
+        highlightWrapper.style.opacity = 0;
+        highlightContainer.classList.remove('expanded');
+        highlightBtn.classList.remove('visible');
+        highlightBtn.textContent = '⬇️ expand';
 
         fetch('https://notes.blackpiratex.com/api/random-highlight')
             .then(res => res.json())
@@ -473,9 +509,10 @@
                 html += `<p style="margin:0;">${data.highlight}</p>`;
 
                 highlightContainer.innerHTML = html;
-                highlightContainer.scrollTop = 0;
-                highlightContainer.classList.add('loaded');
-                highlightContainer.style.opacity = 1;
+                highlightWrapper.classList.add('loaded');
+                highlightWrapper.style.opacity = 1;
+                
+                setTimeout(() => checkOverflow('random-highlight', 'random-highlight-btn'), 100);
             })
             .catch(err => {
                 highlightContainer.textContent = 'Failed to load highlight';
