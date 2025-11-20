@@ -212,6 +212,76 @@
             text-decoration: underline;
         }
 
+        /* Random Highlight - Special styling */
+        .highlight-wrapper {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            margin: 25px 0;
+            min-height: 180px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            position: relative;
+        }
+
+        .highlight-wrapper.loaded {
+            opacity: 1;
+        }
+
+        .highlight-text {
+            max-height: 150px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            position: relative;
+        }
+
+        .highlight-text.has-overflow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, #2a2a2a);
+            pointer-events: none;
+        }
+
+        .highlight-text.expanded {
+            max-height: none;
+        }
+
+        .highlight-text.expanded::after {
+            display: none;
+        }
+
+        .highlight-expand-btn {
+            display: none;
+            background: transparent;
+            color: #2563eb;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+        }
+
+        .highlight-expand-btn:hover {
+            color: #1d4ed8;
+        }
+
+        .highlight-expand-btn.visible {
+            display: block;
+        }
+
         /* Mood box - natural height */
         .mood-box {
             background: #2a2a2a;
@@ -489,41 +559,54 @@
 
     <hr>
 
-    <!-- Random Highlight -->
+    <!-- Random Highlight - Enhanced UX like your attached files -->
     <h2>random book highlight</h2>
-    <div class="dynamic-box-wrapper" id="random-highlight-wrapper">
-        <div class="dynamic-box-content" id="random-highlight"></div>
-        <button class="expand-btn" id="random-highlight-btn" onclick="toggleExpand('random-highlight')">⬇️ expand</button>
+    <div class="highlight-wrapper" id="random-highlight-wrapper">
+        <div class="highlight-text" id="highlight-text"></div>
+        <button class="highlight-expand-btn" id="highlight-expand-btn" title="Expand highlight">⬇</button>
     </div>
 
     <script>
-    const highlightContainer = document.getElementById('random-highlight');
+    const highlightText = document.getElementById('highlight-text');
     const highlightWrapper = document.getElementById('random-highlight-wrapper');
-    const highlightBtn = document.getElementById('random-highlight-btn');
+    const highlightExpandBtn = document.getElementById('highlight-expand-btn');
 
     function fetchRandomHighlight() {
         highlightWrapper.style.opacity = 0;
-        highlightContainer.classList.remove('expanded');
-        highlightBtn.classList.remove('visible');
-        highlightBtn.textContent = '⬇️ expand';
+        highlightText.classList.remove('expanded', 'has-overflow');
+        highlightExpandBtn.classList.remove('visible');
+        highlightExpandBtn.textContent = '⬇';
+        highlightExpandBtn.setAttribute('title', 'Expand highlight');
 
         fetch('https://now.blackpiratex.com/api/random-highlight')
             .then(res => res.json())
             .then(data => {
-                let html = `<p style="margin:0 0 0.5em 0; color:#aaa;"><em><strong>${data.title}</strong> by ${data.author}</em></p>`;
-                html += `<p style="margin:0;">${data.highlight}</p>`;
+                let html = `<p style="margin:0 0 1em 0; font-size:1.1em; line-height:1.6;">"${data.highlight}"</p>`;
+                html += `<p style="margin:0; color:#aaa; font-size:0.95em;"><em>— ${data.author}, ${data.title}</em></p>`;
 
-                highlightContainer.innerHTML = html;
+                highlightText.innerHTML = html;
                 highlightWrapper.classList.add('loaded');
                 highlightWrapper.style.opacity = 1;
                 
-                setTimeout(() => checkOverflow('random-highlight', 'random-highlight-btn'), 100);
+                setTimeout(() => {
+                    const isOverflowing = highlightText.scrollHeight > highlightText.clientHeight;
+                    if (isOverflowing) {
+                        highlightText.classList.add('has-overflow');
+                        highlightExpandBtn.classList.add('visible');
+                    }
+                }, 100);
             })
             .catch(err => {
-                highlightContainer.textContent = 'Failed to load highlight';
+                highlightText.textContent = 'Failed to load highlight';
                 console.error(err);
             });
     }
+
+    highlightExpandBtn.addEventListener('click', () => {
+        const isExpanded = highlightText.classList.toggle('expanded');
+        highlightExpandBtn.textContent = isExpanded ? '⬆' : '⬇';
+        highlightExpandBtn.setAttribute('title', isExpanded ? 'Collapse highlight' : 'Expand highlight');
+    });
 
     fetchRandomHighlight();
     setInterval(fetchRandomHighlight, 10000);
