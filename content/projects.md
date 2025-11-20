@@ -5,10 +5,13 @@
 
 URL: https://mood-tracker.blackpiratex.com
 Source: https://github.com/blackpirateapps/mood-tracker.git
+
 ---
+
 ### Book Tracker
 Minimal web app to track and display books that you have read. Uses tursodb and Vercel functions. Dashboard uses react, public page uses plain HTML and vanilla js. Features include: Currently reading tracker, Reading list, Highlights importer, Searching using openbooks api, start and end date, tags and reading medium. Made for private use only. 
 
 URL: https://notes.blackpiratex.com
 Source: https://github.com/blackpirateapps/book-tracker.git
+
 ---
