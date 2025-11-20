@@ -183,6 +183,65 @@ fetch('/api/mood').then(r => r.text()).then(h => document.getElementById('mood')
 
 
 <hr>
+<div id="random-thought" style="
+    font-family: sans-serif;
+    color: #eee;
+    background-color: #1a1a1a;
+    padding: 1em;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 1em auto;
+    min-height: 120px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+"></div>
+
+<script>
+const container = document.getElementById('random-thought');
+
+function fetchRandomThought() {
+  container.style.opacity = 0; // fade out
+
+  fetch('https://now.blackpiratex.com/api/get-random-post')
+    .then(res => res.json())
+    .then(post => {
+      const date = new Date(post.date);
+      const formattedDate = date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+
+      let html = `<p style="margin:0 0 0.5em 0; color:#ccc;">One random thought from ${formattedDate}</p>`;
+      html += `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
+
+      if (post.tags && post.tags.length) {
+        html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
+      }
+
+      const fullUrl = 'https://now.blackpiratex.com' + post.url;
+      html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank" style="color:#00ccff; text-decoration:none;">View</a></p>`;
+
+      container.innerHTML = html;
+      container.style.opacity = 1; // fade in
+    })
+    .catch(err => {
+      container.textContent = 'Failed to load post';
+      console.error(err);
+    });
+}
+
+// Fetch first post immediately
+fetchRandomThought();
+
+// Fetch a new random post every 10 seconds
+setInterval(fetchRandomThought, 10000);
+</script>
+
+<hr>
+
+
 
     <h2>about me</h2>
     
