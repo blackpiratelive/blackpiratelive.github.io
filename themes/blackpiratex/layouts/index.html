@@ -578,7 +578,7 @@
         highlightExpandBtn.textContent = '⬇';
         highlightExpandBtn.setAttribute('title', 'Expand highlight');
 
-        fetch('https://now.blackpiratex.com/api/random-highlight')
+        fetch('https://notes.blackpiratex.com/api/random-highlight')
             .then(res => res.json())
             .then(data => {
                 let html = `<p style="margin:0 0 1em 0; font-size:1.1em; line-height:1.6;">"${data.highlight}"</p>`;
