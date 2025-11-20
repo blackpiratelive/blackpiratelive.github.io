@@ -281,10 +281,16 @@ fetch('https://now.blackpiratex.com/api/get-latest-posts')
     border-radius: 8px;
     max-width: 500px;
     margin: 1em auto;
-    min-height: 120px;
+    min-height: 140px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-">
-  Loading...
+    position: relative;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+"></div>
+
+<div style="text-align:center; margin-top:0.5em;">
+  <button id="prev-post" style="margin-right:1em;">⬅️ Previous</button>
+  <button id="next-post">Next ➡️</button>
 </div>
 
 <script>
@@ -295,11 +301,9 @@ fetch('https://now.blackpiratex.com/api/get-latest-posts')
 
     const container = document.getElementById('rotating-post');
     let currentIndex = 0;
+    let intervalId;
 
-    function showPost(index) {
-      const post = posts[index];
-
-      // Format date
+    function formatPost(post) {
       const date = new Date(post.date);
       const formattedDate = date.toLocaleDateString(undefined, {
         year: 'numeric',
@@ -317,17 +321,48 @@ fetch('https://now.blackpiratex.com/api/get-latest-posts')
       const fullUrl = 'https://now.blackpiratex.com' + post.url;
       html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank" style="color:#00ccff; text-decoration:none;">View</a></p>`;
 
-      container.innerHTML = html;
+      return html;
     }
 
-    // Show first post immediately
-    showPost(currentIndex);
+    function showPost(index) {
+      container.style.opacity = 0;
+      setTimeout(() => {
+        container.innerHTML = formatPost(posts[index]);
+        container.style.opacity = 1;
+      }, 250); // fade transition
+    }
 
-    // Rotate posts every 5 seconds
-    setInterval(() => {
+    function nextPost() {
       currentIndex = (currentIndex + 1) % posts.length;
       showPost(currentIndex);
-    }, 5000);
+    }
+
+    function prevPost() {
+      currentIndex = (currentIndex - 1 + posts.length) % posts.length;
+      showPost(currentIndex);
+    }
+
+    // Initial post
+    showPost(currentIndex);
+
+    // Auto-rotate every 5 seconds
+    intervalId = setInterval(nextPost, 5000);
+
+    // Previous/Next buttons
+    document.getElementById('next-post').addEventListener('click', () => {
+      nextPost();
+      resetInterval();
+    });
+    document.getElementById('prev-post').addEventListener('click', () => {
+      prevPost();
+      resetInterval();
+    });
+
+    function resetInterval() {
+      clearInterval(intervalId);
+      intervalId = setInterval(nextPost, 5000);
+    }
+
   })
   .catch(err => {
     document.getElementById('rotating-post').textContent = 'Failed to load posts';
