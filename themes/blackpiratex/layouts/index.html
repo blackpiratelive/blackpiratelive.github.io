@@ -91,6 +91,8 @@
             border: 2px solid #444;
             padding: 20px;
             margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         .links {
@@ -150,6 +152,52 @@
             width: 30%;
             background: #333;
         }
+
+        /* Dynamic content boxes */
+        .dynamic-box {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            margin: 25px 0;
+            min-height: 120px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+
+        .dynamic-box.loaded {
+            opacity: 1;
+        }
+
+        .dynamic-box a {
+            color: #2563eb;
+        }
+
+        .dynamic-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button styling */
+        .btn-group {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #1d4ed8;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
     </style>
 </head>
 <body>
@@ -157,7 +205,8 @@
         <h1>welcome to my page!</h1>
         <p class="subtitle">last updated: oct 2025</p>
     </div>
- {{ $me := resources.Get "img/me-2.jpg" }}
+
+    {{ $me := resources.Get "img/me-2.jpg" }}
     {{ $me = $me.Resize "300x webp q50" }}
     <div class="intro-section">
         <img src="{{ $me.RelPermalink }}" alt="profile picture" class="profile-img">
@@ -169,85 +218,72 @@
 
     <hr>
 
-<!-- Today's Mood -->
-<div class="box" >
-    <div id="mood">loading today's mood...</div>
-    <div>
-        <a href="https://mood-tracker.blackpiratex.com">view full mood tracker →</a>
+    <!-- Today's Mood -->
+    <div class="box">
+        <div id="mood">loading today's mood...</div>
+        <p><a href="https://mood-tracker.blackpiratex.com">view full mood tracker →</a></p>
     </div>
-</div>
 
-<script>
-fetch('/api/mood').then(r => r.text()).then(h => document.getElementById('mood').innerHTML = h);
-</script>
+    <script>
+    fetch('/api/mood')
+        .then(r => r.text())
+        .then(h => document.getElementById('mood').innerHTML = h)
+        .catch(err => document.getElementById('mood').textContent = 'Failed to load mood');
+    </script>
 
+    <hr>
 
-<hr>
-<div id="random-thought" style="
-    font-family: sans-serif;
-    color: #eee;
-    background-color: #1a1a1a;
-    padding: 1em;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 1em auto;
-    min-height: 120px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-"></div>
+    <!-- Random Thought -->
+    <h2>a random thought</h2>
+    <div id="random-thought" class="dynamic-box"></div>
 
-<script>
-const container = document.getElementById('random-thought');
+    <script>
+    const randomContainer = document.getElementById('random-thought');
 
-function fetchRandomThought() {
-  container.style.opacity = 0; // fade out
+    function fetchRandomThought() {
+        randomContainer.style.opacity = 0;
 
-  fetch('https://now.blackpiratex.com/api/get-random-post')
-    .then(res => res.json())
-    .then(post => {
-      const date = new Date(post.date);
-      const formattedDate = date.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
+        fetch('https://now.blackpiratex.com/api/get-random-post')
+            .then(res => res.json())
+            .then(post => {
+                const date = new Date(post.date);
+                const formattedDate = date.toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
 
-      let html = `<p style="margin:0 0 0.5em 0; color:#ccc;">One random thought from ${formattedDate}</p>`;
-      html += `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
+                let html = `<p style="margin:0 0 0.5em 0; color:#aaa;"><em>from ${formattedDate}</em></p>`;
+                html += `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
 
-      if (post.tags && post.tags.length) {
-        html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
-      }
+                if (post.tags && post.tags.length) {
+                    html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
+                }
 
-      const fullUrl = 'https://now.blackpiratex.com' + post.url;
-      html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank" style="color:#00ccff; text-decoration:none;">View</a></p>`;
+                const fullUrl = 'https://now.blackpiratex.com' + post.url;
+                html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank">view full post →</a></p>`;
 
-      container.innerHTML = html;
-      container.style.opacity = 1; // fade in
-    })
-    .catch(err => {
-      container.textContent = 'Failed to load post';
-      console.error(err);
-    });
-}
+                randomContainer.innerHTML = html;
+                randomContainer.classList.add('loaded');
+                randomContainer.style.opacity = 1;
+            })
+            .catch(err => {
+                randomContainer.textContent = 'Failed to load post';
+                console.error(err);
+            });
+    }
 
-// Fetch first post immediately
-fetchRandomThought();
+    fetchRandomThought();
+    setInterval(fetchRandomThought, 10000);
+    </script>
 
-// Fetch a new random post every 10 seconds
-setInterval(fetchRandomThought, 10000);
-</script>
-
-<hr>
-
-
+    <hr>
 
     <h2>about me</h2>
     
     <div class="box">
-        <p><b>who am i?</b> I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. This is a website I made to put myself to the world. I have finished my Zoology graduation on 2025, now preparing for govt job exams. This website has been started around 2020, there are other websites that I have made previously which you can check under bookmarks. Building websites is my hobby, and I love ducks and cats. This website and its associated website is big, with lots of content. Browse as you may like, and if you think we have something common, don't forget to send me an email or drop a message on <a href="https://go.blackpiratex.com/signal">Signal</a> or <a href="https://go.blackpiratex.com/wa">WhatsApp</a>. I'd love to make friends.
-        <p>i spend a lot of time working with tech stuff but i also study,and sometimes when i have a chance i travel.. good balance i guess?</p>
+        <p><b>who am i?</b> I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. This is a website I made to put myself to the world. I have finished my Zoology graduation on 2025, now preparing for govt job exams. This website has been started around 2020, there are other websites that I have made previously which you can check under bookmarks. Building websites is my hobby, and I love ducks and cats. This website and its associated website is big, with lots of content. Browse as you may like, and if you think we have something common, don't forget to send me an email or drop a message on <a href="https://go.blackpiratex.com/signal">Signal</a> or <a href="https://go.blackpiratex.com/wa">WhatsApp</a>. I'd love to make friends.</p>
+        <p>i spend a lot of time working with tech stuff but i also study, and sometimes when i have a chance i travel. good balance i guess?</p>
     </div>
 
     <h2>things i'm into</h2>
@@ -255,10 +291,10 @@ setInterval(fetchRandomThought, 10000);
     <table>
         <tr>
             <td>computers 💻</td>
-            <td>i like building stuff and learning how things work. coding is addicting, i only do it for fun. also really into other forms of electrotics</td>
+            <td>i like building stuff and learning how things work. coding is addicting, i only do it for fun. also really into other forms of electronics</td>
         </tr>
         <tr>
-            <td>reading</td>
+            <td>reading 📚</td>
             <td>i like reading story books. i do not have memories of cartoons from my childhood, its books and magazines. i have lost this habit, but fortunately i can say i am now getting it back. you can check out my book notes</td>
         </tr>
         <tr>
@@ -267,7 +303,7 @@ setInterval(fetchRandomThought, 10000);
         </tr>
         <tr>
             <td>photography 📷</td>
-            <td>still learning but i really enjoy it. mostly potraits and landscapes. trying to get better at capturing emotions and those eyes which tell a story.</td>
+            <td>still learning but i really enjoy it. mostly portraits and landscapes. trying to get better at capturing emotions and those eyes which tell a story.</td>
         </tr>
     </table>
 
@@ -275,121 +311,102 @@ setInterval(fetchRandomThought, 10000);
     
     <ul>
         <li>i am a coffee guy, although i take it moderately</li>
-        <li>my photo library is like 90% potrait shots</li>
+        <li>my photo library is like 90% portrait shots</li>
         <li>i've been to 2 countries (including motherland) and two states</li>
         <li>i do not mind having a long train journey</li>
-        <li>prefer one to on conversations than group chats</li>
+        <li>prefer one to one conversations than group chats</li>
         <li>very disorganised, my room is a mess</li>
     </ul>
 
     <hr>
 
-<h2>my thoughts now</h2>
-<div id="rotating-post" style="
-    font-family: sans-serif;
-    color: #eee;
-    background-color: #1a1a1a;
-    padding: 1em;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 1em auto;
-    min-height: 140px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    position: relative;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-"></div>
+    <!-- Latest Thoughts Rotating -->
+    <h2>my thoughts now</h2>
+    <div id="rotating-post" class="dynamic-box"></div>
 
-<div style="text-align:center; margin-top:0.5em;">
-  <button id="prev-post" style="margin-right:1em;">⬅️ Previous</button>
-  <button id="next-post">Next ➡️</button>
-</div>
+    <div class="btn-group">
+        <button id="prev-post" class="btn">⬅️ Previous</button>
+        <button id="next-post" class="btn">Next ➡️</button>
+    </div>
 
-<script>
-fetch('https://now.blackpiratex.com/api/get-latest-posts')
-  .then(res => res.json())
-  .then(posts => {
-    if (!posts.length) return;
+    <script>
+    fetch('https://now.blackpiratex.com/api/get-latest-posts')
+        .then(res => res.json())
+        .then(posts => {
+            if (!posts.length) return;
 
-    const container = document.getElementById('rotating-post');
-    let currentIndex = 0;
-    let intervalId;
+            const container = document.getElementById('rotating-post');
+            let currentIndex = 0;
+            let intervalId;
 
-    function formatPost(post) {
-      const date = new Date(post.date);
-      const formattedDate = date.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
+            function formatPost(post) {
+                const date = new Date(post.date);
+                const formattedDate = date.toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
 
-      let html = `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
-      html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;"><em>${formattedDate}</em></p>`;
+                let html = `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
+                html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;"><em>${formattedDate}</em></p>`;
 
-      if (post.tags && post.tags.length) {
-        html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
-      }
+                if (post.tags && post.tags.length) {
+                    html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
+                }
 
-      const fullUrl = 'https://now.blackpiratex.com' + post.url;
-      html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank" style="color:#00ccff; text-decoration:none;">View</a></p>`;
+                const fullUrl = 'https://now.blackpiratex.com' + post.url;
+                html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank">view full post →</a></p>`;
 
-      return html;
-    }
+                return html;
+            }
 
-    function showPost(index) {
-      container.style.opacity = 0;
-      setTimeout(() => {
-        container.innerHTML = formatPost(posts[index]);
-        container.style.opacity = 1;
-      }, 250); // fade transition
-    }
+            function showPost(index) {
+                container.style.opacity = 0;
+                setTimeout(() => {
+                    container.innerHTML = formatPost(posts[index]);
+                    container.classList.add('loaded');
+                    container.style.opacity = 1;
+                }, 250);
+            }
 
-    function nextPost() {
-      currentIndex = (currentIndex + 1) % posts.length;
-      showPost(currentIndex);
-    }
+            function nextPost() {
+                currentIndex = (currentIndex + 1) % posts.length;
+                showPost(currentIndex);
+            }
 
-    function prevPost() {
-      currentIndex = (currentIndex - 1 + posts.length) % posts.length;
-      showPost(currentIndex);
-    }
+            function prevPost() {
+                currentIndex = (currentIndex - 1 + posts.length) % posts.length;
+                showPost(currentIndex);
+            }
 
-    // Initial post
-    showPost(currentIndex);
+            showPost(currentIndex);
+            intervalId = setInterval(nextPost, 5000);
 
-    // Auto-rotate every 5 seconds
-    intervalId = setInterval(nextPost, 5000);
+            document.getElementById('next-post').addEventListener('click', () => {
+                nextPost();
+                clearInterval(intervalId);
+                intervalId = setInterval(nextPost, 5000);
+            });
 
-    // Previous/Next buttons
-    document.getElementById('next-post').addEventListener('click', () => {
-      nextPost();
-      resetInterval();
-    });
-    document.getElementById('prev-post').addEventListener('click', () => {
-      prevPost();
-      resetInterval();
-    });
+            document.getElementById('prev-post').addEventListener('click', () => {
+                prevPost();
+                clearInterval(intervalId);
+                intervalId = setInterval(nextPost, 5000);
+            });
+        })
+        .catch(err => {
+            document.getElementById('rotating-post').textContent = 'Failed to load posts';
+            console.error(err);
+        });
+    </script>
 
-    function resetInterval() {
-      clearInterval(intervalId);
-      intervalId = setInterval(nextPost, 5000);
-    }
-
-  })
-  .catch(err => {
-    document.getElementById('rotating-post').textContent = 'Failed to load posts';
-    console.error(err);
-  });
-</script>
-
-<hr>
-
+    <hr>
 
     <h2>find me online</h2>
     
     <div class="links">
         <a href="#">github</a>
-        <a href="#">instagram (ew)</a>
+        <a href="#">instagram</a>
         <a href="#">email me</a>
         <a href="#">blog</a>
     </div>
@@ -410,11 +427,9 @@ fetch('https://now.blackpiratex.com/api/get-latest-posts')
         <a href="/now">now</a>
     </div>
 
-
     <p>feel free to reach out if you want to chat about travel, tech, photography, or just say hi!</p>
 
-
-      {{ partial "footer.html" . }}
+    {{ partial "footer.html" . }}
     <div class="footer">
         <p>made by me since 2020</p>
         <p>thanks for visiting :)</p>
