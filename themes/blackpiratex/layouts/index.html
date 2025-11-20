@@ -466,7 +466,7 @@
     function fetchRandomHighlight() {
         highlightContainer.style.opacity = 0;
 
-        fetch('https://now.blackpiratex.com/api/random-highlight')
+        fetch('https://notes.blackpiratex.com/api/random-highlight')
             .then(res => res.json())
             .then(data => {
                 let html = `<p style="margin:0 0 0.5em 0; color:#aaa;"><em><strong>${data.title}</strong> by ${data.author}</em></p>`;
