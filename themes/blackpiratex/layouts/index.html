@@ -456,6 +456,39 @@
 
     <hr>
 
+    <!-- Random Highlight -->
+    <h2>random book highlight</h2>
+    <div id="random-highlight" class="dynamic-box"></div>
+
+    <script>
+    const highlightContainer = document.getElementById('random-highlight');
+
+    function fetchRandomHighlight() {
+        highlightContainer.style.opacity = 0;
+
+        fetch('https://now.blackpiratex.com/api/random-highlight')
+            .then(res => res.json())
+            .then(data => {
+                let html = `<p style="margin:0 0 0.5em 0; color:#aaa;"><em><strong>${data.title}</strong> by ${data.author}</em></p>`;
+                html += `<p style="margin:0;">${data.highlight}</p>`;
+
+                highlightContainer.innerHTML = html;
+                highlightContainer.scrollTop = 0;
+                highlightContainer.classList.add('loaded');
+                highlightContainer.style.opacity = 1;
+            })
+            .catch(err => {
+                highlightContainer.textContent = 'Failed to load highlight';
+                console.error(err);
+            });
+    }
+
+    fetchRandomHighlight();
+    setInterval(fetchRandomHighlight, 10000);
+    </script>
+
+    <hr>
+
     <h2>find me online</h2>
     
     <div class="links">
