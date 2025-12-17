@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sudip's page</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+        }
+
+        .intro-section {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border: 4px solid #2563eb;
+            flex-shrink: 0;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .intro-section {
+                flex-direction: column;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 20px;
+                display: block;
+            }
+        }
+
+        h1 {
+            color: #e0e0e0;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 8px;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: #d0d0d0;
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+
+        p {
+            margin: 12px 0;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .box {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .links {
+            margin: 20px 0;
+        }
+
+        .links a {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            margin: 5px 5px 5px 0;
+            border: 1px solid #1d4ed8;
+        }
+
+        .links a:hover {
+            background: #1d4ed8;
+            text-decoration: none;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #444;
+            margin: 30px 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .subtitle {
+            color: #888;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+        }
+
+        td:first-child {
+            font-weight: bold;
+            width: 30%;
+            background: #333;
+        }
+
+        /* Dynamic content boxes with consistent height */
+        .dynamic-box-wrapper {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            padding-bottom: 50px;
+            margin: 25px 0;
+            min-height: 180px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            position: relative;
+        }
+
+        .dynamic-box-wrapper.loaded {
+            opacity: 1;
+        }
+
+        .dynamic-box-content {
+            max-height: 150px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .dynamic-box-content.expanded {
+            max-height: none;
+        }
+
+        .expand-btn {
+            display: none;
+            background: transparent;
+            color: #2563eb;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            padding: 5px 0;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+        }
+
+        .expand-btn:hover {
+            color: #1d4ed8;
+        }
+
+        .expand-btn.visible {
+            display: inline-block;
+        }
+
+        .dynamic-box-wrapper a {
+            color: #2563eb;
+        }
+
+        .dynamic-box-wrapper a:hover {
+            text-decoration: underline;
+        }
+
+        /* Random Highlight - Special styling */
+        .highlight-wrapper {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            margin: 25px 0;
+            min-height: 180px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            position: relative;
+        }
+
+        .highlight-wrapper.loaded {
+            opacity: 1;
+        }
+
+        .highlight-text {
+            max-height: 150px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            position: relative;
+        }
+
+        .highlight-text.has-overflow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, #2a2a2a);
+            pointer-events: none;
+        }
+
+        .highlight-text.expanded {
+            max-height: none;
+        }
+
+        .highlight-text.expanded::after {
+            display: none;
+        }
+
+        .highlight-expand-btn {
+            display: none;
+            background: transparent;
+            color: #2563eb;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+        }
+
+        .highlight-expand-btn:hover {
+            color: #1d4ed8;
+        }
+
+        .highlight-expand-btn.visible {
+            display: block;
+        }
+
+        /* Mood box - natural height */
+        .mood-box {
+            background: #2a2a2a;
+            border: 2px solid #444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* Button styling */
+        .btn-group {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #1d4ed8;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <h1>welcome to my page!</h1>
+        <p class="subtitle">last updated: oct 2025</p>
+    </div>
+
+    {{ $me := resources.Get "img/me-2.jpg" }}
+    {{ $me = $me.Resize "300x webp q50" }}
+    <div class="intro-section">
+        <img src="{{ $me.RelPermalink }}" alt="profile picture" class="profile-img">
+        <div class="intro-text">
+            <p>hey there! i'm Sudip. thanks for stopping by my little corner of the internet.</p>
+            <p>i made this page because i wanted somewhere to put stuff about me and things i like. it's pretty simple, free from algorithm. i am so glad you are here. browse, enjoy or drop message</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Today's Mood -->
+    <div class="mood-box">
+        <div id="mood">loading today's mood...</div>
+        <p><a href="https://mood-tracker.blackpiratex.com">view full mood tracker →</a></p>
+    </div>
+
+    <script>
+    fetch('/api/mood')
+        .then(r => r.text())
+        .then(h => document.getElementById('mood').innerHTML = h)
+        .catch(err => document.getElementById('mood').textContent = 'Failed to load mood');
+    </script>
+
+    <hr>
+
+    <!-- Random Thought -->
+    <h2>a random thought</h2>
+    <div class="dynamic-box-wrapper" id="random-thought-wrapper">
+        <div class="dynamic-box-content" id="random-thought"></div>
+        <button class="expand-btn" id="random-thought-btn" onclick="toggleExpand('random-thought')">⬇️ expand</button>
+    </div>
+
+    <script>
+    const randomContainer = document.getElementById('random-thought');
+    const randomWrapper = document.getElementById('random-thought-wrapper');
+    const randomBtn = document.getElementById('random-thought-btn');
+
+    function checkOverflow(contentId, btnId) {
+        const content = document.getElementById(contentId);
+        const btn = document.getElementById(btnId);
+        if (content.scrollHeight > 150) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }
+
+    function toggleExpand(id) {
+        const content = document.getElementById(id);
+        const btn = document.getElementById(id + '-btn');
+        
+        if (content.classList.contains('expanded')) {
+            content.classList.remove('expanded');
+            btn.textContent = '⬇️ expand';
+        } else {
+            content.classList.add('expanded');
+            btn.textContent = '⬆️ collapse';
+        }
+    }
+
+    function fetchRandomThought() {
+        randomWrapper.style.opacity = 0;
+        randomContainer.classList.remove('expanded');
+        randomBtn.classList.remove('visible');
+        randomBtn.textContent = '⬇️ expand';
+
+        fetch('https://now.blackpiratex.com/api/get-random-post')
+            .then(res => res.json())
+            .then(post => {
+                const date = new Date(post.date);
+                const formattedDate = date.toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                let html = `<p style="margin:0 0 0.5em 0; color:#aaa;"><em>from ${formattedDate}</em></p>`;
+                html += `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
+
+                if (post.tags && post.tags.length) {
+                    html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
+                }
+
+                const fullUrl = 'https://now.blackpiratex.com' + post.url;
+                html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank">view full post →</a></p>`;
+
+                randomContainer.innerHTML = html;
+                randomWrapper.classList.add('loaded');
+                randomWrapper.style.opacity = 1;
+                
+                setTimeout(() => checkOverflow('random-thought', 'random-thought-btn'), 100);
+            })
+            .catch(err => {
+                randomContainer.textContent = 'Failed to load post';
+                console.error(err);
+            });
+    }
+
+    fetchRandomThought();
+    setInterval(fetchRandomThought, 10000);
+    </script>
+
+    <hr>
+
+    <h2>about me</h2>
+    
+    <div class="box">
+        <p><b>who am i?</b> I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. This is a website I made to put myself to the world. I have finished my Zoology graduation on 2025, now preparing for govt job exams. This website has been started around 2020, there are other websites that I have made previously which you can check under bookmarks. Building websites is my hobby, and I love ducks and cats. This website and its associated website is big, with lots of content. Browse as you may like, and if you think we have something common, don't forget to send me an email or drop a message on <a href="https://go.blackpiratex.com/signal">Signal</a> or <a href="https://go.blackpiratex.com/wa">WhatsApp</a>. I'd love to make friends.</p>
+        <p>i spend a lot of time working with tech stuff but i also study, and sometimes when i have a chance i travel. good balance i guess?</p>
+    </div>
+
+    <h2>things i'm into</h2>
+
+    <table>
+        <tr>
+            <td>computers 💻</td>
+            <td>i like building stuff and learning how things work. coding is addicting, i only do it for fun. also really into other forms of electronics</td>
+        </tr>
+        <tr>
+            <td>reading 📚</td>
+            <td>i like reading story books. i do not have memories of cartoons from my childhood, its books and magazines. i have lost this habit, but fortunately i can say i am now getting it back. you can check out my book notes</td>
+        </tr>
+        <tr>
+            <td>travelling ✈️</td>
+            <td>too little time but too much to explore. i love exploring new cities, meeting people, making friends from far-away places (thanks internet). have a map with pins on my wall.</td>
+        </tr>
+        <tr>
+            <td>photography 📷</td>
+            <td>still learning but i really enjoy it. mostly portraits and landscapes. trying to get better at capturing emotions and those eyes which tell a story.</td>
+        </tr>
+    </table>
+
+    <h2>random facts</h2>
+    
+    <ul>
+        <li>i am a coffee guy, although i take it moderately</li>
+        <li>my photo library is like 90% portrait shots</li>
+        <li>i've been to 2 countries (including motherland) and two states</li>
+        <li>i do not mind having a long train journey</li>
+        <li>prefer one to one conversations than group chats</li>
+        <li>very disorganised, my room is a mess</li>
+    </ul>
+
+    <hr>
+
+    <!-- Latest Thoughts Rotating -->
+    <h2>my thoughts now</h2>
+    <div class="dynamic-box-wrapper" id="rotating-post-wrapper">
+        <div class="dynamic-box-content" id="rotating-post"></div>
+        <button class="expand-btn" id="rotating-post-btn" onclick="toggleExpand('rotating-post')">⬇️ expand</button>
+    </div>
+
+    <div class="btn-group">
+        <button id="prev-post" class="btn">⬅️ Previous</button>
+        <button id="next-post" class="btn">Next ➡️</button>
+    </div>
+
+    <script>
+    fetch('https://now.blackpiratex.com/api/get-latest-posts')
+        .then(res => res.json())
+        .then(posts => {
+            if (!posts.length) return;
+
+            const container = document.getElementById('rotating-post');
+            const wrapper = document.getElementById('rotating-post-wrapper');
+            const btn = document.getElementById('rotating-post-btn');
+            let currentIndex = 0;
+            let intervalId;
+
+            function formatPost(post) {
+                const date = new Date(post.date);
+                const formattedDate = date.toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                let html = `<p style="margin:0 0 0.5em 0;">${post.content}</p>`;
+                html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;"><em>${formattedDate}</em></p>`;
+
+                if (post.tags && post.tags.length) {
+                    html += `<p style="margin:0 0 0.5em 0; font-size:0.9em; color:#aaa;">Tags: ${post.tags.join(', ')}</p>`;
+                }
+
+                const fullUrl = 'https://now.blackpiratex.com' + post.url;
+                html += `<p style="margin:0;"><a href="${fullUrl}" target="_blank">view full post →</a></p>`;
+
+                return html;
+            }
+
+            function showPost(index) {
+                wrapper.style.opacity = 0;
+                container.classList.remove('expanded');
+                btn.classList.remove('visible');
+                btn.textContent = '⬇️ expand';
+                
+                setTimeout(() => {
+                    container.innerHTML = formatPost(posts[index]);
+                    wrapper.classList.add('loaded');
+                    wrapper.style.opacity = 1;
+                    setTimeout(() => checkOverflow('rotating-post', 'rotating-post-btn'), 100);
+                }, 250);
+            }
+
+            function nextPost() {
+                currentIndex = (currentIndex + 1) % posts.length;
+                showPost(currentIndex);
+            }
+
+            function prevPost() {
+                currentIndex = (currentIndex - 1 + posts.length) % posts.length;
+                showPost(currentIndex);
+            }
+
+            showPost(currentIndex);
+            intervalId = setInterval(nextPost, 5000);
+
+            document.getElementById('next-post').addEventListener('click', () => {
+                nextPost();
+                clearInterval(intervalId);
+                intervalId = setInterval(nextPost, 5000);
+            });
+
+            document.getElementById('prev-post').addEventListener('click', () => {
+                prevPost();
+                clearInterval(intervalId);
+                intervalId = setInterval(nextPost, 5000);
+            });
+        })
+        .catch(err => {
+            document.getElementById('rotating-post').textContent = 'Failed to load posts';
+            console.error(err);
+        });
+    </script>
+
+    <hr>
+
+    <!-- Random Highlight - Enhanced UX like your attached files -->
+    <h2>random book highlight</h2>
+    <div class="highlight-wrapper" id="random-highlight-wrapper">
+        <div class="highlight-text" id="highlight-text"></div>
+        <button class="highlight-expand-btn" id="highlight-expand-btn" title="Expand highlight">⬇</button>
+    </div>
+
+    <script>
+    const highlightText = document.getElementById('highlight-text');
+    const highlightWrapper = document.getElementById('random-highlight-wrapper');
+    const highlightExpandBtn = document.getElementById('highlight-expand-btn');
+
+    function fetchRandomHighlight() {
+        highlightWrapper.style.opacity = 0;
+        highlightText.classList.remove('expanded', 'has-overflow');
+        highlightExpandBtn.classList.remove('visible');
+        highlightExpandBtn.textContent = '⬇';
+        highlightExpandBtn.setAttribute('title', 'Expand highlight');
+
+        fetch('https://notes.blackpiratex.com/api/random-highlight')
+            .then(res => res.json())
+            .then(data => {
+                let html = `<p style="margin:0 0 1em 0; font-size:1.1em; line-height:1.6;">"${data.highlight}"</p>`;
+                html += `<p style="margin:0; color:#aaa; font-size:0.95em;"><em>— ${data.author}, ${data.title}</em></p>`;
+
+                highlightText.innerHTML = html;
+                highlightWrapper.classList.add('loaded');
+                highlightWrapper.style.opacity = 1;
+                
+                setTimeout(() => {
+                    const isOverflowing = highlightText.scrollHeight > highlightText.clientHeight;
+                    if (isOverflowing) {
+                        highlightText.classList.add('has-overflow');
+                        highlightExpandBtn.classList.add('visible');
+                    }
+                }, 100);
+            })
+            .catch(err => {
+                highlightText.textContent = 'Failed to load highlight';
+                console.error(err);
+            });
+    }
+
+    highlightExpandBtn.addEventListener('click', () => {
+        const isExpanded = highlightText.classList.toggle('expanded');
+        highlightExpandBtn.textContent = isExpanded ? '⬆' : '⬇';
+        highlightExpandBtn.setAttribute('title', isExpanded ? 'Collapse highlight' : 'Expand highlight');
+    });
+
+    fetchRandomHighlight();
+    setInterval(fetchRandomHighlight, 10000);
+    </script>
+
+    <hr>
+
+    <h2>find me online</h2>
+    
+    <div class="links">
+        <a href="#">github</a>
+        <a href="#">instagram</a>
+        <a href="#">email me</a>
+        <a href="#">blog</a>
+    </div>
+
+    <hr>
+
+    <h2>other pages</h2>
+    
+    <div class="links">
+        <a href="https://status.blackpiratex.com">status (microblog)</a>
+        <a href="https://notes.blackpiratex.com">book notes</a>
+        <a href="https://gallery.blackpiratex.com">gallery</a>
+        <a href="https://music.blackpiratex.com">music (listening history)</a>
+        <a href="/bookmarks">bookmarks</a>
+        <a href="/contact">contact</a>
+        <a href="#">blog</a>
+        <a href="/about">about</a>
+        <a href="/now">now</a>
+    </div>
+
+    <p>feel free to reach out if you want to chat about travel, tech, photography, or just say hi!</p>
+
+    {{ partial "footer.html" . }}
+    <div class="footer">
+        <p>made by me since 2020</p>
+        <p>thanks for visiting :)</p>
+    </div>
+
+</body>
+</html>
