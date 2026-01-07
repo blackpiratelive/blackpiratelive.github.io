@@ -72,6 +72,38 @@
     .menu > nav { flex-direction: column; align-items: flex-start; }
     .menu-links { gap: 1rem; }
   }
+  
+  
+ /* Container for the ads */
+    .bp-ad-wrapper {
+        display: flex;
+        flex-direction: row;       /* Side by side by default */
+        justify-content: center;   /* Center them horizontally */
+        align-items: center;       /* Align them vertically */
+        gap: 20px;                 /* Space between the banners */
+        flex-wrap: wrap;           /* Allow wrapping if screen is tight */
+        width: 100%;
+        max-width: 600px;          /* Restrict max width to keep them neat */
+        margin: 20px auto;         /* Center the wrapper on page */
+    }
+
+    /* The iframe style */
+    .bp-ad-frame {
+        width: 250px;
+        height: 250px;
+        border: none;
+        overflow: hidden;
+        /* Optional: Add a shadow or rounded corners to the container if you like */
+        /* border-radius: 4px; */
+    }
+
+    /* Mobile Breakpoint: Force stack on small screens */
+    @media (max-width: 550px) {
+        .bp-ad-wrapper {
+            flex-direction: column; /* Stack vertically */
+        }
+    }
+  
 </style>
 
 <div class="menu">
