@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ partial "head.html" . }}
+    <title>On This Day - {{ .Site.Title }}</title>
+</head>
+<body>
+    <header>
+        <h1>On This Day</h1>
+        <p class="subtitle">A look back at memories from the past</p>
+        <a href="/" class="back-link">&larr; Back to Latest Posts</a>
+    </header>
+
+    <main>
+        {{ $now := now }}
+        {{ $currentMonthDay := $now.Format "01-02" }}
+        {{ $currentYear := $now.Format "2006" }}
+        
+        {{ $onThisDayPosts := slice }}
+        {{ range .Site.RegularPages }}
+            {{ if and (eq (.Date.Format "01-02") $currentMonthDay) (ne (.Date.Format "2006") $currentYear) }}
+                {{ $onThisDayPosts = $onThisDayPosts | append . }}
+            {{ end }}
+        {{ end }}
+        
+        {{ $allPosts := .Site.RegularPages.ByDate }}
+        {{ $postNumbers := dict }}
+        {{ range $index, $page := $allPosts }}
+            {{ $postNumbers = merge $postNumbers (dict $page.RelPermalink (add $index 1)) }}
+        {{ end }}
+
+        {{ if gt (len $onThisDayPosts) 0 }}
+            {{ $sortedPosts := sort $onThisDayPosts "Date" "desc" }}
+            {{ $groupedByYear := $sortedPosts.GroupByDate "2006" }}
+
+            {{ range $groupedByYear }}
+                <div class="year-section">
+                    <h2 class="year-heading">{{ .Key }}</h2>
+                    {{ range .Pages }}
+                    <article>
+                        <div class="post-content">
+                            {{ .Content }}
+                        </div>
+                        <div class="post-meta">
+                            <div class="post-meta-left">
+                                <div class="post-meta-item">
+                                    <span class="meta-label">Date:</span> <time class="post-date">{{ .Date.Format "January 2, 2006 at 3:04 PM" }}</time>
+                                </div>
+                            </div>
+                            <a href="{{ .Permalink }}" class="post-permalink">→</a>
+                        </div>
+                    </article>
+                    {{ if not (eq . (index $.Pages (sub (len $.Pages) 1))) }}
+                    <hr>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            {{ end }}
+        {{ else }}
+            <p class="no-memories">No memories from this day in the past. Come back tomorrow!</p>
+        {{ end }}
+    </main>
+    
+    {{ partial "footer.html" . }}
+</body>
+</html>

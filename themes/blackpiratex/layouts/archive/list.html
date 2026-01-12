@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body>
+    <header>
+        <h1>{{ .Title }}</h1>
+        <p class="subtitle">{{ .Content }}</p>
+    </header>
+    
+    <main>
+        {{ $years := slice }}
+        {{ range .Site.RegularPages.GroupByDate "2006" }}
+            {{ $years = $years | append .Key }}
+        {{ end }}
+        
+        <div class="years-list">
+            {{ range $years }}
+            {{ $yearPage := printf "/archive/%s" . }}
+            <div class="year-link-item">
+                <a href="{{ $yearPage }}" class="year-link">{{ . }}</a>
+            </div>
+            {{ end }}
+        </div>
+    </main>
+    
+    {{ partial "footer.html" . }}
+</body>
+</html>

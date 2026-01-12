@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* --- Print Page Specific Styles --- */
+        @page {
+            size: A4;
+            margin: 0.75in;
+            @bottom-right {
+                content: "Page " counter(page);
+                font-size: 8pt;
+                color: #666;
+            }
+        }
+
+        @media print {
+            body {
+                font-size: 9pt; /* Newspaper font size */
+                color: #000 !important;
+                background-color: #fff !important;
+            }
+            .main-container {
+                max-width: 100%;
+                padding: 0;
+            }
+            .print-header {
+                page-break-after: always;
+            }
+            .print-header h1, .print-header h2, .print-header p {
+                color: #000 !important;
+            }
+            .year-heading {
+                color: #000 !important;
+                page-break-before: always;
+            }
+            .print-entry {
+                page-break-inside: avoid;
+            }
+            .print-entry, .print-entry-meta, .print-entry-tags a {
+                color: #333 !important;
+            }
+            .content-columns {
+                columns: 2;
+                column-gap: 1.5rem;
+            }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+        .main-container {
+            max-width: 60rem; /* Wider for two columns */
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        /* --- Print Header / Title Page --- */
+        .print-header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        .print-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .print-header h2 {
+            font-size: 1.125rem;
+            color: var(--accent-color);
+            margin-top: 0.25rem;
+        }
+        .print-header p {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* --- Yearly Sections --- */
+        .year-heading {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--text-primary);
+        }
+
+        /* --- NEW: Two-Column Layout for Content --- */
+        .content-columns {
+            columns: 2;
+            column-gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .content-columns {
+                columns: 1;
+            }
+        }
+
+
+        /* --- Individual Entries --- */
+        .print-entry {
+            margin-bottom: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            break-inside: avoid-column; /* Prevent entries from splitting across columns */
+        }
+        .print-entry:last-child {
+            border-bottom: none;
+        }
+        .print-entry-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .print-entry-meta time {
+            margin-right: 0.75rem;
+        }
+        .print-entry-content {
+            line-height: 1.5;
+            font-size: 0.875rem;
+        }
+        .print-entry-content img {
+            max-width: 250px;
+            height: auto;
+            display: block;
+            margin: 0.5rem 0;
+        }
+        .print-entry-tags {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+        }
+        .print-entry-tags a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+        .print-entry-tags a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Title Page -->
+        <div class="print-header">
+            <h1>{{ .Site.Title }}</h1>
+            <h2>Full Archive</h2>
+            <p>Generated on {{ now.Format "January 2, 2006" }}</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content-columns">
+            {{ $postsByYear := .Site.RegularPages.ByDate.Reverse.GroupByDate "2006" }}
+            {{ range $postsByYear }}
+                <h2 id="year-{{ .Key }}" class="year-heading">{{ .Key }}</h2>
+                {{ range .Pages }}
+                    <div class="print-entry">
+                        <div class="print-entry-meta">
+                            <time><strong>Published:</strong> {{ .Date.Format "January 2, 2006 at 15:04" }}</time>
+                            {{ if .Lastmod.After .Date }}
+                                <time><strong>Modified:</strong> {{ .Lastmod.Format "January 2, 2006 at 15:04" }}</time>
+                            {{ end }}
+                        </div>
+                        <div class="print-entry-content">
+                            {{ .Content }}
+                        </div>
+                        {{ if .Params.tags }}
+                            <div class="print-entry-tags">
+                                <strong>Tags:</strong>
+                                {{ range .Params.tags }}
+                                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">#{{ . }}</a>
+                                {{ end }}
+                            </div>
+                        {{ end }}
+                    </div>
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+
+    <script>
+        // Apply saved theme settings from cookies to maintain consistency
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = document.cookie.match(/theme=([^;]+)/)?.[1];
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+            const savedAccent = document.cookie.match(/accentColor=([^;]+)/)?.[1];
+            if (savedAccent) {
+                document.documentElement.classList.add(`accent-${savedAccent}`);
+            }
+        });
+    </script>
+</body>
+</html>
