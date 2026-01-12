@@ -490,3 +490,334 @@ body {
     background: var(--bg-hover);
     border-color: var(--primary-blue);
 }
+/* --- Single Post Detail View --- */
+
+/* The White Box Container */
+.detail-container {
+    border: 1px solid #ccc;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px; /* Optional: adds subtle rounding */
+    margin-top: 10px;
+}
+
+/* Title & Meta */
+.detail-title {
+    color: var(--primary-blue);
+    font-family: serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+.post-meta-bar {
+    display: flex; 
+    gap: 15px; 
+    font-size: 13px; 
+    color: #666; 
+    margin-bottom: 25px; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 15px; 
+    flex-wrap: wrap;
+}
+
+.meta-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+/* Excerpt Box */
+.detail-excerpt {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 25px;
+    font-style: italic;
+    border-left: 4px solid var(--primary-blue);
+    color: #555;
+}
+
+/* Back Button */
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    padding: 0;
+    text-decoration: none;
+    font-weight: bold;
+}
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* --- Content Typography (Markdown Styles) --- */
+
+.single-content {
+    line-height: 1.7;
+    font-size: 16px;
+    color: #333;
+    overflow-x: hidden; /* Prevents large images from breaking mobile view */
+}
+
+.single-content p { margin-bottom: 1.2em; }
+
+.single-content h2, .single-content h3 {
+    color: var(--primary-blue);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.single-content a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+.single-content ul, .single-content ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.single-content blockquote {
+    background: #f9f9f9;
+    border-left: 5px solid var(--primary-blue);
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.single-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+/* Code Blocks */
+.single-content code {
+    background-color: #eee;
+    color: #d63384;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.single-content pre {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.single-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* --- Comment Section Styles --- */
+
+#comments {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+/* Comment Form */
+#comments form {
+    background: #fdfdfd;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+#comments label {
+    display: block;
+    font-size: 12px; 
+    font-weight: bold; 
+    color: #555; 
+    margin-bottom: 5px; 
+    margin-top: 15px;
+}
+#comments input[type="text"],
+#comments textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+#comments button[type="submit"] {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Comment List */
+#comments ul { list-style: none; padding: 0; }
+#comments li {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+#comments strong { color: var(--primary-blue); }
+
+/* --- Mobile Fixes --- */
+@media (max-width: 600px) {
+    .detail-container {
+        padding: 15px; /* Reduce padding on mobile */
+    }
+    .detail-title {
+        font-size: 24px;
+    }
+    .single-content pre {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: calc(100% + 30px);
+        border-radius: 0;
+    }
+}
+/* --- New Blog Showcase Styles --- */
+
+/* Hero Section */
+.blog-hero {
+    text-align: center;
+    padding: 20px 0 40px 0;
+}
+.blog-hero h1 {
+    font-family: serif;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    color: var(--primary-blue);
+}
+.blog-hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Controls Row (Search + Stats) */
+.blog-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.stats-pill {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-color);
+    padding: 0 15px;
+    height: 42px; /* Match search input height approximately */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* The Grid Layout */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* The Blog Card */
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    height: 100%; /* Full height for grid alignment */
+    box-sizing: border-box;
+}
+
+.blog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-color: var(--primary-blue);
+}
+
+.blog-card-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.blog-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.blog-card-title {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+    font-family: serif;
+    line-height: 1.3;
+}
+
+.blog-card-summary {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1; /* Pushes footer to bottom */
+    margin-bottom: 15px;
+}
+
+.blog-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px dashed #eee;
+}
+
+.read-more {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* Mobile Tweak for Controls */
+@media (max-width: 600px) {
+    .blog-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .stats-pill {
+        justify-content: center;
+    }
+}

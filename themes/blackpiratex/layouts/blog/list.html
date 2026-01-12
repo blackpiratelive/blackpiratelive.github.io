@@ -4,96 +4,84 @@
     
     {{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
 
-    <div class="search-wrapper">
-        <i data-lucide="search" width="16" style="color:#999; margin-right:10px;"></i>
-        <input type="text" id="search-input" class="search-input" placeholder="Search blog posts...">
+    <div class="blog-hero">
+        <h1>Writings & Notes</h1>
+        <p>A collection of thoughts, tutorials, and updates.</p>
     </div>
+
+    <div class="blog-controls">
+        <div class="search-wrapper" style="margin-bottom: 0; flex-grow: 1;">
+            <i data-lucide="search" width="16" style="color:#999; margin-right:10px;"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search articles...">
+        </div>
+        
+        <div class="stats-pill">
+            <i data-lucide="file-text" width="14"></i>
+            <span>{{ len $blogPosts }} Posts</span>
+        </div>
+    </div>
+    
     <div id="search-results"></div>
 
-    {{ $totalWords := 0 }}
-    {{ range $blogPosts }}
-        {{ $totalWords = add $totalWords .WordCount }}
-    {{ end }}
-    
-    <div class="stats-box">
-        <div class="stats-header">
-            <i data-lucide="bar-chart-2" width="14"></i>
-            BLOG STATISTICS
-        </div>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-lbl">Total Posts</div>
-                <div class="stat-val">{{ len $blogPosts }}</div>
-            </div>
-            <div class="stat-item" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
-                <div class="stat-lbl">Total Words</div>
-                <div class="stat-val">{{ $totalWords }}</div>
-            </div>
-            {{ $avg := 0 }}
-            {{ if gt (len $blogPosts) 0 }}
-                {{ $avg = div $totalWords (len $blogPosts) }}
-            {{ end }}
-            <div class="stat-item">
-                <div class="stat-lbl">Avg Words</div>
-                <div class="stat-val">{{ $avg }}</div>
-            </div>
-        </div>
-    </div>
-
-    <div style="margin-bottom: 30px;">
-        <h4 class="section-header">
-            <i data-lucide="library" width="14"></i>
-            LATEST WRITINGS
-        </h4>
+    <div class="home-section" style="margin-top: 40px;">
+        <h2>
+            <i data-lucide="grid" width="20"></i> Latest Posts
+        </h2>
         
-        <div>
+        <div class="blog-grid">
             {{ $paginator := .Paginate $blogPosts }}
             
             {{ range $paginator.Pages }}
-            <a href="{{ .RelPermalink }}" class="post-item">
-                <div class="date-badge">
-                    <div class="date-month">{{ .Date.Format "Jan" | upper }}</div>
-                    <div class="date-day">{{ .Date.Format "02" }}</div>
+            <a href="{{ .RelPermalink }}" class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-date">
+                        <i data-lucide="calendar" width="12"></i> {{ .Date.Format "Jan 02, 2006" }}
+                    </span>
+                    <span class="blog-read-time">
+                        {{ .ReadingTime }} min read
+                    </span>
                 </div>
-                <div class="post-content">
-                    <div class="post-title">{{ .Title }}</div>
-                    <div style="font-size: 13px; color: #444; margin-bottom: 6px;">
-                        {{ .Summary | truncate 120 }}
-                    </div>
-                    <div style="margin-top: 6px;">
-                        {{ range .Params.tags }}
-                        <span class="tag-badge">{{ . }}</span>
-                        {{ end }}
-                    </div>
+                
+                <h3 class="blog-card-title">{{ .Title }}</h3>
+                
+                <p class="blog-card-summary">
+                    {{ .Summary | truncate 140 }}
+                </p>
+
+                <div class="blog-card-footer">
+                    {{ if .Params.tags }}
+                        <span class="tag-badge">#{{ index .Params.tags 0 }}</span>
+                    {{ end }}
+                    <span class="read-more">Read <i data-lucide="arrow-right" width="12"></i></span>
                 </div>
             </a>
             {{ end }}
-
-            {{ if eq (len $paginator.Pages) 0 }}
-            <div style="padding: 20px; text-align: center; color: #666; font-style: italic;">
-                No blog posts found. Add markdown files to 'content/blog/'.
-            </div>
-            {{ end }}
         </div>
 
-        {{ if gt $paginator.TotalPages 1 }}
-        <div class="pagination">
-            {{ if $paginator.HasPrev }}
-            <a href="{{ $paginator.Prev.URL }}" class="page-link">← Newer</a>
-            {{ end }}
-            
-            <span style="color:#666">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-            
-            {{ if $paginator.HasNext }}
-            <a href="{{ $paginator.Next.URL }}" class="page-link">Older →</a>
-            {{ end }}
+        {{ if eq (len $paginator.Pages) 0 }}
+        <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
+            No posts found yet.
         </div>
         {{ end }}
     </div>
 
+    {{ if gt $paginator.TotalPages 1 }}
+    <div class="pagination">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="page-link">← Newer Posts</a>
+        {{ end }}
+        
+        <span style="color:#666; font-size: 12px;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+        
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="page-link">Older Posts →</a>
+        {{ end }}
+    </div>
+    {{ end }}
+
     <div class="tag-cloud-section">
         <h4 style="margin-bottom: 15px; display:flex; align-items:center; gap:8px;">
-            <i data-lucide="tag" width="14"></i> Explore by Tags
+            <i data-lucide="tag" width="14"></i> Topics
         </h4>
         <div class="tag-cloud-list">
             {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
@@ -103,9 +91,14 @@
             {{ end }}
         </div>
     </div>
+
 </div>
 
-{{ partial "footer.html" . }}
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
 <script src="{{ "js/search.js" | relURL }}"></script>
-</body>
-</html>
+
+{{ partial "footer.html" . }}
