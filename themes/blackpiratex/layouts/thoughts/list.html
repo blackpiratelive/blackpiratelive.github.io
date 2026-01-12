@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <h1>Thoughts</h1>
+
+  {{ $allThoughts := where .Site.RegularPages "Section" "thoughts" }}
+
+  {{ range $allThoughts }}
+    
+    <div style="border-bottom: 1px solid #ccc; padding: 20px 0;">
+      
+      <div style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
+        {{ .Date.Format "Jan 2, 2006 • 3:04 PM" }}
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        {{ .Content }}
+      </div>
+
+      <a href="{{ .Permalink }}">
+        <button>Go to Post</button>
+      </a>
+
+    </div>
+
+  {{ end }}
+{{ end }}
