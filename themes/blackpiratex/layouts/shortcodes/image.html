@@ -1,0 +1,97 @@
+{{/*
+  Image Shortcode with Modal Popup
+  Usage:
+  - For images in /assets: {{< image src="images/my-photo.jpg" alt="Description" >}}
+  - For images in /static: {{< image src="/images/my-photo.jpg" alt="Description" >}}
+*/}}
+
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $id := delimit (shuffle (split (printf "img-%s" (md5 $src)) "" )) "" }}
+
+{{ $imagePermalink := "" }}
+{{ with resources.Get $src }}
+    {{ $imagePermalink = .RelPermalink }}
+{{ else }}
+    {{ $imagePermalink = $src | absURL }}
+{{ end }}
+
+
+{{/* The button that will be visible on the page */}}
+<div class="image-shortcode-container">
+    <button class="btn-show-image" data-modal-id="{{ $id }}">
+        <span class="icon icon-image"></span>
+        <span>Show Image: {{ $alt | default "Attachment" }}</span>
+    </button>
+</div>
+
+{{/* The hidden modal popup that contains the image */}}
+<div id="{{ $id }}" class="image-modal-overlay">
+    <div class="image-modal">
+        <button class="image-modal-close">&times;</button>
+        <img src="{{ $imagePermalink }}" alt="{{ $alt }}" loading="lazy">
+        {{ if $alt }}
+        <div class="image-modal-caption">{{ $alt }}</div>
+        {{ end }}
+    </div>
+</div>
+
+{{/*
+  This script is included with the shortcode.
+  It now adds a class to the body to prevent scrolling when a modal is open.
+*/}}
+{{ if not (.Page.Scratch.Get "imageModalScript") }}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // This flag ensures the setup code runs only once.
+        if (!window.imageModalInitialized) {
+            
+            const body = document.body;
+
+            // Function to open a modal
+            const openModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('visible');
+                    body.classList.add('body-modal-open'); // Prevent background scrolling
+                }
+            };
+
+            // Function to close any visible modal
+            const closeModal = () => {
+                const visibleModal = document.querySelector('.image-modal-overlay.visible');
+                if (visibleModal) {
+                    visibleModal.classList.remove('visible');
+                    body.classList.remove('body-modal-open'); // Allow background scrolling again
+                }
+            };
+
+            // Add click listeners to all "Show Image" buttons
+            document.body.addEventListener('click', (event) => {
+                if (event.target.closest('.btn-show-image')) {
+                    const button = event.target.closest('.btn-show-image');
+                    openModal(button.dataset.modalId);
+                }
+            });
+
+            // Add click listeners for closing the modal
+            document.body.addEventListener('click', (event) => {
+                // If the close button or the dark overlay is clicked
+                if (event.target.matches('.image-modal-close, .image-modal-overlay')) {
+                    closeModal();
+                }
+            });
+            
+            // Add keyboard listener to close modal with the Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+            
+            window.imageModalInitialized = true;
+        }
+    });
+</script>
+{{ .Page.Scratch.Set "imageModalScript" true }}
+{{ end }}
