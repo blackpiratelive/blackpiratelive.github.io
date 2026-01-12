@@ -1,0 +1,196 @@
+:root {
+    --primary-blue: #0000AA;
+    --highlight-yellow: #ffffe0;
+    --text-main: #333;
+    --text-muted: #666;
+    --border-color: #ccc;
+    --bg-hover: #f9f9f9;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* --- Header & Nav --- */
+.header-title {
+    margin-bottom: 5px;
+    font-size: 28px;
+    word-wrap: break-word;
+    cursor: pointer;
+    font-family: serif;
+    display: flex;
+    align-items: center;
+    color: #000;
+    text-decoration: none;
+}
+.header-subtitle {
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+.nav-bar {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    margin-bottom: 20px;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.nav-separator {
+    color: #ccc;
+}
+
+/* --- Microblog & List Styles --- */
+.section-header {
+    border-bottom: 1px solid #000;
+    margin-bottom: 15px;
+    background-color: #eee;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+}
+
+.micro-feed {
+    border-left: 2px solid #eee;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+.micro-item {
+    margin-bottom: 25px;
+    position: relative;
+}
+.micro-dot {
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #eee;
+}
+.micro-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.micro-content {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* --- Footer Specifics --- */
+.footer-container {
+    margin-top: 50px;
+    border-top: 2px solid #000;
+    padding-top: 20px;
+}
+
+/* Ads Wrapper */
+.bp-ad-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+}
+.bp-ad-frame {
+    border: none;
+    width: 300px; /* Adjust based on your ad size */
+    height: 250px;
+    overflow: hidden;
+}
+
+/* Footer Nav Grid */
+.footer-nav-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.footer-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 13px;
+}
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Webrings */
+.webring-section {
+    background-color: var(--highlight-yellow);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+.webring-row {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.webring-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.webring-label {
+    font-weight: bold;
+    min-width: 120px;
+}
+
+/* Credits */
+.footer-credits {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+.footer-credits a {
+    color: var(--text-main);
+}
