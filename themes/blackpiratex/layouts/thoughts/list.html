@@ -1,25 +1,28 @@
-{{ define "main" }}
-  <h1>Thoughts</h1>
+{{ partial "header.html" . }}
 
-  {{ $allThoughts := where .Site.RegularPages "Section" "thoughts" }}
+<div id="app-root">
+    <h4 class="section-header">
+        <i data-lucide="message-square" width="14"></i>
+        {{ .Title | upper }}
+    </h4>
 
-  {{ range $allThoughts }}
-    
-    <div style="border-bottom: 1px solid #ccc; padding: 20px 0;">
-      
-      <div style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
-        {{ .Date.Format "Jan 2, 2006 • 3:04 PM" }}
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        {{ .Content }}
-      </div>
-
-      <a href="{{ .Permalink }}">
-        <button>Go to Post</button>
-      </a>
-
+    <div class="micro-feed">
+        {{ range .Pages }}
+        <div class="micro-item">
+            <div class="micro-dot"></div>
+            <div class="micro-header">
+                <!-- Displays formatted date like "Oct 12, 2023" -->
+                <span>{{ .Date.Format "Jan 02, 2006" }}</span>
+                <span>•</span>
+                <!-- Optional: Display reading time if available -->
+                <span>{{ .ReadingTime }} min read</span>
+            </div>
+            <div class="micro-content">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
     </div>
+</div>
 
-  {{ end }}
-{{ end }}
+{{ partial "footer.html" . }}
