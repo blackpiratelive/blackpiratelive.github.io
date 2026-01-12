@@ -24,36 +24,42 @@
     <div id="search-results"></div>
 
     <div class="home-section" style="margin-top: 40px;">
-        <h2>
-            <i data-lucide="grid" width="20"></i> Latest Posts
+        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+            <i data-lucide="list" width="20"></i> Latest Posts
         </h2>
         
-        <div class="blog-grid">
+        <div class="blog-list">
             {{ $paginator := .Paginate $blogPosts }}
             
             {{ range $paginator.Pages }}
-            <a href="{{ .RelPermalink }}" class="blog-card">
-                <div class="blog-card-header">
-                    <span class="blog-date">
+            <a href="{{ .RelPermalink }}" class="blog-list-item">
+                
+                <h3 class="blog-item-title">{{ .Title }}</h3>
+                
+                <div class="blog-item-meta">
+                    <span class="meta-pill">
                         <i data-lucide="calendar" width="12"></i> {{ .Date.Format "Jan 02, 2006" }}
                     </span>
-                    <span class="blog-read-time">
-                        {{ .ReadingTime }} min read
+                    <span class="meta-pill">
+                        <i data-lucide="user" width="12"></i> {{ .Params.author | default "Sudip" }}
+                    </span>
+                    <span class="meta-pill">
+                        <i data-lucide="clock" width="12"></i> {{ .ReadingTime }} min read
+                    </span>
+                    <span class="meta-pill">
+                        <i data-lucide="align-left" width="12"></i> {{ .WordCount }} words
                     </span>
                 </div>
-                
-                <h3 class="blog-card-title">{{ .Title }}</h3>
-                
-                <p class="blog-card-summary">
-                    {{ .Summary | truncate 140 }}
-                </p>
 
-                <div class="blog-card-footer">
-                    {{ if .Params.tags }}
-                        <span class="tag-badge">#{{ index .Params.tags 0 }}</span>
-                    {{ end }}
-                    <span class="read-more">Read <i data-lucide="arrow-right" width="12"></i></span>
+                <p class="blog-item-summary">
+                    {{ .Summary | plainify | truncate 180 }}
+                </p>
+                
+                {{ if .Params.tags }}
+                <div style="margin-top: 8px;">
+                     <span style="font-size:11px; color:#888;">#{{ index .Params.tags 0 }}</span>
                 </div>
+                {{ end }}
             </a>
             {{ end }}
         </div>
