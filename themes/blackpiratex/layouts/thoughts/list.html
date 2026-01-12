@@ -11,12 +11,17 @@
         <div class="micro-item">
             <div class="micro-dot"></div>
             <div class="micro-header">
-                <!-- Displays formatted date like "Oct 12, 2023" -->
                 <span>{{ .Date.Format "Jan 02, 2006" }}</span>
                 <span>•</span>
-                <!-- Optional: Display reading time if available -->
                 <span>{{ .ReadingTime }} min read</span>
+                
+                <span style="margin-left: 5px;">
+                    <a href="{{ .Permalink }}" class="micro-permalink-icon" title="View Post">
+                        <i data-lucide="external-link" width="12"></i>
+                    </a>
+                </span>
             </div>
+            
             <div class="micro-content">
                 {{ .Content }}
             </div>
@@ -24,5 +29,11 @@
         {{ end }}
     </div>
 </div>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
 
 {{ partial "footer.html" . }}

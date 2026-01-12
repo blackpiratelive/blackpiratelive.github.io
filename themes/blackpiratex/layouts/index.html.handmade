@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>BlackPirateX - Homepage of Sudip</title>
+    <meta name="description" content="Little corner of internet for me, Sudip">
+    <meta name="keywords" content="personal, personal site, blackpirate, blackpiratex, sudip, sudip mandal">
+    <meta name="author" content="Sudip Mandal">
+
+    <link rel="icon" type="image/png" href="favicon.png"> 
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blackpiratex.com/">
+    <meta property="og:title" content="BlackPirateX - Honepage of Sudip">
+    <meta property="og:description" content="Little corner of sudip">
+    <meta property="og:image" content="https://blackpiratex.com/logo.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BlackPirateX - Homepage of Sudip">
+    <meta name="twitter:description" content="Homepage of Sudip">
+    <meta name="twitter:image" content="https://blackpiratex.com/logo.webp">
+
+    <meta name="theme-color" content="#ffffff">
+
+
+    <style>
+    body {
+background-color: #182830;
+color: white;
+margin: 0.75rem;
+} 
+.logo {
+display: block;
+text-align: center;
+max-width: 500px;
+margin: auto;
+border-radius: 16px; 
+}
+.center-img {
+display: block;
+text-align: center;
+max-width: 500px;
+margin: auto;
+}
+.whole {
+max-width: 700px;
+margin: auto;
+}
+.divider {
+max-width: 300px;
+display: block;
+margin: auto;
+}
+p {
+margin: auto;
+color: #fff;
+}
+h1, h2, h3, h4 {
+max-width: 900px;
+margin: auto;
+color: #F89060;
+}
+h4 { 
+padding: 0.5rem 0.5rem 0.5rem 0rem;
+}
+.likes-text {
+padding-top: 1rem;
+}
+h1, h2 {
+text-transform: uppercase;
+letter-spacing: 0.25rem;
+padding-bottom: 0.5rem;
+border-bottom: 1px solid white; 
+margin-bottom: 0.5rem; 
+}
+footer p {
+color: grey;
+text-align: center;
+}
+footer {
+padding: 1rem;
+}
+.currently {
+max-width: fit-content;
+margin: auto;
+padding: 1rem;
+overflow: hidden;
+}
+.center: {
+margin: auto;
+width: fit-content;
+}
+
+@media screen and (width <= 500px) {
+  .logo{
+    max-width: 75%;
+  }
+
+}
+a {
+color: #F89060;
+} 
+hi {
+width: 50℅;
+}
+
+/* Container for the ads */
+    .bp-ad-wrapper {
+        display: flex;
+        flex-direction: row;       /* Side by side by default */
+        justify-content: center;   /* Center them horizontally */
+        align-items: center;       /* Align them vertically */
+        gap: 20px;                 /* Space between the banners */
+        flex-wrap: wrap;           /* Allow wrapping if screen is tight */
+        width: 100%;
+        max-width: 600px;          /* Restrict max width to keep them neat */
+        margin: 20px auto;         /* Center the wrapper on page */
+    }
+
+    /* The iframe style */
+    .bp-ad-frame {
+        width: 250px;
+        height: 250px;
+        border: none;
+        overflow: hidden;
+        /* Optional: Add a shadow or rounded corners to the container if you like */
+        /* border-radius: 4px; */
+    }
+
+    /* Mobile Breakpoint: Force stack on small screens */
+    @media (max-width: 550px) {
+        .bp-ad-wrapper {
+            flex-direction: column; /* Stack vertically */
+        }
+    }
+
+
+ 
+    </style>
+    
+</head>
+<body>
+<div class="whole">
+    <header>
+        <nav>
+            </nav>
+    {{ $me := resources.Get "img/me-2.jpg" }}
+    {{ $me = $me.Resize "300x webp q50" }}
+    <img src="{{ $me.RelPermalink }}" alt="Sudip-selfie" class="logo"/>
+
+            <br>
+        <h1>Hi, I'm Sudip</h1>
+        
+    </header>
+
+    <main>
+        <section>
+        
+            <p>hey there! i'm Sudip. thanks for stopping by my little corner of the internet.
+
+i made this page because i wanted somewhere to put stuff about me and things i like. it's pretty simple, free from algorithm. i am so glad you are here. browse, enjoy or drop message</p>
+        </section>
+        <br>
+        	<section class="links" >
+        		<h1>Explore</h1>
+        		<p>
+        			<ul>
+        			<li><a href="https://blog.blackpiratex.com/">Writings (blog) </a></li>
+        			
+        			<li><a href="https://gallery.blackpiratex.com/">My Clicks (gallery) </a></li>
+        			<a href="https://notes.blackpiratex.com/">Books I have read</a>
+        			 			<li><a href="https://now.blackpiratex.com/">Microblog</a></li>
+        			 			<li><a href="https://blackpiratex.com/bookmarks/">my bookmarks</a></li>
+        			<a href=""></a>
+        			</ul>
+        			</p>
+        		</section>
+        		<br>
+
+<section class="gallery">
+<h1>My clicks</h1>
+<iframe 
+    src="https://gallery.blackpiratex.com/embed" 
+    title="Featured Gallery"
+    width="100%" 
+    height="400" 
+    style="border:none; overflow:hidden; border-radius: 12px;" 
+    allowtransparency="true"
+    loading="lazy">
+</iframe>
+</section>    
+<br> 
+                
+        <section>
+        <h1>about me </h1>
+        <p>who am i? I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. This is a website I made to put myself to the world. I have finished my Zoology graduation on 2025, now preparing for govt job exams. This website has been started around 2020, there are other websites that I have made previously which you can check under bookmarks. Building websites is my hobby, and I love ducks and cats. This website and its associated website is big, with lots of content. Browse as you may like, and if you think we have something common, don't forget to send me an email or drop a message on Signal or WhatsApp. I'd love to make friends.
+
+i spend a lot of time working with tech stuff but i also study, and sometimes when i have a chance i travel. good balance i guess?
+</p>
+</section>
+<br>
+
+<iframe 
+    src="https://guestbook.blackpiratex.com/widget.html" 
+    width="100%" 
+    height="60" 
+    style="border:none; max-width: 468px; display:block; margin: 0 auto;" 
+    title="Sudip's Guestbook Banner">
+</iframe>
+
+<br>
+
+	<section class="projects" >
+		<h1>My Projects </h1>
+<h3>Diary - Journal App</h3>
+<p>
+Full featured completely offline daily journal app. Open source and privacy respecting. 
+<a href="https://diary.sudipx.in">Visit here</a>
+</p>
+<br>
+<h3> Black Mood Tracker </h3>
+<p> A very simple and basic mood tracker, allows you to track your mood from 10 different levels. It has ability to choose activities.  Anyone can sign up annd start using. It also has an api, that can be used to show current mood. Uses tursodb and Vercel functions for backend. <a href="https://mood-tracker.blackpiratex.com">Visit here</a> <a href="https://github.com/blackpirateapps/mood-tracker.git
+"> Source</a></p> 
+<br>
+
+<h3>Book Tracker</h3>
+Minimal web app to track and display books that you have read. Uses tursodb and Vercel functions. Dashboard uses react, public page uses plain HTML and vanilla js. Features include: Currently reading tracker, Reading list, Highlights importer, Searching using openbooks api, start and end date, tags and reading medium. Made for private use only. <a href="https://notes.blackpiratex.com">Visit Here </a> <a href="https://github.com/blackpirateapps/book-tracker.git
+">Source</a>
+		</section>
+        <br>
+<section class="likes">
+<h1>what i like</h1>
+<div class="likes-section">	
+</div>
+<div class="likes-text">
+<div class="likes-header">
+<h4>Computer</h4>
+</div>
+<div class="likes-description">
+I like building stuff and learning how things work. coding is addicting, i only do it for fun. also really into other forms of electronics
+</div>
+
+
+
+
+<h4>Travelling</h4>
+
+Too little time but too much to explore. i love exploring new cities, meeting people, making friends from far-away places (thanks internet).
+
+
+
+
+<h4>Reading</h4>
+<div class="likes-description">
+i like reading story books. i do not have memories of cartoons from my childhood, its books and magazines. i have lost this habit, but fortunately i can say i am now getting it back. you can check out my book notes
+</div>
+
+
+
+
+
+
+<h4>Photography</h4>
+<div class="likes-description">
+still learning but i really enjoy it. mostly portraits and landscapes. trying to get better at capturing emotions and those eyes which tell a story.
+</div>
+</section>
+<br>
+
+	<section>
+    <h1>Currently</h1>
+			<div class="currently-txt">Im currently preparing for exams. Graduate in Zoology from Bankura Christian College. Now living in Midnapore. </div>
+			</section>
+			
+<br>
+<section>
+<h1>Contact</h1>
+<p>If you want to reach me quickly, email me at sudip (at) blackpiratex.com. I mostly use Whatsapp to chat. <a href="https://links.blackpiratex.com/wa">Chat with me on whatsapp</a></p>
+</section>
+
+<br>
+<section class="links">
+<a href="https://social.blackpiratex.com">Explore</a>
+</section>
+<br>
+    </main>
+
+    <footer>
+    
+    <iframe 
+    src="https://webring.blackpiratex.com/classic-banner.html" 
+    width="100%" 
+    height="100" 
+    frameborder="0" 
+    scrolling="no" 
+    style="border:none; overflow:hidden; max-width: 468px;">
+</iframe>
+    
+        <p>&copy; 2024 BlackPirateX</p>
+        <p>the website is made by hand </p>
+    </footer>
+<script defer src="https://umami-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    {{ partial "footer.html" . }} 
+    </div>  
+</body>
+</html>

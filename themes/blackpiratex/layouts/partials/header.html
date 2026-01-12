@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="{{ "css/micro.css" | relURL }}">
     
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <!-- Header Section -->
     <div id="header-container">
         <a href="{{ .Site.BaseURL }}" class="header-title">
             <i data-lucide="pen-tool" style="margin-right: 8px;"></i>
@@ -30,6 +27,10 @@
             <span class="nav-separator">|</span>
             <a class="nav-link" href="{{ "microblog" | relURL }}">
                 <i data-lucide="message-square" width="14"></i> Microblog
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="{{ "thoughts" | relURL }}">
+                <i data-lucide="brain-circuit" width="14"></i> Thoughts
             </a>
             <span class="nav-separator">|</span>
             <a class="nav-link" href="{{ "gallery" | relURL }}">
