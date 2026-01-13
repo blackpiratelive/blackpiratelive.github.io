@@ -9,9 +9,10 @@
     <div class="home-section" style="margin-top: 40px;">
         
         {{ $featured := where .Pages "Params.featured" true }}
+        
         {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
         
-        {{ $regular := where .Pages "Params.featured" ne true }}
+        {{ $regular := where .Pages "Params.featured" "ne" true }}
 
         {{ if gt (len $featuredSorted) 0 }}
         <div class="gallery-year-group">
