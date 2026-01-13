@@ -15,26 +15,27 @@
     {{ end }}
 {{ end }}
 
-{{/* Loop through JSON (using $i for fallback numbering) */}}
+{{/* Loop through JSON */}}
 {{ range $i, $item := $data }}
     
-    {{/* 1. Calculate Slug (Path) */}}
+    {{/* Fallback for Title/Slug */}}
     {{ $slug := $item.title | urlize }}
-    
-    {{/* 2. Safety Check: If slug is empty, create a fallback path */}}
     {{ if or (not $slug) (eq $slug "") }}
         {{ $slug = printf "image-%d" $i }}
     {{ end }}
 
+    {{/* Use the HTML description as the main page content */}}
     {{ $content := dict 
-        "mediaType" "text/markdown"
-        "value" "" 
+        "mediaType" "text/html"
+        "value" ($item.description | default "") 
     }}
     
+    {{/* Map Params directly from JSON */}}
     {{ $params := dict 
         "image" $item.image
         "album" $item.album
         "tags" $item.tags
+        "exif" $item.exif
     }}
 
     {{ $page := dict

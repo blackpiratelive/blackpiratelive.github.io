@@ -8,7 +8,7 @@
     <div class="gallery-single-container">
         
         <div class="gallery-hero-image">
-            <img src="{{ .Params.image.original }}" alt="{{ .Title }}">
+            <img src="{{ .Params.image.original.url }}" alt="{{ .Title }}">
         </div>
 
         <div class="gallery-single-content">
@@ -25,8 +25,66 @@
                 {{ end }}
             </div>
 
+            <div class="gallery-description">
+                {{ .Content }}
+            </div>
+
+            {{ if .Params.exif }}
+                {{ $exif := .Params.exif }}
+                {{ if or $exif.model $exif.iso }}
+                <div class="exif-box">
+                    <h3 class="exif-header">
+                        <i data-lucide="camera" width="16"></i> Shot Details
+                    </h3>
+                    <div class="exif-grid">
+                        {{ if $exif.model }}
+                        <div class="exif-item">
+                            <span class="exif-label">Camera</span>
+                            <span class="exif-value">{{ $exif.model }}</span>
+                        </div>
+                        {{ end }}
+                        
+                        {{ if $exif.focalLength }}
+                        <div class="exif-item">
+                            <span class="exif-label">Focal Length</span>
+                            <span class="exif-value">{{ $exif.focalLength }}</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.fstop }}
+                        <div class="exif-item">
+                            <span class="exif-label">Aperture</span>
+                            <span class="exif-value">ƒ/{{ $exif.fstop }}</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.shutter }}
+                        <div class="exif-item">
+                            <span class="exif-label">Shutter</span>
+                            <span class="exif-value">{{ $exif.shutter }}s</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.iso }}
+                        <div class="exif-item">
+                            <span class="exif-label">ISO</span>
+                            <span class="exif-value">{{ $exif.iso }}</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.time }}
+                        <div class="exif-item">
+                            <span class="exif-label">Time</span>
+                            <span class="exif-value">{{ $exif.time }}</span>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            {{ end }}
+
             <div class="gallery-actions">
-                <a href="{{ .Params.image.original }}" target="_blank" class="download-btn">
+                <a href="{{ .Params.image.original.url }}" target="_blank" class="download-btn">
                     <i data-lucide="download" width="14"></i> View Full Resolution
                 </a>
             </div>
