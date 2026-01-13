@@ -840,3 +840,55 @@ body {
         justify-content: center;
     }
 }
+
+
+/* --- Tag Directory Page --- */
+
+.tag-directory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.tag-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tag-card-header {
+    margin-bottom: 10px;
+    background: var(--highlight-yellow);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-card-title {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.tag-count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}

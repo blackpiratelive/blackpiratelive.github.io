@@ -1,0 +1,47 @@
+{{ partial "header.html" . }}
+
+<div id="app-root">
+
+    <div class="blog-hero">
+        <h1>Explore Topics</h1>
+        <p>Browse all articles by category and subject.</p>
+    </div>
+
+    <div class="blog-controls" style="justify-content: center;">
+        <div class="stats-pill">
+            <i data-lucide="tag" width="14"></i>
+            <span>{{ len .Data.Terms }} Topics Found</span>
+        </div>
+    </div>
+
+    <div class="home-section" style="margin-top: 40px;">
+        <div class="tag-directory-grid">
+            {{ range $name, $taxonomy := .Data.Terms }}
+            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" class="tag-card">
+                <div class="tag-card-header">
+                    <i data-lucide="hash" width="16" style="color:var(--primary-blue);"></i>
+                </div>
+                <h3 class="tag-card-title">{{ $name | title }}</h3>
+                <span class="tag-count">
+                    {{ $taxonomy.Count }} {{ if eq $taxonomy.Count 1 }}Post{{ else }}Posts{{ end }}
+                </span>
+            </a>
+            {{ end }}
+        </div>
+
+        {{ if eq (len .Data.Terms) 0 }}
+        <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
+            No tags found. Add tags to your markdown posts frontmatter.
+        </div>
+        {{ end }}
+    </div>
+
+</div>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+
+{{ partial "footer.html" . }}
