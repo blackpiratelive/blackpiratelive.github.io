@@ -1,4 +1,6 @@
 {{ define "main" }}
+
+{{ partial "header.html" . }}
 <h1>{{ .Title }}</h1>
 
 {{ range .Site.Sections }}
@@ -18,3 +20,5 @@
 {{ end }}
 
 {{ end }}
+
+{{- partial "footer.html" . -}}
