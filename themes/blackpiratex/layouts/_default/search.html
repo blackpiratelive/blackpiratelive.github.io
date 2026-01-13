@@ -1,0 +1,123 @@
+{{ partial "header.html" . }}
+
+<div id="app-root">
+    <div class="blog-hero">
+        <h1>Search</h1>
+        <p>Find articles, thoughts, and images.</p>
+    </div>
+
+    <div class="home-section" style="margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        
+        <div class="search-container">
+            <i data-lucide="search" class="search-icon-input"></i>
+            <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
+        </div>
+
+        <div id="search-results" class="search-results-list"></div>
+        
+        <div id="no-results" style="display:none; text-align: center; padding: 40px; color: #999;">
+            <p>No results found.</p>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+    let fuse; // Holds the Fuse instance
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+    const noResults = document.getElementById('no-results');
+
+    // 1. Fetch the Index
+    fetch('/index.json')
+        .then(response => response.json())
+        .then(data => {
+            // 2. Initialize Fuse
+            fuse = new Fuse(data, {
+                keys: [
+                    { name: 'title', weight: 0.7 },
+                    { name: 'content', weight: 0.3 },
+                    { name: 'section', weight: 0.2 }
+                ],
+                threshold: 0.4, // Lower = stricter, Higher = fuzzier
+                includeScore: true
+            });
+        })
+        .catch(err => console.error("Error loading search index:", err));
+
+    // 3. Handle Input
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        
+        resultsContainer.innerHTML = ''; // Clear previous
+        
+        if (query.length === 0) {
+            noResults.style.display = 'none';
+            return;
+        }
+
+        if (!fuse) return; // Index not ready yet
+
+        const results = fuse.search(query);
+
+        if (results.length === 0) {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+            results.forEach(result => {
+                const item = result.item;
+                const html = buildResultCard(item);
+                resultsContainer.insertAdjacentHTML('beforeend', html);
+            });
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+    });
+
+    // 4. Build Result HTML based on Section
+    function buildResultCard(item) {
+        let icon = 'file-text';
+        let sectionName = item.section;
+        let extra = '';
+
+        // Customize per section
+        if (item.section === 'gallery') {
+            icon = 'image';
+            if(item.image) {
+                extra = `<div class="result-thumb"><img src="${item.image}" loading="lazy"></div>`;
+            }
+        } else if (item.section === 'thoughts') {
+            icon = 'message-square';
+            sectionName = 'Microblog';
+        } else if (item.section === 'blog') {
+            icon = 'pen-tool';
+        }
+
+        // Format Date
+        const dateObj = new Date(item.date);
+        const dateStr = dateObj.toLocaleDateString("en-US", { month: 'short', day: 'numeric', year: 'numeric' });
+
+        return `
+        <a href="${item.permalink}" class="search-result-item">
+            ${extra}
+            <div class="result-content">
+                <div class="result-meta">
+                    <span class="result-badge"><i data-lucide="${icon}" width="12"></i> ${sectionName}</span>
+                    <span class="result-date">${dateStr}</span>
+                </div>
+                <h3 class="result-title">${item.title || 'Untitled'}</h3>
+                <p class="result-summary">${item.summary.substring(0, 120)}...</p>
+            </div>
+        </a>
+        `;
+    }
+</script>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+
+{{ partial "footer.html" . }}

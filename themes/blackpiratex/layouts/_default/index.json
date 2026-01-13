@@ -1,0 +1,22 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range .Site.RegularPages -}}
+    
+    {{- $image := "" -}}
+    {{- if .Params.image.thumbnail.url -}}
+        {{- $image = .Params.image.thumbnail.url -}}
+    {{- else if .Params.image.original.url -}}
+        {{- $image = .Params.image.original.url -}}
+    {{- end -}}
+
+    {{- $dict := dict 
+        "title" .Title 
+        "date" .Date 
+        "permalink" .Permalink 
+        "section" .Section 
+        "content" .Plain 
+        "summary" (.Summary | plainify) 
+        "image" $image
+    -}}
+    {{- $.Scratch.Add "index" $dict -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

@@ -1164,3 +1164,120 @@ body {
         column-count: 1;
     }
 }
+
+
+/* --- Search Page Styles --- */
+
+.search-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.search-icon-input {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    width: 20px;
+    height: 20px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 15px 15px 15px 45px; /* Left padding for icon */
+    font-size: 1.1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fff;
+    font-family: inherit;
+}
+
+#search-input:focus {
+    border-color: var(--primary-blue);
+}
+
+/* Results List */
+.search-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.search-result-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: var(--primary-blue);
+}
+
+/* Gallery Thumbnail in Search */
+.result-thumb {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.result-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.result-content {
+    flex-grow: 1;
+    min-width: 0; /* Prevents text overflow issues */
+}
+
+.result-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.result-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-hover);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: var(--text-main);
+}
+
+.result-title {
+    margin: 0 0 6px 0;
+    font-size: 1.1rem;
+    font-family: serif;
+    color: var(--primary-blue);
+}
+
+.result-summary {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
