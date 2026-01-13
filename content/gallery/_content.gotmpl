@@ -3,12 +3,16 @@
 {{ $url := "https://gallery.blackpiratex.com/index.json" }}
 {{ $data := slice }}
 
-{{/* Safe Fetch Logic */}}
+{{/* Step 1: Attempt fetch and capture result */}}
 {{ $result := try (resources.GetRemote $url) }}
+
+{{/* Step 2: Check result safely */}}
 {{ if $result.Err }}
     {{ warnf "Gallery Adapter Error: %s" $result.Err }}
-{{ else with $result.Value }}
-    {{ $data = . | transform.Unmarshal }}
+{{ else }}
+    {{ with $result.Value }}
+        {{ $data = . | transform.Unmarshal }}
+    {{ end }}
 {{ end }}
 
 {{/* Loop through JSON and create pages */}}
