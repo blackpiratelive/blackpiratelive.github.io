@@ -11,17 +11,8 @@
         </p>
     </div>
 
-    <div style="background:#ffe; border:1px solid #ebccd1; color:#a94442; padding:10px; font-size:12px; margin-bottom:20px;">
-        <strong>DEBUG INFO:</strong><br>
-        Found {{ len .Pages }} total pages for this tag.<br>
-        Sections found: 
-        {{ range .Pages }}
-            [<strong>{{ .Section }}</strong>] 
-        {{ end }}
-    </div>
-
-    {{ $blogPosts := where .Pages "Section" "in" (slice "blog" "blogs") }}
-    {{ $microPosts := where .Pages "Section" "in" (slice "thoughts" "microblog") }}
+    {{ $blogPosts := where .Pages "Section" "blog" }}
+    {{ $microPosts := where .Pages "Section" "thoughts" }}
 
     {{ if gt (len $blogPosts) 0 }}
     <div class="home-section" style="margin-top: 50px;">
