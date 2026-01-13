@@ -11,8 +11,17 @@
         </p>
     </div>
 
-    {{ $blogPosts := where .Pages "Section" "blogs" }}
-    {{ $microPosts := where .Pages "Section" "thoughts" }}
+    <div style="background:#ffe; border:1px solid #ebccd1; color:#a94442; padding:10px; font-size:12px; margin-bottom:20px;">
+        <strong>DEBUG INFO:</strong><br>
+        Found {{ len .Pages }} total pages for this tag.<br>
+        Sections found: 
+        {{ range .Pages }}
+            [<strong>{{ .Section }}</strong>] 
+        {{ end }}
+    </div>
+
+    {{ $blogPosts := where .Pages "Section" "in" (slice "blog" "blogs") }}
+    {{ $microPosts := where .Pages "Section" "in" (slice "thoughts" "microblog") }}
 
     {{ if gt (len $blogPosts) 0 }}
     <div class="home-section" style="margin-top: 50px;">
@@ -24,7 +33,6 @@
             {{ range $blogPosts }}
             <a href="{{ .RelPermalink }}" class="blog-list-item">
                 <h3 class="blog-item-title">{{ .Title }}</h3>
-                
                 <div class="blog-item-meta">
                     <span class="meta-pill">
                         <i data-lucide="calendar" width="12"></i> {{ .Date.Format "Jan 02, 2006" }}
@@ -33,11 +41,9 @@
                         <i data-lucide="clock" width="12"></i> {{ .ReadingTime }} min read
                     </span>
                 </div>
-
                 <p class="blog-item-summary">
                     {{ .Summary | plainify | truncate 180 }}
                 </p>
-                
                 <div style="margin-top: 8px; font-size: 13px; font-weight: bold; color: var(--primary-blue); display: flex; align-items: center; gap: 4px;">
                     Read Article <i data-lucide="arrow-right" width="12"></i>
                 </div>
@@ -57,17 +63,14 @@
             {{ range $microPosts }}
             <div class="micro-item">
                 <div class="micro-dot"></div>
-
                 <div class="micro-header">
                     <span>{{ .Date.Format "Jan 02, 2006" }}</span>
                     <span>•</span>
                     <a href="{{ .Permalink }}" class="micro-permalink-icon"><i data-lucide="link" width="12"></i></a>
                 </div>
-
                 {{ if .Title }}
                 <h4 style="margin: 5px 0; font-size: 1rem;">{{ .Title }}</h4>
                 {{ end }}
-
                 <div class="micro-content">
                     {{ .Content }}
                 </div>
