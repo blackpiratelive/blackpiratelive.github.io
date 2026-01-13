@@ -962,4 +962,112 @@ body {
     }
 }
 
+/* --- Remote Gallery Styles --- */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.gallery-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-color: var(--primary-blue);
+}
+
+/* Image Area */
+.gallery-img-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Fixed height for uniformity */
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.gallery-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.gallery-card:hover .gallery-img-container img {
+    transform: scale(1.05);
+}
+
+/* Hover Overlay (Zoom Icon) */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.gallery-card:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* Card Content */
+.gallery-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.gallery-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.gallery-title {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-family: serif;
+    line-height: 1.3;
+}
+
+.gallery-card:hover .gallery-title {
+    color: var(--primary-blue);
+}
+
+.gallery-tags {
+    margin-top: auto; /* Pushes tags to bottom */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.gallery-tag {
+    font-size: 0.7rem;
+    background: var(--bg-hover);
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--text-muted);
+}
+
 
