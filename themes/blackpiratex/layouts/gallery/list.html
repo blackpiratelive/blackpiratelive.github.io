@@ -10,6 +10,7 @@
         
         {{ $featured := where .Pages "Params.featured" true }}
         {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
+        
         {{ $regular := where .Pages "Params.featured" ne true }}
 
         {{ if gt (len $featuredSorted) 0 }}

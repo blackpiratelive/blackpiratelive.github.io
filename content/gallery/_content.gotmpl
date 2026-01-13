@@ -15,7 +15,6 @@
     {{ end }}
 {{ end }}
 
-{{/* Loop through JSON */}}
 {{ range $i, $item := $data }}
     
     {{/* Fallback for Title/Slug */}}
@@ -24,7 +23,7 @@
         {{ $slug = printf "image-%d" $i }}
     {{ end }}
 
-    {{/* DATE FIX: Use time.AsTime with a fallback to 'now' if missing */}}
+    {{/* DATE FIX: Use time.AsTime for ISO dates (like 2025-08-14T...) */}}
     {{ $dateObj := now }}
     {{ if $item.date }}
         {{ $dateObj = time.AsTime $item.date }}
@@ -35,12 +34,14 @@
         "value" ($item.description | default "") 
     }}
     
-    {{/* Map Params directly from JSON */}}
+    {{/* ADDED: 'featured' and 'weight' so list.html can use them */}}
     {{ $params := dict 
         "image" $item.image
         "album" $item.album
         "tags" $item.tags
         "exif" $item.exif
+        "featured" $item.featured
+        "weight" $item.weight
     }}
 
     {{ $page := dict
