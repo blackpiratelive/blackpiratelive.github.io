@@ -7,52 +7,60 @@
         <h1 style="margin-top:0;">#{{ .Title }}</h1>
         <p>
             <i data-lucide="layers" width="14" style="vertical-align: middle;"></i> 
-            {{ len .Data.Pages }} items found
+            {{ len .Pages }} items found
         </p>
     </div>
 
-    <div class="micro-feed" style="margin-top: 40px;">
+    {{ $blogPosts := where .Pages "Section" "blogs" }}
+    {{ $microPosts := where .Pages "Section" "thoughts" }}
+
+    {{ if gt (len $blogPosts) 0 }}
+    <div class="home-section" style="margin-top: 50px;">
+        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+            <i data-lucide="pen-tool" width="20"></i> Blog Posts
+        </h2>
         
-        {{ $paginator := .Paginate .Pages }}
-        {{ range $paginator.Pages }}
-
-            {{ if eq .Section "blogs" }}
-            
-            <div class="micro-item">
-                <div class="micro-dot" style="background: #fff; border: 2px solid var(--primary-blue); width: 14px; height: 14px; left: -29px; top: 0px; display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 6px; height: 6px; background: var(--primary-blue); border-radius: 50%;"></div>
-                </div>
-
-                <div style="margin-bottom: 40px;">
-                    <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;">
-                        Blog Post • {{ .Date.Format "Jan 02" }}
+        <div class="blog-list">
+            {{ range $blogPosts }}
+            <a href="{{ .RelPermalink }}" class="blog-list-item">
+                <h3 class="blog-item-title">{{ .Title }}</h3>
+                
+                <div class="blog-item-meta">
+                    <span class="meta-pill">
+                        <i data-lucide="calendar" width="12"></i> {{ .Date.Format "Jan 02, 2006" }}
                     </span>
-                    
-                    <a href="{{ .RelPermalink }}" style="text-decoration: none;">
-                        <h2 style="margin: 5px 0 10px 0; font-family: serif; color: var(--primary-blue); font-size: 1.5rem;">
-                            {{ .Title }}
-                        </h2>
-                    </a>
-
-                    <p style="font-size: 0.95rem; color: #444; line-height: 1.6; margin-bottom: 10px;">
-                        {{ .Summary | plainify | truncate 180 }}
-                    </p>
-
-                    <a href="{{ .RelPermalink }}" style="font-size: 13px; font-weight: bold; color: var(--primary-blue); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-                        Read Article <i data-lucide="arrow-right" width="12"></i>
-                    </a>
+                    <span class="meta-pill">
+                        <i data-lucide="clock" width="12"></i> {{ .ReadingTime }} min read
+                    </span>
                 </div>
-            </div>
 
-            {{ else if eq .Section "thoughts" }}
+                <p class="blog-item-summary">
+                    {{ .Summary | plainify | truncate 180 }}
+                </p>
+                
+                <div style="margin-top: 8px; font-size: 13px; font-weight: bold; color: var(--primary-blue); display: flex; align-items: center; gap: 4px;">
+                    Read Article <i data-lucide="arrow-right" width="12"></i>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
 
+    {{ if gt (len $microPosts) 0 }}
+    <div class="home-section" style="margin-top: 50px;">
+        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+            <i data-lucide="message-square" width="20"></i> Microblog Posts
+        </h2>
+
+        <div class="micro-feed">
+            {{ range $microPosts }}
             <div class="micro-item">
                 <div class="micro-dot"></div>
 
                 <div class="micro-header">
                     <span>{{ .Date.Format "Jan 02, 2006" }}</span>
                     <span>•</span>
-                    <span>{{ .ReadingTime }} min read</span>
                     <a href="{{ .Permalink }}" class="micro-permalink-icon"><i data-lucide="link" width="12"></i></a>
                 </div>
 
@@ -64,28 +72,8 @@
                     {{ .Content }}
                 </div>
             </div>
-
-            {{ else }}
-            
-            <div class="micro-item">
-                <div class="micro-dot" style="background: #ccc; border-color: #fff;"></div>
-                <div class="micro-header">
-                    <span>{{ .Section | title }}</span> • <span>{{ .Date.Format "Jan 02" }}</span>
-                </div>
-                <a href="{{ .Permalink }}" style="font-weight: bold; color: var(--text-main);">{{ .Title }}</a>
-            </div>
-
             {{ end }}
-        
-        {{ end }}
-
-    </div>
-
-    {{ if gt $paginator.TotalPages 1 }}
-    <div class="pagination">
-        {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="page-link">← Newer</a>{{ end }}
-        <span>Page {{ $paginator.PageNumber }}</span>
-        {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="page-link">Older →</a>{{ end }}
+        </div>
     </div>
     {{ end }}
 
