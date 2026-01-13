@@ -1,6 +1,7 @@
 ---
 title: "Credits"
 date: 2022-08-20T16:19:40+05:30
+layout: "page"
 ---
 - Thanks Ornella for reporting grammertical and spelling mistakes.
 - ~~Few gifs on the footer were taken from https://lime360.neocities.org and the rest were taken from yesterweb discord server.~~

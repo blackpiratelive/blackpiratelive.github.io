@@ -1,6 +1,7 @@
 ---
 title: "About"
 date: 2022-08-19T16:24:22+05:30
+layout: "page"
 ---
 {{< box >}}
 Hey, stranger on the internet. Hope you're doing well. I'm Sudip. This is a personal place for me on the internet. This is a also a place for me to experiment all the new things I learn about web developmet.

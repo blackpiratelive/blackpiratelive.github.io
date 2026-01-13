@@ -1,6 +1,7 @@
 ---
 title: "Bookmarks"
 date: 2022-08-20T15:55:55+05:30
+layout: "page"
 ---
 Here are some links that I find are cool.
 ## Websites that I have made:

@@ -1,6 +1,7 @@
 ---
 title: "now"
 date: 2022-08-19T16:24:22+05:30
+layout: "page"
 ---
 
 ## what i am doing

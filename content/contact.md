@@ -1,6 +1,7 @@
 ---
 title: "Contact"
 date: 2022-08-19T16:45:52+05:30
+layout: "page"
 ---
 {{< box-start >}}
 If you want to reach me quickly,  email me at **sudip (at) blackpiratex.com** this is best option. I would appreciate it if you do not send spam.
