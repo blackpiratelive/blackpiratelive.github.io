@@ -8,17 +8,16 @@
     </div>
 
     {{ $url := "https://gallery.blackpiratex.com/index.json" }}
-    
     {{ $data := slice }}
 
-    {{ with try (resources.GetRemote $url) }}
-        {{ if .Err }}
-            {{ warnf "Unable to fetch gallery JSON: %s" .Err }}
-        {{ else with .Value }}
+    {{ $result := try (resources.GetRemote $url) }}
+
+    {{ if $result.Err }}
+        {{ warnf "Unable to fetch gallery JSON: %s" $result.Err }}
+    {{ else }}
+        {{ with $result.Value }}
             {{ $data = . | transform.Unmarshal }}
         {{ end }}
-    {{ else }}
-        {{ warnf "Unable to attempt fetch for gallery JSON" }}
     {{ end }}
 
     <div class="home-section" style="margin-top: 40px;">
