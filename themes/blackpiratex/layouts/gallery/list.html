@@ -1,38 +1,53 @@
-{{ partial "header.html" . }}
+{{/* content/gallery/_content.gotmpl */}}
 
-<div id="app-root">
-    <div class="blog-hero">
-        <h1>Visuals</h1>
-        <p>Snapshots, sketches, and moments frozen in time.</p>
-    </div>
+{{ $url := "https://gallery.blackpiratex.com/index.json" }}
+{{ $data := slice }}
 
-    <div class="home-section" style="margin-top: 40px;">
-        
-        {{ range .Pages.GroupByDate "2006" }}
-        
-        <div class="gallery-year-group">
-            <h2 class="year-sticky-header">{{ .Key }}</h2>
-            
-            <div class="masonry-grid">
-                {{ range .Pages }}
-                <a href="{{ .RelPermalink }}" class="masonry-item">
-                    {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
-                    <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
-                    <div class="masonry-overlay">
-                        <i data-lucide="eye" width="24" color="#fff"></i>
-                    </div>
-                </a>
-                {{ end }}
-            </div>
-        </div>
-        
-        {{ end }}
+{{/* Step 1: Attempt fetch */}}
+{{ $result := try (resources.GetRemote $url) }}
 
-    </div>
-</div>
+{{/* Step 2: Check result */}}
+{{ if $result.Err }}
+    {{ warnf "Gallery Adapter Error: %s" $result.Err }}
+{{ else }}
+    {{ with $result.Value }}
+        {{ $data = . | transform.Unmarshal }}
+    {{ end }}
+{{ end }}
 
-<script>
-    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
-</script>
+{{/* Loop through JSON */}}
+{{ range $i, $item := $data }}
+    
+    {{/* Fallback for Title/Slug */}}
+    {{ $slug := $item.title | urlize }}
+    {{ if or (not $slug) (eq $slug "") }}
+        {{ $slug = printf "image-%d" $i }}
+    {{ end }}
 
-{{ partial "footer.html" . }}
+    {{/* DATE FIX: Explicitly parse "2006-01-02" format */}}
+    {{ $dateObj := time.Parse "2006-01-02" $item.date }}
+
+    {{ $content := dict 
+        "mediaType" "text/html"
+        "value" ($item.description | default "") 
+    }}
+    
+    {{/* Map Params directly from JSON */}}
+    {{ $params := dict 
+        "image" $item.image
+        "album" $item.album
+        "tags" $item.tags
+        "exif" $item.exif
+    }}
+
+    {{ $page := dict
+        "kind" "page"
+        "path" $slug 
+        "title" ($item.title | default (printf "Gallery Image %d" $i))
+        "date" $dateObj
+        "params" $params
+        "content" $content
+    }}
+
+    {{ $.AddPage $page }}
+{{ end }}
