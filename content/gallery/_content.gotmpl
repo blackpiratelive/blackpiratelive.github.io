@@ -3,10 +3,10 @@
 {{ $url := "https://gallery.blackpiratex.com/index.json" }}
 {{ $data := slice }}
 
-{{/* Step 1: Attempt fetch and capture result */}}
+{{/* Step 1: Attempt fetch */}}
 {{ $result := try (resources.GetRemote $url) }}
 
-{{/* Step 2: Check result safely */}}
+{{/* Step 2: Check result */}}
 {{ if $result.Err }}
     {{ warnf "Gallery Adapter Error: %s" $result.Err }}
 {{ else }}
@@ -15,8 +15,17 @@
     {{ end }}
 {{ end }}
 
-{{/* Loop through JSON and create pages */}}
-{{ range $item := $data }}
+{{/* Loop through JSON (using $i for fallback numbering) */}}
+{{ range $i, $item := $data }}
+    
+    {{/* 1. Calculate Slug (Path) */}}
+    {{ $slug := $item.title | urlize }}
+    
+    {{/* 2. Safety Check: If slug is empty, create a fallback path */}}
+    {{ if or (not $slug) (eq $slug "") }}
+        {{ $slug = printf "image-%d" $i }}
+    {{ end }}
+
     {{ $content := dict 
         "mediaType" "text/markdown"
         "value" "" 
@@ -30,8 +39,8 @@
 
     {{ $page := dict
         "kind" "page"
-        "path" ($item.title | urlize) 
-        "title" $item.title
+        "path" $slug 
+        "title" ($item.title | default (printf "Gallery Image %d" $i))
         "date" (time.AsTime $item.date)
         "params" $params
         "content" $content
