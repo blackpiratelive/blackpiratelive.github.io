@@ -3,38 +3,91 @@
 <div id="app-root">
 
     <div class="blog-hero">
-        <h1>Explore Topics</h1>
-        <p>Browse all articles by category and subject.</p>
+        <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: #999; margin-bottom: 5px;">Topic</p>
+        <h1 style="margin-top:0;">#{{ .Title }}</h1>
+        <p>
+            <i data-lucide="layers" width="14" style="vertical-align: middle;"></i> 
+            {{ len .Data.Pages }} items found
+        </p>
     </div>
 
-    <div class="blog-controls" style="justify-content: center;">
-        <div class="stats-pill">
-            <i data-lucide="tag" width="14"></i>
-            <span>{{ len .Data.Terms }} Topics Found</span>
-        </div>
-    </div>
+    <div class="micro-feed" style="margin-top: 40px;">
+        
+        {{ $paginator := .Paginate .Pages }}
+        {{ range $paginator.Pages }}
 
-    <div class="home-section" style="margin-top: 40px;">
-        <div class="tag-directory-grid">
-            {{ range $name, $taxonomy := .Data.Terms }}
-            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" class="tag-card">
-                <div class="tag-card-header">
-                    <i data-lucide="hash" width="16" style="color:var(--primary-blue);"></i>
+            {{ if eq .Section "blogs" }}
+            
+            <div class="micro-item">
+                <div class="micro-dot" style="background: #fff; border: 2px solid var(--primary-blue); width: 14px; height: 14px; left: -29px; top: 0px; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 6px; height: 6px; background: var(--primary-blue); border-radius: 50%;"></div>
                 </div>
-                <h3 class="tag-card-title">{{ $name | title }}</h3>
-                <span class="tag-count">
-                    {{ $taxonomy.Count }} {{ if eq $taxonomy.Count 1 }}Post{{ else }}Posts{{ end }}
-                </span>
-            </a>
-            {{ end }}
-        </div>
 
-        {{ if eq (len .Data.Terms) 0 }}
-        <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
-            No tags found. Add tags to your markdown posts frontmatter.
-        </div>
+                <div style="margin-bottom: 40px;">
+                    <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;">
+                        Blog Post • {{ .Date.Format "Jan 02" }}
+                    </span>
+                    
+                    <a href="{{ .RelPermalink }}" style="text-decoration: none;">
+                        <h2 style="margin: 5px 0 10px 0; font-family: serif; color: var(--primary-blue); font-size: 1.5rem;">
+                            {{ .Title }}
+                        </h2>
+                    </a>
+
+                    <p style="font-size: 0.95rem; color: #444; line-height: 1.6; margin-bottom: 10px;">
+                        {{ .Summary | plainify | truncate 180 }}
+                    </p>
+
+                    <a href="{{ .RelPermalink }}" style="font-size: 13px; font-weight: bold; color: var(--primary-blue); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                        Read Article <i data-lucide="arrow-right" width="12"></i>
+                    </a>
+                </div>
+            </div>
+
+            {{ else if eq .Section "thoughts" }}
+
+            <div class="micro-item">
+                <div class="micro-dot"></div>
+
+                <div class="micro-header">
+                    <span>{{ .Date.Format "Jan 02, 2006" }}</span>
+                    <span>•</span>
+                    <span>{{ .ReadingTime }} min read</span>
+                    <a href="{{ .Permalink }}" class="micro-permalink-icon"><i data-lucide="link" width="12"></i></a>
+                </div>
+
+                {{ if .Title }}
+                <h4 style="margin: 5px 0; font-size: 1rem;">{{ .Title }}</h4>
+                {{ end }}
+
+                <div class="micro-content">
+                    {{ .Content }}
+                </div>
+            </div>
+
+            {{ else }}
+            
+            <div class="micro-item">
+                <div class="micro-dot" style="background: #ccc; border-color: #fff;"></div>
+                <div class="micro-header">
+                    <span>{{ .Section | title }}</span> • <span>{{ .Date.Format "Jan 02" }}</span>
+                </div>
+                <a href="{{ .Permalink }}" style="font-weight: bold; color: var(--text-main);">{{ .Title }}</a>
+            </div>
+
+            {{ end }}
+        
         {{ end }}
+
     </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <div class="pagination">
+        {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="page-link">← Newer</a>{{ end }}
+        <span>Page {{ $paginator.PageNumber }}</span>
+        {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="page-link">Older →</a>{{ end }}
+    </div>
+    {{ end }}
 
 </div>
 
