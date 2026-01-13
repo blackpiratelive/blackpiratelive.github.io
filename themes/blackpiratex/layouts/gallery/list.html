@@ -8,7 +8,17 @@
     </div>
 
     {{ $url := "https://gallery.blackpiratex.com/index.json" }}
-    {{ $data := getJSON $url }}
+    {{ $response := resources.GetRemote $url }}
+    
+    {{ $data := slice }}
+
+    {{ with $response }}
+        {{ if .Err }}
+            {{ warnf "Unable to fetch gallery JSON: %s" .Err }}
+        {{ else }}
+            {{ $data = . | transform.Unmarshal }}
+        {{ end }}
+    {{ end }}
 
     <div class="home-section" style="margin-top: 40px;">
         
@@ -49,7 +59,7 @@
 
         {{ if eq (len $data) 0 }}
         <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
-            No images found in the remote feed.
+            No images found (or unable to fetch remote gallery).
         </div>
         {{ end }}
 
