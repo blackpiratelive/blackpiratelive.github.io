@@ -1,25 +1,61 @@
-
 {{ partial "header.html" . }}
-<h1>{{ .Title }}</h1>
 
-{{ range .Site.Sections }}
-  <section>
-    <h2>
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
+<div id="app-root">
 
-    <ul>
-      {{ range .Pages }}
-        <li>
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </li>
-      {{ end }}
-    </ul>
-  </section>
-{{ end }}
+    <div class="blog-hero">
+        <h1>Sitemap</h1>
+        <p>An overview of all pages and content on this site.</p>
+    </div>
 
-{{ end }}
+    <div class="home-section" style="max-width: 700px; margin: 40px auto;">
+        
+        {{ range .Site.RegularPages.GroupBy "Section" }}
+        <div class="sitemap-group">
+            
+            <h2 class="sitemap-heading">
+                <i data-lucide="folder-open" width="20"></i>
+                {{ if eq .Key "" }}
+                    General Pages
+                {{ else }}
+                    {{ .Key | humanize | title }}
+                {{ end }}
+            </h2>
 
-{{- partial "footer.html" . -}}
-</body>
-</html>
+            <ul class="sitemap-list">
+                {{ range .Pages }}
+                <li>
+                    <a href="{{ .Permalink }}" class="sitemap-link">
+                        <span class="sitemap-title">{{ .Title }}</span>
+                        {{ if not .Date.IsZero }}
+                        <span class="sitemap-date">{{ .Date.Format "Jan 02, 2006" }}</span>
+                        {{ end }}
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+
+        <div class="sitemap-group">
+            <h2 class="sitemap-heading">
+                <i data-lucide="tag" width="20"></i> Taxonomies
+            </h2>
+            <ul class="sitemap-list">
+                <li>
+                    <a href="{{ "tags" | absURL }}" class="sitemap-link">
+                        <span class="sitemap-title">Browse by Topics (Tags)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+
+{{ partial "footer.html" . }}
