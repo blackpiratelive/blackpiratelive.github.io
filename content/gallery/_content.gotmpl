@@ -24,9 +24,6 @@
         {{ $slug = printf "image-%d" $i }}
     {{ end }}
 
-    {{/* DATE FIX: Explicitly parse "2006-01-02" format */}}
-    {{ $dateObj := time.Parse "2006-01-02" $item.date }}
-
     {{ $content := dict 
         "mediaType" "text/html"
         "value" ($item.description | default "") 
@@ -44,7 +41,7 @@
         "kind" "page"
         "path" $slug 
         "title" ($item.title | default (printf "Gallery Image %d" $i))
-        "date" $dateObj
+        "date" (time.AsTime $item.date)
         "params" $params
         "content" $content
     }}
