@@ -1,0 +1,37 @@
+{{/* content/gallery/_content.gotmpl */}}
+
+{{ $url := "https://gallery.blackpiratex.com/index.json" }}
+{{ $data := slice }}
+
+{{/* Safe Fetch Logic */}}
+{{ $result := try (resources.GetRemote $url) }}
+{{ if $result.Err }}
+    {{ warnf "Gallery Adapter Error: %s" $result.Err }}
+{{ else with $result.Value }}
+    {{ $data = . | transform.Unmarshal }}
+{{ end }}
+
+{{/* Loop through JSON and create pages */}}
+{{ range $item := $data }}
+    {{ $content := dict 
+        "mediaType" "text/markdown"
+        "value" "" 
+    }}
+    
+    {{ $params := dict 
+        "image" $item.image
+        "album" $item.album
+        "tags" $item.tags
+    }}
+
+    {{ $page := dict
+        "kind" "page"
+        "path" ($item.title | urlize) 
+        "title" $item.title
+        "date" (time.AsTime $item.date)
+        "params" $params
+        "content" $content
+    }}
+
+    {{ $.AddPage $page }}
+{{ end }}

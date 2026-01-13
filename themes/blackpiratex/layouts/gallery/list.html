@@ -1,53 +1,30 @@
 {{ partial "header.html" . }}
 
 <div id="app-root">
-
     <div class="blog-hero">
         <h1>Visuals</h1>
         <p>Snapshots, sketches, and moments frozen in time.</p>
     </div>
 
-    {{ $url := "https://gallery.blackpiratex.com/index.json" }}
-    {{ $data := slice }}
-
-    {{ $result := try (resources.GetRemote $url) }}
-
-    {{ if $result.Err }}
-        {{ warnf "Unable to fetch gallery JSON: %s" $result.Err }}
-    {{ else }}
-        {{ with $result.Value }}
-            {{ $data = . | transform.Unmarshal }}
-        {{ end }}
-    {{ end }}
-
     <div class="home-section" style="margin-top: 40px;">
-        
         <div class="gallery-grid">
-            {{ range $data }}
-            <a href="{{ .image.original }}" target="_blank" class="gallery-card">
-                
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="gallery-card">
                 <div class="gallery-img-container">
-                    {{ $imgSrc := .image.thumbnail | default .image.original }}
-                    <img src="{{ $imgSrc }}" alt="{{ .title }}" loading="lazy">
-                    
+                    {{ $imgSrc := .Params.image.thumbnail | default .Params.image.original }}
+                    <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
                     <div class="gallery-overlay">
-                        <i data-lucide="maximize-2" width="24" color="#fff"></i>
+                        <i data-lucide="eye" width="24" color="#fff"></i>
                     </div>
                 </div>
-
                 <div class="gallery-content">
                     <div class="gallery-meta">
-                        <span>{{ .date }}</span>
-                        {{ if .album }}
-                        <span>• {{ .album }}</span>
-                        {{ end }}
+                        <span>{{ .Date.Format "Jan 02, 2006" }}</span>
                     </div>
-                    
-                    <h3 class="gallery-title">{{ .title }}</h3>
-
-                    {{ if .tags }}
+                    <h3 class="gallery-title">{{ .Title }}</h3>
+                    {{ if .Params.tags }}
                     <div class="gallery-tags">
-                        {{ range .tags }}
+                        {{ range .Params.tags }}
                         <span class="gallery-tag">#{{ . }}</span>
                         {{ end }}
                     </div>
@@ -56,20 +33,11 @@
             </a>
             {{ end }}
         </div>
-
-        {{ if eq (len $data) 0 }}
-        <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
-            No images found (or unable to fetch remote gallery).
-        </div>
-        {{ end }}
-
     </div>
 </div>
 
 <script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
 </script>
 
 {{ partial "footer.html" . }}

@@ -1069,5 +1069,82 @@ body {
     border-radius: 4px;
     color: var(--text-muted);
 }
+/* --- Single Gallery Page Styles --- */
+
+.gallery-single-container {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.gallery-hero-image {
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.gallery-hero-image img {
+    max-width: 100%;
+    max-height: 80vh; /* Don't make it too tall on desktop */
+    display: block;
+    object-fit: contain;
+}
+
+.gallery-single-content {
+    padding: 30px;
+}
+
+.gallery-single-title {
+    margin: 0 0 15px 0;
+    font-size: 2rem;
+    color: var(--primary-blue);
+    font-family: serif;
+}
+
+.gallery-single-meta {
+    display: flex;
+    gap: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #eee;
+}
+
+.gallery-actions {
+    margin-bottom: 25px;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-hover);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.download-btn:hover {
+    background-color: var(--primary-blue);
+    color: #fff;
+    border-color: var(--primary-blue);
+}
+
+.gallery-tags-large {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 
 

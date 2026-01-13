@@ -1,0 +1,49 @@
+{{ partial "header.html" . }}
+
+<div id="app-root">
+    <a href="/gallery/" class="back-btn">
+        <i data-lucide="arrow-left" width="16"></i> Back to Gallery
+    </a>
+
+    <div class="gallery-single-container">
+        
+        <div class="gallery-hero-image">
+            <img src="{{ .Params.image.original }}" alt="{{ .Title }}">
+        </div>
+
+        <div class="gallery-single-content">
+            <h1 class="gallery-single-title">{{ .Title }}</h1>
+            
+            <div class="gallery-single-meta">
+                <span class="meta-item">
+                    <i data-lucide="calendar" width="14"></i> {{ .Date.Format "January 02, 2006" }}
+                </span>
+                {{ if .Params.album }}
+                <span class="meta-item">
+                    <i data-lucide="folder" width="14"></i> {{ .Params.album }}
+                </span>
+                {{ end }}
+            </div>
+
+            <div class="gallery-actions">
+                <a href="{{ .Params.image.original }}" target="_blank" class="download-btn">
+                    <i data-lucide="download" width="14"></i> View Full Resolution
+                </a>
+            </div>
+
+            {{ if .Params.tags }}
+            <div class="gallery-tags-large">
+                {{ range .Params.tags }}
+                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-badge">{{ . }}</a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+<script>
+    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+</script>
+
+{{ partial "footer.html" . }}
