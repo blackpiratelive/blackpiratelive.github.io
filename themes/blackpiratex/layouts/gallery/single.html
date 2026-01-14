@@ -1,297 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }} | {{ .Site.Title }}</title>
-    
-    <link rel="stylesheet" href="/css/micro.css">
-    
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="{{ .Title }}">
-    <meta property="og:type" content="article">
-    <meta property="og:image" content="{{ .Params.image }}">
-    <meta property="og:description" content="{{ .Summary | default .Title }}">
-    <meta property="og:url" content="{{ .Permalink }}">
-    
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        /* Mobile-specific improvements */
-        @media (max-width: 768px) {
-            .gallery-hero-image img {
-                max-height: 60vh;
-            }
-            .gallery-single-content {
-                padding: 20px;
-            }
-            .exif-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Smooth image loading */
-        .gallery-hero-image img {
-            opacity: 0;
-            transition: opacity 0.3s ease-in;
-        }
-        .gallery-hero-image img.loaded {
-            opacity: 1;
-        }
-        
-        /* Navigation arrows */
-        .gallery-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px dashed #ccc;
-            gap: 10px;
-        }
-        .gallery-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--primary-blue);
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            transition: all 0.2s;
-            font-size: 14px;
-            flex: 1;
-            max-width: 45%;
-        }
-        .gallery-nav-item:hover {
-            background: var(--bg-hover);
-            border-color: var(--primary-blue);
-        }
-        .gallery-nav-item.next {
-            justify-content: flex-end;
-            text-align: right;
-        }
-        
-        @media (max-width: 600px) {
-            .gallery-nav {
-                flex-direction: column;
-            }
-            .gallery-nav-item {
-                max-width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
+{{ partial "header.html" . }}
 
-    <!-- Header -->
-    <div id="header-container">
-        <a href="{{ .Site.BaseURL }}" class="header-title">
-            <i data-lucide="pen-tool" style="margin-right: 8px;"></i>
-            {{ .Site.Title }}
-        </a>
-        <div class="header-subtitle">
-            {{ .Site.Params.subtitle }}
+<div id="app-root">
+    <a href="/gallery/" class="back-btn">
+        <i data-lucide="arrow-left" width="16"></i> Back to Gallery
+    </a>
+
+    <div class="gallery-single-container">
+        
+        <div class="gallery-hero-image">
+            <img src="{{ .Params.image.original.url }}" alt="{{ .Title }}">
         </div>
 
-        <nav class="nav-bar">
-            <a class="nav-link" href="/">
-                <i data-lucide="layout-dashboard" width="14"></i> Home
-            </a>
-            <span class="nav-separator">|</span>
-            <a class="nav-link" href="/blog">
-                <i data-lucide="book-open" width="14"></i> Blog
-            </a>
-            <span class="nav-separator">|</span>
-            <a class="nav-link" href="/thoughts">
-                <i data-lucide="brain-circuit" width="14"></i> Thoughts
-            </a>
-            <span class="nav-separator">|</span>
-            <a class="nav-link" href="/gallery">
-                <i data-lucide="image" width="14"></i> Gallery
-            </a>
-            <span class="nav-separator">|</span>
-            <a class="nav-link" href="/stats">
-                <i data-lucide="trending-up" width="14"></i> Stats
-            </a>
-        </nav>
-    </div>
-
-    <!-- Main Content -->
-    <div id="app-root">
-        <a href="/gallery/" class="back-btn">
-            <i data-lucide="arrow-left" width="16"></i> Back to Gallery
-        </a>
-
-        <div class="gallery-single-container">
+        <div class="gallery-single-content">
+            <h1 class="gallery-single-title">{{ .Title }}</h1>
             
-            <!-- Hero Image -->
-            <div class="gallery-hero-image">
-                <img src="{{ .Params.image }}" 
-                     alt="{{ .Title }}"
-                     id="gallery-img"
-                     loading="lazy">
+            <div class="gallery-single-meta">
+                <span class="meta-item">
+                    <i data-lucide="calendar" width="14"></i> {{ .Date.Format "January 02, 2006" }}
+                </span>
+                {{ if .Params.album }}
+                <span class="meta-item">
+                    <i data-lucide="folder" width="14"></i> {{ .Params.album }}
+                </span>
+                {{ end }}
             </div>
 
-            <!-- Content Section -->
-            <div class="gallery-single-content">
-                <h1 class="gallery-single-title">{{ .Title }}</h1>
-                
-                <!-- Metadata -->
-                <div class="gallery-single-meta">
-                    <span class="meta-item">
-                        <i data-lucide="calendar" width="14"></i> 
-                        {{ .Date.Format "January 02, 2006" }}
-                    </span>
-                    
-                    {{ with .Params.location }}
-                    <span class="meta-item">
-                        <i data-lucide="map-pin" width="14"></i> {{ . }}
-                    </span>
-                    {{ end }}
+            <div class="gallery-description">
+                {{ .Content }}
+            </div>
 
-                    {{ with .Params.camera }}
-                    <span class="meta-item">
-                        <i data-lucide="camera" width="14"></i> {{ . }}
-                    </span>
-                    {{ end }}
-                </div>
-
-                <!-- Description -->
-                {{ if .Content }}
-                <div class="gallery-description">
-                    {{ .Content }}
-                </div>
-                {{ end }}
-
-                <!-- EXIF Data Box -->
-                {{ if or .Params.exif .Params.camera .Params.lens .Params.iso .Params.aperture .Params.shutter .Params.focal_length }}
+            {{ if .Params.exif }}
+                {{ $exif := .Params.exif }}
+                {{ if or $exif.model $exif.iso }}
                 <div class="exif-box">
-                    <h4 class="exif-header">
-                        <i data-lucide="info" width="14"></i>
-                        Camera Details
-                    </h4>
+                    <h3 class="exif-header">
+                        <i data-lucide="camera" width="16"></i> Shot Details
+                    </h3>
                     <div class="exif-grid">
-                        {{ with .Params.camera }}
+                        {{ if $exif.model }}
                         <div class="exif-item">
                             <span class="exif-label">Camera</span>
-                            <span class="exif-value">{{ . }}</span>
+                            <span class="exif-value">{{ $exif.model }}</span>
                         </div>
                         {{ end }}
-
-                        {{ with .Params.lens }}
-                        <div class="exif-item">
-                            <span class="exif-label">Lens</span>
-                            <span class="exif-value">{{ . }}</span>
-                        </div>
-                        {{ end }}
-
-                        {{ with .Params.iso }}
-                        <div class="exif-item">
-                            <span class="exif-label">ISO</span>
-                            <span class="exif-value">{{ . }}</span>
-                        </div>
-                        {{ end }}
-
-                        {{ with .Params.aperture }}
-                        <div class="exif-item">
-                            <span class="exif-label">Aperture</span>
-                            <span class="exif-value">f/{{ . }}</span>
-                        </div>
-                        {{ end }}
-
-                        {{ with .Params.shutter }}
-                        <div class="exif-item">
-                            <span class="exif-label">Shutter</span>
-                            <span class="exif-value">{{ . }}</span>
-                        </div>
-                        {{ end }}
-
-                        {{ with .Params.focal_length }}
+                        
+                        {{ if $exif.focalLength }}
                         <div class="exif-item">
                             <span class="exif-label">Focal Length</span>
-                            <span class="exif-value">{{ . }}mm</span>
+                            <span class="exif-value">{{ $exif.focalLength }}</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.fstop }}
+                        <div class="exif-item">
+                            <span class="exif-label">Aperture</span>
+                            <span class="exif-value">ƒ/{{ $exif.fstop }}</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.shutter }}
+                        <div class="exif-item">
+                            <span class="exif-label">Shutter</span>
+                            <span class="exif-value">{{ $exif.shutter }}s</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.iso }}
+                        <div class="exif-item">
+                            <span class="exif-label">ISO</span>
+                            <span class="exif-value">{{ $exif.iso }}</span>
+                        </div>
+                        {{ end }}
+
+                        {{ if $exif.time }}
+                        <div class="exif-item">
+                            <span class="exif-label">Time</span>
+                            <span class="exif-value">{{ $exif.time }}</span>
                         </div>
                         {{ end }}
                     </div>
                 </div>
                 {{ end }}
+            {{ end }}
 
-                <!-- Actions -->
-                <div class="gallery-actions" style="margin-top: 20px;">
-                    <a href="{{ .Params.image }}" target="_blank" class="download-btn" download>
-                        <i data-lucide="download" width="14"></i> View Full Resolution
-                    </a>
-                </div>
-
-                <!-- Tags -->
-                {{ if .Params.tags }}
-                <div class="gallery-tags-large">
-                    {{ range .Params.tags }}
-                    <a href="/tags/{{ . | urlize }}" class="tag-badge">{{ . }}</a>
-                    {{ end }}
-                </div>
-                {{ end }}
-
-                <!-- Previous/Next Navigation -->
-                <nav class="gallery-nav">
-                    <div style="flex: 1;">
-                        {{ with .PrevInSection }}
-                        <a href="{{ .Permalink }}" class="gallery-nav-item prev">
-                            <i data-lucide="chevron-left" width="16"></i>
-                            <span>{{ .Title }}</span>
-                        </a>
-                        {{ end }}
-                    </div>
-                    
-                    <div style="flex: 1; display: flex; justify-content: flex-end;">
-                        {{ with .NextInSection }}
-                        <a href="{{ .Permalink }}" class="gallery-nav-item next">
-                            <span>{{ .Title }}</span>
-                            <i data-lucide="chevron-right" width="16"></i>
-                        </a>
-                        {{ end }}
-                    </div>
-                </nav>
+            <div class="gallery-actions">
+                <a href="{{ .Params.image.original.url }}" target="_blank" class="download-btn">
+                    <i data-lucide="download" width="14"></i> View Full Resolution
+                </a>
             </div>
+
+            {{ if .Params.tags }}
+            <div class="gallery-tags-large">
+                {{ range .Params.tags }}
+                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-badge">{{ . }}</a>
+                {{ end }}
+            </div>
+            {{ end }}
         </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    {{ partial "footer.html" . }}
+<script>
+    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+</script>
 
-    <!-- Scripts -->
-    <script src="https://umami-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
-
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        // Smooth image loading
-        const img = document.getElementById('gallery-img');
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() {
-                img.classList.add('loaded');
-            });
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            {{ with .PrevInSection }}
-            if (e.key === 'ArrowLeft') {
-                window.location.href = '{{ .Permalink }}';
-            }
-            {{ end }}
-            {{ with .NextInSection }}
-            if (e.key === 'ArrowRight') {
-                window.location.href = '{{ .Permalink }}';
-            }
-            {{ end }}
-            if (e.key === 'Escape') {
-                window.location.href = '/gallery/';
-            }
-        });
-    </script>
-</body>
-</html>
+{{ partial "footer.html" . }}
