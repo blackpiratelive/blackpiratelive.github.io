@@ -1,0 +1,17 @@
+{
+  "name": "Hugo Extended",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/hugo:latest": {
+      "extended": true
+    }
+  },
+  "forwardPorts": [1313],
+  "portsAttributes": {
+    "1313": {
+      "label": "Hugo Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "hugo version"
+}
