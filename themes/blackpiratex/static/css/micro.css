@@ -195,6 +195,13 @@ body {
     font-weight: bold;
     min-width: 120px;
 }
+.webring-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;  /* Adds space between the icon and text */
+    text-decoration: none;
+    color: var(--primary-blue);
+}
 
 /* Credits */
 .footer-credits {
