@@ -44,11 +44,16 @@
         "weight" $item.weight
     }}
 
+{{ $dates := dict 
+    "date" $dateObj
+}}
+
+
     {{ $page := dict
         "kind" "page"
         "path" $slug 
         "title" ($item.title | default (printf "Gallery Image %d" $i))
-        "date" $item.dateObj
+        "date" $dates
         "params" $params
         "content" $content
     }}
