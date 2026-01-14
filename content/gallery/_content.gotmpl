@@ -1,12 +1,8 @@
-{{/* content/gallery/_content.gotmpl */}}
-
 {{ $url := "https://gallery.blackpiratex.com/index.json" }}
 {{ $data := slice }}
 
-{{/* Step 1: Attempt fetch */}}
 {{ $result := try (resources.GetRemote $url) }}
 
-{{/* Step 2: Check result */}}
 {{ if $result.Err }}
     {{ warnf "Gallery Adapter Error: %s" $result.Err }}
 {{ else }}
@@ -17,24 +13,22 @@
 
 {{ range $i, $item := $data }}
     
-    {{/* Fallback for Title/Slug */}}
     {{ $slug := $item.title | urlize }}
     {{ if or (not $slug) (eq $slug "") }}
         {{ $slug = printf "image-%d" $i }}
     {{ end }}
 
-    {{/* DATE FIX: Use time.AsTime for ISO dates (like 2025-08-14T...) */}}
-    {{ $dateObj := now }}
-    {{ if $item.date }}
-        {{ $dateObj = time.AsTime $item.date }}
-    {{ end }}
-
+    {{ $dateObj := time.AsTime $item.date }}
+    
     {{ $content := dict 
         "mediaType" "text/html"
         "value" ($item.description | default "") 
     }}
     
-    {{/* ADDED: 'featured' and 'weight' so list.html can use them */}}
+    {{ $dates := dict 
+        "date" $dateObj
+    }}
+    
     {{ $params := dict 
         "image" $item.image
         "album" $item.album
@@ -44,16 +38,11 @@
         "weight" $item.weight
     }}
 
-{{ $dates := dict 
-    "date" $dateObj
-}}
-
-
     {{ $page := dict
         "kind" "page"
         "path" $slug 
         "title" ($item.title | default (printf "Gallery Image %d" $i))
-        "date" $dates
+        "dates" $dates
         "params" $params
         "content" $content
     }}
