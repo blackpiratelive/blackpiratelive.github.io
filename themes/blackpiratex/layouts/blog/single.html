@@ -1,12 +1,12 @@
-{{ partial "header.html" . }}
 
-<div id="app-root">
-    
-    <a class="back-btn" href="{{ .Site.BaseURL }}blog">
+{{ partial "header.html" . }}
+  <a class="back-btn" href="{{ .Site.BaseURL }}blog">
         <i data-lucide="arrow-left" width="16"></i> Back to Blog
     </a>
 
-    <div class="detail-container">
+    <div class="home-section" style="max-width: 700px; margin: 40px auto;">
+        
+        <div class="detail-container">
         <h1 class="detail-title">{{ .Title }}</h1>
         
         <div class="post-meta-bar">
@@ -23,26 +23,13 @@
                 {{ .WordCount }} words
             </span>
         </div>
-
-        {{ if .Params.excerpt }}
-        <div class="detail-excerpt">
-            {{ .Params.excerpt }}
-        </div>
-        {{ end }}
-
-        <div class="single-content">
+        
+        <div class="page-content">
             {{ .Content }}
         </div>
 
-        <div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #ddd;">
-            <span style="font-size: 12px; font-weight: bold; margin-right: 5px;">TAGS:</span>
-            {{ range .Params.tags }}
-            <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-badge">{{ . }}</a>
-            {{ end }}
-        </div>
-
-        
     </div>
+
 </div>
 
 <script>

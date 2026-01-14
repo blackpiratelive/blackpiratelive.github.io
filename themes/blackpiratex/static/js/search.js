@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             const options = {
-                keys: ['title', 'tags', 'summary'],
-                threshold: 0.4,
-                ignoreLocation: true
+                keys: ['title', 'content', 'summary'],
+                threshold: 0.3,
+                ignoreLocation: true,
+                minMatchCharLength: 2
             };
             fuse = new Fuse(data, options);
-        });
+        })
+        .catch(error => console.error('Error loading search index:', error));
 
     searchInput.addEventListener('input', function(e) {
         const query = e.target.value;
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const results = fuse.search(query);
+        const results = fuse.search(query).slice(0, 8);
         
         if (results.length > 0) {
             resultsContainer.style.display = 'block';
@@ -36,12 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
             results.forEach(result => {
                 const item = result.item;
                 html += `
-                <a href="${item.permalink}" class="search-result-item">
-                    <div style="color: #0000AA; font-weight: bold;">${item.title}</div>
-                    <div style="font-size: 12px; color: #666;">${item.date}</div>
+                <a href="${item.permalink}" class="search-result-item" title="${item.title}">
+                    <i data-lucide="arrow-right" width="16"></i>
+                    <span>${item.title}</span>
                 </a>`;
             });
             resultsContainer.innerHTML = html;
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         } else {
             resultsContainer.style.display = 'none';
         }

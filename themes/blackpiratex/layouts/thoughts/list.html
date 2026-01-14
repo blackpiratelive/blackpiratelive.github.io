@@ -12,35 +12,35 @@
         <div class="micro-item">
             <div class="micro-dot"></div>
             <div class="micro-header">
-                <span>
-                    <i data-lucide="calendar" width="14" style="vertical-align: middle; margin-right: 4px;"></i>
+                <span class="micro-date-time">
+                    <i data-lucide="calendar" width="14"></i>
                     {{ .Date.Format "Jan 02, 2006" }}
                 </span>
-                <span>•</span>
-                <span>
-                    <i data-lucide="clock" width="14" style="vertical-align: middle; margin-right: 4px;"></i>
+                <span class="micro-separator">•</span>
+                <span class="micro-date-time">
+                    <i data-lucide="clock" width="14"></i>
                     {{ .Date.Format "15:04" }}
                 </span>
                 
-                <span style="margin-left: 5px;">
+                <span style="margin-left: auto;">
                     <a href="{{ .Permalink }}" class="micro-permalink-icon" title="View Post">
                         <i data-lucide="external-link" width="12"></i>
                     </a>
                 </span>
             </div>
             
+            <div class="micro-content">
+                {{ .Content }}
+            </div>
+            
             {{ if .Params.tags }}
             <div class="micro-tags">
-                <i data-lucide="tag" width="14" style="vertical-align: middle; margin-right: 6px;"></i>
+                <i data-lucide="tag" width="14"></i>
                 {{ range .Params.tags }}
                 <span class="micro-tag">{{ . }}</span>
                 {{ end }}
             </div>
             {{ end }}
-            
-            <div class="micro-content">
-                {{ .Content }}
-            </div>
         </div>
         {{ end }}
     </div>

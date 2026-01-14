@@ -25,7 +25,15 @@
                 {{ range .Pages }}
                 <li>
                     <a href="{{ .Permalink }}" class="sitemap-link">
-                        <span class="sitemap-title">{{ .Title }}</span>
+                        <span class="sitemap-title">
+                            {{ if .Title }}
+                                {{ .Title }}
+                            {{ else if eq .Section "thoughts" }}
+                                {{ (.Plain | truncate 60) }}
+                            {{ else }}
+                                Untitled
+                            {{ end }}
+                        </span>
                         {{ if not .Date.IsZero }}
                         <span class="sitemap-date">{{ .Date.Format "Jan 02, 2006" }}</span>
                         {{ end }}
@@ -38,14 +46,18 @@
 
         <div class="sitemap-group">
             <h2 class="sitemap-heading">
-                <i data-lucide="tag" width="20"></i> Taxonomies
+                <i data-lucide="tag" width="20"></i> Tags
             </h2>
             <ul class="sitemap-list">
+                {{ $tags := .Site.Taxonomies.tags }}
+                {{ range $tags.ByCount }}
                 <li>
-                    <a href="{{ "tags" | absURL }}" class="sitemap-link">
-                        <span class="sitemap-title">Browse by Topics (Tags)</span>
+                    <a href="{{ .Page.Permalink }}" class="sitemap-link">
+                        <span class="sitemap-title">{{ .Name }}</span>
+                        <span class="sitemap-date">{{ .Count }} post{{ if ne .Count 1 }}s{{ end }}</span>
                     </a>
                 </li>
+                {{ end }}
             </ul>
         </div>
 

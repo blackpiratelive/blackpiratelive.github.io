@@ -13,5 +13,6 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "hugo version"
+  "postCreateCommand": "hugo version && echo 'Hugo Extended is ready!'"
 }
+
