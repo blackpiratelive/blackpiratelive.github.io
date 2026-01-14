@@ -161,6 +161,9 @@ body {
     color: var(--primary-blue);
     text-decoration: none;
     font-size: 13px;
+    /* Add these two lines to fix alignment */
+    display: inline-flex; 
+    align-items: center;
 }
 .footer-links a:hover {
     text-decoration: underline;
