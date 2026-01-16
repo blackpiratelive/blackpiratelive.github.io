@@ -21,7 +21,7 @@
     {{ else if eq .Kind "taxonomyTerm" }}
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/tags.css" }}
     {{ else if eq .Kind "taxonomy" }}
-        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/blog-list.css" "css/thoughts.css" "css/gallery.css" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/tags.css" "css/blog-list.css" "css/thoughts.css" "css/gallery.css" }}
     {{ else if and (eq .Section "blog") (eq .Kind "section") }}
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/blog-list.css" "css/pagination.css" }}
     {{ else if and (eq .Section "blog") (eq .Kind "page") }}
