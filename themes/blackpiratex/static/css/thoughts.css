@@ -1,0 +1,67 @@
+.micro-feed {
+    border-left: 2px solid var(--border-color);
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+.micro-item {
+    margin-bottom: 25px;
+    position: relative;
+}
+.micro-dot {
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    border: 2px solid var(--bg-main);
+    box-shadow: 0 0 0 1px var(--border-color);
+}
+.micro-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.micro-date-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.micro-separator {
+    color: var(--border-color);
+}
+.micro-permalink-icon {
+    color: var(--text-muted);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+}
+.micro-content {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+.micro-tags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+.micro-tag {
+    display: inline-block;
+    background-color: var(--highlight-yellow);
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}

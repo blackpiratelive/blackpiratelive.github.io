@@ -5,7 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
     
-    <link rel="stylesheet" href="{{ "css/micro.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/base.css" | relURL }}">
+
+    {{ $styles := slice }}
+    {{ if .IsHome }}
+        {{ $styles = $styles | append "css/section.css" "css/home.css" }}
+    {{ else if eq .Layout "stats" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/stats.css" }}
+    {{ else if eq .Layout "on-this-day" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/on-this-day.css" }}
+    {{ else if eq .Layout "sitemap" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/sitemap.css" }}
+    {{ else if eq .Layout "search" }}
+        {{ $styles = $styles | append "css/hero.css" "css/search.css" }}
+    {{ else if eq .Kind "taxonomyTerm" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/tags.css" }}
+    {{ else if eq .Kind "taxonomy" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/blog-list.css" "css/thoughts.css" "css/gallery.css" }}
+    {{ else if and (eq .Section "blog") (eq .Kind "section") }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/blog-list.css" "css/pagination.css" }}
+    {{ else if and (eq .Section "blog") (eq .Kind "page") }}
+        {{ $styles = $styles | append "css/section.css" "css/post.css" "css/page.css" }}
+    {{ else if and (eq .Section "thoughts") (eq .Kind "section") }}
+        {{ $styles = $styles | append "css/thoughts.css" }}
+    {{ else if and (eq .Section "thoughts") (eq .Kind "page") }}
+        {{ $styles = $styles | append "css/post.css" "css/pagination.css" }}
+    {{ else if and (eq .Section "gallery") (eq .Kind "section") }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/gallery.css" }}
+    {{ else if and (eq .Section "gallery") (eq .Kind "page") }}
+        {{ $styles = $styles | append "css/gallery.css" }}
+    {{ else if eq .Layout "page" }}
+        {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/page.css" }}
+    {{ else if eq .Layout "single" }}
+        {{ $styles = $styles | append "css/post.css" }}
+    {{ end }}
+
+    {{ range $styles }}
+    <link rel="stylesheet" href="{{ . | relURL }}">
+    {{ end }}
     
     <script src="{{ "js/vendor/lucide.min.js" | relURL }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>

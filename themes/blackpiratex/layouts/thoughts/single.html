@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
-    <link rel="stylesheet" href="/css/micro.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/pagination.css">
     
     <!-- Open Graph / Social Meta -->
     <meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}Post from {{ .Date.Format "Jan 02, 2006" }}{{ end }}">
@@ -12,7 +14,7 @@
     <meta property="og:type" content="article">
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/js/vendor/lucide.min.js"></script>
 </head>
 <body>
     <!-- Header -->

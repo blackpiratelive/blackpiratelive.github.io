@@ -1,0 +1,104 @@
+/* --- Homepage Specifics --- */
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--border-color);
+}
+.hero-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--bg-main);
+    box-shadow: 0 4px 10px var(--shadow-soft);
+    margin-bottom: 15px;
+}
+.hero h1 {
+    font-family: serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+.home-section {
+    margin-bottom: 50px;
+}
+.home-section h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--primary-blue);
+    display: inline-flex; /* Changed to flex to align icon */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    color: var(--text-main);
+}
+.explore-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.explore-list li a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--bg-hover);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.project-card {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    background: var(--bg-panel);
+}
+.project-card h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+}
+.project-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+.project-links {
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+.likes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.like-item h4 {
+    margin-bottom: 5px;
+    color: var(--text-main);
+    border-left: 3px solid var(--highlight-yellow);
+    padding-left: 10px;
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+}
+.like-item p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.currently-box {
+    background-color: var(--bg-hover);
+    padding: 20px;
+    border-left: 4px solid var(--primary-blue);
+    font-style: italic;
+}
