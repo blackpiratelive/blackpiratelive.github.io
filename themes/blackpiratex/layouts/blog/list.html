@@ -31,7 +31,17 @@
             {{ range $blogPosts }}
             <li class="bearblog-item">
                 <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
-                <a href="{{ .RelPermalink }}" class="bearblog-link">{{ .Title }}</a>
+                <div class="bearblog-main">
+                    <a href="{{ .RelPermalink }}" class="bearblog-link">{{ .Title }}</a>
+                    {{ if .Params.tags }}
+                    <span class="bearblog-tags">
+                        {{ range $index, $tag := .Params.tags }}
+                            {{ if gt $index 0 }}<span class="bearblog-tag-sep">/</span>{{ end }}
+                            <a class="bearblog-tag" href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+                        {{ end }}
+                    </span>
+                    {{ end }}
+                </div>
             </li>
             {{ end }}
         </ul>

@@ -43,6 +43,12 @@
     border-bottom: 1px dashed var(--border-color);
     padding-bottom: 10px;
 }
+.bearblog-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+}
 .bearblog-date {
     font-size: 12px;
     color: var(--text-muted);
@@ -57,6 +63,22 @@
 }
 .bearblog-link:hover {
     text-decoration: underline;
+}
+.bearblog-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 12px;
+}
+.bearblog-tag {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.bearblog-tag:hover {
+    text-decoration: underline;
+}
+.bearblog-tag-sep {
+    color: var(--border-color);
 }
 
 /* Individual List Item */
@@ -113,6 +135,9 @@
     }
     .bearblog-item {
         flex-direction: column;
+        gap: 6px;
+    }
+    .bearblog-main {
         gap: 6px;
     }
     .bearblog-date {

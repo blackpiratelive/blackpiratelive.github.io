@@ -4,30 +4,43 @@
         <i data-lucide="arrow-left" width="16"></i> Back to Blog
     </a>
 
-    <div class="home-section" style="max-width: 700px; margin: 40px auto;">
-        
-        <div class="detail-container">
-        <h1 class="detail-title">{{ .Title }}</h1>
-        
-        <div class="post-meta-bar">
-            <span class="meta-item">
-                <i data-lucide="calendar" width="14"></i> 
-                {{ .Date.Format "Jan 2, 2006" }}
-            </span>
-            <span class="meta-item">
-                <i data-lucide="clock" width="14"></i> 
-                {{ .ReadingTime }} min read
-            </span>
-            <span class="meta-item">
-                <i data-lucide="file-text" width="14"></i> 
-                {{ .WordCount }} words
-            </span>
-        </div>
-        
-        <div class="page-content">
-            {{ .Content }}
-        </div>
+    <div class="home-section post-shell">
+        <div class="detail-container post-card">
+            <header class="post-header">
+                <h1 class="detail-title">{{ .Title }}</h1>
+                
+                <div class="post-meta-bar">
+                    <span class="meta-item">
+                        <i data-lucide="calendar" width="14"></i> 
+                        {{ .Date.Format "Jan 2, 2006" }}
+                    </span>
+                    <span class="meta-item">
+                        <i data-lucide="user" width="14"></i>
+                        {{ .Params.author | default "Sudip" }}
+                    </span>
+                    <span class="meta-item">
+                        <i data-lucide="clock" width="14"></i> 
+                        {{ .ReadingTime }} min read
+                    </span>
+                    <span class="meta-item">
+                        <i data-lucide="file-text" width="14"></i> 
+                        {{ .WordCount }} words
+                    </span>
+                </div>
 
+                {{ if .Params.tags }}
+                <div class="post-tags">
+                    {{ range .Params.tags }}
+                        <a class="post-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">#{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </header>
+        
+            <div class="page-content single-content">
+                {{ .Content }}
+            </div>
+        </div>
     </div>
 
 </div>
