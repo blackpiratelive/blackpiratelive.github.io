@@ -766,6 +766,76 @@ body {
     font-size: 0.85rem;
     color: var(--text-muted);
 }
+
+/* --- On This Day --- */
+.on-this-day-hero h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.on-this-day-controls {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.on-this-day-section h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.on-this-day-year {
+    margin-bottom: 30px;
+}
+.on-this-day-year-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: serif;
+    color: var(--primary-blue);
+    margin-bottom: 12px;
+}
+.on-this-day-year-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+.on-this-day-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+.on-this-day-card {
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: 8px;
+    background: #fff;
+}
+.on-this-day-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+.on-this-day-permalink {
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+.on-this-day-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+}
+.on-this-day-empty {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background: #fff;
+}
 /* --- Human Readable Sitemap --- */
 
 .sitemap-group {
