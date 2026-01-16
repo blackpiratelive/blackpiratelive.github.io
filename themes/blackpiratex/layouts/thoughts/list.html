@@ -8,7 +8,7 @@
     </h4>
 
     <div class="micro-feed">
-        {{ range .Pages }}
+        {{ range (.Paginate .Pages 100).Pages }}
         <div class="micro-item">
             <div class="micro-dot"></div>
             <div class="micro-header">
@@ -44,6 +44,8 @@
         </div>
         {{ end }}
     </div>
+    
+    {{ partial "pagination.html" . }}
 </div>
 
 <script>
