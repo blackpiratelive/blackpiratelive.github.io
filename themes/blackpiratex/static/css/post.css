@@ -200,13 +200,13 @@
 /* --- Mobile Fixes --- */
 @media (max-width: 600px) {
     .detail-container {
-        padding: 14px; /* Reduce padding on mobile */
+        padding: 6px 0; /* Reduce padding on mobile */
     }
     .detail-title {
         font-size: 24px;
     }
     .post-shell {
-        margin: 24px auto;
+        margin: 16px auto;
     }
     .post-meta-bar {
         gap: 10px;
