@@ -2,7 +2,7 @@
 
 <div id="app-root">
     
-    {{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
+    {{ $blogPosts := sort (where .Site.RegularPages "Section" "blog") "Date" "desc" }}
 
     <div class="blog-hero">
         <h1>Writings & Notes</h1>
@@ -24,65 +24,24 @@
 
     <div class="home-section" style="margin-top: 40px;">
         <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
-            <i data-lucide="list" width="20"></i> Latest Posts
+            <i data-lucide="list" width="20"></i> All Posts
         </h2>
         
-        <div class="blog-list">
-            {{ $paginator := .Paginate $blogPosts }}
-            
-            {{ range $paginator.Pages }}
-            <a href="{{ .RelPermalink }}" class="blog-list-item">
-                
-                <h3 class="blog-item-title">{{ .Title }}</h3>
-                
-                <div class="blog-item-meta">
-                    <span class="meta-pill">
-                        <i data-lucide="calendar" width="12"></i> {{ .Date.Format "Jan 02, 2006" }}
-                    </span>
-                    <span class="meta-pill">
-                        <i data-lucide="user" width="12"></i> {{ .Params.author | default "Sudip" }}
-                    </span>
-                    <span class="meta-pill">
-                        <i data-lucide="clock" width="12"></i> {{ .ReadingTime }} min read
-                    </span>
-                    <span class="meta-pill">
-                        <i data-lucide="align-left" width="12"></i> {{ .WordCount }} words
-                    </span>
-                </div>
-
-                <p class="blog-item-summary">
-                    {{ .Summary | plainify | truncate 180 }}
-                </p>
-                
-                {{ if .Params.tags }}
-                <div style="margin-top: 8px;">
-                     <span style="font-size:11px; color:var(--text-muted);">#{{ index .Params.tags 0 }}</span>
-                </div>
-                {{ end }}
-            </a>
+        <ul class="bearblog-list">
+            {{ range $blogPosts }}
+            <li class="bearblog-item">
+                <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
+                <a href="{{ .RelPermalink }}" class="bearblog-link">{{ .Title }}</a>
+            </li>
             {{ end }}
-        </div>
+        </ul>
 
-        {{ if eq (len $paginator.Pages) 0 }}
+        {{ if eq (len $blogPosts) 0 }}
         <div style="padding: 40px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-color); border-radius: 8px;">
             No posts found yet.
         </div>
         {{ end }}
     </div>
-
-    {{ if gt $paginator.TotalPages 1 }}
-    <div class="pagination">
-        {{ if $paginator.HasPrev }}
-        <a href="{{ $paginator.Prev.URL }}" class="page-link">← Newer Posts</a>
-        {{ end }}
-        
-        <span style="color:var(--text-muted); font-size: 12px;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-        
-        {{ if $paginator.HasNext }}
-        <a href="{{ $paginator.Next.URL }}" class="page-link">Older Posts →</a>
-        {{ end }}
-    </div>
-    {{ end }}
 
     <div class="tag-cloud-section">
         <h4 style="margin-bottom: 15px; display:flex; align-items:center; gap:8px;">
