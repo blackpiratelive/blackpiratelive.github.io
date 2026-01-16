@@ -10,17 +10,27 @@
 {{ range $galleryPosts }}{{ $allContent = $allContent | append . }}{{ end }}
 
 {{ $blogYearCounts := dict }}
+{{ $blogYearWords := dict }}
+{{ $blogWordTotal := 0 }}
 {{ range $blogPosts }}
     {{ $year := .Date.Format "2006" }}
     {{ $count := default 0 (index $blogYearCounts $year) }}
     {{ $blogYearCounts = merge $blogYearCounts (dict $year (add $count 1)) }}
+    {{ $wordCount := default 0 (index $blogYearWords $year) }}
+    {{ $blogYearWords = merge $blogYearWords (dict $year (add $wordCount .WordCount)) }}
+    {{ $blogWordTotal = add $blogWordTotal .WordCount }}
 {{ end }}
 
 {{ $thoughtYearCounts := dict }}
+{{ $thoughtYearWords := dict }}
+{{ $thoughtWordTotal := 0 }}
 {{ range $thoughtPosts }}
     {{ $year := .Date.Format "2006" }}
     {{ $count := default 0 (index $thoughtYearCounts $year) }}
     {{ $thoughtYearCounts = merge $thoughtYearCounts (dict $year (add $count 1)) }}
+    {{ $wordCount := default 0 (index $thoughtYearWords $year) }}
+    {{ $thoughtYearWords = merge $thoughtYearWords (dict $year (add $wordCount .WordCount)) }}
+    {{ $thoughtWordTotal = add $thoughtWordTotal .WordCount }}
 {{ end }}
 
 {{ $galleryYearCounts := dict }}
@@ -57,15 +67,21 @@
 {{ $scratch.Set "thoughtCounts" (slice) }}
 {{ $scratch.Set "galleryCounts" (slice) }}
 {{ $scratch.Set "totalCounts" (slice) }}
+{{ $scratch.Set "blogWordCounts" (slice) }}
+{{ $scratch.Set "thoughtWordCounts" (slice) }}
 {{ range $years }}
     {{ $blogCount := default 0 (index $blogYearCounts .) }}
     {{ $thoughtCount := default 0 (index $thoughtYearCounts .) }}
     {{ $galleryCount := default 0 (index $galleryYearCounts .) }}
     {{ $totalCount := add (add $blogCount $thoughtCount) $galleryCount }}
+    {{ $blogWordCount := default 0 (index $blogYearWords .) }}
+    {{ $thoughtWordCount := default 0 (index $thoughtYearWords .) }}
     {{ $scratch.Add "blogCounts" $blogCount }}
     {{ $scratch.Add "thoughtCounts" $thoughtCount }}
     {{ $scratch.Add "galleryCounts" $galleryCount }}
     {{ $scratch.Add "totalCounts" $totalCount }}
+    {{ $scratch.Add "blogWordCounts" $blogWordCount }}
+    {{ $scratch.Add "thoughtWordCounts" $thoughtWordCount }}
 {{ end }}
 
 {{ $scratch.Set "monthCounts" (slice) }}
@@ -127,6 +143,66 @@
             <canvas id="monthChart" height="220"></canvas>
         </div>
     </div>
+
+    <section class="stats-section">
+        <div class="stats-section-title">
+            <i data-lucide="pen-tool" width="18"></i> Blog Deep Dive
+        </div>
+        <div class="stats-card-grid stats-card-grid--compact">
+            <div class="stats-card">
+                <div class="stats-card-label"><i data-lucide="file-text" width="14"></i> Total posts</div>
+                <div class="stats-card-value">{{ len $blogPosts }}</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-card-label"><i data-lucide="type" width="14"></i> Total words</div>
+                <div class="stats-card-value">{{ $blogWordTotal }}</div>
+            </div>
+        </div>
+        <div class="stats-chart-grid stats-chart-grid--two">
+            <div class="stats-chart-card">
+                <div class="stats-chart-title">
+                    <i data-lucide="bar-chart-2" width="16"></i> Posts per year
+                </div>
+                <canvas id="blogYearChart" height="220"></canvas>
+            </div>
+            <div class="stats-chart-card">
+                <div class="stats-chart-title">
+                    <i data-lucide="trending-up" width="16"></i> Words per year
+                </div>
+                <canvas id="blogWordChart" height="220"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-section-title">
+            <i data-lucide="message-square" width="18"></i> Thoughts Deep Dive
+        </div>
+        <div class="stats-card-grid stats-card-grid--compact">
+            <div class="stats-card">
+                <div class="stats-card-label"><i data-lucide="sticky-note" width="14"></i> Total thoughts</div>
+                <div class="stats-card-value">{{ len $thoughtPosts }}</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-card-label"><i data-lucide="type" width="14"></i> Total words</div>
+                <div class="stats-card-value">{{ $thoughtWordTotal }}</div>
+            </div>
+        </div>
+        <div class="stats-chart-grid stats-chart-grid--two">
+            <div class="stats-chart-card">
+                <div class="stats-chart-title">
+                    <i data-lucide="bar-chart-2" width="16"></i> Thoughts per year
+                </div>
+                <canvas id="thoughtYearChart" height="220"></canvas>
+            </div>
+            <div class="stats-chart-card">
+                <div class="stats-chart-title">
+                    <i data-lucide="trending-up" width="16"></i> Words per year
+                </div>
+                <canvas id="thoughtWordChart" height="220"></canvas>
+            </div>
+        </div>
+    </section>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -137,9 +213,11 @@
         "thoughtCounts" ($scratch.Get "thoughtCounts")
         "galleryCounts" ($scratch.Get "galleryCounts")
         "totalCounts" ($scratch.Get "totalCounts")
+        "blogWordCounts" ($scratch.Get "blogWordCounts")
+        "thoughtWordCounts" ($scratch.Get "thoughtWordCounts")
         "monthLabels" $monthLabels
         "monthCounts" ($scratch.Get "monthCounts")
-    | jsonify }};
+    | jsonify | safeJS }};
 
     const palette = {
         ink: "#0000AA",
@@ -224,6 +302,102 @@
             datasets: [{
                 label: "Total items",
                 data: statsData.monthCounts,
+                borderColor: palette.moss,
+                backgroundColor: "rgba(76, 175, 130, 0.2)",
+                tension: 0.35,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: palette.moss
+            }]
+        },
+        options: {
+            scales: {
+                x: { ticks: chartDefaults },
+                y: { ticks: chartDefaults, beginAtZero: true }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("blogYearChart"), {
+        type: "bar",
+        data: {
+            labels: statsData.years,
+            datasets: [{
+                label: "Posts",
+                data: statsData.blogCounts,
+                backgroundColor: palette.ink,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            scales: {
+                x: { ticks: chartDefaults },
+                y: { ticks: chartDefaults, beginAtZero: true }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("blogWordChart"), {
+        type: "line",
+        data: {
+            labels: statsData.years,
+            datasets: [{
+                label: "Words",
+                data: statsData.blogWordCounts,
+                borderColor: palette.sky,
+                backgroundColor: "rgba(95, 156, 255, 0.2)",
+                tension: 0.35,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: palette.sky
+            }]
+        },
+        options: {
+            scales: {
+                x: { ticks: chartDefaults },
+                y: { ticks: chartDefaults, beginAtZero: true }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("thoughtYearChart"), {
+        type: "bar",
+        data: {
+            labels: statsData.years,
+            datasets: [{
+                label: "Thoughts",
+                data: statsData.thoughtCounts,
+                backgroundColor: palette.sun,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            scales: {
+                x: { ticks: chartDefaults },
+                y: { ticks: chartDefaults, beginAtZero: true }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("thoughtWordChart"), {
+        type: "line",
+        data: {
+            labels: statsData.years,
+            datasets: [{
+                label: "Words",
+                data: statsData.thoughtWordCounts,
                 borderColor: palette.moss,
                 backgroundColor: "rgba(76, 175, 130, 0.2)",
                 tension: 0.35,
