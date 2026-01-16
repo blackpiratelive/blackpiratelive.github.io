@@ -92,7 +92,7 @@
 
         <!-- Tags (Large display at bottom) -->
         {{ if .Params.tags }}
-        <div class="gallery-tags-large" style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ccc;">
+        <div class="gallery-tags-large" style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed var(--border-color);">
             {{ range .Params.tags }}
             <a href="/tags/{{ . | urlize }}" class="tag-badge" style="text-decoration: none;">
                 {{ . }}
@@ -102,9 +102,9 @@
         {{ end }}
 
         <!-- Webmention / Share Section (Optional) -->
-        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #eee;">
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--border-color);">
             <div style="display: flex; gap: 15px; align-items: center; font-size: 14px;">
-                <span style="font-weight: bold; color: #666;">Share:</span>
+                <span style="font-weight: bold; color: var(--text-muted);">Share:</span>
                 <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | default "Thought" }}" 
                    target="_blank" class="nav-link" style="text-decoration: none;">
                     Twitter

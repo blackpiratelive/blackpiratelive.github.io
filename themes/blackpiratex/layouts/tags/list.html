@@ -3,7 +3,7 @@
 <div id="app-root">
 
     <div class="blog-hero">
-        <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: #999; margin-bottom: 5px;">Topic</p>
+        <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 5px;">Topic</p>
         <h1 style="margin-top:0;">#{{ .Title }}</h1>
         <p>
             <i data-lucide="layers" width="14" style="vertical-align: middle;"></i> 
@@ -17,7 +17,7 @@
 
     {{ if gt (len $blogPosts) 0 }}
     <div class="home-section" style="margin-top: 50px;">
-        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
             <i data-lucide="pen-tool" width="20"></i> Blog Posts
         </h2>
         
@@ -47,7 +47,7 @@
 
     {{ if gt (len $microPosts) 0 }}
     <div class="home-section" style="margin-top: 50px;">
-        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
             <i data-lucide="message-square" width="20"></i> Microblog Posts
         </h2>
 
@@ -74,7 +74,7 @@
 
     {{ if gt (len $galleryPosts) 0 }}
     <div class="home-section" style="margin-top: 50px;">
-        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
             <i data-lucide="image" width="20"></i> Gallery
         </h2>
 

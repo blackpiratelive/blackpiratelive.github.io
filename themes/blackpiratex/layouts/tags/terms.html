@@ -30,7 +30,7 @@
         </div>
 
         {{ if eq (len .Data.Terms) 0 }}
-        <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
+        <div style="padding: 40px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-color); border-radius: 8px;">
             No tags found. Add tags to your markdown posts frontmatter.
         </div>
         {{ end }}

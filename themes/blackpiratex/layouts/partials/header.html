@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="{{ "css/micro.css" | relURL }}">
     
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="{{ "js/vendor/lucide.min.js" | relURL }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <script src="{{ "js/search.js" | relURL }}"></script>
 </head>
@@ -50,5 +50,50 @@
             <a class="nav-link" href="{{ "search" | relURL }}">
                 <i data-lucide="search" width="14"></i> Search
             </a>
+            <span class="nav-separator">|</span>
+            <button class="nav-link theme-toggle" type="button" aria-pressed="false">
+                <i data-lucide="moon" width="14"></i> Theme
+            </button>
         </div>
     </div>
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>

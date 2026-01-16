@@ -34,7 +34,7 @@
             {{ .Content }}
         </div>
 
-        <div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #ddd;">
+        <div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid var(--border-color);">
             <span style="font-size: 12px; font-weight: bold; margin-right: 5px;">TAGS:</span>
             {{ range .Params.tags }}
             <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-badge">{{ . }}</a>

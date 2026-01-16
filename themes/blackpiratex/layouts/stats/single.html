@@ -205,7 +205,7 @@
     </section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ "js/vendor/chart.umd.min.js" | relURL }}"></script>
 <script>
     const statsData = {{ dict
         "years" $years
@@ -219,203 +219,224 @@
         "monthCounts" ($scratch.Get "monthCounts")
     | jsonify | safeJS }};
 
-    const palette = {
-        ink: "#0000AA",
-        sky: "#5f9cff",
-        sun: "#ffd44d",
-        moss: "#4caf82",
-        haze: "#f3f6ff"
-    };
+    let charts = [];
 
-    const chartDefaults = {
-        font: {
-            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-            size: 12
-        },
-        color: "#333"
-    };
+    const buildCharts = () => {
+        charts.forEach((chart) => chart.destroy());
+        charts = [];
 
-    new Chart(document.getElementById("typeChart"), {
-        type: "doughnut",
-        data: {
-            labels: ["Blog", "Thoughts", "Gallery"],
-            datasets: [{
-                data: [
-                    statsData.blogCounts.reduce((a, b) => a + b, 0),
-                    statsData.thoughtCounts.reduce((a, b) => a + b, 0),
-                    statsData.galleryCounts.reduce((a, b) => a + b, 0)
-                ],
-                backgroundColor: [palette.ink, palette.sky, palette.sun],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { position: "bottom", labels: chartDefaults }
+        const rootStyles = getComputedStyle(document.documentElement);
+        const palette = {
+            ink: rootStyles.getPropertyValue("--primary-blue").trim() || "#0000AA",
+            sky: rootStyles.getPropertyValue("--chart-sky").trim() || "#5f9cff",
+            sun: rootStyles.getPropertyValue("--chart-sun").trim() || "#ffd44d",
+            moss: rootStyles.getPropertyValue("--chart-moss").trim() || "#4caf82",
+            haze: rootStyles.getPropertyValue("--chart-haze").trim() || "#f3f6ff"
+        };
+
+        const chartDefaults = {
+            font: {
+                family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+                size: 12
             },
-            cutout: "65%"
-        }
-    });
+            color: rootStyles.getPropertyValue("--text-main").trim() || "#333"
+        };
 
-    new Chart(document.getElementById("yearChart"), {
-        type: "bar",
-        data: {
-            labels: statsData.years,
-            datasets: [
-                {
-                    label: "Blog",
+        charts.push(new Chart(document.getElementById("typeChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Blog", "Thoughts", "Gallery"],
+                datasets: [{
+                    data: [
+                        statsData.blogCounts.reduce((a, b) => a + b, 0),
+                        statsData.thoughtCounts.reduce((a, b) => a + b, 0),
+                        statsData.galleryCounts.reduce((a, b) => a + b, 0)
+                    ],
+                    backgroundColor: [palette.ink, palette.sky, palette.sun],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: "bottom", labels: chartDefaults }
+                },
+                cutout: "65%"
+            }
+        }));
+
+        charts.push(new Chart(document.getElementById("yearChart"), {
+            type: "bar",
+            data: {
+                labels: statsData.years,
+                datasets: [
+                    {
+                        label: "Blog",
+                        data: statsData.blogCounts,
+                        backgroundColor: palette.ink,
+                        borderRadius: 6
+                    },
+                    {
+                        label: "Thoughts",
+                        data: statsData.thoughtCounts,
+                        backgroundColor: palette.sky,
+                        borderRadius: 6
+                    },
+                    {
+                        label: "Gallery",
+                        data: statsData.galleryCounts,
+                        backgroundColor: palette.sun,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { stacked: true, ticks: chartDefaults },
+                    y: { stacked: true, ticks: chartDefaults, beginAtZero: true }
+                },
+                plugins: {
+                    legend: { position: "bottom", labels: chartDefaults },
+                    tooltip: { mode: "index", intersect: false }
+                }
+            }
+        }));
+
+        charts.push(new Chart(document.getElementById("monthChart"), {
+            type: "line",
+            data: {
+                labels: statsData.monthLabels,
+                datasets: [{
+                    label: "Total items",
+                    data: statsData.monthCounts,
+                    borderColor: palette.moss,
+                    backgroundColor: "rgba(76, 175, 130, 0.2)",
+                    tension: 0.35,
+                    fill: true,
+                    pointRadius: 3,
+                    pointBackgroundColor: palette.moss
+                }]
+            },
+            options: {
+                scales: {
+                    x: { ticks: chartDefaults },
+                    y: { ticks: chartDefaults, beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        }));
+
+        charts.push(new Chart(document.getElementById("blogYearChart"), {
+            type: "bar",
+            data: {
+                labels: statsData.years,
+                datasets: [{
+                    label: "Posts",
                     data: statsData.blogCounts,
                     backgroundColor: palette.ink,
                     borderRadius: 6
+                }]
+            },
+            options: {
+                scales: {
+                    x: { ticks: chartDefaults },
+                    y: { ticks: chartDefaults, beginAtZero: true }
                 },
-                {
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        }));
+
+        charts.push(new Chart(document.getElementById("blogWordChart"), {
+            type: "line",
+            data: {
+                labels: statsData.years,
+                datasets: [{
+                    label: "Words",
+                    data: statsData.blogWordCounts,
+                    borderColor: palette.sky,
+                    backgroundColor: "rgba(95, 156, 255, 0.2)",
+                    tension: 0.35,
+                    fill: true,
+                    pointRadius: 3,
+                    pointBackgroundColor: palette.sky
+                }]
+            },
+            options: {
+                scales: {
+                    x: { ticks: chartDefaults },
+                    y: { ticks: chartDefaults, beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        }));
+
+        charts.push(new Chart(document.getElementById("thoughtYearChart"), {
+            type: "bar",
+            data: {
+                labels: statsData.years,
+                datasets: [{
                     label: "Thoughts",
                     data: statsData.thoughtCounts,
-                    backgroundColor: palette.sky,
-                    borderRadius: 6
-                },
-                {
-                    label: "Gallery",
-                    data: statsData.galleryCounts,
                     backgroundColor: palette.sun,
                     borderRadius: 6
+                }]
+            },
+            options: {
+                scales: {
+                    x: { ticks: chartDefaults },
+                    y: { ticks: chartDefaults, beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
                 }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: { stacked: true, ticks: chartDefaults },
-                y: { stacked: true, ticks: chartDefaults, beginAtZero: true }
-            },
-            plugins: {
-                legend: { position: "bottom", labels: chartDefaults },
-                tooltip: { mode: "index", intersect: false }
             }
-        }
-    });
+        }));
 
-    new Chart(document.getElementById("monthChart"), {
-        type: "line",
-        data: {
-            labels: statsData.monthLabels,
-            datasets: [{
-                label: "Total items",
-                data: statsData.monthCounts,
-                borderColor: palette.moss,
-                backgroundColor: "rgba(76, 175, 130, 0.2)",
-                tension: 0.35,
-                fill: true,
-                pointRadius: 3,
-                pointBackgroundColor: palette.moss
-            }]
-        },
-        options: {
-            scales: {
-                x: { ticks: chartDefaults },
-                y: { ticks: chartDefaults, beginAtZero: true }
+        charts.push(new Chart(document.getElementById("thoughtWordChart"), {
+            type: "line",
+            data: {
+                labels: statsData.years,
+                datasets: [{
+                    label: "Words",
+                    data: statsData.thoughtWordCounts,
+                    borderColor: palette.moss,
+                    backgroundColor: "rgba(76, 175, 130, 0.2)",
+                    tension: 0.35,
+                    fill: true,
+                    pointRadius: 3,
+                    pointBackgroundColor: palette.moss
+                }]
             },
-            plugins: {
-                legend: { display: false }
+            options: {
+                scales: {
+                    x: { ticks: chartDefaults },
+                    y: { ticks: chartDefaults, beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
             }
-        }
-    });
+        }));
+    };
 
-    new Chart(document.getElementById("blogYearChart"), {
-        type: "bar",
-        data: {
-            labels: statsData.years,
-            datasets: [{
-                label: "Posts",
-                data: statsData.blogCounts,
-                backgroundColor: palette.ink,
-                borderRadius: 6
-            }]
-        },
-        options: {
-            scales: {
-                x: { ticks: chartDefaults },
-                y: { ticks: chartDefaults, beginAtZero: true }
-            },
-            plugins: {
-                legend: { display: false }
-            }
-        }
-    });
+    buildCharts();
 
-    new Chart(document.getElementById("blogWordChart"), {
-        type: "line",
-        data: {
-            labels: statsData.years,
-            datasets: [{
-                label: "Words",
-                data: statsData.blogWordCounts,
-                borderColor: palette.sky,
-                backgroundColor: "rgba(95, 156, 255, 0.2)",
-                tension: 0.35,
-                fill: true,
-                pointRadius: 3,
-                pointBackgroundColor: palette.sky
-            }]
-        },
-        options: {
-            scales: {
-                x: { ticks: chartDefaults },
-                y: { ticks: chartDefaults, beginAtZero: true }
-            },
-            plugins: {
-                legend: { display: false }
+    if (typeof MutationObserver !== "undefined") {
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
+                    buildCharts();
+                }
             }
-        }
-    });
-
-    new Chart(document.getElementById("thoughtYearChart"), {
-        type: "bar",
-        data: {
-            labels: statsData.years,
-            datasets: [{
-                label: "Thoughts",
-                data: statsData.thoughtCounts,
-                backgroundColor: palette.sun,
-                borderRadius: 6
-            }]
-        },
-        options: {
-            scales: {
-                x: { ticks: chartDefaults },
-                y: { ticks: chartDefaults, beginAtZero: true }
-            },
-            plugins: {
-                legend: { display: false }
-            }
-        }
-    });
-
-    new Chart(document.getElementById("thoughtWordChart"), {
-        type: "line",
-        data: {
-            labels: statsData.years,
-            datasets: [{
-                label: "Words",
-                data: statsData.thoughtWordCounts,
-                borderColor: palette.moss,
-                backgroundColor: "rgba(76, 175, 130, 0.2)",
-                tension: 0.35,
-                fill: true,
-                pointRadius: 3,
-                pointBackgroundColor: palette.moss
-            }]
-        },
-        options: {
-            scales: {
-                x: { ticks: chartDefaults },
-                y: { ticks: chartDefaults, beginAtZero: true }
-            },
-            plugins: {
-                legend: { display: false }
-            }
-        }
-    });
+        });
+        observer.observe(document.documentElement, { attributes: true });
+    }
 
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

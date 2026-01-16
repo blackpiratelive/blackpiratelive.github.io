@@ -23,7 +23,7 @@
     <div id="search-results"></div>
 
     <div class="home-section" style="margin-top: 40px;">
-        <h2 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 25px;">
+        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
             <i data-lucide="list" width="20"></i> Latest Posts
         </h2>
         
@@ -56,7 +56,7 @@
                 
                 {{ if .Params.tags }}
                 <div style="margin-top: 8px;">
-                     <span style="font-size:11px; color:#888;">#{{ index .Params.tags 0 }}</span>
+                     <span style="font-size:11px; color:var(--text-muted);">#{{ index .Params.tags 0 }}</span>
                 </div>
                 {{ end }}
             </a>
@@ -64,7 +64,7 @@
         </div>
 
         {{ if eq (len $paginator.Pages) 0 }}
-        <div style="padding: 40px; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">
+        <div style="padding: 40px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-color); border-radius: 8px;">
             No posts found yet.
         </div>
         {{ end }}
@@ -76,7 +76,7 @@
         <a href="{{ $paginator.Prev.URL }}" class="page-link">← Newer Posts</a>
         {{ end }}
         
-        <span style="color:#666; font-size: 12px;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+        <span style="color:var(--text-muted); font-size: 12px;">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
         
         {{ if $paginator.HasNext }}
         <a href="{{ $paginator.Next.URL }}" class="page-link">Older Posts →</a>
@@ -91,7 +91,7 @@
         <div class="tag-cloud-list">
             {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
             <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" class="tag-cloud-item">
-                {{ $name | title }} <span style="color:#666; font-size:10px;">({{ $taxonomy.Count }})</span>
+                {{ $name | title }} <span style="color:var(--text-muted); font-size:10px;">({{ $taxonomy.Count }})</span>
             </a>
             {{ end }}
         </div>
