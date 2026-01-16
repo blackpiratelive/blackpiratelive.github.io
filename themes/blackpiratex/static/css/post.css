@@ -1,13 +1,13 @@
 /* The White Box Container */
 .detail-container {
     border: 1px solid var(--border-color);
-    padding: 30px;
+    padding: 26px;
     background-color: var(--bg-panel);
     border-radius: 8px; /* Optional: adds subtle rounding */
     margin-top: 10px;
 }
 .post-shell {
-    max-width: 760px;
+    max-width: 900px;
     margin: 40px auto;
 }
 .post-card {
@@ -203,7 +203,7 @@
 /* --- Mobile Fixes --- */
 @media (max-width: 600px) {
     .detail-container {
-        padding: 15px; /* Reduce padding on mobile */
+        padding: 14px; /* Reduce padding on mobile */
     }
     .detail-title {
         font-size: 24px;
