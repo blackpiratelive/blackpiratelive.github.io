@@ -1,0 +1,251 @@
+{{ partial "header.html" . }}
+
+{{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
+{{ $thoughtPosts := where .Site.RegularPages "Section" "thoughts" }}
+{{ $galleryPosts := where .Site.RegularPages "Section" "gallery" }}
+
+{{ $allContent := slice }}
+{{ range $blogPosts }}{{ $allContent = $allContent | append . }}{{ end }}
+{{ range $thoughtPosts }}{{ $allContent = $allContent | append . }}{{ end }}
+{{ range $galleryPosts }}{{ $allContent = $allContent | append . }}{{ end }}
+
+{{ $blogYearCounts := dict }}
+{{ range $blogPosts }}
+    {{ $year := .Date.Format "2006" }}
+    {{ $count := default 0 (index $blogYearCounts $year) }}
+    {{ $blogYearCounts = merge $blogYearCounts (dict $year (add $count 1)) }}
+{{ end }}
+
+{{ $thoughtYearCounts := dict }}
+{{ range $thoughtPosts }}
+    {{ $year := .Date.Format "2006" }}
+    {{ $count := default 0 (index $thoughtYearCounts $year) }}
+    {{ $thoughtYearCounts = merge $thoughtYearCounts (dict $year (add $count 1)) }}
+{{ end }}
+
+{{ $galleryYearCounts := dict }}
+{{ range $galleryPosts }}
+    {{ $year := .Date.Format "2006" }}
+    {{ $count := default 0 (index $galleryYearCounts $year) }}
+    {{ $galleryYearCounts = merge $galleryYearCounts (dict $year (add $count 1)) }}
+{{ end }}
+
+{{ $yearsMap := dict }}
+{{ range $allContent }}
+    {{ $year := .Date.Format "2006" }}
+    {{ $yearsMap = merge $yearsMap (dict $year true) }}
+{{ end }}
+
+{{ $years := slice }}
+{{ range $year, $_ := $yearsMap }}
+    {{ $years = $years | append $year }}
+{{ end }}
+{{ $years = sort $years }}
+
+{{ $monthCounts := dict }}
+{{ range $allContent }}
+    {{ $month := .Date.Format "01" }}
+    {{ $count := default 0 (index $monthCounts $month) }}
+    {{ $monthCounts = merge $monthCounts (dict $month (add $count 1)) }}
+{{ end }}
+
+{{ $monthLabels := slice "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec" }}
+{{ $monthKeys := slice "01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12" }}
+
+{{ $scratch := newScratch }}
+{{ $scratch.Set "blogCounts" (slice) }}
+{{ $scratch.Set "thoughtCounts" (slice) }}
+{{ $scratch.Set "galleryCounts" (slice) }}
+{{ $scratch.Set "totalCounts" (slice) }}
+{{ range $years }}
+    {{ $blogCount := default 0 (index $blogYearCounts .) }}
+    {{ $thoughtCount := default 0 (index $thoughtYearCounts .) }}
+    {{ $galleryCount := default 0 (index $galleryYearCounts .) }}
+    {{ $totalCount := add (add $blogCount $thoughtCount) $galleryCount }}
+    {{ $scratch.Add "blogCounts" $blogCount }}
+    {{ $scratch.Add "thoughtCounts" $thoughtCount }}
+    {{ $scratch.Add "galleryCounts" $galleryCount }}
+    {{ $scratch.Add "totalCounts" $totalCount }}
+{{ end }}
+
+{{ $scratch.Set "monthCounts" (slice) }}
+{{ range $monthKeys }}
+    {{ $count := default 0 (index $monthCounts .) }}
+    {{ $scratch.Add "monthCounts" $count }}
+{{ end }}
+
+{{ $totalItems := add (add (len $blogPosts) (len $thoughtPosts)) (len $galleryPosts) }}
+
+<div id="app-root">
+    <div class="blog-hero stats-hero">
+        <h1>
+            <i data-lucide="bar-chart-3" width="24"></i> Site Stats
+        </h1>
+        <p>Signals from the blog, thoughts, and gallery archives.</p>
+    </div>
+
+    <div class="stats-card-grid">
+        <div class="stats-card">
+            <div class="stats-card-label"><i data-lucide="layers" width="14"></i> Total items</div>
+            <div class="stats-card-value">{{ $totalItems }}</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-label"><i data-lucide="pen-tool" width="14"></i> Blog posts</div>
+            <div class="stats-card-value">{{ len $blogPosts }}</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-label"><i data-lucide="message-square" width="14"></i> Thoughts</div>
+            <div class="stats-card-value">{{ len $thoughtPosts }}</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-label"><i data-lucide="image" width="14"></i> Gallery shots</div>
+            <div class="stats-card-value">{{ len $galleryPosts }}</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-label"><i data-lucide="calendar" width="14"></i> Years tracked</div>
+            <div class="stats-card-value">{{ len $years }}</div>
+        </div>
+    </div>
+
+    <div class="stats-chart-grid">
+        <div class="stats-chart-card">
+            <div class="stats-chart-title">
+                <i data-lucide="pie-chart" width="16"></i> Content mix
+            </div>
+            <canvas id="typeChart" height="220"></canvas>
+        </div>
+        <div class="stats-chart-card">
+            <div class="stats-chart-title">
+                <i data-lucide="area-chart" width="16"></i> Yearly output
+            </div>
+            <canvas id="yearChart" height="220"></canvas>
+        </div>
+        <div class="stats-chart-card">
+            <div class="stats-chart-title">
+                <i data-lucide="bar-chart" width="16"></i> Monthly rhythm
+            </div>
+            <canvas id="monthChart" height="220"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const statsData = {{ dict
+        "years" $years
+        "blogCounts" ($scratch.Get "blogCounts")
+        "thoughtCounts" ($scratch.Get "thoughtCounts")
+        "galleryCounts" ($scratch.Get "galleryCounts")
+        "totalCounts" ($scratch.Get "totalCounts")
+        "monthLabels" $monthLabels
+        "monthCounts" ($scratch.Get "monthCounts")
+    | jsonify }};
+
+    const palette = {
+        ink: "#0000AA",
+        sky: "#5f9cff",
+        sun: "#ffd44d",
+        moss: "#4caf82",
+        haze: "#f3f6ff"
+    };
+
+    const chartDefaults = {
+        font: {
+            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            size: 12
+        },
+        color: "#333"
+    };
+
+    new Chart(document.getElementById("typeChart"), {
+        type: "doughnut",
+        data: {
+            labels: ["Blog", "Thoughts", "Gallery"],
+            datasets: [{
+                data: [
+                    statsData.blogCounts.reduce((a, b) => a + b, 0),
+                    statsData.thoughtCounts.reduce((a, b) => a + b, 0),
+                    statsData.galleryCounts.reduce((a, b) => a + b, 0)
+                ],
+                backgroundColor: [palette.ink, palette.sky, palette.sun],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { position: "bottom", labels: chartDefaults }
+            },
+            cutout: "65%"
+        }
+    });
+
+    new Chart(document.getElementById("yearChart"), {
+        type: "bar",
+        data: {
+            labels: statsData.years,
+            datasets: [
+                {
+                    label: "Blog",
+                    data: statsData.blogCounts,
+                    backgroundColor: palette.ink,
+                    borderRadius: 6
+                },
+                {
+                    label: "Thoughts",
+                    data: statsData.thoughtCounts,
+                    backgroundColor: palette.sky,
+                    borderRadius: 6
+                },
+                {
+                    label: "Gallery",
+                    data: statsData.galleryCounts,
+                    backgroundColor: palette.sun,
+                    borderRadius: 6
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: { stacked: true, ticks: chartDefaults },
+                y: { stacked: true, ticks: chartDefaults, beginAtZero: true }
+            },
+            plugins: {
+                legend: { position: "bottom", labels: chartDefaults },
+                tooltip: { mode: "index", intersect: false }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("monthChart"), {
+        type: "line",
+        data: {
+            labels: statsData.monthLabels,
+            datasets: [{
+                label: "Total items",
+                data: statsData.monthCounts,
+                borderColor: palette.moss,
+                backgroundColor: "rgba(76, 175, 130, 0.2)",
+                tension: 0.35,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: palette.moss
+            }]
+        },
+        options: {
+            scales: {
+                x: { ticks: chartDefaults },
+                y: { ticks: chartDefaults, beginAtZero: true }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+
+{{ partial "footer.html" . }}
