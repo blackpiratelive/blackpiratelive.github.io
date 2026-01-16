@@ -36,11 +36,15 @@
     color: var(--border-color);
 }
 .micro-permalink-icon {
-    color: var(--text-muted);
-    opacity: 0.5;
+    color: var(--primary-blue);
+    opacity: 0.8; /* Slightly reduce opacity to differentiate from regular text but still be visible */
     transition: opacity 0.2s;
     display: flex;
     align-items: center;
+}
+.micro-content a {
+    color: var(--primary-blue);
+    text-decoration: underline; /* Add underline for better affordance */
 }
 .micro-content {
     font-size: 16px;
