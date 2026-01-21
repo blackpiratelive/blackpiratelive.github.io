@@ -11,6 +11,11 @@
     opacity: 1;
 }
 
+body#post header.hero,
+body#post header.hero:hover {
+    opacity: 1;
+}
+
 .hero-img {
     width: 96px;
     height: 96px;
