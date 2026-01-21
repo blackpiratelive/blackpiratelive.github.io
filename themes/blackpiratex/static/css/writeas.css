@@ -64,6 +64,21 @@ header nav a:hover {
     text-decoration: underline;
 }
 
+header nav .theme-toggle {
+    margin: 0 0 0 1em;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #767676;
+    font: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+header nav .theme-toggle:hover {
+    text-decoration: underline;
+}
+
 header p.description {
     color: #444;
     font-size: 1.1em;
@@ -244,4 +259,59 @@ footer nav a.home:hover {
         padding: 0.5em 1.25em 1.25em;
         font-size: 1.05em;
     }
+}
+
+html[data-theme="dark"] body {
+    background-color: #222;
+    color: #fff;
+}
+
+html[data-theme="dark"] a {
+    color: #ccc;
+}
+
+html[data-theme="dark"] header h1 a {
+    color: #fff;
+}
+
+html[data-theme="dark"] header h1 a:hover {
+    color: #e6e6e6;
+}
+
+html[data-theme="dark"] header nav a,
+html[data-theme="dark"] header nav .theme-toggle {
+    color: #ccc;
+}
+
+html[data-theme="dark"] header p.description {
+    color: #b3b3b3;
+}
+
+html[data-theme="dark"] hr {
+    background: #444;
+}
+
+html[data-theme="dark"] #post blockquote {
+    border-left-color: #555;
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] #post code,
+html[data-theme="dark"] #post pre {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #e6e6e6;
+}
+
+html[data-theme="dark"] #post article .authors,
+html[data-theme="dark"] #post article time.dt-published {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] footer nav a {
+    color: #999;
+}
+
+html[data-theme="dark"] footer nav a.home {
+    color: #fff;
 }

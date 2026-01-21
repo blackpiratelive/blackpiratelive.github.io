@@ -20,6 +20,7 @@
             <a href="{{ "stats" | relURL }}">Stats</a>
             <a href="{{ "on-this-day" | relURL }}">On This Day</a>
             <a href="{{ "search" | relURL }}">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
         </nav>
         {{ with .Site.Params.subtitle }}
         <p class="description">{{ . }}</p>
@@ -57,5 +58,40 @@
             <a href="{{ "index.xml" | relURL }}">RSS</a>
         </nav>
     </footer>
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    toggle.textContent = pressed ? "Light" : "Theme";
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
