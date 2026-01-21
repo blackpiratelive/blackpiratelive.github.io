@@ -117,16 +117,25 @@ hr {
 #post article h2,
 #post article h3 {
     line-height: 1.2;
+    margin: 1.1em 0 0.45em;
 }
 
 #post article h2#title {
     font-size: 1.5em;
     display: block;
-    margin: 0 0 1em;
+    margin: 0 0 0.75em;
 }
 
 #post article p {
-    margin: 0 0 1em;
+    margin: 0 0 0.85em;
+}
+
+#post article a {
+    color: #00e;
+}
+
+#post article a:visited {
+    color: #551a8b;
 }
 
 #post article ul,
@@ -199,7 +208,11 @@ hr {
 }
 
 a.hashtag {
-    color: #333;
+    color: #666;
+}
+
+a.hashtag:hover {
+    color: #000;
 }
 
 a.hashtag span:first-child {
@@ -270,6 +283,14 @@ html[data-theme="dark"] a {
     color: #ccc;
 }
 
+html[data-theme="dark"] #post article a {
+    color: #8e93cc;
+}
+
+html[data-theme="dark"] #post article a:visited {
+    color: #b5b9e6;
+}
+
 html[data-theme="dark"] header h1 a {
     color: #fff;
 }
@@ -313,5 +334,13 @@ html[data-theme="dark"] footer nav a {
 }
 
 html[data-theme="dark"] footer nav a.home {
+    color: #fff;
+}
+
+html[data-theme="dark"] a.hashtag {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] a.hashtag:hover {
     color: #fff;
 }
