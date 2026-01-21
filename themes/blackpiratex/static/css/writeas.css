@@ -606,6 +606,79 @@ footer nav a.home:hover {
     }
 }
 
+.writeas-stats {
+    margin-top: 1em;
+}
+
+.writeas-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1em;
+    margin: 1.5em 0 2em;
+}
+
+.writeas-stat-grid--compact {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-bottom: 1.5em;
+}
+
+.writeas-stat-card {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0.75em 0.9em;
+    background: #f8f8f8;
+}
+
+.writeas-stat-label {
+    display: block;
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.35em;
+}
+
+.writeas-stat-value {
+    font-size: 1.3em;
+    color: #111;
+}
+
+.writeas-section {
+    margin-top: 2.5em;
+}
+
+.writeas-section-title {
+    margin: 0 0 0.75em;
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid #eee;
+    font-size: 1.05em;
+    color: #333;
+}
+
+.writeas-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1em;
+    margin: 1.5em 0 2em;
+}
+
+.writeas-chart-grid--two {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.writeas-chart-card {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0.75em;
+    background: #fff;
+}
+
+@media (max-width: 700px) {
+    .writeas-stat-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
     body#post header {
         padding: 1em;
@@ -790,4 +863,27 @@ html[data-theme="dark"] .writeas-exif-label {
 
 html[data-theme="dark"] .writeas-exif-value {
     color: #eee;
+}
+
+html[data-theme="dark"] .writeas-stat-card {
+    border-color: #444;
+    background: #2a2a2a;
+}
+
+html[data-theme="dark"] .writeas-stat-label {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .writeas-stat-value {
+    color: #fff;
+}
+
+html[data-theme="dark"] .writeas-section-title {
+    border-bottom-color: #444;
+    color: #ddd;
+}
+
+html[data-theme="dark"] .writeas-chart-card {
+    border-color: #444;
+    background: #1f1f1f;
 }

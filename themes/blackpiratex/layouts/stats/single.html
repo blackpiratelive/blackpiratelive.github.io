@@ -92,117 +92,99 @@
 
 {{ $totalItems := add (add (len $blogPosts) (len $thoughtPosts)) (len $galleryPosts) }}
 
-<div id="app-root">
-    <div class="blog-hero stats-hero">
-        <h1>
-            <i data-lucide="bar-chart-3" width="24"></i> Site Stats
-        </h1>
-        <p>Signals from the blog, thoughts, and gallery archives.</p>
+<div id="post">
+    <div id="wrapper">
+        <article class="norm writeas-stats">
+            <h2 id="title">Site Stats</h2>
+            <p class="thoughts-meta">Signals from the blog, thoughts, and gallery archives.</p>
+
+            <div class="writeas-stat-grid">
+                <div class="writeas-stat-card">
+                    <span class="writeas-stat-label">Total items</span>
+                    <span class="writeas-stat-value">{{ $totalItems }}</span>
+                </div>
+                <div class="writeas-stat-card">
+                    <span class="writeas-stat-label">Blog posts</span>
+                    <span class="writeas-stat-value">{{ len $blogPosts }}</span>
+                </div>
+                <div class="writeas-stat-card">
+                    <span class="writeas-stat-label">Thoughts</span>
+                    <span class="writeas-stat-value">{{ len $thoughtPosts }}</span>
+                </div>
+                <div class="writeas-stat-card">
+                    <span class="writeas-stat-label">Gallery shots</span>
+                    <span class="writeas-stat-value">{{ len $galleryPosts }}</span>
+                </div>
+                <div class="writeas-stat-card">
+                    <span class="writeas-stat-label">Years tracked</span>
+                    <span class="writeas-stat-value">{{ len $years }}</span>
+                </div>
+            </div>
+
+            <div class="writeas-chart-grid">
+                <div class="writeas-chart-card">
+                    <h3 class="writeas-section-title">Content mix</h3>
+                    <canvas id="typeChart" height="220"></canvas>
+                </div>
+                <div class="writeas-chart-card">
+                    <h3 class="writeas-section-title">Yearly output</h3>
+                    <canvas id="yearChart" height="220"></canvas>
+                </div>
+                <div class="writeas-chart-card">
+                    <h3 class="writeas-section-title">Monthly rhythm</h3>
+                    <canvas id="monthChart" height="220"></canvas>
+                </div>
+            </div>
+
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Blog Deep Dive</h3>
+                <div class="writeas-stat-grid writeas-stat-grid--compact">
+                    <div class="writeas-stat-card">
+                        <span class="writeas-stat-label">Total posts</span>
+                        <span class="writeas-stat-value">{{ len $blogPosts }}</span>
+                    </div>
+                    <div class="writeas-stat-card">
+                        <span class="writeas-stat-label">Total words</span>
+                        <span class="writeas-stat-value">{{ $blogWordTotal }}</span>
+                    </div>
+                </div>
+                <div class="writeas-chart-grid writeas-chart-grid--two">
+                    <div class="writeas-chart-card">
+                        <h3 class="writeas-section-title">Posts per year</h3>
+                        <canvas id="blogYearChart" height="220"></canvas>
+                    </div>
+                    <div class="writeas-chart-card">
+                        <h3 class="writeas-section-title">Words per year</h3>
+                        <canvas id="blogWordChart" height="220"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Thoughts Deep Dive</h3>
+                <div class="writeas-stat-grid writeas-stat-grid--compact">
+                    <div class="writeas-stat-card">
+                        <span class="writeas-stat-label">Total thoughts</span>
+                        <span class="writeas-stat-value">{{ len $thoughtPosts }}</span>
+                    </div>
+                    <div class="writeas-stat-card">
+                        <span class="writeas-stat-label">Total words</span>
+                        <span class="writeas-stat-value">{{ $thoughtWordTotal }}</span>
+                    </div>
+                </div>
+                <div class="writeas-chart-grid writeas-chart-grid--two">
+                    <div class="writeas-chart-card">
+                        <h3 class="writeas-section-title">Thoughts per year</h3>
+                        <canvas id="thoughtYearChart" height="220"></canvas>
+                    </div>
+                    <div class="writeas-chart-card">
+                        <h3 class="writeas-section-title">Words per year</h3>
+                        <canvas id="thoughtWordChart" height="220"></canvas>
+                    </div>
+                </div>
+            </section>
+        </article>
     </div>
-
-    <div class="stats-card-grid">
-        <div class="stats-card">
-            <div class="stats-card-label"><i data-lucide="layers" width="14"></i> Total items</div>
-            <div class="stats-card-value">{{ $totalItems }}</div>
-        </div>
-        <div class="stats-card">
-            <div class="stats-card-label"><i data-lucide="pen-tool" width="14"></i> Blog posts</div>
-            <div class="stats-card-value">{{ len $blogPosts }}</div>
-        </div>
-        <div class="stats-card">
-            <div class="stats-card-label"><i data-lucide="message-square" width="14"></i> Thoughts</div>
-            <div class="stats-card-value">{{ len $thoughtPosts }}</div>
-        </div>
-        <div class="stats-card">
-            <div class="stats-card-label"><i data-lucide="image" width="14"></i> Gallery shots</div>
-            <div class="stats-card-value">{{ len $galleryPosts }}</div>
-        </div>
-        <div class="stats-card">
-            <div class="stats-card-label"><i data-lucide="calendar" width="14"></i> Years tracked</div>
-            <div class="stats-card-value">{{ len $years }}</div>
-        </div>
-    </div>
-
-    <div class="stats-chart-grid">
-        <div class="stats-chart-card">
-            <div class="stats-chart-title">
-                <i data-lucide="pie-chart" width="16"></i> Content mix
-            </div>
-            <canvas id="typeChart" height="220"></canvas>
-        </div>
-        <div class="stats-chart-card">
-            <div class="stats-chart-title">
-                <i data-lucide="area-chart" width="16"></i> Yearly output
-            </div>
-            <canvas id="yearChart" height="220"></canvas>
-        </div>
-        <div class="stats-chart-card">
-            <div class="stats-chart-title">
-                <i data-lucide="bar-chart" width="16"></i> Monthly rhythm
-            </div>
-            <canvas id="monthChart" height="220"></canvas>
-        </div>
-    </div>
-
-    <section class="stats-section">
-        <div class="stats-section-title">
-            <i data-lucide="pen-tool" width="18"></i> Blog Deep Dive
-        </div>
-        <div class="stats-card-grid stats-card-grid--compact">
-            <div class="stats-card">
-                <div class="stats-card-label"><i data-lucide="file-text" width="14"></i> Total posts</div>
-                <div class="stats-card-value">{{ len $blogPosts }}</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-card-label"><i data-lucide="type" width="14"></i> Total words</div>
-                <div class="stats-card-value">{{ $blogWordTotal }}</div>
-            </div>
-        </div>
-        <div class="stats-chart-grid stats-chart-grid--two">
-            <div class="stats-chart-card">
-                <div class="stats-chart-title">
-                    <i data-lucide="bar-chart-2" width="16"></i> Posts per year
-                </div>
-                <canvas id="blogYearChart" height="220"></canvas>
-            </div>
-            <div class="stats-chart-card">
-                <div class="stats-chart-title">
-                    <i data-lucide="trending-up" width="16"></i> Words per year
-                </div>
-                <canvas id="blogWordChart" height="220"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <section class="stats-section">
-        <div class="stats-section-title">
-            <i data-lucide="message-square" width="18"></i> Thoughts Deep Dive
-        </div>
-        <div class="stats-card-grid stats-card-grid--compact">
-            <div class="stats-card">
-                <div class="stats-card-label"><i data-lucide="sticky-note" width="14"></i> Total thoughts</div>
-                <div class="stats-card-value">{{ len $thoughtPosts }}</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-card-label"><i data-lucide="type" width="14"></i> Total words</div>
-                <div class="stats-card-value">{{ $thoughtWordTotal }}</div>
-            </div>
-        </div>
-        <div class="stats-chart-grid stats-chart-grid--two">
-            <div class="stats-chart-card">
-                <div class="stats-chart-title">
-                    <i data-lucide="bar-chart-2" width="16"></i> Thoughts per year
-                </div>
-                <canvas id="thoughtYearChart" height="220"></canvas>
-            </div>
-            <div class="stats-chart-card">
-                <div class="stats-chart-title">
-                    <i data-lucide="trending-up" width="16"></i> Words per year
-                </div>
-                <canvas id="thoughtWordChart" height="220"></canvas>
-            </div>
-        </div>
-    </section>
 </div>
 
 <script src="{{ "js/vendor/chart.umd.min.js" | relURL }}"></script>
@@ -438,9 +420,6 @@
         observer.observe(document.documentElement, { attributes: true });
     }
 
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
 </script>
 
 {{ partial "footer.html" . }}
