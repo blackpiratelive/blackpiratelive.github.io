@@ -287,6 +287,96 @@ footer nav a.home:hover {
     color: #000;
 }
 
+.writeas-footer {
+    text-align: center;
+    padding: 0 2em;
+    margin: 3em auto 4em;
+}
+
+.writeas-footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    justify-content: center;
+    text-align: left;
+    margin-bottom: 2.5em;
+}
+
+.writeas-footer-col {
+    min-width: 180px;
+}
+
+.writeas-footer-title {
+    margin: 0 0 0.6em;
+    font-size: 0.75em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    font-family: "Open Sans", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.writeas-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em 1em;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.writeas-footer-links a {
+    color: #999;
+    text-decoration: none;
+}
+
+.writeas-footer-links a:hover {
+    color: #666;
+    text-decoration: none;
+}
+
+.writeas-footer-section {
+    max-width: 40em;
+    margin: 0 auto 2em;
+}
+
+.writeas-footer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 0.8em;
+    font-size: 0.9em;
+    justify-content: center;
+}
+
+.writeas-footer-tags a {
+    color: #999;
+    text-decoration: none;
+}
+
+.writeas-footer-tags a:hover {
+    color: #666;
+    text-decoration: none;
+}
+
+.writeas-webring-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em 0.8em;
+    font-size: 0.9em;
+}
+
+.writeas-webring-name {
+    font-weight: 600;
+    color: #444;
+}
+
+.writeas-footer-credits {
+    font-size: 0.85em;
+    color: #777;
+}
+
+.writeas-footer-credits p {
+    margin: 0.5em 0;
+}
+
 .thoughts-meta {
     font-size: 0.95em;
     color: #666;
@@ -472,6 +562,33 @@ html[data-theme="dark"] footer nav a {
 
 html[data-theme="dark"] footer nav a.home {
     color: #fff;
+}
+
+html[data-theme="dark"] .writeas-footer-title {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .writeas-footer-links,
+html[data-theme="dark"] .writeas-footer-tags {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .writeas-footer-links a,
+html[data-theme="dark"] .writeas-footer-tags a {
+    color: #999;
+}
+
+html[data-theme="dark"] .writeas-footer-links a:hover,
+html[data-theme="dark"] .writeas-footer-tags a:hover {
+    color: #ccc;
+}
+
+html[data-theme="dark"] .writeas-webring-name {
+    color: #ddd;
+}
+
+html[data-theme="dark"] .writeas-footer-credits {
+    color: #999;
 }
 
 html[data-theme="dark"] a.hashtag {
