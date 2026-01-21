@@ -1,36 +1,50 @@
 
 {{ partial "header.html" . }}
 
-<div id="app-root" class="thoughts-page">
-    <div class="thoughts-hero">
-        <h1 class="thoughts-title">{{ .Title }}</h1>
-        <div class="thoughts-count">{{ len .Pages }} notes</div>
-    </div>
+<div id="app-root">
+    <h4 class="section-header">
+        <i data-lucide="message-square" width="14"></i>
+        {{ .Title | upper }}
+    </h4>
 
-    <div class="thoughts-list">
+    <div class="micro-feed">
         {{ range (.Paginate .Pages 100).Pages }}
-        <article class="thoughts-entry">
-            <div class="thoughts-entry-meta">
-                <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-                    <a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02" }} {{ .Date.Format "15:04" }}</a>
-                </time>
+        <div class="micro-item">
+            <div class="micro-dot"></div>
+            <div class="micro-header">
+                <span class="micro-date-time">
+                    <i data-lucide="calendar" width="14"></i>
+                    {{ .Date.Format "Jan 02, 2006" }}
+                </span>
+                <span class="micro-separator">•</span>
+                <span class="micro-date-time">
+                    <i data-lucide="clock" width="14"></i>
+                    {{ .Date.Format "15:04" }}
+                </span>
+                
+                <span style="margin-left: auto;">
+                    <a href="{{ .Permalink }}" class="micro-permalink-icon" title="View Post">
+                        <i data-lucide="external-link" width="12"></i>
+                    </a>
+                </span>
             </div>
-
-            <div class="thoughts-entry-body">
+            
+            <div class="micro-content">
                 {{ .Content }}
-
-                {{ if .Params.tags }}
-                <div class="thoughts-tags">
-                    {{ range .Params.tags }}
-                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">#{{ . }}</a>
-                    {{ end }}
-                </div>
+            </div>
+            
+            {{ if .Params.tags }}
+            <div class="micro-tags">
+                <i data-lucide="tag" width="14"></i>
+                {{ range .Params.tags }}
+                <span class="micro-tag">{{ . }}</span>
                 {{ end }}
             </div>
-        </article>
+            {{ end }}
+        </div>
         {{ end }}
     </div>
-
+    
     {{ partial "pagination.html" . }}
 </div>
 
