@@ -1,42 +1,55 @@
-
-{{ partial "header.html" . }}
-
-<div id="app-root" class="writeas-post">
-    <a class="writeas-back" href="{{ .Site.BaseURL }}blog">← Back to Blog</a>
-
-    <article class="writeas-shell">
-        <header class="writeas-header">
-            <h1 class="writeas-title">{{ .Title }}</h1>
-
-            <div class="writeas-meta">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-                <span class="writeas-meta-sep">·</span>
-                <span>{{ .Params.author | default "Sudip" }}</span>
-                <span class="writeas-meta-sep">·</span>
-                <span>{{ .ReadingTime }} min read</span>
-            </div>
-        </header>
-
-        <div class="single-content writeas-content">
-            {{ .Content }}
-        </div>
-
-        {{ if .Params.tags }}
-        <div class="writeas-tags">
-            <span class="writeas-tags-label">Tagged:</span>
-            {{ range $index, $tag := .Params.tags }}
-                {{ if $index }}<span class="writeas-tag-sep">,</span>{{ end }}
-                <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">{{ $tag }}</a>
-            {{ end }}
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/writeas-hugo.css" | relURL }}">
+</head>
+<body id="post">
+    <header>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">Home</a>
+            <a href="{{ "blog" | relURL }}">Blog</a>
+            <a href="{{ "tags" | relURL }}">Tags</a>
+        </nav>
+        {{ with .Site.Params.subtitle }}
+        <p class="description">{{ . }}</p>
         {{ end }}
-    </article>
-</div>
+    </header>
 
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
+    <div id="post">
+        <div id="wrapper">
+            <article class="norm">
+                <h2 id="title">{{ .Title }}</h2>
+                <span class="authors">{{ .Params.author | default "Sudip" }}</span>
+                <time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">
+                    {{ .Date.Format "January 2, 2006" }}
+                </time>
 
-{{ partial "footer.html" . }}
+                {{ .Content }}
+
+                {{ if .Params.tags }}
+                <p class="post-tags">
+                    {{ range .Params.tags }}
+                    <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                        <span>#</span><span>{{ . }}</span>
+                    </a>
+                    {{ end }}
+                </p>
+                {{ end }}
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <a href="{{ "blog" | relURL }}">Archive</a>
+            <a href="{{ "index.xml" | relURL }}">RSS</a>
+        </nav>
+    </footer>
+</body>
+</html>
