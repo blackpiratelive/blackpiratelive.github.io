@@ -1,4 +1,4 @@
-{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") (eq .Layout "stats") }}
 {{ if $isWriteas }}
 <footer class="writeas-footer">
     <details class="writeas-footer-section" open>
