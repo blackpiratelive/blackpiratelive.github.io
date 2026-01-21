@@ -3,7 +3,7 @@
     <div class="footer-nav-grid">
         <!-- Browse Column -->
         <div class="footer-column">
-            <h4 class="section-header">
+            <h4 class="footer-heading">
                 <i data-lucide="compass" width="14"></i> Browse
             </h4>
             <div class="footer-links">
@@ -52,7 +52,7 @@
 
         <!-- Follow Column -->
         <div class="footer-column">
-            <h4 class="section-header">
+            <h4 class="footer-heading">
                 <i data-lucide="user-plus" width="14"></i> Follow
             </h4>
             <div class="footer-links">
@@ -83,6 +83,19 @@
             </div>
         </div>
     </div>
+
+    {{ with .Site.Taxonomies.tags }}
+    <div class="footer-tag-cloud">
+        <h4 class="footer-heading">
+            <i data-lucide="tag" width="14"></i> Tags
+        </h4>
+        <div class="footer-tag-list">
+            {{ range first 24 .ByCount }}
+            <a href="{{ .Page.RelPermalink }}" class="footer-tag-item">#{{ .Name }}</a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
 
     <!-- Webrings Section -->
     <div class="webring-section">
