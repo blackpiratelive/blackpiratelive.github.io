@@ -3,147 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/post.css">
-    <link rel="stylesheet" href="/css/pagination.css">
-    
-    <!-- Open Graph / Social Meta -->
-    <meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}Post from {{ .Date.Format "Jan 02, 2006" }}{{ end }}">
-    <meta property="og:description" content="{{ .Summary | plainify | truncate 200 }}">
-    <meta property="og:type" content="article">
-    
-    <!-- Lucide Icons -->
-    <script src="/js/vendor/lucide.min.js"></script>
+    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
 </head>
-<body>
-    <!-- Header -->
+<body id="post">
     <header>
-        <a href="/" class="header-title">
-            <span>{{ .Site.Title }}</span>
-        </a>
-        {{ with .Site.Params.subtitle }}
-        <p class="header-subtitle">{{ . }}</p>
-        {{ end }}
-        
-        <!-- Navigation -->
-        <nav class="nav-bar">
-            <a href="/" class="nav-link">
-                <i data-lucide="home" width="14"></i> Home
-            </a>
-            <span class="nav-separator">·</span>
-            <a href="/thoughts/" class="nav-link">
-                <i data-lucide="message-circle" width="14"></i> Thoughts
-            </a>
-            {{ range .Site.Menus.main }}
-            <span class="nav-separator">·</span>
-            <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
-            {{ end }}
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">Home</a>
+            <a href="{{ "blog" | relURL }}">Blog</a>
+            <a href="{{ "thoughts" | relURL }}">Thoughts</a>
+            <a href="{{ "gallery" | relURL }}">Gallery</a>
+            <a href="{{ "stats" | relURL }}">Stats</a>
+            <a href="{{ "on-this-day" | relURL }}">On This Day</a>
+            <a href="{{ "search" | relURL }}">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
         </nav>
+        {{ with .Site.Params.subtitle }}
+        <p class="description">{{ . }}</p>
+        {{ end }}
     </header>
 
-    <!-- Back Button -->
-    <a href="/thoughts/" class="back-btn">
-        <i data-lucide="arrow-left" width="16"></i>
-        Back to all thoughts
-    </a>
-
-    <!-- Single Post Container -->
-    <article class="detail-container">
-        <!-- Title (only if exists) -->
-        {{ if .Title }}
-        <h1 class="detail-title">{{ .Title }}</h1>
-        {{ end }}
-
-        <!-- Post Meta Bar -->
-        <div class="post-meta-bar">
-            <span class="meta-item">
-                <i data-lucide="calendar" width="14"></i>
-                <time datetime="{{ .Date.Format "2006-01-02" }}">
-                    {{ .Date.Format "January 02, 2006" }}
+    <div id="post">
+        <div id="wrapper">
+            <article class="norm">
+                <h2 id="title">
+                    {{ if .Title }}
+                        {{ .Title }}
+                    {{ else }}
+                        Thought from {{ .Date.Format "January 2, 2006" }}
+                    {{ end }}
+                </h2>
+                <span class="authors">{{ .Params.author | default "Sudip" }}</span>
+                <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                    {{ .Date.Format "January 2, 2006" }} · {{ .Date.Format "15:04" }}
                 </time>
-            </span>
-            
-            <span class="meta-item">
-                <i data-lucide="clock" width="14"></i>
-                {{ .ReadingTime }} min read
-            </span>
 
-            {{ if .Params.tags }}
-            <span class="meta-item">
-                <i data-lucide="tag" width="14"></i>
-                {{ range $index, $tag := .Params.tags }}
-                    {{ if $index }}, {{ end }}
-                    <a href="/tags/{{ $tag | urlize }}" style="color: inherit;">{{ $tag }}</a>
+                {{ .Content }}
+
+                {{ if .Params.tags }}
+                <p class="post-tags">
+                    {{ range .Params.tags }}
+                    <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                        <span>#</span><span>{{ . }}</span>
+                    </a>
+                    {{ end }}
+                </p>
                 {{ end }}
-            </span>
-            {{ end }}
-        </div>
-
-        <!-- Excerpt Box (if exists) -->
-        {{ with .Params.excerpt }}
-        <div class="detail-excerpt">
-            {{ . }}
-        </div>
-        {{ end }}
-
-        <!-- Post Content -->
-        <div class="single-content">
-            {{ .Content }}
-        </div>
-
-        <!-- Tags (Large display at bottom) -->
-        {{ if .Params.tags }}
-        <div class="gallery-tags-large" style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed var(--border-color);">
-            {{ range .Params.tags }}
-            <a href="/tags/{{ . | urlize }}" class="tag-badge" style="text-decoration: none;">
-                {{ . }}
-            </a>
-            {{ end }}
-        </div>
-        {{ end }}
-
-        <!-- Webmention / Share Section (Optional) -->
-        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--border-color);">
-            <div style="display: flex; gap: 15px; align-items: center; font-size: 14px;">
-                <span style="font-weight: bold; color: var(--text-muted);">Share:</span>
-                <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | default "Thought" }}" 
-                   target="_blank" class="nav-link" style="text-decoration: none;">
-                    Twitter
-                </a>
-                <span class="nav-separator">·</span>
-                <a href="https://mastodon.social/share?text={{ .Title | default "Thought" }}%20{{ .Permalink }}" 
-                   target="_blank" class="nav-link" style="text-decoration: none;">
-                    Mastodon
-                </a>
-            </div>
-        </div>
-    </article>
-
-    <!-- Navigation to Previous/Next Posts -->
-    <div class="pagination" style="margin-top: 30px;">
-        <div>
-            {{ with .PrevInSection }}
-            <a href="{{ .Permalink }}" class="page-link">
-                ← {{ if .Title }}{{ .Title }}{{ else }}Previous{{ end }}
-            </a>
-            {{ end }}
-        </div>
-        <div>
-            {{ with .NextInSection }}
-            <a href="{{ .Permalink }}" class="page-link">
-                {{ if .Title }}{{ .Title }}{{ else }}Next{{ end }} →
-            </a>
-            {{ end }}
+            </article>
         </div>
     </div>
 
-    <!-- Footer -->
-    {{ partial "footer.html" . }}
+    <footer>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <a href="{{ "blog" | relURL }}">Archive</a>
+            <a href="{{ "index.xml" | relURL }}">RSS</a>
+        </nav>
+    </footer>
 
-    <!-- Initialize Lucide Icons -->
     <script>
-        lucide.createIcons();
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    toggle.textContent = pressed ? "Light" : "Theme";
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
     </script>
 </body>
 </html>

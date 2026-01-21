@@ -1,57 +1,107 @@
-
-{{ partial "header.html" . }}
-
-<div id="app-root">
-    <h4 class="section-header">
-        <i data-lucide="message-square" width="14"></i>
-        {{ .Title | upper }}
-    </h4>
-
-    <div class="micro-feed">
-        {{ range (.Paginate .Pages 100).Pages }}
-        <div class="micro-item">
-            <div class="micro-dot"></div>
-            <div class="micro-header">
-                <span class="micro-date-time">
-                    <i data-lucide="calendar" width="14"></i>
-                    {{ .Date.Format "Jan 02, 2006" }}
-                </span>
-                <span class="micro-separator">•</span>
-                <span class="micro-date-time">
-                    <i data-lucide="clock" width="14"></i>
-                    {{ .Date.Format "15:04" }}
-                </span>
-                
-                <span style="margin-left: auto;">
-                    <a href="{{ .Permalink }}" class="micro-permalink-icon" title="View Post">
-                        <i data-lucide="external-link" width="12"></i>
-                    </a>
-                </span>
-            </div>
-            
-            <div class="micro-content">
-                {{ .Content }}
-            </div>
-            
-            {{ if .Params.tags }}
-            <div class="micro-tags">
-                <i data-lucide="tag" width="14"></i>
-                {{ range .Params.tags }}
-                <span class="micro-tag">{{ . }}</span>
-                {{ end }}
-            </div>
-            {{ end }}
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
+</head>
+<body id="post">
+    <header>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">Home</a>
+            <a href="{{ "blog" | relURL }}">Blog</a>
+            <a href="{{ "thoughts" | relURL }}">Thoughts</a>
+            <a href="{{ "gallery" | relURL }}">Gallery</a>
+            <a href="{{ "stats" | relURL }}">Stats</a>
+            <a href="{{ "on-this-day" | relURL }}">On This Day</a>
+            <a href="{{ "search" | relURL }}">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        {{ with .Site.Params.subtitle }}
+        <p class="description">{{ . }}</p>
         {{ end }}
+    </header>
+
+    <div id="post">
+        <div id="wrapper">
+            <article class="norm thoughts-index">
+                <h2 id="title">{{ .Title }}</h2>
+                <p class="thoughts-meta">{{ len .Pages }} thoughts</p>
+
+                <div class="thoughts-list">
+                    {{ range (.Paginate .Pages 100).Pages }}
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="{{ .Permalink }}">{{ .Date.Format "January 2, 2006" }} · {{ .Date.Format "15:04" }}</a>
+                        </span>
+                        <div class="thought-body">
+                            {{ .Content }}
+                        </div>
+
+                        {{ if .Params.tags }}
+                        <p class="post-tags">
+                            {{ range .Params.tags }}
+                            <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                                <span>#</span><span>{{ . }}</span>
+                            </a>
+                            {{ end }}
+                        </p>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </article>
+
+            {{ partial "pagination.html" . }}
+        </div>
     </div>
-    
-    {{ partial "pagination.html" . }}
-</div>
 
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
+    <footer>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <a href="{{ "blog" | relURL }}">Archive</a>
+            <a href="{{ "index.xml" | relURL }}">RSS</a>
+        </nav>
+    </footer>
 
-{{ partial "footer.html" . }}
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    toggle.textContent = pressed ? "Light" : "Theme";
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

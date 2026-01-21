@@ -12,7 +12,11 @@ body {
 
 a {
     text-decoration: none;
-    color: #333;
+    color: #0066ff;
+}
+
+a:visited {
+    color: #4b4bff;
 }
 
 a:hover {
@@ -58,6 +62,10 @@ header nav {
 header nav a {
     color: #767676;
     margin: 0 0 0 1em;
+}
+
+header nav a:visited {
+    color: #767676;
 }
 
 header nav a:hover {
@@ -117,25 +125,31 @@ hr {
 #post article h2,
 #post article h3 {
     line-height: 1.2;
-    margin: 1.1em 0 0.45em;
+    margin: 0.9em 0 0.35em;
 }
 
 #post article h2#title {
     font-size: 1.5em;
     display: block;
-    margin: 0 0 0.75em;
+    margin: 0 0 0.6em;
 }
 
 #post article p {
-    margin: 0 0 0.85em;
+    margin: 0 0 0.75em;
 }
 
 #post article a {
-    color: #00e;
+    color: #0066ff;
 }
 
 #post article a:visited {
-    color: #551a8b;
+    color: #4b4bff;
+}
+
+#post article p + h2,
+#post article p + h3,
+#post article p + h4 {
+    margin-top: 0.75em;
 }
 
 #post article ul,
@@ -207,12 +221,17 @@ hr {
     margin-top: 1.5em;
 }
 
+.thought-item .post-tags {
+    margin-top: 0.6em;
+    margin-bottom: 0;
+}
+
 a.hashtag {
-    color: #666;
+    color: #0066ff;
 }
 
 a.hashtag:hover {
-    color: #000;
+    color: #0046cc;
 }
 
 a.hashtag span:first-child {
@@ -262,6 +281,65 @@ footer nav a.home:hover {
     color: #000;
 }
 
+.thoughts-meta {
+    font-size: 0.95em;
+    color: #666;
+    margin: 0 0 1.5em;
+}
+
+.thoughts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.thought-item {
+    padding-bottom: 1.2em;
+    border-bottom: 1px solid #eee;
+}
+
+.thought-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.thought-time {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 0.35em;
+}
+
+.thought-time a {
+    color: inherit;
+}
+
+.thought-time a:hover {
+    color: #333;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+    margin: 1.5em auto 3em;
+}
+
+.pagination-link {
+    border: 1px solid #ddd;
+    border-radius: 0.25em;
+    padding: 0.25em 0.6em;
+    font-size: 0.85em;
+    color: #666;
+    text-decoration: none;
+}
+
+.pagination-link.active {
+    background: #f2f2f2;
+    color: #333;
+}
+
 @media (max-width: 600px) {
     body#post header {
         padding: 1em;
@@ -284,11 +362,11 @@ html[data-theme="dark"] a {
 }
 
 html[data-theme="dark"] #post article a {
-    color: #8e93cc;
+    color: #8ab4ff;
 }
 
 html[data-theme="dark"] #post article a:visited {
-    color: #b5b9e6;
+    color: #b0c5ff;
 }
 
 html[data-theme="dark"] header h1 a {
@@ -338,9 +416,32 @@ html[data-theme="dark"] footer nav a.home {
 }
 
 html[data-theme="dark"] a.hashtag {
-    color: #b0b0b0;
+    color: #8ab4ff;
 }
 
 html[data-theme="dark"] a.hashtag:hover {
+    color: #fff;
+}
+
+html[data-theme="dark"] .thoughts-meta,
+html[data-theme="dark"] .thought-time {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .thought-item {
+    border-bottom-color: #444;
+}
+
+html[data-theme="dark"] .thought-time a:hover {
+    color: #fff;
+}
+
+html[data-theme="dark"] .pagination-link {
+    border-color: #444;
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .pagination-link.active {
+    background: #2a2a2a;
     color: #fff;
 }
