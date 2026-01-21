@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+{{ $isWriteas := or (eq .Section "blog") (eq .Section "thoughts") }}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
-    
+
+    {{ if $isWriteas }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
+    {{ else }}
     <link rel="stylesheet" href="{{ "css/base.css" | relURL }}">
 
     {{ $styles := slice }}
@@ -47,9 +54,28 @@
     <script src="{{ "js/vendor/lucide.min.js" | relURL }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <script src="{{ "js/search.js" | relURL }}"></script>
+    {{ end }}
 </head>
-<body>
+<body{{ if $isWriteas }} id="post"{{ end }}>
 
+    {{ if $isWriteas }}
+    <header>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">Home</a>
+            <a href="{{ "blog" | relURL }}">Blog</a>
+            <a href="{{ "thoughts" | relURL }}">Thoughts</a>
+            <a href="{{ "gallery" | relURL }}">Gallery</a>
+            <a href="{{ "stats" | relURL }}">Stats</a>
+            <a href="{{ "on-this-day" | relURL }}">On This Day</a>
+            <a href="{{ "search" | relURL }}">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        {{ with .Site.Params.subtitle }}
+        <p class="description">{{ . }}</p>
+        {{ end }}
+    </header>
+    {{ else }}
     <div id="header-container">
         <a href="{{ .Site.BaseURL }}" class="header-title">
             <i data-lucide="pen-tool" style="margin-right: 8px;"></i>
@@ -93,6 +119,7 @@
             </button>
         </div>
     </div>
+    {{ end }}
 
     <script>
         (function () {
@@ -112,6 +139,8 @@
                     const icon = toggle.querySelector("i");
                     if (icon) {
                         icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
                     }
                     if (typeof lucide !== "undefined") {
                         lucide.createIcons();

@@ -1,3 +1,13 @@
+{{ $isWriteas := or (eq .Section "blog") (eq .Section "thoughts") }}
+{{ if $isWriteas }}
+<footer>
+    <nav>
+        <a class="home" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        <a href="{{ "blog" | relURL }}">Archive</a>
+        <a href="{{ "index.xml" | relURL }}">RSS</a>
+    </nav>
+</footer>
+{{ else }}
 <footer class="footer-container">
     <!-- Footer Navigation Grid -->
     <div class="footer-nav-grid">
@@ -222,3 +232,4 @@
 <script>
         lucide.createIcons();
     </script>
+{{ end }}

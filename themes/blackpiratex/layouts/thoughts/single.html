@@ -1,103 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
-</head>
-<body id="post">
-    <header>
-        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
-        <nav>
-            <a class="home" href="{{ .Site.BaseURL }}">Home</a>
-            <a href="{{ "blog" | relURL }}">Blog</a>
-            <a href="{{ "thoughts" | relURL }}">Thoughts</a>
-            <a href="{{ "gallery" | relURL }}">Gallery</a>
-            <a href="{{ "stats" | relURL }}">Stats</a>
-            <a href="{{ "on-this-day" | relURL }}">On This Day</a>
-            <a href="{{ "search" | relURL }}">Search</a>
-            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
-        </nav>
-        {{ with .Site.Params.subtitle }}
-        <p class="description">{{ . }}</p>
-        {{ end }}
-    </header>
+{{ partial "header.html" . }}
 
-    <div id="post">
-        <div id="wrapper">
-            <article class="norm">
-                <h2 id="title">
-                    {{ if .Title }}
-                        {{ .Title }}
-                    {{ else }}
-                        Thought from {{ .Date.Format "January 2, 2006" }}
-                    {{ end }}
-                </h2>
-                <span class="authors">{{ .Params.author | default "Sudip" }}</span>
-                <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-                    {{ .Date.Format "January 2, 2006" }} · {{ .Date.Format "15:04" }}
-                </time>
-
-                {{ .Content }}
-
-                {{ if .Params.tags }}
-                <p class="post-tags">
-                    {{ range .Params.tags }}
-                    <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
-                        <span>#</span><span>{{ . }}</span>
-                    </a>
-                    {{ end }}
-                </p>
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">
+                {{ if .Title }}
+                    {{ .Title }}
+                {{ else }}
+                    Thought from {{ .Date.Format "January 2, 2006" }}
                 {{ end }}
-            </article>
-        </div>
+            </h2>
+            <span class="authors">{{ .Params.author | default "Sudip" }}</span>
+            <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                {{ .Date.Format "January 2, 2006" }} · {{ .Date.Format "15:04" }}
+            </time>
+
+            {{ .Content }}
+
+            {{ if .Params.tags }}
+            <p class="post-tags">
+                {{ range .Params.tags }}
+                <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                    <span>#</span><span>{{ . }}</span>
+                </a>
+                {{ end }}
+            </p>
+            {{ end }}
+        </article>
     </div>
+</div>
 
-    <footer>
-        <nav>
-            <a class="home" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-            <a href="{{ "blog" | relURL }}">Archive</a>
-            <a href="{{ "index.xml" | relURL }}">RSS</a>
-        </nav>
-    </footer>
-
-    <script>
-        (function () {
-            const storageKey = "bp-theme";
-            const root = document.documentElement;
-            const toggle = document.querySelector(".theme-toggle");
-
-            const applyTheme = (value) => {
-                if (value === "dark") {
-                    root.setAttribute("data-theme", "dark");
-                } else {
-                    root.removeAttribute("data-theme");
-                }
-                if (toggle) {
-                    const pressed = value === "dark";
-                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
-                    toggle.textContent = pressed ? "Light" : "Theme";
-                }
-            };
-
-            let theme = localStorage.getItem(storageKey);
-            if (!theme && window.matchMedia) {
-                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-            }
-            applyTheme(theme || "light");
-
-            if (toggle) {
-                toggle.addEventListener("click", () => {
-                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-                    localStorage.setItem(storageKey, next);
-                    applyTheme(next);
-                });
-            }
-        })();
-    </script>
-</body>
-</html>
+{{ partial "footer.html" . }}
