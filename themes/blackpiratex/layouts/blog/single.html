@@ -1,48 +1,36 @@
 
 {{ partial "header.html" . }}
-  <a class="back-btn" href="{{ .Site.BaseURL }}blog">
-        <i data-lucide="arrow-left" width="16"></i> Back to Blog
-    </a>
 
-    <div class="home-section post-shell">
-        <div class="detail-container">
-            <header class="post-header">
-                <h1 class="detail-title">{{ .Title }}</h1>
-                
-                <div class="post-meta-bar">
-                    <span class="meta-item">
-                        <i data-lucide="calendar" width="14"></i> 
-                        {{ .Date.Format "Jan 2, 2006" }}
-                    </span>
-                    <span class="meta-item">
-                        <i data-lucide="user" width="14"></i>
-                        {{ .Params.author | default "Sudip" }}
-                    </span>
-                    <span class="meta-item">
-                        <i data-lucide="clock" width="14"></i> 
-                        {{ .ReadingTime }} min read
-                    </span>
-                    <span class="meta-item">
-                        <i data-lucide="file-text" width="14"></i> 
-                        {{ .WordCount }} words
-                    </span>
-                </div>
+<div id="app-root" class="writeas-post">
+    <a class="writeas-back" href="{{ .Site.BaseURL }}blog">← Back to Blog</a>
 
-                {{ if .Params.tags }}
-                <div class="post-tags">
-                    {{ range .Params.tags }}
-                        <a class="post-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">#{{ . }}</a>
-                    {{ end }}
-                </div>
-                {{ end }}
-            </header>
-        
-            <div class="page-content single-content">
-                {{ .Content }}
+    <article class="writeas-shell">
+        <header class="writeas-header">
+            <h1 class="writeas-title">{{ .Title }}</h1>
+
+            <div class="writeas-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                <span class="writeas-meta-sep">·</span>
+                <span>{{ .Params.author | default "Sudip" }}</span>
+                <span class="writeas-meta-sep">·</span>
+                <span>{{ .ReadingTime }} min read</span>
             </div>
-        </div>
-    </div>
+        </header>
 
+        <div class="single-content writeas-content">
+            {{ .Content }}
+        </div>
+
+        {{ if .Params.tags }}
+        <div class="writeas-tags">
+            <span class="writeas-tags-label">Tagged:</span>
+            {{ range $index, $tag := .Params.tags }}
+                {{ if $index }}<span class="writeas-tag-sep">,</span>{{ end }}
+                <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">{{ $tag }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </article>
 </div>
 
 <script>

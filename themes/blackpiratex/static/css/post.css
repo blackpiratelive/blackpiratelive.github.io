@@ -238,3 +238,104 @@
 .post-tag:hover {
     color: var(--text-main);
 }
+
+/* Write.as-inspired blog layout */
+.writeas-post {
+    margin-top: 10px;
+}
+.writeas-back {
+    display: inline-block;
+    margin: 10px 0 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.writeas-back:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}
+.writeas-shell {
+    max-width: 680px;
+    margin: 0 auto 60px;
+}
+.writeas-header {
+    margin-bottom: 28px;
+}
+.writeas-title {
+    margin: 0 0 12px;
+    font-size: 2.4rem;
+    line-height: 1.15;
+    color: var(--text-main);
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+.writeas-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.writeas-meta-sep {
+    color: var(--border-color);
+}
+.writeas-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+.writeas-content h2,
+.writeas-content h3 {
+    color: var(--text-main);
+    font-family: inherit;
+}
+.writeas-content blockquote {
+    background: transparent;
+    border-left: 3px solid var(--border-color);
+    padding: 6px 18px;
+    color: var(--text-muted);
+}
+.writeas-content pre {
+    background-color: var(--bg-hover);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+.writeas-content code {
+    background-color: var(--bg-hover);
+    color: var(--text-main);
+}
+.writeas-tags {
+    margin-top: 32px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.writeas-tags-label {
+    margin-right: 6px;
+}
+.writeas-tags a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+.writeas-tags a:hover {
+    color: var(--text-main);
+    border-bottom-color: var(--border-color);
+}
+.writeas-tag-sep {
+    margin: 0 6px;
+    color: var(--border-color);
+}
+
+@media (max-width: 700px) {
+    .writeas-shell {
+        margin-bottom: 40px;
+    }
+    .writeas-title {
+        font-size: 2rem;
+    }
+    .writeas-content {
+        font-size: 1.02rem;
+    }
+}
