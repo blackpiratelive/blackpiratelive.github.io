@@ -1,6 +1,8 @@
 {{ partial "header.html" . }}
 
-<div id="app-root">
+<div id="post">
+    <div id="wrapper">
+        <article class="norm home-article">
 
     <header class="hero">
         {{ $me := resources.Get "img/me-2.jpg" }}
@@ -8,10 +10,10 @@
             {{ $me = $me.Resize "300x webp q90" }}
             <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-img"/>
         {{ else }}
-            <div class="hero-img" style="background: var(--bg-hover); display:flex; align-items:center; justify-content:center;">No Img</div>
+            <div class="hero-img hero-img-fallback">No Img</div>
         {{ end }}
         <h1>Hi, I'm Sudip</h1>
-        <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
+        <p class="hero-intro">
             Hey there! Thanks for stopping by my little corner of the internet.
             I made this page to store things I like, free from algorithms. 
             I am so glad you are here.
@@ -40,7 +42,7 @@
             title="Featured Gallery"
             width="100%" 
             height="400" 
-            style="border:1px solid var(--border-color); overflow:hidden; border-radius: 8px;" 
+            class="home-embed"
             allowtransparency="true"
             loading="lazy">
         </iframe>
@@ -54,7 +56,7 @@
             Who am I? I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. 
             I finished my Zoology graduation in 2025 and am now preparing for govt job exams.
         </p>
-        <p style="margin-top: 10px;">
+        <p class="home-spaced">
             Building websites is my hobby, and I love ducks and cats. 
             I spend a lot of time working with tech stuff but I also study, and sometimes when I have a chance I travel. 
             Good balance I guess?
@@ -64,7 +66,7 @@
                 src="https://guestbook.blackpiratex.com/widget.html" 
                 width="100%" 
                 height="60" 
-                style="border:none; max-width: 468px; display:inline-block;" 
+                class="home-guestbook"
                 title="Sudip's Guestbook Banner">
             </iframe>
         </div>
@@ -151,7 +153,7 @@
         <p>
             If you want to reach me quickly, email me at <strong>sudip (at) blackpiratex.com</strong>.
             <br>
-            <a href="https://links.blackpiratex.com/wa" style="color: var(--primary-blue);">Chat with me on WhatsApp &rarr;</a>
+            <a href="https://links.blackpiratex.com/wa" class="home-link">Chat with me on WhatsApp &rarr;</a>
         </p>
     </section>
 
@@ -162,10 +164,12 @@
             height="100" 
             frameborder="0" 
             scrolling="no" 
-            style="border:none; overflow:hidden; max-width: 468px;">
+            class="home-webring">
         </iframe>
     </div>
 
+        </article>
+    </div>
 </div>
 
 <script>

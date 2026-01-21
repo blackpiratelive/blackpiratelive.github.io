@@ -1,4 +1,4 @@
-{{ $isWriteas := or (eq .Section "blog") (eq .Section "thoughts") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") }}
 {{ if $isWriteas }}
 <footer>
     <nav>

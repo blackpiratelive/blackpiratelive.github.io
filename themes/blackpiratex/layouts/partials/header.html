@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ $isWriteas := or (eq .Section "blog") (eq .Section "thoughts") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") }}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
+    {{ if .IsHome }}
+    <link rel="stylesheet" href="{{ "css/writeas-home.css" | relURL }}">
+    <script src="{{ "js/vendor/lucide.min.js" | relURL }}"></script>
+    {{ end }}
     {{ else }}
     <link rel="stylesheet" href="{{ "css/base.css" | relURL }}">
 
