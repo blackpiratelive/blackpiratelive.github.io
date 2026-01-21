@@ -20,7 +20,7 @@
         {{ $styles = $styles | append "css/hero.css" "css/search.css" }}
     {{ else if eq .Kind "taxonomyTerm" }}
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/tags.css" }}
-    {{ else if eq .Kind "taxonomy" }}
+    {{ else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/tags.css" "css/blog-list.css" "css/thoughts.css" "css/gallery.css" }}
     {{ else if and (eq .Section "blog") (eq .Kind "section") }}
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/controls.css" "css/blog-list.css" "css/pagination.css" }}
