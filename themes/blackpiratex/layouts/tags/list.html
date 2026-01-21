@@ -1,103 +1,68 @@
 {{ partial "header.html" . }}
 
-<div id="app-root" class="tag-page">
+{{ $blogPosts := where .Pages "Section" "blog" }}
+{{ $microPosts := where .Pages "Section" "thoughts" }}
+{{ $galleryPosts := where .Pages "Section" "gallery" }}
 
-    {{ $blogPosts := where .Pages "Section" "blog" }}
-    {{ $microPosts := where .Pages "Section" "thoughts" }}
-    {{ $galleryPosts := where .Pages "Section" "gallery" }}
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">#{{ .Title }}</h2>
+            <p class="thoughts-meta">{{ len .Pages }} items across the site.</p>
 
-    <header class="tag-hero">
-        <div class="tag-kicker">Tag</div>
-        <h1 class="tag-title">#{{ .Title }}</h1>
-        <div class="tag-meta">
-            <span class="tag-meta-item">
-                <i data-lucide="layers" width="12"></i> {{ len .Pages }} total
-            </span>
             {{ if gt (len $blogPosts) 0 }}
-            <span class="tag-meta-item">
-                <i data-lucide="pen-tool" width="12"></i> {{ len $blogPosts }} blog
-            </span>
-            {{ end }}
-            {{ if gt (len $microPosts) 0 }}
-            <span class="tag-meta-item">
-                <i data-lucide="message-square" width="12"></i> {{ len $microPosts }} thoughts
-            </span>
-            {{ end }}
-            {{ if gt (len $galleryPosts) 0 }}
-            <span class="tag-meta-item">
-                <i data-lucide="image" width="12"></i> {{ len $galleryPosts }} photos
-            </span>
-            {{ end }}
-        </div>
-    </header>
-
-    {{ if gt (len $blogPosts) 0 }}
-    <section class="tag-section">
-        <h2 class="tag-section-title">
-            <i data-lucide="pen-tool" width="18"></i> Blog posts
-        </h2>
-        <ul class="bearblog-list tag-posts-list">
-            {{ range $blogPosts }}
-            <li class="bearblog-item">
-                <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
-                <div class="bearblog-main">
-                    <a href="{{ .RelPermalink }}" class="bearblog-link">{{ .Title }}</a>
-                    <span class="tag-post-meta">{{ .ReadingTime }} min read</span>
-                </div>
-            </li>
-            {{ end }}
-        </ul>
-    </section>
-    {{ end }}
-
-    {{ if gt (len $microPosts) 0 }}
-    <section class="tag-section">
-        <h2 class="tag-section-title">
-            <i data-lucide="message-square" width="18"></i> Thoughts
-        </h2>
-        <div class="tag-thoughts-list">
-            {{ range $microPosts }}
-            <article class="tag-thought-item">
-                <div class="tag-thought-time">
-                    <a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a>
-                </div>
-                <div class="tag-thought-body">
-                    {{ if .Title }}
-                    <h3 class="tag-thought-title">{{ .Title }}</h3>
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Blog posts</h3>
+                <ul class="writeas-list">
+                    {{ range $blogPosts }}
+                    <li class="writeas-list-item">
+                        <span class="writeas-list-date">{{ .Date.Format "2006-01-02" }}</span>
+                        <div class="writeas-list-main">
+                            <a class="writeas-list-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <span class="writeas-list-tags">{{ .ReadingTime }} min read</span>
+                        </div>
+                    </li>
                     {{ end }}
-                    {{ .Content }}
-                </div>
-            </article>
+                </ul>
+            </section>
             {{ end }}
-        </div>
-    </section>
-    {{ end }}
 
-    {{ if gt (len $galleryPosts) 0 }}
-    <section class="tag-section tag-gallery">
-        <h2 class="tag-section-title">
-            <i data-lucide="image" width="18"></i> Gallery
-        </h2>
-        <div class="masonry-grid">
-            {{ range $galleryPosts }}
-            <a href="{{ .RelPermalink }}" class="masonry-item">
-                {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
-                <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
-                <div class="masonry-overlay">
-                    <i data-lucide="eye" width="24" color="#fff"></i>
+            {{ if gt (len $microPosts) 0 }}
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Thoughts</h3>
+                <div class="thoughts-list">
+                    {{ range $microPosts }}
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a>
+                        </span>
+                        <div class="thought-body">
+                            {{ if .Title }}
+                            <h3>{{ .Title }}</h3>
+                            {{ end }}
+                            {{ .Content }}
+                        </div>
+                    </div>
+                    {{ end }}
                 </div>
-            </a>
+            </section>
             {{ end }}
-        </div>
-    </section>
-    {{ end }}
 
+            {{ if gt (len $galleryPosts) 0 }}
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Gallery</h3>
+                <div class="writeas-masonry">
+                    {{ range $galleryPosts }}
+                    <a href="{{ .RelPermalink }}" class="writeas-masonry-item">
+                        {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
+                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
+                    </a>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+        </article>
+    </div>
 </div>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
 
 {{ partial "footer.html" . }}

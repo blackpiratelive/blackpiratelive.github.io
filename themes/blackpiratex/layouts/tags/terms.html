@@ -1,47 +1,30 @@
 {{ partial "header.html" . }}
 
-<div id="app-root">
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">Tags</h2>
+            <p class="thoughts-meta">{{ len .Data.Terms }} topics found.</p>
 
-    <div class="blog-hero">
-        <h1>Explore Topics</h1>
-        <p>Browse all articles by category and subject.</p>
-    </div>
+            <ul class="writeas-list">
+                {{ range $name, $taxonomy := .Data.Terms }}
+                <li class="writeas-list-item">
+                    <span class="writeas-list-date">{{ $taxonomy.Count }}</span>
+                    <div class="writeas-list-main">
+                        <a class="writeas-list-title" href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">#{{ $name }}</a>
+                        <span class="writeas-list-tags">
+                            {{ if eq $taxonomy.Count 1 }}post{{ else }}posts{{ end }}
+                        </span>
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
 
-    <div class="blog-controls" style="justify-content: center;">
-        <div class="stats-pill">
-            <i data-lucide="tag" width="14"></i>
-            <span>{{ len .Data.Terms }} Topics Found</span>
-        </div>
-    </div>
-
-    <div class="home-section" style="margin-top: 40px;">
-        <div class="tag-directory-grid">
-            {{ range $name, $taxonomy := .Data.Terms }}
-            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" class="tag-card">
-                <div class="tag-card-header">
-                    <i data-lucide="hash" width="16" style="color:var(--primary-blue);"></i>
-                </div>
-                <h3 class="tag-card-title">{{ $name | title }}</h3>
-                <span class="tag-count">
-                    {{ $taxonomy.Count }} {{ if eq $taxonomy.Count 1 }}Post{{ else }}Posts{{ end }}
-                </span>
-            </a>
+            {{ if eq (len .Data.Terms) 0 }}
+            <p>No tags found. Add tags to your markdown posts frontmatter.</p>
             {{ end }}
-        </div>
-
-        {{ if eq (len .Data.Terms) 0 }}
-        <div style="padding: 40px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-color); border-radius: 8px;">
-            No tags found. Add tags to your markdown posts frontmatter.
-        </div>
-        {{ end }}
+        </article>
     </div>
-
 </div>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
 
 {{ partial "footer.html" . }}
