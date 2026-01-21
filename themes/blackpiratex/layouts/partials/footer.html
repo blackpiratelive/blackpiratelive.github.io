@@ -1,49 +1,47 @@
 {{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") }}
 {{ if $isWriteas }}
 <footer class="writeas-footer">
-    <div class="writeas-footer-grid">
-        <div class="writeas-footer-col">
-            <h4 class="writeas-footer-title">Browse</h4>
-            <div class="writeas-footer-links">
-                <a href="/projects">Projects</a>
-                <a href="https://blog.blackpiratex.com">Blog</a>
-                <a href="https://gallery.blackpiratex.com">Gallery</a>
-                <a href="https://music.blackpiratex.com">Music</a>
-                <a href="https://notes.blackpiratex.com">Notes</a>
-                <a href="https://status.blackpiratex.com">Status</a>
-                <a href="/bookmarks">Bookmarks</a>
-                <a href="/contact">Contact</a>
-                <a href="/credits">Credits</a>
-                <a href="/about">About</a>
-            </div>
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
         </div>
+    </details>
 
-        <div class="writeas-footer-col">
-            <h4 class="writeas-footer-title">Follow</h4>
-            <div class="writeas-footer-links">
-                <a href="https://links.blackpiratex.com/github">Github</a>
-                <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
-                <a href="https://links.blackpiratex.com/yt">Youtube</a>
-                <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
-                <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
-                <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
-            </div>
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
         </div>
-    </div>
+    </details>
 
     {{ with .Site.Taxonomies.tags }}
-    <div class="writeas-footer-section">
-        <h4 class="writeas-footer-title">Tags</h4>
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
         <div class="writeas-footer-tags">
             {{ range first 24 .ByCount }}
             <a href="{{ .Page.RelPermalink }}">#{{ .Name }}</a>
             {{ end }}
         </div>
-    </div>
+    </details>
     {{ end }}
 
-    <div class="writeas-footer-section">
-        <h4 class="writeas-footer-title">Webrings</h4>
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
         <div class="writeas-footer-links">
             <div class="writeas-webring-row">
                 <span class="writeas-webring-name">WebSutra</span>
@@ -92,7 +90,7 @@
                 </noscript>
             </div>
         </div>
-    </div>
+    </details>
 
     <div class="writeas-footer-credits">
         <p>Uses self hosted Umami analytics.</p>

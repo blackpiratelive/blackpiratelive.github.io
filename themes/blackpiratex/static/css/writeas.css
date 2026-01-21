@@ -293,19 +293,6 @@ footer nav a.home:hover {
     margin: 3em auto 4em;
 }
 
-.writeas-footer-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5em;
-    justify-content: center;
-    text-align: left;
-    margin-bottom: 2.5em;
-}
-
-.writeas-footer-col {
-    min-width: 180px;
-}
-
 .writeas-footer-title {
     margin: 0 0 0.6em;
     font-size: 0.75em;
@@ -313,6 +300,36 @@ footer nav a.home:hover {
     text-transform: uppercase;
     color: #666;
     font-family: "Open Sans", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.writeas-footer-section {
+    max-width: 40em;
+    margin: 0 auto 1.5em;
+    text-align: left;
+}
+
+.writeas-footer-section summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.writeas-footer-section summary::-webkit-details-marker {
+    display: none;
+}
+
+.writeas-footer-section summary::after {
+    content: "+";
+    float: right;
+    color: #999;
+    font-weight: 600;
+}
+
+.writeas-footer-section[open] summary::after {
+    content: "–";
+}
+
+.writeas-footer-section summary.writeas-footer-title {
+    margin-bottom: 0.6em;
 }
 
 .writeas-footer-links {
@@ -333,17 +350,12 @@ footer nav a.home:hover {
     text-decoration: none;
 }
 
-.writeas-footer-section {
-    max-width: 40em;
-    margin: 0 auto 2em;
-}
-
 .writeas-footer-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4em 0.8em;
     font-size: 0.9em;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .writeas-footer-tags a {
