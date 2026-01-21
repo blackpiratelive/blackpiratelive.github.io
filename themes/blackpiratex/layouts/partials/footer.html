@@ -1,4 +1,4 @@
-{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") }}
 {{ if $isWriteas }}
 <footer class="writeas-footer">
     <div class="writeas-footer-grid">

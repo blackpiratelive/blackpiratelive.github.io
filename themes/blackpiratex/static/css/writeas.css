@@ -489,6 +489,123 @@ footer nav a.home:hover {
     color: #bbb;
 }
 
+.writeas-gallery-group {
+    margin: 2.5em 0;
+}
+
+.writeas-gallery-title {
+    margin: 0 0 0.75em;
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid #eee;
+    font-size: 1.05em;
+    color: #333;
+}
+
+.writeas-masonry {
+    column-count: 3;
+    column-gap: 1em;
+}
+
+.writeas-masonry-item {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 1em;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    background: #f8f8f8;
+}
+
+.writeas-masonry-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.writeas-masonry-item:hover {
+    border-color: #ccc;
+}
+
+.writeas-gallery-single {
+    margin-top: 1em;
+}
+
+.writeas-gallery-image {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1.2em;
+    background: #f8f8f8;
+}
+
+.writeas-gallery-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.writeas-gallery-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75em;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 1em;
+}
+
+.writeas-gallery-description {
+    margin-bottom: 1em;
+}
+
+.writeas-exif {
+    margin: 1.5em 0;
+    padding: 1em;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #f8f8f8;
+}
+
+.writeas-exif h3 {
+    margin: 0 0 0.75em;
+    font-size: 1em;
+}
+
+.writeas-exif-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75em;
+}
+
+.writeas-exif-label {
+    display: block;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #666;
+}
+
+.writeas-exif-value {
+    display: block;
+    font-size: 0.9em;
+    color: #111;
+}
+
+.writeas-gallery-actions {
+    margin: 1em 0 0;
+}
+
+@media (max-width: 900px) {
+    .writeas-masonry {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .writeas-masonry {
+        column-count: 1;
+    }
+}
+
 @media (max-width: 600px) {
     body#post header {
         padding: 1em;
@@ -637,4 +754,40 @@ html[data-theme="dark"] .writeas-list-title {
 
 html[data-theme="dark"] .writeas-list-tag {
     color: #82a6ff;
+}
+
+html[data-theme="dark"] .writeas-gallery-title {
+    border-bottom-color: #444;
+    color: #ddd;
+}
+
+html[data-theme="dark"] .writeas-masonry-item {
+    border-color: #444;
+    background: #2a2a2a;
+}
+
+html[data-theme="dark"] .writeas-masonry-item:hover {
+    border-color: #666;
+}
+
+html[data-theme="dark"] .writeas-gallery-image {
+    border-color: #444;
+    background: #2a2a2a;
+}
+
+html[data-theme="dark"] .writeas-gallery-meta {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .writeas-exif {
+    border-color: #444;
+    background: #2a2a2a;
+}
+
+html[data-theme="dark"] .writeas-exif-label {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .writeas-exif-value {
+    color: #eee;
 }

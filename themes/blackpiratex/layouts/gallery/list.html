@@ -1,62 +1,44 @@
 {{ partial "header.html" . }}
 
-<div id="app-root">
-    <div class="blog-hero">
-        <h1>Visuals</h1>
-        <p>Snapshots, sketches, and moments frozen in time.</p>
-    </div>
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">Visuals</h2>
+            <p class="thoughts-meta">Snapshots, sketches, and moments frozen in time.</p>
 
-    <div class="home-section" style="margin-top: 40px;">
-        
-        {{ $featured := where .Pages "Params.featured" true }}
-        
-        {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
-        
-        {{ $regular := where .Pages "Params.featured" "ne" true }}
+            {{ $featured := where .Pages "Params.featured" true }}
+            {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
+            {{ $regular := where .Pages "Params.featured" "ne" true }}
 
-        {{ if gt (len $featuredSorted) 0 }}
-        <div class="gallery-year-group">
-            <h2 class="year-sticky-header" style="color: var(--primary-blue); border-color: var(--primary-blue); text-shadow: none;">
-                <i data-lucide="star" width="24" style="vertical-align: bottom;"></i> Featured
-            </h2>
-            
-            <div class="masonry-grid">
-                {{ range $featuredSorted }}
-                <a href="{{ .RelPermalink }}" class="masonry-item">
-                    {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
-                    <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
-                    <div class="masonry-overlay">
-                        <i data-lucide="star" width="24" color="#fff"></i>
-                    </div>
-                </a>
-                {{ end }}
+            {{ if gt (len $featuredSorted) 0 }}
+            <div class="writeas-gallery-group">
+                <h3 class="writeas-gallery-title">Featured</h3>
+                <div class="writeas-masonry">
+                    {{ range $featuredSorted }}
+                    <a href="{{ .RelPermalink }}" class="writeas-masonry-item">
+                        {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
+                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
+                    </a>
+                    {{ end }}
+                </div>
             </div>
-        </div>
-        {{ end }}
+            {{ end }}
 
-        {{ range $regular.GroupByDate "2006" }}
-        <div class="gallery-year-group">
-            <h2 class="year-sticky-header">{{ .Key }}</h2>
-            
-            <div class="masonry-grid">
-                {{ range .Pages }}
-                <a href="{{ .RelPermalink }}" class="masonry-item">
-                    {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
-                    <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
-                    <div class="masonry-overlay">
-                        <i data-lucide="eye" width="24" color="#fff"></i>
-                    </div>
-                </a>
-                {{ end }}
+            {{ range $regular.GroupByDate "2006" }}
+            <div class="writeas-gallery-group">
+                <h3 class="writeas-gallery-title">{{ .Key }}</h3>
+                <div class="writeas-masonry">
+                    {{ range .Pages }}
+                    <a href="{{ .RelPermalink }}" class="writeas-masonry-item">
+                        {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
+                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
+                    </a>
+                    {{ end }}
+                </div>
             </div>
-        </div>
-        {{ end }}
-
+            {{ end }}
+        </article>
     </div>
 </div>
-
-<script>
-    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
-</script>
 
 {{ partial "footer.html" . }}
