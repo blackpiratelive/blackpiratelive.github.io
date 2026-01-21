@@ -1,83 +1,83 @@
 {{ partial "header.html" . }}
 
-<div id="app-root">
-
-    <div class="blog-hero">
-        <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 5px;">Topic</p>
-        <h1 style="margin-top:0;">#{{ .Title }}</h1>
-        <p>
-            <i data-lucide="layers" width="14" style="vertical-align: middle;"></i> 
-            {{ len .Pages }} items found
-        </p>
-    </div>
+<div id="app-root" class="tag-page">
 
     {{ $blogPosts := where .Pages "Section" "blog" }}
     {{ $microPosts := where .Pages "Section" "thoughts" }}
     {{ $galleryPosts := where .Pages "Section" "gallery" }}
 
-    {{ if gt (len $blogPosts) 0 }}
-    <div class="home-section" style="margin-top: 50px;">
-        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
-            <i data-lucide="pen-tool" width="20"></i> Blog Posts
-        </h2>
-        
-        <div class="blog-list">
-            {{ range $blogPosts }}
-            <a href="{{ .RelPermalink }}" class="blog-list-item">
-                <h3 class="blog-item-title">{{ .Title }}</h3>
-                <div class="blog-item-meta">
-                    <span class="meta-pill">
-                        <i data-lucide="calendar" width="12"></i> {{ .Date.Format "Jan 02, 2006" }}
-                    </span>
-                    <span class="meta-pill">
-                        <i data-lucide="clock" width="12"></i> {{ .ReadingTime }} min read
-                    </span>
-                </div>
-                <p class="blog-item-summary">
-                    {{ .Summary | plainify | truncate 180 }}
-                </p>
-                <div style="margin-top: 8px; font-size: 13px; font-weight: bold; color: var(--primary-blue); display: flex; align-items: center; gap: 4px;">
-                    Read Article <i data-lucide="arrow-right" width="12"></i>
-                </div>
-            </a>
+    <header class="tag-hero">
+        <div class="tag-kicker">Tag</div>
+        <h1 class="tag-title">#{{ .Title }}</h1>
+        <div class="tag-meta">
+            <span class="tag-meta-item">
+                <i data-lucide="layers" width="12"></i> {{ len .Pages }} total
+            </span>
+            {{ if gt (len $blogPosts) 0 }}
+            <span class="tag-meta-item">
+                <i data-lucide="pen-tool" width="12"></i> {{ len $blogPosts }} blog
+            </span>
+            {{ end }}
+            {{ if gt (len $microPosts) 0 }}
+            <span class="tag-meta-item">
+                <i data-lucide="message-square" width="12"></i> {{ len $microPosts }} thoughts
+            </span>
+            {{ end }}
+            {{ if gt (len $galleryPosts) 0 }}
+            <span class="tag-meta-item">
+                <i data-lucide="image" width="12"></i> {{ len $galleryPosts }} photos
+            </span>
             {{ end }}
         </div>
-    </div>
+    </header>
+
+    {{ if gt (len $blogPosts) 0 }}
+    <section class="tag-section">
+        <h2 class="tag-section-title">
+            <i data-lucide="pen-tool" width="18"></i> Blog posts
+        </h2>
+        <ul class="bearblog-list tag-posts-list">
+            {{ range $blogPosts }}
+            <li class="bearblog-item">
+                <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
+                <div class="bearblog-main">
+                    <a href="{{ .RelPermalink }}" class="bearblog-link">{{ .Title }}</a>
+                    <span class="tag-post-meta">{{ .ReadingTime }} min read</span>
+                </div>
+            </li>
+            {{ end }}
+        </ul>
+    </section>
     {{ end }}
 
     {{ if gt (len $microPosts) 0 }}
-    <div class="home-section" style="margin-top: 50px;">
-        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
-            <i data-lucide="message-square" width="20"></i> Microblog Posts
+    <section class="tag-section">
+        <h2 class="tag-section-title">
+            <i data-lucide="message-square" width="18"></i> Thoughts
         </h2>
-
-        <div class="micro-feed">
+        <div class="tag-thoughts-list">
             {{ range $microPosts }}
-            <div class="micro-item">
-                <div class="micro-dot"></div>
-                <div class="micro-header">
-                    <span>{{ .Date.Format "Jan 02, 2006" }}</span>
-                    <span>•</span>
-                    <a href="{{ .Permalink }}" class="micro-permalink-icon"><i data-lucide="link" width="12"></i></a>
+            <article class="tag-thought-item">
+                <div class="tag-thought-time">
+                    <a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a>
                 </div>
-                {{ if .Title }}
-                <h4 style="margin: 5px 0; font-size: 1rem;">{{ .Title }}</h4>
-                {{ end }}
-                <div class="micro-content">
+                <div class="tag-thought-body">
+                    {{ if .Title }}
+                    <h3 class="tag-thought-title">{{ .Title }}</h3>
+                    {{ end }}
                     {{ .Content }}
                 </div>
-            </div>
+            </article>
             {{ end }}
         </div>
-    </div>
+    </section>
     {{ end }}
 
     {{ if gt (len $galleryPosts) 0 }}
-    <div class="home-section" style="margin-top: 50px;">
-        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
-            <i data-lucide="image" width="20"></i> Gallery
+    <section class="tag-section tag-gallery">
+        <h2 class="tag-section-title">
+            <i data-lucide="image" width="18"></i> Gallery
         </h2>
-
         <div class="masonry-grid">
             {{ range $galleryPosts }}
             <a href="{{ .RelPermalink }}" class="masonry-item">
@@ -89,7 +89,7 @@
             </a>
             {{ end }}
         </div>
-    </div>
+    </section>
     {{ end }}
 
 </div>
