@@ -1,4 +1,4 @@
-{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") (eq .Layout "stats") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
 {{ if $isWriteas }}
 <footer class="writeas-footer">
     <details class="writeas-footer-section" open>

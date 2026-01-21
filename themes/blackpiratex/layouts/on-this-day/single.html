@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
 
-<div id="app-root">
+<div id="post">
     {{ $now := now }}
     {{ $currentMonthDay := $now.Format "01-02" }}
     {{ $currentYear := $now.Format "2006" }}
@@ -13,67 +13,40 @@
         {{ end }}
     {{ end }}
 
-    <div class="blog-hero on-this-day-hero">
-        <h1>
-            <i data-lucide="calendar-days" width="24"></i> On This Day
-        </h1>
-        <p>Thoughts from previous years on {{ $now.Format "January 2" }}.</p>
-    </div>
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">On This Day</h2>
+            <p class="thoughts-meta">
+                Thoughts from previous years on {{ $now.Format "January 2" }}. {{ len $onThisDayPosts }} memories.
+                <a href="{{ "thoughts" | relURL }}">Browse all thoughts</a>
+            </p>
 
-    <div class="blog-controls on-this-day-controls">
-        <div class="stats-pill">
-            <i data-lucide="history" width="14"></i>
-            <span>{{ len $onThisDayPosts }} memories</span>
-        </div>
-        <a href="{{ "thoughts" | relURL }}" class="search-icon-link" title="Browse all thoughts">
-            <i data-lucide="brain-circuit" width="18"></i>
-        </a>
-    </div>
+            {{ if gt (len $onThisDayPosts) 0 }}
+                {{ $sortedPosts := sort $onThisDayPosts "Date" "desc" }}
+                {{ $groupedByYear := $sortedPosts.GroupByDate "2006" }}
 
-    <div class="home-section on-this-day-section">
-        <h2>
-            <i data-lucide="sparkles" width="20"></i> Time Capsule
-        </h2>
-
-        {{ if gt (len $onThisDayPosts) 0 }}
-            {{ $sortedPosts := sort $onThisDayPosts "Date" "desc" }}
-            {{ $groupedByYear := $sortedPosts.GroupByDate "2006" }}
-
-            {{ range $groupedByYear }}
-                <div class="on-this-day-year">
-                    <div class="on-this-day-year-header">
-                        <i data-lucide="calendar" width="16"></i>
-                        <h3>{{ .Key }}</h3>
-                    </div>
-                    <div class="on-this-day-grid">
-                        {{ range .Pages }}
-                        <article class="on-this-day-card">
-                            <div class="on-this-day-card-head">
-                                <time datetime="{{ .Date }}">{{ .Date.Format "Jan 02, 2006 at 3:04 PM" }}</time>
-                                <a href="{{ .Permalink }}" class="on-this-day-permalink" title="Open thought">
-                                    <i data-lucide="arrow-up-right" width="16"></i>
-                                </a>
+                {{ range $groupedByYear }}
+                    <section class="writeas-section">
+                        <h3 class="writeas-section-title">{{ .Key }}</h3>
+                        <div class="thoughts-list">
+                            {{ range .Pages }}
+                            <div class="thought-item">
+                                <span class="thought-time">
+                                    <a href="{{ .Permalink }}">{{ .Date.Format "Jan 02, 2006 at 3:04 PM" }}</a>
+                                </span>
+                                <div class="thought-body">
+                                    {{ .Content }}
+                                </div>
                             </div>
-                            <div class="on-this-day-content">
-                                {{ .Content }}
-                            </div>
-                        </article>
-                        {{ end }}
-                    </div>
-                </div>
+                            {{ end }}
+                        </div>
+                    </section>
+                {{ end }}
+            {{ else }}
+                <p>No memories from this day yet. Check back tomorrow.</p>
             {{ end }}
-        {{ else }}
-            <div class="on-this-day-empty">
-                No memories from this day yet. Check back tomorrow.
-            </div>
-        {{ end }}
+        </article>
     </div>
 </div>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
 
 {{ partial "footer.html" . }}

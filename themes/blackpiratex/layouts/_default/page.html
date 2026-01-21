@@ -1,28 +1,17 @@
 {{ partial "header.html" . }}
 
-<div id="app-root">
-
-    <div class="blog-hero">
-        <h1>{{ .Title }}</h1>
-        {{ if .Description }}
-        <p>{{ .Description }}</p>
-        {{ end }}
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">{{ .Title }}</h2>
+            {{ if .Description }}
+            <p class="thoughts-meta">{{ .Description }}</p>
+            {{ end }}
+            <div class="page-content">
+                {{ .Content }}
+            </div>
+        </article>
     </div>
-
-    <div class="home-section" style="max-width: 700px; margin: 40px auto;">
-        
-        <div class="page-content">
-            {{ .Content }}
-        </div>
-
-    </div>
-
 </div>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
 
 {{ partial "footer.html" . }}

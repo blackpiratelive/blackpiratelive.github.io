@@ -1,21 +1,21 @@
 {{ partial "header.html" . }}
 
-<div class="blog-hero">
-    <h1>Search</h1>
-    <p>Find articles, thoughts, and images.</p>
-</div>
+<div id="post">
+    <div id="wrapper">
+        <article class="norm writeas-search">
+            <h2 id="title">Search</h2>
+            <p class="thoughts-meta">Find articles, thoughts, and images.</p>
 
-<div class="search-page-container">
-    <div class="search-input-wrapper">
-        <i data-lucide="search" width="18"></i>
-        <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
-    </div>
+            <div class="writeas-search-input">
+                <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
+            </div>
 
-    <div id="search-results"></div>
-    
-    <div id="no-results" style="display:none;">
-        <i data-lucide="inbox" width="48"></i>
-        <p>No results found. Try different keywords.</p>
+            <div id="search-results"></div>
+            
+            <div id="no-results" style="display:none;">
+                <p>No results found. Try different keywords.</p>
+            </div>
+        </article>
     </div>
 </div>
 
@@ -148,7 +148,6 @@
         }
 
         resultsContainer.innerHTML = html;
-        if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 </script>
 
