@@ -1,78 +1,106 @@
-{{ partial "header.html" . }}
-
-<div id="app-root">
-    
-    {{ $blogPosts := sort (where .Site.RegularPages "Section" "blog") "Date" "desc" }}
-
-    <div class="blog-hero">
-        <h1>Writings & Notes</h1>
-        <p>A collection of thoughts, tutorials, and updates.</p>
-    </div>
-
-    <div class="blog-controls">
-        <a href="/search" class="search-icon-link" title="Search articles">
-            <i data-lucide="search" width="18"></i>
-        </a>
-        
-        <div class="stats-pill">
-            <i data-lucide="file-text" width="14"></i>
-            <span>{{ len $blogPosts }} Posts</span>
-        </div>
-    </div>
-    
-    <div id="search-results"></div>
-
-    <div class="home-section" style="margin-top: 40px;">
-        <h2 style="border-bottom: 1px solid var(--border-strong); padding-bottom: 10px; margin-bottom: 25px;">
-            <i data-lucide="list" width="20"></i> All Posts
-        </h2>
-        
-        <ul class="bearblog-list">
-            {{ range $blogPosts }}
-            <li class="bearblog-item">
-                <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
-                <div class="bearblog-main">
-                    <a href="{{ .RelPermalink }}" class="bearblog-link">{{ .Title }}</a>
-                    {{ if .Params.tags }}
-                    <span class="bearblog-tags">
-                        {{ range $index, $tag := .Params.tags }}
-                            {{ if gt $index 0 }}<span class="bearblog-tag-sep">/</span>{{ end }}
-                            <a class="bearblog-tag" href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
-                        {{ end }}
-                    </span>
-                    {{ end }}
-                </div>
-            </li>
-            {{ end }}
-        </ul>
-
-        {{ if eq (len $blogPosts) 0 }}
-        <div style="padding: 40px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-color); border-radius: 8px;">
-            No posts found yet.
-        </div>
+{{ $blogPosts := sort (where .Site.RegularPages "Section" "blog") "Date" "desc" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
+</head>
+<body id="post">
+    <header>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">Home</a>
+            <a href="{{ "blog" | relURL }}">Blog</a>
+            <a href="{{ "thoughts" | relURL }}">Thoughts</a>
+            <a href="{{ "gallery" | relURL }}">Gallery</a>
+            <a href="{{ "stats" | relURL }}">Stats</a>
+            <a href="{{ "on-this-day" | relURL }}">On This Day</a>
+            <a href="{{ "search" | relURL }}">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        {{ with .Site.Params.subtitle }}
+        <p class="description">{{ . }}</p>
         {{ end }}
-    </div>
+    </header>
 
-    <div class="tag-cloud-section">
-        <h4 style="margin-bottom: 15px; display:flex; align-items:center; gap:8px;">
-            <i data-lucide="tag" width="14"></i> Topics
-        </h4>
-        <div class="tag-cloud-list">
-            {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" class="tag-cloud-item">
-                {{ $name | title }} <span style="color:var(--text-muted); font-size:10px;">({{ $taxonomy.Count }})</span>
-            </a>
-            {{ end }}
+    <div id="post">
+        <div id="wrapper">
+            <article class="norm">
+                <h2 id="title">Blog</h2>
+                <p class="thoughts-meta">{{ len $blogPosts }} posts</p>
+
+                <ul class="writeas-list">
+                    {{ range $blogPosts }}
+                    <li class="writeas-list-item">
+                        <span class="writeas-list-date">{{ .Date.Format "2006-01-02" }}</span>
+                        <div class="writeas-list-main">
+                            <a class="writeas-list-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            {{ if .Params.tags }}
+                            <span class="writeas-list-tags">
+                                {{ range $index, $tag := .Params.tags }}
+                                    {{ if gt $index 0 }}<span class="writeas-tag-sep">/</span>{{ end }}
+                                    <a class="writeas-list-tag" href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+                                {{ end }}
+                            </span>
+                            {{ end }}
+                        </div>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                {{ if eq (len $blogPosts) 0 }}
+                <p>No posts found yet.</p>
+                {{ end }}
+            </article>
         </div>
     </div>
 
-</div>
+    <footer>
+        <nav>
+            <a class="home" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <a href="{{ "blog" | relURL }}">Archive</a>
+            <a href="{{ "index.xml" | relURL }}">RSS</a>
+        </nav>
+    </footer>
 
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-<script src="{{ "js/search.js" | relURL }}"></script>
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
 
-{{ partial "footer.html" . }}
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    toggle.textContent = pressed ? "Light" : "Theme";
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

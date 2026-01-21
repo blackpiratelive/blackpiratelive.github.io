@@ -12,11 +12,11 @@ body {
 
 a {
     text-decoration: none;
-    color: #0066ff;
+    color: #0057ff;
 }
 
 a:visited {
-    color: #4b4bff;
+    color: #4b44ff;
 }
 
 a:hover {
@@ -139,11 +139,17 @@ hr {
 }
 
 #post article a {
-    color: #0066ff;
+    color: #0057ff;
 }
 
 #post article a:visited {
-    color: #4b4bff;
+    color: #4b44ff;
+}
+
+#post article p + h2,
+#post article p + h3,
+#post article p + h4 {
+    margin-top: 0.65em;
 }
 
 #post article p + h2,
@@ -227,11 +233,11 @@ hr {
 }
 
 a.hashtag {
-    color: #0066ff;
+    color: #0057ff;
 }
 
 a.hashtag:hover {
-    color: #0046cc;
+    color: #003fba;
 }
 
 a.hashtag span:first-child {
@@ -290,11 +296,11 @@ footer nav a.home:hover {
 .thoughts-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 1.1em;
 }
 
 .thought-item {
-    padding-bottom: 1.2em;
+    padding-bottom: 0.9em;
     border-bottom: 1px solid #eee;
 }
 
@@ -340,6 +346,59 @@ footer nav a.home:hover {
     color: #333;
 }
 
+.writeas-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.writeas-list-item {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    padding: 0.6em 0;
+    border-bottom: 1px solid #eee;
+}
+
+.writeas-list-item:last-child {
+    border-bottom: 0;
+}
+
+.writeas-list-date {
+    font-family: Hack, consolas, Menlo, Monaco, "Ubuntu Mono", monospace;
+    font-size: 0.85em;
+    color: #666;
+    min-width: 90px;
+}
+
+.writeas-list-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: baseline;
+}
+
+.writeas-list-title {
+    font-size: 1em;
+    color: #111;
+}
+
+.writeas-list-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.writeas-list-tag {
+    color: #0057ff;
+}
+
+.writeas-tag-sep {
+    color: #bbb;
+}
+
 @media (max-width: 600px) {
     body#post header {
         padding: 1em;
@@ -362,11 +421,11 @@ html[data-theme="dark"] a {
 }
 
 html[data-theme="dark"] #post article a {
-    color: #8ab4ff;
+    color: #82a6ff;
 }
 
 html[data-theme="dark"] #post article a:visited {
-    color: #b0c5ff;
+    color: #a6b8ff;
 }
 
 html[data-theme="dark"] header h1 a {
@@ -416,7 +475,7 @@ html[data-theme="dark"] footer nav a.home {
 }
 
 html[data-theme="dark"] a.hashtag {
-    color: #8ab4ff;
+    color: #82a6ff;
 }
 
 html[data-theme="dark"] a.hashtag:hover {
@@ -444,4 +503,21 @@ html[data-theme="dark"] .pagination-link {
 html[data-theme="dark"] .pagination-link.active {
     background: #2a2a2a;
     color: #fff;
+}
+
+html[data-theme="dark"] .writeas-list-item {
+    border-bottom-color: #444;
+}
+
+html[data-theme="dark"] .writeas-list-date,
+html[data-theme="dark"] .writeas-list-tags {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .writeas-list-title {
+    color: #fff;
+}
+
+html[data-theme="dark"] .writeas-list-tag {
+    color: #82a6ff;
 }
