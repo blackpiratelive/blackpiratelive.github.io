@@ -1,4 +1,4 @@
-{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "books") (eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
 {{ if $isWriteas }}
 <footer class="writeas-footer">
     <details class="writeas-footer-section" open>
@@ -30,6 +30,7 @@
     </details>
 
     {{ with .Site.Taxonomies.tags }}
+    {{ if ne $.Section "books" }}
     <details class="writeas-footer-section">
         <summary class="writeas-footer-title">Tags</summary>
         <div class="writeas-footer-tags">
@@ -38,6 +39,7 @@
             {{ end }}
         </div>
     </details>
+    {{ end }}
     {{ end }}
 
     <details class="writeas-footer-section">
@@ -188,6 +190,7 @@
     </div>
 
     {{ with .Site.Taxonomies.tags }}
+    {{ if ne $.Section "books" }}
     <div class="footer-tag-cloud">
         <h4 class="footer-heading">
             <i data-lucide="tag" width="14"></i> Tags
@@ -198,6 +201,7 @@
             {{ end }}
         </div>
     </div>
+    {{ end }}
     {{ end }}
 
     <!-- Webrings Section -->
