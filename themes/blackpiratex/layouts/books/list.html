@@ -7,45 +7,31 @@
         <article class="norm">
             <h2 id="title">{{ .Title | default "Books" }}</h2>
             {{ if .Content }}
-            <div class="books-intro">
+            <div class="thoughts-meta">
                 {{ .Content }}
             </div>
             {{ end }}
-            <p class="books-meta">{{ len $pages }} books</p>
+            <p class="thoughts-meta">{{ len $pages }} books</p>
 
-            <div class="book-list">
-                {{ range $pages }}
-                {{ $book := . }}
-                <a class="book-card" href="{{ $book.RelPermalink }}">
-                    {{ with $book.Params.cover }}
-                    <img class="book-cover" src="{{ . }}" alt="Cover for {{ $book.Title }}" loading="lazy">
-                    {{ else }}
-                    <div class="book-cover-fallback">No cover</div>
-                    {{ end }}
-                    <div class="book-card-body">
-                        <h3 class="book-card-title">{{ $book.Title }}</h3>
-                        {{ with $book.Params.authors }}
-                        <p class="book-card-authors">{{ delimit . ", " }}</p>
+            <div class="writeas-gallery-group">
+                <div class="writeas-masonry books-masonry">
+                    {{ range $pages }}
+                    {{ $book := . }}
+                    <a class="writeas-masonry-item books-masonry-item" href="{{ $book.RelPermalink }}">
+                        {{ with $book.Params.cover }}
+                        <img src="{{ . }}" alt="Cover for {{ $book.Title }}" loading="lazy">
+                        {{ else }}
+                        <div class="book-cover-fallback">No cover</div>
                         {{ end }}
-                        <div class="book-card-meta">
-                            {{ with $book.Params.finishedOn }}
-                            <span>Finished {{ . }}</span>
-                            {{ end }}
-                            {{ with $book.Params.readingMedium }}
-                            <span>{{ . }}</span>
-                            {{ end }}
-                            {{ with $book.Params.pageCount }}
-                            <span>{{ . }} pages</span>
-                            {{ end }}
-                            {{ with $book.Params.highlights }}
-                            {{ if gt (len .) 0 }}
-                            <span>{{ len . }} highlights</span>
-                            {{ end }}
+                        <div class="book-cover-meta">
+                            <span class="book-cover-title">{{ $book.Title }}</span>
+                            {{ with $book.Params.authors }}
+                            <span class="book-cover-author">{{ delimit . ", " }}</span>
                             {{ end }}
                         </div>
-                    </div>
-                </a>
-                {{ end }}
+                    </a>
+                    {{ end }}
+                </div>
             </div>
 
             {{ if eq (len $pages) 0 }}

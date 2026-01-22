@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "books") (eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
+    {{ if eq .Section "books" }}
+    <link rel="stylesheet" href="{{ "css/books.css" | relURL }}">
+    {{ end }}
     {{ if .IsHome }}
     <link rel="stylesheet" href="{{ "css/writeas-home.css" | relURL }}">
     <script src="{{ "js/vendor/lucide.min.js" | relURL }}"></script>
@@ -72,6 +75,7 @@
             <a href="{{ "blog" | relURL }}">Blog</a>
             <a href="{{ "thoughts" | relURL }}">Thoughts</a>
             <a href="{{ "gallery" | relURL }}">Gallery</a>
+            <a href="{{ "books" | relURL }}">Books</a>
             <a href="{{ "stats" | relURL }}">Stats</a>
             <a href="{{ "on-this-day" | relURL }}">On This Day</a>
             <a href="{{ "search" | relURL }}">Search</a>
@@ -106,6 +110,10 @@
             <span class="nav-separator">|</span>
             <a class="nav-link" href="{{ "gallery" | relURL }}">
                 <i data-lucide="image" width="14"></i> Gallery
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="{{ "books" | relURL }}">
+                <i data-lucide="book" width="14"></i> Books
             </a>
             <span class="nav-separator">|</span>
             <a class="nav-link" href="{{ "stats" | relURL }}">

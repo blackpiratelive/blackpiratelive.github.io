@@ -12,88 +12,59 @@
 
 <div id="post">
     <div id="wrapper">
-        <article class="norm book-single">
-            <a class="book-back" href="{{ "/books/" | relURL }}">&larr; Back to Books</a>
+        <article class="norm writeas-gallery-single">
+            <p><a href="{{ "/books/" | relURL }}">&larr; Back to Books</a></p>
 
-            <header class="book-hero">
+            <div class="writeas-gallery-image book-cover-frame">
                 {{ with .Params.cover }}
-                <img class="book-cover" src="{{ . }}" alt="Cover for {{ $.Title }}" loading="lazy">
+                <img src="{{ . }}" alt="Cover for {{ $.Title }}" loading="lazy">
                 {{ else }}
                 <div class="book-cover-fallback">No cover</div>
                 {{ end }}
+            </div>
 
-                <div class="book-hero-body">
-                    <h1 class="book-title">{{ .Title }}</h1>
-                    {{ with .Params.authors }}
-                    <p class="book-authors">{{ delimit . ", " }}</p>
-                    {{ end }}
+            <h2 id="title">{{ .Title }}</h2>
+            {{ with .Params.authors }}
+            <p class="book-authors">{{ delimit . ", " }}</p>
+            {{ end }}
 
-                    <div class="book-meta-grid">
-                        {{ with .Params.shelf }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Shelf</span>
-                            <span>{{ . }}</span>
-                        </div>
-                        {{ end }}
-                        {{ with .Params.readingMedium }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Medium</span>
-                            <span>{{ . }}</span>
-                        </div>
-                        {{ end }}
-                        {{ with .Params.pageCount }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Pages</span>
-                            <span>{{ . }}</span>
-                        </div>
-                        {{ end }}
-                        {{ if ne $started "" }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Started</span>
-                            <span>{{ $started }}</span>
-                        </div>
-                        {{ end }}
-                        {{ if ne $finished "" }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Finished</span>
-                            <span>{{ $finished }}</span>
-                        </div>
-                        {{ end }}
-                        {{ with $published }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Published</span>
-                            <span>{{ . }}</span>
-                        </div>
-                        {{ end }}
-                        {{ with .Params.publisher }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Publisher</span>
-                            <span>{{ . }}</span>
-                        </div>
-                        {{ end }}
-                        {{ with .Params.readingProgress }}
-                        <div class="book-meta-item">
-                            <span class="book-meta-label">Progress</span>
-                            <span>{{ . }}%</span>
-                        </div>
-                        {{ end }}
-                    </div>
-                </div>
-            </header>
+            <div class="writeas-gallery-meta">
+                {{ with .Params.shelf }}
+                <span>Shelf: {{ . }}</span>
+                {{ end }}
+                {{ with .Params.readingMedium }}
+                <span>Medium: {{ . }}</span>
+                {{ end }}
+                {{ with .Params.pageCount }}
+                <span>{{ . }} pages</span>
+                {{ end }}
+                {{ if ne $started "" }}
+                <span>Started: {{ $started }}</span>
+                {{ end }}
+                {{ if ne $finished "" }}
+                <span>Finished: {{ $finished }}</span>
+                {{ end }}
+                {{ with $published }}
+                <span>Published: {{ . }}</span>
+                {{ end }}
+                {{ with .Params.publisher }}
+                <span>Publisher: {{ . }}</span>
+                {{ end }}
+                {{ with .Params.readingProgress }}
+                <span>Progress: {{ . }}%</span>
+                {{ end }}
+            </div>
 
             {{ if .Content }}
-            <section class="book-description">
-                <h2 class="book-section-title">Description</h2>
-                <div class="book-description-body">
-                    {{ .Content }}
-                </div>
-            </section>
+            <div class="writeas-gallery-description">
+                {{ .Content }}
+            </div>
             {{ end }}
 
             {{ with .Params.highlights }}
             {{ if gt (len .) 0 }}
-            <section class="book-highlights-section">
-                <h2 class="book-section-title">Highlights</h2>
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Highlights</h3>
                 <ol class="book-highlights">
                     {{ range . }}
                     <li>{{ . }}</li>
