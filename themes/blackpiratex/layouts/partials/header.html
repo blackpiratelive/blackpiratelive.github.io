@@ -45,6 +45,8 @@
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/gallery.css" }}
     {{ else if and (eq .Section "gallery") (eq .Kind "page") }}
         {{ $styles = $styles | append "css/gallery.css" }}
+    {{ else if eq .Section "books" }}
+        {{ $styles = $styles | append "css/section.css" "css/books.css" }}
     {{ else if eq .Layout "page" }}
         {{ $styles = $styles | append "css/section.css" "css/hero.css" "css/page.css" }}
     {{ else if eq .Layout "single" }}

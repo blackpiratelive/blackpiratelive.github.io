@@ -1,0 +1,109 @@
+{{ partial "header.html" . }}
+
+{{ $started := "" }}
+{{ with .Params.startedOn }}
+    {{ $started = (time.AsTime .).Format "Jan 2, 2006" }}
+{{ end }}
+{{ $finished := "" }}
+{{ with .Params.finishedOn }}
+    {{ $finished = (time.AsTime .).Format "Jan 2, 2006" }}
+{{ end }}
+{{ $published := .Params.fullPublishDate | default .Params.publishedDate }}
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm book-single">
+            <a class="book-back" href="{{ "/books/" | relURL }}">&larr; Back to Books</a>
+
+            <header class="book-hero">
+                {{ with .Params.cover }}
+                <img class="book-cover" src="{{ . }}" alt="Cover for {{ $.Title }}" loading="lazy">
+                {{ else }}
+                <div class="book-cover-fallback">No cover</div>
+                {{ end }}
+
+                <div class="book-hero-body">
+                    <h1 class="book-title">{{ .Title }}</h1>
+                    {{ with .Params.authors }}
+                    <p class="book-authors">{{ delimit . ", " }}</p>
+                    {{ end }}
+
+                    <div class="book-meta-grid">
+                        {{ with .Params.shelf }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Shelf</span>
+                            <span>{{ . }}</span>
+                        </div>
+                        {{ end }}
+                        {{ with .Params.readingMedium }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Medium</span>
+                            <span>{{ . }}</span>
+                        </div>
+                        {{ end }}
+                        {{ with .Params.pageCount }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Pages</span>
+                            <span>{{ . }}</span>
+                        </div>
+                        {{ end }}
+                        {{ if ne $started "" }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Started</span>
+                            <span>{{ $started }}</span>
+                        </div>
+                        {{ end }}
+                        {{ if ne $finished "" }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Finished</span>
+                            <span>{{ $finished }}</span>
+                        </div>
+                        {{ end }}
+                        {{ with $published }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Published</span>
+                            <span>{{ . }}</span>
+                        </div>
+                        {{ end }}
+                        {{ with .Params.publisher }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Publisher</span>
+                            <span>{{ . }}</span>
+                        </div>
+                        {{ end }}
+                        {{ with .Params.readingProgress }}
+                        <div class="book-meta-item">
+                            <span class="book-meta-label">Progress</span>
+                            <span>{{ . }}%</span>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </header>
+
+            {{ if .Content }}
+            <section class="book-description">
+                <h2 class="book-section-title">Description</h2>
+                <div class="book-description-body">
+                    {{ .Content }}
+                </div>
+            </section>
+            {{ end }}
+
+            {{ with .Params.highlights }}
+            {{ if gt (len .) 0 }}
+            <section class="book-highlights-section">
+                <h2 class="book-section-title">Highlights</h2>
+                <ol class="book-highlights">
+                    {{ range . }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ol>
+            </section>
+            {{ end }}
+            {{ end }}
+        </article>
+    </div>
+</div>
+
+{{ partial "footer.html" . }}

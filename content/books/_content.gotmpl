@@ -1,0 +1,76 @@
+{{ $url := "https://notes.blackpiratex.com/api/hugo-export" }}
+{{ $data := dict }}
+
+{{ $result := try (resources.GetRemote $url) }}
+
+{{ if $result.Err }}
+    {{ warnf "Books Adapter Error: %s" $result.Err }}
+{{ else }}
+    {{ with $result.Value }}
+        {{ $data = . | transform.Unmarshal }}
+    {{ end }}
+{{ end }}
+
+{{ $books := $data.books | default (slice) }}
+
+{{ range $i, $book := $books }}
+    {{ $title := $book.title | default (printf "Book %d" $i) }}
+    {{ $slug := $title | urlize }}
+    {{ with $book.id }}
+        {{ $slug = printf "%s-%v" $slug . | urlize }}
+    {{ end }}
+    {{ if eq $slug "" }}
+        {{ $slug = printf "book-%d" $i }}
+    {{ end }}
+
+    {{ $dateString := $book.finishedOn | default $book.startedOn }}
+    {{ $dateObj := time.Now }}
+    {{ with $dateString }}
+        {{ $dateObj = time.AsTime . }}
+    {{ end }}
+
+    {{ $cover := "" }}
+    {{ with $book.imageLinks }}
+        {{ $cover = .thumbnail | default .smallThumbnail }}
+    {{ end }}
+
+    {{ $contentValue := $book.bookDescription | default "" }}
+    {{ $content := dict
+        "mediaType" "text/markdown"
+        "value" $contentValue
+    }}
+
+    {{ $dates := dict
+        "date" $dateObj
+    }}
+
+    {{ $params := dict
+        "id" $book.id
+        "authors" ($book.authors | default (slice))
+        "cover" $cover
+        "pageCount" $book.pageCount
+        "publishedDate" $book.publishedDate
+        "fullPublishDate" $book.fullPublishDate
+        "publisher" $book.publisher
+        "readingMedium" $book.readingMedium
+        "shelf" $book.shelf
+        "startedOn" $book.startedOn
+        "finishedOn" $book.finishedOn
+        "readingProgress" $book.readingProgress
+        "highlights" ($book.highlights | default (slice))
+        "hasHighlights" $book.hasHighlights
+        "subjects" $book.subjects
+        "tags" ($book.tags | default (slice))
+    }}
+
+    {{ $page := dict
+        "kind" "page"
+        "path" $slug
+        "title" $title
+        "dates" $dates
+        "params" $params
+        "content" $content
+    }}
+
+    {{ $.AddPage $page }}
+{{ end }}

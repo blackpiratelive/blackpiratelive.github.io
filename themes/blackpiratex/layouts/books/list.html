@@ -1,0 +1,58 @@
+{{ partial "header.html" . }}
+
+{{ $pages := sort .Pages "Date" "desc" }}
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">{{ .Title | default "Books" }}</h2>
+            {{ if .Content }}
+            <div class="books-intro">
+                {{ .Content }}
+            </div>
+            {{ end }}
+            <p class="books-meta">{{ len $pages }} books</p>
+
+            <div class="book-list">
+                {{ range $pages }}
+                {{ $book := . }}
+                <a class="book-card" href="{{ $book.RelPermalink }}">
+                    {{ with $book.Params.cover }}
+                    <img class="book-cover" src="{{ . }}" alt="Cover for {{ $book.Title }}" loading="lazy">
+                    {{ else }}
+                    <div class="book-cover-fallback">No cover</div>
+                    {{ end }}
+                    <div class="book-card-body">
+                        <h3 class="book-card-title">{{ $book.Title }}</h3>
+                        {{ with $book.Params.authors }}
+                        <p class="book-card-authors">{{ delimit . ", " }}</p>
+                        {{ end }}
+                        <div class="book-card-meta">
+                            {{ with $book.Params.finishedOn }}
+                            <span>Finished {{ . }}</span>
+                            {{ end }}
+                            {{ with $book.Params.readingMedium }}
+                            <span>{{ . }}</span>
+                            {{ end }}
+                            {{ with $book.Params.pageCount }}
+                            <span>{{ . }} pages</span>
+                            {{ end }}
+                            {{ with $book.Params.highlights }}
+                            {{ if gt (len .) 0 }}
+                            <span>{{ len . }} highlights</span>
+                            {{ end }}
+                            {{ end }}
+                        </div>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+
+            {{ if eq (len $pages) 0 }}
+            <p>No books found yet.</p>
+            {{ end }}
+        </article>
+    </div>
+</div>
+
+{{ partial "footer.html" . }}
