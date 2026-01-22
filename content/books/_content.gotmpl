@@ -60,7 +60,6 @@
         "highlights" ($book.highlights | default (slice))
         "hasHighlights" $book.hasHighlights
         "subjects" $book.subjects
-        "tags" ($book.tags | default (slice))
     }}
 
     {{ $page := dict
