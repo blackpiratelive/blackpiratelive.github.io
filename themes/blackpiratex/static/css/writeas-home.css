@@ -20,9 +20,10 @@ body#post header.hero:hover {
     width: 96px;
     height: 96px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 12px;
     border: 1px solid #ddd;
     margin-bottom: 0.75em;
+    display: block;
 }
 
 .hero-img-fallback {
