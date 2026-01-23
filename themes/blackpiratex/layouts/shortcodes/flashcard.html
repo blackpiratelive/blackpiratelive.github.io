@@ -25,6 +25,7 @@
             Easy <span class="anki-card__time">4d</span>
         </button>
     </div>
+    <div class="anki-card__message" role="status" aria-live="polite"></div>
 </div>
 <style>
     .anki-card {
@@ -156,6 +157,12 @@
         font-weight: 500;
         opacity: 0.85;
     }
+    .anki-card__message {
+        min-height: 1.2rem;
+        margin-top: 0.6rem;
+        font-size: 0.85rem;
+        color: #444;
+    }
     @media (max-width: 600px) {
         .anki-card__face {
             font-size: 1rem;
@@ -181,6 +188,9 @@
     html[data-theme="dark"] .anki-card__show:hover {
         box-shadow: 0 6px 16px rgba(44, 119, 214, 0.35);
     }
+    html[data-theme="dark"] .anki-card__message {
+        color: #c7c7c7;
+    }
 </style>
 <script>
     (function () {
@@ -191,6 +201,7 @@
         const inner = root.querySelector(".anki-card__inner");
         const showButton = root.querySelector(".anki-card__show");
         const rateButtons = root.querySelectorAll(".anki-card__rate");
+        const message = root.querySelector(".anki-card__message");
         if (!inner) {
             return;
         }
@@ -218,6 +229,13 @@
             button.addEventListener("click", () => {
                 rateButtons.forEach((item) => item.classList.remove("is-selected"));
                 button.classList.add("is-selected");
+                if (message) {
+                    const label = button.querySelector(".anki-card__time");
+                    const timeText = label ? label.textContent.trim() : "";
+                    message.textContent = timeText
+                        ? `Your card will again appear ${timeText} later.`
+                        : "Your card will again appear later.";
+                }
             });
         });
     })();
