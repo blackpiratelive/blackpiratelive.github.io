@@ -6,10 +6,10 @@
     border-bottom: 1px dashed var(--border-color);
 }
 .hero-img {
-    width: 150px;
-    height: 150px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 40px;
     border: 4px solid var(--bg-main);
     box-shadow: 0 4px 10px var(--shadow-soft);
     margin-bottom: 15px;

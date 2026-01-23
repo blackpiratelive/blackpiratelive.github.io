@@ -7,7 +7,7 @@
     <header class="hero">
         {{ $me := resources.Get "img/me-2.jpg" }}
         {{ if $me }}
-            {{ $me = $me.Resize "300x webp q90" }}
+            {{ $me = $me.Resize "600x webp q90" }}
             <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-img"/>
         {{ else }}
             <div class="hero-img hero-img-fallback">No Img</div>
