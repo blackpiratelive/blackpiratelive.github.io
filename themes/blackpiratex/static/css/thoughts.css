@@ -1,39 +1,52 @@
 .micro-feed {
     border-left: 2px solid var(--border-color);
-    padding-left: 20px;
-    margin-left: 10px;
-    margin-bottom: 30px;
+    padding-left: 24px;
+    margin-left: 12px;
+    margin-bottom: 40px;
 }
 .micro-item {
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     position: relative;
 }
 .micro-dot {
     position: absolute;
-    left: -26px;
-    top: 4px;
-    width: 10px;
-    height: 10px;
-    background: var(--primary-blue);
+    left: -31px; /* Adjusted for 24px padding + 2px border + 5px radius */
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--bg-main);
+    border: 2px solid var(--primary-blue);
     border-radius: 50%;
-    border: 2px solid var(--bg-main);
-    box-shadow: 0 0 0 1px var(--border-color);
+    z-index: 1;
 }
 .micro-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    color: var(--text-muted);
+    justify-content: space-between; /* Push permalink to right or keep connected? Let's keep gap */
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.2;
 }
 .micro-date-time {
     display: flex;
-    align-items: center;
-    gap: 4px;
+    align-items: baseline;
+    gap: 6px;
+}
+.micro-date {
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: var(--font-heading, serif); /* Use serif if available, or inherit */
+    font-size: 1rem;
+}
+.micro-time {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 400;
 }
 .micro-separator {
     color: var(--border-color);
+    font-size: 0.8rem;
 }
 .micro-permalink-icon {
     color: var(--primary-blue);

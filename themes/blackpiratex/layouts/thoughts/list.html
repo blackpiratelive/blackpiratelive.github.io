@@ -12,9 +12,9 @@
                     <span class="micro-dot"></span>
                     <div class="micro-header">
                         <span class="micro-date-time">
-                            {{ .Date.Format "Jan 02, 2006" }}
+                            <span class="micro-date">{{ .Date.Format "Jan 02, 2006" }}</span>
                             <span class="micro-separator">·</span>
-                            {{ .Date.Format "15:04" }}
+                            <span class="micro-time">{{ .Date.Format "15:04" }}</span>
                         </span>
                         <a href="{{ .Permalink }}" class="micro-permalink-icon" aria-label="Permalink">
                             <i data-lucide="link" width="12"></i>
