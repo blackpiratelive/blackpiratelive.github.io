@@ -17,6 +17,8 @@ body {
     --chart-sun: #ffd44d;
     --chart-moss: #4caf82;
     --chart-haze: #f3f6ff;
+    --text-muted: #666;
+    --border-color: #eee;
 }
 
 a {
@@ -843,6 +845,8 @@ html[data-theme="dark"] {
     --chart-sun: #f2c74b;
     --chart-moss: #5dbd90;
     --chart-haze: #1b2333;
+    --text-muted: #b0b0b0;
+    --border-color: #444;
 }
 
 html[data-theme="dark"] a {

@@ -7,17 +7,17 @@
             <h2 id="title">Blog</h2>
             <p class="thoughts-meta">{{ len $blogPosts }} posts</p>
 
-            <ul class="writeas-list">
+            <ul class="bearblog-list">
                 {{ range $blogPosts }}
-                <li class="writeas-list-item">
-                    <span class="writeas-list-date">{{ .Date.Format "2006-01-02" }}</span>
-                    <div class="writeas-list-main">
-                        <a class="writeas-list-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <li class="bearblog-item">
+                    <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
+                    <div class="bearblog-main">
+                        <a class="bearblog-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
                         {{ if .Params.tags }}
-                        <span class="writeas-list-tags">
+                        <span class="bearblog-tags">
                             {{ range $index, $tag := .Params.tags }}
-                                {{ if gt $index 0 }}<span class="writeas-tag-sep">/</span>{{ end }}
-                                <a class="writeas-list-tag" href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+                                {{ if gt $index 0 }}<span class="bearblog-tag-sep">/</span>{{ end }}
+                                <a class="bearblog-tag" href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
                             {{ end }}
                         </span>
                         {{ end }}
