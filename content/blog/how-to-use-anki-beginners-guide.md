@@ -1,6 +1,6 @@
 ---
 title: "How to use anki beginners guide"
-date: 2026-02-10T10:00:00+05:30
+date: 2026-01-23T10:00:00+05:30
 tags: [anki, study, guide, flashcards]
 ---
 
