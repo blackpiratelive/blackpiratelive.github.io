@@ -6,24 +6,34 @@
             <h2 id="title">{{ .Title }}</h2>
             <p class="thoughts-meta">{{ len .Pages }} thoughts</p>
 
-            <div class="thoughts-list">
+            <div class="micro-feed">
                 {{ range (.Paginate .Pages 100).Pages }}
-                <div class="thought-item">
-                    <span class="thought-time">
-                        <a href="{{ .Permalink }}">{{ .Date.Format "January 2, 2006" }} · {{ .Date.Format "15:04" }}</a>
-                    </span>
-                    <div class="thought-body">
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <span class="micro-date-time">
+                            {{ .Date.Format "Jan 02, 2006" }}
+                            <span class="micro-separator">·</span>
+                            {{ .Date.Format "15:04" }}
+                        </span>
+                        <a href="{{ .Permalink }}" class="micro-permalink-icon" aria-label="Permalink">
+                            <i data-lucide="link" width="12"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
                         {{ .Content }}
                     </div>
 
                     {{ if .Params.tags }}
-                    <p class="post-tags">
+                    <div class="micro-tags">
+                        <i data-lucide="hash" width="12"></i>
                         {{ range .Params.tags }}
-                        <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
-                            <span>#</span><span>{{ . }}</span>
+                        <a class="micro-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                            {{ . }}
                         </a>
                         {{ end }}
-                    </p>
+                    </div>
                     {{ end }}
                 </div>
                 {{ end }}
