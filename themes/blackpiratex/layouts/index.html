@@ -15,7 +15,7 @@
                 </div>
                 {{ $me := resources.Get "img/me-2.jpg" }}
                 {{ if $me }}
-                    {{ $me = $me.Resize "600x webp q90" }}
+                    {{ $me = $me.Resize "800x webp q90" }}
                     <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-img"/>
                 {{ else }}
                     <div class="hero-img hero-img-fallback">No Img</div>
@@ -34,6 +34,34 @@
                     <li><a href="https://blackpiratex.com/bookmarks/">🔖 Bookmarks</a></li>
                 </ul>
             </section>
+
+            <div class="home-grid-row recent-updates-row">
+                <section class="home-section section-latest-blog">
+                    <h2><i data-lucide="pen-tool" width="20"></i> Latest Writing</h2>
+                    <div class="latest-list">
+                        {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+                        <a href="{{ .Permalink }}" class="latest-item">
+                            <span class="latest-date">{{ .Date.Format "Jan 02" }}</span>
+                            <span class="latest-title">{{ .Title }}</span>
+                        </a>
+                        {{ end }}
+                    </div>
+                    <a href="/blog" class="view-all-link">Read all posts &rarr;</a>
+                </section>
+
+                <section class="home-section section-latest-thoughts">
+                    <h2><i data-lucide="brain-circuit" width="20"></i> Recent Thoughts</h2>
+                    <div class="latest-list">
+                        {{ range first 5 (where .Site.RegularPages "Section" "thoughts") }}
+                        <a href="{{ .Permalink }}" class="latest-item">
+                            <span class="latest-date">{{ .Date.Format "Jan 02" }}</span>
+                            <span class="latest-title">{{ .Content | plainify | truncate 50 }}</span>
+                        </a>
+                        {{ end }}
+                    </div>
+                    <a href="/thoughts" class="view-all-link">View all thoughts &rarr;</a>
+                </section>
+            </div>
 
             <div class="home-grid-row">
                 <section class="home-section section-about">

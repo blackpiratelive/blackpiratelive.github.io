@@ -10,10 +10,10 @@ html[data-theme="dark"] {
     --bg-hover: #252525;
 }
 
-/* --- Homepage Redesign --- */
+/* --- Homepage Redesign (Full Width) --- */
 .home-wrapper {
-    max-width: 65em !important;
-    padding: 0 1.5rem;
+    max-width: 92vw !important;
+    padding: 0 2rem;
     margin: 0 auto;
 }
 
@@ -23,10 +23,10 @@ html[data-theme="dark"] {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 50px;
-    margin-top: 40px;
-    margin-bottom: 70px;
-    padding-bottom: 50px;
+    gap: 80px;
+    margin-top: 60px;
+    margin-bottom: 80px;
+    padding-bottom: 60px;
     border-bottom: 1px dashed var(--border-color);
     text-align: left;
 }
@@ -37,27 +37,27 @@ html[data-theme="dark"] {
 
 .hero h1 {
     font-family: serif;
-    font-size: 3.5rem;
-    margin-bottom: 24px;
+    font-size: 4.5rem; /* Larger for full width */
+    margin-bottom: 30px;
     color: var(--text-main);
     line-height: 1.1;
     font-weight: 700;
 }
 
 .hero-intro {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     color: var(--text-muted);
-    max-width: 90%;
+    max-width: 85%;
     line-height: 1.6;
 }
 
 .hero-img {
-    width: 280px;
-    height: 280px;
+    width: 450px;
+    height: 450px;
     object-fit: cover;
-    border-radius: 40px;
-    border: 4px solid var(--bg-main, #fff);
-    box-shadow: 0 15px 35px var(--shadow-soft);
+    border-radius: 60px; /* Larger radius for larger img */
+    border: 6px solid var(--bg-main, #fff);
+    box-shadow: 0 20px 40px var(--shadow-soft);
     flex-shrink: 0;
     transition: transform 0.3s ease;
 }
@@ -68,11 +68,11 @@ html[data-theme="dark"] {
 
 /* Sections General */
 .home-section {
-    margin-bottom: 70px;
+    margin-bottom: 80px;
 }
 
 .home-section h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
@@ -80,7 +80,7 @@ html[data-theme="dark"] {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     padding-bottom: 8px;
     color: var(--text-main);
 }
@@ -91,22 +91,22 @@ html[data-theme="dark"] {
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
 }
 
 .explore-list li a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 18px;
+    padding: 25px;
     background: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     text-decoration: none;
     color: var(--text-main);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     height: 100%;
     box-sizing: border-box;
@@ -119,32 +119,91 @@ html[data-theme="dark"] {
     color: var(--primary-blue);
 }
 
-/* Split Row (About & Currently) */
+/* Split Rows */
 .home-grid-row {
     display: grid;
-    grid-template-columns: 1.8fr 1fr;
-    gap: 50px;
-    margin-bottom: 70px;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
     align-items: start;
 }
 
-.home-grid-row .home-section {
-    margin-bottom: 0;
+.recent-updates-row {
+    grid-template-columns: 1fr 1fr; /* 50/50 split for blog/thoughts */
+}
+
+/* Latest Lists (New) */
+.latest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.latest-item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    background: var(--bg-panel);
+}
+
+.latest-item:hover {
+    transform: translateX(5px);
+    border-color: var(--primary-blue);
+    background: var(--bg-hover);
+}
+
+.latest-date {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    min-width: 60px;
+    flex-shrink: 0;
+}
+
+.latest-title {
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+.view-all-link {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* About & Currently (Row 2) */
+.home-grid-row.about-row {
+    grid-template-columns: 2fr 1fr;
 }
 
 .home-spaced {
     margin-top: 1.5em;
     line-height: 1.7;
+    font-size: 1.1rem;
 }
 
-/* Currently Box */
 .currently-box {
     background-color: var(--bg-hover);
-    padding: 30px;
+    padding: 35px;
     border-radius: 20px;
     border-left: 5px solid var(--primary-blue);
     font-style: italic;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     color: var(--text-main);
     line-height: 1.6;
     height: 100%;
@@ -155,14 +214,14 @@ html[data-theme="dark"] {
 /* Projects Grid */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 35px;
 }
 
 .project-card {
     border: 1px solid var(--border-color);
-    padding: 30px;
-    border-radius: 20px;
+    padding: 35px;
+    border-radius: 24px;
     transition: all 0.3s ease;
     background: var(--bg-panel);
     display: flex;
@@ -170,29 +229,29 @@ html[data-theme="dark"] {
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px var(--shadow-soft);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px var(--shadow-soft);
     border-color: var(--primary-blue);
 }
 
 .project-card h3 {
     margin-top: 0;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: var(--primary-blue);
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .project-card p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 24px;
+    margin-bottom: 25px;
     flex-grow: 1;
     line-height: 1.6;
 }
 
 .project-links {
-    font-size: 0.9rem;
-    padding-top: 15px;
+    font-size: 1rem;
+    padding-top: 20px;
     border-top: 1px dashed var(--border-color);
 }
 
@@ -210,71 +269,76 @@ html[data-theme="dark"] {
 /* Likes Grid */
 .likes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .like-item {
     background: var(--bg-panel);
-    padding: 24px;
-    border-radius: 16px;
+    padding: 30px;
+    border-radius: 20px;
     border: 1px solid var(--border-color);
     transition: transform 0.2s;
 }
 
 .like-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--text-muted);
 }
 
 .like-item h4 {
     margin-top: 0;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     color: var(--text-main);
     display: flex; 
     align-items: center; 
-    gap: 10px;
-    font-size: 1.15rem;
+    gap: 12px;
+    font-size: 1.25rem;
 }
 
 .like-item p {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-muted);
     margin: 0;
     line-height: 1.6;
 }
 
 /* Mobile Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .home-wrapper {
         max-width: 100% !important;
-        padding: 0 1.2rem;
+        padding: 0 1.5rem;
     }
     
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        gap: 30px;
-        margin-top: 20px;
+        gap: 40px;
+        margin-top: 30px;
     }
     
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
     
     .hero-intro {
         max-width: 100%;
         margin: 0 auto;
+        font-size: 1.1rem;
     }
     
     .hero-img {
-        width: 240px;
-        height: 240px;
+        width: 300px;
+        height: 300px;
+        border-width: 4px;
+        border-radius: 40px;
     }
     
-    .home-grid-row {
+    .home-grid-row, 
+    .recent-updates-row,
+    .home-grid-row.about-row {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 60px;
     }
 
     .project-grid {
