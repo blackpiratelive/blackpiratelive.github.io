@@ -330,3 +330,12 @@
         lucide.createIcons();
     </script>
 {{ end }}
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("{{ "sw.js" | relURL }}").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>

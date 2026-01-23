@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
 
+    {{ $prefetchHosts := .Site.Params.prefetchHosts }}
+    {{ if not $prefetchHosts }}
+    {{ $prefetchHosts = slice "//fonts.googleapis.com" "//fonts.gstatic.com" "//cdn.jsdelivr.net" "//blog.blackpiratex.com" "//gallery.blackpiratex.com" "//notes.blackpiratex.com" "//now.blackpiratex.com" "//guestbook.blackpiratex.com" "//links.blackpiratex.com" "//music.blackpiratex.com" "//status.blackpiratex.com" "//webring.blackpiratex.com" "//hotlinewebring.club" "//webring.dinhe.net" "//webring.bucketfish.me" "//static.quest" "//www.beepbird.net" "//mood-tracker.blackpiratex.com" "//diary.sudipx.in" "//github.com" "//mastodon.social" "//gohugo.io" }}
+    {{ end }}
+    {{ range $prefetchHosts }}
+    <link rel="dns-prefetch" href="{{ . }}">
+    {{ end }}
+
     {{ if $isWriteas }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ "css/writeas.css" | relURL }}">
     {{ if eq .Section "books" }}
@@ -61,6 +70,7 @@
     {{ end }}
     
     <script src="{{ "js/vendor/lucide.min.js" | relURL }}"></script>
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <script src="{{ "js/search.js" | relURL }}"></script>
     {{ end }}
