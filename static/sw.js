@@ -49,7 +49,8 @@ function isExternalCacheable(url) {
   return (
     url.hostname.endsWith("googleapis.com") ||
     url.hostname.endsWith("gstatic.com") ||
-    url.hostname.endsWith("jsdelivr.net")
+    url.hostname.endsWith("jsdelivr.net") ||
+    url.hostname === "gallery.blackpiratex.com"
   );
 }
 

@@ -6,7 +6,8 @@
             <p><a href="/gallery/">← Back to Gallery</a></p>
 
             <div class="writeas-gallery-image">
-                <img src="{{ .Params.image.original.url }}" alt="{{ .Title }}">
+                {{ $img := .Params.image.original }}
+                <img src="{{ $img.url }}" alt="{{ .Title }}"{{ if and $img.width $img.height }} width="{{ $img.width | int }}" height="{{ $img.height | int }}"{{ end }}>
             </div>
 
             <h2 id="title">{{ .Title }}</h2>

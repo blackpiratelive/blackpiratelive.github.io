@@ -16,8 +16,9 @@
                 <div class="writeas-masonry">
                     {{ range $featuredSorted }}
                     <a href="{{ .RelPermalink }}" class="writeas-masonry-item">
-                        {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
-                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
+                        {{ $img := .Params.image.thumbnail | default .Params.image.original }}
+                        {{ $imgSrc := $img.url }}
+                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy"{{ if and $img.width $img.height }} width="{{ $img.width | int }}" height="{{ $img.height | int }}"{{ end }}>
                     </a>
                     {{ end }}
                 </div>
@@ -30,8 +31,9 @@
                 <div class="writeas-masonry">
                     {{ range .Pages }}
                     <a href="{{ .RelPermalink }}" class="writeas-masonry-item">
-                        {{ $imgSrc := .Params.image.thumbnail.url | default .Params.image.original.url }}
-                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy">
+                        {{ $img := .Params.image.thumbnail | default .Params.image.original }}
+                        {{ $imgSrc := $img.url }}
+                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" loading="lazy"{{ if and $img.width $img.height }} width="{{ $img.width | int }}" height="{{ $img.height | int }}"{{ end }}>
                     </a>
                     {{ end }}
                 </div>
