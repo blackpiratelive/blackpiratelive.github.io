@@ -524,17 +524,17 @@ footer nav a.home:hover {
 
 .writeas-masonry {
     column-count: 3;
-    column-gap: 1em;
+    column-gap: 0;
 }
 
 .writeas-masonry-item {
     display: block;
     break-inside: avoid;
-    margin-bottom: 1em;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid #eee;
-    background: #f8f8f8;
+    margin-bottom: 0;
+    border-radius: 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
 }
 
 .writeas-masonry-item img {
@@ -552,11 +552,11 @@ footer nav a.home:hover {
 }
 
 .writeas-gallery-image {
-    border: 1px solid #eee;
-    border-radius: 6px;
-    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
     margin-bottom: 1.2em;
-    background: #f8f8f8;
+    background: transparent;
 }
 
 .writeas-gallery-image img {
@@ -984,8 +984,8 @@ html[data-theme="dark"] .writeas-gallery-title {
 }
 
 html[data-theme="dark"] .writeas-masonry-item {
-    border-color: #444;
-    background: #2a2a2a;
+    border-color: transparent;
+    background: transparent;
 }
 
 html[data-theme="dark"] .writeas-masonry-item:hover {
@@ -993,8 +993,8 @@ html[data-theme="dark"] .writeas-masonry-item:hover {
 }
 
 html[data-theme="dark"] .writeas-gallery-image {
-    border-color: #444;
-    background: #2a2a2a;
+    border-color: transparent;
+    background: transparent;
 }
 
 html[data-theme="dark"] .writeas-gallery-meta {
