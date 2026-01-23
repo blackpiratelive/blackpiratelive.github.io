@@ -2,6 +2,7 @@
 title: "How to use anki beginners guide"
 date: 2026-01-23T10:00:00+05:30
 tags: [anki, study, guide, flashcards]
+draft: true
 ---
 
 Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.
