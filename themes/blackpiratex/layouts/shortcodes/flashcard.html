@@ -1,0 +1,121 @@
+{{ $id := printf "flashcard-%d" .Ordinal }}
+{{ $front := .Get "front" | default "Front" }}
+{{ $back := .Get "back" | default "Back" }}
+<div class="anki-card" id="{{ $id }}">
+    <button class="anki-card__inner" type="button" aria-pressed="false">
+        <div class="anki-card__face anki-card__front">
+            {{ $front | markdownify }}
+        </div>
+        <div class="anki-card__face anki-card__back">
+            {{ $back | markdownify }}
+        </div>
+    </button>
+    <div class="anki-card__hint">Tap to flip</div>
+</div>
+<style>
+    .anki-card {
+        max-width: 520px;
+        margin: 1.5rem auto;
+        text-align: center;
+        color: #222;
+    }
+    .anki-card__inner {
+        width: 100%;
+        min-height: 200px;
+        padding: 0;
+        border: 0;
+        border-radius: 12px;
+        background: transparent;
+        display: block;
+        cursor: pointer;
+        perspective: 1200px;
+        transform-style: preserve-3d;
+    }
+    .anki-card__face {
+        border-radius: 12px;
+        border: 1px solid #e3e3e3;
+        background: #fbfbfb;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        padding: 1.5rem;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        transition: transform 0.45s ease, box-shadow 0.45s ease;
+    }
+    .anki-card__front {
+        transform: rotateY(0deg);
+    }
+    .anki-card__back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: rotateY(180deg);
+        background: #f2f6ff;
+    }
+    .anki-card__inner {
+        position: relative;
+    }
+    .anki-card__inner.is-flipped .anki-card__front {
+        transform: rotateY(-180deg);
+    }
+    .anki-card__inner.is-flipped .anki-card__back {
+        transform: rotateY(0deg);
+    }
+    .anki-card__inner:focus-visible .anki-card__face {
+        box-shadow: 0 0 0 3px rgba(0, 87, 255, 0.2), 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+    .anki-card__hint {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: #666;
+        letter-spacing: 0.02em;
+    }
+    @media (max-width: 600px) {
+        .anki-card__face {
+            font-size: 1rem;
+            padding: 1.25rem;
+        }
+    }
+    html[data-theme="dark"] .anki-card__face {
+        border-color: #444;
+        background: #1f1f1f;
+        color: #f1f1f1;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+    html[data-theme="dark"] .anki-card__back {
+        background: #1a2333;
+    }
+    html[data-theme="dark"] .anki-card__hint {
+        color: #b0b0b0;
+    }
+</style>
+<script>
+    (function () {
+        const root = document.getElementById("{{ $id }}");
+        if (!root) {
+            return;
+        }
+        const inner = root.querySelector(".anki-card__inner");
+        if (!inner) {
+            return;
+        }
+        const toggle = () => {
+            const isFlipped = inner.classList.toggle("is-flipped");
+            inner.setAttribute("aria-pressed", isFlipped ? "true" : "false");
+        };
+        inner.addEventListener("click", toggle);
+        inner.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggle();
+            }
+        });
+    })();
+</script>
