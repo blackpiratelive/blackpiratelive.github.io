@@ -1,172 +1,176 @@
 {{ partial "header.html" . }}
 
 <div id="post">
-    <div id="wrapper">
+    <div id="wrapper" class="home-wrapper">
         <article class="norm home-article">
 
-    <header class="hero">
-        {{ $me := resources.Get "img/me-2.jpg" }}
-        {{ if $me }}
-            {{ $me = $me.Resize "600x webp q90" }}
-            <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-img"/>
-        {{ else }}
-            <div class="hero-img hero-img-fallback">No Img</div>
-        {{ end }}
-        <h1>Hi, I'm Sudip</h1>
-        <p class="hero-intro">
-            Hey there! Thanks for stopping by my little corner of the internet.
-            I made this page to store things I like, free from algorithms. 
-            I am so glad you are here.
-        </p>
-    </header>
-
-    <section class="home-section">
-        <h2>
-            <i data-lucide="compass" width="20"></i> Explore
-        </h2>
-        <ul class="explore-list">
-            <li><a href="https://blog.blackpiratex.com/">✍️ Writings</a></li>
-            <li><a href="https://gallery.blackpiratex.com/">📸 My Clicks</a></li>
-            <li><a href="https://notes.blackpiratex.com/">📚 Book Notes</a></li>
-            <li><a href="https://now.blackpiratex.com/">💬 Microblog</a></li>
-            <li><a href="https://blackpiratex.com/bookmarks/">🔖 Bookmarks</a></li>
-        </ul>
-    </section>
-
-    <section class="home-section">
-        <h2>
-            <i data-lucide="camera" width="20"></i> Latest Clicks
-        </h2>
-        <iframe 
-            src="https://gallery.blackpiratex.com/embed" 
-            title="Featured Gallery"
-            width="100%" 
-            height="400" 
-            class="home-embed"
-            allowtransparency="true"
-            loading="lazy">
-        </iframe>
-    </section>
-
-    <section class="home-section">
-        <h2>
-            <i data-lucide="user" width="20"></i> About Me
-        </h2>
-        <p>
-            Who am I? I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. 
-            I finished my Zoology graduation in 2025 and am now preparing for govt job exams.
-        </p>
-        <p class="home-spaced">
-            Building websites is my hobby, and I love ducks and cats. 
-            I spend a lot of time working with tech stuff but I also study, and sometimes when I have a chance I travel. 
-            Good balance I guess?
-        </p>
-        <div style="margin-top: 20px; text-align: center;">
-            <iframe 
-                src="https://guestbook.blackpiratex.com/widget.html" 
-                width="100%" 
-                height="60" 
-                class="home-guestbook"
-                title="Sudip's Guestbook Banner">
-            </iframe>
-        </div>
-    </section>
-
-    <section class="home-section">
-        <h2>
-            <i data-lucide="code-2" width="20"></i> My Projects
-        </h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <h3>Diary - Journal App</h3>
-                <p>Full featured completely offline daily journal app. Open source and privacy respecting.</p>
-                <div class="project-links">
-                    <a href="https://diary.sudipx.in">Visit App &rarr;</a>
+            <header class="hero">
+                <div class="hero-text">
+                    <h1>Hi, I'm Sudip</h1>
+                    <p class="hero-intro">
+                        Hey there! Thanks for stopping by my little corner of the internet.
+                        I made this page to store things I like, free from algorithms. 
+                        I am so glad you are here.
+                    </p>
                 </div>
+                {{ $me := resources.Get "img/me-2.jpg" }}
+                {{ if $me }}
+                    {{ $me = $me.Resize "600x webp q90" }}
+                    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-img"/>
+                {{ else }}
+                    <div class="hero-img hero-img-fallback">No Img</div>
+                {{ end }}
+            </header>
+
+            <section class="home-section section-explore">
+                <h2>
+                    <i data-lucide="compass" width="20"></i> Explore
+                </h2>
+                <ul class="explore-list">
+                    <li><a href="https://blog.blackpiratex.com/">✍️ Writings</a></li>
+                    <li><a href="https://gallery.blackpiratex.com/">📸 My Clicks</a></li>
+                    <li><a href="https://notes.blackpiratex.com/">📚 Book Notes</a></li>
+                    <li><a href="https://now.blackpiratex.com/">💬 Microblog</a></li>
+                    <li><a href="https://blackpiratex.com/bookmarks/">🔖 Bookmarks</a></li>
+                </ul>
+            </section>
+
+            <div class="home-grid-row">
+                <section class="home-section section-about">
+                    <h2>
+                        <i data-lucide="user" width="20"></i> About Me
+                    </h2>
+                    <p>
+                        Who am I? I'm currently in my early twenties. I am almost extroverted, but definitely like solitude. 
+                        I finished my Zoology graduation in 2025 and am now preparing for govt job exams.
+                    </p>
+                    <p class="home-spaced">
+                        Building websites is my hobby, and I love ducks and cats. 
+                        I spend a lot of time working with tech stuff but I also study, and sometimes when I have a chance I travel. 
+                        Good balance I guess?
+                    </p>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <iframe 
+                            src="https://guestbook.blackpiratex.com/widget.html" 
+                            width="100%" 
+                            height="60" 
+                            class="home-guestbook"
+                            title="Sudip's Guestbook Banner">
+                        </iframe>
+                    </div>
+                </section>
+
+                <section class="home-section section-currently">
+                    <h2>
+                        <i data-lucide="clock" width="20"></i> Currently
+                    </h2>
+                    <div class="currently-box">
+                        "I'm currently preparing for exams. Graduate in Zoology from Bankura Christian College. Now living in Midnapore."
+                    </div>
+                </section>
             </div>
 
-            <div class="project-card">
-                <h3>Black Mood Tracker</h3>
-                <p>Simple mood tracker with 10 levels and activity logging. Uses TursoDB and Vercel functions.</p>
-                <div class="project-links">
-                    <a href="https://mood-tracker.blackpiratex.com">Visit App</a> • 
-                    <a href="https://github.com/blackpirateapps/mood-tracker.git">Source</a>
+            <section class="home-section section-projects">
+                <h2>
+                    <i data-lucide="code-2" width="20"></i> My Projects
+                </h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Diary - Journal App</h3>
+                        <p>Full featured completely offline daily journal app. Open source and privacy respecting.</p>
+                        <div class="project-links">
+                            <a href="https://diary.sudipx.in">Visit App &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Black Mood Tracker</h3>
+                        <p>Simple mood tracker with 10 levels and activity logging. Uses TursoDB and Vercel functions.</p>
+                        <div class="project-links">
+                            <a href="https://mood-tracker.blackpiratex.com">Visit App</a> • 
+                            <a href="https://github.com/blackpirateapps/mood-tracker.git">Source</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Book Tracker</h3>
+                        <p>Minimal web app to track books. Features currently reading, highlights importer, and stats.</p>
+                        <div class="project-links">
+                            <a href="https://notes.blackpiratex.com">Visit App</a> • 
+                            <a href="https://github.com/blackpirateapps/book-tracker.git">Source</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="project-card">
-                <h3>Book Tracker</h3>
-                <p>Minimal web app to track books. Features currently reading, highlights importer, and stats.</p>
-                <div class="project-links">
-                    <a href="https://notes.blackpiratex.com">Visit App</a> • 
-                    <a href="https://github.com/blackpirateapps/book-tracker.git">Source</a>
+            <section class="home-section section-clicks">
+                <h2>
+                    <i data-lucide="camera" width="20"></i> Latest Clicks
+                </h2>
+                <iframe 
+                    src="https://gallery.blackpiratex.com/embed" 
+                    title="Featured Gallery"
+                    width="100%" 
+                    height="400" 
+                    class="home-embed"
+                    allowtransparency="true"
+                    loading="lazy">
+                </iframe>
+            </section>
+
+            <section class="home-section section-likes">
+                <h2>
+                    <i data-lucide="heart" width="20"></i> What I Like
+                </h2>
+                <div class="likes-grid">
+                    <div class="like-item">
+                        <h4>
+                            <i data-lucide="cpu" width="16"></i> Computer
+                        </h4>
+                        <p>I like building stuff and learning how things work. Coding is addicting, I only do it for fun.</p>
+                    </div>
+                    <div class="like-item">
+                        <h4>
+                            <i data-lucide="plane" width="16"></i> Travelling
+                        </h4>
+                        <p>I love exploring new cities, meeting people, and making friends from far-away places.</p>
+                    </div>
+                    <div class="like-item">
+                        <h4>
+                            <i data-lucide="book-open" width="16"></i> Reading
+                        </h4>
+                        <p>I like story books. I'm getting back into the habit. Check out my book notes.</p>
+                    </div>
+                    <div class="like-item">
+                        <h4>
+                            <i data-lucide="aperture" width="16"></i> Photography
+                        </h4>
+                        <p>Still learning but enjoying it. Mostly portraits and landscapes.</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section class="home-section">
-        <h2>
-            <i data-lucide="heart" width="20"></i> What I Like
-        </h2>
-        <div class="likes-grid">
-            <div class="like-item">
-                <h4>
-                    <i data-lucide="cpu" width="16"></i> Computer
-                </h4>
-                <p>I like building stuff and learning how things work. Coding is addicting, I only do it for fun.</p>
-            </div>
-            <div class="like-item">
-                <h4>
-                    <i data-lucide="plane" width="16"></i> Travelling
-                </h4>
-                <p>I love exploring new cities, meeting people, and making friends from far-away places.</p>
-            </div>
-            <div class="like-item">
-                <h4>
-                    <i data-lucide="book-open" width="16"></i> Reading
-                </h4>
-                <p>I like story books. I'm getting back into the habit. Check out my book notes.</p>
-            </div>
-            <div class="like-item">
-                <h4>
-                    <i data-lucide="aperture" width="16"></i> Photography
-                </h4>
-                <p>Still learning but enjoying it. Mostly portraits and landscapes.</p>
-            </div>
-        </div>
-    </section>
+            <section class="home-section section-contact">
+                <h2>
+                    <i data-lucide="mail" width="20"></i> Contact
+                </h2>
+                <p>
+                    If you want to reach me quickly, email me at <strong>sudip (at) blackpiratex.com</strong>.
+                    <br>
+                    <a href="https://links.blackpiratex.com/wa" class="home-link">Chat with me on WhatsApp &rarr;</a>
+                </p>
+            </section>
 
-    <section class="home-section">
-        <h2>
-            <i data-lucide="clock" width="20"></i> Currently
-        </h2>
-        <div class="currently-box">
-            "I'm currently preparing for exams. Graduate in Zoology from Bankura Christian College. Now living in Midnapore."
-        </div>
-    </section>
-
-    <section class="home-section">
-        <h2>
-            <i data-lucide="mail" width="20"></i> Contact
-        </h2>
-        <p>
-            If you want to reach me quickly, email me at <strong>sudip (at) blackpiratex.com</strong>.
-            <br>
-            <a href="https://links.blackpiratex.com/wa" class="home-link">Chat with me on WhatsApp &rarr;</a>
-        </p>
-    </section>
-
-    <div style="text-align: center; margin-bottom: 30px;">
-        <iframe 
-            src="https://webring.blackpiratex.com/classic-banner.html" 
-            width="100%" 
-            height="100" 
-            frameborder="0" 
-            scrolling="no" 
-            class="home-webring">
-        </iframe>
-    </div>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <iframe 
+                    src="https://webring.blackpiratex.com/classic-banner.html" 
+                    width="100%" 
+                    height="100" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    class="home-webring">
+                </iframe>
+            </div>
 
         </article>
     </div>
