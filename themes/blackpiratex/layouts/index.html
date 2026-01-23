@@ -87,48 +87,52 @@
                 <h2>
                     <i data-lucide="code-2" width="20"></i> My Projects
                 </h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3>Diary - Journal App</h3>
-                        <p>Full featured completely offline daily journal app. Open source and privacy respecting.</p>
-                        <div class="project-links">
-                            <a href="https://diary.sudipx.in">Visit App &rarr;</a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Black Mood Tracker</h3>
-                        <p>Simple mood tracker with 10 levels and activity logging. Uses TursoDB and Vercel functions.</p>
-                        <div class="project-links">
-                            <a href="https://mood-tracker.blackpiratex.com">Visit App</a> • 
+                <table class="projects-table">
+                    <tr>
+                        <td><strong>Diary</strong></td>
+                        <td>Full featured completely offline daily journal app. Open source and privacy respecting.</td>
+                        <td><a href="https://diary.sudipx.in">Visit &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mood Tracker</strong></td>
+                        <td>Simple mood tracker with 10 levels and activity logging. Uses TursoDB and Vercel functions.</td>
+                        <td>
+                            <a href="https://mood-tracker.blackpiratex.com">Visit</a> • 
                             <a href="https://github.com/blackpirateapps/mood-tracker.git">Source</a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Book Tracker</h3>
-                        <p>Minimal web app to track books. Features currently reading, highlights importer, and stats.</p>
-                        <div class="project-links">
-                            <a href="https://notes.blackpiratex.com">Visit App</a> • 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Book Tracker</strong></td>
+                        <td>Minimal web app to track books. Features currently reading, highlights importer, and stats.</td>
+                        <td>
+                            <a href="https://notes.blackpiratex.com">Visit</a> • 
                             <a href="https://github.com/blackpirateapps/book-tracker.git">Source</a>
-                        </div>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section class="home-section section-clicks">
                 <h2>
                     <i data-lucide="camera" width="20"></i> Latest Clicks
                 </h2>
-                <iframe 
-                    src="https://gallery.blackpiratex.com/embed" 
-                    title="Featured Gallery"
-                    width="100%" 
-                    height="400" 
-                    class="home-embed"
-                    allowtransparency="true"
-                    loading="lazy">
-                </iframe>
+                <div class="gallery-scroll-container">
+                    <button class="scroll-btn prev" aria-label="Previous image" onclick="scrollGallery(-1)">
+                        <i data-lucide="chevron-left" width="24"></i>
+                    </button>
+                    <div class="gallery-track" id="galleryTrack">
+                        {{ range first 10 (where .Site.RegularPages "Section" "gallery") }}
+                            {{ if .Params.image }}
+                            <a href="{{ .Permalink }}" class="gallery-thumb-link">
+                                <img src="{{ .Params.image }}" alt="{{ .Title }}" class="gallery-thumb" loading="lazy">
+                            </a>
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                    <button class="scroll-btn next" aria-label="Next image" onclick="scrollGallery(1)">
+                        <i data-lucide="chevron-right" width="24"></i>
+                    </button>
+                </div>
             </section>
 
             <section class="home-section section-likes">
@@ -184,6 +188,17 @@
 <script>
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
+    }
+
+    function scrollGallery(direction) {
+        const track = document.getElementById('galleryTrack');
+        const scrollAmount = 300;
+        if (track) {
+            track.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
     }
 </script>
 

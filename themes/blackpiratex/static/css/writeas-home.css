@@ -147,29 +147,98 @@ body#post header.hero {
     text-decoration: none;
 }
 
-/* Project Cards (Compact) */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+/* Projects Table */
+.projects-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.project-card {
+.projects-table td {
+    padding: 15px 20px;
     border: 1px solid var(--border-color);
-    padding: 25px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    background: var(--bg-panel);
-}
-
-.project-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-}
-
-.project-card p {
+    vertical-align: top;
     font-size: 1.05rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.projects-table td:first-child {
+    width: 140px;
+    background: var(--bg-hover);
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.projects-table td:last-child {
+    width: 100px;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+.projects-table a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.projects-table a:hover {
+    text-decoration: underline;
+}
+
+/* Gallery Scroll */
+.gallery-scroll-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 10px 5px;
+    width: 100%;
+}
+
+.gallery-track::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-thumb {
+    height: 250px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-soft);
+    transition: transform 0.2s;
+    display: block;
+}
+
+.gallery-thumb:hover {
+    transform: scale(1.02);
+}
+
+.scroll-btn {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--text-main);
+    box-shadow: 0 2px 8px var(--shadow-soft);
+    transition: background 0.2s;
+}
+
+.scroll-btn:hover {
+    background: var(--bg-hover);
+    color: var(--primary-blue);
 }
 
 /* Likes Table */
@@ -220,7 +289,7 @@ body#post header.hero {
 
 @media (max-width: 600px) {
     .home-wrapper {
-        padding: 0 0.8rem; /* Almost full width */
+        padding: 0 0.8rem;
     }
     
     .hero {
@@ -228,6 +297,14 @@ body#post header.hero {
         margin-bottom: 30px;
         padding-bottom: 20px;
         gap: 20px;
+        width: 100%;
+        display: flex; /* Fallback/Override */
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    
+    .hero-text {
+        text-align: center;
         width: 100%;
     }
     
@@ -237,7 +314,7 @@ body#post header.hero {
     }
     
     .hero-img {
-        width: 100%; /* Take full width of container */
+        width: 100%;
         max-width: 300px;
         height: auto;
         aspect-ratio: 1 / 1;
@@ -246,6 +323,7 @@ body#post header.hero {
     
     .hero-intro {
         font-size: 1.1rem;
+        max-width: 100%;
     }
 
     .home-section {
@@ -261,21 +339,40 @@ body#post header.hero {
         gap: 25px;
         margin-bottom: 25px;
     }
-    
-    .project-grid {
-        gap: 15px;
-    }
-    
-    .project-card {
-        padding: 15px;
-    }
 
-    .likes-table td {
-        padding: 12px;
-        font-size: 0.95rem;
+    /* Stack Tables on Mobile */
+    .projects-table td, .likes-table td {
+        display: block;
+        width: auto !important;
+        border: none;
+        padding: 8px 5px;
     }
     
-    .likes-table td:first-child {
-        width: 100px;
+    .projects-table td:first-child, .likes-table td:first-child {
+        background: transparent;
+        padding-bottom: 0;
+        color: var(--primary-blue);
+        font-size: 1.1rem;
+    }
+    
+    .projects-table td:last-child {
+        text-align: left;
+        padding-top: 5px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+    
+    .likes-table td:last-child {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+    
+    .projects-table tr:last-child td:last-child,
+    .likes-table tr:last-child td:last-child {
+        border-bottom: none;
+    }
+    
+    .gallery-thumb {
+        height: 180px;
     }
 }
