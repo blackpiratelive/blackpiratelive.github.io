@@ -141,61 +141,54 @@ body#post header.hero {
     flex-direction: column;
 }
 
-/* Latest Tables (Replacing Lists) */
+/* Latest Tables (Simplified) */
 .latest-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 12px;
+    border-collapse: collapse; /* Standard table borders */
     flex-grow: 1;
 }
 
 .latest-table td {
-    padding: 18px 25px;
-    background: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    border-style: solid none;
+    padding: 12px 15px; /* Reduced padding */
+    border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
 }
 
+.latest-table tr:first-child td {
+    border-top: 1px solid var(--border-color);
+}
+
 .latest-table td:first-child {
-    border-left-style: solid;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
-    width: 80px; /* Fixed width for date */
+    width: 80px;
+    padding-left: 0; /* Flush left */
+    color: var(--text-muted);
 }
 
 .latest-table td:last-child {
-    border-right-style: solid;
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
+    padding-right: 0; /* Flush right */
 }
 
-.latest-table tr {
-    transition: all 0.2s ease;
-}
-
-.latest-table tr:hover td {
-    background: var(--bg-hover);
-    border-color: var(--primary-blue);
+.latest-table tr:hover .latest-title {
+    text-decoration: underline;
+    color: var(--primary-blue);
 }
 
 .latest-table a {
     text-decoration: none;
     color: var(--text-main);
     display: block;
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: 500;
+    font-size: 1.05rem;
     line-height: 1.4;
 }
 
 .latest-date {
     font-family: monospace;
     font-size: 0.9rem;
-    color: var(--text-muted);
 }
 
 .view-all-link {
-    margin-top: 20px;
+    margin-top: 15px;
     display: inline-block;
     font-size: 1rem;
     font-weight: 700;
@@ -203,33 +196,32 @@ body#post header.hero {
     text-decoration: none;
 }
 
-/* Project Cards */
+/* Project Cards (Compact) */
 .project-grid {
     display: grid;
-    /* Fixed minmax to prevent overflow */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 40px;
+    gap: 25px; /* Reduced gap */
 }
 
 .project-card {
     border: 1px solid var(--border-color);
-    padding: 40px;
-    border-radius: 30px;
+    padding: 25px; /* Reduced padding */
+    border-radius: 20px;
     transition: all 0.3s ease;
     background: var(--bg-panel);
 }
 
 .project-card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
 }
 
 .project-card p {
-    font-size: 1.15rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.5;
 }
 
-/* Likes Grid Redesign */
+/* Likes Grid */
 .likes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -296,23 +288,19 @@ body#post header.hero {
     .home-wrapper {
         padding: 0 2rem;
     }
-    
     .hero {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 50px;
     }
-    
     .hero h1 {
         font-size: 3.5rem;
     }
-    
     .hero-img {
         width: 350px;
         height: 350px;
         margin: 0 auto;
     }
-    
     .home-grid-row {
         grid-template-columns: 1fr;
         gap: 60px;
@@ -321,15 +309,64 @@ body#post header.hero {
 
 @media (max-width: 600px) {
     .home-wrapper {
-        padding: 0 1rem; /* Reduced padding for mobile width */
+        padding: 0 1rem;
     }
     
-    .hero-img {
-        width: 280px;
-        height: 280px;
+    .hero {
+        margin-top: 20px;
+        margin-bottom: 30px; /* Condensed */
+        padding-bottom: 20px;
+        gap: 20px;
     }
     
     .hero h1 {
         font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-img {
+        width: 200px; /* Smaller image */
+        height: 200px;
+    }
+    
+    .home-section {
+        margin-bottom: 30px; /* Condensed */
+    }
+    
+    .home-section h2 {
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+    
+    .home-grid-row {
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .project-grid {
+        gap: 15px;
+    }
+    
+    .project-card {
+        padding: 15px;
+        border-radius: 16px;
+    }
+    
+    .explore-list {
+        gap: 10px;
+        grid-template-columns: 1fr 1fr; /* 2 column explore */
+    }
+    
+    .explore-list li a {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .likes-grid {
+        gap: 15px;
+    }
+    
+    .like-item {
+        padding: 20px;
     }
 }
