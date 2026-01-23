@@ -93,40 +93,6 @@ body#post header.hero {
     color: var(--text-main);
 }
 
-/* Explore Grid */
-.explore-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-}
-
-.explore-list li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    background: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    text-decoration: none;
-    color: var(--text-main);
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: all 0.2s ease;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.explore-list li a:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px var(--shadow-soft);
-    border-color: var(--primary-blue);
-    color: var(--primary-blue);
-}
-
 /* Split Rows */
 .home-grid-row {
     display: grid;
@@ -144,28 +110,18 @@ body#post header.hero {
 /* Latest Tables (Simplified) */
 .latest-table {
     width: 100%;
-    border-collapse: collapse; /* Standard table borders */
+    border-collapse: collapse; 
     flex-grow: 1;
 }
 
 .latest-table td {
-    padding: 12px 15px; /* Reduced padding */
+    padding: 12px 0; 
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
 }
 
 .latest-table tr:first-child td {
     border-top: 1px solid var(--border-color);
-}
-
-.latest-table td:first-child {
-    width: 80px;
-    padding-left: 0; /* Flush left */
-    color: var(--text-muted);
-}
-
-.latest-table td:last-child {
-    padding-right: 0; /* Flush right */
 }
 
 .latest-table tr:hover .latest-title {
@@ -178,13 +134,8 @@ body#post header.hero {
     color: var(--text-main);
     display: block;
     font-weight: 500;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.4;
-}
-
-.latest-date {
-    font-family: monospace;
-    font-size: 0.9rem;
 }
 
 .view-all-link {
@@ -200,12 +151,12 @@ body#post header.hero {
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px; /* Reduced gap */
+    gap: 25px;
 }
 
 .project-card {
     border: 1px solid var(--border-color);
-    padding: 25px; /* Reduced padding */
+    padding: 25px;
     border-radius: 20px;
     transition: all 0.3s ease;
     background: var(--bg-panel);
@@ -221,66 +172,26 @@ body#post header.hero {
     line-height: 1.5;
 }
 
-/* Likes Grid */
-.likes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
+/* Likes Table */
+.likes-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.like-item {
-    background: var(--bg-panel);
-    padding: 35px;
-    border-radius: 24px;
+.likes-table td {
+    padding: 15px 20px;
     border: 1px solid var(--border-color);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.like-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px var(--shadow-soft);
-    border-color: var(--primary-blue);
-}
-
-.like-item h4 {
-    margin: 0 0 15px 0;
-    color: var(--text-main);
-    display: flex; 
-    flex-direction: column;
-    align-items: flex-start; 
-    gap: 15px;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-.like-item h4 svg, 
-.like-item h4 i {
-    width: 32px !important;
-    height: 32px !important;
-    padding: 12px;
-    background: var(--bg-hover);
-    border-radius: 16px;
-    color: var(--primary-blue);
-    transition: all 0.3s ease;
-    box-sizing: content-box;
-}
-
-.like-item:hover h4 svg,
-.like-item:hover h4 i {
-    background: var(--primary-blue);
-    color: #fff;
-    transform: scale(1.1) rotate(-3deg);
-}
-
-.like-item p {
+    vertical-align: top;
     font-size: 1.05rem;
-    color: var(--text-muted);
-    margin: 0;
     line-height: 1.6;
+    color: var(--text-main);
+}
+
+.likes-table td:first-child {
+    width: 160px;
+    background: var(--bg-hover);
+    font-weight: 700;
+    color: var(--primary-blue);
 }
 
 /* Mobile Responsive */
@@ -309,14 +220,15 @@ body#post header.hero {
 
 @media (max-width: 600px) {
     .home-wrapper {
-        padding: 0 1rem;
+        padding: 0 0.8rem; /* Almost full width */
     }
     
     .hero {
         margin-top: 20px;
-        margin-bottom: 30px; /* Condensed */
+        margin-bottom: 30px;
         padding-bottom: 20px;
         gap: 20px;
+        width: 100%;
     }
     
     .hero h1 {
@@ -325,12 +237,19 @@ body#post header.hero {
     }
     
     .hero-img {
-        width: 200px; /* Smaller image */
-        height: 200px;
+        width: 100%; /* Take full width of container */
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 40px;
     }
     
+    .hero-intro {
+        font-size: 1.1rem;
+    }
+
     .home-section {
-        margin-bottom: 30px; /* Condensed */
+        margin-bottom: 30px;
     }
     
     .home-section h2 {
@@ -339,8 +258,8 @@ body#post header.hero {
     }
     
     .home-grid-row {
-        gap: 30px;
-        margin-bottom: 30px;
+        gap: 25px;
+        margin-bottom: 25px;
     }
     
     .project-grid {
@@ -349,24 +268,14 @@ body#post header.hero {
     
     .project-card {
         padding: 15px;
-        border-radius: 16px;
     }
-    
-    .explore-list {
-        gap: 10px;
-        grid-template-columns: 1fr 1fr; /* 2 column explore */
-    }
-    
-    .explore-list li a {
+
+    .likes-table td {
         padding: 12px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
     
-    .likes-grid {
-        gap: 15px;
-    }
-    
-    .like-item {
-        padding: 20px;
+    .likes-table td:first-child {
+        width: 100px;
     }
 }

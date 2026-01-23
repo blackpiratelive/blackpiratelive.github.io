@@ -22,26 +22,12 @@
                 {{ end }}
             </header>
 
-            <section class="home-section section-explore">
-                <h2>
-                    <i data-lucide="compass" width="20"></i> Explore
-                </h2>
-                <ul class="explore-list">
-                    <li><a href="https://blog.blackpiratex.com/">✍️ Writings</a></li>
-                    <li><a href="https://gallery.blackpiratex.com/">📸 My Clicks</a></li>
-                    <li><a href="https://notes.blackpiratex.com/">📚 Book Notes</a></li>
-                    <li><a href="https://now.blackpiratex.com/">💬 Microblog</a></li>
-                    <li><a href="https://blackpiratex.com/bookmarks/">🔖 Bookmarks</a></li>
-                </ul>
-            </section>
-
             <div class="home-grid-row recent-updates-row">
                 <section class="home-section section-latest-blog">
                     <h2><i data-lucide="pen-tool" width="20"></i> Latest Writing</h2>
                     <table class="latest-table">
                         {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
                         <tr>
-                            <td class="latest-date">{{ .Date.Format "Jan 02" }}</td>
                             <td class="latest-title"><a href="{{ .Permalink }}">{{ .Title }}</a></td>
                         </tr>
                         {{ end }}
@@ -54,7 +40,6 @@
                     <table class="latest-table">
                         {{ range first 5 (where .Site.RegularPages "Section" "thoughts") }}
                         <tr>
-                            <td class="latest-date">{{ .Date.Format "Jan 02" }}</td>
                             <td class="latest-title"><a href="{{ .Permalink }}">{{ .Content | plainify | truncate 50 }}</a></td>
                         </tr>
                         {{ end }}
@@ -150,32 +135,24 @@
                 <h2>
                     <i data-lucide="heart" width="20"></i> What I Like
                 </h2>
-                <div class="likes-grid">
-                    <div class="like-item">
-                        <h4>
-                            <i data-lucide="cpu" width="16"></i> Computer
-                        </h4>
-                        <p>I like building stuff and learning how things work. Coding is addicting, I only do it for fun.</p>
-                    </div>
-                    <div class="like-item">
-                        <h4>
-                            <i data-lucide="plane" width="16"></i> Travelling
-                        </h4>
-                        <p>I love exploring new cities, meeting people, and making friends from far-away places.</p>
-                    </div>
-                    <div class="like-item">
-                        <h4>
-                            <i data-lucide="book-open" width="16"></i> Reading
-                        </h4>
-                        <p>I like story books. I'm getting back into the habit. Check out my book notes.</p>
-                    </div>
-                    <div class="like-item">
-                        <h4>
-                            <i data-lucide="aperture" width="16"></i> Photography
-                        </h4>
-                        <p>Still learning but enjoying it. Mostly portraits and landscapes.</p>
-                    </div>
-                </div>
+                <table class="likes-table">
+                    <tr>
+                        <td><strong>Computer</strong></td>
+                        <td>I like building stuff and learning how things work. Coding is addicting, I only do it for fun.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Travelling</strong></td>
+                        <td>I love exploring new cities, meeting people, and making friends from far-away places.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reading</strong></td>
+                        <td>I like story books. I'm getting back into the habit. Check out my book notes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Photography</strong></td>
+                        <td>Still learning but enjoying it. Mostly portraits and landscapes.</td>
+                    </tr>
+                </table>
             </section>
 
             <section class="home-section section-contact">
