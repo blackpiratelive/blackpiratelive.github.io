@@ -552,11 +552,11 @@ footer nav a.home:hover {
 }
 
 .writeas-gallery-image {
-    border: 0;
-    border-radius: 0;
-    overflow: visible;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
     margin-bottom: 1.2em;
-    background: transparent;
+    background: #f8f8f8;
 }
 
 .writeas-gallery-image img {
@@ -993,8 +993,8 @@ html[data-theme="dark"] .writeas-masonry-item:hover {
 }
 
 html[data-theme="dark"] .writeas-gallery-image {
-    border-color: transparent;
-    background: transparent;
+    border-color: #444;
+    background: #2a2a2a;
 }
 
 html[data-theme="dark"] .writeas-gallery-meta {
