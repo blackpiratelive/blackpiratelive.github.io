@@ -339,3 +339,64 @@
         });
     }
 </script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
