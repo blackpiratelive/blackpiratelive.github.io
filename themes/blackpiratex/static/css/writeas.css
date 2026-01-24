@@ -40,7 +40,7 @@ header {
 
 body#post header {
     margin: 0 auto;
-    padding: 1em 2rem;
+    padding: 0.5em 1.5em;
     opacity: 0.4;
     transition: opacity 0.4s;
 }
@@ -66,13 +66,14 @@ header h1 a:hover {
 
 header nav {
     margin: 0 1em;
-    line-height: 2.4em;
+    line-height: 2em;
     font-family: "Open Sans", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 header nav a {
     color: #767676;
-    margin: 0 0 0 1em;
+    margin: 0 0 0 0.8em;
+    font-size: 0.9em;
 }
 
 header nav a:visited {
@@ -84,12 +85,13 @@ header nav a:hover {
 }
 
 header nav .theme-toggle {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 0.8em;
     padding: 0;
     border: 0;
     background: none;
     color: #767676;
     font: inherit;
+    font-size: 0.9em;
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -100,35 +102,35 @@ header nav .theme-toggle:hover {
 
 header p.description {
     color: #444;
-    font-size: 1.1em;
-    margin-top: 0.5em;
-    line-height: 1.5;
+    font-size: 0.95em;
+    margin-top: 0.3em;
+    line-height: 1.4;
 }
 
 hr {
     height: 1px;
     background: #ccc;
-    max-width: 40em;
-    margin: 4em auto;
+    max-width: 38em;
+    margin: 2em auto;
     border: 0;
 }
 
 #post #wrapper,
 #post pre {
-    max-width: 40em;
+    max-width: 38em;
     margin: 0 auto;
 }
 
 #post article,
 #post pre {
-    max-width: 40em;
+    max-width: 38em;
     margin: 0 auto;
-    padding: 0.5em 2rem 1.5em;
-    font-size: 1.2em;
+    padding: 0.2em 1.5em 1em;
+    font-size: 1.1em;
 }
 
 #post article.norm {
-    line-height: 1.5;
+    line-height: 1.45;
     white-space: normal;
 }
 
@@ -136,17 +138,17 @@ hr {
 #post article h2,
 #post article h3 {
     line-height: 1.2;
-    margin: 0.9em 0 0.35em;
+    margin: 0.7em 0 0.25em;
 }
 
 #post article h2#title {
-    font-size: 1.5em;
+    font-size: 1.4em;
     display: block;
-    margin: 0 0 0.6em;
+    margin: 0 0 0.5em;
 }
 
 #post article p {
-    margin: 0 0 0.75em;
+    margin: 0 0 0.6em;
 }
 
 #post article a {
@@ -160,23 +162,17 @@ hr {
 #post article p + h2,
 #post article p + h3,
 #post article p + h4 {
-    margin-top: 0.65em;
-}
-
-#post article p + h2,
-#post article p + h3,
-#post article p + h4 {
-    margin-top: 0.75em;
+    margin-top: 0.5em;
 }
 
 #post article ul,
 #post article ol {
-    margin: 1.25em 0;
-    padding-left: 1.5em;
+    margin: 1em 0;
+    padding-left: 1.25em;
 }
 
 #post article li {
-    margin: 0 0 0.4em;
+    margin: 0 0 0.25em;
 }
 
 #post article img,
@@ -187,30 +183,30 @@ hr {
 
 #post blockquote {
     border-left: 4px solid #ddd;
-    padding: 0 1em;
-    margin: 0.5em 0;
+    padding: 0 0.8em;
+    margin: 0.4em 0;
     color: #767676;
 }
 
 #post blockquote p {
-    margin: 0.5em 0;
+    margin: 0.4em 0;
 }
 
 #post code {
     background-color: #f8f8f8;
     border: 1px solid #ccc;
-    padding: 0.2em 0.4em;
-    font-size: 0.86em;
-    border-radius: 0.25em;
+    padding: 0.15em 0.3em;
+    font-size: 0.85em;
+    border-radius: 0.2em;
     font-family: Hack, consolas, Menlo, Monaco, "Ubuntu Mono", monospace;
 }
 
 #post pre {
     background: #f8f8f8;
     border: 1px solid #ccc;
-    padding: 0.375em 0.625em;
-    font-size: 0.86em;
-    border-radius: 0.25em;
+    padding: 0.3em 0.5em;
+    font-size: 0.85em;
+    border-radius: 0.2em;
     overflow-x: auto;
 }
 
@@ -227,19 +223,20 @@ hr {
 #post article time.dt-published {
     display: block;
     color: #666;
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
+    font-size: 0.9em;
 }
 
 #post article .authors {
-    margin: 0.25em 0;
+    margin: 0.2em 0;
 }
 
 .post-tags {
-    margin-top: 1.5em;
+    margin-top: 1.2em;
 }
 
 .thought-item .post-tags {
-    margin-top: 0.6em;
+    margin-top: 0.5em;
     margin-bottom: 0;
 }
 
@@ -254,7 +251,7 @@ a.hashtag:hover {
 a.hashtag span:first-child {
     color: #999;
     margin-right: 0.1em;
-    font-size: 0.86em;
+    font-size: 0.85em;
     text-decoration: none;
 }
 
@@ -264,24 +261,25 @@ a.hashtag:hover span + span {
 
 footer {
     text-align: center;
-    padding: 0 2em;
+    padding: 0 1.5em;
 }
 
 footer nav {
-    margin: 3em 0 4em;
+    margin: 2em 0 3em;
     color: #444;
     font-family: "Open Sans", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 footer nav a {
     display: inline-block;
-    margin-top: 0.8em;
+    margin-top: 0.6em;
     color: #999;
     text-decoration: none;
+    font-size: 0.9em;
 }
 
 footer nav a + a {
-    margin-left: 0.8em;
+    margin-left: 0.7em;
 }
 
 footer nav a:hover {
@@ -300,22 +298,22 @@ footer nav a.home:hover {
 
 .writeas-footer {
     text-align: center;
-    padding: 0 2em;
-    margin: 3em auto 4em;
+    padding: 0 1.5em;
+    margin: 2em auto 3em;
 }
 
 .writeas-footer-title {
-    margin: 0 0 0.6em;
-    font-size: 0.75em;
-    letter-spacing: 0.12em;
+    margin: 0 0 0.5em;
+    font-size: 0.7em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #666;
     font-family: "Open Sans", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 .writeas-footer-section {
-    max-width: 40em;
-    margin: 0 auto 1.5em;
+    max-width: 38em;
+    margin: 0 auto 1.2em;
     text-align: left;
 }
 
@@ -340,14 +338,14 @@ footer nav a.home:hover {
 }
 
 .writeas-footer-section summary.writeas-footer-title {
-    margin-bottom: 0.6em;
+    margin-bottom: 0.5em;
 }
 
 .writeas-footer-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35em 1em;
-    font-size: 0.9em;
+    gap: 0.3em 0.8em;
+    font-size: 0.85em;
     color: #666;
 }
 
@@ -364,8 +362,8 @@ footer nav a.home:hover {
 .writeas-footer-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4em 0.8em;
-    font-size: 0.9em;
+    gap: 0.35em 0.7em;
+    font-size: 0.85em;
     justify-content: flex-start;
 }
 
@@ -382,8 +380,8 @@ footer nav a.home:hover {
 .writeas-webring-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35em 0.8em;
-    font-size: 0.9em;
+    gap: 0.3em 0.7em;
+    font-size: 0.85em;
 }
 
 .writeas-webring-name {
@@ -392,28 +390,28 @@ footer nav a.home:hover {
 }
 
 .writeas-footer-credits {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #777;
 }
 
 .writeas-footer-credits p {
-    margin: 0.5em 0;
+    margin: 0.4em 0;
 }
 
 .thoughts-meta {
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: #666;
-    margin: 0 0 1.5em;
+    margin: 0 0 1.2em;
 }
 
 .thoughts-list {
     display: flex;
     flex-direction: column;
-    gap: 1.1em;
+    gap: 0.8em;
 }
 
 .thought-item {
-    padding-bottom: 0.9em;
+    padding-bottom: 0.7em;
     border-bottom: 1px solid #eee;
 }
 
@@ -424,9 +422,9 @@ footer nav a.home:hover {
 
 .thought-time {
     display: block;
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #666;
-    margin-bottom: 0.35em;
+    margin-bottom: 0.25em;
 }
 
 .thought-time a {
@@ -441,15 +439,15 @@ footer nav a.home:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5em;
-    margin: 1.5em auto 3em;
+    gap: 0.4em;
+    margin: 1.2em auto 2.5em;
 }
 
 .pagination-link {
     border: 1px solid #ddd;
-    border-radius: 0.25em;
-    padding: 0.25em 0.6em;
-    font-size: 0.85em;
+    border-radius: 0.2em;
+    padding: 0.2em 0.5em;
+    font-size: 0.8em;
     color: #666;
     text-decoration: none;
 }
@@ -467,9 +465,9 @@ footer nav a.home:hover {
 
 .writeas-list-item {
     display: flex;
-    gap: 1em;
+    gap: 0.8em;
     align-items: baseline;
-    padding: 0.6em 0;
+    padding: 0.4em 0;
     border-bottom: 1px solid #eee;
 }
 
@@ -479,28 +477,28 @@ footer nav a.home:hover {
 
 .writeas-list-date {
     font-family: Hack, consolas, Menlo, Monaco, "Ubuntu Mono", monospace;
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #666;
-    min-width: 90px;
+    min-width: 80px;
 }
 
 .writeas-list-main {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5em;
+    gap: 0.4em;
     align-items: baseline;
 }
 
 .writeas-list-title {
-    font-size: 1em;
+    font-size: 0.95em;
     color: #111;
 }
 
 .writeas-list-tags {
     display: inline-flex;
     flex-wrap: wrap;
-    gap: 0.35em;
-    font-size: 0.85em;
+    gap: 0.3em;
+    font-size: 0.8em;
     color: #666;
 }
 
@@ -513,14 +511,14 @@ footer nav a.home:hover {
 }
 
 .writeas-gallery-group {
-    margin: 2.5em 0;
+    margin: 2em 0;
 }
 
 .writeas-gallery-title {
-    margin: 0 0 0.75em;
-    padding-bottom: 0.35em;
+    margin: 0 0 0.6em;
+    padding-bottom: 0.25em;
     border-bottom: 1px solid #eee;
-    font-size: 1.05em;
+    font-size: 1em;
     color: #333;
 }
 
@@ -550,14 +548,14 @@ footer nav a.home:hover {
 }
 
 .writeas-gallery-single {
-    margin-top: 1em;
+    margin-top: 0.8em;
 }
 
 .writeas-gallery-image {
     border: 1px solid #eee;
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 1.2em;
+    margin-bottom: 1em;
     background: #f8f8f8;
 }
 
@@ -570,51 +568,52 @@ footer nav a.home:hover {
 .writeas-gallery-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75em;
-    font-size: 0.9em;
+    gap: 0.6em;
+    font-size: 0.85em;
     color: #666;
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
 }
 
 .writeas-gallery-description {
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
+    font-size: 0.95em;
 }
 
 .writeas-exif {
-    margin: 1.5em 0;
-    padding: 1em;
+    margin: 1.2em 0;
+    padding: 0.8em;
     border: 1px solid #eee;
-    border-radius: 6px;
+    border-radius: 4px;
     background: #f8f8f8;
 }
 
 .writeas-exif h3 {
-    margin: 0 0 0.75em;
-    font-size: 1em;
+    margin: 0 0 0.6em;
+    font-size: 0.95em;
 }
 
 .writeas-exif-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.75em;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.6em;
 }
 
 .writeas-exif-label {
     display: block;
-    font-size: 0.75em;
+    font-size: 0.7em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     color: #666;
 }
 
 .writeas-exif-value {
     display: block;
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #111;
 }
 
 .writeas-gallery-actions {
-    margin: 1em 0 0;
+    margin: 0.8em 0 0;
 }
 
 @media (max-width: 900px) {
@@ -630,69 +629,69 @@ footer nav a.home:hover {
 }
 
 .writeas-stats {
-    margin-top: 1em;
+    margin-top: 0.8em;
 }
 
 .writeas-stat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1em;
-    margin: 1.5em 0 2em;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.8em;
+    margin: 1.2em 0 1.5em;
 }
 
 .writeas-stat-grid--compact {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    margin-bottom: 1.5em;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    margin-bottom: 1.2em;
 }
 
 .writeas-stat-card {
     border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 0.75em 0.9em;
+    border-radius: 4px;
+    padding: 0.6em 0.8em;
     background: #f8f8f8;
 }
 
 .writeas-stat-label {
     display: block;
-    font-size: 0.8em;
-    letter-spacing: 0.06em;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #666;
-    margin-bottom: 0.35em;
+    margin-bottom: 0.25em;
 }
 
 .writeas-stat-value {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: #111;
 }
 
 .writeas-section {
-    margin-top: 2.5em;
+    margin-top: 2em;
 }
 
 .writeas-section-title {
-    margin: 0 0 0.75em;
-    padding-bottom: 0.35em;
+    margin: 0 0 0.6em;
+    padding-bottom: 0.25em;
     border-bottom: 1px solid #eee;
-    font-size: 1.05em;
+    font-size: 1em;
     color: #333;
 }
 
 .writeas-chart-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1em;
-    margin: 1.5em 0 2em;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8em;
+    margin: 1.2em 0 1.5em;
 }
 
 .writeas-chart-grid--two {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .writeas-chart-card {
     border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 0.75em;
+    border-radius: 4px;
+    padding: 0.6em;
     background: #fff;
 }
 
@@ -703,15 +702,15 @@ footer nav a.home:hover {
 }
 
 .writeas-search {
-    margin-top: 1em;
+    margin-top: 0.8em;
 }
 
 .writeas-search-input {
     border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 0.5em 0.75em;
+    border-radius: 4px;
+    padding: 0.4em 0.6em;
     background: #f8f8f8;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.2em;
 }
 
 .writeas-search-input input {
@@ -724,78 +723,80 @@ footer nav a.home:hover {
 }
 
 .search-section {
-    margin: 1.5em 0;
+    margin: 1.2em 0;
 }
 
 .section-title {
-    margin: 0 0 0.75em;
-    padding-bottom: 0.35em;
+    margin: 0 0 0.6em;
+    padding-bottom: 0.25em;
     border-bottom: 1px solid #eee;
-    font-size: 1.05em;
+    font-size: 1em;
     color: #333;
 }
 
 .blog-result {
     display: block;
-    padding: 0.75em 0;
+    padding: 0.6em 0;
     border-bottom: 1px solid #eee;
     text-decoration: none;
 }
 
 .blog-result h3 {
-    margin: 0 0 0.35em;
-    font-size: 1em;
+    margin: 0 0 0.25em;
+    font-size: 0.95em;
     color: #111;
 }
 
 .blog-meta {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #666;
-    margin-bottom: 0.35em;
+    margin-bottom: 0.25em;
 }
 
 .blog-result p {
     margin: 0;
     color: #444;
+    font-size: 0.9em;
 }
 
 .thoughts-grid {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.8em;
 }
 
 .thought-result {
     border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 0.75em;
+    border-radius: 4px;
+    padding: 0.6em;
     background: #f8f8f8;
     text-decoration: none;
     color: inherit;
 }
 
 .thought-meta {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #666;
     display: flex;
-    gap: 0.75em;
-    margin-bottom: 0.5em;
+    gap: 0.6em;
+    margin-bottom: 0.4em;
 }
 
 .thought-content {
     color: #444;
+    font-size: 0.9em;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.8em;
 }
 
 .gallery-result {
     display: block;
     border: 1px solid #eee;
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
     text-decoration: none;
     background: #f8f8f8;
@@ -809,27 +810,27 @@ footer nav a.home:hover {
 }
 
 .gallery-overlay {
-    padding: 0.5em 0.75em;
-    font-size: 0.9em;
+    padding: 0.4em 0.6em;
+    font-size: 0.85em;
     color: #444;
     background: #fff;
 }
 
 .no-image {
-    padding: 2em;
+    padding: 1.5em;
     text-align: center;
     color: #666;
 }
 
 @media (max-width: 600px) {
     body#post header {
-        padding: 1em;
+        padding: 0.5em 1em;
     }
 
     #post article,
     #post pre {
-        padding: 0.5em 1.25em 1.25em;
-        font-size: 1.05em;
+        padding: 0.2em 1em 1em;
+        font-size: 1em;
     }
 }
 
