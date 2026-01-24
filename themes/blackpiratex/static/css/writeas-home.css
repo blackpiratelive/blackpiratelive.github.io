@@ -19,15 +19,11 @@ html[data-theme="dark"] {
 
 /* Hero Section */
 .hero {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    align-items: center;
-    gap: 20px;
+    text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px dashed var(--border-color);
-    text-align: left;
     opacity: 1 !important;
 }
 
@@ -38,7 +34,7 @@ body#post header.hero {
 }
 
 .hero-text {
-    flex: 1;
+    width: 100%;
 }
 
 .hero h1 {
@@ -53,9 +49,9 @@ body#post header.hero {
 .hero-intro {
     font-size: 1.1rem;
     color: var(--text-muted);
-    max-width: 100%;
+    max-width: 800px;
     line-height: 1.4;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .hero-img {
@@ -67,7 +63,7 @@ body#post header.hero {
     box-shadow: 0 15px 30px var(--shadow-soft);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: block;
-    margin-left: auto;
+    margin: 20px auto 0;
 }
 
 .hero-img:hover {
@@ -305,10 +301,6 @@ body#post header.hero {
         padding-bottom: 10px;
         gap: 15px;
         width: 100%;
-        display: flex !important;
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: center;
         text-align: center;
     }
     
@@ -328,7 +320,7 @@ body#post header.hero {
         max-width: 100%;
         aspect-ratio: 1 / 1;
         border-radius: 30px;
-        margin: 0 auto;
+        margin: 15px auto 0;
     }
     
     .hero-intro {
