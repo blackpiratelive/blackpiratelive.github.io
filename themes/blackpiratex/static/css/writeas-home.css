@@ -22,10 +22,10 @@ html[data-theme="dark"] {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     align-items: center;
-    gap: 60px;
-    margin-top: 40px;
-    margin-bottom: 60px;
-    padding-bottom: 60px;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
     border-bottom: 1px dashed var(--border-color);
     text-align: left;
     opacity: 1 !important;
@@ -43,28 +43,28 @@ body#post header.hero {
 
 .hero h1 {
     font-family: serif;
-    font-size: 5rem; 
-    margin: 0 0 30px 0;
+    font-size: 3rem; 
+    margin: 0 0 15px 0;
     color: var(--text-main);
     line-height: 1;
     font-weight: 700;
 }
 
 .hero-intro {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     max-width: 100%;
-    line-height: 1.5;
+    line-height: 1.4;
     margin: 0;
 }
 
 .hero-img {
-    width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 80px;
-    border: 8px solid var(--bg-main, #fff);
-    box-shadow: 0 30px 60px var(--shadow-soft);
+    border-radius: 40px;
+    border: 5px solid var(--bg-main, #fff);
+    box-shadow: 0 15px 30px var(--shadow-soft);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: block;
     margin-left: auto;
@@ -76,20 +76,20 @@ body#post header.hero {
 
 /* Sections General */
 .home-section {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .home-section h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     font-weight: 700;
     border-bottom: 2px solid var(--primary-blue);
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 25px;
-    padding-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
     color: var(--text-main);
 }
 
@@ -97,8 +97,8 @@ body#post header.hero {
 .home-grid-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-bottom: 60px;
+    gap: 20px;
+    margin-bottom: 30px;
     align-items: stretch;
 }
 
@@ -115,9 +115,10 @@ body#post header.hero {
 }
 
 .latest-table td {
-    padding: 12px 0; 
+    padding: 4px 0; 
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
+    font-size: 0.95rem;
 }
 
 .latest-table tr:first-child td {
@@ -134,14 +135,14 @@ body#post header.hero {
     color: var(--text-main);
     display: block;
     font-weight: 500;
-    font-size: 1.1rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1.3;
 }
 
 .view-all-link {
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--primary-blue);
     text-decoration: none;
@@ -154,25 +155,25 @@ body#post header.hero {
 }
 
 .projects-table td {
-    padding: 15px 20px;
+    padding: 5px 10px;
     border: 1px solid var(--border-color);
     vertical-align: top;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.4;
     color: var(--text-main);
 }
 
 .projects-table td:first-child {
-    width: 140px;
+    width: 120px;
     background: var(--bg-hover);
     font-weight: 700;
     color: var(--primary-blue);
 }
 
 .projects-table td:last-child {
-    width: 100px;
+    width: 80px;
     text-align: right;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .projects-table a {
@@ -195,11 +196,11 @@ body#post header.hero {
 
 .gallery-track {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    padding: 10px 5px;
+    padding: 5px 5px;
     width: 100%;
 }
 
@@ -212,11 +213,11 @@ body#post header.hero {
 }
 
 .gallery-thumb {
-    height: 250px;
+    height: 150px;
     width: auto;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px var(--shadow-soft);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow-soft);
     transition: transform 0.2s;
     display: block;
 }
@@ -229,15 +230,15 @@ body#post header.hero {
     background: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     color: var(--text-main);
-    box-shadow: 0 2px 8px var(--shadow-soft);
+    box-shadow: 0 2px 4px var(--shadow-soft);
     transition: background 0.2s;
 }
 
@@ -253,16 +254,16 @@ body#post header.hero {
 }
 
 .likes-table td {
-    padding: 15px 20px;
+    padding: 5px 10px;
     border: 1px solid var(--border-color);
     vertical-align: top;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.4;
     color: var(--text-main);
 }
 
 .likes-table td:first-child {
-    width: 160px;
+    width: 140px;
     background: var(--bg-hover);
     font-weight: 700;
     color: var(--primary-blue);
