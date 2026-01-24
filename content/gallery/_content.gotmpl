@@ -31,6 +31,7 @@
     
     {{ $params := dict 
         "image" $item.image
+        "thumburl" $item.image.thumbnail.url
         "album" $item.album
         "tags" $item.tags
         "exif" $item.exif
