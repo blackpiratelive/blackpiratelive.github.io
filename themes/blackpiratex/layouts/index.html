@@ -122,9 +122,9 @@
                     </button>
                     <div class="gallery-track" id="galleryTrack">
                         {{ range first 10 (where .Site.RegularPages "Section" "gallery") }}
-                            {{ if .Params.image }}
+                            {{ if .Params.thumburl }}
                             <a href="{{ .Permalink }}" class="gallery-thumb-link">
-                                <img src="{{ .Params.image }}" alt="{{ .Title }}" class="gallery-thumb" loading="lazy">
+                                <img src="{{ .Params.thumburl }}" alt="{{ .Title }}" class="gallery-thumb" loading="lazy">
                             </a>
                             {{ end }}
                         {{ end }}

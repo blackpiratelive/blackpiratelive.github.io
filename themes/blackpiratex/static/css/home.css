@@ -276,6 +276,7 @@ html[data-theme="dark"] {
         display: flex;
         flex-direction: column-reverse;
         text-align: center;
+        align-items: center;
     }
     .hero-text {
         width: 100%;
@@ -284,6 +285,7 @@ html[data-theme="dark"] {
         width: 100%;
         max-width: 300px;
         height: auto;
+        margin: 0 auto;
     }
     
     /* Stack Tables on Mobile */
