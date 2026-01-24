@@ -22,10 +22,10 @@ html[data-theme="dark"] {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     align-items: center;
-    gap: 100px;
-    margin-top: 80px;
-    margin-bottom: 100px;
-    padding-bottom: 80px;
+    gap: 60px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
     border-bottom: 1px dashed var(--border-color);
     text-align: left;
 }
@@ -65,7 +65,7 @@ html[data-theme="dark"] {
 
 /* Sections General */
 .home-section {
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 .home-section h2 {
@@ -77,7 +77,7 @@ html[data-theme="dark"] {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     padding-bottom: 10px;
     color: var(--text-main);
 }
@@ -86,8 +86,8 @@ html[data-theme="dark"] {
 .home-grid-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    margin-bottom: 100px;
+    gap: 50px;
+    margin-bottom: 60px;
     align-items: stretch;
 }
 
@@ -196,9 +196,14 @@ html[data-theme="dark"] {
     display: none;
 }
 
+.gallery-thumb-link {
+    flex-shrink: 0;
+}
+
 .gallery-thumb {
     height: 250px;
     width: auto;
+    object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 4px 12px var(--shadow-soft);
     transition: transform 0.2s;
