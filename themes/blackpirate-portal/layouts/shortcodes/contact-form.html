@@ -1,0 +1,21 @@
+
+<h2>{{ .Inner }}</h2>
+
+<p>This contact form only works on <a href="https://blackpiratex.com/contact/"><i>https://blackpiratex.com</i></a> and <a href="https://blackpiratex.netlify.app/contact/"><i>https://blackpiratex.netlify.app</i></a>. If you are using any other mirror it might not work.</p>
+<form name="contact-me" method="POST" data-netlify="true" action="/success/">
+  <div class="form-text">
+    <label for="your-name">Your Name: </label>
+    <input type="text" name="name" id="your-name" required placeholder="Jhon Doe">
+  </div>
+  <div class="form-text">
+    <label for="your-email">Your Email:</label>
+    <input type="email" name="email" id="your-email" required placeholder="anything@yourdomain.tld">
+  </div>
+  <div class="form-text">
+    <label for="textarea">Message: </label>
+    <textarea name="message" id="textarea" required placeholder="Start by writting a joke"></textarea>
+  </div>
+  <div>
+    <button type="submit" class="submit-button">Submit</button>
+  </div>
+</form>
