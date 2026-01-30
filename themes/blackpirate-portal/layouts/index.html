@@ -1,0 +1,55 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Site Directory</h2>
+      <ul class="meta-list">
+        {{ range .Site.Sections }}
+          {{ $count := len (where $.Site.RegularPages "Section" .Section) }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a> ({{ $count }})</li>
+        {{ end }}
+      </ul>
+      <h2 class="section-title">Quick Links</h2>
+      <ul class="meta-list">
+        <li><a href="{{ "/index.xml" | relURL }}">RSS Feed</a></li>
+        <li><a href="{{ "/sitemap.xml" | relURL }}">Sitemap</a></li>
+        <li><a href="{{ "/blog/" | relURL }}">Blog Index</a></li>
+      </ul>
+    </aside>
+
+    <section class="col">
+      <h2 class="section-title">Latest Updates</h2>
+      <ul class="post-list">
+        {{ range first 25 (where .Site.RegularPages "Type" "in" (slice "blog" "post" "posts" "thoughts" "books" "gallery" "archive" "on-this-day" "stats" "embed")) | sort "Date" "desc" }}
+          <li>
+            <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ with .Params.description }}<div class="site-tagline">{{ . }}</div>{{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+
+    <aside class="col">
+      <h2 class="section-title">Recent Pages</h2>
+      <ul class="post-list">
+        {{ range first 12 (sort .Site.RegularPages "Date" "desc") }}
+          <li>
+            <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+      </ul>
+
+      {{ with .Site.Taxonomies.tags }}
+        <h2 class="section-title">Tags</h2>
+        <ul class="meta-list">
+          {{ range first 25 (sort .Alphabetical) }}
+            <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </aside>
+  </div>
+</div>
+{{ end }}

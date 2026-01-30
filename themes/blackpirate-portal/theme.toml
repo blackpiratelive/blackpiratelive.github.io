@@ -1,0 +1,12 @@
+name = "blackpirate-portal"
+license = "MIT"
+licenselink = ""
+description = "High-density utilitarian theme inspired by classic web directories."
+homepage = ""
+tags = ["utilitarian", "classic", "web1", "portal"]
+features = ["responsive", "text-heavy"]
+min_version = "0.80.0"
+
+[author]
+  name = "BlackPirateX"
+  homepage = ""

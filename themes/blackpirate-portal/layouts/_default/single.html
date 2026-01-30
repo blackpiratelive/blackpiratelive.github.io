@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Page Tools</h2>
+      <ul class="detail-list">
+        <li><strong>Section:</strong> <a href="{{ .Section | relURL }}">{{ .Section }}</a></li>
+        <li><strong>Date:</strong> {{ .Date.Format "2006-01-02" }}</li>
+        <li><strong>Word Count:</strong> {{ .WordCount }}</li>
+        <li><strong>Reading Time:</strong> {{ .ReadingTime }} min</li>
+      </ul>
+      {{ with .TableOfContents }}
+        <h2 class="section-title">Contents</h2>
+        <div class="content">{{ . }}</div>
+      {{ end }}
+    </aside>
+
+    <article class="col">
+      <h1 class="section-title">{{ .Title }}</h1>
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <aside class="col">
+      <h2 class="section-title">Metadata</h2>
+      <ul class="detail-list">
+        {{ with .Params.tags }}
+          <li><strong>Tags:</strong>
+            {{ range $index, $tag := . }}
+              {{ if $index }}, {{ end }}
+              <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">{{ $tag }}</a>
+            {{ end }}
+          </li>
+        {{ end }}
+        {{ with .Params.categories }}
+          <li><strong>Categories:</strong>
+            {{ range $index, $cat := . }}
+              {{ if $index }}, {{ end }}
+              {{ $cat }}
+            {{ end }}
+          </li>
+        {{ end }}
+        {{ with .Lastmod }}
+          <li><strong>Updated:</strong> {{ .Format "2006-01-02" }}</li>
+        {{ end }}
+      </ul>
+      <h2 class="section-title">Latest Items</h2>
+      <ul class="post-list">
+        {{ range first 8 (sort .Site.RegularPages "Date" "desc") }}
+          <li>
+            <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </aside>
+  </div>
+</div>
+{{ end }}

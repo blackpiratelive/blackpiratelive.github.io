@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <section class="col" style="grid-column: 1 / -1;">
+      <h1 class="section-title">404 - Not Found</h1>
+      <p>The requested page does not exist. Use the directory below to continue.</p>
+      <ul class="meta-list">
+        <li><a href="{{ "/" | relURL }}">Return to Home</a></li>
+        {{ range .Site.Sections }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </section>
+  </div>
+</div>
+{{ end }}
