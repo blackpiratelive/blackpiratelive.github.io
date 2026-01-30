@@ -1,0 +1,43 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Thoughts</h2>
+      <ul class="detail-list">
+        <li><strong>Total:</strong> {{ len .Pages }}</li>
+        <li><strong>Updated:</strong> {{ .Lastmod.Format "2006-01-02" }}</li>
+      </ul>
+    </aside>
+
+    <section class="col panel panel--thoughts">
+      <h1 class="section-title">Micro Feed</h1>
+      <div class="thoughts-feed">
+        {{ range (.Paginate .Pages 100).Pages }}
+          <div class="thought-item">
+            <div class="thought-meta">
+              {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
+            </div>
+            <div>{{ .Content }}</div>
+            {{ with .Params.tags }}
+              <div class="thought-meta">
+                {{ range $index, $tag := . }}
+                  {{ if $index }} / {{ end }}
+                  <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <aside class="col">
+      <h2 class="section-title">Navigation</h2>
+      <ul class="meta-list">
+        <li><a href="{{ "/thoughts/" | relURL }}">Latest</a></li>
+        <li><a href="{{ "/tags/" | relURL }}">Tags</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+{{ end }}

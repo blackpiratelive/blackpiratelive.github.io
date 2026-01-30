@@ -1,0 +1,20 @@
+{{- $index := slice -}}
+{{- range .Site.RegularPages -}}
+    {{- $image := "" -}}
+    {{- if .Params.image.thumbnail.url -}}
+        {{- $image = .Params.image.thumbnail.url -}}
+    {{- else if .Params.image.original.url -}}
+        {{- $image = .Params.image.original.url -}}
+    {{- end -}}
+    {{- $entry := dict 
+        "title" .Title 
+        "date" .Date 
+        "permalink" .Permalink 
+        "section" .Section 
+        "content" (.Plain | truncate 500) 
+        "summary" (.Summary | plainify | truncate 200)
+        "image" $image
+    -}}
+    {{- $index = $index | append $entry -}}
+{{- end -}}
+{{- $index | jsonify -}}

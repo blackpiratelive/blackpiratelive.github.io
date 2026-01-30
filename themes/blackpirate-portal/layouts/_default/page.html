@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Page Info</h2>
+      <ul class="detail-list">
+        <li><strong>Updated:</strong> {{ .Lastmod.Format "2006-01-02" }}</li>
+        {{ if .Params.tags }}
+          <li><strong>Tags:</strong>
+            {{ range $index, $tag := .Params.tags }}
+              {{ if $index }}, {{ end }}
+              <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">{{ $tag }}</a>
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </aside>
+
+    <article class="col">
+      <h1 class="section-title">{{ .Title }}</h1>
+      {{ with .Description }}
+        <p class="site-tagline">{{ . }}</p>
+      {{ end }}
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <aside class="col">
+      <h2 class="section-title">Sections</h2>
+      <ul class="meta-list">
+        {{ range .Site.Sections }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </aside>
+  </div>
+</div>
+{{ end }}

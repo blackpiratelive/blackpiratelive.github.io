@@ -18,16 +18,62 @@
     </aside>
 
     <section class="col">
-      <h2 class="section-title">Latest Updates</h2>
-      <ul class="post-list">
-        {{ range first 25 (where .Site.RegularPages "Type" "in" (slice "blog" "post" "posts" "thoughts" "books" "gallery" "archive" "on-this-day" "stats" "embed")) | sort "Date" "desc" }}
-          <li>
-            <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{ with .Params.description }}<div class="site-tagline">{{ . }}</div>{{ end }}
-          </li>
-        {{ end }}
-      </ul>
+      <div class="panel panel--blog">
+        <h2 class="section-title">Latest Writing</h2>
+        <div class="table-wrap">
+          <table class="blog-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ range first 8 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
+                <tr>
+                  <td>{{ .Date.Format "2006-01-02" }}</td>
+                  <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+                </tr>
+              {{ end }}
+            </tbody>
+          </table>
+        </div>
+        <div><a href="{{ "/blog/" | relURL }}">Read all posts →</a></div>
+      </div>
+
+      <div class="panel panel--thoughts">
+        <h2 class="section-title">Recent Thoughts</h2>
+        <div class="thoughts-feed">
+          {{ range first 8 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+            <div class="thought-item">
+              <div class="thought-meta">{{ .Date.Format "Jan 02, 2006 15:04" }}</div>
+              <div>{{ .Content | plainify | truncate 140 }}</div>
+              <div><a href="{{ .RelPermalink }}">Open</a></div>
+            </div>
+          {{ end }}
+        </div>
+        <div><a href="{{ "/thoughts/" | relURL }}">View all thoughts →</a></div>
+      </div>
+
+      <div class="panel panel--gallery">
+        <h2 class="section-title">Latest Clicks</h2>
+        <div class="gallery-grid">
+          {{ range first 9 (sort (where .Site.RegularPages "Section" "gallery") "Date" "desc") }}
+            {{ $img := .Params.thumburl | default "" }}
+            {{ if not $img }}
+              {{ $img = .Params.image.thumbnail.url | default .Params.image.original.url }}
+            {{ end }}
+            <a href="{{ .RelPermalink }}">
+              {{ if $img }}
+                <img src="{{ $img }}" alt="{{ .Title }}" loading="lazy">
+              {{ else }}
+                <span>{{ .Title }}</span>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+        <div><a href="{{ "/gallery/" | relURL }}">Browse gallery →</a></div>
+      </div>
     </section>
 
     <aside class="col">

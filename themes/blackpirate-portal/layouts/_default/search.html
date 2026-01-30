@@ -1,0 +1,99 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Search Tips</h2>
+      <ul class="detail-list">
+        <li>Type at least 2 characters.</li>
+        <li>Searches titles and content.</li>
+      </ul>
+    </aside>
+
+    <section class="col">
+      <h1 class="section-title">Search</h1>
+      <div class="content">
+        <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
+        <div id="search-results" class="search-results"></div>
+        <div id="no-results" style="display:none;">
+          <p>No results found. Try different keywords.</p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="col">
+      <h2 class="section-title">Quick Links</h2>
+      <ul class="meta-list">
+        <li><a href="{{ "/blog/" | relURL }}">Blog</a></li>
+        <li><a href="{{ "/thoughts/" | relURL }}">Thoughts</a></li>
+        <li><a href="{{ "/gallery/" | relURL }}">Gallery</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+    let fuse;
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+    const noResultsDiv = document.getElementById('no-results');
+
+    fetch('/index.json')
+        .then(response => response.json())
+        .then(data => {
+            fuse = new Fuse(data, {
+                keys: ['title', 'content', 'summary'],
+                threshold: 0.3,
+                ignoreLocation: true,
+                minMatchCharLength: 2
+            });
+        })
+        .catch(err => console.error("Error loading search index:", err));
+
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            const query = e.target.value.trim();
+            resultsContainer.innerHTML = '';
+
+            if (query.length < 2) {
+                noResultsDiv.style.display = 'none';
+                return;
+            }
+
+            if (!fuse) {
+                return;
+            }
+
+            const results = fuse.search(query);
+
+            if (results.length === 0) {
+                noResultsDiv.style.display = 'block';
+            } else {
+                noResultsDiv.style.display = 'none';
+                displayResults(results);
+            }
+        }, 300);
+    });
+
+    function displayResults(results) {
+        const items = results.map(r => r.item);
+        let html = '';
+
+        items.forEach(item => {
+            const excerpt = (item.summary || item.content || '').substring(0, 180);
+            html += `
+                <div class="search-item">
+                    <div><a href="${item.permalink}">${item.title || 'Untitled'}</a></div>
+                    <div class="post-date">${item.section || 'page'} · ${new Date(item.date).toLocaleDateString()}</div>
+                    <div>${excerpt}${excerpt.length === 180 ? '...' : ''}</div>
+                </div>
+            `;
+        });
+
+        resultsContainer.innerHTML = html;
+    }
+</script>
+{{ end }}

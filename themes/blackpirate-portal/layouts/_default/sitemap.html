@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Sitemap</h2>
+      <ul class="detail-list">
+        <li>Total Pages: {{ len .Site.RegularPages }}</li>
+      </ul>
+    </aside>
+
+    <section class="col">
+      <h1 class="section-title">All Pages</h1>
+      {{ range .Site.RegularPages.GroupBy "Section" }}
+        <h2 class="section-title">
+          {{ if eq .Key "" }}General Pages{{ else }}{{ .Key | humanize | title }}{{ end }}
+        </h2>
+        <ul class="post-list">
+          {{ range .Pages }}
+            <li>
+              <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+              <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}Untitled{{ end }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </section>
+
+    <aside class="col">
+      <h2 class="section-title">Tags</h2>
+      <ul class="meta-list">
+        {{ range .Site.Taxonomies.tags.ByCount }}
+          <li><a href="{{ .Page.Permalink }}">{{ .Name }}</a> ({{ .Count }})</li>
+        {{ end }}
+      </ul>
+    </aside>
+  </div>
+</div>
+{{ end }}

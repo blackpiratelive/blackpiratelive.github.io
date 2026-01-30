@@ -1,0 +1,54 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Blog Summary</h2>
+      <ul class="detail-list">
+        <li><strong>Total Posts:</strong> {{ len .Pages }}</li>
+        <li><strong>Updated:</strong> {{ .Lastmod.Format "2006-01-02" }}</li>
+        <li><strong>RSS:</strong> <a href="{{ "/blog/index.xml" | relURL }}">Feed</a></li>
+      </ul>
+    </aside>
+
+    <section class="col panel panel--blog">
+      <h1 class="section-title">Blog</h1>
+      <div class="table-wrap">
+        <table class="blog-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Title</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range .Pages.ByDate.Reverse }}
+              <tr>
+                <td>{{ .Date.Format "2006-01-02" }}</td>
+                <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+                <td>
+                  {{ with .Params.tags }}
+                    {{ range $index, $tag := . }}
+                      {{ if $index }} / {{ end }}
+                      <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+                    {{ end }}
+                  {{ end }}
+                </td>
+              </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="col">
+      <h2 class="section-title">Sections</h2>
+      <ul class="meta-list">
+        {{ range .Site.Sections }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </aside>
+  </div>
+</div>
+{{ end }}

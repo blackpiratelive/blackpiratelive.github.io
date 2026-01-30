@@ -1,0 +1,61 @@
+{{ define "main" }}
+<div class="container">
+  <div class="layout">
+    <aside class="col">
+      <h2 class="section-title">Gallery</h2>
+      <ul class="detail-list">
+        <li><strong>Total:</strong> {{ len .Pages }}</li>
+        <li><strong>Updated:</strong> {{ .Lastmod.Format "2006-01-02" }}</li>
+      </ul>
+    </aside>
+
+    <section class="col panel panel--gallery">
+      <h1 class="section-title">Visuals</h1>
+
+      {{ $featured := where .Pages "Params.featured" true }}
+      {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
+      {{ $regular := where .Pages "Params.featured" "ne" true }}
+
+      {{ if gt (len $featuredSorted) 0 }}
+        <h2 class="section-title">Featured</h2>
+        <div class="gallery-grid">
+          {{ range $featuredSorted }}
+            {{ $img := .Params.image.thumbnail.url | default .Params.image.original.url }}
+            <a href="{{ .RelPermalink }}">
+              {{ if $img }}
+                <img src="{{ $img }}" alt="{{ .Title }}" loading="lazy"{{ if and .Params.image.thumbnail.width .Params.image.thumbnail.height }} width="{{ .Params.image.thumbnail.width | int }}" height="{{ .Params.image.thumbnail.height | int }}"{{ end }}>
+              {{ else }}
+                <span>{{ .Title }}</span>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{ range $regular.GroupByDate "2006" }}
+        <h2 class="section-title">{{ .Key }}</h2>
+        <div class="gallery-grid">
+          {{ range .Pages }}
+            {{ $img := .Params.image.thumbnail.url | default .Params.image.original.url }}
+            <a href="{{ .RelPermalink }}">
+              {{ if $img }}
+                <img src="{{ $img }}" alt="{{ .Title }}" loading="lazy">
+              {{ else }}
+                <span>{{ .Title }}</span>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </section>
+
+    <aside class="col">
+      <h2 class="section-title">Browse</h2>
+      <ul class="meta-list">
+        <li><a href="{{ "/gallery/" | relURL }}">Latest</a></li>
+        <li><a href="{{ "/sitemap/" | relURL }}">Sitemap</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+{{ end }}
