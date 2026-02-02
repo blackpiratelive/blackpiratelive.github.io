@@ -1,0 +1,60 @@
+.page-content {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-main);
+}
+
+.page-content p {
+    margin-bottom: 25px;
+}
+
+.page-content h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-family: serif;
+    color: var(--primary-blue);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.page-content h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.page-content ul, 
+.page-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.page-content li {
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.page-content a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.page-content blockquote {
+    border-left: 4px solid var(--primary-blue);
+    background: var(--bg-hover);
+    margin: 30px 0;
+    padding: 20px;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+}
+
+.page-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+}

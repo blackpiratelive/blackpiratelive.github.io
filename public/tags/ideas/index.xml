@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ideas on BlackPirateX</title>
+    <link>http://localhost:1314/tags/ideas/</link>
+    <description>Recent content in Ideas on BlackPirateX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Aug 2025 22:37:59 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1314/tags/ideas/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2025/2025-08-09-22-37-10/</link>
+      <pubDate>Sat, 09 Aug 2025 22:37:10 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-09-22-37-10/</guid>
+      <description>Make a cool facts about me widget on my main website (use embed? and status website together?)</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2025/2025-08-01-20-54-45/</link>
+      <pubDate>Fri, 01 Aug 2025 20:54:45 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-01-20-54-45/</guid>
+      <description>Ideas that i may wanna implement.&#xA;Timeline or Calendar View: - Generate a calendar heatmap showing volume of posts per day/month (e.g. GitHub‑style activity grid) or a vertical timeline view for easier browsing. Search or Filterable UI:- Install client-side search (like Algolia/Tipue or simple Lunr.js) to allow users to search within statuses or filter by keywords, tags, or date. Author &amp;amp; Metadata Display:- Although it’s your personal feed, optionally display additional metadata: device used, approximate mood (e.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2023/2023-05-13-20-15-23/</link>
+      <pubDate>Sat, 13 May 2023 20:15:23 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2023/2023-05-13-20-15-23/</guid>
+      <description>I should make a guestbook for my website. Maybe make it look like my status website. Or what if I use a txt file for the guestbook. I think using a txt file is better and more minimal.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2023/2023-05-03-16-56-29/</link>
+      <pubDate>Wed, 03 May 2023 16:56:29 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2023/2023-05-03-16-56-29/</guid>
+      <description>What about making my gallery so and so that it makes a scrollable feed of all images. And if the someone clicks on them then it would show info about it. Like date of capture, which album it belongs to, place of capture etc.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2022/2022-10-22-22-09-19/</link>
+      <pubDate>Sat, 22 Oct 2022 22:09:19 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2022/2022-10-22-22-09-19/</guid>
+      <description>I&amp;rsquo;m thinking about making my gallery page as so that I would be able to add images from my phone. Right now it&amp;rsquo;s possible but bit hacky way of doing things.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2022/2022-09-27-16-08-45/</link>
+      <pubDate>Tue, 27 Sep 2022 16:08:45 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-27-16-08-45/</guid>
+      <description>I&amp;rsquo;m thinking about making a page where I&amp;rsquo;ll list down all the software I use. It would be like a live blog post. I&amp;rsquo;ll update as necessary.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2022/2022-08-12-00-39-29/</link>
+      <pubDate>Fri, 12 Aug 2022 00:39:29 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-12-00-39-29/</guid>
+      <description>Right now this website probably has zero viewers, I am thinking about adding this to some webrings so that It gets some traffic.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1314/thoughts/2022/2022-08-12-00-34-56/</link>
+      <pubDate>Fri, 12 Aug 2022 00:34:56 +0530</pubDate>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-12-00-34-56/</guid>
+      <description>Right now I use dropbox to sync my obsidian notes. It is not perfect but it is okay and works very well. But I am thinking if switiching to github for storage of my all notes would be a good idea. I think yes, beacuse git is very good at small text files or images. Maybe I would move to it someday. This microblog already lives on github so why not all my personal notes?</description>
+    </item>
+  </channel>
+</rss>

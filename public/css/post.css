@@ -1,0 +1,341 @@
+/* The White Box Container */
+.detail-container {
+    border: none;
+    padding: 10px 0;
+    background-color: transparent;
+    border-radius: 0;
+    margin-top: 10px;
+}
+.post-shell {
+    max-width: 900px;
+    margin: 40px auto;
+}
+.post-header {
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 22px;
+}
+
+/* Title & Meta */
+.detail-title {
+    color: var(--primary-blue);
+    font-family: serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+.post-meta-bar {
+    display: flex; 
+    gap: 15px; 
+    font-size: 13px; 
+    color: var(--text-muted); 
+    margin-bottom: 12px; 
+    flex-wrap: wrap;
+}
+
+.meta-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+/* Excerpt Box */
+.detail-excerpt {
+    background-color: var(--bg-hover);
+    padding: 15px;
+    margin-bottom: 25px;
+    font-style: italic;
+    border-left: 4px solid var(--primary-blue);
+    color: var(--text-muted);
+}
+
+/* Back Button */
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    padding: 0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- Content Typography (Markdown Styles) --- */
+
+.single-content {
+    line-height: 1.7;
+    font-size: 16px;
+    color: var(--text-main);
+    overflow-x: hidden; /* Prevents large images from breaking mobile view */
+}
+
+.single-content p { margin-bottom: 1.2em; }
+
+.single-content h2, .single-content h3 {
+    color: var(--primary-blue);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.single-content a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+.single-content ul, .single-content ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.single-content blockquote {
+    background: var(--bg-hover);
+    border-left: 5px solid var(--primary-blue);
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.single-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+/* Code Blocks */
+.single-content code,
+.page-content code {
+    background-color: var(--bg-hover);
+    color: #b43c6b;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.92em;
+    border: 1px solid var(--border-color);
+}
+
+.single-content pre,
+.page-content pre {
+    background-color: #1f2430;
+    color: #e2e8f0;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 22px 0;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.single-content pre code,
+.page-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border: none;
+}
+
+/* --- Comment Section Styles --- */
+
+#comments {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Comment Form */
+#comments form {
+    background: var(--bg-panel);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+#comments label {
+    display: block;
+    font-size: 12px; 
+    font-weight: bold; 
+    color: var(--text-muted); 
+    margin-bottom: 5px; 
+    margin-top: 15px;
+}
+#comments input[type="text"],
+#comments textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+#comments button[type="submit"] {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Comment List */
+#comments ul { list-style: none; padding: 0; }
+#comments li {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+#comments strong { color: var(--primary-blue); }
+
+/* --- Mobile Fixes --- */
+@media (max-width: 600px) {
+    .detail-container {
+        padding: 6px 0; /* Reduce padding on mobile */
+    }
+    .detail-title {
+        font-size: 24px;
+    }
+    .post-shell {
+        margin: 16px auto;
+    }
+    .post-meta-bar {
+        gap: 10px;
+    }
+    .single-content pre {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: calc(100% + 30px);
+        border-radius: 0;
+    }
+}
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.post-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 3px 10px;
+    background: var(--bg-hover);
+}
+.post-tag:hover {
+    color: var(--text-main);
+}
+
+/* Write.as-inspired blog layout */
+.writeas-post {
+    margin-top: 10px;
+}
+.writeas-back {
+    display: inline-block;
+    margin: 10px 0 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.writeas-back:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}
+.writeas-shell {
+    max-width: 680px;
+    margin: 0 auto 60px;
+}
+.writeas-header {
+    margin-bottom: 28px;
+}
+.writeas-title {
+    margin: 0 0 12px;
+    font-size: 2.4rem;
+    line-height: 1.15;
+    color: var(--text-main);
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+.writeas-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.writeas-meta-sep {
+    color: var(--border-color);
+}
+.writeas-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+.writeas-content h2,
+.writeas-content h3 {
+    color: var(--text-main);
+    font-family: inherit;
+}
+.writeas-content blockquote {
+    background: transparent;
+    border-left: 3px solid var(--border-color);
+    padding: 6px 18px;
+    color: var(--text-muted);
+}
+.writeas-content pre {
+    background-color: var(--bg-hover);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+.writeas-content code {
+    background-color: var(--bg-hover);
+    color: var(--text-main);
+}
+.writeas-tags {
+    margin-top: 32px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.writeas-tags-label {
+    margin-right: 6px;
+}
+.writeas-tags a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+.writeas-tags a:hover {
+    color: var(--text-main);
+    border-bottom-color: var(--border-color);
+}
+.writeas-tag-sep {
+    margin: 0 6px;
+    color: var(--border-color);
+}
+
+@media (max-width: 700px) {
+    .writeas-shell {
+        margin-bottom: 40px;
+    }
+    .writeas-title {
+        font-size: 2rem;
+    }
+    .writeas-content {
+        font-size: 1.02rem;
+    }
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Twitter Using Hugo &amp; Netlify | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">Making Twitter Using Hugo &amp; Netlify</h2>
+            <span class="authors">Sudip</span>
+            <time class="dt-published" datetime="2022-08-25">
+                August 25, 2022
+            </time>
+
+            <h2 id="check-a-live-version">Check a live version:</h2>
+<p>Check out live version of the website that I made.
+<a href="https://status.blackpiratex.com/">https://status.blackpiratex.com/</a></p>
+<hr>
+<p>Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</p>
+<h2 id="features">Features:</h2>
+<ul>
+<li><strong>Website is fully static. HTML and CSS only.</strong> (JS used only for fontawesome)</li>
+<li>Totally <strong>free</strong> (other than domain) and going to be free for a long long time.</li>
+<li>Ability to add <strong>images</strong>, embed <strong>youtube</strong> etc. </li>
+<li>Auto compression of images.</li>
+<li>Ability to add <strong>tags/moods</strong>.</li>
+<li>Very <strong>lightweight</strong>. Should load faster than light. (if you want more speed, remove fontawesome from the head and css and make those images hyperlink).</li>
+<li><strong>Everything stays on github</strong>, so it would be easier to backup.</li>
+</ul>
+<h2 id="inspiration">Inspiration:</h2>
+<p>I do not like social media. It is not the privacy concern or  the fact that I would spend my time there much more than I would have anticipated, but rather <strong>it&rsquo;s the fear of losing all my data</strong>. 40-50 years into the future I want all my shitposts to be preserved. And I do not think that any mainstream social media websites like Twitter, Facebook, Instagram etc would stay functional that long into the future. And even if they are, there&rsquo;s nothing stopping them from deleting old stuff from their servers. Or maybe for some reason your account gets banned or hacked. There is so many ways you can lose your data.</p>
+<p>But if you <strong>&ldquo;own&rdquo; your data</strong>, i.e storing your own data somewhere where you have full control, almost all these problems will be solved. You can still lose your data, so you need to take responsibility. I am willing to do that. That&rsquo;s why I made this twitter like microblogging website. <strong>All the files are stored on github.</strong> And needless to say I have local copy of these files.</p>
+<h2 id="how-to">How-to</h2>
+<p>There is three things I used to set up this website,</p>
+<p><img src="/img/logos-hugo-netlify-github.jpg" alt="Hugo Netlify Github Logo"></p>
+<ol>
+<li><a href="https://gohugo.io/">Hugo</a> (Static site generator)</li>
+<li><a href="https://netlify.app/">Netlify</a> (platform to deploy my website for free</li>
+<li><a href="https://github.com/">GitHub</a> ( to host all the files)</li>
+</ol>
+<h2 id="step-by-step-process">Step by Step Process:</h2>
+<ol>
+<li>First I have made a theme for Hugo. (It is a modified version of the theme I had made earlier <a href="/setting-up-my-website-on-hugo.md">here</a>.) In this theme all the posts resides on the homepage with their whole content. It shows date and time in a pill shaped design.</li>
+<li>Whole website folder is a git repo and it is uploaded to GitHub, <a href="https://github.com/blackpiratelive/status">see here</a>.</li>
+<li>I used netlify and linked my repo for it to build and deploy my website whenever new commit is done in github.</li>
+<li>Installed <a href="https://play.google.com/store/apps/details?id=io.gitjournal.gitjournal">GitJournal</a> app on my android and now I can post from my phone easily.</li>
+</ol>
+<h2 id="breakdown-of-steps">Breakdown of steps:</h2>
+<h3 id="step-1">Step 1:</h3>
+<p>On the home page of my website there is a loop which goes through all the posts grabs their date and time, and content and makes those appear on the home page. </p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ range (.Paginator 100).Pages }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;status-all&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;time&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;relativetime&#34;</span> <span style="color:#a6e22e">datetime</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ dateFormat &#34;</span><span style="color:#a6e22e">2006-01-02T15:04:05</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Date</span> <span style="color:#960050;background-color:#1e0010">}}&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ dateFormat &#34;</span><span style="color:#a6e22e">January</span> <span style="color:#a6e22e">2</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">2006</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Date</span> <span style="color:#960050;background-color:#1e0010">}}&#34;</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;date-only&#34;</span>&gt;{{ .Date.Format &#34;02 Jan 2006&#34; }}&lt;/<span style="color:#f92672">span</span>&gt; | &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timeam&#34;</span>&gt;{{ .Date.Format &#34;15:04&#34; }}&lt;/<span style="color:#f92672">span</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ .Content }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ if isset .Params &#34;tags&#34; }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mood&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ range (.GetTerms &#34;tags&#34;) }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Permalink }}&#34;</span>&gt;{{ .LinkTitle }}&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ end -}}</span></span></code></pre></div>
+<p>The very first line is the start of the loop. It basically says that give me all the pages (post pages). The <em>.Paginator 100</em> parts basically tells that I want first 100 pages. Then the loop runs. The <em>{{ if isset .Params &ldquo;tags&rdquo; }}</em> part checks for any tags, if there is any tag associated with the post, then it would run another loop. It will grab all those tags and display them. If there is no tags added to the post, this loop would not run. So if you have not added any tags to the post it would not show them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .Paginator.HasPrev }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-default&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Paginator.Prev.URL }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt; <span style="color:#f92672">Newer</span> <span style="color:#a6e22e">Statuses</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;/</span><span style="color:#a6e22e">a</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ if .Paginator.HasNext }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-default&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Paginator.Next.URL }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Older Statuses &gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ end }}</span></span></code></pre></div>
+<p>This part adds two links to the end of the page. The very first loop checks if there is any newer statuses, that this page does not contain, then it would run and display a hyperlink called <em>Newer Statuses</em>.</p>
+<p>The second loop does exactly same except it would show <em>Older Statuses</em> if there is any older posts available.</p>
+<p>Basically after you have made over 100 posts, it would add a link to the very bottom of the homepage to link to the older posts. And when you go the page 2 it would show newer posts link at the bottom of the page.</p>
+<p>This is all there is to the theme. You can go ahead and edit much more like page of each post and  everything else. But it is not really necessary because everything would reside on the home page.</p>
+<h2 id="step-2">Step 2:</h2>
+<p>After you&rsquo;ve made everything locally. It&rsquo;s time to put it in front of the world. Go ahead and make a repository on GitHub and upload your files there. You can also use git CLI to upload all your files to a github repository. This should  be a very easy task to do.</p>
+<h2 id="step-3">Step 3:</h2>
+<p>It&rsquo;s time to link Netlify with GitHub. Go to <a href="http://netlify.app">netlify.app</a> and sign up using your GitHub account.  After you&rsquo;ve done that and on netlify dashboard, click on add new site. You should choose import existing project. Now it would ask you to choose a git provider. Because our repository is uploaded on <a href="http://GitHub.com">GitHub.com</a> we are going to choose GitHub option. If you have used any other service to host your git repository choose that option from the list.</p>
+<p>After choosing GitHub it would ask for permission. Grant the permission that are necessary. Once you&rsquo;ve done that a list of all your repositories along with a search bar would appear. You have to choose the repository you uploaded your files into. Now it would ask for few things. All you have to do is change the build command. Type <em>hugo</em> in the build command. Then go ahead and deploy the site.</p>
+<p>Your website should now be live. You can check out netlify documentation <a href="https://docs.netlify.com/integrations/frameworks/hugo/">here</a> for more information, or hugo documentation about deploying on netlify <a href="https://gohugo.io/hosting-and-deployment/hosting-on-netlify/">here</a>.</p>
+<p>If you&rsquo;ve done to this point, you&rsquo;re ready to have your own microblogging platform. Now everytime you create a file on content folder of your git repository with correct formatting, netlify would automatically rebuild your website and update.  This way any changes you make will automatically be published.</p>
+<h2 id="step-4">Step 4:</h2>
+<p>Most of the hard work has been done, but there is another thing that you need, unless it would be pretty useless. That is being able to post there quickly using smartphones.</p>
+<p>I own an android, so this part would be android specific, if you own an iPhone you would have to figure it out yourself.</p>
+<p>Go to playstore and search for GItJournal. Install this app. <a href="https://play.google.com/store/apps/details?id=io.gitjournal.gitjournal">Here</a> is the link if you cannot find it on the playstore. Open the app and connect to the github repository where all your website files are located.</p>
+<p>Before you start anything we need to change a few settings. Go to the <em>Storage &amp; File Formats</em> section and change the default folder for new notes to <em>content</em> . Inside <em>Note Metadata Settings</em> turn on <em>Enable YAML Header.  Modified Field</em> should be set to <em>lastmod</em>. <em>Created field</em> should be set to <em>date.</em>  Set <em>Tags field</em> to <em>tags.</em></p>
+<p><img src="/img/gitjournal-1.png" alt="image"></p>
+<p>As for images set the <em>image location</em> to  anywhere inside the <em>static</em> folder. I created a folder inside <em>static</em> called <em>img</em> where I keep all my images. Everytime you want to add images to the post use the markdown syntax for images, in case of url it should be <em>/img/duck.png</em> if you want to show <em>duck.png</em> to your post. The file should be located inside <em>/static/img/</em> folder.</p>
+<p><img src="/img/gitjournal-2.png" alt="image"></p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>It&rsquo;s pretty easy to set up and maintain. Better than Twitter in every way. Maybe I&rsquo;ll do a follow up if I add new features like comments or likes. Until then enjoy:) Don&rsquo;t forget to email me if you get stuck, I&rsquo;ll help you happily.</p>
+<h2 id="thanks">Thanks:</h2>
+<p>Thanks to  Luke Smith for getting me started on Hugo.</p>
+
+
+            
+            <p class="post-tags">
+                
+                <a class="hashtag" href="/tags/website">
+                    <span>#</span><span>website</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/software">
+                    <span>#</span><span>software</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/guide">
+                    <span>#</span><span>guide</span>
+                </a>
+                
+            </p>
+            
+        </article>
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

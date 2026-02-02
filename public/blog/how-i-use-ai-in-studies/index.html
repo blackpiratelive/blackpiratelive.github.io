@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Use AI in Studies | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">How I Use AI in Studies</h2>
+            <span class="authors">Sudip</span>
+            <time class="dt-published" datetime="2026-01-05">
+                January 5, 2026
+            </time>
+
+            <p>Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life.  Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life. I want to talk about how I have integrated AI in my studies in this blog post.</p>
+<h3 id="anki-flashcards">Anki Flashcards</h3>
+<p>AI has changed the workflow for my studies. The very first time I used ai for anything useful was to make anki flashcards quicker. I still use ai to make flashcards. I remember when for the first time I found out about Anki, I wanted to use it. But Anki is not very beginner friendly, you have to make your own cards (sure cards can be downloaded but that is not the point). It may not take long to type for a veteran anki user from their source materials, but for someone who is newbie and does not want to do tedious work (me), AI has helped a lot. I usually upload a mcq book or one liner informations as a pdf or text, then ask the AI agent to make flashcards for me. I ask it to generate a csv file with pipe seperator without any quotation marks.  It makes the file for me to copy and import into anki. If I have a very big file like a book pdf, then I extract the text first, then do it in multiple batches. Sure it takes little bit time but come on its much better than typing by hand. Now I can see you typing fast in the comments saying, you do not need ai for that you can do it by a script. Technically yes, but books do not have a single format so any script you make will probably break for the next book. Also it will take time to write the script and test it, and at that point you should just type by hand.</p>
+<h3 id="notebooklm">NotebookLM</h3>
+<p>One second use case where I use AI for studies is NotebookLM, it is pretty good even at this point of writing this blog post and it will only get better. My use case for notebooklm is specifically to make quizzes for current afafirs. I upload a pdf document containing current affairs (monthly or yearly) and then ask it to generate quizzes. At first I memorize the material from the pdf (no AI) then I go to the notebooklm website to generate quizzes. Based on my experiences I found that it can generate questions much more throughly when the source material is small, and thankfully there is option to deselect source materials to generate quizzes. If you want to do it, first delect all, then select only the pdf(source) you want to generate the quizzes from and click on quiz. I am only doing this for current affairs because i do not know ( or have not found) good sources for crrent affairs mock. I want to follow only a few sources and not like irrelevent things, so it is better if I generate the mock myself.</p>
+<h3 id="notes-from-youtube-video">Notes From YouTube Video</h3>
+<p>Now for maths, when I watch a youtube one shot video of a particular topic, the teacher usually does not provide the pdf for the material they are teaching. So I take screenshots. But revisioning materials from old screenshots is boring and I am very much prone to losing my screenshots. The solution is to generate pdf containing all the screenshot and upload it to any of the ai chatbots. Then I ask them to make a latex code from the pdf. For example if there is questions and options I ask it to extract the questions with options and make it look like two columned book. I then go to overleaf (online latex editor), compile the pdf and download it. Now I have a properly formatted note to refer when I am revisioning. I can discard those screenshots. If I am feeling little bit brave I would ask it to solve the questions for me and make a answer key section, with proper hints and solutions and it can do it too. I do not trust ai to be perfect and not make any mistakes, but it is good enough. And if it makes a mistake i can take a pen and scribble over it. It is AI generated and it can make mistakes (especially for generating solutions) , I keep that at the back of my mind.</p>
+<h3 id="building-an-book-companion-app">Building an Book Companion App</h3>
+<p>This one is bit complex and probably not recommended for people who are not tech savy (in that case you can ask a friend). It also requires little extra time and patience, (because AI never gets it right on the first time does it?). I have built a web app that I use as a companion when practicing mcqs from books. Earlier I would use pen and paper to write down the question number and chosen option. But now I open the website, tell it the first question number, the number of questions I want to practice and it opens an interface. The interface is just the qustion number and the options. Clicking on one option moves automatically to the next question number. Am i saving too much time from this? No really, but what it allows me to do is check stats for over the days or weeks, time tracking and much more. I have added some options like, confident, unsure, and guessing before choosing an answer such that i can optimize my strategy as when to take risk and when not to. It even shows the correct percentage in the stats page. I have made all of this app using AI. So I do not directly use AI for this, rather indirectly used it.  You can access this app at <a href="https://mcq.blackpiratex.com">https://mcq.blackpiratex.com</a>.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>It is okay to be skeptical of new technology but when its good and actually improves your current workflow you should not be afraid to use it. After all the whole world is a competition, and if you do not stay ahead you are going to fall behind. If you found any of this useful, go ahead and implement that in your own studies. If you need help or have new ideas to use AI you can share it with me in the comment (or email me). Thank you for reading.</p>
+
+
+            
+            <p class="post-tags">
+                
+                <a class="hashtag" href="/tags/guide">
+                    <span>#</span><span>guide</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/ai">
+                    <span>#</span><span>ai</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/study">
+                    <span>#</span><span>study</span>
+                </a>
+                
+            </p>
+            
+        </article>
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

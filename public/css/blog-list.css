@@ -1,0 +1,146 @@
+/* Footer Tag Cloud */
+.tag-cloud-section {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
+}
+.tag-cloud-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag-cloud-item {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 12px;
+    color: var(--text-main);
+    transition: background 0.2s;
+}
+
+/* The List Layout */
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Bearblog-style list */
+.bearblog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.bearblog-item {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 4px;
+}
+.bearblog-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+}
+.bearblog-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: monospace;
+    min-width: 75px;
+}
+.bearblog-link {
+    text-decoration: none;
+    color: var(--text-main);
+    font-family: serif;
+    font-size: 0.95rem;
+}
+.bearblog-link:hover {
+    text-decoration: underline;
+}
+.bearblog-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 11px;
+}
+.bearblog-tag {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.bearblog-tag:hover {
+    text-decoration: underline;
+}
+.bearblog-tag-sep {
+    color: var(--border-color);
+}
+
+/* Individual List Item */
+.blog-list-item {
+    display: block;
+    text-decoration: none;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--border-color); /* Dashed separator */
+    transition: transform 0.2s;
+}
+
+/* Title */
+.blog-item-title {
+    font-size: 1.4rem;
+    color: var(--primary-blue);
+    font-family: serif;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+/* Metadata Row */
+.blog-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+    align-items: center;
+}
+.meta-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Summary Text */
+.blog-item-summary {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* Mobile Tweak */
+@media (max-width: 600px) {
+    .blog-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .stats-pill {
+        justify-content: center;
+    }
+    .bearblog-item {
+        flex-direction: column;
+        gap: 2px;
+    }
+    .bearblog-main {
+        gap: 6px;
+    }
+    .bearblog-date {
+        min-width: auto;
+    }
+}

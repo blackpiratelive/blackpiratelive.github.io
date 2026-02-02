@@ -1,0 +1,42 @@
+body {
+background-color: #17181C;
+color: #F8F8F9; 
+font-family: sans-serif;
+margin: 1em;
+}
+a { 
+color: #85BEFF;
+}
+h2, h3, h4, h5, h6 {
+
+border-bottom: 1px solid #F8F8F9;
+padding: 1rem;
+
+}
+
+.nav-menu {
+    display: flex;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    top: 0;
+margin: 0;
+border: 0;
+background-color: #85BEFF;
+border-radius: 2px;
+}
+
+
+.nav-menu-item {
+color: #17181C;
+
+}
+
+.nav-menu-item a {
+color: #17181C;
+text-decoration: underline;
+font-size: 1.25rem; 
+font-weight: 600;
+}

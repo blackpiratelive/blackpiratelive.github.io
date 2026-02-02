@@ -1,0 +1,3030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm thoughts-index">
+            <h2 id="title">Thoughts</h2>
+            <p class="thoughts-meta">677 thoughts</p>
+
+            <div class="micro-feed">
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-10-02-untitled-269662/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Oct 02, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">12:11</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Happy Gandhi Jayanti + International Non-Violence day</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-30-untitled-322948/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 30, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:08</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I&rsquo;m down. And I know why</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-25-untitled-909243/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 25, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:51</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>tomorrow I&rsquo;ll know if I have been a lazy person or actually studied anything</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-25-untitled-039640/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 25, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">07:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>What is it about this girl that shes gives me nightmares whenever i talk to her? I swear it was normal talk i didnt even think anything extra</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-24-untitled-163444/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 24, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:52</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Why play video games when you can make the game while playing?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-22-untitled-036963/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 22, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:17</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Making the new website maybe exactly what That can let me abandon this specific bad habit</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-20-untitled-647109/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 20, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">15:54</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I want to eat whatever the fuck and sleep, im too tired</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-20-untitled-428368/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 20, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:50</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I got a feline guest today when I was eating. Too bad, I didn&rsquo;t have anything to offer cuz I was finished. She/He took the fish bones and left. Hope she/he comes back again tomorrow</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-20-untitled-714270/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 20, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">08:21</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Coffee raw without milk or sugar allows me to skip the coffee nap, although i can still sleep</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-17-untitled-155501/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 17, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">16:35</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I am for whatever reason so fucking weak. My legs hurt, my hands hurt</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-16-untitled-263824/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 16, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:57</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have never felt this slow in my life. I have no idea how to improve speed. I need food rn</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-15-untitled-720833/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 15, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">19:12</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I drank glucond and i think it made me energetic to do maths</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-14-untitled-545115/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 14, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">16:12</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>My wifi was off till 12pm afternoon, i just realised how much of my study is dependent on internet.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-13-untitled-262065/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 13, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:11</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Darker tone of lipstick looks ugly on fair skinned girls</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-13-untitled-074977/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 13, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">05:54</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1757723073319-317864.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1757723073319-317864.jpg</a>
+            <span style="color: var(--text-muted);">(1121x1280)</span>
+        </div>
+        <a href="/img/1757723073319-317864.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1757723073319-317864_hu9d207cdd802f02082fc6c3498cb87aa2_216406_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="114"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>🤣</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-13-untitled-703262/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 13, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">05:15</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Coffee and _ has fixed my sleep schedule.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-12-untitled-209741/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 12, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">15:46</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Why does some websites go out of their way to disable paste when logging in?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-12-untitled-711512/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 12, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">15:38</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Whats with girls and poetry?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-11-untitled-068522/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 11, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:07</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1757605067043-307358.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1757605067043-307358.jpg</a>
+            <span style="color: var(--text-muted);">(960x1280)</span>
+        </div>
+        <a href="/img/1757605067043-307358.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1757605067043-307358_hubd0c71ab74a93c83ddfda03f83e43767_66783_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="133"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>When everything from your childhood goes away one by one and all youre left with are memories to keep you company while donating your organs one by one waiting to be &ldquo;completed&rdquo;
+Book: Never Let Me Go</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-11-untitled-210403/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 11, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">20:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>so Apple has copied Pixel this year</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-11-untitled-651469/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 11, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">00:44</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Do not think about meeting. [] You know what type of person she is. gEt cLoSe BuT dOnT gEt FeEliNgS, i&rsquo;d rather not get close</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-11-untitled-434512/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 11, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">00:40</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Here&rsquo;s few rules to follow:</p>
+<ol>
+<li>Avoid talking about sex</li>
+<li>Avoid talking about relationships.</li>
+<li>Dont get too friendly.</li>
+<li>Dont start the conversation.</li>
+<li>Dont ignore studies for texting.</li>
+<li>Texting is also a drug</li>
+</ol>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-366066/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:59</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Am i getting used? I dont know. What can i lose if i end contact? Probably nothing. Why is she back?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-277752/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:57</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I want to end contact slowly and silently, no more making a scene.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-038441/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:53</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Yep, i should have forgotten her for good.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-503799/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:11</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>hiii</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-348107/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:35</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Sooooooo. what&rsquo;s up?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-420567/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1757519418699-drawing-1757519414175.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1757519418699-drawing-1757519414175.png</a>
+            <span style="color: var(--text-muted);">(2407x1638)</span>
+        </div>
+        <a href="/img/1757519418699-drawing-1757519414175.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1757519418699-drawing-1757519414175_hu93825a7cdaedf1dcdbbb7a51077f67de_247366_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="68"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>Everything should be fine</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-632447/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:07</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>hihi</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-863658/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">16:27</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>After doing little bit of maths revision My maths score improved. But gk💀 Chii</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-10-untitled-548005/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 10, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:35</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I need to be proactive than reactive</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/quotes">
+                            #quotes
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-09-untitled-482964/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 09, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:41</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Never let me go. Good book so far.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-08-untitled-770563/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 08, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:36</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I sometimes hate her and sometimes talk with her. Idk if i like her or not. I probably shouldn&rsquo;t</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-08-untitled-467885/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 08, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">14:21</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I should stop. I need to study. But cant fucking hell.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-08-untitled-082762/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 08, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">08:58</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>My books website is kinda complete for my personal use. <a href="https://notes.blackpiratex.com">Its now live</a></p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-07-untitled-408988/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 07, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Studyyyyyy! But i wanna slleep</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-07-untitled-385927/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 07, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">12:13</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1757227383534-276598.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1757227383534-276598.png</a>
+            <span style="color: var(--text-muted);">(1080x2218)</span>
+        </div>
+        <a href="/img/1757227383534-276598.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1757227383534-276598_hu9434898a3f19a4717e53eafdda5a0746_460140_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="205"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>My book tracker website now looks much better and has a public ui. <a href="https://book-tracker-blond-iota.vercel.app/">Check it out.</a></p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-07-untitled-605335/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 07, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">00:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I am making silly mistake. I do not think im in right mood to study.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-06-untitled-491281/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 06, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:44</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Im exhausted. But still have to study.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-05-untitled-997006/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 05, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:26</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1757094995100-267801.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1757094995100-267801.jpg</a>
+            <span style="color: var(--text-muted);">(674x567)</span>
+        </div>
+        <a href="/img/1757094995100-267801.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1757094995100-267801_hu419902fca65ac8a174ca373392f42496_47866_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="84"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>I have to remember this when i talk with someone.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-05-untitled-115682/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 05, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:11</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>My exam is veryyyy near. I should not do any coding now. Also, someone cracked my password in that book website.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-05-untitled-597625/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 05, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">16:56</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I hate how you sleep while drying your clothes outside and rain comes and wets them again</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-05-untitled-370156/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 05, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:19</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I am starting to understand why database was invented. Its so much easier to work with.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-05-untitled-235438/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 05, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:17</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have so many plans to add to my books website. Writing it down here so i dont forget.</p>
+<ol>
+<li>Proper login a public ui and logged in ui.</li>
+<li>Show books that read on one day, one month and one week.</li>
+<li>Ability to showcase certain quotes from a book at top of the ui.</li>
+<li>Automatic export to a github repo.</li>
+</ol>
+<p>Thanks it. Good night.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-05-untitled-983849/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 05, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">00:23</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have made my own book tracker web application, because all the other sux. Here it is: <a href="https://book-tracker-blond-iota.vercel.app/">https://book-tracker-blond-iota.vercel.app/</a></p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-526836/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:45</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I should have started revising before. Its taking time. Two hours and still havent finished time and work chapter. Skip more?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-704427/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">20:25</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have to complete one more chapter of math. I have to. There is no way I can complete revision if I don&rsquo;t at least two in a day.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-115181/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:01</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Studying is hard. Sigh. But i have to. I want to clear pre at least</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-620281/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">09:50</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I didnt get enough sleep, I am gonna get a headache.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-474252/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">02:34</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756933472666-3748f942-6f40-423b-b4a6-47dca34d69e2.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756933472666-3748f942-6f40-423b-b4a6-47dca34d69e2.jpg</a>
+            <span style="color: var(--text-muted);">(3000x4000)</span>
+        </div>
+        <a href="/img/1756933472666-3748f942-6f40-423b-b4a6-47dca34d69e2.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756933472666-3748f942-6f40-423b-b4a6-47dca34d69e2_hu9dc29ffbee4dc99b63865eb169b60997_2794667_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="133"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>Hope ❤️</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-408908/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">02:33</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Shawshank Redemption book is just as good as the movie. I think i found my next favorite author.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-380433/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">02:33</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Some birds are not meant to be caged, that&rsquo;s all. Their feathers are too bright, their songs too sweet and wild. So you let them go, or when you open the cage to feed them they somehow fly out past you. And the part of you that knows it was wrong to imprison them in the first place rejoices, but still, the place where you live is that much more drab and empty for their departure.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-04-untitled-871964/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 04, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">00:11</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>For something that i cannot tell, i feel so blessed right now. Thank you. And good night.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-383109/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">21:16</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I am so hungry rn. But food isnt ready.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-003912/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">20:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Even chatgpt sucks at some reasoning which im doing, how am i supposed to do then under 30seconds?</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-381760/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">17:56</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I&rsquo;m reading the book of Shawshank Redemption. My first stephen king book.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-375509/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">15:09</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Bad wifi is so annoying</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-undefined-960044/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:55</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>You know some birds are not meant to be caged, their feathers are just too bright.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/quotes">
+                            #quotes
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-901484/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:55</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756887899685-drawing-1756887898382.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756887899685-drawing-1756887898382.png</a>
+            <span style="color: var(--text-muted);">(605x302)</span>
+        </div>
+        <a href="/img/1756887899685-drawing-1756887898382.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756887899685-drawing-1756887898382_hu8cab89c4b72a4dddb559a5fdeec2da85_3903_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="50"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>You know some birds are not meant to be caged, their feathers are just too bright.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-953028/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">11:25</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Im contemplating between studying or sleeping. I should not have stayed awake for so long last night.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-941874/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">09:12</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I hate her. It feels like she talks only when she needs me. Fuck you A. I&rsquo;ll ignore till tomorrow.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-772720/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:56</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I think the more i post here the more i get the urge to change something. Weird me.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-241593/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:47</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I literally stopped using gitjournal, this custom made website just to post to my status is cool af. Im yet to add a domain.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-097963/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:44</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have no idea how poeple post so much on their social media. I feel like a boomer.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-913721/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:41</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Tags and tags page does not work rn. But yeah not gonna solve it today. Good night.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-786384/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 03, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">01:39</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756843784910-244388.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756843784910-244388.png</a>
+            <span style="color: var(--text-muted);">(1080x1794)</span>
+        </div>
+        <a href="/img/1756843784910-244388.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756843784910-244388_hu0cc4faac73c0bf6f09562fa7e26fa55a_439667_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="166"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>I cannot stop changing my status website theme. Sigh, here is the new one.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-02-untitled-209151/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 02, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:00</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756834207325-243423.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756834207325-243423.png</a>
+            <span style="color: var(--text-muted);">(1080x1014)</span>
+        </div>
+        <a href="/img/1756834207325-243423.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756834207325-243423_hu2dbfd235aadfb7b507889ff1859ce238_950597_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="94"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>Google photos now has a auto frame option, uses ai to frame the picture.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-09-02-untitled-466217/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Sep 02, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:37</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756800464405-239649.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756800464405-239649.jpg</a>
+            <span style="color: var(--text-muted);">(640x640)</span>
+        </div>
+        <a href="/img/1756800464405-239649.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756800464405-239649_hu8dec24610cdcec0c08d9af29c5fca92e_65965_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="100"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>No offense</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-31-untitled-250423/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 31, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:47</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Good Night. Im tired</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-31-untitled-762207/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 31, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:39</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756663760427-drawing-1756663758422.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756663760427-drawing-1756663758422.png</a>
+            <span style="color: var(--text-muted);">(312x156)</span>
+        </div>
+        <a href="/img/1756663760427-drawing-1756663758422.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756663760427-drawing-1756663758422_hu675bc54472f02b12069c59d685c9b94a_9485_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="50"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>Helooo</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-31-untitled-645527/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 31, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:37</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>hii</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-31-untitled-597228/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 31, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:36</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756663595904-drawing-1756663593690.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756663595904-drawing-1756663593690.png</a>
+            <span style="color: var(--text-muted);">(312x156)</span>
+        </div>
+        <a href="/img/1756663595904-drawing-1756663593690.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756663595904-drawing-1756663593690_hu675bc54472f02b12069c59d685c9b94a_9485_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="50"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>Helooooo</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-31-untitled-296278/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 31, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:58</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I did not study much today, Firstly because I stayed up late yesterday night (something like 1am to sleep) and today also spent time making things on the web. Haha</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-31-untitled-860875/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 31, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">11:47</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I studied so little today. I need to do maths 🫠</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-30-untitled-244579/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 30, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">19:47</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>After a long work. Its done. My ui is live. It is much better than posting through gitjournal.
+I&rsquo;ll add domains and fix the timing tomorrow. Good night for now. Its late.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-30-untitled-064887/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 30, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">19:44</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756583063480-221989.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756583063480-221989.jpg</a>
+            <span style="color: var(--text-muted);">(4000x3000)</span>
+        </div>
+        <a href="/img/1756583063480-221989.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756583063480-221989_hu366899674c4ed3c142fdd39f847dd4b5_3011740_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="75"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>This should Work. The timing is off. I am going to sleep.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-30-untitled/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 30, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">19:01</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1756580211032-196917.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1756580211032-196917.jpg</a>
+            <span style="color: var(--text-muted);">(1085x1600)</span>
+        </div>
+        <a href="/img/1756580211032-196917.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1756580211032-196917_huac59162d0bc033ce7940ddaa8b6e0dcf_273607_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="147"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+<p>This is 2nd test to check if everything is working. This include an image.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-30-new-post/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 30, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:20</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>This is a test message that I&rsquo;m posting from my website. This is edited, should work perfectly.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-29_1/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 29, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">17:48</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>You should see unity between oposition and ruling party when it comes to Indian Foreign Policy. I love my country!</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-29/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 29, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">12:14</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>This website is cool af.
+<a href="https://www.fuckupmysite.com/?url=https%3A%2F%2Fblackpiratex.com&amp;torchCursor=true&amp;comicSans=true&amp;fakeCursors=true&amp;peskyFly=true">Check it out</a></p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/bookmarks">
+                            #bookmarks
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-28_1/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 28, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:48</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Finished <em>Me Before You</em> by Jojo Moyes. Good love story.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-28/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 28, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">16:47</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I hate ny memory</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-27/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 27, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">14:56</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Sigh.
+<a href="https://www.nytimes.com/2025/08/26/technology/chatgpt-openai-suicide.html">https://www.nytimes.com/2025/08/26/technology/chatgpt-openai-suicide.html</a></p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/articles">
+                            #articles
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-26_5/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 26, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:29</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>One of the best reads:
+<a href="https://hermiene.net/essays-trans/relativity_of_wrong.html">Relativity of Wrong</a></p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/articles">
+                            #articles
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-26_4/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 26, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:51</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have updated my blog ui. It now looks like NCERT book. I have attached the images below.
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/cf1f519eae7aa781e5b216511266b277.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/cf1f519eae7aa781e5b216511266b277.jpg</a>
+            <span style="color: var(--text-muted);">(1600x1028)</span>
+        </div>
+        <a href="/img/cf1f519eae7aa781e5b216511266b277.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/cf1f519eae7aa781e5b216511266b277_hu8de656ba2f27f7743ca35a21d31b68c6_73784_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="64"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/70d422716a52b64d80fa34c3b2d884aa.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/70d422716a52b64d80fa34c3b2d884aa.jpg</a>
+            <span style="color: var(--text-muted);">(1600x1046)</span>
+        </div>
+        <a href="/img/70d422716a52b64d80fa34c3b2d884aa.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/70d422716a52b64d80fa34c3b2d884aa_hu6ac7e5ada740e87c162901a25ed25651_158340_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="65"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-26_3/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 26, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">17:56</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Issues regarding my website to mastodon posts is now fixed. It should all look normal in mastodon.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-26_2/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 26, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">17:50</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I made grilled chicken legs, for the first time.
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/8e70a8939b048e05720ac191a2517f9f.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/8e70a8939b048e05720ac191a2517f9f.jpg</a>
+            <span style="color: var(--text-muted);">(3000x4000)</span>
+        </div>
+        <a href="/img/8e70a8939b048e05720ac191a2517f9f.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/8e70a8939b048e05720ac191a2517f9f_hu889d75328c8cb2eae4c9d698fa556628_9234495_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="133"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/cooking">
+                            #cooking
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-26_1/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 26, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">17:30</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>You can check my website analytics <a href="https://simpler-69bpx.vercel.app/">here</a>. I have self made, this using AI, vercel functions and Turso db.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-26/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 26, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">17:28</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>You can check my website analytics here. I have self made, this using AI, vercel functions and Turso db.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-25/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 25, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">16:27</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>My performance tanked because i did not give mock for a long time. I need to study maths. And give mock everyday</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/study">
+                            #study
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-24_3/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 24, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">23:03</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Literal webring: <a href="https://tilde.club/~notjosh/">https://tilde.club/~notjosh/</a></p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/bookmarks">
+                            #bookmarks
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-24_2/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 24, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:57</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Indie website&rsquo;s webmasters, please add some kind of contact info. I come across so many great sites and want to contact them, but alas!</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-24_1/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 24, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:49</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>This should fix all errors. Hello from the website.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-24/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 24, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">18:08</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>My website is now fully integrated with Mastodon. Any new post on this website will be posted automatically to my mastodon account.
+Currently plain text, no hyperlinks or images.
+To the people who&rsquo;s seeing it on mastodon and not on my website, well Hi, nice to meet you.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-23-19-34-16/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 23, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">19:34</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have made a website for shortening url. Heres what looks like <a href="/img/a36c63cc246b1206477aac1950b1b9b9.png">Image</a>.
+Check one url from it: <a href="https://go.blackpiratex.com/scsb6C4">https://go.blackpiratex.com/scsb6C4</a>
+Password: password</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-23-19-32-29/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 23, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">19:32</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I have made a url shortner site for my personal use. It uses vercel functions and turso db. Here is what it looks like.</p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-22-13-03-51/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 22, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">13:03</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Use this to publish obsidian notes.
+<a href="https://quartz.jzhao.xyz/">https://quartz.jzhao.xyz/</a></p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/bookmarks">
+                            #bookmarks
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-22-02-56-00/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 22, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">02:56</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>If you think of ai as a tool, it is good. I am having such a blast making tools using ai. It reminds me of tom scotts a video about api.</p>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-20-20-05-11/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 20, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">20:05</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>I am making a social media webisite. Right now It is very basic. Here is a screenshot. It also has live chat feature using Ably.</p>
+<p><a href="/img/3336fc18220da8e562e02333e449115c.png">Screenshot 1</a>
+<a href="/img/486b8b1e2e5ee8c735f1f4d470f4d1d6.png">screenshot 2</a></p>
+
+                    </div>
+
+                    
+                    <div class="micro-tags">
+                        
+                        <a class="micro-tag" href="/tags/website">
+                            #website
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="micro-item">
+                    <span class="micro-dot"></span>
+                    <div class="micro-header">
+                        <a href="http://localhost:1314/thoughts/2025/2025-08-19-22-27-37/" class="micro-timestamp-link">
+                            <span class="micro-date-time">
+                                <span class="micro-date">Aug 19, 2025</span>
+                                <span class="micro-separator">·</span>
+                                <span class="micro-time">22:27</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="micro-content">
+                        <p>Brings back circa 2020 memories. ❤️
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/caa775b6d5ddc7d52ff8ee01b706eecb.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/caa775b6d5ddc7d52ff8ee01b706eecb.png</a>
+            <span style="color: var(--text-muted);">(1080x270)</span>
+        </div>
+        <a href="/img/caa775b6d5ddc7d52ff8ee01b706eecb.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/caa775b6d5ddc7d52ff8ee01b706eecb_hub0463ba2802bed7facae80e17b2690b0_94910_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="25"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+</p>
+
+                    </div>
+
+                    
+                </div>
+                
+            </div>
+        </article>
+
+        
+
+<div class="pagination">
+    
+    <a href="/thoughts/" class="pagination-link">« Prev</a>
+    
+
+    
+    <a href="/thoughts/" class="pagination-link">1</a>
+    
+    <a href="/thoughts/page/2/" class="pagination-link active">2</a>
+    
+    <a href="/thoughts/page/3/" class="pagination-link">3</a>
+    
+    <a href="/thoughts/page/4/" class="pagination-link">4</a>
+    
+    <a href="/thoughts/page/5/" class="pagination-link">5</a>
+    
+    <a href="/thoughts/page/6/" class="pagination-link">6</a>
+    
+    <a href="/thoughts/page/7/" class="pagination-link">7</a>
+    
+
+    
+    <a href="/thoughts/page/3/" class="pagination-link">Next »</a>
+    
+</div>
+
+
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

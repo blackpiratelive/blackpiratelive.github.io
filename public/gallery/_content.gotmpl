@@ -1,0 +1,52 @@
+{{ $url := "https://gallery.blackpiratex.com/index.json" }}
+{{ $data := slice }}
+
+{{ $result := try (resources.GetRemote $url) }}
+
+{{ if $result.Err }}
+    {{ warnf "Gallery Adapter Error: %s" $result.Err }}
+{{ else }}
+    {{ with $result.Value }}
+        {{ $data = . | transform.Unmarshal }}
+    {{ end }}
+{{ end }}
+
+{{ range $i, $item := $data }}
+    
+    {{ $slug := $item.title | urlize }}
+    {{ if or (not $slug) (eq $slug "") }}
+        {{ $slug = printf "image-%d" $i }}
+    {{ end }}
+
+    {{ $dateObj := time.AsTime $item.date }}
+    
+    {{ $content := dict 
+        "mediaType" "text/html"
+        "value" ($item.description | default "") 
+    }}
+    
+    {{ $dates := dict 
+        "date" $dateObj
+    }}
+    
+    {{ $params := dict 
+        "image" $item.image
+        "thumburl" $item.image.thumbnail.url
+        "album" $item.album
+        "tags" $item.tags
+        "exif" $item.exif
+        "featured" $item.featured
+        "weight" $item.weight
+    }}
+
+    {{ $page := dict
+        "kind" "page"
+        "path" $slug 
+        "title" ($item.title | default (printf "Gallery Image %d" $i))
+        "dates" $dates
+        "params" $params
+        "content" $content
+    }}
+
+    {{ $.AddPage $page }}
+{{ end }}

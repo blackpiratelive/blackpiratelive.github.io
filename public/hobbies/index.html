@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="stylesheet" href="/css/base.css">
+
+    
+    
+
+    
+    
+    <script src="/js/vendor/lucide.min.js"></script>
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+    <script src="/js/search.js"></script>
+    
+</head>
+<body>
+
+    
+    <div id="header-container">
+        <a href="http://localhost:1314/" class="header-title">
+            <i data-lucide="pen-tool" style="margin-right: 8px;"></i>
+            BlackPirateX
+        </a>
+        <div class="header-subtitle">
+            Notes, thoughts, and code snippets from my daily life.
+        </div>
+
+        <div class="nav-bar">
+            <a class="nav-link" href="http://localhost:1314/">
+                <i data-lucide="layout-dashboard" width="14"></i> Home
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/blog">
+                <i data-lucide="book-open" width="14"></i> Blog
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/thoughts">
+                <i data-lucide="brain-circuit" width="14"></i> Thoughts
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/gallery">
+                <i data-lucide="image" width="14"></i> Gallery
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/books">
+                <i data-lucide="book" width="14"></i> Books
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/stats">
+                <i data-lucide="trending-up" width="14"></i> Stats
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/on-this-day">
+                <i data-lucide="calendar-days" width="14"></i> On This Day
+            </a>
+            <span class="nav-separator">|</span>
+            <a class="nav-link" href="/search">
+                <i data-lucide="search" width="14"></i> Search
+            </a>
+            <span class="nav-separator">|</span>
+            <button class="nav-link theme-toggle" type="button" aria-pressed="false">
+                <i data-lucide="moon" width="14"></i> Theme
+            </button>
+        </div>
+    </div>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="app-root">
+    
+    <a class="back-btn" href="http://localhost:1314/blog">
+        <i data-lucide="arrow-left" width="16"></i> Back to Blog
+    </a>
+
+    <div class="detail-container">
+        <h1 class="detail-title"></h1>
+        
+        <div class="post-meta-bar">
+            <span class="meta-item">
+                <i data-lucide="calendar" width="14"></i> 
+                Jan 1, 0001
+            </span>
+            <span class="meta-item">
+                <i data-lucide="clock" width="14"></i> 
+                1 min read
+            </span>
+            <span class="meta-item">
+                <i data-lucide="file-text" width="14"></i> 
+                146 words
+            </span>
+        </div>
+
+        
+
+        <div class="single-content">
+            <h2 id="my-list-of-hobbies">My list of Hobbies</h2>
+<h3 id="computer">Computer</h3>
+<hr>
+<p>I like almost everything computer related, may that be hardware or software.
+I like coding, although nowadays I do not get much time to do it. As I am relatively busy with college.</p>
+<h4 id="list-of-favourite-things-to-do-in-computer">List of favourite things to do in computer</h4>
+<ul>
+<li>learn to code.</li>
+<li>make my website.</li>
+<li>rice my desktop.</li>
+<li>try new linux distribution inside virtualbox or hardware.</li>
+<li>hardening softwares for privacy and security (to the point where it breaks the program).</li>
+<li>learn ways to automate certain things.</li>
+<li>find alternatives to well known applications.</li>
+</ul>
+<h3 id="games">Games</h3>
+<hr>
+<p>I do play games but it&rsquo;s not that often. I mostly game on mobile and pc.</p>
+<ul>
+<li>Completed Games
+<ul>
+<li>Grand Theft Auto V</li>
+<li>Shadow of The Tomb Raider</li>
+</ul>
+</li>
+<li>Currently playing
+<ul>
+<li>Cyberpunk</li>
+<li>Life is strange</li>
+</ul>
+</li>
+<li>Mobile games
+<ul>
+<li>PUBG/BGMI</li>
+<li>Call of Duty Mobile</li>
+</ul>
+</li>
+</ul>
+<h3 id="music">Music</h3>
+<hr>
+<p>I listen to a lot of music. It requires its own page. <a href="/music/">Here you go.</a></p>
+
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+            <span style="font-size: 12px; font-weight: bold; margin-right: 5px;">TAGS:</span>
+            
+        </div>
+
+        
+    </div>
+</div>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+
+
+
+<footer class="footer-container">
+    
+    <div class="footer-nav-grid">
+        
+        <div class="footer-column">
+            <h4 class="footer-heading">
+                <i data-lucide="compass" width="14"></i> Browse
+            </h4>
+            <div class="footer-links">
+                <a href="/projects">
+                    <i data-lucide="folder-code" width="12" style="margin-right: 6px;"></i>
+                    Projects
+                </a>
+                <a href="https://blog.blackpiratex.com">
+                    <i data-lucide="book-open" width="12" style="margin-right: 6px;"></i>
+                    Blog
+                </a>
+                <a href="https://gallery.blackpiratex.com">
+                    <i data-lucide="image" width="12" style="margin-right: 6px;"></i>
+                    Gallery
+                </a>
+                <a href="https://music.blackpiratex.com">
+                    <i data-lucide="music" width="12" style="margin-right: 6px;"></i>
+                    Music
+                </a>
+                <a href="https://notes.blackpiratex.com">
+                    <i data-lucide="sticky-note" width="12" style="margin-right: 6px;"></i>
+                    Notes
+                </a>
+                <a href="https://status.blackpiratex.com">
+                    <i data-lucide="activity" width="12" style="margin-right: 6px;"></i>
+                    Status
+                </a>
+                <a href="/bookmarks">
+                    <i data-lucide="bookmark" width="12" style="margin-right: 6px;"></i>
+                    Bookmarks
+                </a>
+                <a href="/contact">
+                    <i data-lucide="mail" width="12" style="margin-right: 6px;"></i>
+                    Contact
+                </a>
+                <a href="/credits">
+                    <i data-lucide="award" width="12" style="margin-right: 6px;"></i>
+                    Credits
+                </a>
+                <a href="/about">
+                    <i data-lucide="user" width="12" style="margin-right: 6px;"></i>
+                    About
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="footer-column">
+            <h4 class="footer-heading">
+                <i data-lucide="user-plus" width="14"></i> Follow
+            </h4>
+            <div class="footer-links">
+                <a href="https://links.blackpiratex.com/github">
+                    <i data-lucide="github" width="12" style="margin-right: 6px;"></i>
+                    Github
+                </a>
+                <a href="https://links.blackpiratex.com/pixelfed">
+                    <i data-lucide="camera" width="12" style="margin-right: 6px;"></i>
+                    Pixelfed
+                </a>
+                <a href="https://links.blackpiratex.com/yt">
+                    <i data-lucide="youtube" width="12" style="margin-right: 6px;"></i>
+                    Youtube
+                </a>
+                <a href="https://links.blackpiratex.com/mastodon">
+                    <i data-lucide="megaphone" width="12" style="margin-right: 6px;"></i>
+                    Mastodon
+                </a>
+                <a href="https://links.blackpiratex.com/wa">
+                    <i data-lucide="message-circle" width="12" style="margin-right: 6px;"></i>
+                    WhatsApp
+                </a>
+                <a href="https://links.blackpiratex.com/last.fm">
+                    <i data-lucide="headphones" width="12" style="margin-right: 6px;"></i>
+                    Last.fm
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div class="footer-tag-cloud">
+        <h4 class="footer-heading">
+            <i data-lucide="tag" width="14"></i> Tags
+        </h4>
+        <div class="footer-tag-list">
+            
+            <a href="/tags/website/" class="footer-tag-item">#website</a>
+            
+            <a href="/tags/study/" class="footer-tag-item">#study</a>
+            
+            <a href="/tags/quotes/" class="footer-tag-item">#quotes</a>
+            
+            <a href="/tags/ideas/" class="footer-tag-item">#ideas</a>
+            
+            <a href="/tags/linux/" class="footer-tag-item">#linux</a>
+            
+            <a href="/tags/software/" class="footer-tag-item">#software</a>
+            
+            <a href="/tags/bookmarks/" class="footer-tag-item">#bookmarks</a>
+            
+            <a href="/tags/dream/" class="footer-tag-item">#dream</a>
+            
+            <a href="/tags/rant/" class="footer-tag-item">#rant</a>
+            
+            <a href="/tags/guide/" class="footer-tag-item">#guide</a>
+            
+            <a href="/tags/meta/" class="footer-tag-item">#meta</a>
+            
+            <a href="/tags/life/" class="footer-tag-item">#life</a>
+            
+            <a href="/tags/articles/" class="footer-tag-item">#articles</a>
+            
+            <a href="/tags/excited/" class="footer-tag-item">#excited</a>
+            
+            <a href="/tags/biology/" class="footer-tag-item">#biology</a>
+            
+            <a href="/tags/cooking/" class="footer-tag-item">#cooking</a>
+            
+            <a href="/tags/journaling/" class="footer-tag-item">#journaling</a>
+            
+            <a href="/tags/privacy/" class="footer-tag-item">#privacy</a>
+            
+            <a href="/tags/proud/" class="footer-tag-item">#proud</a>
+            
+            <a href="/tags/review/" class="footer-tag-item">#review</a>
+            
+            <a href="/tags/ai/" class="footer-tag-item">#ai</a>
+            
+            <a href="/tags/android/" class="footer-tag-item">#android</a>
+            
+            <a href="/tags/anki/" class="footer-tag-item">#anki</a>
+            
+            <a href="/tags/dreams/" class="footer-tag-item">#dreams</a>
+            
+        </div>
+    </div>
+    
+    
+
+    
+    <div class="webring-section">
+        <h4 style="border-bottom: 1px dotted var(--border-color); margin-top:0; margin-bottom: 10px; font-size: 12px; font-weight: bold;">
+            <i data-lucide="globe" width="12"></i> WEBRINGS
+        </h4>
+
+        <div class="webring-row">
+            <span class="webring-label">
+                <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
+                WebSutra
+            </span>
+            <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">
+                <i data-lucide="chevron-left" width="11"></i> Prev
+            </a>
+            <a href="https://webring.blackpiratex.com/api/ring?action=random">
+                <i data-lucide="shuffle" width="11"></i> Random
+            </a>
+            <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">
+                Next <i data-lucide="chevron-right" width="11"></i>
+            </a>
+            <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+        </div>
+
+        <div class="webring-row">
+            <span class="webring-label">
+                <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
+                Hotline
+            </span>
+            <a href="https://hotlinewebring.club/bpx/previous">
+                <i data-lucide="chevron-left" width="11"></i> Prev
+            </a>
+            <a href="https://hotlinewebring.club">
+                <i data-lucide="list" width="11"></i> Index
+            </a>
+            <a href="https://hotlinewebring.club/bpx/next">
+                Next <i data-lucide="chevron-right" width="11"></i>
+            </a>
+        </div>
+
+        <div class="webring-row">
+            <span class="webring-label">
+                <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
+                Retronut
+            </span>
+            <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">
+                <i data-lucide="chevron-left" width="11"></i> Prev
+            </a>
+            <a href="https://webring.dinhe.net">
+                <i data-lucide="list" width="11"></i> Index
+            </a>
+            <a href="https://webring.dinhe.net/next/https://blackpiratex.com">
+                Next <i data-lucide="chevron-right" width="11"></i>
+            </a>
+        </div>
+
+        <div class="webring-row">
+            <span class="webring-label">
+                <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
+                Bucketfish
+            </span>
+            <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">
+                <i data-lucide="chevron-left" width="11"></i> Prev
+            </a>
+            <a href="https://webring.bucketfish.me">
+                <i data-lucide="list" width="11"></i> Index
+            </a>
+            <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">
+                Next <i data-lucide="chevron-right" width="11"></i>
+            </a>
+            <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">
+                <i data-lucide="shuffle" width="11"></i> Random
+            </a>
+        </div>
+
+        <div class="webring-row">
+            <span class="webring-label">
+                <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
+                Static.Quest
+            </span>
+            <a href="https://static.quest/previous/?host=blackpiratex.com">
+                <i data-lucide="chevron-left" width="11"></i> Prev
+            </a>
+            <a href="https://static.quest/members">
+                <i data-lucide="users" width="11"></i> Members
+            </a>
+            <a href="https://static.quest/next/?host=blackpiratex.com">
+                Next <i data-lucide="chevron-right" width="11"></i>
+            </a>
+            <a href="https://static.quest/random">
+                <i data-lucide="sparkles" width="11"></i> Lucky?
+            </a>
+        </div>
+
+        <div class="webring-row" id='focusfirst-webring'>
+            <span class="webring-label">
+                <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
+                FocusFirst
+            </span>
+            
+            <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+            <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+            <noscript>
+                <a href='https://www.beepbird.net/index.html'>
+                    <i data-lucide="list" width="11"></i> Focus First Index
+                </a>
+            </noscript>
+        </div>
+    </div>
+
+    
+    <div class="footer-credits">
+        <p>
+            <i data-lucide="bar-chart-3" width="12" style="vertical-align: middle;"></i>
+            Uses self hosted Umami analytics.
+        </p>
+        <p>
+            <i data-lucide="heart" width="12" style="vertical-align: middle; color: #e74c3c;"></i>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android. 
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+</footer>
+<script>
+        lucide.createIcons();
+    </script>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

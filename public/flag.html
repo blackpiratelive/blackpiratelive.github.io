@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Indian Flag Hoisting</title>
+  <style>
+    body {
+      margin: 0;
+      background: #87CEEB;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .flagpole {
+      width: 10px;
+      height: 300px;
+      background: #555;
+      position: relative;
+    }
+
+    .flag {
+      position: absolute;
+      left: 10px;
+      width: 180px;
+      height: 90px;
+      animation: hoist 4s ease-out forwards, wave 2s ease-in-out infinite;
+      transform-origin: left center;
+    }
+
+    .stripe {
+      height: 30px;
+      width: 100%;
+    }
+
+    .saffron {
+      background: #FF9933;
+    }
+
+    .white {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .chakra {
+      width: 26px;
+      height: 26px;
+      border: 2px solid #000080;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .spoke {
+      position: absolute;
+      width: 2px;
+      height: 13px;
+      background-color: #000080;
+      top: 0;
+      left: 50%;
+      transform-origin: bottom center;
+    }
+
+    /* Generate 24 spokes */
+    /* Each spoke is rotated by (360 / 24) = 15 degrees */
+    .chakra .spoke:nth-child(1)  { transform: rotate(0deg); }
+    .chakra .spoke:nth-child(2)  { transform: rotate(15deg); }
+    .chakra .spoke:nth-child(3)  { transform: rotate(30deg); }
+    .chakra .spoke:nth-child(4)  { transform: rotate(45deg); }
+    .chakra .spoke:nth-child(5)  { transform: rotate(60deg); }
+    .chakra .spoke:nth-child(6)  { transform: rotate(75deg); }
+    .chakra .spoke:nth-child(7)  { transform: rotate(90deg); }
+    .chakra .spoke:nth-child(8)  { transform: rotate(105deg); }
+    .chakra .spoke:nth-child(9)  { transform: rotate(120deg); }
+    .chakra .spoke:nth-child(10) { transform: rotate(135deg); }
+    .chakra .spoke:nth-child(11) { transform: rotate(150deg); }
+    .chakra .spoke:nth-child(12) { transform: rotate(165deg); }
+    .chakra .spoke:nth-child(13) { transform: rotate(180deg); }
+    .chakra .spoke:nth-child(14) { transform: rotate(195deg); }
+    .chakra .spoke:nth-child(15) { transform: rotate(210deg); }
+    .chakra .spoke:nth-child(16) { transform: rotate(225deg); }
+    .chakra .spoke:nth-child(17) { transform: rotate(240deg); }
+    .chakra .spoke:nth-child(18) { transform: rotate(255deg); }
+    .chakra .spoke:nth-child(19) { transform: rotate(270deg); }
+    .chakra .spoke:nth-child(20) { transform: rotate(285deg); }
+    .chakra .spoke:nth-child(21) { transform: rotate(300deg); }
+    .chakra .spoke:nth-child(22) { transform: rotate(315deg); }
+    .chakra .spoke:nth-child(23) { transform: rotate(330deg); }
+    .chakra .spoke:nth-child(24) { transform: rotate(345deg); }
+
+    .green {
+      background: #138808;
+    }
+
+    @keyframes hoist {
+      0% {
+        bottom: 0;
+        opacity: 0;
+      }
+      100% {
+        bottom: 210px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotateZ(0deg); }
+      50% { transform: rotateZ(2deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="flagpole">
+    <div class="flag">
+      <div class="stripe saffron"></div>
+      <div class="stripe white">
+        <div class="chakra">
+          <!-- 24 spokes -->
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+          <div class="spoke"></div>
+        </div>
+      </div>
+      <div class="stripe green"></div>
+    </div>
+  </div>
+</body>
+</html>

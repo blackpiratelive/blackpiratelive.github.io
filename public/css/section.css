@@ -1,0 +1,15 @@
+.home-section {
+    margin-bottom: 50px;
+}
+.home-section h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--primary-blue);
+    display: inline-flex; /* Changed to flex to align icon */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    color: var(--text-main);
+}

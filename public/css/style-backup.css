@@ -1,0 +1,200 @@
+/* root stuff */
+:root {
+    --accent: rgb(50,215,75);
+    --accent-low-opacity: rgba(223,223,225, 0.25);
+    --text-clr: rgb(223, 223, 225);
+    --background-clr: rgb(28,28,30);
+    --tob-bg: rgb(142,142,147);
+    --accent-black-bg: rgb(10,132, 255);
+    --code-background-color: #272822;
+    --accent-clr-hvr: rgb(182, 221, 187);
+    --accent-2: rgb(255,214,10);
+    --warning-clr: rgb(255,69,58);
+}
+
+/* end of root */
+
+
+/* animations */
+@keyframes new-nav-animation {
+    0% {
+        color: var(--warning-clr);
+    }
+    50% {
+        color: var(--background-clr);
+    }
+    100% {
+        color: var(--warning-clr);
+    }
+}
+/* end of animations */
+
+/* start of default  styling for html tags */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-clr);
+    color: var(--text-clr);
+    font-family: sans-serif;
+    font-size: 1.1rem;
+}
+.main-heading {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    text-shadow: 0.15rem 0.15rem 0.25rem var(--accent);
+    padding: 1rem;
+    background: linear-gradient(45deg, var(--background-clr) 80%, var(--accent-low-opacity));
+    color: white;
+    margin: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    font-family: serif;
+    color: var(--accent-2);
+}
+h1 {
+    text-align: center;
+}
+li {
+    margin-bottom: 0.25rem;
+}
+p {
+    margin: 0;
+}
+
+/* link styling */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: sans-serif;
+    white-space: pre-wrap; /* CSS3 */    
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */    
+    white-space: -o-pre-wrap; /* Opera 7 */    
+    word-wrap: break-word; /* Internet Explorer 5.5+ */ 
+}
+
+a:hover {
+    text-decoration: underline;
+    transition: color 300ms;
+    color: var(--accent-clr-hvr);
+}
+/* end link styling */
+
+/* end of default  styling for html tags */
+
+
+/* Image styling */
+.image-rounded {
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding: 2rem;
+    border-radius: 10%;
+}
+/* end of Image styling */
+
+
+/* makes whole content appear in middle */
+.main-content {
+    max-width: 900px;
+    margin: auto;
+    padding: 1.1rem;
+}
+/* start of navbar styling */
+.nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    background-color: var(--accent);
+    padding: 1rem;
+    top: 0;
+}
+.nav-menu-item > a {
+    color: var(--background-clr);
+    font-weight: 700;
+    font-family: sans-serif;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+}
+.nav-menu-item > a:hover {
+    background-color: var(--background-clr);
+    color: var(--accent);
+    text-decoration: none;
+}
+.status-nav {
+    position: relative;
+}
+.status-nav::after{
+    content: "NEW";
+    position: absolute;
+    font-style: italic;
+    text-transform: lowercase;
+    animation: new-nav-animation 500ms infinite alternate;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--warning-clr);
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    border-radius: 50%;
+}
+/* end  of navbar styling */
+
+
+/* footer styling */
+.footer {
+    font-size: 0.85rem;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    flex-direction: column;
+}
+.footer > img {
+    width: min-content;
+}
+.footer-images {
+    text-align: center;
+    margin-top: 1rem;
+}
+/* end of footer styling */
+
+.center-text {
+    text-align: center;
+}
+
+/*quote on front page */
+.quote {
+    font-size: 1.5rem;
+    max-width: 600px;
+    text-align: center;
+    margin: auto;
+    font-style: italic;
+}
+.quote::before {
+    content: open-quote;
+}
+.quote::after {
+    content: close-quote;
+}
+@media (min-width: 600px) {
+    .nav-menu {
+        position: sticky;
+    }
+}
+/* heading styling */
+.main-heading::after {
+    content: ".com";
+    text-shadow: none;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}

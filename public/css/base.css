@@ -1,0 +1,226 @@
+:root {
+    --primary-blue: #0000AA;
+    --highlight-yellow: #ffffe0;
+    --text-main: #333;
+    --text-muted: #666;
+    --border-color: #ccc;
+    --bg-hover: #f9f9f9;
+    --bg-main: #ffffff;
+    --bg-panel: #ffffff;
+    --shadow-soft: rgba(0,0,0,0.08);
+    --border-strong: #000;
+    --chart-sky: #5f9cff;
+    --chart-sun: #ffd44d;
+    --chart-moss: #4caf82;
+    --chart-haze: #f3f6ff;
+}
+
+:root[data-theme="dark"] {
+    --primary-blue: #8fb1ff;
+    --highlight-yellow: #2b2410;
+    --text-main: #e6e6e6;
+    --text-muted: #b0b0b0;
+    --border-color: #2b2f38;
+    --bg-hover: #1b1e26;
+    --bg-main: #0f1117;
+    --bg-panel: #151923;
+    --shadow-soft: rgba(0,0,0,0.45);
+    --border-strong: #e6e6e6;
+    --chart-sky: #6f92ff;
+    --chart-sun: #f2c74b;
+    --chart-moss: #5dbd90;
+    --chart-haze: #1b2333;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: var(--text-main);
+    line-height: 1.5;
+    background: var(--bg-main);
+}
+
+/* --- Header & Nav --- */
+.header-title {
+    margin-bottom: 5px;
+    font-size: 32px;
+    word-wrap: break-word;
+    cursor: pointer;
+    font-family: serif;
+    display: flex;
+    align-items: center;
+    color: var(--text-main);
+    text-decoration: none;
+}
+.header-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+.nav-bar {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    margin-bottom: 20px;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.nav-separator {
+    color: var(--border-color);
+}
+.theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+}
+
+/* --- Microblog & List Styles --- */
+.section-header {
+    border-bottom: 1px solid var(--border-strong);
+    margin-bottom: 15px;
+    background-color: var(--bg-hover);
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+}
+
+/* --- Footer Specifics (Restored) --- */
+.footer-container {
+    margin-top: 50px;
+    border-top: 2px solid var(--border-strong);
+    padding-top: 20px;
+}
+
+
+
+/* Footer Nav Grid */
+.footer-nav-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+.footer-column {
+    flex: 1;
+    min-width: 170px;
+}
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 4px 14px;
+}
+.footer-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 14px;
+    /* Add these two lines to fix alignment */
+    display: inline-flex; 
+    align-items: center;
+}
+.footer-heading {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Footer Tag Cloud */
+.footer-tag-cloud {
+    margin: 12px 0 26px;
+}
+.footer-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.footer-tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+}
+.footer-tag-item:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Webrings */
+.webring-section {
+    background-color: var(--highlight-yellow);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+.webring-row {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.webring-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.webring-label {
+    font-weight: bold;
+    min-width: 120px;
+}
+.webring-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;  /* Adds space between the icon and text */
+    text-decoration: none;
+    color: var(--primary-blue);
+}
+
+/* Credits */
+.footer-credits {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+.footer-credits a {
+    color: var(--text-main);
+}

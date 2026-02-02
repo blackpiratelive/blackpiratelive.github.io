@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Search for Perfect Daily Journal App | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">In Search for Perfect Daily Journal App</h2>
+            <span class="authors">Sudip</span>
+            <time class="dt-published" datetime="2022-04-28">
+                April 28, 2022
+            </time>
+
+            <p>To be considered a viable app for my Daily Journal needs it must have following charateristics.</p>
+<ol>
+<li>Decent UI</li>
+<li>Either end to end encrypted if the app is cloud based or data stays locally.</li>
+<li>Cross platform. Including Linux.</li>
+<li>Easy way to export for personal backups.</li>
+<li>Free</li>
+</ol>
+<p>Because of lack of privacy at my home, I had moved away from physical pen and paper diaries and moved completely to digital. It&rsquo;s much easier to hide something online than trying to hide at my home.</p>
+<h2 id="evernote">Evernote</h2>
+<p>At the very begining, circa 2017, I used <a href="https://evernote.com">Evernote</a> Evernote was good back then. The 60mb that you get in free tier of evernote was more than enough for text based notes. I created a Notebook and used to add the date as title. It wasnt perfect. Writting date each and every day as note title is a tedious task. The search continues.</p>
+<h2 id="some-unknown-app">Some Unknown App</h2>
+<p>I found an app from playstore. I dont remember the name.  It was paid but i got it on a deal. Didn&rsquo;t have to pay anything. It was okay. Like not much features. Your data is stored locally. Although it had option to sync to dropbox. I used the sync feature. Sadly I dont think the app is alive. I maybe able to find it if I scroll back to my google play purchase history, but I don&rsquo;t have that much patience. Unfortunately all the entries from that app is gone. I dont remember the droobox
+account either.</p>
+<h2 id="daybook">Daybook</h2>
+<p>Next app that I used was <a href="https://daybook.app">Daybook</a> , it was very minimal and decent app. It had lots of feature but free version was kinda limited. Still the UI and simplicity was the reason for using that app. But at the end one thing that put me off was their privacy policy. It was neither end to encrypted nor it had good privacy policy.</p>
+<h2 id="notion">Notion</h2>
+<p>At this point I was using <a href="https://notion.so/">Notion</a> and started to love it. Notion had so many great features that I loved. Ability to make templates was one of them. Notion also supports basic markdown.  I remember using notion for like two months before the problems starts to appear.
+Notion was online only, that means I cannot write my daily journal if my wifi was off. It doesn&rsquo;t happen that often, but it was a possibility. Also if I go outside for few days, there would be no gurantee if I would be able to connect to the internet. It also bothered me that notion android app was basically a web app. Which means it was laggy, and doesn&rsquo;t feel as smooth as native app.  The last thing that made me switch to Standard Notes was bad security and
+privacy. Notion also is not end to end encrypted. They don&rsquo;t even offer 2 step verification.</p>
+<h2 id="standard-notes">Standard Notes</h2>
+<p><a href="https://standardnotes.com">Standard Notes</a> was very good. I used their free version only, but still it was better than all previous apps that I have used. Security and privacy is great. They use end to end encryprion, and yes you cannot recover your password if you have lost it. They had apps for all the platforms. You can lock any particular note with another pin. It has theming support. If you get their premium version you&rsquo;d get access to extensions which extends it&rsquo;s
+functionality.  I used it for a very long time before considering to switch.
+Their free version is just plain text, nothing else. Sure you can use community made extensions to get markdown editors or different themes, but it wasn&rsquo;t as good. There were also no support for images, I  do not know if images support was avilable on paid plans or not. There were no support for templates. Themes are quite a bit limited on free version. These were the main reason I didn&rsquo;t stick with standard notes.</p>
+<h2 id="joplin">Joplin</h2>
+<p>After I was bored I switched to <a href="https://joplinapp.org/">Joplin</a>. It is also one very good app. It supports templates, there is few options when it comes to themes, it also has plugin support. I used joplin for a good amount of time, but I don&rsquo;t remember much about it because it has nothing interesting about it. It is opensource and by deafult does not sync to any cloud, (I think they have a paid plan now that lets you to sunc to their cloud). Even though their desktop app was decent
+android app sucked. The UI looks so outdated, it doesn&rsquo;t have all the features that the desktop version has. Android app is also not very smooth. It has the ability to sync to dropbox but the sync is so slow. And if you have enabled end to end encryption through the settings, good luck getting it working properly. Keep in mind that most problems I had with this app is in their android app, beacuse thats what I used to use to write my journals.</p>
+<h2 id="obsidian">Obsidian</h2>
+<p><a href="https://obsidian.md">Obsidian</a> is the current app I am using. I absolutely love this app. It uses normal markdown files for each and every note, you can create normal folders inside obsidian and it would show the folders. Because each and individual notes are just simple .md files you can open them using any kind of text editor you prefer. Right now I am using Vim to edit this text. Obsidian is not open source but it can work offline, only time it needs to connect to the internet
+is when downloading themes or plugins. Yes it supports themes, and I am pretty sure you can add your own css to obsidian. It also has template feature inbuilt, you can make it even more powerful with plugins. You can link your notes to another notes(Just like Roam Research, but you can only link a particular note and not a paragraph), and you can view a graph view which shows which note is linked with which. It is useful for me in so many cases, and not a lot of apps does that.
+Everything is offline in obsidain by default, which may sound like a drawback if you want to sync your data with multiple devices, but it is not. Sure it is not as straightforward as installing an app and logging in, but you can make it work. I personally use DropBox (I would move to nextcloud once I get my nextcloud server running on raspberry pi) to sync my files. In linux and windows you can use the official dropbox app to sync the obsidian folder, and on Android you can use AutoSync
+to sync to dropbox.
+Obsidian can be very powerful if you want it to be, but it can be simple too. Third party plugins can extend the functionality of the app. <em>Plugins are also supported by their android app!!! How cool is that?</em>
+Obsidian is very good at what it does. But by no means it is perfect. It is bit tricky to set up sync on your devices,(like I have mentioned above) and even if you are able to set it up properly, you might get conflicts. It doesn&rsquo;t bother me because I am used to it at this point but I can see how this would make others annoyed.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There  is so many things an app needs to get right before I would use it for long, and yes I may not be the &lsquo;general user&rsquo;, So if you use any of the apps from above tell me what made you stick with it?
+I am happy with obsidian as of now and not planning to switch anytime soon. Maybe someday when I learn vim or emacs enough to make obsidian obselete.</p>
+<p>This post was last updated on: 27/04/2022</p>
+
+
+            
+            <p class="post-tags">
+                
+                <a class="hashtag" href="/tags/journaling">
+                    <span>#</span><span>journaling</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/software">
+                    <span>#</span><span>software</span>
+                </a>
+                
+            </p>
+            
+        </article>
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

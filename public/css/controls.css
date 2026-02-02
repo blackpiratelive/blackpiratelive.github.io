@@ -1,0 +1,75 @@
+/* Controls Row (Search + Stats) */
+.blog-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.stats-pill {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-color);
+    padding: 0 15px;
+    height: 42px; /* Match search input height approximately */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* --- New Blog List Styles --- */
+
+/* Hero Section */
+.blog-hero {
+    text-align: center;
+    padding: 20px 0 40px 0;
+}
+.blog-hero h1 {
+    font-family: serif;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    color: var(--primary-blue);
+}
+.blog-hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Controls (Search + Stats) */
+.blog-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.search-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.stats-pill {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-color);
+    padding: 0 15px;
+    height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text-muted);
+    white-space: nowrap;
+}

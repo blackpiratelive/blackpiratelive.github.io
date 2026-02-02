@@ -1,0 +1,162 @@
+.tag-directory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.tag-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-card-header {
+    margin-bottom: 10px;
+    background: var(--highlight-yellow);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-card-title {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.tag-count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* --- Tag Page --- */
+.tag-page {
+    margin-top: 10px;
+}
+.tag-hero {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+.tag-kicker {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.tag-title {
+    margin: 6px 0 12px;
+    font-size: 2rem;
+    font-family: serif;
+    color: var(--text-main);
+}
+.tag-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-hover);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.tag-section {
+    margin-top: 40px;
+}
+.tag-section-title {
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.05rem;
+    color: var(--text-main);
+}
+.tag-posts-list .bearblog-item {
+    border-bottom: 1px dashed var(--border-color);
+}
+.tag-posts-list .bearblog-date {
+    font-family: monospace;
+}
+.tag-post-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.tag-thoughts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.tag-thought-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-color);
+}
+.tag-thought-time {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: monospace;
+}
+.tag-thought-time a {
+    color: inherit;
+    text-decoration: none;
+}
+.tag-thought-time a:hover {
+    text-decoration: underline;
+}
+.tag-thought-title {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+.tag-thought-body {
+    font-size: 15px;
+    line-height: 1.6;
+}
+.tag-thought-body p {
+    margin: 0 0 10px;
+}
+.tag-thought-body p:last-child {
+    margin-bottom: 0;
+}
+.tag-thought-body a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+.tag-gallery .masonry-grid {
+    column-count: 2;
+}
+
+@media (max-width: 700px) {
+    .tag-hero {
+        margin-bottom: 24px;
+    }
+    .tag-thought-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .tag-gallery .masonry-grid {
+        column-count: 1;
+    }
+}

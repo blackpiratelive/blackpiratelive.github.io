@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to use anki beginners guide | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">How to use anki beginners guide</h2>
+            <span class="authors">Sudip</span>
+            <time class="dt-published" datetime="2026-01-23">
+                January 23, 2026
+            </time>
+
+            <p>Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.</p>
+<h2 id="1-install-anki-and-sync">1. Install Anki and sync</h2>
+<p>Download Anki for desktop first (Windows/Mac/Linux). The desktop app is where you create and edit cards. Then create a free AnkiWeb account so your cards sync across devices. The mobile apps are optional, but very useful for reviews.</p>
+<h2 id="2-learn-the-three-main-ideas">2. Learn the three main ideas</h2>
+<p>Before you make cards, understand these three words:</p>
+<ul>
+<li><strong>Deck</strong>: a folder that holds cards (example: &ldquo;Biology&rdquo; or &ldquo;Vocabulary&rdquo;).</li>
+<li><strong>Note</strong>: the information you type (front/back, or cloze fields).</li>
+<li><strong>Card</strong>: what you actually review. One note can create multiple cards.</li>
+</ul>
+<p>If you add one note with a front and a back, Anki makes one card. If you use a cloze note, one note can make several cards.</p>
+<h2 id="3-create-your-first-deck">3. Create your first deck</h2>
+<ol>
+<li>Open Anki desktop.</li>
+<li>Click <strong>Create Deck</strong>, name it (example: &ldquo;Anki Basics&rdquo;).</li>
+<li>Click <strong>Add</strong> and choose the default note type &ldquo;Basic&rdquo;.</li>
+<li>Type a simple question and answer.</li>
+<li>Click <strong>Add</strong> again to save.</li>
+</ol>
+<p>That’s it. You now have a deck and at least one card.</p>
+<h2 id="4-make-good-cards-simple-rules">4. Make good cards (simple rules)</h2>
+<p>Bad cards feel heavy and boring. Good cards feel quick and clear.</p>
+<ul>
+<li>Keep <strong>one fact per card</strong>. If a card feels long, split it.</li>
+<li>Use <strong>short questions</strong> and <strong>short answers</strong>.</li>
+<li>Add <strong>context only when needed</strong>.</li>
+<li>Prefer <strong>recall</strong> over recognition. Ask “What is X?” instead of “Is X true?”</li>
+</ul>
+<p>Example:</p>
+<ul>
+<li>Bad: &ldquo;Explain everything about mitochondria.&rdquo;</li>
+<li>Good: &ldquo;What is the main function of mitochondria?&rdquo;</li>
+</ul>
+<h2 id="5-use-cloze-deletions-for-lists">5. Use cloze deletions for lists</h2>
+<p>Lists are painful if you use only basic cards. Cloze notes are better.</p>
+<p>Example cloze:</p>
+<p><code>The capital of France is {{c1::Paris}}.</code></p>
+<p>Anki will hide the word &ldquo;Paris&rdquo; and turn it into a card.</p>
+<h2 id="6-keep-reviews-small-but-daily">6. Keep reviews small but daily</h2>
+<p>Anki only works if you review. Start small and stay consistent.</p>
+<ul>
+<li>New cards per day: <strong>10–20</strong> is enough.</li>
+<li>Review every day. Missing a day adds stress.</li>
+<li>If reviews pile up, reduce new cards for a few days.</li>
+</ul>
+<h2 id="7-tags-and-images">7. Tags and images</h2>
+<p>Use tags to group your cards by topic or chapter. Images are great for visual memory. Just don’t overload your cards with too much text or too many screenshots.</p>
+<p>If you add images, keep the question simple and let the picture do the work.</p>
+<h2 id="8-sync-and-backup">8. Sync and backup</h2>
+<p>Press the <strong>Sync</strong> button often. The sync is your backup and keeps all devices updated. If you do a big import or edit, sync right after.</p>
+<h2 id="9-common-beginner-mistakes">9. Common beginner mistakes</h2>
+<ul>
+<li>Making huge cards that are hard to answer.</li>
+<li>Adding too many new cards too fast.</li>
+<li>Skipping reviews for “just a day.”</li>
+<li>Downloading massive shared decks instead of building your own.</li>
+</ul>
+<p>Anki works best when you create cards from your own notes and textbooks.</p>
+<h2 id="10-try-a-flashcard-interactive">10. Try a flashcard (interactive)</h2>
+<p>Here is a sample flashcard using a custom shortcode:</p>
+
+
+
+<div class="anki-card" id="flashcard-0">
+    <div class="anki-card__inner" role="button" tabindex="0" aria-pressed="false">
+        <div class="anki-card__face anki-card__front">
+            What does spaced repetition help you do?
+        </div>
+        <div class="anki-card__face anki-card__back">
+            Remember information longer with fewer reviews.
+        </div>
+    </div>
+    <button class="anki-card__show" type="button">Show Answer</button>
+    <div class="anki-card__actions" aria-hidden="true">
+        <button class="anki-card__rate anki-card__rate--again" type="button">
+            Again <span class="anki-card__time">1m</span>
+        </button>
+        <button class="anki-card__rate anki-card__rate--hard" type="button">
+            Hard <span class="anki-card__time">10m</span>
+        </button>
+        <button class="anki-card__rate anki-card__rate--good" type="button">
+            Good <span class="anki-card__time">3d</span>
+        </button>
+        <button class="anki-card__rate anki-card__rate--easy" type="button">
+            Easy <span class="anki-card__time">4d</span>
+        </button>
+    </div>
+    <div class="anki-card__message" role="status" aria-live="polite"></div>
+</div>
+<style>
+    .anki-card {
+        max-width: 520px;
+        margin: 1.5rem auto;
+        text-align: center;
+        color: #1f1f1f;
+        font-family: "Roboto", "Noto Sans", "Arial", sans-serif;
+    }
+    .anki-card__inner {
+        width: 100%;
+        min-height: 200px;
+        padding: 0;
+        border: 0;
+        border-radius: 12px;
+        background: transparent;
+        display: block;
+        cursor: pointer;
+        perspective: 1200px;
+        transform-style: preserve-3d;
+        position: relative;
+        outline: none;
+    }
+    .anki-card__face {
+        border-radius: 12px;
+        border: 1px solid #d9d9d9;
+        background: #f7f7f7;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+        padding: 1.5rem;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        transition: transform 0.45s ease, box-shadow 0.45s ease;
+    }
+    .anki-card__front {
+        transform: rotateY(0deg);
+    }
+    .anki-card__back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: rotateY(180deg);
+        background: #eef2ff;
+    }
+    .anki-card.is-revealed .anki-card__front {
+        transform: rotateY(-180deg);
+    }
+    .anki-card.is-revealed .anki-card__back {
+        transform: rotateY(0deg);
+    }
+    .anki-card__inner:focus-visible .anki-card__face {
+        box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.35), 0 10px 26px rgba(0, 0, 0, 0.12);
+    }
+    .anki-card__show {
+        margin-top: 0.9rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        border: 1px solid #0d6efd;
+        background: #0d6efd;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .anki-card__show:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(13, 110, 253, 0.25);
+    }
+    .anki-card__show:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    .anki-card__actions {
+        margin-top: 0.75rem;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+    .anki-card.is-revealed .anki-card__actions {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .anki-card.is-revealed .anki-card__show {
+        display: none;
+    }
+    .anki-card__rate {
+        border: 0;
+        border-radius: 9px;
+        padding: 0.6rem 0.4rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+    }
+    .anki-card__rate--again {
+        background: #f44336;
+    }
+    .anki-card__rate--hard {
+        background: #ff9800;
+    }
+    .anki-card__rate--good {
+        background: #4caf50;
+    }
+    .anki-card__rate--easy {
+        background: #03a9f4;
+    }
+    .anki-card__rate.is-selected {
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+    }
+    .anki-card__time {
+        font-size: 0.8rem;
+        font-weight: 500;
+        opacity: 0.85;
+    }
+    .anki-card__message {
+        min-height: 1.2rem;
+        margin-top: 0.6rem;
+        font-size: 0.85rem;
+        color: #444;
+    }
+    @media (max-width: 600px) {
+        .anki-card__face {
+            font-size: 1rem;
+            padding: 1.25rem;
+        }
+        .anki-card__actions {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    html[data-theme="dark"] .anki-card__face {
+        border-color: #3c3c3c;
+        background: #2a2a2a;
+        color: #f1f1f1;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    html[data-theme="dark"] .anki-card__back {
+        background: #232a38;
+    }
+    html[data-theme="dark"] .anki-card__show {
+        border-color: #4da3ff;
+        background: #2c77d6;
+    }
+    html[data-theme="dark"] .anki-card__show:hover {
+        box-shadow: 0 6px 16px rgba(44, 119, 214, 0.35);
+    }
+    html[data-theme="dark"] .anki-card__message {
+        color: #c7c7c7;
+    }
+</style>
+<script>
+    (function () {
+        const root = document.getElementById("flashcard-0");
+        if (!root) {
+            return;
+        }
+        const inner = root.querySelector(".anki-card__inner");
+        const showButton = root.querySelector(".anki-card__show");
+        const rateButtons = root.querySelectorAll(".anki-card__rate");
+        const message = root.querySelector(".anki-card__message");
+        if (!inner) {
+            return;
+        }
+        const reveal = () => {
+            if (root.classList.contains("is-revealed")) {
+                return;
+            }
+            root.classList.add("is-revealed");
+            inner.setAttribute("aria-pressed", "true");
+            if (showButton) {
+                showButton.setAttribute("aria-hidden", "true");
+            }
+        };
+        if (showButton) {
+            showButton.addEventListener("click", reveal);
+        }
+        inner.addEventListener("click", reveal);
+        inner.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                reveal();
+            }
+        });
+        rateButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                rateButtons.forEach((item) => item.classList.remove("is-selected"));
+                button.classList.add("is-selected");
+                if (message) {
+                    const label = button.querySelector(".anki-card__time");
+                    const timeText = label ? label.textContent.trim() : "";
+                    message.textContent = timeText
+                        ? `Your card will again appear ${timeText} later.`
+                        : "Your card will again appear later.";
+                }
+            });
+        });
+    })();
+</script>
+
+<h2 id="final-tip">Final tip</h2>
+<p>Anki is a habit tool, not magic. Keep your cards short, review daily, and your memory will slowly build up. Start small, stay consistent, and you will see results within a few weeks.</p>
+
+
+            
+            <p class="post-tags">
+                
+                <a class="hashtag" href="/tags/anki">
+                    <span>#</span><span>anki</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/study">
+                    <span>#</span><span>study</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/guide">
+                    <span>#</span><span>guide</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/flashcards">
+                    <span>#</span><span>flashcards</span>
+                </a>
+                
+            </p>
+            
+        </article>
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

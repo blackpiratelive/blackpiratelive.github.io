@@ -1,24 +1,128 @@
 {{ define "main" }}
 <div class="container">
+  <!-- Intro Box -->
+  <div class="intro-box">
+    {{ $me := resources.Get "img/me-2.jpg" }}
+    {{ if $me }}
+    {{ $me = $me.Resize "160x webp q90" }}
+    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img" />
+    {{ end }}
+    <h1>Welcome to BlackPirateX</h1>
+    <p class="intro-text">
+      Hey there! I'm Sudip. Thanks for stopping by my little corner of the internet.
+      I made this page to store things I like, free from algorithms.
+      I'm in my early twenties, finished Zoology graduation in 2025, now preparing for govt job exams.
+      Building websites is my hobby. I love ducks and cats.
+    </p>
+    <div style="clear: both;"></div>
+  </div>
+
+  <!-- Two Column: About + Currently -->
+  <div class="home-grid">
+    <section class="home-section">
+      <h2 class="section-title">About Me</h2>
+      <p>Who am I? Almost extroverted, but definitely like solitude.</p>
+      <p>I spend a lot of time working with tech stuff but I also study, and sometimes when I have a chance I travel.
+        Good balance I guess?</p>
+      <iframe src="https://guestbook.blackpiratex.com/widget.html" width="100%" height="50" class="home-guestbook"
+        title="Guestbook">
+      </iframe>
+    </section>
+
+    <section class="home-section">
+      <h2 class="section-title">Currently</h2>
+      <div class="currently-box">
+        Preparing for exams. Graduate in Zoology from Bankura Christian College. Now living in Midnapore.
+      </div>
+    </section>
+  </div>
+
+  <!-- Projects + Likes in Grid -->
+  <div class="home-grid">
+    <section class="home-section">
+      <h2 class="section-title">My Projects</h2>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <td><strong>Diary</strong></td>
+            <td>Offline daily journal app</td>
+            <td><a href="https://diary.sudipx.in">Visit</a></td>
+          </tr>
+          <tr>
+            <td><strong>Mood Tracker</strong></td>
+            <td>10 levels + activity logging</td>
+            <td><a href="https://mood-tracker.blackpiratex.com">Visit</a></td>
+          </tr>
+          <tr>
+            <td><strong>Book Tracker</strong></td>
+            <td>Track books + highlights</td>
+            <td><a href="https://notes.blackpiratex.com">Visit</a></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <h2 class="section-title">What I Like</h2>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <td><strong>Computer</strong></td>
+            <td>Building stuff, learning how things work</td>
+          </tr>
+          <tr>
+            <td><strong>Travelling</strong></td>
+            <td>Exploring cities, meeting people</td>
+          </tr>
+          <tr>
+            <td><strong>Reading</strong></td>
+            <td>Story books, getting back into habit</td>
+          </tr>
+          <tr>
+            <td><strong>Photography</strong></td>
+            <td>Portraits and landscapes</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact -->
+  <section class="home-section" style="margin-bottom: 8px;">
+    <h2 class="section-title">Contact</h2>
+    <p>Email: <strong>sudip (at) blackpiratex.com</strong> | <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+    </p>
+  </section>
+
+  <!-- Main 2-Column Layout -->
   <div class="layout">
     <aside class="col">
       <h2 class="section-title">Site Directory</h2>
       <ul class="meta-list">
         {{ range .Site.Sections }}
-          {{ $count := len (where $.Site.RegularPages "Section" .Section) }}
-          <li><a href="{{ .Permalink }}">{{ .Title }}</a> ({{ $count }})</li>
+        {{ $count := len (where $.Site.RegularPages "Section" .Section) }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a> ({{ $count }})</li>
         {{ end }}
       </ul>
-      <h2 class="section-title">Quick Links</h2>
+      <h2 class="section-title" style="margin-top: 8px;">Quick Links</h2>
       <ul class="meta-list">
-        <li><a href="{{ "/index.xml" | relURL }}">RSS Feed</a></li>
-        <li><a href="{{ "/sitemap.xml" | relURL }}">Sitemap</a></li>
-        <li><a href="{{ "/blog/" | relURL }}">Blog Index</a></li>
+        <li><a href="{{ " /index.xml" | relURL }}">RSS Feed</a></li>
+        <li><a href="{{ " /sitemap.xml" | relURL }}">Sitemap</a></li>
+        <li><a href="{{ " /blog/" | relURL }}">Blog Index</a></li>
       </ul>
+
+      {{ with .Site.Taxonomies.tags }}
+      <h2 class="section-title" style="margin-top: 8px;">Tags</h2>
+      <ul class="meta-list">
+        {{ range first 30 (sort .Alphabetical) }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
+        {{ end }}
+      </ul>
+      {{ end }}
     </aside>
 
     <section class="col">
-      <div class="panel panel--blog">
+      <div class="panel">
         <h2 class="section-title">Latest Writing</h2>
         <div class="table-wrap">
           <table class="blog-table">
@@ -29,73 +133,53 @@
               </tr>
             </thead>
             <tbody>
-              {{ range first 8 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
-                <tr>
-                  <td>{{ .Date.Format "2006-01-02" }}</td>
-                  <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
-                </tr>
+              {{ range first 10 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
+              <tr>
+                <td>{{ .Date.Format "01-02" }}</td>
+                <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+              </tr>
               {{ end }}
             </tbody>
           </table>
         </div>
-        <div><a href="{{ "/blog/" | relURL }}">Read all posts →</a></div>
+        <div style="margin-top: 4px;"><a href="{{ " /blog/" | relURL }}">Read all posts →</a></div>
       </div>
 
-      <div class="panel panel--thoughts">
+      <div class="panel">
         <h2 class="section-title">Recent Thoughts</h2>
         <div class="thoughts-feed">
-          {{ range first 8 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
-            <div class="thought-item">
-              <div class="thought-meta">{{ .Date.Format "Jan 02, 2006 15:04" }}</div>
-              <div>{{ .Content | plainify | truncate 140 }}</div>
-              <div><a href="{{ .RelPermalink }}">Open</a></div>
-            </div>
+          {{ range first 6 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+          <div class="thought-item">
+            <span class="thought-meta">{{ .Date.Format "Jan 02" }}</span> —
+            {{ .Content | plainify | truncate 100 }}
+            <a href="{{ .RelPermalink }}">[open]</a>
+          </div>
           {{ end }}
         </div>
-        <div><a href="{{ "/thoughts/" | relURL }}">View all thoughts →</a></div>
+        <div style="margin-top: 4px;"><a href="{{ " /thoughts/" | relURL }}">View all →</a></div>
       </div>
 
-      <div class="panel panel--gallery">
+      <div class="panel">
         <h2 class="section-title">Latest Clicks</h2>
         <div class="gallery-grid">
-          {{ range first 9 (sort (where .Site.RegularPages "Section" "gallery") "Date" "desc") }}
-            {{ $img := .Params.thumburl | default "" }}
-            {{ if not $img }}
-              {{ $img = .Params.image.thumbnail.url | default .Params.image.original.url }}
-            {{ end }}
-            <a href="{{ .RelPermalink }}">
-              {{ if $img }}
-                <img src="{{ $img }}" alt="{{ .Title }}" loading="lazy">
-              {{ else }}
-                <span>{{ .Title }}</span>
-              {{ end }}
-            </a>
+          {{ range first 10 (where .Site.RegularPages "Section" "gallery") }}
+          {{ if .Params.thumburl }}
+          <a href="{{ .RelPermalink }}">
+            <img src="{{ .Params.thumburl }}" alt="{{ .Title }}" loading="lazy">
+          </a>
+          {{ end }}
           {{ end }}
         </div>
-        <div><a href="{{ "/gallery/" | relURL }}">Browse gallery →</a></div>
+        <div style="margin-top: 4px;"><a href="{{ " /gallery/" | relURL }}">Browse gallery →</a></div>
       </div>
     </section>
+  </div>
 
-    <aside class="col">
-      <h2 class="section-title">Recent Pages</h2>
-      <ul class="post-list">
-        {{ range first 12 (sort .Site.RegularPages "Date" "desc") }}
-          <li>
-            <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </li>
-        {{ end }}
-      </ul>
-
-      {{ with .Site.Taxonomies.tags }}
-        <h2 class="section-title">Tags</h2>
-        <ul class="meta-list">
-          {{ range first 25 (sort .Alphabetical) }}
-            <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
-          {{ end }}
-        </ul>
-      {{ end }}
-    </aside>
+  <!-- Webring -->
+  <div class="webring-section">
+    <iframe src="https://webring.blackpiratex.com/classic-banner.html" width="100%" height="80" frameborder="0"
+      scrolling="no" class="home-webring">
+    </iframe>
   </div>
 </div>
 {{ end }}

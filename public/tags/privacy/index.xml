@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privacy on BlackPirateX</title>
+    <link>http://localhost:1314/tags/privacy/</link>
+    <description>Recent content in Privacy on BlackPirateX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 May 2022 19:31:47 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1314/tags/privacy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simplelogin - Best Way to Manage Your Emails</title>
+      <link>http://localhost:1314/blog/simplelogin-best-way-to-manage-your-emails/</link>
+      <pubDate>Sat, 28 May 2022 19:31:47 +0530</pubDate>
+      <guid>http://localhost:1314/blog/simplelogin-best-way-to-manage-your-emails/</guid>
+      <description>SimpleLogin is a email aliasing service. Which basically means you can create as many emails as you want* and all those emails would land on single inbox. I&amp;rsquo;ve been using SimpleLogin for over a year now. Here&amp;rsquo;s my evaluation of the service. My Use Case As someone who cares about privacy, and had personal emails leaked in data breach previously, I treat emails just like my passwords. I don&amp;rsquo;t want fifty different companies to know my email address just so they can send me marketing emails.</description>
+    </item>
+    <item>
+      <title>Using Degoogled Phone Isn&#39;t as Hard as You Might Think</title>
+      <link>http://localhost:1314/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</link>
+      <pubDate>Tue, 17 May 2022 10:27:24 +0530</pubDate>
+      <guid>http://localhost:1314/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</guid>
+      <description>What is a degoogled phone? Vanilla Android is FOSS (Free and OpenSource Software), but the android that you get preinstalled in most phones isn&amp;rsquo;t completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn&amp;rsquo;t ship with Google Play Services by default.</description>
+    </item>
+  </channel>
+</rss>

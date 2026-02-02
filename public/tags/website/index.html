@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+
+
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">#Website</h2>
+            <p class="thoughts-meta">60 items across the site.</p>
+
+            
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Blog posts</h3>
+                <ul class="writeas-list">
+                    
+                    <li class="writeas-list-item">
+                        <span class="writeas-list-date">2022-08-25</span>
+                        <div class="writeas-list-main">
+                            <a class="writeas-list-title" href="/blog/making-microblogging-website-using-hugo-and-netlify/">Making Microblogging Website Using Hugo &amp; Netlify</a>
+                            <span class="writeas-list-tags">7 min read</span>
+                        </div>
+                    </li>
+                    
+                    <li class="writeas-list-item">
+                        <span class="writeas-list-date">2022-08-25</span>
+                        <div class="writeas-list-main">
+                            <a class="writeas-list-title" href="/blog/making-twitter-using-hugo-and-netlify/">Making Twitter Using Hugo &amp; Netlify</a>
+                            <span class="writeas-list-tags">7 min read</span>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </section>
+            
+
+            
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Thoughts</h3>
+                <div class="thoughts-list">
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2026/2026-01-23-untitled-691467/">2026-01-23 23:54</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>gemini is just better at web design</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2026/2026-01-13-01-28-26/">2026-01-13 01:28</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Huge update to my website, I am consolidating everything. No more multiple pages. One website for everything.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-02-20-07-48/">2026-01-06 07:50</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Trying to make an app that would help me to push updates to this website. Hope it works.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2026/2026-01-06-07-49-23/">2026-01-06 07:49</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>New blog post, How I use AI in my studies. <a href="https://blog.blackpiratex.com/how-i-use-ai-in-studies/">https://blog.blackpiratex.com/how-i-use-ai-in-studies/</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-11-24-00-50-03/">2025-11-24 00:50</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I made a Journal webapp for my personal use, it works offline, can be installed.
+You can use it: <a href="https://diary.sudipx.in">https://diary.sudipx.in</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/untitled/">2025-11-20 21:15</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Okay so finally the web app  is somewhat complete. I am happy. Next time I&rsquo;ll think of adding images.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-241593/">2025-09-03 01:47</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I literally stopped using gitjournal, this custom made website just to post to my status is cool af. Im yet to add a domain.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-09-03-untitled-913721/">2025-09-03 01:41</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Tags and tags page does not work rn. But yeah not gonna solve it today. Good night.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-30-untitled-244579/">2025-08-30 19:47</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>After a long work. Its done. My ui is live. It is much better than posting through gitjournal.
+I&rsquo;ll add domains and fix the timing tomorrow. Good night for now. Its late.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-26_4/">2025-08-26 18:51</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I have updated my blog ui. It now looks like NCERT book. I have attached the images below.
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/cf1f519eae7aa781e5b216511266b277.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/cf1f519eae7aa781e5b216511266b277.jpg</a>
+            <span style="color: var(--text-muted);">(1600x1028)</span>
+        </div>
+        <a href="/img/cf1f519eae7aa781e5b216511266b277.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/cf1f519eae7aa781e5b216511266b277_hu8de656ba2f27f7743ca35a21d31b68c6_73784_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="64"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/70d422716a52b64d80fa34c3b2d884aa.jpg" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/70d422716a52b64d80fa34c3b2d884aa.jpg</a>
+            <span style="color: var(--text-muted);">(1600x1046)</span>
+        </div>
+        <a href="/img/70d422716a52b64d80fa34c3b2d884aa.jpg" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/70d422716a52b64d80fa34c3b2d884aa_hu6ac7e5ada740e87c162901a25ed25651_158340_100x0_resize_q50_h2_box.webp" 
+                width="100"
+                height="65"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-26_1/">2025-08-26 17:30</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>You can check my website analytics <a href="https://simpler-69bpx.vercel.app/">here</a>. I have self made, this using AI, vercel functions and Turso db.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-24_1/">2025-08-24 18:49</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>This should fix all errors. Hello from the website.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-24/">2025-08-24 18:08</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>My website is now fully integrated with Mastodon. Any new post on this website will be posted automatically to my mastodon account.
+Currently plain text, no hyperlinks or images.
+To the people who&rsquo;s seeing it on mastodon and not on my website, well Hi, nice to meet you.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-23-19-34-16/">2025-08-23 19:34</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I have made a website for shortening url. Heres what looks like <a href="/img/a36c63cc246b1206477aac1950b1b9b9.png">Image</a>.
+Check one url from it: <a href="https://go.blackpiratex.com/scsb6C4">https://go.blackpiratex.com/scsb6C4</a>
+Password: password</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-23-19-32-29/">2025-08-23 19:32</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I have made a url shortner site for my personal use. It uses vercel functions and turso db. Here is what it looks like.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-20-20-05-11/">2025-08-20 20:05</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I am making a social media webisite. Right now It is very basic. Here is a screenshot. It also has live chat feature using Ably.</p>
+<p><a href="/img/3336fc18220da8e562e02333e449115c.png">Screenshot 1</a>
+<a href="/img/486b8b1e2e5ee8c735f1f4d470f4d1d6.png">screenshot 2</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-19-03-15-55/">2025-08-19 03:15</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>My gallery website finally has a functional like button. I am awake till now because of that. Addiction baby!</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-16-23-19-30/">2025-08-16 23:19</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>New Blog post: Ranchi Experience.</p>
+<p>I went to Ranchi few days ago, here is some key insights.</p>
+<p>Has a video inside it.
+<a href="https://blog.blackpiratex.com/ranchi-experience/">https://blog.blackpiratex.com/ranchi-experience/</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-12-20-16-46/">2025-08-12 20:16</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>There is update on websites. The music.blackpiratex.com has been revamped. I have made a web app using gemini. <a href="https://last-fm-app.netlify.app/">https://last-fm-app.netlify.app/</a> If i get bored ill make again.</p>
+<p><a href="/img/2366357fd5c1e1ed8c5cc048d2720173.png">View Screenshot #1</a></p>
+<p><a href="/img/f30b6d8baf4251f7d5f557bbf7a47720.png">View Screenshot #2</a></p>
+<p><a href="/img/5c3864ee444534143bd8a470f6f5c597.png">View Screenshot #3</a></p>
+<p><a href="/img/b1c0cbdc5f90b6b45ea73bde6ec76e4a.png">View Screenshot #4</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-01-20-54-45/">2025-08-01 20:54</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Ideas that i may wanna implement.</p>
+<ul>
+<li>Timeline or Calendar View: -
+Generate a calendar heatmap showing volume of posts per day/month (e.g. GitHub‑style activity grid) or a vertical timeline view for easier browsing.</li>
+<li>Search or Filterable UI:-
+Install client-side search (like Algolia/Tipue or simple Lunr.js) to allow users to search within statuses or filter by keywords, tags, or date.</li>
+<li>Author &amp; Metadata Display:-
+Although it’s your personal feed, optionally display additional metadata: device used, approximate mood (e.g. emoji), location (if relevant), or a sortable “reaction” metric.</li>
+<li>Random Thought&quot; Generator:-
+Add a button: “Give me a random thought”
+It loads a random status using Hugo’s .Shuffle or JavaScript.</li>
+<li>“Printed Mode”:- Add a /print version of your feed:
+Clean, typographic-only version
+Could be printed and saved as an annual “status diary”. Bonus points for cover page + yearly summaries</li>
+<li>A goals tracker. Make a workflow to upload study times to website.</li>
+<li>mood tracker?</li>
+<li>audio and video support?</li>
+</ul>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-01-20-46-42/">2025-08-01 20:46</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>The yearly archive does not work. It would be added once i get time some other day.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-08-01-20-32-56/">2025-08-01 20:32</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Website looks like this now;)
+<a href="/img/9b89f85282589dca33e61e124300ee62.png">Click to view image</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-31-20-58-30/">2025-07-31 20:58</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Did some minor improvements that ought to speed up the website. Lowered the image quality, haha</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-29-20-57-53/">2025-07-29 20:57</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Website now looks like this. All thanks to Gemini.
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/875a6175000dab980bec2f8a51923a7b.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/875a6175000dab980bec2f8a51923a7b.png</a>
+            <span style="color: var(--text-muted);">(864x1872)</span>
+        </div>
+        <a href="/img/875a6175000dab980bec2f8a51923a7b.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/875a6175000dab980bec2f8a51923a7b_hud3583b15bafd8e6524568f41e601c68f_202642_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="217"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-26-00-03-56/">2025-07-26 00:03</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Uploaded some of my previous dream entries. Check it out:
+<a href="https://blog.blackpiratex.com/tags/dream/">https://blog.blackpiratex.com/tags/dream/</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-25-23-14-58/">2025-07-25 23:14</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>New blog post: Acievements in College Life
+<a href="https://blog.blackpiratex.com/achievements-in-college-life/">https://blog.blackpiratex.com/achievements-in-college-life/</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-25-20-41-51/">2025-07-25 20:41</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Website now uses Glassmorphic design, hehe.
+Use desktop for best experience.
+Give me feedback as where to improve.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-24-00-48-00/">2025-07-24 00:48</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Vote fast.
+<a href="https://strawpoll.com/embed/kjn1DmaJ2yQ">https://strawpoll.com/embed/kjn1DmaJ2yQ</a></p>
+<!-- raw HTML omitted -->
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-07-07-00-10-59/">2025-07-07 00:10</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Added gallery functionality to this website. Im so sleepy bye</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2025/2025-03-27-17-16-28/">2025-03-27 17:16</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Hugo version of this website has been updated.
+Now runs on 0.145.0</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2024/2024-12-04-17-42-06/">2024-12-04 17:42</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I made a website to list my study notes. It&rsquo;s at its infancy. Check here <a href="https://english.sn.blackpiratex.com/">https://english.sn.blackpiratex.com/</a>
+The SSL cert should be working few mins later.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2024/2024-11-03-01-41-10/">2024-11-03 01:41</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I was depressed so I revamed the home website. <a href="https://blackpiratex.com/bookmarks">Bookmarks</a> now has more links.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2024/2024-03-08-09-11-38/">2024-03-08 09:11</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Added:</p>
+<ul>
+<li>Chatbox for visitors</li>
+<li>Featured gallery section on front page.</li>
+<li>Favourite blogs in bookmarks section</li>
+</ul>
+<p>Minor fixes also.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2024/2024-01-22-02-27-16/">2024-01-22 02:27</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Added 4 more books in notes website. Total books 16. The hugo version of notes website has been upgraded to version 0.121.2. latest features are used. The book page now has book cover, background has a oval shape which matches the cover image color. Book title background also matches the book cover color. Good night.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-07-02-01-07-12/">2023-07-02 01:07</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>New blog post: <a href="https://blog.blackpiratex.com/the-hyprland-experience/">The Hyprland Experience</a>.
+Also blog website got a redesign.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-05-06-20-44-45/">2023-05-06 20:44</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Revamped my whole gallery website. Can&rsquo;t figure out how to remove the extra margin on mobile.</p>
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1dcc15862603d884095b57b553c753b7.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1dcc15862603d884095b57b553c753b7.png</a>
+            <span style="color: var(--text-muted);">(1080x2340)</span>
+        </div>
+        <a href="/img/1dcc15862603d884095b57b553c753b7.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1dcc15862603d884095b57b553c753b7_hu2e26ca43e43352fd7eb72d0fd78d5e0d_1695931_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="217"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-05-06-20-16-32/">2023-05-06 20:16</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I&rsquo;m getting so pro, used a JavaScript library to make my gallery look sexy</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-04-11-21-17-48/">2023-04-11 21:17</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Updated my website theme(1 day ago), it now follows newcss.net css framework.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-03-19-08-40-47/">2023-03-19 08:40</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Going to seperate book notes from my blog website.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-03-15-16-15-21/">2023-03-15 16:15</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Redesigned blog to make it more minimalistic. Added option to change theme in status page.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-03-12-15-19-15/">2023-03-12 15:19</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Did a whole website redesign as I was bored of previous color scheme.
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/1d3ae56dc7ac7c9a6ea73356edd7680f.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/1d3ae56dc7ac7c9a6ea73356edd7680f.png</a>
+            <span style="color: var(--text-muted);">(1080x2400)</span>
+        </div>
+        <a href="/img/1d3ae56dc7ac7c9a6ea73356edd7680f.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/1d3ae56dc7ac7c9a6ea73356edd7680f_hu19d26e765ca73da9e3cb66890b083c3a_339360_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="222"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-03-11-20-38-57/">2023-03-11 20:38</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I&rsquo;m getting bored of this green black color scheme of my website, want something new.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2023/2023-02-09-18-49-11/">2023-02-09 18:49</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Tried to make a page for hobbies (it&rsquo;s halfway done), I&rsquo;m getting rusty.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-11-27-18-44-22/">2022-11-27 18:44</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Verified two of my websites on mastodon. It&rsquo;s so flawless.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-10-22-22-09-19/">2022-10-22 22:09</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I&rsquo;m thinking about making my gallery page as so that I would be able to add images from my phone. Right now it&rsquo;s possible but bit hacky way of doing things.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-10-08-10-36-17/">2022-10-08 10:36</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p><strong>Website changelog:</strong></p>
+<ul>
+<li>Added font display (still need to fix more)</li>
+<li>added fallback font on body</li>
+<li>added defer to the js required for icons. Main content should now load faster, then those icons will show up.</li>
+</ul>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-10-08-09-54-08/">2022-10-08 09:54</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p><strong>Website changelog:</strong></p>
+<p>Status Website:</p>
+<ul>
+<li>No more big fat images, all images are small and in webp format.</li>
+<li>huge performance improvement</li>
+<li>Clicking on images will show original quality image.</li>
+<li>added <em>show original</em> button below images.</li>
+</ul>
+<p><strong>Website ToDo:</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Make texts visible while fonts are loading.</li>
+<li><input disabled="" type="checkbox"> explicit width and height to the images</li>
+</ul>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-10-06-22-35-46/">2022-10-06 22:35</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I seriously need to find a way to optimize images. 3-4 megabytes of images are totally unacceptable on web. 3g network or even 4g would have a hard time loading it. If you think you can help me with that I&rsquo;ll appreciate it. <a href="https://blackpiratex.com/contact">Contact here</a>.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-30-19-24-49/">2022-09-30 19:24</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Website changelog:</p>
+<ul>
+<li>Blog and Status website now has total post counter.</li>
+</ul>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-30-19-07-37/">2022-09-30 19:07</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>New post on my blog:
+<a href="https://blog.blackpiratex.com/streaming-on-spotify-vs-using-mp3s/">https://blog.blackpiratex.com/streaming-on-spotify-vs-using-mp3s/</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-27-20-38-57/">2022-09-27 20:38</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I did some UI/UX tweaks on this status website.</p>
+<ul>
+<li>website now loads faster. It will now load 20 posts only, instead of 50 like previously.</li>
+<li>fixed position of &ldquo;Newer posts&rdquo; and &ldquo;older posts&rdquo; button at the end of the page.</li>
+<li>added new &ldquo;go to top&rdquo; button.</li>
+<li>new &ldquo;sort by tags&rdquo; option at the end of the page.</li>
+</ul>
+<p>That&rsquo;s all.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-22-19-28-08/">2022-09-22 19:28</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>This website is now hosted on Vercel. I can&rsquo;t host it on netlify because my repo is private. :-;</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-14-09-32-12/">2022-09-14 09:32</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Translating my website into Bengali is way too much hassle, and feels a bit cringe. I am not sure if I should translate or not.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-13-21-42-38/">2022-09-13 21:42</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Translating my website into bengali. So far did two pages. Check out one here:</p>
+<p><a href="https://bn.blackpiratex.com/about/">https://bn.blackpiratex.com/about/</a></p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-02-00-21-04/">2022-09-02 00:21</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>This website is more than one month old!! It feels like just YESTERDAY I made this!</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/">2022-08-28 14:58</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Changed theme of my website again. Here is how it looks.</p>
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/052cde320bc8a85c64ac39c39018c865.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/052cde320bc8a85c64ac39c39018c865.png</a>
+            <span style="color: var(--text-muted);">(1080x2243)</span>
+        </div>
+        <a href="/img/052cde320bc8a85c64ac39c39018c865.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/052cde320bc8a85c64ac39c39018c865_huf4592c5171658d158ea623b5e53ab331_280955_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="208"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+
+
+
+
+
+
+    
+    
+
+    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
+        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;">
+            File: <a href="/img/eee84ff2e6a1f539d17f3caee50a90cf.png" target="_blank" rel="noopener noreferrer" title="Click to open full image">/img/eee84ff2e6a1f539d17f3caee50a90cf.png</a>
+            <span style="color: var(--text-muted);">(1080x2189)</span>
+        </div>
+        <a href="/img/eee84ff2e6a1f539d17f3caee50a90cf.png" target="_blank" rel="noopener noreferrer">
+            <img 
+                src="/img/eee84ff2e6a1f539d17f3caee50a90cf_hud792bb77916be6030056c12e2a9af32b_239294_100x0_resize_q50_h2_box_3.webp" 
+                width="100"
+                height="203"
+                alt="Image thumbnail (click to expand)" 
+                loading="lazy" 
+                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
+            >
+        </a>
+    </div>
+
+
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/">2022-08-21 16:18</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>I&rsquo;m so bad at choosing colors. Anyway, my website uses hugo now.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/">2022-08-20 17:06</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>Website V3.0 is live now!! Consistent design and more minimal. Check: <a href="https://blackpiratex.com">https://blackpiratex.com</a></p>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            
+
+            
+        </article>
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

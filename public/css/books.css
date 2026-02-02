@@ -1,0 +1,89 @@
+.books-masonry-item {
+    color: inherit;
+    text-decoration: none;
+}
+
+.book-cover-meta {
+    padding: 0.65em 0.75em;
+    border-top: 1px solid #eee;
+    background: #fff;
+}
+
+.book-cover-title {
+    display: block;
+    font-size: 0.95em;
+    color: #111;
+}
+
+.book-cover-author {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 0.2em;
+}
+
+.book-cover-fallback {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    text-align: center;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.book-cover-frame {
+    max-width: 240px;
+    margin: 0 auto 1.2em;
+}
+
+.book-cover-frame .book-cover-fallback {
+    min-height: 320px;
+    background: #f8f8f8;
+}
+
+.book-authors {
+    margin: 0 0 0.75em;
+    color: #666;
+    font-size: 0.95em;
+}
+
+.book-highlights {
+    padding-left: 1.1em;
+    margin: 0;
+    display: grid;
+    gap: 0.75em;
+}
+
+.book-highlights li {
+    border-left: 3px solid #eee;
+    background: #f8f8f8;
+    padding: 0.6em 0.75em;
+    border-radius: 6px;
+    line-height: 1.6;
+}
+
+html[data-theme="dark"] .book-cover-meta {
+    border-top-color: #333;
+    background: #151515;
+}
+
+html[data-theme="dark"] .book-cover-title {
+    color: #eee;
+}
+
+html[data-theme="dark"] .book-cover-author,
+html[data-theme="dark"] .book-authors {
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .book-cover-fallback {
+    background: #1f1f1f;
+    color: #b0b0b0;
+}
+
+html[data-theme="dark"] .book-highlights li {
+    background: #1f1f1f;
+    border-left-color: #333;
+}

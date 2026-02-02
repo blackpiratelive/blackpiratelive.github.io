@@ -1,0 +1,61 @@
+.sitemap-group {
+    margin-bottom: 40px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sitemap-heading {
+    background: var(--bg-hover);
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: serif;
+}
+
+.sitemap-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sitemap-list li {
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.sitemap-list li:last-child {
+    border-bottom: none;
+}
+
+.sitemap-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: background 0.2s, padding-left 0.2s;
+    font-size: 0.95rem;
+}
+
+.sitemap-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+/* Mobile Tweak */
+@media (max-width: 600px) {
+    .sitemap-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

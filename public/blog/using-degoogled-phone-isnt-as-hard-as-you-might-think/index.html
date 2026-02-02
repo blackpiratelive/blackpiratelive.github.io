@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Degoogled Phone Isn&#39;t as Hard as You Might Think | BlackPirateX</title>
+
+    
+    
+    
+    
+    
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    
+    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    
+    
+    
+</head>
+<body id="post">
+
+    
+    <header>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <nav>
+            <a class="home" href="http://localhost:1314/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/thoughts">Thoughts</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/books">Books</a>
+            <a href="/stats">Stats</a>
+            <a href="/on-this-day">On This Day</a>
+            <a href="/search">Search</a>
+            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+        </nav>
+        
+    </header>
+    
+
+    <script>
+        (function () {
+            const storageKey = "bp-theme";
+            const root = document.documentElement;
+            const toggle = document.querySelector(".theme-toggle");
+
+            const applyTheme = (value) => {
+                if (value === "dark") {
+                    root.setAttribute("data-theme", "dark");
+                } else {
+                    root.removeAttribute("data-theme");
+                }
+                if (toggle) {
+                    const pressed = value === "dark";
+                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
+                    const icon = toggle.querySelector("i");
+                    if (icon) {
+                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
+                    } else {
+                        toggle.textContent = pressed ? "Light" : "Theme";
+                    }
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+                }
+            };
+
+            let theme = localStorage.getItem(storageKey);
+            if (!theme && window.matchMedia) {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            applyTheme(theme || "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    localStorage.setItem(storageKey, next);
+                    applyTheme(next);
+                });
+            }
+        })();
+    </script>
+
+
+<div id="post">
+    <div id="wrapper">
+        <article class="norm">
+            <h2 id="title">Using Degoogled Phone Isn&#39;t as Hard as You Might Think</h2>
+            <span class="authors">Sudip</span>
+            <time class="dt-published" datetime="2022-05-17">
+                May 17, 2022
+            </time>
+
+            <h2 id="what-is-a-degoogled-phone">What is a degoogled phone?</h2>
+<p>Vanilla Android is <a href="https://blog.blackpiratex.com/tags/FOSS/">FOSS</a> (Free and OpenSource Software), but the android that you get preinstalled in most phones isn&rsquo;t completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn&rsquo;t ship with Google Play Services by default.  LineageOs is a popular example.</p>
+<h2 id="why-i-did-it">Why I did it?</h2>
+<p>Privacy!! That&rsquo;s the major reason. But I get some extra advantages like better battery backup, zero notifications etc. (See below for all the advantages / disadvantages).</p>
+<h2 id="how-i-did-it">How I did it</h2>
+<p>I own two phones. The phone I used for degoogling is Redmi K20 pro, (indian version).
+I installed <a href="https://octavi-os.com/">Octavi Os</a>. It is very very feature rich and customisable. In my ecperience it is very stable. It has both gapps (with Google Play Services) and vanilla (without Google Play Servuces) version. I went with vahttps://calyxos.org/nilla version.
+(I didn&rsquo;t go with <a href="https://e.foundation/e-os/">E Os</a> , <a href="https://grapheneos.org/">Graphene Os</a> or <a href="https://calyxos.org/">Calayx Os</a> simply because my device does not supports it.) After flashing vanilla version you have a choice to flash gapps or not, and becuase I am trying to degoogle my phone, I am not going to flash gapps. The vanilla version does not comes with any web browser out of the box. So connected my phone to my laptop through usb and transffered <a href="https://bromite.org">Bromite</a>. At this point my phone is very much ready to use.</p>
+<h2 id="apps-that-i-use">Apps that I use</h2>
+<p>I try to stick with <a href="https://blog.blackpiratex.com/tags/FOSS/">FOSS</a> (Free and OpenSource Software) apps as much as possible. My main source of apps is <a href="https://f-droid.org/">F-Droid</a> along with <a href="https://auroraoss.com/">Aurora Store</a> (For those apps which are not avilable on Fdroid). I have added few extra F-Droid repositories.</p>
+<p>Below is a list of all the apps that are currently installed on my device.</p>
+<ul>
+<li><a href="https://brave.com/">Brave Browser</a> - My main browser</li>
+<li><a href="https://bromite.org">Bromite</a> - Secondary Browser</li>
+<li><a href="https://www.mozilla.org/en-US/firefox/new/">Firefox NIghtly</a> - I have it installed because I was using it previously, but do not use it now. Might uninstall later.</li>
+<li><a href="https://bitwarden.com/">Bitwarden</a> - Opensource Password Manager with cross device syncing.</li>
+<li><a href="https://www.simplemobiletools.com/">Simple Mpbile Tools</a> - It&rsquo;s not a single app, but rather a collection of apps. I currently use their <strong>Calculator, Clock, Contacts, Draw, Gallery, Keyboard, SMS Messenger, Thank You, Voice Recorder</strong> apps. I would very much like to use their <strong>Phone</strong> app, but it doesn&rsquo;t let you turn of speaker while calling. The problem with their Music Player app is that it doesnt let to scrobble.</li>
+<li><a href="https://github.com/GrapheneOS/Camera">Graphene Os Camera</a> - Because of no google play services support, normal gcam mod does not work. This camera app is very simple and gets the job done. <em>They even have QR reader built into it, yay!!!</em></li>
+<li><a href="https://www.davx5.com/">DAVx5</a> - I use this app to sync my contacts using <a href="https://fruux.com/">Fruux</a>.</li>
+<li><a href="https://f-droid.org/en/packages/com.tachibana.downloader/">Download Navi</a> - It is my primary download manager. Although I use 1DM from time to time.</li>
+<li><a href="https://element.io/get-started">Element</a> - It is my Matrix client. I may change it later.</li>
+<li><a href="https://f-droid.org/en/packages/de.marmaro.krt.ffupdater/">FFUpdater</a> - This app is used to update all my web browsers.</li>
+<li><a href="https://github.com/jarnedemeulemeester/findroid">Findroid</a> - My Jellyfin client, Avilable on F-Droid through Izzydroid repo.</li>
+<li><a href="https://github.com/yang991178/fluent-reader">Fluent Reader</a> - My RSS reader app. Probably the &ldquo;best&rdquo; looking RSS reader app for Android. I use it with <a href="https://www.inoreader.com/">Inoreader</a>.</li>
+<li><a href="">Infinity</a> - This is a reddit client. It is opensource and has decent amount of features.</li>
+<li><a href="https://f-droid.org/en/packages/com.chooloo.www.koler">Koler</a> - Opensource Dialer app with minimal features.</li>
+<li><a href="https://letterboxd.com/">LetterBoxD</a> - I use it to track movies that I have watched and find new movies.</li>
+<li><a href="https://github.com/proninyaroslav/libretorrent">Libretorrent</a> - I don&rsquo;t do torrenting much on my phone, but have it on my phone, just in case.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.adobe.lrmobile&amp;hl=en_US&amp;gl=US">Adobe Lightroom</a> - Wish there was a good opensource alternative for this. I like lightroom because you can download presets and apply it without having to do the hard work by yourself.</li>
+<li><a href="https://joinmastodon.org/apps">Mastodon</a> - Mastodon official client.</li>
+<li><a href="https://mixplorer.com/">Mixplorar</a> - A file manager. It is probably the <strong>best</strong> file manager for android. Has built in tabs support, ability to add almost any cloud storage etc, (I should probably make a post about this app). It is not opensource.</li>
+<li><a href="https://github.com/mpv-android/mpv-android">mpv</a> - It is my alternative video player. sometimes use it.</li>
+<li><a href="https://nekogram.app/">Nekogram</a> - Opensource telegram app. I was previously using Plus messanger, but now starting to switch to nekogram.</li>
+<li><a href="https://play.google.com/store/apps/details?id=org.telegram.plus&amp;hl=en_US&amp;gl=US">Plus Messanger</a> - Telegram features with extra features, closed source.</li>
+<li><a href="https://github.com/TeamNewPipe/NewPipe">NewPipe</a> and <a href="https://github.com/polymorphicshade/NewPipe/">NewPipe x Sponsorblock</a> - I was planning to move away from using official youtube app. Newpipe is a frontend for youtube. It has all the features that I need, but super buggy, non useable for primary youtube app.</li>
+<li><a href="https://f-droid.org/en/packages/com.github.ashutoshgngwr.noice">Noice</a> - Opensource white noise app. Whenever I have trouble getting into sleep I put on my earphones, and try to sleep while listening.</li>
+<li><a href="https://github.com/kawaiiDango/pScrobbler">Pano Scrobbler</a> - Last.fm and libre.fm scrobbler. Opensource.</li>
+<li><a href="https://www.plex.tv/">Plex</a> - Jellyfin is good, but I have a hard time configuring it. So I have plex as alternative. Just wish that plex worked without internet connection.</li>
+<li><a href="https://getpocket.com/en/">Pocket</a> - My read later app.</li>
+<li><a href="https://protonapps.com/">Proton Apps</a> - I use <a href="https://protonmail.com">ProtonMail</a>, <a href="https://protonvpn.com">ProtonVPN</a>, and <a href="https://calendar.protonmail.com/">Proton Calender</a>.</li>
+<li><a href="https://raindrop.io">Raindrop</a> - Bookmark manager. Opensource.</li>
+<li><a href="https://readwise.io">Readwise</a> - A service that lets you organize all your highlights from different places.</li>
+<li><a href="https://play.google.com/store/apps/details?id=grape.k.readwiseapp&amp;gl=US">Readwise WIdget</a> - A simple app that lets you add an widget to your home screen which shows your readwise highlights.</li>
+<li><a href="https://github.com/topjohnwu/Magisk">Magisk</a> - Rooting app for android. Opensource.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.michaldrabik.showly2">Showly</a> - It is a tv show tracker which syncs with trakt.tv.</li>
+<li><a href="https://simplelogin.io">SimpleLogin</a> - It is an email aliasing service that lets you create aliases for each and every website. I also use this service to host email on my domain.</li>
+<li><a href="https://simplenote.com">Simplenote</a> - A note taking app focuused on simplicity. I use it to write something down quickly.</li>
+<li><a href="https://snapdrop.net">Snapdrop</a> - Airdrop like app for android. Open Source.</li>
+<li><a href="https://spotify.com">Spotify</a> - My music streaming app of choice.</li>
+<li><a href="https://play.google.com/store/apps/details?id=org.swiftapps.swiftbackup&amp;hl=en_US&amp;gl=US">Swift Backup</a> - This is probably one of the first apps that I would install on any new device. It lets you to take backup of your apps with app data and sync it to the cloud. Since I change roms quiute often it is useful for me to be able to restore any app in its current state. Closed source.</li>
+<li><a href="https://ticktick.com/">Tick Tick</a> - Todo list app. Closed Source</li>
+<li><a href="https://torproject.org">Tor Browser</a> - This doesn&rsquo;t require any description.</li>
+<li><a href="https://tutanota.com">Tutanota</a> - Email client for tutanota.</li>
+<li><a href="https://github.com/AdrienPoupa/VinylMusicPlayer">Vinyl</a> - Offline music player to play my mp3s.</li>
+<li><a href="https://www.videolan.org/vlc/">VLC</a> - Open source feature rich video player.</li>
+<li><a href="https://whatsapp.com">WhatsApp &amp; WhatsApp Business</a> - Main text messaging app for my phone.</li>
+<li><a href="https://vancedapp.com">Youtube Vanced</a> - Even though vanced has been discontinued it still works so I would keep using it.</li>
+</ul>
+<h2 id="advantages">Advantages</h2>
+<p>There is few advantages of using a degoogled phone. The obvious one is privacy. While it is true that using a degoogled phone makes you more private from google, it has other advantages too. Your battery backup would be excellent. Around 9-10 hours in single charge for a 4000mAh battery. I have noticed less heating while using degoogled phone. Phone is also faster than it outherwise be with google apps.</p>
+<h2 id="disadvantages">Disadvantages</h2>
+<p>Depending on how much you are into google ecosystem disadvantages can be almost none or very much. For me I only use google photos and youtube. Google photos does not work obviously, but you can youtube get working with youtube vanced. As for google photos I have decided to keep it locally and then take backup to my laptop every month or so. Google maps does not work at all. (even with microg I cannot get it working properly). Other than these few problems there is nothing that effects me.
+Now let&rsquo;s talk about all the other problems that you are likely to face if you are using android with Google Play Services.</p>
+<ul>
+<li>Notifications might not work if its dependent on Google Play Services.</li>
+<li>No Google Play Store, that means all your purchases won&rsquo;t work. (You can get them working by using microg).</li>
+<li>Gcam does not work out of the box. There is an app that can fix this issue hopefully but I haven&rsquo;t tested it yet.</li>
+<li>Banking apps won&rsquo;t work. You can get them work with microg and magisk.</li>
+<li>Safety net won&rsquo;t pass. You can make them pass with magisk and microg.</li>
+<li>If you are used to use &lsquo;Login with Google&rsquo; you would either have to set a password for that app or create new account with email and password.</li>
+<li>A lot of apps would even refuse to open if you don&rsquo;t have google play services installed.</li>
+</ul>
+<p>Despite its disadvantages you might want to try degoogling your phone, at least once and see if its going to work for you or not. If you are using propietory software most of the times, maybe you might wanna switch to FOSS alternatives. Most FOSS apps are not relient on Google Play Services.</p>
+<p>Most fundamental things like calling or texting works without any hiccups. It is very much possible to live with a degoogle phone and avoid big tech as much as possible.</p>
+
+
+            
+            <p class="post-tags">
+                
+                <a class="hashtag" href="/tags/software">
+                    <span>#</span><span>software</span>
+                </a>
+                
+                <a class="hashtag" href="/tags/privacy">
+                    <span>#</span><span>privacy</span>
+                </a>
+                
+            </p>
+            
+        </article>
+    </div>
+</div>
+
+
+
+<footer class="writeas-footer">
+    <details class="writeas-footer-section" open>
+        <summary class="writeas-footer-title">Browse</summary>
+        <div class="writeas-footer-links">
+            <a href="/projects">Projects</a>
+            <a href="https://blog.blackpiratex.com">Blog</a>
+            <a href="https://gallery.blackpiratex.com">Gallery</a>
+            <a href="https://music.blackpiratex.com">Music</a>
+            <a href="https://notes.blackpiratex.com">Notes</a>
+            <a href="https://status.blackpiratex.com">Status</a>
+            <a href="/bookmarks">Bookmarks</a>
+            <a href="/contact">Contact</a>
+            <a href="/credits">Credits</a>
+            <a href="/about">About</a>
+        </div>
+    </details>
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Follow</summary>
+        <div class="writeas-footer-links">
+            <a href="https://links.blackpiratex.com/github">Github</a>
+            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
+            <a href="https://links.blackpiratex.com/yt">Youtube</a>
+            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
+            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
+            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
+        </div>
+    </details>
+
+    
+    
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Tags</summary>
+        <div class="writeas-footer-tags">
+            
+            <a href="/tags/website/">#website</a>
+            
+            <a href="/tags/study/">#study</a>
+            
+            <a href="/tags/quotes/">#quotes</a>
+            
+            <a href="/tags/ideas/">#ideas</a>
+            
+            <a href="/tags/linux/">#linux</a>
+            
+            <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/dream/">#dream</a>
+            
+            <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
+            
+            <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/life/">#life</a>
+            
+            <a href="/tags/articles/">#articles</a>
+            
+            <a href="/tags/excited/">#excited</a>
+            
+            <a href="/tags/biology/">#biology</a>
+            
+            <a href="/tags/cooking/">#cooking</a>
+            
+            <a href="/tags/journaling/">#journaling</a>
+            
+            <a href="/tags/privacy/">#privacy</a>
+            
+            <a href="/tags/proud/">#proud</a>
+            
+            <a href="/tags/review/">#review</a>
+            
+            <a href="/tags/ai/">#ai</a>
+            
+            <a href="/tags/android/">#android</a>
+            
+            <a href="/tags/anki/">#anki</a>
+            
+            <a href="/tags/dreams/">#dreams</a>
+            
+        </div>
+    </details>
+    
+    
+
+    <details class="writeas-footer-section">
+        <summary class="writeas-footer-title">Webrings</summary>
+        <div class="writeas-footer-links">
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">WebSutra</span>
+                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
+                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
+                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Hotline</span>
+                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
+                <a href="https://hotlinewebring.club">Index</a>
+                <a href="https://hotlinewebring.club/bpx/next">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Retronut</span>
+                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
+                <a href="https://webring.dinhe.net">Index</a>
+                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Bucketfish</span>
+                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
+                <a href="https://webring.bucketfish.me">Index</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
+                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
+            </div>
+
+            <div class="writeas-webring-row">
+                <span class="writeas-webring-name">Static.Quest</span>
+                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
+                <a href="https://static.quest/members">Members</a>
+                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
+                <a href="https://static.quest/random">Lucky?</a>
+            </div>
+
+            <div class="writeas-webring-row" id="focusfirst-webring">
+                <span class="writeas-webring-name">FocusFirst</span>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
+                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
+                <noscript>
+                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
+                </noscript>
+            </div>
+        </div>
+    </details>
+
+    <div class="writeas-footer-credits">
+        <p>Uses self hosted Umami analytics.</p>
+        <p>
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
+            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
+        </p>
+    </div>
+    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+</footer>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("\/sw.js").catch((error) => {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+<script>
+    (function () {
+        if (!("HTMLLinkElement" in window)) {
+            return;
+        }
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
+            return;
+        }
+
+        const prefetched = new Set();
+
+        const shouldPrefetch = (href) => {
+            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+                return false;
+            }
+            let url;
+            try {
+                url = new URL(href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+            if (url.origin !== window.location.origin) {
+                return false;
+            }
+            if (url.pathname === window.location.pathname && url.search === window.location.search) {
+                return false;
+            }
+            return true;
+        };
+
+        document.addEventListener(
+            "mouseover",
+            (event) => {
+                const anchor = event.target.closest("a[href]");
+                if (!anchor) {
+                    return;
+                }
+
+                const href = anchor.getAttribute("href");
+                if (!shouldPrefetch(href)) {
+                    return;
+                }
+
+                const url = new URL(href, window.location.href).href;
+                if (prefetched.has(url)) {
+                    return;
+                }
+
+                prefetched.add(url);
+                const link = document.createElement("link");
+                link.rel = "prefetch";
+                link.as = "document";
+                link.href = url;
+                document.head.appendChild(link);
+            },
+            { passive: true }
+        );
+    })();
+</script>
+<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

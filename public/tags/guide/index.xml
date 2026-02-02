@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Guide on BlackPirateX</title>
+    <link>http://localhost:1314/tags/guide/</link>
+    <description>Recent content in Guide on BlackPirateX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Jan 2026 10:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1314/tags/guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to use anki beginners guide</title>
+      <link>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</link>
+      <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
+      <guid>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</guid>
+      <description>Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.&#xA;1. Install Anki and sync Download Anki for desktop first (Windows/Mac/Linux). The desktop app is where you create and edit cards. Then create a free AnkiWeb account so your cards sync across devices. The mobile apps are optional, but very useful for reviews.</description>
+    </item>
+    <item>
+      <title>How I Use AI in Studies</title>
+      <link>http://localhost:1314/blog/how-i-use-ai-in-studies/</link>
+      <pubDate>Mon, 05 Jan 2026 22:54:00 +0530</pubDate>
+      <guid>http://localhost:1314/blog/how-i-use-ai-in-studies/</guid>
+      <description>Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life. Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life.</description>
+    </item>
+    <item>
+      <title>Making Microblogging Website Using Hugo &amp; Netlify</title>
+      <link>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</link>
+      <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
+      <guid>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
+      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
+    </item>
+    <item>
+      <title>Making Twitter Using Hugo &amp; Netlify</title>
+      <link>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</link>
+      <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
+      <guid>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</guid>
+      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
+    </item>
+    <item>
+      <title>Setting Up My Website on Hugo</title>
+      <link>http://localhost:1314/blog/setting-up-my-website-on-hugo/</link>
+      <pubDate>Sun, 24 Jul 2022 17:43:10 +0530</pubDate>
+      <guid>http://localhost:1314/blog/setting-up-my-website-on-hugo/</guid>
+      <description>Inspiration: As far as I can remember, I came to know about Hugo from some personal blogs, which I have found through Hacker News. Before this I was coding everything manually for each blog post. (you can see examples of those here.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post.</description>
+    </item>
+  </channel>
+</rss>
