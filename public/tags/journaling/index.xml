@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Journaling on BlackPirateX</title>
-    <link>http://localhost:1314/tags/journaling/</link>
+    <link>http://localhost:41373/tags/journaling/</link>
     <description>Recent content in Journaling on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Apr 2022 00:08:39 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/journaling/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:41373/tags/journaling/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>In Search for Perfect Daily Journal App</title>
-      <link>http://localhost:1314/blog/in-search-for-perfect-daily-journal-app/</link>
+      <link>http://localhost:41373/blog/in-search-for-perfect-daily-journal-app/</link>
       <pubDate>Thu, 28 Apr 2022 00:08:39 +0530</pubDate>
-      <guid>http://localhost:1314/blog/in-search-for-perfect-daily-journal-app/</guid>
+      <guid>http://localhost:41373/blog/in-search-for-perfect-daily-journal-app/</guid>
       <description>To be considered a viable app for my Daily Journal needs it must have following charateristics.&#xA;Decent UI Either end to end encrypted if the app is cloud based or data stays locally. Cross platform. Including Linux. Easy way to export for personal backups. Free Because of lack of privacy at my home, I had moved away from physical pen and paper diaries and moved completely to digital. It&amp;rsquo;s much easier to hide something online than trying to hide at my home.</description>
     </item>
     <item>
       <title>Digital Journaling Is Better Than Physical Journaling</title>
-      <link>http://localhost:1314/blog/digital-journaling-is-better-than-physical-journaling/</link>
+      <link>http://localhost:41373/blog/digital-journaling-is-better-than-physical-journaling/</link>
       <pubDate>Sat, 23 Apr 2022 20:18:34 +0530</pubDate>
-      <guid>http://localhost:1314/blog/digital-journaling-is-better-than-physical-journaling/</guid>
+      <guid>http://localhost:41373/blog/digital-journaling-is-better-than-physical-journaling/</guid>
       <description>Better Privacy A daily journal is probably going to be one of the most private thing in your life. Because I know for a fact that, doesn&amp;rsquo;t matter how close you are to me I&amp;rsquo;m never going to share my journal with anyone but me. If you are able to write digitally right way then it is very much possible to have greater privacy than that you&amp;rsquo;d get in physical journal.</description>
     </item>
   </channel>

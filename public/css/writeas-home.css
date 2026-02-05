@@ -1,13 +1,22 @@
 :root {
     --shadow-soft: rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.06);
     --bg-panel: #ffffff;
     --bg-hover: #f9f9f9;
+    --bg-main: #ffffff;
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.4s ease-out;
 }
 
 html[data-theme="dark"] {
     --shadow-soft: rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3);
     --bg-panel: #1a1a1a;
     --bg-hover: #252525;
+    --bg-main: #121212;
 }
 
 /* --- Homepage Redesign (Full Width) --- */
@@ -39,7 +48,7 @@ body#post header.hero {
 
 .hero h1 {
     font-family: serif;
-    font-size: 3rem; 
+    font-size: 3rem;
     margin: 0 0 15px 0;
     color: var(--text-main);
     line-height: 1;
@@ -60,14 +69,33 @@ body#post header.hero {
     object-fit: cover;
     border-radius: 40px;
     border: 5px solid var(--bg-main, #fff);
-    box-shadow: 0 15px 30px var(--shadow-soft);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow:
+        0 15px 30px var(--shadow-soft),
+        0 8px 15px rgba(0, 87, 255, 0.06);
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
     display: block;
     margin: 20px auto 0;
+    animation: hero-breathe 4s ease-in-out infinite;
+}
+
+@keyframes hero-breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.015);
+    }
 }
 
 .hero-img:hover {
     transform: rotate(3deg) scale(1.05);
+    box-shadow:
+        0 20px 40px var(--shadow-soft),
+        0 12px 20px rgba(0, 87, 255, 0.1);
+    animation-play-state: paused;
 }
 
 /* Sections General */
@@ -98,7 +126,8 @@ body#post header.hero {
     align-items: stretch;
 }
 
-.section-latest-blog, .section-latest-thoughts {
+.section-latest-blog,
+.section-latest-thoughts {
     display: flex;
     flex-direction: column;
 }
@@ -106,12 +135,12 @@ body#post header.hero {
 /* Latest Tables (Simplified) */
 .latest-table {
     width: 100%;
-    border-collapse: collapse; 
+    border-collapse: collapse;
     flex-grow: 1;
 }
 
 .latest-table td {
-    padding: 4px 0; 
+    padding: 4px 0;
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
     font-size: 0.95rem;
@@ -147,16 +176,32 @@ body#post header.hero {
 /* Projects Table */
 .projects-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.projects-table tr {
+    transition: background-color var(--transition-fast);
+}
+
+.projects-table tr:hover {
+    background-color: var(--bg-hover);
 }
 
 .projects-table td {
-    padding: 5px 10px;
-    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
     vertical-align: top;
     font-size: 0.95rem;
     line-height: 1.4;
     color: var(--text-main);
+}
+
+.projects-table tr:last-child td {
+    border-bottom: none;
 }
 
 .projects-table td:first-child {
@@ -164,6 +209,7 @@ body#post header.hero {
     background: var(--bg-hover);
     font-weight: 700;
     color: var(--primary-blue);
+    border-right: 1px solid var(--border-color);
 }
 
 .projects-table td:last-child {
@@ -176,10 +222,12 @@ body#post header.hero {
     text-decoration: none;
     color: var(--primary-blue);
     font-weight: 600;
+    transition: color var(--transition-fast);
 }
 
 .projects-table a:hover {
     text-decoration: underline;
+    color: var(--primary-blue-dark);
 }
 
 /* Gallery Scroll */
@@ -188,6 +236,27 @@ body#post header.hero {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.gallery-scroll-container::before,
+.gallery-scroll-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.gallery-scroll-container::before {
+    left: 32px;
+    background: linear-gradient(to right, var(--bg-main, #fff), transparent);
+}
+
+.gallery-scroll-container::after {
+    right: 32px;
+    background: linear-gradient(to left, var(--bg-main, #fff), transparent);
 }
 
 .gallery-track {
@@ -213,13 +282,14 @@ body#post header.hero {
     width: auto;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 2px 6px var(--shadow-soft);
-    transition: transform 0.2s;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     display: block;
 }
 
 .gallery-thumb:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
+    box-shadow: var(--shadow-hover);
 }
 
 .scroll-btn {
@@ -234,28 +304,48 @@ body#post header.hero {
     justify-content: center;
     flex-shrink: 0;
     color: var(--text-main);
-    box-shadow: 0 2px 4px var(--shadow-soft);
-    transition: background 0.2s;
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-fast);
+    z-index: 3;
 }
 
 .scroll-btn:hover {
-    background: var(--bg-hover);
-    color: var(--primary-blue);
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    box-shadow: var(--shadow-hover);
+    transform: scale(1.1);
 }
 
 /* Likes Table */
 .likes-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.likes-table tr {
+    transition: background-color var(--transition-fast);
+}
+
+.likes-table tr:hover {
+    background-color: var(--bg-hover);
 }
 
 .likes-table td {
-    padding: 5px 10px;
-    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
     vertical-align: top;
     font-size: 0.95rem;
     line-height: 1.4;
     color: var(--text-main);
+}
+
+.likes-table tr:last-child td {
+    border-bottom: none;
 }
 
 .likes-table td:first-child {
@@ -263,7 +353,7 @@ body#post header.hero {
     background: var(--bg-hover);
     font-weight: 700;
     color: var(--primary-blue);
-    vertical-align: top;
+    border-right: 1px solid var(--border-color);
 }
 
 /* Mobile Responsive */
@@ -271,19 +361,23 @@ body#post header.hero {
     .home-wrapper {
         padding: 0 2rem;
     }
+
     .hero {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 50px;
     }
+
     .hero h1 {
         font-size: 3.5rem;
     }
+
     .hero-img {
         width: 350px;
         height: 350px;
         margin: 0 auto;
     }
+
     .home-grid-row {
         grid-template-columns: 1fr;
         gap: 60px;
@@ -294,7 +388,7 @@ body#post header.hero {
     .home-wrapper {
         padding: 0 0.5rem;
     }
-    
+
     .hero {
         margin-top: 10px;
         margin-bottom: 15px;
@@ -303,17 +397,17 @@ body#post header.hero {
         width: 100%;
         text-align: center;
     }
-    
+
     .hero-text {
         text-align: center;
         width: 100%;
     }
-    
+
     .hero h1 {
         font-size: 2rem;
         margin-bottom: 10px;
     }
-    
+
     .hero-img {
         width: 180px;
         height: 180px;
@@ -322,7 +416,7 @@ body#post header.hero {
         border-radius: 30px;
         margin: 15px auto 0;
     }
-    
+
     .hero-intro {
         font-size: 1rem;
         max-width: 100%;
@@ -331,49 +425,51 @@ body#post header.hero {
     .home-section {
         margin-bottom: 20px;
     }
-    
+
     .home-section h2 {
         margin-bottom: 10px;
         font-size: 1rem;
     }
-    
+
     .home-grid-row {
         gap: 15px;
         margin-bottom: 20px;
     }
 
     /* Stack Tables on Mobile */
-    .projects-table td, .likes-table td {
+    .projects-table td,
+    .likes-table td {
         display: block;
         width: auto !important;
         border: none;
         padding: 4px 5px;
     }
-    
-    .projects-table td:first-child, .likes-table td:first-child {
+
+    .projects-table td:first-child,
+    .likes-table td:first-child {
         background: transparent;
         padding-bottom: 0;
         color: var(--primary-blue);
         font-size: 1rem;
     }
-    
+
     .projects-table td:last-child {
         text-align: left;
         padding-top: 2px;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
     }
-    
+
     .likes-table td:last-child {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
     }
-    
+
     .projects-table tr:last-child td:last-child,
     .likes-table tr:last-child td:last-child {
         border-bottom: none;
     }
-    
+
     .gallery-thumb {
         height: 120px;
     }

@@ -1,5 +1,7 @@
 :root {
     --primary-blue: #0000AA;
+    --primary-blue-light: #4466cc;
+    --primary-blue-dark: #000088;
     --highlight-yellow: #ffffe0;
     --text-main: #333;
     --text-muted: #666;
@@ -7,16 +9,25 @@
     --bg-hover: #f9f9f9;
     --bg-main: #ffffff;
     --bg-panel: #ffffff;
-    --shadow-soft: rgba(0,0,0,0.08);
+    --shadow-soft: rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
     --border-strong: #000;
     --chart-sky: #5f9cff;
     --chart-sun: #ffd44d;
     --chart-moss: #4caf82;
     --chart-haze: #f3f6ff;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.4s ease-out;
 }
 
 :root[data-theme="dark"] {
     --primary-blue: #8fb1ff;
+    --primary-blue-light: #a0c0ff;
+    --primary-blue-dark: #6080cc;
     --highlight-yellow: #2b2410;
     --text-main: #e6e6e6;
     --text-muted: #b0b0b0;
@@ -24,7 +35,9 @@
     --bg-hover: #1b1e26;
     --bg-main: #0f1117;
     --bg-panel: #151923;
-    --shadow-soft: rgba(0,0,0,0.45);
+    --shadow-soft: rgba(0, 0, 0, 0.45);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3);
     --border-strong: #e6e6e6;
     --chart-sky: #6f92ff;
     --chart-sun: #f2c74b;
@@ -54,12 +67,14 @@ body {
     color: var(--text-main);
     text-decoration: none;
 }
+
 .header-subtitle {
     font-size: 16px;
     color: var(--text-muted);
     font-style: italic;
     margin-bottom: 10px;
 }
+
 .nav-bar {
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
@@ -69,6 +84,7 @@ body {
     gap: 5px 10px;
     margin-bottom: 20px;
 }
+
 .nav-link {
     text-decoration: none;
     color: var(--primary-blue);
@@ -78,10 +94,35 @@ body {
     gap: 4px;
     white-space: nowrap;
     cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast);
 }
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width var(--transition-normal), left var(--transition-normal);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-link:hover {
+    color: var(--primary-blue-dark);
+}
+
 .nav-separator {
     color: var(--border-color);
 }
+
 .theme-toggle {
     background: none;
     border: none;
@@ -119,23 +160,27 @@ body {
     gap: 18px;
     margin-bottom: 20px;
 }
+
 .footer-column {
     flex: 1;
     min-width: 170px;
 }
+
 .footer-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 4px 14px;
 }
+
 .footer-links a {
     color: var(--primary-blue);
     text-decoration: none;
     font-size: 14px;
     /* Add these two lines to fix alignment */
-    display: inline-flex; 
+    display: inline-flex;
     align-items: center;
 }
+
 .footer-heading {
     margin: 0 0 8px;
     font-size: 13px;
@@ -152,11 +197,13 @@ body {
 .footer-tag-cloud {
     margin: 12px 0 26px;
 }
+
 .footer-tag-list {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
+
 .footer-tag-item {
     display: inline-flex;
     align-items: center;
@@ -168,6 +215,7 @@ body {
     text-decoration: none;
     color: var(--text-main);
 }
+
 .footer-tag-item:hover {
     text-decoration: underline;
 }
@@ -186,6 +234,7 @@ body {
     margin-bottom: 20px;
     font-size: 15px;
 }
+
 .webring-row {
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -195,19 +244,23 @@ body {
     gap: 10px;
     flex-wrap: wrap;
 }
+
 .webring-row:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
 }
+
 .webring-label {
     font-weight: bold;
     min-width: 120px;
 }
+
 .webring-row a {
     display: inline-flex;
     align-items: center;
-    gap: 4px;  /* Adds space between the icon and text */
+    gap: 4px;
+    /* Adds space between the icon and text */
     text-decoration: none;
     color: var(--primary-blue);
 }
@@ -221,6 +274,7 @@ body {
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
 }
+
 .footer-credits a {
     color: var(--text-main);
 }

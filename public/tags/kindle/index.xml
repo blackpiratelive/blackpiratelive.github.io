@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kindle on BlackPirateX</title>
-    <link>http://localhost:1314/tags/kindle/</link>
+    <link>http://localhost:41373/tags/kindle/</link>
     <description>Recent content in Kindle on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 23 Jun 2024 23:13:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/kindle/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:41373/tags/kindle/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I get Daily News</title>
-      <link>http://localhost:1314/blog/how-i-get-daily-news/</link>
+      <link>http://localhost:41373/blog/how-i-get-daily-news/</link>
       <pubDate>Sun, 23 Jun 2024 23:13:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-i-get-daily-news/</guid>
+      <guid>http://localhost:41373/blog/how-i-get-daily-news/</guid>
       <description>In this post I would discuss how I read news on my kindle, benefit of my method and how you can replicate this method by yourself.&#xA;How to Replicate Prerequisites: A smartphone with Termux and Anlinux installed. There must be at least 2 GB of storage free. Patience Time on your hand. Installing a Linux distro on termux Open the an Linux app and on the dashboard choose Fedora and click ok.</description>
     </item>
   </channel>

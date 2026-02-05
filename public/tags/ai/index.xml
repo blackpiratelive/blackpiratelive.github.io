@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ai on BlackPirateX</title>
-    <link>http://localhost:1314/tags/ai/</link>
+    <link>http://localhost:41373/tags/ai/</link>
     <description>Recent content in Ai on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Jan 2026 22:54:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:41373/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I Use AI in Studies</title>
-      <link>http://localhost:1314/blog/how-i-use-ai-in-studies/</link>
+      <link>http://localhost:41373/blog/how-i-use-ai-in-studies/</link>
       <pubDate>Mon, 05 Jan 2026 22:54:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-i-use-ai-in-studies/</guid>
+      <guid>http://localhost:41373/blog/how-i-use-ai-in-studies/</guid>
       <description>Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life. Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life.</description>
     </item>
   </channel>

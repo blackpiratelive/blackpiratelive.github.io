@@ -2,220 +2,199 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on BlackPirateX</title>
-    <link>http://localhost:1314/tags/</link>
+    <link>http://localhost:41373/tags/</link>
     <description>Recent content in Tags on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 30 Jan 2026 11:08:26 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:41373/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bookmarks</title>
-      <link>http://localhost:1314/tags/bookmarks/</link>
+      <link>http://localhost:41373/tags/bookmarks/</link>
       <pubDate>Fri, 30 Jan 2026 11:08:28 +0000</pubDate>
-      <guid>http://localhost:1314/tags/bookmarks/</guid>
+      <guid>http://localhost:41373/tags/bookmarks/</guid>
       <description></description>
     </item>
     <item>
       <title>Study</title>
-      <link>http://localhost:1314/tags/study/</link>
+      <link>http://localhost:41373/tags/study/</link>
       <pubDate>Thu, 29 Jan 2026 15:31:11 +0000</pubDate>
-      <guid>http://localhost:1314/tags/study/</guid>
+      <guid>http://localhost:41373/tags/study/</guid>
       <description></description>
     </item>
     <item>
       <title>Website</title>
-      <link>http://localhost:1314/tags/website/</link>
+      <link>http://localhost:41373/tags/website/</link>
       <pubDate>Fri, 23 Jan 2026 23:54:51 +0530</pubDate>
-      <guid>http://localhost:1314/tags/website/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Anki</title>
-      <link>http://localhost:1314/tags/anki/</link>
-      <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/anki/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Flashcards</title>
-      <link>http://localhost:1314/tags/flashcards/</link>
-      <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/flashcards/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Guide</title>
-      <link>http://localhost:1314/tags/guide/</link>
-      <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/guide/</guid>
+      <guid>http://localhost:41373/tags/website/</guid>
       <description></description>
     </item>
     <item>
       <title>Life</title>
-      <link>http://localhost:1314/tags/life/</link>
+      <link>http://localhost:41373/tags/life/</link>
       <pubDate>Wed, 21 Jan 2026 16:04:08 +0000</pubDate>
-      <guid>http://localhost:1314/tags/life/</guid>
+      <guid>http://localhost:41373/tags/life/</guid>
       <description></description>
     </item>
     <item>
       <title>Articles</title>
-      <link>http://localhost:1314/tags/articles/</link>
+      <link>http://localhost:41373/tags/articles/</link>
       <pubDate>Wed, 14 Jan 2026 18:12:54 +0530</pubDate>
-      <guid>http://localhost:1314/tags/articles/</guid>
+      <guid>http://localhost:41373/tags/articles/</guid>
       <description></description>
     </item>
     <item>
       <title>Ai</title>
-      <link>http://localhost:1314/tags/ai/</link>
+      <link>http://localhost:41373/tags/ai/</link>
       <pubDate>Mon, 05 Jan 2026 22:54:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/ai/</guid>
+      <guid>http://localhost:41373/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Guide</title>
+      <link>http://localhost:41373/tags/guide/</link>
+      <pubDate>Mon, 05 Jan 2026 22:54:00 +0530</pubDate>
+      <guid>http://localhost:41373/tags/guide/</guid>
       <description></description>
     </item>
     <item>
       <title>Quotes</title>
-      <link>http://localhost:1314/tags/quotes/</link>
+      <link>http://localhost:41373/tags/quotes/</link>
       <pubDate>Tue, 30 Dec 2025 09:30:51 +0530</pubDate>
-      <guid>http://localhost:1314/tags/quotes/</guid>
+      <guid>http://localhost:41373/tags/quotes/</guid>
       <description></description>
     </item>
     <item>
       <title>Cooking</title>
-      <link>http://localhost:1314/tags/cooking/</link>
+      <link>http://localhost:41373/tags/cooking/</link>
       <pubDate>Sat, 22 Nov 2025 13:18:41 +0530</pubDate>
-      <guid>http://localhost:1314/tags/cooking/</guid>
+      <guid>http://localhost:41373/tags/cooking/</guid>
       <description></description>
     </item>
     <item>
       <title>Dream</title>
-      <link>http://localhost:1314/tags/dream/</link>
+      <link>http://localhost:41373/tags/dream/</link>
       <pubDate>Tue, 26 Aug 2025 19:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/dream/</guid>
+      <guid>http://localhost:41373/tags/dream/</guid>
       <description></description>
     </item>
     <item>
       <title>Travel</title>
-      <link>http://localhost:1314/tags/travel/</link>
+      <link>http://localhost:41373/tags/travel/</link>
       <pubDate>Sat, 16 Aug 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/travel/</guid>
+      <guid>http://localhost:41373/tags/travel/</guid>
       <description></description>
     </item>
     <item>
       <title>Ideas</title>
-      <link>http://localhost:1314/tags/ideas/</link>
+      <link>http://localhost:41373/tags/ideas/</link>
       <pubDate>Sat, 09 Aug 2025 22:37:10 +0530</pubDate>
-      <guid>http://localhost:1314/tags/ideas/</guid>
+      <guid>http://localhost:41373/tags/ideas/</guid>
       <description></description>
     </item>
     <item>
       <title>Dreams</title>
-      <link>http://localhost:1314/tags/dreams/</link>
+      <link>http://localhost:41373/tags/dreams/</link>
       <pubDate>Wed, 30 Jul 2025 17:14:04 +0530</pubDate>
-      <guid>http://localhost:1314/tags/dreams/</guid>
+      <guid>http://localhost:41373/tags/dreams/</guid>
       <description></description>
     </item>
     <item>
       <title>Android</title>
-      <link>http://localhost:1314/tags/android/</link>
+      <link>http://localhost:41373/tags/android/</link>
       <pubDate>Sun, 23 Jun 2024 23:13:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/android/</guid>
+      <guid>http://localhost:41373/tags/android/</guid>
       <description></description>
     </item>
     <item>
       <title>Kindle</title>
-      <link>http://localhost:1314/tags/kindle/</link>
+      <link>http://localhost:41373/tags/kindle/</link>
       <pubDate>Sun, 23 Jun 2024 23:13:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/kindle/</guid>
+      <guid>http://localhost:41373/tags/kindle/</guid>
       <description></description>
     </item>
     <item>
       <title>Obsidian</title>
-      <link>http://localhost:1314/tags/obsidian/</link>
+      <link>http://localhost:41373/tags/obsidian/</link>
       <pubDate>Sun, 23 Jun 2024 23:13:00 +0530</pubDate>
-      <guid>http://localhost:1314/tags/obsidian/</guid>
+      <guid>http://localhost:41373/tags/obsidian/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>http://localhost:1314/tags/linux/</link>
+      <link>http://localhost:41373/tags/linux/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:1314/tags/linux/</guid>
+      <guid>http://localhost:41373/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Rant</title>
-      <link>http://localhost:1314/tags/rant/</link>
+      <link>http://localhost:41373/tags/rant/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:1314/tags/rant/</guid>
+      <guid>http://localhost:41373/tags/rant/</guid>
       <description></description>
     </item>
     <item>
       <title>Excited</title>
-      <link>http://localhost:1314/tags/excited/</link>
+      <link>http://localhost:41373/tags/excited/</link>
       <pubDate>Tue, 13 Jun 2023 18:19:59 +0530</pubDate>
-      <guid>http://localhost:1314/tags/excited/</guid>
+      <guid>http://localhost:41373/tags/excited/</guid>
       <description></description>
     </item>
     <item>
       <title>Proud</title>
-      <link>http://localhost:1314/tags/proud/</link>
+      <link>http://localhost:41373/tags/proud/</link>
       <pubDate>Wed, 15 Mar 2023 16:14:25 +0530</pubDate>
-      <guid>http://localhost:1314/tags/proud/</guid>
+      <guid>http://localhost:41373/tags/proud/</guid>
       <description></description>
     </item>
     <item>
       <title>Pens</title>
-      <link>http://localhost:1314/tags/pens/</link>
+      <link>http://localhost:41373/tags/pens/</link>
       <pubDate>Sun, 12 Feb 2023 20:43:37 +0530</pubDate>
-      <guid>http://localhost:1314/tags/pens/</guid>
+      <guid>http://localhost:41373/tags/pens/</guid>
       <description></description>
     </item>
     <item>
       <title>Software</title>
-      <link>http://localhost:1314/tags/software/</link>
+      <link>http://localhost:41373/tags/software/</link>
       <pubDate>Sun, 28 Aug 2022 18:50:10 +0530</pubDate>
-      <guid>http://localhost:1314/tags/software/</guid>
+      <guid>http://localhost:41373/tags/software/</guid>
       <description></description>
     </item>
     <item>
       <title>Meta</title>
-      <link>http://localhost:1314/tags/meta/</link>
+      <link>http://localhost:41373/tags/meta/</link>
       <pubDate>Sun, 28 Aug 2022 14:58:11 +0530</pubDate>
-      <guid>http://localhost:1314/tags/meta/</guid>
+      <guid>http://localhost:41373/tags/meta/</guid>
       <description></description>
     </item>
     <item>
       <title>Privacy</title>
-      <link>http://localhost:1314/tags/privacy/</link>
+      <link>http://localhost:41373/tags/privacy/</link>
       <pubDate>Sat, 28 May 2022 19:31:47 +0530</pubDate>
-      <guid>http://localhost:1314/tags/privacy/</guid>
+      <guid>http://localhost:41373/tags/privacy/</guid>
       <description></description>
     </item>
     <item>
       <title>Review</title>
-      <link>http://localhost:1314/tags/review/</link>
+      <link>http://localhost:41373/tags/review/</link>
       <pubDate>Sat, 28 May 2022 19:31:47 +0530</pubDate>
-      <guid>http://localhost:1314/tags/review/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Biology</title>
-      <link>http://localhost:1314/tags/biology/</link>
-      <pubDate>Fri, 13 May 2022 16:06:49 +0530</pubDate>
-      <guid>http://localhost:1314/tags/biology/</guid>
+      <guid>http://localhost:41373/tags/review/</guid>
       <description></description>
     </item>
     <item>
       <title>Journaling</title>
-      <link>http://localhost:1314/tags/journaling/</link>
+      <link>http://localhost:41373/tags/journaling/</link>
       <pubDate>Thu, 28 Apr 2022 00:08:39 +0530</pubDate>
-      <guid>http://localhost:1314/tags/journaling/</guid>
+      <guid>http://localhost:41373/tags/journaling/</guid>
       <description></description>
     </item>
     <item>
       <title>Internet</title>
-      <link>http://localhost:1314/tags/internet/</link>
+      <link>http://localhost:41373/tags/internet/</link>
       <pubDate>Fri, 21 May 2021 14:35:54 +0530</pubDate>
-      <guid>http://localhost:1314/tags/internet/</guid>
+      <guid>http://localhost:41373/tags/internet/</guid>
       <description></description>
     </item>
   </channel>

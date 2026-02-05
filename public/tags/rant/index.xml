@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rant on BlackPirateX</title>
-    <link>http://localhost:1314/tags/rant/</link>
+    <link>http://localhost:41373/tags/rant/</link>
     <description>Recent content in Rant on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Jul 2023 23:55:28 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/rant/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:41373/tags/rant/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Hyprland Experience</title>
-      <link>http://localhost:1314/blog/the-hyprland-experience/</link>
+      <link>http://localhost:41373/blog/the-hyprland-experience/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:1314/blog/the-hyprland-experience/</guid>
+      <guid>http://localhost:41373/blog/the-hyprland-experience/</guid>
       <description>I have been using Arch Linux with Hyprland. Initially I started using because of the cool animation it has. And stayed with it since.&#xA;Look and Feel Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&#xA;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2023/2023-01-22-11-53-02/</link>
+      <link>http://localhost:41373/thoughts/2023/2023-01-22-11-53-02/</link>
       <pubDate>Sun, 22 Jan 2023 11:53:02 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2023/2023-01-22-11-53-02/</guid>
+      <guid>http://localhost:41373/thoughts/2023/2023-01-22-11-53-02/</guid>
       <description>It&amp;rsquo;s possible to play PS2 games on android.&#xA;It&amp;rsquo;s funny how smartphones are powerful enough to run console games yet we get games like candy crush and shitty endless running games.</description>
     </item>
     <item>
       <title>Streaming on Spotify vs Using Mp3s</title>
-      <link>http://localhost:1314/blog/streaming-on-spotify-vs-using-mp3s/</link>
+      <link>http://localhost:41373/blog/streaming-on-spotify-vs-using-mp3s/</link>
       <pubDate>Fri, 30 Sep 2022 18:52:07 +0530</pubDate>
-      <guid>http://localhost:1314/blog/streaming-on-spotify-vs-using-mp3s/</guid>
+      <guid>http://localhost:41373/blog/streaming-on-spotify-vs-using-mp3s/</guid>
       <description>Disclaimer: here by mp3 I am referring to any playable music file, with any extension.&#xA;For most people Spotify is great, or at least it is better than managing your own mp3s like in the old days. But there are few things that I absolutely hate, which made me switch to MP3.&#xA;Things that pisses me off about Spotify: Podcasts - I know a lot of people who listens to podcast through Spotify, but I hate it.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-02-04-45-29/</link>
+      <link>http://localhost:41373/thoughts/2022/2022-08-02-04-45-29/</link>
       <pubDate>Tue, 02 Aug 2022 04:45:29 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-02-04-45-29/</guid>
+      <guid>http://localhost:41373/thoughts/2022/2022-08-02-04-45-29/</guid>
       <description>Imagine getting your admit card the day of the exam or the night before exam, like what the actual fuck</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-07-29-14-02-01/</link>
+      <link>http://localhost:41373/thoughts/2022/2022-07-29-14-02-01/</link>
       <pubDate>Fri, 29 Jul 2022 14:02:01 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-07-29-14-02-01/</guid>
+      <guid>http://localhost:41373/thoughts/2022/2022-07-29-14-02-01/</guid>
       <description>Switching to 1password. Bitwarden is lagging for me so fucking much. I have over 1k items and it lags like shit. 1password is faster and I am liking the UI.</description>
     </item>
     <item>
       <title>Fedora Doesn&#39;t Like Me</title>
-      <link>http://localhost:1314/blog/fedora-doesnt-like-me/</link>
+      <link>http://localhost:41373/blog/fedora-doesnt-like-me/</link>
       <pubDate>Mon, 27 Jun 2022 14:54:23 +0530</pubDate>
-      <guid>http://localhost:1314/blog/fedora-doesnt-like-me/</guid>
+      <guid>http://localhost:41373/blog/fedora-doesnt-like-me/</guid>
       <description>After listening lots of good things about fedora, I wanted to give it a try. I was previously using Archcraft, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).</description>
     </item>
   </channel>
