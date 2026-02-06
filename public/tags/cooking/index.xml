@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cooking on BlackPirateX</title>
-    <link>http://localhost:41373/tags/cooking/</link>
+    <link>http://localhost:1314/tags/cooking/</link>
     <description>Recent content in Cooking on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Nov 2025 13:19:31 +0530</lastBuildDate>
-    <atom:link href="http://localhost:41373/tags/cooking/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/cooking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-11-22-13-18-41/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-11-22-13-18-41/</link>
       <pubDate>Sat, 22 Nov 2025 13:18:41 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-11-22-13-18-41/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-11-22-13-18-41/</guid>
       <description>I completely forgot that I have to cook today, sigh. Plans for the whole day has been changed.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-26_2/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-26_2/</link>
       <pubDate>Tue, 26 Aug 2025 17:50:18 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-26_2/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-26_2/</guid>
       <description>I made grilled chicken legs, for the first time. File: /img/8e70a8939b048e05720ac191a2517f9f.jpg (3000x4000) </description>
     </item>
   </channel>

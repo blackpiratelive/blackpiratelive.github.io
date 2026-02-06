@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Meta on BlackPirateX</title>
-    <link>http://localhost:41373/tags/meta/</link>
+    <link>http://localhost:1314/tags/meta/</link>
     <description>Recent content in Meta on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Aug 2022 14:59:25 +0530</lastBuildDate>
-    <atom:link href="http://localhost:41373/tags/meta/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/meta/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-08-28-14-58-11/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/</link>
       <pubDate>Sun, 28 Aug 2022 14:58:11 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-08-28-14-58-11/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/</guid>
       <description>Changed theme of my website again. Here is how it looks.&#xA;File: /img/052cde320bc8a85c64ac39c39018c865.png (1080x2243) File: /img/eee84ff2e6a1f539d17f3caee50a90cf.png (1080x2189) </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-08-21-16-18-21/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/</link>
       <pubDate>Sun, 21 Aug 2022 16:18:21 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-08-21-16-18-21/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/</guid>
       <description>I&amp;rsquo;m so bad at choosing colors. Anyway, my website uses hugo now.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-08-20-17-06-07/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/</link>
       <pubDate>Sat, 20 Aug 2022 17:06:07 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-08-20-17-06-07/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/</guid>
       <description>Website V3.0 is live now!! Consistent design and more minimal. Check: https://blackpiratex.com</description>
     </item>
     <item>
       <title>Setting Up My Website on Hugo</title>
-      <link>http://localhost:41373/blog/setting-up-my-website-on-hugo/</link>
+      <link>http://localhost:1314/blog/setting-up-my-website-on-hugo/</link>
       <pubDate>Sun, 24 Jul 2022 17:43:10 +0530</pubDate>
-      <guid>http://localhost:41373/blog/setting-up-my-website-on-hugo/</guid>
+      <guid>http://localhost:1314/blog/setting-up-my-website-on-hugo/</guid>
       <description>Inspiration: As far as I can remember, I came to know about Hugo from some personal blogs, which I have found through Hacker News. Before this I was coding everything manually for each blog post. (you can see examples of those here.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post.</description>
     </item>
     <item>
       <title>Website Update #1</title>
-      <link>http://localhost:41373/blog/website-update-1/</link>
+      <link>http://localhost:1314/blog/website-update-1/</link>
       <pubDate>Fri, 22 Jul 2022 17:46:44 +0530</pubDate>
-      <guid>http://localhost:41373/blog/website-update-1/</guid>
+      <guid>http://localhost:1314/blog/website-update-1/</guid>
       <description>If you have visited my this blog before,(and can remember it) you can clearly see the difference. This blog is now simpler. I like it. Hope you like it too. As I am going to get busy with my life, I hope I would stick with this theme for very long.&#xA;How this website is made I use Hugo for creating this website. Hugo is great. I am loving it. Earlier also I was using Hugo, but that time I didn&amp;rsquo;t know much about it, so I used a ready made theme for my website.</description>
     </item>
   </channel>

@@ -3,31 +3,23 @@
 
 <div id="post">
     <div id="wrapper">
-        <article class="norm">
+        <article class="norm blog-list-page">
             <h2 id="title">Blog</h2>
-            <p class="thoughts-meta">{{ len $blogPosts }} posts</p>
 
-            <ul class="bearblog-list">
-                {{ range $blogPosts }}
-                <li class="bearblog-item">
-                    <span class="bearblog-date">{{ .Date.Format "2006-01-02" }}</span>
-                    <div class="bearblog-main">
-                        <a class="bearblog-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                        {{ if .Params.tags }}
-                        <span class="bearblog-tags">
-                            {{ range $index, $tag := .Params.tags }}
-                                {{ if gt $index 0 }}<span class="bearblog-tag-sep">/</span>{{ end }}
-                                <a class="bearblog-tag" href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
-                            {{ end }}
-                        </span>
-                        {{ end }}
-                    </div>
-                </li>
-                {{ end }}
-            </ul>
+            <table class="blog-table">
+                <tbody>
+                    {{ range $blogPosts }}
+                    <tr class="blog-row">
+                        <td class="blog-date">{{ .Date.Format "Jan 02" }}</td>
+                        <td class="blog-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+                        <td class="blog-tags">{{ range .Params.tags }}<span>#{{ . }}</span>{{ end }}</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
 
             {{ if eq (len $blogPosts) 0 }}
-            <p>No posts found yet.</p>
+            <p class="blog-empty">No posts yet.</p>
             {{ end }}
         </article>
     </div>

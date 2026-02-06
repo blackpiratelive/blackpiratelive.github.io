@@ -1,4 +1,6 @@
-{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "books") (eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq .Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
+{{ $isWriteas := or .IsHome (eq .Section "blog") (eq .Section "thoughts") (eq .Section "gallery") (eq .Section "books")
+(eq .Section "stats") (eq .Layout "stats") (eq .Layout "on-this-day") (eq .Layout "search") (eq .Layout "page") (eq
+.Section "tags") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") (eq .Kind "term") }}
 {{ if $isWriteas }}
 <footer class="writeas-footer">
     <details class="writeas-footer-section" open>
@@ -101,7 +103,26 @@
             Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
         </p>
     </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    <script defer src="https://u-one-livid.vercel.app/script.js"
+        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+
+    <!-- Reading Progress Bar Script -->
+    <script>
+        (function () {
+            const progressBar = document.getElementById('reading-progress');
+            if (!progressBar) return;
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        })();
+    </script>
 </footer>
 {{ else }}
 <footer class="footer-container">
@@ -207,7 +228,8 @@
 
     <!-- Webrings Section -->
     <div class="webring-section">
-        <h4 style="border-bottom: 1px dotted var(--border-color); margin-top:0; margin-bottom: 10px; font-size: 12px; font-weight: bold;">
+        <h4
+            style="border-bottom: 1px dotted var(--border-color); margin-top:0; margin-bottom: 10px; font-size: 12px; font-weight: bold;">
             <i data-lucide="globe" width="12"></i> WEBRINGS
         </h4>
 
@@ -303,7 +325,7 @@
                 <i data-lucide="link" width="11" style="margin-right: 4px; vertical-align: middle;"></i>
                 FocusFirst
             </span>
-            
+
             <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
             <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
             <noscript>
@@ -322,14 +344,14 @@
         </p>
         <p>
             <i data-lucide="heart" width="12" style="vertical-align: middle; color: #e74c3c;"></i>
-            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android. 
+            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
             Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
         </p>
     </div>
 </footer>
 <script>
-        lucide.createIcons();
-    </script>
+    lucide.createIcons();
+</script>
 {{ end }}
 <script>
     if ("serviceWorker" in navigator) {
@@ -401,4 +423,5 @@
         );
     })();
 </script>
-<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+<script defer src="https://u-one-livid.vercel.app/script.js"
+    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

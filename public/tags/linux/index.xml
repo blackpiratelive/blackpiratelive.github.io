@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on BlackPirateX</title>
-    <link>http://localhost:41373/tags/linux/</link>
+    <link>http://localhost:1314/tags/linux/</link>
     <description>Recent content in Linux on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Jul 2023 23:55:28 +0530</lastBuildDate>
-    <atom:link href="http://localhost:41373/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Hyprland Experience</title>
-      <link>http://localhost:41373/blog/the-hyprland-experience/</link>
+      <link>http://localhost:1314/blog/the-hyprland-experience/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:41373/blog/the-hyprland-experience/</guid>
+      <guid>http://localhost:1314/blog/the-hyprland-experience/</guid>
       <description>I have been using Arch Linux with Hyprland. Initially I started using because of the cool animation it has. And stayed with it since.&#xA;Look and Feel Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&#xA;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-03-13-17-55-32/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-03-13-17-55-32/</link>
       <pubDate>Mon, 13 Mar 2023 17:55:32 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-03-13-17-55-32/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-03-13-17-55-32/</guid>
       <description>Wayland is 10x better than xorg.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-03-13-16-02-49/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-03-13-16-02-49/</link>
       <pubDate>Mon, 13 Mar 2023 16:02:49 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-03-13-16-02-49/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-03-13-16-02-49/</guid>
       <description>Installed Arch Linux. First time successfully on hardware. I forgot how fast Pacman is, or shall I say how slow dnf is.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-10-02-09-48-51/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-10-02-09-48-51/</link>
       <pubDate>Sun, 02 Oct 2022 09:48:51 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-10-02-09-48-51/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-10-02-09-48-51/</guid>
       <description>Trying out Fish shell, already I&amp;rsquo;m impressed. It&amp;rsquo;s better than Bash and Zsh.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-28-11-10-34/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-28-11-10-34/</link>
       <pubDate>Wed, 28 Sep 2022 11:10:34 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-28-11-10-34/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-28-11-10-34/</guid>
       <description>Appimages are better than flatpaks. Vscodium from flathub requires 500megs of dependencies, whereas vscodium appimage is only 100MB.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-24-10-11-40/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-24-10-11-40/</link>
       <pubDate>Sat, 24 Sep 2022 10:11:40 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-24-10-11-40/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-24-10-11-40/</guid>
       <description>I&amp;rsquo;m distro hopping, to fedora. Archcraft is giving me some pains.</description>
     </item>
     <item>
       <title>Fedora Doesn&#39;t Like Me</title>
-      <link>http://localhost:41373/blog/fedora-doesnt-like-me/</link>
+      <link>http://localhost:1314/blog/fedora-doesnt-like-me/</link>
       <pubDate>Mon, 27 Jun 2022 14:54:23 +0530</pubDate>
-      <guid>http://localhost:41373/blog/fedora-doesnt-like-me/</guid>
+      <guid>http://localhost:1314/blog/fedora-doesnt-like-me/</guid>
       <description>After listening lots of good things about fedora, I wanted to give it a try. I was previously using Archcraft, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).</description>
     </item>
     <item>
       <title>Why I Love Tiling Window Manager</title>
-      <link>http://localhost:41373/blog/why-i-love-wm/</link>
+      <link>http://localhost:1314/blog/why-i-love-wm/</link>
       <pubDate>Wed, 30 Mar 2022 20:13:52 +0530</pubDate>
-      <guid>http://localhost:41373/blog/why-i-love-wm/</guid>
+      <guid>http://localhost:1314/blog/why-i-love-wm/</guid>
       <description>Tiling Window Manager is alternative to using full blown desktop environment. More info on ArchWiki&#xA;I have recently started using WM, first i3 now on openbox. And absolutely love it.&#xA;If you are someone who is used to use normal desktop environment like gnome, kde, xfce or any other DE (Desktop Environment), I&amp;rsquo;d suggest to try out WM.You can start with anyone of those window manager you&amp;rsquo;re comfortable with. Setting up wm is easy on fresh arch install so it shouldn&amp;rsquo;t be a barrier.</description>
     </item>
   </channel>

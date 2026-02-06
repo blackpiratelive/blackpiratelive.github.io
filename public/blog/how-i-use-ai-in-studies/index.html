@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=41373&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How I Use AI in Studies | BlackPirateX</title>
@@ -37,9 +37,9 @@
 
     
     <header>
-        <h1><a href="http://localhost:41373/">BlackPirateX</a></h1>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
         <nav>
-            <a class="home" href="http://localhost:41373/">Home</a>
+            <a class="home" href="http://localhost:1314/">Home</a>
             <a href="/blog">Blog</a>
             <a href="/thoughts">Thoughts</a>
             <a href="/gallery">Gallery</a>
@@ -97,14 +97,138 @@
     </script>
 
 
-<div id="post">
-    <div id="wrapper">
-        <article class="norm">
+<div class="reading-progress" id="reading-progress"></div>
+
+<div id="post" class="post-with-sidebar">
+    <div id="wrapper" class="wrapper-with-sidebar">
+        
+        
+        <aside class="toc-sidebar" id="toc-sidebar">
+            <div class="toc-sticky">
+                <div class="toc-sidebar-header toc-drag-handle" id="toc-drag-handle">
+                    <span class="toc-drag-icon" title="Drag to move">⋮⋮</span>
+                    <span class="toc-title">Contents</span>
+                </div>
+                <nav class="toc-nav">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#anki-flashcards">Anki Flashcards</a></li>
+        <li><a href="#notebooklm">NotebookLM</a></li>
+        <li><a href="#notes-from-youtube-video">Notes From YouTube Video</a></li>
+        <li><a href="#building-an-book-companion-app">Building an Book Companion App</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        <script>
+            (function () {
+                const sidebar = document.getElementById('toc-sidebar');
+                const handle = document.getElementById('toc-drag-handle');
+                if (!sidebar || !handle || window.innerWidth < 1100) return;
+
+                let isDragging = false;
+                let startX, startY, initialX, initialY;
+
+                
+                function enableDragging() {
+                    sidebar.style.position = 'fixed';
+                    sidebar.style.transform = 'none';
+                }
+
+                handle.addEventListener('mousedown', function (e) {
+                    if (window.innerWidth < 1100) return;
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+
+                    const rect = sidebar.getBoundingClientRect();
+                    initialX = rect.left;
+                    initialY = rect.top;
+
+                    enableDragging();
+                    sidebar.style.transition = 'none';
+                    sidebar.style.cursor = 'grabbing';
+                    handle.style.cursor = 'grabbing';
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!isDragging) return;
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    let newX = initialX + dx;
+                    let newY = initialY + dy;
+
+                    
+                    const maxX = window.innerWidth - sidebar.offsetWidth - 10;
+                    const maxY = window.innerHeight - sidebar.offsetHeight - 10;
+                    newX = Math.max(10, Math.min(newX, maxX));
+                    newY = Math.max(10, Math.min(newY, maxY));
+
+                    sidebar.style.left = newX + 'px';
+                    sidebar.style.top = newY + 'px';
+                    sidebar.style.right = 'auto';
+                });
+
+                document.addEventListener('mouseup', function () {
+                    if (isDragging) {
+                        isDragging = false;
+                        sidebar.style.transition = 'opacity 0.3s ease';
+                        sidebar.style.cursor = '';
+                        handle.style.cursor = 'grab';
+                    }
+                });
+            })();
+        </script>
+        
+
+        <article class="norm has-toc">
             <h2 id="title">How I Use AI in Studies</h2>
-            <span class="authors">Sudip</span>
-            <time class="dt-published" datetime="2026-01-05">
-                January 5, 2026
-            </time>
+
+            <div class="post-byline">
+                <div class="author-avatar">S</div>
+                <div class="byline-info">
+                    <span class="authors">Sudip</span>
+                    <time class="dt-published" datetime=" 2026-01-05">
+                        January 5, 2026 · 6 min
+                        read
+                    </time>
+                </div>
+            </div>
+
+            
+            
+            <details class="toc-container toc-mobile" open>
+                <summary class="toc-header">
+                    <span class="toc-icon">☰</span>
+                    <span class="toc-title">Table of Contents</span>
+                    <span class="toc-toggle">▼</span>
+                </summary>
+                <nav class="toc-nav">
+                    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#anki-flashcards">Anki Flashcards</a></li>
+        <li><a href="#notebooklm">NotebookLM</a></li>
+        <li><a href="#notes-from-youtube-video">Notes From YouTube Video</a></li>
+        <li><a href="#building-an-book-companion-app">Building an Book Companion App</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </nav>
+            </details>
+            
 
             <p>Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life.  Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life. I want to talk about how I have integrated AI in my studies in this blog post.</p>
 <h3 id="anki-flashcards">Anki Flashcards</h3>
@@ -122,15 +246,15 @@
             
             <p class="post-tags">
                 
-                <a class="hashtag" href="/tags/guide">
+                <a class="hashtag" href="/%20/tags/guide">
                     <span>#</span><span>guide</span>
                 </a>
                 
-                <a class="hashtag" href="/tags/ai">
+                <a class="hashtag" href="/%20/tags/ai">
                     <span>#</span><span>ai</span>
                 </a>
                 
-                <a class="hashtag" href="/tags/study">
+                <a class="hashtag" href="/%20/tags/study">
                     <span>#</span><span>study</span>
                 </a>
                 
@@ -187,13 +311,15 @@
             
             <a href="/tags/linux/">#linux</a>
             
-            <a href="/tags/bookmarks/">#bookmarks</a>
-            
             <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
             
             <a href="/tags/dream/">#dream</a>
             
             <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
             
             <a href="/tags/meta/">#meta</a>
             
@@ -203,7 +329,7 @@
             
             <a href="/tags/excited/">#excited</a>
             
-            <a href="/tags/guide/">#guide</a>
+            <a href="/tags/biology/">#biology</a>
             
             <a href="/tags/cooking/">#cooking</a>
             
@@ -219,11 +345,9 @@
             
             <a href="/tags/android/">#android</a>
             
+            <a href="/tags/anki/">#anki</a>
+            
             <a href="/tags/dreams/">#dreams</a>
-            
-            <a href="/tags/internet/">#internet</a>
-            
-            <a href="/tags/kindle/">#kindle</a>
             
         </div>
     </details>
@@ -289,7 +413,26 @@
             Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
         </p>
     </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    <script defer src="https://u-one-livid.vercel.app/script.js"
+        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+
+    
+    <script>
+        (function () {
+            const progressBar = document.getElementById('reading-progress');
+            if (!progressBar) return;
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        })();
+    </script>
 </footer>
 
 <script>
@@ -362,4 +505,5 @@
         );
     })();
 </script>
-<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+<script defer src="https://u-one-livid.vercel.app/script.js"
+    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

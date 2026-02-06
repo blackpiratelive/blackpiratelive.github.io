@@ -2,423 +2,430 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Website on BlackPirateX</title>
-    <link>http://localhost:41373/tags/website/</link>
+    <link>http://localhost:1314/tags/website/</link>
     <description>Recent content in Website on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Jan 2026 18:24:49 +0000</lastBuildDate>
-    <atom:link href="http://localhost:41373/tags/website/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2026/2026-01-23-untitled-691467/</link>
+      <link>http://localhost:1314/thoughts/2026/2026-01-23-untitled-691467/</link>
       <pubDate>Fri, 23 Jan 2026 23:54:51 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2026/2026-01-23-untitled-691467/</guid>
+      <guid>http://localhost:1314/thoughts/2026/2026-01-23-untitled-691467/</guid>
       <description>gemini is just better at web design</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2026/2026-01-13-01-28-26/</link>
+      <link>http://localhost:1314/thoughts/2026/2026-01-13-01-28-26/</link>
       <pubDate>Tue, 13 Jan 2026 01:28:26 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2026/2026-01-13-01-28-26/</guid>
+      <guid>http://localhost:1314/thoughts/2026/2026-01-13-01-28-26/</guid>
       <description>Huge update to my website, I am consolidating everything. No more multiple pages. One website for everything.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-02-20-07-48/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-02-20-07-48/</link>
       <pubDate>Tue, 06 Jan 2026 07:50:30 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-02-20-07-48/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-02-20-07-48/</guid>
       <description>Trying to make an app that would help me to push updates to this website. Hope it works.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2026/2026-01-06-07-49-23/</link>
+      <link>http://localhost:1314/thoughts/2026/2026-01-06-07-49-23/</link>
       <pubDate>Tue, 06 Jan 2026 07:49:23 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2026/2026-01-06-07-49-23/</guid>
+      <guid>http://localhost:1314/thoughts/2026/2026-01-06-07-49-23/</guid>
       <description>New blog post, How I use AI in my studies. https://blog.blackpiratex.com/how-i-use-ai-in-studies/</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-11-24-00-50-03/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-11-24-00-50-03/</link>
       <pubDate>Mon, 24 Nov 2025 00:50:03 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-11-24-00-50-03/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-11-24-00-50-03/</guid>
       <description>I made a Journal webapp for my personal use, it works offline, can be installed. You can use it: https://diary.sudipx.in</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/untitled/</link>
+      <link>http://localhost:1314/thoughts/2025/untitled/</link>
       <pubDate>Thu, 20 Nov 2025 21:15:05 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/untitled/</guid>
+      <guid>http://localhost:1314/thoughts/2025/untitled/</guid>
       <description>Okay so finally the web app is somewhat complete. I am happy. Next time I&amp;rsquo;ll think of adding images.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-09-03-untitled-241593/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-09-03-untitled-241593/</link>
       <pubDate>Wed, 03 Sep 2025 01:47:21 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-09-03-untitled-241593/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-09-03-untitled-241593/</guid>
       <description>I literally stopped using gitjournal, this custom made website just to post to my status is cool af. Im yet to add a domain.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-09-03-untitled-913721/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-09-03-untitled-913721/</link>
       <pubDate>Wed, 03 Sep 2025 01:41:53 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-09-03-untitled-913721/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-09-03-untitled-913721/</guid>
       <description>Tags and tags page does not work rn. But yeah not gonna solve it today. Good night.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-30-untitled-244579/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-30-untitled-244579/</link>
       <pubDate>Sat, 30 Aug 2025 19:47:22 +0000</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-30-untitled-244579/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-30-untitled-244579/</guid>
       <description>After a long work. Its done. My ui is live. It is much better than posting through gitjournal. I&amp;rsquo;ll add domains and fix the timing tomorrow. Good night for now. Its late.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-26_4/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-26_4/</link>
       <pubDate>Tue, 26 Aug 2025 18:51:57 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-26_4/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-26_4/</guid>
       <description>I have updated my blog ui. It now looks like NCERT book. I have attached the images below. File: /img/cf1f519eae7aa781e5b216511266b277.jpg (1600x1028) File: /img/70d422716a52b64d80fa34c3b2d884aa.jpg (1600x1046) </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-26_1/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-26_1/</link>
       <pubDate>Tue, 26 Aug 2025 17:30:00 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-26_1/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-26_1/</guid>
       <description>You can check my website analytics here. I have self made, this using AI, vercel functions and Turso db.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-24_1/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-24_1/</link>
       <pubDate>Sun, 24 Aug 2025 18:49:45 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-24_1/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-24_1/</guid>
       <description>This should fix all errors. Hello from the website.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-24/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-24/</link>
       <pubDate>Sun, 24 Aug 2025 18:08:58 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-24/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-24/</guid>
       <description>My website is now fully integrated with Mastodon. Any new post on this website will be posted automatically to my mastodon account. Currently plain text, no hyperlinks or images. To the people who&amp;rsquo;s seeing it on mastodon and not on my website, well Hi, nice to meet you.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-23-19-34-16/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-23-19-34-16/</link>
       <pubDate>Sat, 23 Aug 2025 19:34:16 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-23-19-34-16/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-23-19-34-16/</guid>
       <description>I have made a website for shortening url. Heres what looks like Image. Check one url from it: https://go.blackpiratex.com/scsb6C4 Password: password</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-23-19-32-29/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-23-19-32-29/</link>
       <pubDate>Sat, 23 Aug 2025 19:32:29 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-23-19-32-29/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-23-19-32-29/</guid>
       <description>I have made a url shortner site for my personal use. It uses vercel functions and turso db. Here is what it looks like.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-20-20-05-11/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-20-20-05-11/</link>
       <pubDate>Wed, 20 Aug 2025 20:05:11 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-20-20-05-11/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-20-20-05-11/</guid>
       <description>I am making a social media webisite. Right now It is very basic. Here is a screenshot. It also has live chat feature using Ably.&#xA;Screenshot 1 screenshot 2</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-19-03-15-55/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-19-03-15-55/</link>
       <pubDate>Tue, 19 Aug 2025 03:15:55 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-19-03-15-55/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-19-03-15-55/</guid>
       <description>My gallery website finally has a functional like button. I am awake till now because of that. Addiction baby!</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-16-23-19-30/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-16-23-19-30/</link>
       <pubDate>Sat, 16 Aug 2025 23:19:30 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-16-23-19-30/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-16-23-19-30/</guid>
       <description>New Blog post: Ranchi Experience.&#xA;I went to Ranchi few days ago, here is some key insights.&#xA;Has a video inside it. https://blog.blackpiratex.com/ranchi-experience/</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-12-20-16-46/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-12-20-16-46/</link>
       <pubDate>Tue, 12 Aug 2025 20:16:46 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-12-20-16-46/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-12-20-16-46/</guid>
       <description>There is update on websites. The music.blackpiratex.com has been revamped. I have made a web app using gemini. https://last-fm-app.netlify.app/ If i get bored ill make again.&#xA;View Screenshot #1&#xA;View Screenshot #2&#xA;View Screenshot #3&#xA;View Screenshot #4</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-01-20-54-45/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-01-20-54-45/</link>
       <pubDate>Fri, 01 Aug 2025 20:54:45 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-01-20-54-45/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-01-20-54-45/</guid>
       <description>Ideas that i may wanna implement.&#xA;Timeline or Calendar View: - Generate a calendar heatmap showing volume of posts per day/month (e.g. GitHub‑style activity grid) or a vertical timeline view for easier browsing. Search or Filterable UI:- Install client-side search (like Algolia/Tipue or simple Lunr.js) to allow users to search within statuses or filter by keywords, tags, or date. Author &amp;amp; Metadata Display:- Although it’s your personal feed, optionally display additional metadata: device used, approximate mood (e.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-01-20-46-42/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-01-20-46-42/</link>
       <pubDate>Fri, 01 Aug 2025 20:46:42 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-01-20-46-42/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-01-20-46-42/</guid>
       <description>The yearly archive does not work. It would be added once i get time some other day.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-08-01-20-32-56/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-08-01-20-32-56/</link>
       <pubDate>Fri, 01 Aug 2025 20:32:56 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-08-01-20-32-56/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-08-01-20-32-56/</guid>
       <description>Website looks like this now;) Click to view image</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-31-20-58-30/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-31-20-58-30/</link>
       <pubDate>Thu, 31 Jul 2025 20:58:30 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-31-20-58-30/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-31-20-58-30/</guid>
       <description>Did some minor improvements that ought to speed up the website. Lowered the image quality, haha</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-29-20-57-53/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-29-20-57-53/</link>
       <pubDate>Tue, 29 Jul 2025 20:57:53 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-29-20-57-53/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-29-20-57-53/</guid>
       <description>Website now looks like this. All thanks to Gemini. File: /img/875a6175000dab980bec2f8a51923a7b.png (864x1872) </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-26-00-03-56/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-26-00-03-56/</link>
       <pubDate>Sat, 26 Jul 2025 00:03:56 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-26-00-03-56/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-26-00-03-56/</guid>
       <description>Uploaded some of my previous dream entries. Check it out: https://blog.blackpiratex.com/tags/dream/</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-25-23-14-58/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-25-23-14-58/</link>
       <pubDate>Fri, 25 Jul 2025 23:14:58 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-25-23-14-58/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-25-23-14-58/</guid>
       <description>New blog post: Acievements in College Life https://blog.blackpiratex.com/achievements-in-college-life/</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-25-20-41-51/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-25-20-41-51/</link>
       <pubDate>Fri, 25 Jul 2025 20:41:51 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-25-20-41-51/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-25-20-41-51/</guid>
       <description>Website now uses Glassmorphic design, hehe. Use desktop for best experience. Give me feedback as where to improve.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-24-00-48-00/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-24-00-48-00/</link>
       <pubDate>Thu, 24 Jul 2025 00:48:00 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-24-00-48-00/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-24-00-48-00/</guid>
       <description>Vote fast. https://strawpoll.com/embed/kjn1DmaJ2yQ</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-07-07-00-10-59/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-07-07-00-10-59/</link>
       <pubDate>Mon, 07 Jul 2025 00:10:59 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-07-07-00-10-59/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-07-07-00-10-59/</guid>
       <description>Added gallery functionality to this website. Im so sleepy bye</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2025/2025-03-27-17-16-28/</link>
+      <link>http://localhost:1314/thoughts/2025/2025-03-27-17-16-28/</link>
       <pubDate>Thu, 27 Mar 2025 17:16:28 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2025/2025-03-27-17-16-28/</guid>
+      <guid>http://localhost:1314/thoughts/2025/2025-03-27-17-16-28/</guid>
       <description>Hugo version of this website has been updated. Now runs on 0.145.0</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2024/2024-12-04-17-42-06/</link>
+      <link>http://localhost:1314/thoughts/2024/2024-12-04-17-42-06/</link>
       <pubDate>Wed, 04 Dec 2024 17:42:06 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2024/2024-12-04-17-42-06/</guid>
+      <guid>http://localhost:1314/thoughts/2024/2024-12-04-17-42-06/</guid>
       <description>I made a website to list my study notes. It&amp;rsquo;s at its infancy. Check here https://english.sn.blackpiratex.com/ The SSL cert should be working few mins later.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2024/2024-11-03-01-41-10/</link>
+      <link>http://localhost:1314/thoughts/2024/2024-11-03-01-41-10/</link>
       <pubDate>Sun, 03 Nov 2024 01:41:10 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2024/2024-11-03-01-41-10/</guid>
+      <guid>http://localhost:1314/thoughts/2024/2024-11-03-01-41-10/</guid>
       <description>I was depressed so I revamed the home website. Bookmarks now has more links.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2024/2024-03-08-09-11-38/</link>
+      <link>http://localhost:1314/thoughts/2024/2024-03-08-09-11-38/</link>
       <pubDate>Fri, 08 Mar 2024 09:11:38 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2024/2024-03-08-09-11-38/</guid>
+      <guid>http://localhost:1314/thoughts/2024/2024-03-08-09-11-38/</guid>
       <description>Added:&#xA;Chatbox for visitors Featured gallery section on front page. Favourite blogs in bookmarks section Minor fixes also.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2024/2024-01-22-02-27-16/</link>
+      <link>http://localhost:1314/thoughts/2024/2024-01-22-02-27-16/</link>
       <pubDate>Mon, 22 Jan 2024 02:27:16 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2024/2024-01-22-02-27-16/</guid>
+      <guid>http://localhost:1314/thoughts/2024/2024-01-22-02-27-16/</guid>
       <description>Added 4 more books in notes website. Total books 16. The hugo version of notes website has been upgraded to version 0.121.2. latest features are used. The book page now has book cover, background has a oval shape which matches the cover image color. Book title background also matches the book cover color. Good night.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-07-02-01-07-12/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-07-02-01-07-12/</link>
       <pubDate>Sun, 02 Jul 2023 01:07:12 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-07-02-01-07-12/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-07-02-01-07-12/</guid>
       <description>New blog post: The Hyprland Experience. Also blog website got a redesign.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-05-06-20-44-45/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-05-06-20-44-45/</link>
       <pubDate>Sat, 06 May 2023 20:44:45 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-05-06-20-44-45/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-05-06-20-44-45/</guid>
       <description>Revamped my whole gallery website. Can&amp;rsquo;t figure out how to remove the extra margin on mobile.&#xA;File: /img/1dcc15862603d884095b57b553c753b7.png (1080x2340) </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-05-06-20-16-32/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-05-06-20-16-32/</link>
       <pubDate>Sat, 06 May 2023 20:16:32 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-05-06-20-16-32/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-05-06-20-16-32/</guid>
       <description>I&amp;rsquo;m getting so pro, used a JavaScript library to make my gallery look sexy</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-04-11-21-17-48/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-04-11-21-17-48/</link>
       <pubDate>Tue, 11 Apr 2023 21:17:48 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-04-11-21-17-48/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-04-11-21-17-48/</guid>
       <description>Updated my website theme(1 day ago), it now follows newcss.net css framework.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-03-19-08-40-47/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-03-19-08-40-47/</link>
       <pubDate>Sun, 19 Mar 2023 08:40:47 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-03-19-08-40-47/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-03-19-08-40-47/</guid>
       <description>Going to seperate book notes from my blog website.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-03-15-16-15-21/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-03-15-16-15-21/</link>
       <pubDate>Wed, 15 Mar 2023 16:15:21 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-03-15-16-15-21/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-03-15-16-15-21/</guid>
       <description>Redesigned blog to make it more minimalistic. Added option to change theme in status page.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-03-12-15-19-15/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-03-12-15-19-15/</link>
       <pubDate>Sun, 12 Mar 2023 15:19:15 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-03-12-15-19-15/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-03-12-15-19-15/</guid>
       <description>Did a whole website redesign as I was bored of previous color scheme. File: /img/1d3ae56dc7ac7c9a6ea73356edd7680f.png (1080x2400) </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-03-11-20-38-57/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-03-11-20-38-57/</link>
       <pubDate>Sat, 11 Mar 2023 20:38:57 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-03-11-20-38-57/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-03-11-20-38-57/</guid>
       <description>I&amp;rsquo;m getting bored of this green black color scheme of my website, want something new.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2023/2023-02-09-18-49-11/</link>
+      <link>http://localhost:1314/thoughts/2023/2023-02-09-18-49-11/</link>
       <pubDate>Thu, 09 Feb 2023 18:49:11 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2023/2023-02-09-18-49-11/</guid>
+      <guid>http://localhost:1314/thoughts/2023/2023-02-09-18-49-11/</guid>
       <description>Tried to make a page for hobbies (it&amp;rsquo;s halfway done), I&amp;rsquo;m getting rusty.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-11-27-18-44-22/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-11-27-18-44-22/</link>
       <pubDate>Sun, 27 Nov 2022 18:44:22 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-11-27-18-44-22/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-11-27-18-44-22/</guid>
       <description>Verified two of my websites on mastodon. It&amp;rsquo;s so flawless.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-10-22-22-09-19/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-10-22-22-09-19/</link>
       <pubDate>Sat, 22 Oct 2022 22:09:19 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-10-22-22-09-19/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-10-22-22-09-19/</guid>
       <description>I&amp;rsquo;m thinking about making my gallery page as so that I would be able to add images from my phone. Right now it&amp;rsquo;s possible but bit hacky way of doing things.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-10-08-10-36-17/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-10-08-10-36-17/</link>
       <pubDate>Sat, 08 Oct 2022 10:36:17 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-10-08-10-36-17/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-10-08-10-36-17/</guid>
       <description>Website changelog:&#xA;Added font display (still need to fix more) added fallback font on body added defer to the js required for icons. Main content should now load faster, then those icons will show up. </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-10-08-09-54-08/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-10-08-09-54-08/</link>
       <pubDate>Sat, 08 Oct 2022 09:54:08 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-10-08-09-54-08/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-10-08-09-54-08/</guid>
       <description>Website changelog:&#xA;Status Website:&#xA;No more big fat images, all images are small and in webp format. huge performance improvement Clicking on images will show original quality image. added show original button below images. Website ToDo:&#xA;Make texts visible while fonts are loading. explicit width and height to the images </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-10-06-22-35-46/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-10-06-22-35-46/</link>
       <pubDate>Thu, 06 Oct 2022 22:35:46 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-10-06-22-35-46/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-10-06-22-35-46/</guid>
       <description>I seriously need to find a way to optimize images. 3-4 megabytes of images are totally unacceptable on web. 3g network or even 4g would have a hard time loading it. If you think you can help me with that I&amp;rsquo;ll appreciate it. Contact here.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-30-19-24-49/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-30-19-24-49/</link>
       <pubDate>Fri, 30 Sep 2022 19:24:49 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-30-19-24-49/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-30-19-24-49/</guid>
       <description>Website changelog:&#xA;Blog and Status website now has total post counter. </description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-30-19-07-37/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-30-19-07-37/</link>
       <pubDate>Fri, 30 Sep 2022 19:07:37 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-30-19-07-37/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-30-19-07-37/</guid>
       <description>New post on my blog: https://blog.blackpiratex.com/streaming-on-spotify-vs-using-mp3s/</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-27-20-38-57/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-27-20-38-57/</link>
       <pubDate>Tue, 27 Sep 2022 20:38:57 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-27-20-38-57/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-27-20-38-57/</guid>
       <description>I did some UI/UX tweaks on this status website.&#xA;website now loads faster. It will now load 20 posts only, instead of 50 like previously. fixed position of &amp;ldquo;Newer posts&amp;rdquo; and &amp;ldquo;older posts&amp;rdquo; button at the end of the page. added new &amp;ldquo;go to top&amp;rdquo; button. new &amp;ldquo;sort by tags&amp;rdquo; option at the end of the page. That&amp;rsquo;s all.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-22-19-28-08/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-22-19-28-08/</link>
       <pubDate>Thu, 22 Sep 2022 19:28:08 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-22-19-28-08/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-22-19-28-08/</guid>
       <description>This website is now hosted on Vercel. I can&amp;rsquo;t host it on netlify because my repo is private. :-;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-14-09-32-12/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-14-09-32-12/</link>
       <pubDate>Wed, 14 Sep 2022 09:32:12 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-14-09-32-12/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-14-09-32-12/</guid>
       <description>Translating my website into Bengali is way too much hassle, and feels a bit cringe. I am not sure if I should translate or not.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-13-21-42-38/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-13-21-42-38/</link>
       <pubDate>Tue, 13 Sep 2022 21:42:38 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-13-21-42-38/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-13-21-42-38/</guid>
       <description>Translating my website into bengali. So far did two pages. Check out one here:&#xA;https://bn.blackpiratex.com/about/</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-09-02-00-21-04/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-09-02-00-21-04/</link>
       <pubDate>Fri, 02 Sep 2022 00:21:04 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-09-02-00-21-04/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-09-02-00-21-04/</guid>
       <description>This website is more than one month old!! It feels like just YESTERDAY I made this!</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-08-28-14-58-11/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/</link>
       <pubDate>Sun, 28 Aug 2022 14:58:11 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-08-28-14-58-11/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/</guid>
       <description>Changed theme of my website again. Here is how it looks.&#xA;File: /img/052cde320bc8a85c64ac39c39018c865.png (1080x2243) File: /img/eee84ff2e6a1f539d17f3caee50a90cf.png (1080x2189) </description>
     </item>
     <item>
       <title>Making Microblogging Website Using Hugo &amp; Netlify</title>
-      <link>http://localhost:41373/blog/making-microblogging-website-using-hugo-and-netlify/</link>
+      <link>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</link>
       <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
-      <guid>http://localhost:41373/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
+      <guid>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
+      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
+    </item>
+    <item>
+      <title>Making Twitter Using Hugo &amp; Netlify</title>
+      <link>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</link>
+      <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
+      <guid>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</guid>
       <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-08-21-16-18-21/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/</link>
       <pubDate>Sun, 21 Aug 2022 16:18:21 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-08-21-16-18-21/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/</guid>
       <description>I&amp;rsquo;m so bad at choosing colors. Anyway, my website uses hugo now.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:41373/thoughts/2022/2022-08-20-17-06-07/</link>
+      <link>http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/</link>
       <pubDate>Sat, 20 Aug 2022 17:06:07 +0530</pubDate>
-      <guid>http://localhost:41373/thoughts/2022/2022-08-20-17-06-07/</guid>
+      <guid>http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/</guid>
       <description>Website V3.0 is live now!! Consistent design and more minimal. Check: https://blackpiratex.com</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Travel on BlackPirateX</title>
-    <link>http://localhost:41373/tags/travel/</link>
+    <link>http://localhost:1314/tags/travel/</link>
     <description>Recent content in Travel on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Aug 2025 21:00:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:41373/tags/travel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/travel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ranchi Experience</title>
-      <link>http://localhost:41373/blog/ranchi-experience/</link>
+      <link>http://localhost:1314/blog/ranchi-experience/</link>
       <pubDate>Sat, 16 Aug 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:41373/blog/ranchi-experience/</guid>
+      <guid>http://localhost:1314/blog/ranchi-experience/</guid>
       <description>Background This journey was because of NTPC (railway) exam, that happened on 14th August. I went there on 13th and came back home on 15th.&#xA;Things that I noticed are different. People in Jharkhand eats a lot of Samosa. Specially on train. The price is 10/piece. I bought 4 at Hatia Railway Station.&#xA;Female Hawkers, There are significant number of female hawkers, way more than that i see in West Bengal.</description>
     </item>
   </channel>

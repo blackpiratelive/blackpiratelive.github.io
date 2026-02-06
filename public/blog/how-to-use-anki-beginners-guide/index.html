@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to use anki beginners guide | BlackPirateX</title>
@@ -37,9 +37,9 @@
 
     
     <header>
-        <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
         <nav>
-            <a class="home" href="http://localhost:1313/">Home</a>
+            <a class="home" href="http://localhost:1314/">Home</a>
             <a href="/blog">Blog</a>
             <a href="/thoughts">Thoughts</a>
             <a href="/gallery">Gallery</a>
@@ -97,14 +97,142 @@
     </script>
 
 
-<div id="post">
-    <div id="wrapper">
-        <article class="norm">
+<div class="reading-progress" id="reading-progress"></div>
+
+<div id="post" class="post-with-sidebar">
+    <div id="wrapper" class="wrapper-with-sidebar">
+        
+        
+        <aside class="toc-sidebar" id="toc-sidebar">
+            <div class="toc-sticky">
+                <div class="toc-sidebar-header toc-drag-handle" id="toc-drag-handle">
+                    <span class="toc-drag-icon" title="Drag to move">⋮⋮</span>
+                    <span class="toc-title">Contents</span>
+                </div>
+                <nav class="toc-nav">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-install-anki-and-sync">1. Install Anki and sync</a></li>
+    <li><a href="#2-learn-the-three-main-ideas">2. Learn the three main ideas</a></li>
+    <li><a href="#3-create-your-first-deck">3. Create your first deck</a></li>
+    <li><a href="#4-make-good-cards-simple-rules">4. Make good cards (simple rules)</a></li>
+    <li><a href="#5-use-cloze-deletions-for-lists">5. Use cloze deletions for lists</a></li>
+    <li><a href="#6-keep-reviews-small-but-daily">6. Keep reviews small but daily</a></li>
+    <li><a href="#7-tags-and-images">7. Tags and images</a></li>
+    <li><a href="#8-sync-and-backup">8. Sync and backup</a></li>
+    <li><a href="#9-common-beginner-mistakes">9. Common beginner mistakes</a></li>
+    <li><a href="#10-try-a-flashcard-interactive">10. Try a flashcard (interactive)</a></li>
+    <li><a href="#final-tip">Final tip</a></li>
+  </ul>
+</nav>
+                </nav>
+            </div>
+        </aside>
+        <script>
+            (function () {
+                const sidebar = document.getElementById('toc-sidebar');
+                const handle = document.getElementById('toc-drag-handle');
+                if (!sidebar || !handle || window.innerWidth < 1100) return;
+
+                let isDragging = false;
+                let startX, startY, initialX, initialY;
+
+                
+                function enableDragging() {
+                    sidebar.style.position = 'fixed';
+                    sidebar.style.transform = 'none';
+                }
+
+                handle.addEventListener('mousedown', function (e) {
+                    if (window.innerWidth < 1100) return;
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+
+                    const rect = sidebar.getBoundingClientRect();
+                    initialX = rect.left;
+                    initialY = rect.top;
+
+                    enableDragging();
+                    sidebar.style.transition = 'none';
+                    sidebar.style.cursor = 'grabbing';
+                    handle.style.cursor = 'grabbing';
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!isDragging) return;
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    let newX = initialX + dx;
+                    let newY = initialY + dy;
+
+                    
+                    const maxX = window.innerWidth - sidebar.offsetWidth - 10;
+                    const maxY = window.innerHeight - sidebar.offsetHeight - 10;
+                    newX = Math.max(10, Math.min(newX, maxX));
+                    newY = Math.max(10, Math.min(newY, maxY));
+
+                    sidebar.style.left = newX + 'px';
+                    sidebar.style.top = newY + 'px';
+                    sidebar.style.right = 'auto';
+                });
+
+                document.addEventListener('mouseup', function () {
+                    if (isDragging) {
+                        isDragging = false;
+                        sidebar.style.transition = 'opacity 0.3s ease';
+                        sidebar.style.cursor = '';
+                        handle.style.cursor = 'grab';
+                    }
+                });
+            })();
+        </script>
+        
+
+        <article class="norm has-toc">
             <h2 id="title">How to use anki beginners guide</h2>
-            <span class="authors">Sudip</span>
-            <time class="dt-published" datetime="2026-01-23">
-                January 23, 2026
-            </time>
+
+            <div class="post-byline">
+                <div class="author-avatar">S</div>
+                <div class="byline-info">
+                    <span class="authors">Sudip</span>
+                    <time class="dt-published" datetime=" 2026-01-23">
+                        January 23, 2026 · 3 min
+                        read
+                    </time>
+                </div>
+            </div>
+
+            
+            
+            <details class="toc-container toc-mobile" open>
+                <summary class="toc-header">
+                    <span class="toc-icon">☰</span>
+                    <span class="toc-title">Table of Contents</span>
+                    <span class="toc-toggle">▼</span>
+                </summary>
+                <nav class="toc-nav">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-install-anki-and-sync">1. Install Anki and sync</a></li>
+    <li><a href="#2-learn-the-three-main-ideas">2. Learn the three main ideas</a></li>
+    <li><a href="#3-create-your-first-deck">3. Create your first deck</a></li>
+    <li><a href="#4-make-good-cards-simple-rules">4. Make good cards (simple rules)</a></li>
+    <li><a href="#5-use-cloze-deletions-for-lists">5. Use cloze deletions for lists</a></li>
+    <li><a href="#6-keep-reviews-small-but-daily">6. Keep reviews small but daily</a></li>
+    <li><a href="#7-tags-and-images">7. Tags and images</a></li>
+    <li><a href="#8-sync-and-backup">8. Sync and backup</a></li>
+    <li><a href="#9-common-beginner-mistakes">9. Common beginner mistakes</a></li>
+    <li><a href="#10-try-a-flashcard-interactive">10. Try a flashcard (interactive)</a></li>
+    <li><a href="#final-tip">Final tip</a></li>
+  </ul>
+</nav>
+                </nav>
+            </details>
+            
 
             <p>Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.</p>
 <h2 id="1-install-anki-and-sync">1. Install Anki and sync</h2>
@@ -416,19 +544,19 @@
             
             <p class="post-tags">
                 
-                <a class="hashtag" href="/tags/anki">
+                <a class="hashtag" href="/%20/tags/anki">
                     <span>#</span><span>anki</span>
                 </a>
                 
-                <a class="hashtag" href="/tags/study">
+                <a class="hashtag" href="/%20/tags/study">
                     <span>#</span><span>study</span>
                 </a>
                 
-                <a class="hashtag" href="/tags/guide">
+                <a class="hashtag" href="/%20/tags/guide">
                     <span>#</span><span>guide</span>
                 </a>
                 
-                <a class="hashtag" href="/tags/flashcards">
+                <a class="hashtag" href="/%20/tags/flashcards">
                     <span>#</span><span>flashcards</span>
                 </a>
                 
@@ -587,7 +715,26 @@
             Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
         </p>
     </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    <script defer src="https://u-one-livid.vercel.app/script.js"
+        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+
+    
+    <script>
+        (function () {
+            const progressBar = document.getElementById('reading-progress');
+            if (!progressBar) return;
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        })();
+    </script>
 </footer>
 
 <script>
@@ -660,4 +807,5 @@
         );
     })();
 </script>
-<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+<script defer src="https://u-one-livid.vercel.app/script.js"
+    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

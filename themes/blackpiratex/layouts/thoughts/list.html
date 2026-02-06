@@ -4,14 +4,15 @@
     <div id="wrapper">
         <article class="norm thoughts-index">
             <h2 id="title">{{ .Title }}</h2>
-            <p class="thoughts-meta">{{ len .Pages }} thoughts</p>
+            <p class="thoughts-meta"><span class="thoughts-count">{{ len .Pages }}</span> thoughts</p>
 
             <div class="micro-feed">
-                {{ range (.Paginate .Pages 100).Pages }}
-                <div class="micro-item">
+                {{ range $index, $page := (.Paginate .Pages 100).Pages }}
+                <div class="micro-item" data-thought-id="thought-{{ $index }}"
+                    onclick="openThoughtModal('thought-{{ $index }}')">
                     <span class="micro-dot"></span>
                     <div class="micro-header">
-                        <a href="{{ .Permalink }}" class="micro-timestamp-link">
+                        <a href="{{ .Permalink }}" class="micro-timestamp-link" onclick="event.stopPropagation()">
                             <span class="micro-date-time">
                                 <span class="micro-date">{{ .Date.Format "Jan 02, 2006" }}</span>
                                 <span class="micro-separator">·</span>
@@ -19,7 +20,7 @@
                             </span>
                         </a>
                     </div>
-                    
+
                     <div class="micro-content">
                         {{ .Content }}
                     </div>
@@ -27,13 +28,26 @@
                     {{ if .Params.tags }}
                     <div class="micro-tags">
                         {{ range .Params.tags }}
-                        <a class="micro-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                        <a class="micro-tag" href="{{ " /tags/" | relLangURL }}{{ . | urlize }}"
+                            onclick="event.stopPropagation()">
                             #{{ . }}
                         </a>
                         {{ end }}
                     </div>
                     {{ end }}
                 </div>
+
+                <!-- Hidden modal content for each thought -->
+                <template id="thought-{{ $index }}-content">
+                    <div class="thought-modal-date">{{ .Date.Format "January 02, 2006 · 15:04" }}</div>
+                    <div class="thought-modal-body">{{ .Content }}</div>
+                    {{ if .Params.tags }}
+                    <div class="thought-modal-tags">
+                        {{ range .Params.tags }}<span class="thought-modal-tag">#{{ . }}</span>{{ end }}
+                    </div>
+                    {{ end }}
+                    <a href="{{ .Permalink }}" class="thought-modal-link">View full post →</a>
+                </template>
                 {{ end }}
             </div>
         </article>
@@ -41,5 +55,40 @@
         {{ partial "pagination.html" . }}
     </div>
 </div>
+
+<!-- Thought Modal Overlay -->
+<div class="thought-modal-overlay" id="thought-modal-overlay" onclick="closeThoughtModal()">
+    <div class="thought-modal" onclick="event.stopPropagation()">
+        <button class="thought-modal-close" onclick="closeThoughtModal()">×</button>
+        <div class="thought-modal-content" id="thought-modal-content">
+            <!-- Content injected via JS -->
+        </div>
+    </div>
+</div>
+
+<script>
+    function openThoughtModal(id) {
+        const template = document.getElementById(id + '-content');
+        const content = document.getElementById('thought-modal-content');
+        const overlay = document.getElementById('thought-modal-overlay');
+
+        if (template && content && overlay) {
+            content.innerHTML = template.innerHTML;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeThoughtModal() {
+        const overlay = document.getElementById('thought-modal-overlay');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeThoughtModal();
+    });
+</script>
 
 {{ partial "footer.html" . }}

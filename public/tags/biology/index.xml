@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Biology on BlackPirateX</title>
-    <link>http://localhost:1313/tags/biology/</link>
+    <link>http://localhost:1314/tags/biology/</link>
     <description>Recent content in Biology on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 13 May 2022 16:06:49 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/biology/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/biology/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sexual Reproduction in Flowering Plants</title>
-      <link>http://localhost:1313/blog/sexual-reproduction-in-flowering-plants/</link>
+      <link>http://localhost:1314/blog/sexual-reproduction-in-flowering-plants/</link>
       <pubDate>Fri, 13 May 2022 16:06:49 +0530</pubDate>
-      <guid>http://localhost:1313/blog/sexual-reproduction-in-flowering-plants/</guid>
+      <guid>http://localhost:1314/blog/sexual-reproduction-in-flowering-plants/</guid>
       <description>Pre-Fertilisation Events and Structures Several hormonal and structural changes happen which lead to the differentiation and further devlopment of floral primordium before flower in seen on a plant. Inflorecences are formed which bears the floral bud and then the flowers. Structures of a flower Androecium It is the male reproductive organ of the flower. Androecium consists of stamens. The number and length of stamens are variable in different species. Stamen has two parts.</description>
     </item>
     <item>
       <title>Human Reproduction</title>
-      <link>http://localhost:1313/blog/human-reproduction/</link>
+      <link>http://localhost:1314/blog/human-reproduction/</link>
       <pubDate>Mon, 02 May 2022 20:23:17 +0530</pubDate>
-      <guid>http://localhost:1313/blog/human-reproduction/</guid>
+      <guid>http://localhost:1314/blog/human-reproduction/</guid>
       <description>Male Reproductive Organ Male reproductive organs consists of testes, accesssory glands, glands and external genetitalia. Male reproductive system is located in pelvic region. There&amp;rsquo;s one pair of testes which is situated outside the human body within a pouch called scrotum. Scrotum has lower temparature than the body (2-2.5 degree celcius less) This lower temparature is necessuary for spermatogenesis. testis is oval in shape 4-5cm in length and 2-3 cm in width.</description>
     </item>
   </channel>

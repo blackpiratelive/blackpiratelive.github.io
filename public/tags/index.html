@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=41373&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tags | BlackPirateX</title>
@@ -37,9 +37,9 @@
 
     
     <header>
-        <h1><a href="http://localhost:41373/">BlackPirateX</a></h1>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
         <nav>
-            <a class="home" href="http://localhost:41373/">Home</a>
+            <a class="home" href="http://localhost:1314/">Home</a>
             <a href="/blog">Blog</a>
             <a href="/thoughts">Thoughts</a>
             <a href="/gallery">Gallery</a>
@@ -101,7 +101,7 @@
     <div id="wrapper">
         <article class="norm">
             <h2 id="title">Tags</h2>
-            <p class="thoughts-meta">27 topics found.</p>
+            <p class="thoughts-meta">30 topics found.</p>
 
             <ul class="writeas-list">
                 
@@ -126,9 +126,29 @@
                 </li>
                 
                 <li class="writeas-list-item">
+                    <span class="writeas-list-date">1</span>
+                    <div class="writeas-list-main">
+                        <a class="writeas-list-title" href="/tags/anki">#anki</a>
+                        <span class="writeas-list-tags">
+                            post
+                        </span>
+                    </div>
+                </li>
+                
+                <li class="writeas-list-item">
                     <span class="writeas-list-date">3</span>
                     <div class="writeas-list-main">
                         <a class="writeas-list-title" href="/tags/articles">#articles</a>
+                        <span class="writeas-list-tags">
+                            posts
+                        </span>
+                    </div>
+                </li>
+                
+                <li class="writeas-list-item">
+                    <span class="writeas-list-date">2</span>
+                    <div class="writeas-list-main">
+                        <a class="writeas-list-title" href="/tags/biology">#biology</a>
                         <span class="writeas-list-tags">
                             posts
                         </span>
@@ -186,7 +206,17 @@
                 </li>
                 
                 <li class="writeas-list-item">
-                    <span class="writeas-list-date">3</span>
+                    <span class="writeas-list-date">1</span>
+                    <div class="writeas-list-main">
+                        <a class="writeas-list-title" href="/tags/flashcards">#flashcards</a>
+                        <span class="writeas-list-tags">
+                            post
+                        </span>
+                    </div>
+                </li>
+                
+                <li class="writeas-list-item">
+                    <span class="writeas-list-date">5</span>
                     <div class="writeas-list-main">
                         <a class="writeas-list-title" href="/tags/guide">#guide</a>
                         <span class="writeas-list-tags">
@@ -336,7 +366,7 @@
                 </li>
                 
                 <li class="writeas-list-item">
-                    <span class="writeas-list-date">7</span>
+                    <span class="writeas-list-date">8</span>
                     <div class="writeas-list-main">
                         <a class="writeas-list-title" href="/tags/software">#software</a>
                         <span class="writeas-list-tags">
@@ -346,7 +376,7 @@
                 </li>
                 
                 <li class="writeas-list-item">
-                    <span class="writeas-list-date">28</span>
+                    <span class="writeas-list-date">29</span>
                     <div class="writeas-list-main">
                         <a class="writeas-list-title" href="/tags/study">#study</a>
                         <span class="writeas-list-tags">
@@ -366,7 +396,7 @@
                 </li>
                 
                 <li class="writeas-list-item">
-                    <span class="writeas-list-date">59</span>
+                    <span class="writeas-list-date">60</span>
                     <div class="writeas-list-main">
                         <a class="writeas-list-title" href="/tags/website">#website</a>
                         <span class="writeas-list-tags">
@@ -429,13 +459,15 @@
             
             <a href="/tags/linux/">#linux</a>
             
-            <a href="/tags/bookmarks/">#bookmarks</a>
-            
             <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
             
             <a href="/tags/dream/">#dream</a>
             
             <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
             
             <a href="/tags/meta/">#meta</a>
             
@@ -445,7 +477,7 @@
             
             <a href="/tags/excited/">#excited</a>
             
-            <a href="/tags/guide/">#guide</a>
+            <a href="/tags/biology/">#biology</a>
             
             <a href="/tags/cooking/">#cooking</a>
             
@@ -461,11 +493,9 @@
             
             <a href="/tags/android/">#android</a>
             
+            <a href="/tags/anki/">#anki</a>
+            
             <a href="/tags/dreams/">#dreams</a>
-            
-            <a href="/tags/internet/">#internet</a>
-            
-            <a href="/tags/kindle/">#kindle</a>
             
         </div>
     </details>
@@ -531,7 +561,26 @@
             Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
         </p>
     </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    <script defer src="https://u-one-livid.vercel.app/script.js"
+        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+
+    
+    <script>
+        (function () {
+            const progressBar = document.getElementById('reading-progress');
+            if (!progressBar) return;
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        })();
+    </script>
 </footer>
 
 <script>
@@ -604,4 +653,5 @@
         );
     })();
 </script>
-<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+<script defer src="https://u-one-livid.vercel.app/script.js"
+    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>

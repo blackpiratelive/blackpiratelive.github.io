@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flashcards on BlackPirateX</title>
-    <link>http://localhost:1313/tags/flashcards/</link>
+    <link>http://localhost:1314/tags/flashcards/</link>
     <description>Recent content in Flashcards on BlackPirateX</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Jan 2026 10:00:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/flashcards/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1314/tags/flashcards/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to use anki beginners guide</title>
-      <link>http://localhost:1313/blog/how-to-use-anki-beginners-guide/</link>
+      <link>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</link>
       <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
-      <guid>http://localhost:1313/blog/how-to-use-anki-beginners-guide/</guid>
+      <guid>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</guid>
       <description>Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.&#xA;1. Install Anki and sync Download Anki for desktop first (Windows/Mac/Linux). The desktop app is where you create and edit cards. Then create a free AnkiWeb account so your cards sync across devices. The mobile apps are optional, but very useful for reviews.</description>
     </item>
   </channel>

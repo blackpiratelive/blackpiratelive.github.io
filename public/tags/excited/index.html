@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=41373&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excited | BlackPirateX</title>
@@ -37,9 +37,9 @@
 
     
     <header>
-        <h1><a href="http://localhost:41373/">BlackPirateX</a></h1>
+        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
         <nav>
-            <a class="home" href="http://localhost:41373/">Home</a>
+            <a class="home" href="http://localhost:1314/">Home</a>
             <a href="/blog">Blog</a>
             <a href="/thoughts">Thoughts</a>
             <a href="/gallery">Gallery</a>
@@ -116,7 +116,7 @@
                     
                     <div class="thought-item">
                         <span class="thought-time">
-                            <a href="http://localhost:41373/thoughts/2023/2023-06-13-18-19-59/">2023-06-13 18:19</a>
+                            <a href="http://localhost:1314/thoughts/2023/2023-06-13-18-19-59/">2023-06-13 18:19</a>
                         </span>
                         <div class="thought-body">
                             
@@ -127,7 +127,7 @@
                     
                     <div class="thought-item">
                         <span class="thought-time">
-                            <a href="http://localhost:41373/thoughts/2022/2022-09-07-18-30-01/">2022-09-07 18:30</a>
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-07-18-30-01/">2022-09-07 18:30</a>
                         </span>
                         <div class="thought-body">
                             
@@ -138,7 +138,7 @@
                     
                     <div class="thought-item">
                         <span class="thought-time">
-                            <a href="http://localhost:41373/thoughts/2022/2022-09-06-11-19-24/">2022-09-06 11:19</a>
+                            <a href="http://localhost:1314/thoughts/2022/2022-09-06-11-19-24/">2022-09-06 11:19</a>
                         </span>
                         <div class="thought-body">
                             
@@ -230,13 +230,15 @@
             
             <a href="/tags/linux/">#linux</a>
             
-            <a href="/tags/bookmarks/">#bookmarks</a>
-            
             <a href="/tags/software/">#software</a>
+            
+            <a href="/tags/bookmarks/">#bookmarks</a>
             
             <a href="/tags/dream/">#dream</a>
             
             <a href="/tags/rant/">#rant</a>
+            
+            <a href="/tags/guide/">#guide</a>
             
             <a href="/tags/meta/">#meta</a>
             
@@ -246,7 +248,7 @@
             
             <a href="/tags/excited/">#excited</a>
             
-            <a href="/tags/guide/">#guide</a>
+            <a href="/tags/biology/">#biology</a>
             
             <a href="/tags/cooking/">#cooking</a>
             
@@ -262,11 +264,9 @@
             
             <a href="/tags/android/">#android</a>
             
+            <a href="/tags/anki/">#anki</a>
+            
             <a href="/tags/dreams/">#dreams</a>
-            
-            <a href="/tags/internet/">#internet</a>
-            
-            <a href="/tags/kindle/">#kindle</a>
             
         </div>
     </details>
@@ -332,7 +332,26 @@
             Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
         </p>
     </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    <script defer src="https://u-one-livid.vercel.app/script.js"
+        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+
+    
+    <script>
+        (function () {
+            const progressBar = document.getElementById('reading-progress');
+            if (!progressBar) return;
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        })();
+    </script>
 </footer>
 
 <script>
@@ -405,4 +424,5 @@
         );
     })();
 </script>
-<script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+<script defer src="https://u-one-livid.vercel.app/script.js"
+    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
