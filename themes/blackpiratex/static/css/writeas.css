@@ -2325,9 +2325,13 @@ html[data-theme="dark"] #post article::after {
         border-radius: 8px;
     }
 
-    #post article h2::before,
+    #post article h2:not(#title)::before,
     #post article h3::before {
         display: none;
+    }
+
+    .post-with-sidebar #wrapper.wrapper-with-sidebar {
+        padding: 0;
     }
 }
 
