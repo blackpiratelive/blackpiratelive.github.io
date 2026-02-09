@@ -2732,19 +2732,25 @@ html[data-theme="dark"] .thought-modal-link:hover {
     }
 
     .retro-top {
-        margin-bottom: 0;
+        margin-bottom: 0.5em;
         justify-content: space-between;
+        flex-wrap: wrap;
     }
 
-    /* Hide marquee on very small screens */
-    @media (max-width: 400px) {
-        .retro-marquee {
-            display: none;
-        }
+    .retro-brand {
+        order: 1;
     }
 
     .retro-toggle {
         display: block;
+        order: 2;
+    }
+
+    .retro-marquee {
+        flex: none;
+        width: 100%;
+        order: 3;
+        margin-top: 0.5em;
     }
 
     .retro-links {

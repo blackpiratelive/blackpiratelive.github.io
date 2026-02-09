@@ -111,16 +111,20 @@
                     <div class="marquee-track">
                         <span class="marquee-content">
                             Welcome to the digital void... //
-                            <strong>Latest:</strong> {{ range first 1 (where .Site.RegularPages "Type" "blog") }}{{
+                            <strong>Blog:</strong> {{ range first 1 (where .Site.RegularPages "Type" "blog") }}{{
                             .Title }}{{ end }} //
+                            <strong>Thought:</strong> {{ range first 1 (where .Site.RegularPages "Type" "thoughts") }}{{
+                            .Content | plainify | truncate 100 }}{{ end }} //
                             System Status: <strong>ONLINE</strong> //
                             <span class="cursor-blink">_</span>
                         </span>
                         <!-- Duplicate for seamless scroll -->
                         <span class="marquee-content" aria-hidden="true">
                             Welcome to the digital void... //
-                            <strong>Latest:</strong> {{ range first 1 (where .Site.RegularPages "Type" "blog") }}{{
+                            <strong>Blog:</strong> {{ range first 1 (where .Site.RegularPages "Type" "blog") }}{{
                             .Title }}{{ end }} //
+                            <strong>Thought:</strong> {{ range first 1 (where .Site.RegularPages "Type" "thoughts") }}{{
+                            .Content | plainify | truncate 100 }}{{ end }} //
                             System Status: <strong>ONLINE</strong> //
                             <span class="cursor-blink">_</span>
                         </span>
