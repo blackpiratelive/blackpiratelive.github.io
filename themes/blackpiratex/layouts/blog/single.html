@@ -95,6 +95,17 @@
                 </div>
             </div>
 
+            {{ if .Params.cover }}
+            {{ $coverImg := resources.Get .Params.cover }}
+            {{ if $coverImg }}
+            {{ $coverWebp := $coverImg.Resize "1200x webp q30" }}
+            <figure class="cover-image">
+                <img src="{{ $coverWebp.RelPermalink }}" alt="{{ .Title }}" width="{{ $coverWebp.Width }}"
+                    height="{{ $coverWebp.Height }}" loading="eager">
+            </figure>
+            {{ end }}
+            {{ end }}
+
             <!-- Mobile TOC (Collapsible) -->
             {{ if .TableOfContents }}
             <details class="toc-container toc-mobile" open>
@@ -114,7 +125,7 @@
             {{ if .Params.tags }}
             <p class="post-tags">
                 {{ range .Params.tags }}
-                <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                <a class="hashtag" href="{{ " /tags/" | relLangURL }}{{ . | urlize }}">
                     <span>#</span><span>{{ . }}</span>
                 </a>
                 {{ end }}

@@ -1251,6 +1251,25 @@ html[data-theme="dark"] .gallery-overlay {
     background: #1f1f1f;
 }
 
+/* ===== COVER IMAGE ===== */
+.cover-image {
+    margin: 1.5em 0 2em;
+    padding: 0;
+}
+
+.cover-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .cover-image img {
+        border-radius: 4px;
+    }
+}
+
 /* ===== ENHANCED BLOG POST STYLING ===== */
 
 /* Reading Progress Bar */
