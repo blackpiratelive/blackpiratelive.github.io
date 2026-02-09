@@ -25,21 +25,27 @@
         href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="{{ " css/writeas.css" | relURL }}">
+    {{ $writeasCSS := "css/writeas.css" }}
+    <link rel="stylesheet" href="{{ $writeasCSS | relURL }}">
     {{ if and (eq .Section "blog") (eq .Kind "section") }}
-    <link rel="stylesheet" href="{{ " css/blog-list.css" | relURL }}">
+    {{ $blogListCSS := "css/blog-list.css" }}
+    <link rel="stylesheet" href="{{ $blogListCSS | relURL }}">
     {{ end }}
     {{ if eq .Section "books" }}
-    <link rel="stylesheet" href="{{ " css/books.css" | relURL }}">
+    {{ $booksCSS := "css/books.css" }}
+    <link rel="stylesheet" href="{{ $booksCSS | relURL }}">
     {{ end }}
     {{ if .IsHome }}
-    <link rel="stylesheet" href="{{ " css/writeas-home.css" | relURL }}">
+    {{ $homeCSS := "css/writeas-home.css" }}
+    <link rel="stylesheet" href="{{ $homeCSS | relURL }}">
     {{ end }}
 
-    <script src="{{ " js/vendor/lucide.min.js" | relURL }}"></script>
+    {{ $lucideJS := "js/vendor/lucide.min.js" }}
+    <script src="{{ $lucideJS | relURL }}"></script>
     <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
-    <script src="{{ " js/search.js" | relURL }}"></script>
+    {{ $searchJS := "js/search.js" }}
+    <script src="{{ $searchJS | relURL }}"></script>
 </head>
 
 <body id="post">
@@ -47,14 +53,21 @@
     <header>
         <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
         <nav>
+            {{ $blog := "blog" }}
+            {{ $thoughts := "thoughts" }}
+            {{ $gallery := "gallery" }}
+            {{ $books := "books" }}
+            {{ $stats := "stats" }}
+            {{ $otd := "on-this-day" }}
+            {{ $search := "search" }}
             <a class="home" href="{{ .Site.BaseURL }}">Home</a>
-            <a href="{{ " blog" | relURL }}">Blog</a>
-            <a href="{{ " thoughts" | relURL }}">Thoughts</a>
-            <a href="{{ " gallery" | relURL }}">Gallery</a>
-            <a href="{{ " books" | relURL }}">Books</a>
-            <a href="{{ " stats" | relURL }}">Stats</a>
-            <a href="{{ " on-this-day" | relURL }}">On This Day</a>
-            <a href="{{ " search" | relURL }}">Search</a>
+            <a href="{{ $blog | relURL }}">Blog</a>
+            <a href="{{ $thoughts | relURL }}">Thoughts</a>
+            <a href="{{ $gallery | relURL }}">Gallery</a>
+            <a href="{{ $books | relURL }}">Books</a>
+            <a href="{{ $stats | relURL }}">Stats</a>
+            <a href="{{ $otd | relURL }}">On This Day</a>
+            <a href="{{ $search | relURL }}">Search</a>
             <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
         </nav>
         {{ with .Site.Params.subtitle }}
