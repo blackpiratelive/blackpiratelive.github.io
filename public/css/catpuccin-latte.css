@@ -1,0 +1,447 @@
+/* ========================================
+   Catpuccin Latte Theme
+   https://github.com/catppuccin/catppuccin
+   Flavor: Latte (light, colorful)
+   ======================================== */
+
+/* --- Catpuccin Latte Palette ---
+   Rosewater  #dc8a78    Flamingo   #dd7878
+   Pink       #ea76cb    Mauve      #8839ef
+   Red        #d20f39    Maroon     #e64553
+   Peach      #fe640b    Yellow     #df8e1d
+   Green      #40a02b    Teal       #179299
+   Sky        #04a5e5    Sapphire   #209fb5
+   Blue       #1e66f5    Lavender   #7287fd
+   Text       #4c4f69    Subtext1   #5c5f77
+   Subtext0   #6c6f85    Overlay2   #7c7f93
+   Overlay1   #8c8fa1    Overlay0   #9ca0b0
+   Surface2   #acb0be    Surface1   #bcc0cc
+   Surface0   #ccd0da    Base       #eff1f5
+   Mantle     #e6e9ef    Crust      #dce0e8
+*/
+
+/* === CSS Variables === */
+html[data-theme="catpuccin-latte"] {
+    --text-main: #4c4f69;
+    --primary-blue: #1e66f5;
+    --primary-blue-light: #7287fd;
+    --primary-blue-dark: #1e66f5;
+    --chart-sky: #04a5e5;
+    --chart-sun: #df8e1d;
+    --chart-moss: #40a02b;
+    --chart-haze: #e6e9ef;
+    --text-muted: #6c6f85;
+    --border-color: #ccd0da;
+    --bg-hover: #e6e9ef;
+    --shadow-soft: rgba(76, 79, 105, 0.06);
+    --shadow-hover: 0 8px 25px rgba(76, 79, 105, 0.1);
+    --shadow-card: 0 4px 12px rgba(76, 79, 105, 0.05);
+}
+
+/* === Body === */
+html[data-theme="catpuccin-latte"] body {
+    background-color: #eff1f5;
+    color: #4c4f69;
+}
+
+/* === Links === */
+html[data-theme="catpuccin-latte"] a {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] a:visited {
+    color: #8839ef;
+}
+
+html[data-theme="catpuccin-latte"] #post article a {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] #post article a:visited {
+    color: #8839ef;
+}
+
+/* === Header === */
+html[data-theme="catpuccin-latte"] header h1 a {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] header h1 a:hover {
+    color: #209fb5;
+}
+
+html[data-theme="catpuccin-latte"] header nav a,
+html[data-theme="catpuccin-latte"] header nav .theme-toggle {
+    color: #5c5f77;
+}
+
+html[data-theme="catpuccin-latte"] header nav a:hover,
+html[data-theme="catpuccin-latte"] header nav .theme-toggle:hover {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] header p.description {
+    color: #6c6f85;
+}
+
+/* === Horizontal Rule === */
+html[data-theme="catpuccin-latte"] hr {
+    background: #ccd0da;
+}
+
+/* === Blockquote === */
+html[data-theme="catpuccin-latte"] #post blockquote {
+    border-left-color: #dd7878;
+    color: #5c5f77;
+    background: #e6e9ef;
+}
+
+/* === Code & Pre === */
+html[data-theme="catpuccin-latte"] #post code,
+html[data-theme="catpuccin-latte"] #post pre {
+    background-color: #dce0e8;
+    border-color: #ccd0da;
+    color: #4c4f69;
+}
+
+/* === Post Meta === */
+html[data-theme="catpuccin-latte"] #post article .authors,
+html[data-theme="catpuccin-latte"] #post article time.dt-published {
+    color: #6c6f85;
+}
+
+/* === Footer === */
+html[data-theme="catpuccin-latte"] footer nav a {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] footer nav a.home {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-footer-title {
+    color: #5c5f77;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-footer-links,
+html[data-theme="catpuccin-latte"] .writeas-footer-tags {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-footer-links a,
+html[data-theme="catpuccin-latte"] .writeas-footer-tags a {
+    color: #179299;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-footer-links a:hover,
+html[data-theme="catpuccin-latte"] .writeas-footer-tags a:hover {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-webring-name {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-footer-credits {
+    color: #6c6f85;
+}
+
+/* === Hashtags === */
+html[data-theme="catpuccin-latte"] a.hashtag {
+    color: #179299;
+}
+
+html[data-theme="catpuccin-latte"] a.hashtag:hover {
+    color: #ea76cb;
+}
+
+/* === Thoughts === */
+html[data-theme="catpuccin-latte"] .thoughts-meta,
+html[data-theme="catpuccin-latte"] .thought-time {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .thought-item {
+    border-bottom-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .thought-time a:hover {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] .thoughts-count {
+    color: #6c6f85;
+}
+
+/* === Pagination === */
+html[data-theme="catpuccin-latte"] .pagination-link {
+    border-color: #ccd0da;
+    color: #5c5f77;
+}
+
+html[data-theme="catpuccin-latte"] .pagination-link.active {
+    background: #dce0e8;
+    color: #4c4f69;
+}
+
+/* === List Items === */
+html[data-theme="catpuccin-latte"] .writeas-list-item {
+    border-bottom-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-list-date,
+html[data-theme="catpuccin-latte"] .writeas-list-tags {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-list-title {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-list-tag {
+    color: #179299;
+}
+
+/* === Gallery === */
+html[data-theme="catpuccin-latte"] .writeas-gallery-title {
+    border-bottom-color: #ccd0da;
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-masonry-item {
+    border-color: #ccd0da;
+    background: #e6e9ef;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-masonry-item:hover {
+    border-color: #7287fd;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-gallery-image {
+    border-color: #ccd0da;
+    background: #dce0e8;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-gallery-meta {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-exif {
+    border-color: #ccd0da;
+    background: #e6e9ef;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-exif-label {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-exif-value {
+    color: #4c4f69;
+}
+
+/* === Stats === */
+html[data-theme="catpuccin-latte"] .writeas-stat-card {
+    border-color: #ccd0da;
+    background: #e6e9ef;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-stat-label {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-stat-value {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-section-title {
+    border-bottom-color: #ccd0da;
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-chart-card {
+    border-color: #ccd0da;
+    background: #e6e9ef;
+}
+
+/* === Search === */
+html[data-theme="catpuccin-latte"] .writeas-search-input {
+    border-color: #ccd0da;
+    background: #dce0e8;
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .section-title {
+    border-bottom-color: #ccd0da;
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .blog-result {
+    border-bottom-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .blog-result h3 {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .blog-meta,
+html[data-theme="catpuccin-latte"] .blog-result p,
+html[data-theme="catpuccin-latte"] .thought-meta,
+html[data-theme="catpuccin-latte"] .thought-content,
+html[data-theme="catpuccin-latte"] .gallery-overlay,
+html[data-theme="catpuccin-latte"] .no-image {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .thought-result,
+html[data-theme="catpuccin-latte"] .gallery-result {
+    border-color: #ccd0da;
+    background: #e6e9ef;
+}
+
+html[data-theme="catpuccin-latte"] .gallery-overlay {
+    background: #e6e9ef;
+}
+
+/* === Blog Table === */
+html[data-theme="catpuccin-latte"] .blog-row td {
+    border-bottom-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .blog-date {
+    color: #6c6f85;
+}
+
+html[data-theme="catpuccin-latte"] .blog-title a {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .blog-title a:hover {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] .blog-tags {
+    color: #179299;
+}
+
+/* === TOC Sidebar === */
+html[data-theme="catpuccin-latte"] .toc-container {
+    background: linear-gradient(135deg, #e6e9ef 0%, #dce0e8 100%);
+    border-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .toc-header {
+    background: linear-gradient(135deg, #dce0e8 0%, #ccd0da 100%);
+    border-bottom-color: #bcc0cc;
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .toc-body a {
+    color: #5c5f77;
+}
+
+html[data-theme="catpuccin-latte"] .toc-body a:hover {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] .toc-body a.active {
+    color: #1e66f5;
+    border-left-color: #1e66f5;
+}
+
+/* === Reading Progress Bar === */
+html[data-theme="catpuccin-latte"] .reading-progress {
+    background: linear-gradient(90deg, #1e66f5 0%, #7287fd 50%, #ea76cb 100%);
+}
+
+/* === Enhanced Blog Post === */
+html[data-theme="catpuccin-latte"] .blog-post-title {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .blog-byline {
+    color: #6c6f85;
+}
+
+/* === Micro Tags === */
+html[data-theme="catpuccin-latte"] .micro-tag {
+    background: #dce0e8;
+    color: #179299;
+    border-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .micro-tag:hover {
+    background: #ccd0da;
+    color: #1e66f5;
+}
+
+/* === Theme Toggle Button === */
+html[data-theme="catpuccin-latte"] .theme-toggle {
+    color: #5c5f77;
+}
+
+/* === Selection === */
+html[data-theme="catpuccin-latte"] ::selection {
+    background: #7287fd;
+    color: #eff1f5;
+}
+
+/* === Scrollbar (Webkit) === */
+html[data-theme="catpuccin-latte"] ::-webkit-scrollbar {
+    width: 8px;
+}
+
+html[data-theme="catpuccin-latte"] ::-webkit-scrollbar-track {
+    background: #e6e9ef;
+}
+
+html[data-theme="catpuccin-latte"] ::-webkit-scrollbar-thumb {
+    background: #acb0be;
+    border-radius: 4px;
+}
+
+html[data-theme="catpuccin-latte"] ::-webkit-scrollbar-thumb:hover {
+    background: #9ca0b0;
+}
+
+/* === Footer Section borders === */
+html[data-theme="catpuccin-latte"] .writeas-footer-section {
+    border-bottom-color: #ccd0da;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-footer-section summary {
+    color: #5c5f77;
+}
+
+/* === Webring rows === */
+html[data-theme="catpuccin-latte"] .writeas-webring-row a {
+    color: #1e66f5;
+}
+
+html[data-theme="catpuccin-latte"] .writeas-webring-row a:hover {
+    color: #ea76cb;
+}
+
+/* === Tag Cloud === */
+html[data-theme="catpuccin-latte"] .tag-cloud-item {
+    border-color: #ccd0da;
+    color: #5c5f77;
+}
+
+html[data-theme="catpuccin-latte"] .tag-cloud-item:hover {
+    background: #dce0e8;
+    color: #179299;
+}
+
+/* === Books === */
+html[data-theme="catpuccin-latte"] .book-card {
+    border-color: #ccd0da;
+    background: #e6e9ef;
+}
+
+html[data-theme="catpuccin-latte"] .book-title {
+    color: #4c4f69;
+}
+
+html[data-theme="catpuccin-latte"] .book-author {
+    color: #6c6f85;
+}

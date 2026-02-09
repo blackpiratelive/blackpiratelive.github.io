@@ -27,6 +27,8 @@
         href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     {{ $writeasCSS := "css/writeas.css" }}
     <link rel="stylesheet" href="{{ $writeasCSS | relURL }}">
+    {{ $latteCSS := "css/catpuccin-latte.css" }}
+    <link rel="stylesheet" href="{{ $latteCSS | relURL }}">
     {{ if and (eq .Section "blog") (eq .Kind "section") }}
     {{ $blogListCSS := "css/blog-list.css" }}
     <link rel="stylesheet" href="{{ $blogListCSS | relURL }}">
@@ -80,25 +82,17 @@
             const storageKey = "bp-theme";
             const root = document.documentElement;
             const toggle = document.querySelector(".theme-toggle");
+            const themes = ["light", "dark", "catpuccin-latte"];
+            const labels = { light: "Dark", dark: "Latte", "catpuccin-latte": "Light" };
 
             const applyTheme = (value) => {
-                if (value === "dark") {
-                    root.setAttribute("data-theme", "dark");
-                } else {
+                if (value === "light") {
                     root.removeAttribute("data-theme");
+                } else {
+                    root.setAttribute("data-theme", value);
                 }
                 if (toggle) {
-                    const pressed = value === "dark";
-                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
-                    const icon = toggle.querySelector("i");
-                    if (icon) {
-                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
-                    } else {
-                        toggle.textContent = pressed ? "Light" : "Theme";
-                    }
-                    if (typeof lucide !== "undefined") {
-                        lucide.createIcons();
-                    }
+                    toggle.textContent = labels[value] || "Theme";
                 }
             };
 
@@ -110,7 +104,9 @@
 
             if (toggle) {
                 toggle.addEventListener("click", () => {
-                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    const current = root.getAttribute("data-theme") || "light";
+                    const idx = themes.indexOf(current);
+                    const next = themes[(idx + 1) % themes.length];
                     localStorage.setItem(storageKey, next);
                     applyTheme(next);
                 });
