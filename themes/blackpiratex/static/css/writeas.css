@@ -1608,13 +1608,48 @@ html[data-theme="dark"] .blog-tags {
 
 /* Mobile */
 @media (max-width: 600px) {
-    .blog-tags {
-        display: none;
+    .blog-list-page {
+        padding: 0 1em !important;
+    }
+
+    .blog-table,
+    .blog-table tbody,
+    .blog-table tr,
+    .blog-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .blog-row {
+        padding: 0.6em 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .blog-row td {
+        border-bottom: none;
+        padding: 0;
     }
 
     .blog-date {
-        width: 50px;
-        font-size: 0.75em;
+        width: auto;
+        font-size: 0.72em;
+        margin-bottom: 2px;
+    }
+
+    .blog-title {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        font-size: 1rem;
+    }
+
+    .blog-tags {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    html[data-theme="dark"] .blog-row {
+        border-bottom-color: #333;
     }
 }
 

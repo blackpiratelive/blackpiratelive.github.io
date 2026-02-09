@@ -20,38 +20,44 @@
     <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
     
 
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
-    <link rel="prefetch" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="/css/writeas.css">
+    <link rel="prefetch" as="font" type="font/woff2"
+        href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
+    <link rel="prefetch" as="font" type="font/woff2"
+        href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="/%20css/writeas.css">
     
     
     
-    
+
+    <script src="/%20js/vendor/lucide.min.js"></script>
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+    <script src="/%20js/search.js"></script>
 </head>
+
 <body id="post">
 
-    
     <header>
         <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
         <nav>
             <a class="home" href="http://localhost:1313/">Home</a>
-            <a href="/blog">Blog</a>
-            <a href="/thoughts">Thoughts</a>
-            <a href="/gallery">Gallery</a>
-            <a href="/books">Books</a>
-            <a href="/stats">Stats</a>
-            <a href="/on-this-day">On This Day</a>
-            <a href="/search">Search</a>
+            <a href="/%20blog">Blog</a>
+            <a href="/%20thoughts">Thoughts</a>
+            <a href="/%20gallery">Gallery</a>
+            <a href="/%20books">Books</a>
+            <a href="/%20stats">Stats</a>
+            <a href="/%20on-this-day">On This Day</a>
+            <a href="/%20search">Search</a>
             <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
         </nav>
         
     </header>
-    
 
     <script>
         (function () {
@@ -100,12 +106,11 @@
 
 
 
-
 <div id="post">
     <div id="wrapper">
         <article class="norm">
             <h2 id="title">#Computer</h2>
-            <p class="thoughts-meta">1 items across the site.</p>
+            <p class="thoughts-meta">4 items across the site.</p>
 
             
             <section class="writeas-section">
@@ -125,13 +130,51 @@
             
 
             
+            <section class="writeas-section">
+                <h3 class="writeas-section-title">Thoughts</h3>
+                <div class="thoughts-list">
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1313/thoughts/2026/2026-02-09-untitled-015994/">2026-02-09 04:03</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>This is why you should not mess with laptop more than it needs</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1313/thoughts/2026/2026-02-09-untitled-448214/">2026-02-09 00:34</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>oh my god im so annoyed how many servers do u need to check for mirrors?</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="thought-item">
+                        <span class="thought-time">
+                            <a href="http://localhost:1313/thoughts/2026/2026-02-09-untitled-224527/">2026-02-09 00:30</a>
+                        </span>
+                        <div class="thought-body">
+                            
+                            <p>when the speedtest for getting fastest mirrors take up so much time, sigh</p>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            
 
             
         </article>
     </div>
 </div>
-
-
 
 <footer class="writeas-footer">
     <details class="writeas-footer-section" open>
@@ -204,6 +247,8 @@
             
             <a href="/tags/sun/">#sun</a>
             
+            <a href="/tags/computer/">#computer</a>
+            
             <a href="/tags/life/">#life</a>
             
             <a href="/tags/articles/">#articles</a>
@@ -213,8 +258,6 @@
             <a href="/tags/excited/">#excited</a>
             
             <a href="/tags/guide/">#guide</a>
-            
-            <a href="/tags/cityscape/">#cityscape</a>
             
         </div>
     </details>
@@ -301,7 +344,6 @@
         })();
     </script>
 </footer>
-
 <script>
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
