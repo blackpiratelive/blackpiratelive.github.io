@@ -1,0 +1,449 @@
+/* ========================================
+   Catpuccin Mocha Theme
+   https://github.com/catppuccin/catppuccin
+   Flavor: Mocha (dark, colorful)
+   ======================================== */
+
+/* --- Catpuccin Mocha Palette ---
+   Rosewater  #f5e0dc    Flamingo   #f2cdcd
+   Pink       #f5c2e7    Mauve      #cba6f7
+   Red        #f38ba8    Maroon     #eba0ac
+   Peach      #fab387    Yellow     #f9e2af
+   Green      #a6e3a1    Teal       #94e2d5
+   Sky        #89dcfe    Sapphire   #74c7ec
+   Blue       #89b4fa    Lavender   #b4befe
+   Text       #cdd6f4    Subtext1   #bac2de
+   Subtext0   #a6adc8    Overlay2   #9399b2
+   Overlay1   #7f849c    Overlay0   #6c7086
+   Surface2   #585b70    Surface1   #45475a
+   Surface0   #313244    Base       #1e1e2e
+   Mantle     #181825    Crust      #11111b
+*/
+
+/* === CSS Variables === */
+html[data-theme="catpuccin-mocha"] {
+    --text-main: #cdd6f4;
+    --primary-blue: #89b4fa;
+    --primary-blue-light: #b4befe;
+    --primary-blue-dark: #74c7ec;
+    --chart-sky: #74c7ec;
+    --chart-sun: #f9e2af;
+    --chart-moss: #a6e3a1;
+    --chart-haze: #181825;
+    --text-muted: #a6adc8;
+    --border-color: #45475a;
+    --bg-hover: #313244;
+    --shadow-soft: rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* === Body === */
+html[data-theme="catpuccin-mocha"] body {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+/* === Links === */
+html[data-theme="catpuccin-mocha"] a {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] a:visited {
+    color: #cba6f7;
+}
+
+html[data-theme="catpuccin-mocha"] #post article a {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] #post article a:visited {
+    color: #cba6f7;
+}
+
+/* === Header === */
+html[data-theme="catpuccin-mocha"] header h1 a {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] header h1 a:hover {
+    color: #f5c2e7;
+}
+
+html[data-theme="catpuccin-mocha"] header nav a,
+html[data-theme="catpuccin-mocha"] header nav .theme-toggle {
+    color: #bac2de;
+}
+
+html[data-theme="catpuccin-mocha"] header nav a:hover,
+html[data-theme="catpuccin-mocha"] header nav .theme-toggle:hover {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] header p.description {
+    color: #a6adc8;
+}
+
+/* === Horizontal Rule === */
+html[data-theme="catpuccin-mocha"] hr {
+    background: #45475a;
+}
+
+/* === Blockquote === */
+html[data-theme="catpuccin-mocha"] #post blockquote {
+    border-left-color: #f38ba8;
+    color: #bac2de;
+    background: #181825;
+}
+
+/* === Code & Pre === */
+html[data-theme="catpuccin-mocha"] #post code,
+html[data-theme="catpuccin-mocha"] #post pre {
+    background-color: #11111b;
+    border-color: #45475a;
+    color: #cdd6f4;
+}
+
+/* === Post Meta === */
+html[data-theme="catpuccin-mocha"] #post article .authors,
+html[data-theme="catpuccin-mocha"] #post article time.dt-published {
+    color: #a6adc8;
+}
+
+/* === Footer === */
+html[data-theme="catpuccin-mocha"] footer nav a {
+    color: #6c7086;
+}
+
+html[data-theme="catpuccin-mocha"] footer nav a.home {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-footer-title {
+    color: #bac2de;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-footer-links,
+html[data-theme="catpuccin-mocha"] .writeas-footer-tags {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-footer-links a,
+html[data-theme="catpuccin-mocha"] .writeas-footer-tags a {
+    color: #94e2d5;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-footer-links a:hover,
+html[data-theme="catpuccin-mocha"] .writeas-footer-tags a:hover {
+    color: #f5c2e7;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-webring-name {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-footer-credits {
+    color: #6c7086;
+}
+
+/* === Hashtags === */
+html[data-theme="catpuccin-mocha"] a.hashtag {
+    color: #94e2d5;
+}
+
+html[data-theme="catpuccin-mocha"] a.hashtag:hover {
+    color: #f5c2e7;
+}
+
+/* === Thoughts === */
+html[data-theme="catpuccin-mocha"] .thoughts-meta,
+html[data-theme="catpuccin-mocha"] .thought-time {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .thought-item {
+    border-bottom-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .thought-time a:hover {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] .thoughts-count {
+    color: #a6adc8;
+}
+
+/* === Pagination === */
+html[data-theme="catpuccin-mocha"] .pagination-link {
+    border-color: #45475a;
+    color: #bac2de;
+}
+
+html[data-theme="catpuccin-mocha"] .pagination-link.active {
+    background: #313244;
+    color: #cdd6f4;
+}
+
+/* === List Items === */
+html[data-theme="catpuccin-mocha"] .writeas-list-item {
+    border-bottom-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-list-date,
+html[data-theme="catpuccin-mocha"] .writeas-list-tags {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-list-title {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-list-tag {
+    color: #94e2d5;
+}
+
+/* === Gallery === */
+html[data-theme="catpuccin-mocha"] .writeas-gallery-title {
+    border-bottom-color: #45475a;
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-masonry-item {
+    border-color: transparent;
+    background: transparent;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-masonry-item:hover {
+    border-color: #b4befe;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-gallery-image {
+    border-color: #45475a;
+    background: #313244;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-gallery-meta {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-exif {
+    border-color: #45475a;
+    background: #313244;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-exif-label {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-exif-value {
+    color: #cdd6f4;
+}
+
+/* === Stats === */
+html[data-theme="catpuccin-mocha"] .writeas-stat-card {
+    border-color: #45475a;
+    background: #313244;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-stat-label {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-stat-value {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-section-title {
+    border-bottom-color: #45475a;
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-chart-card {
+    border-color: #45475a;
+    background: #181825;
+}
+
+/* === Search === */
+html[data-theme="catpuccin-mocha"] .writeas-search-input {
+    border-color: #45475a;
+    background: #313244;
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .section-title {
+    border-bottom-color: #45475a;
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-result {
+    border-bottom-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-result h3 {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-meta,
+html[data-theme="catpuccin-mocha"] .blog-result p,
+html[data-theme="catpuccin-mocha"] .thought-meta,
+html[data-theme="catpuccin-mocha"] .thought-content,
+html[data-theme="catpuccin-mocha"] .gallery-overlay,
+html[data-theme="catpuccin-mocha"] .no-image {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .thought-result,
+html[data-theme="catpuccin-mocha"] .gallery-result {
+    border-color: #45475a;
+    background: #313244;
+}
+
+html[data-theme="catpuccin-mocha"] .gallery-overlay {
+    background: #181825;
+}
+
+/* === Blog Table === */
+html[data-theme="catpuccin-mocha"] .blog-row td {
+    border-bottom-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-date {
+    color: #a6adc8;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-title a {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-title a:hover {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-tags {
+    color: #94e2d5;
+}
+
+/* === TOC === */
+html[data-theme="catpuccin-mocha"] .toc-container {
+    background: linear-gradient(135deg, #181825 0%, #11111b 100%);
+    border-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .toc-header {
+    background: linear-gradient(135deg, #313244 0%, #45475a 100%);
+    border-bottom-color: #585b70;
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .toc-body a {
+    color: #bac2de;
+}
+
+html[data-theme="catpuccin-mocha"] .toc-body a:hover {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] .toc-body a.active {
+    color: #89b4fa;
+    border-left-color: #89b4fa;
+}
+
+/* === Reading Progress Bar === */
+html[data-theme="catpuccin-mocha"] .reading-progress {
+    background: linear-gradient(90deg, #89b4fa 0%, #cba6f7 50%, #f5c2e7 100%);
+}
+
+/* === Blog Post === */
+html[data-theme="catpuccin-mocha"] .blog-post-title {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .blog-byline {
+    color: #a6adc8;
+}
+
+/* === Micro Tags === */
+html[data-theme="catpuccin-mocha"] .micro-tag {
+    background: #313244;
+    color: #94e2d5;
+    border-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .micro-tag:hover {
+    background: #45475a;
+    color: #f5c2e7;
+}
+
+/* === Selection === */
+html[data-theme="catpuccin-mocha"] ::selection {
+    background: #cba6f7;
+    color: #1e1e2e;
+}
+
+/* === Scrollbar (Webkit) === */
+html[data-theme="catpuccin-mocha"] ::-webkit-scrollbar {
+    width: 8px;
+}
+
+html[data-theme="catpuccin-mocha"] ::-webkit-scrollbar-track {
+    background: #181825;
+}
+
+html[data-theme="catpuccin-mocha"] ::-webkit-scrollbar-thumb {
+    background: #585b70;
+    border-radius: 4px;
+}
+
+html[data-theme="catpuccin-mocha"] ::-webkit-scrollbar-thumb:hover {
+    background: #6c7086;
+}
+
+/* === Footer Section borders === */
+html[data-theme="catpuccin-mocha"] .writeas-footer-section {
+    border-bottom-color: #45475a;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-footer-section summary {
+    color: #bac2de;
+}
+
+/* === Webring rows === */
+html[data-theme="catpuccin-mocha"] .writeas-webring-row a {
+    color: #89b4fa;
+}
+
+html[data-theme="catpuccin-mocha"] .writeas-webring-row a:hover {
+    color: #f5c2e7;
+}
+
+/* === Tag Cloud === */
+html[data-theme="catpuccin-mocha"] .tag-cloud-item {
+    border-color: #45475a;
+    color: #bac2de;
+}
+
+html[data-theme="catpuccin-mocha"] .tag-cloud-item:hover {
+    background: #313244;
+    color: #94e2d5;
+}
+
+/* === Books === */
+html[data-theme="catpuccin-mocha"] .book-card {
+    border-color: #45475a;
+    background: #313244;
+}
+
+html[data-theme="catpuccin-mocha"] .book-title {
+    color: #cdd6f4;
+}
+
+html[data-theme="catpuccin-mocha"] .book-author {
+    color: #a6adc8;
+}
+
+/* === Mobile blog row dark border === */
+@media (max-width: 600px) {
+    html[data-theme="catpuccin-mocha"] .blog-row {
+        border-bottom-color: #45475a;
+    }
+}

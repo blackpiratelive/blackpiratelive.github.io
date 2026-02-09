@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{ $writeasCSS | relURL }}">
     {{ $latteCSS := "css/catpuccin-latte.css" }}
     <link rel="stylesheet" href="{{ $latteCSS | relURL }}">
+    {{ $mochaCSS := "css/catpuccin-mocha.css" }}
+    <link rel="stylesheet" href="{{ $mochaCSS | relURL }}">
     {{ if and (eq .Section "blog") (eq .Kind "section") }}
     {{ $blogListCSS := "css/blog-list.css" }}
     <link rel="stylesheet" href="{{ $blogListCSS | relURL }}">
@@ -82,8 +84,8 @@
             const storageKey = "bp-theme";
             const root = document.documentElement;
             const toggle = document.querySelector(".theme-toggle");
-            const themes = ["light", "dark", "catpuccin-latte"];
-            const labels = { light: "Dark", dark: "Latte", "catpuccin-latte": "Light" };
+            const themes = ["light", "dark", "catpuccin-latte", "catpuccin-mocha"];
+            const labels = { light: "Dark", dark: "Latte", "catpuccin-latte": "Mocha", "catpuccin-mocha": "Light" };
 
             const applyTheme = (value) => {
                 if (value === "light") {
