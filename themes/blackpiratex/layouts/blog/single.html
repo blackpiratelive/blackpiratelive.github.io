@@ -132,7 +132,7 @@
 
             <!-- Mobile TOC (Collapsible) -->
             {{ if .TableOfContents }}
-            <details class="toc-container toc-mobile" open>
+            <details class="toc-container toc-mobile">
                 <summary class="toc-header">
                     <span class="toc-icon">☰</span>
                     <span class="toc-title">Table of Contents</span>
@@ -156,6 +156,15 @@
             </p>
             {{ end }}
         </article>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var tocMobile = document.querySelector(".toc-mobile");
+                if (tocMobile) {
+                    tocMobile.removeAttribute("open");
+                }
+            });
+        </script>
     </div>
 </div>
 
