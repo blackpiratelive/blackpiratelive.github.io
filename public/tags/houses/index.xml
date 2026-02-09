@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Houses on BlackPirateX</title>
+    <link>http://localhost:1313/tags/houses/</link>
+    <description>Recent content in Houses on BlackPirateX</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 May 2022 17:57:15 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/houses/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Same Scenery Different Day</title>
+      <link>http://localhost:1313/gallery/same-scenery-different-day/</link>
+      <pubDate>Sat, 28 May 2022 17:57:15 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/same-scenery-different-day/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

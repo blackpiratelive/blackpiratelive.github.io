@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cooking on BlackPirateX</title>
-    <link>http://localhost:1314/tags/cooking/</link>
+    <link>http://localhost:1313/tags/cooking/</link>
     <description>Recent content in Cooking on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Nov 2025 13:19:31 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/cooking/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/cooking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-11-22-13-18-41/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-11-22-13-18-41/</link>
       <pubDate>Sat, 22 Nov 2025 13:18:41 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-11-22-13-18-41/</guid>
-      <description>I completely forgot that I have to cook today, sigh. Plans for the whole day has been changed.</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-22-13-18-41/</guid>
+      <description>&lt;p&gt;I completely forgot that I have to cook today, sigh. Plans for the whole day has been changed.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-08-26_2/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-08-26_2/</link>
       <pubDate>Tue, 26 Aug 2025 17:50:18 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-08-26_2/</guid>
-      <description>I made grilled chicken legs, for the first time. File: /img/8e70a8939b048e05720ac191a2517f9f.jpg (3000x4000) </description>
+      <guid>http://localhost:1313/thoughts/2025/2025-08-26_2/</guid>
+      <description>&lt;p&gt;I made grilled chicken legs, for the first time.&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/8e70a8939b048e05720ac191a2517f9f.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/8e70a8939b048e05720ac191a2517f9f.jpg&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(3000x4000)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/8e70a8939b048e05720ac191a2517f9f.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/8e70a8939b048e05720ac191a2517f9f_hu_5cf59efac7646647.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;133&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Proud on BlackPirateX</title>
-    <link>http://localhost:1314/tags/proud/</link>
+    <link>http://localhost:1313/tags/proud/</link>
     <description>Recent content in Proud on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Mar 2023 16:15:19 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/proud/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/proud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2023/2023-03-15-16-14-25/</link>
+      <link>http://localhost:1313/thoughts/2023/2023-03-15-16-14-25/</link>
       <pubDate>Wed, 15 Mar 2023 16:14:25 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2023/2023-03-15-16-14-25/</guid>
-      <description>Today I learnt how to read write cookies using javascript. Feeling like a pro XD.</description>
+      <guid>http://localhost:1313/thoughts/2023/2023-03-15-16-14-25/</guid>
+      <description>&lt;p&gt;Today I learnt how to read write cookies using javascript. Feeling like a pro XD.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-07-26-19-04-00/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-07-26-19-04-00/</link>
       <pubDate>Tue, 26 Jul 2022 19:04:00 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-07-26-19-04-00/</guid>
-      <description>It is final now. I am going to use this as twitter. I am so proud.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-07-26-19-04-00/</guid>
+      <description>&lt;p&gt;It is final now. I am going to use this as twitter. I am so proud.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

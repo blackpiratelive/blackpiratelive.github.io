@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rivers on BlackPirateX</title>
+    <link>http://localhost:1313/tags/rivers/</link>
+    <description>Recent content in Rivers on BlackPirateX</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Sep 2024 15:57:56 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rivers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amachu Bridge Bhutan</title>
+      <link>http://localhost:1313/gallery/amachu-bridge-bhutan/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/amachu-bridge-bhutan/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

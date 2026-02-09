@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting Up My Website on Hugo | BlackPirateX</title>
@@ -37,9 +37,9 @@
 
     
     <header>
-        <h1><a href="http://localhost:1314/">BlackPirateX</a></h1>
+        <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
         <nav>
-            <a class="home" href="http://localhost:1314/">Home</a>
+            <a class="home" href="http://localhost:1313/">Home</a>
             <a href="/blog">Blog</a>
             <a href="/thoughts">Thoughts</a>
             <a href="/gallery">Gallery</a>
@@ -243,7 +243,7 @@ Now, to create a new theme, run the following command:
 <code>theme = my-new-theme</code>
 Now head over to <em>themes/my-new-theme</em> folder. We&rsquo;re going to edit stuff inside layouts as for now.
 <em>index.html</em> file in the layouts folder is the file that decides what would be shown on the home page of your website. In my case, you can see the following code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- partial &#34;head.html&#34; . -}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- partial &#34;head.html&#34; . -}}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
 </span></span><span style="display:flex;"><span>    {{- partial &#34;header.html&#34; . -}}
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;all-content&#34;</span>&gt;
@@ -266,7 +266,7 @@ Now head over to <em>themes/my-new-theme</em> folder. We&rsquo;re going to edit 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;&lt;/<span style="color:#f92672">html</span>&gt;</span></span></code></pre></div>
 <p>Ignore anything above <em>all-content</em> div. The <em>h4</em> tag sets pulls description from the <em>config.toml</em> in root directory of the website. Hugo has some site wide variables that you can use, (<a href="https://gohugo.io/variables/site/#the-siteparams-variable">learn more here</a>) in this case we are pulling <em>.Site.Params.description</em> . For this to work you need to have the following lines in your <em>config.toml</em> file.
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>[params]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>[params]
 </span></span><span style="display:flex;"><span>  author = &#39;Nikola Tesla&#39;
 </span></span><span style="display:flex;"><span>  description = &#34;Tesla&#39;s Awesome Hugo Site&#34;</span></span></code></pre></div></p>
 <p>Just like description you can also pull author with <code>{{ .Site.Params.author }}</code> variable.</p>
@@ -285,7 +285,7 @@ It should now show all the latest posts of your blog. If you dont have any quick
 <li><code>list.html</code> - decides how your list page (tag pages, catagory pages) would look like.</li>
 </ul>
 <p>My <code>single.html</code> page looks like this.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- partial &#34;head.html&#34; . -}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- partial &#34;head.html&#34; . -}}
 </span></span><span style="display:flex;"><span>{{- partial &#34;header.html&#34; . -}}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;all-content&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>
@@ -310,7 +310,7 @@ It should now show all the latest posts of your blog. If you dont have any quick
 <p><code>{{ .Content }}</code>  is all the stuff inside your markdown of the post. Everything else is self explanatory. If you are still struggling to understand, read <a href="https://gohugo.io/variables/page/">this page</a> of hugo documentation.
 <code>{{ range (.GetTerms &quot;tags&quot;) }}</code> is another loop, which lists all the tags and makes them clickable.</p>
 <p>Below is my <code>list.html</code> file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- partial &#34;head.html&#34; . -}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- partial &#34;head.html&#34; . -}}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>{{- partial &#34;header.html&#34; . -}}
 </span></span><span style="display:flex;"><span>
@@ -348,7 +348,7 @@ This would add all the contents of <code>head.html</code> into that space.</p>
 <p>So far we have only dealt with html files. Now its time to use css and js to stylize website.
 In the themes folder, open the folder with the name of your theme, in this case open the folder named <em>my-new-theme</em>. It is located in <code>SITE-ROOT/themes/my-new-theme</code> directory. You should see a folder named static. If doesn&rsquo;t exist create one. Inside static folder all your css and js will go. I have created another folder named <em>css</em> for further organization. When hugo complies the actual code the anything inside static folder would be inside root directory. So to link my html and css, add it inside the <code>head.html</code> file.
 It should look like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/css/style.css&#34;</span>&gt;</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/css/style.css&#34;</span>&gt;</span></span></code></pre></div>
 <p><code>style.css</code> is the name of the css file.
 Same way you can also add js to your website.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -418,51 +418,51 @@ Same way you can also add js to your website.</p>
             
             <a href="/tags/website/">#website</a>
             
+            <a href="/tags/sky/">#sky</a>
+            
             <a href="/tags/study/">#study</a>
             
             <a href="/tags/quotes/">#quotes</a>
             
-            <a href="/tags/ideas/">#ideas</a>
+            <a href="/tags/flower/">#flower</a>
+            
+            <a href="/tags/nature/">#nature</a>
+            
+            <a href="/tags/birds/">#birds</a>
+            
+            <a href="/tags/hills/">#hills</a>
+            
+            <a href="/tags/wildlife/">#wildlife</a>
             
             <a href="/tags/linux/">#linux</a>
             
-            <a href="/tags/software/">#software</a>
+            <a href="/tags/ideas/">#ideas</a>
             
             <a href="/tags/bookmarks/">#bookmarks</a>
+            
+            <a href="/tags/software/">#software</a>
             
             <a href="/tags/dream/">#dream</a>
             
             <a href="/tags/rant/">#rant</a>
             
-            <a href="/tags/guide/">#guide</a>
+            <a href="/tags/house/">#house</a>
             
             <a href="/tags/meta/">#meta</a>
+            
+            <a href="/tags/sun/">#sun</a>
             
             <a href="/tags/life/">#life</a>
             
             <a href="/tags/articles/">#articles</a>
             
+            <a href="/tags/cityscapes/">#cityscapes</a>
+            
             <a href="/tags/excited/">#excited</a>
             
-            <a href="/tags/biology/">#biology</a>
+            <a href="/tags/guide/">#guide</a>
             
-            <a href="/tags/cooking/">#cooking</a>
-            
-            <a href="/tags/journaling/">#journaling</a>
-            
-            <a href="/tags/privacy/">#privacy</a>
-            
-            <a href="/tags/proud/">#proud</a>
-            
-            <a href="/tags/review/">#review</a>
-            
-            <a href="/tags/ai/">#ai</a>
-            
-            <a href="/tags/android/">#android</a>
-            
-            <a href="/tags/anki/">#anki</a>
-            
-            <a href="/tags/dreams/">#dreams</a>
+            <a href="/tags/cityscape/">#cityscape</a>
             
         </div>
     </details>

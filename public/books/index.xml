@@ -2,10 +2,270 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Books on BlackPirateX</title>
-    <link>http://localhost:1314/books/</link>
+    <link>http://localhost:1313/books/</link>
     <description>Recent content in Books on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1314/books/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/books/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Martian</title>
+      <link>http://localhost:1313/books/the-martian-ol17091839w/</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/the-martian-ol17091839w/</guid>
+      <description>&lt;p&gt;The Martian is a 2011 science fiction novel written by Andy Weir. It was his debut novel under his own name. It was originally self-published in 2011; Crown Publishing purchased the rights and re-released it in 2014. The story follows an American astronaut, Mark Watney, as he becomes stranded alone on Mars in 2035 and must improvise in order to survive.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pachinko</title>
+      <link>http://localhost:1313/books/pachinko-ol17762217w/</link>
+      <pubDate>Sat, 11 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/pachinko-ol17762217w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Project Hail Mary</title>
+      <link>http://localhost:1313/books/project-hail-mary-ol21745884w/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/project-hail-mary-ol21745884w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Never Let Me Go</title>
+      <link>http://localhost:1313/books/never-let-me-go-ol59038w/</link>
+      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/never-let-me-go-ol59038w/</guid>
+      <description>&lt;p&gt;Never Let Me Go may refer to:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Me Before You</title>
+      <link>http://localhost:1313/books/me-before-you-rtyeywrxlo0c/</link>
+      <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/me-before-you-rtyeywrxlo0c/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rita Hayworth and Shawshank Redemption</title>
+      <link>http://localhost:1313/books/rita-hayworth-and-shawshank-redemption-jmv6dwaaqbaj/</link>
+      <pubDate>Thu, 04 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/rita-hayworth-and-shawshank-redemption-jmv6dwaaqbaj/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>채식주의자</title>
+      <link>http://localhost:1313/books/%ec%b1%84%ec%8b%9d%ec%a3%bc%ec%9d%98%ec%9e%90-ol17334243w/</link>
+      <pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/%ec%b1%84%ec%8b%9d%ec%a3%bc%ec%9d%98%ec%9e%90-ol17334243w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Greek Lessons</title>
+      <link>http://localhost:1313/books/greek-lessons-ol28622998w/</link>
+      <pubDate>Mon, 21 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/greek-lessons-ol28622998w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Anna and the French Kiss</title>
+      <link>http://localhost:1313/books/anna-and-the-french-kiss-ol15111473w/</link>
+      <pubDate>Sun, 13 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/anna-and-the-french-kiss-ol15111473w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>India&#39;s Struggle for Independence</title>
+      <link>http://localhost:1313/books/indias-struggle-for-independence-ol42914w/</link>
+      <pubDate>Sun, 15 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/indias-struggle-for-independence-ol42914w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>After Dark</title>
+      <link>http://localhost:1313/books/after-dark-ol2625402w/</link>
+      <pubDate>Wed, 07 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/after-dark-ol2625402w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Schoolgirl</title>
+      <link>http://localhost:1313/books/schoolgirl-ol20428353w/</link>
+      <pubDate>Wed, 07 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/schoolgirl-ol20428353w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>A Tale for the Time Being</title>
+      <link>http://localhost:1313/books/a-tale-for-the-time-being-ol17267887w/</link>
+      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/a-tale-for-the-time-being-ol17267887w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sputnik Sweetheart</title>
+      <link>http://localhost:1313/books/sputnik-sweetheart-ol25122805w/</link>
+      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/sputnik-sweetheart-ol25122805w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>No Longer Human</title>
+      <link>http://localhost:1313/books/no-longer-human-ol37579112w/</link>
+      <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/no-longer-human-ol37579112w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>O Alquimista</title>
+      <link>http://localhost:1313/books/o-alquimista-ol796465w/</link>
+      <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/o-alquimista-ol796465w/</guid>
+      <description>&lt;p&gt;Reimp. de la 1a ed., 1990.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Colorless Tsukuru Tazaki and his years of pilgrimage</title>
+      <link>http://localhost:1313/books/colorless-tsukuru-tazaki-and-his-years-of-pilgrimage-ol27736864w/</link>
+      <pubDate>Sun, 16 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/colorless-tsukuru-tazaki-and-his-years-of-pilgrimage-ol27736864w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Catcher in the Rye</title>
+      <link>http://localhost:1313/books/the-catcher-in-the-rye-ol3335245w/</link>
+      <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/the-catcher-in-the-rye-ol3335245w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The square root of summer</title>
+      <link>http://localhost:1313/books/the-square-root-of-summer-ol20032129w/</link>
+      <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/the-square-root-of-summer-ol20032129w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wild Sheep Chase</title>
+      <link>http://localhost:1313/books/wild-sheep-chase-ol25669302w/</link>
+      <pubDate>Wed, 14 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/wild-sheep-chase-ol25669302w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hear The Wind Sing</title>
+      <link>http://localhost:1313/books/hear-the-wind-sing-ol30676270w/</link>
+      <pubDate>Fri, 23 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/hear-the-wind-sing-ol30676270w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kafka On The Shore</title>
+      <link>http://localhost:1313/books/kafka-on-the-shore-ol2625431w/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/kafka-on-the-shore-ol2625431w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Subtle Art of Not Giving a F*ck</title>
+      <link>http://localhost:1313/books/the-subtle-art-of-not-giving-a-fck-yng_cwaaqbaj/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/the-subtle-art-of-not-giving-a-fck-yng_cwaaqbaj/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Building a Second Brain</title>
+      <link>http://localhost:1313/books/building-a-second-brain-ol26417584w/</link>
+      <pubDate>Tue, 16 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/building-a-second-brain-ol26417584w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>How to Win Friends and Influence People</title>
+      <link>http://localhost:1313/books/how-to-win-friends-and-influence-people-ol1063267w/</link>
+      <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/how-to-win-friends-and-influence-people-ol1063267w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>South of the Border, West of The Sun</title>
+      <link>http://localhost:1313/books/south-of-the-border-west-of-the-sun-ol29320482w/</link>
+      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/south-of-the-border-west-of-the-sun-ol29320482w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>In Order to Live</title>
+      <link>http://localhost:1313/books/in-order-to-live-ol21588510w/</link>
+      <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/in-order-to-live-ol21588510w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gone Girl</title>
+      <link>http://localhost:1313/books/gone-girl-ol16239762w/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/gone-girl-ol16239762w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Book Thief</title>
+      <link>http://localhost:1313/books/the-book-thief-ol5819456w/</link>
+      <pubDate>Fri, 25 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/the-book-thief-ol5819456w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Revolution 2020</title>
+      <link>http://localhost:1313/books/revolution-2020-ol16459607w/</link>
+      <pubDate>Mon, 31 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/revolution-2020-ol16459607w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Norwegian Wood</title>
+      <link>http://localhost:1313/books/norwegian-wood-ol2625457w/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/norwegian-wood-ol2625457w/</guid>
+      <description>&lt;p&gt;No ISBN.&#xA;Van In article number (“artikelnummer”): 549637&#xA;Reading level: 16+&#xA;Published under licence of Uitgeverij Atlas.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Atomic Habits</title>
+      <link>http://localhost:1313/books/atomic-habits-ol17930368w/</link>
+      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/atomic-habits-ol17930368w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Call Me by Your Name</title>
+      <link>http://localhost:1313/books/call-me-by-your-name-ol8034526w/</link>
+      <pubDate>Sun, 14 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/call-me-by-your-name-ol8034526w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Normal People</title>
+      <link>http://localhost:1313/books/normal-people-ol20150260w/</link>
+      <pubDate>Thu, 12 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/normal-people-ol20150260w/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Five Point Someone</title>
+      <link>http://localhost:1313/books/five-point-someone-05srrgeacaaj/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/five-point-someone-05srrgeacaaj/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>One Night @ The Call Centre</title>
+      <link>http://localhost:1313/books/one-night-@-the-call-centre-yqdkdaeacaaj/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/one-night-@-the-call-centre-yqdkdaeacaaj/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The 3 Mistakes of My Life (English)</title>
+      <link>http://localhost:1313/books/the-3-mistakes-of-my-life-english-6cqjrgeacaaj/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/books/the-3-mistakes-of-my-life-english-6cqjrgeacaaj/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

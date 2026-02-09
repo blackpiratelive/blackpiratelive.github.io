@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pens on BlackPirateX</title>
-    <link>http://localhost:1314/tags/pens/</link>
+    <link>http://localhost:1313/tags/pens/</link>
     <description>Recent content in Pens on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Feb 2023 20:43:37 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/pens/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/pens/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My Fountain Pen Collection</title>
-      <link>http://localhost:1314/blog/my-fountain-pen-collection/</link>
+      <link>http://localhost:1313/blog/my-fountain-pen-collection/</link>
       <pubDate>Sun, 12 Feb 2023 20:43:37 +0530</pubDate>
-      <guid>http://localhost:1314/blog/my-fountain-pen-collection/</guid>
-      <description>I like pens. If you ask my family they would tell you how much money I have spent (ahem, wasted) on pens. I used almost all type of pens there is, that is if they are available for purchase in India. My recent obsession is fountain pens. I love them. A good fountain pen writes miles better than any other kind of pen. But they are expensive. Like very expensive. But most the fountain pens are made so that they can be used for a very long time.</description>
+      <guid>http://localhost:1313/blog/my-fountain-pen-collection/</guid>
+      <description>&lt;p&gt;I like pens. If you ask my family they would tell you how much money I have spent (ahem, wasted) on pens. I used almost all type of pens there is, that is if they are available for purchase in India.&#xA;My recent obsession is fountain pens. I love them. A good fountain pen writes miles better than any other kind of pen. But they are expensive. Like very expensive. But most the fountain pens are made so that they can be used for a very long time. I bought some with my own money and some from parents.&#xA;Another benifit of using fountain pens is that a wide collection of inks, in color and in quality both. Right now I have 3 black inks one blue turquiose and one green shamrock. I mainly use black, as it is work appropriate and black probably looks the best on white paper.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

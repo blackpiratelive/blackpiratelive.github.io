@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Excited on BlackPirateX</title>
-    <link>http://localhost:1314/tags/excited/</link>
+    <link>http://localhost:1313/tags/excited/</link>
     <description>Recent content in Excited on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 13 Jun 2023 18:21:54 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/excited/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/excited/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2023/2023-06-13-18-19-59/</link>
+      <link>http://localhost:1313/thoughts/2023/2023-06-13-18-19-59/</link>
       <pubDate>Tue, 13 Jun 2023 18:19:59 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2023/2023-06-13-18-19-59/</guid>
-      <description>I&amp;rsquo;m addicted to Dead Cells , it&amp;rsquo;s frigging good. The game is hard but definitely addictive. Also there&amp;rsquo;s new content and new way to kill enemies.</description>
+      <guid>http://localhost:1313/thoughts/2023/2023-06-13-18-19-59/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m addicted to &lt;em&gt;Dead Cells&lt;/em&gt; , it&amp;rsquo;s frigging good. The game is hard but definitely addictive. Also there&amp;rsquo;s new content and new way to kill enemies.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-07-18-30-01/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-07-18-30-01/</link>
       <pubDate>Wed, 07 Sep 2022 18:30:01 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-07-18-30-01/</guid>
-      <description>Waiting for NEET results!</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-07-18-30-01/</guid>
+      <description>&lt;p&gt;Waiting for NEET results!&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-06-11-19-24/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-06-11-19-24/</link>
       <pubDate>Tue, 06 Sep 2022 11:19:24 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-06-11-19-24/</guid>
-      <description>I got 76wpm damn!!&#xA;File: /img/c35a97ec6abfd71ae60ec33b2715a2a9.jpg (3472x4624) </description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-06-11-19-24/</guid>
+      <description>&lt;p&gt;I got 76wpm damn!!&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/c35a97ec6abfd71ae60ec33b2715a2a9.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/c35a97ec6abfd71ae60ec33b2715a2a9.jpg&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(3472x4624)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/c35a97ec6abfd71ae60ec33b2715a2a9.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/c35a97ec6abfd71ae60ec33b2715a2a9_hu_4a0b7a820241af33.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;133&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

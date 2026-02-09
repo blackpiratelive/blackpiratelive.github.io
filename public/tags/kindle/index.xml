@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kindle on BlackPirateX</title>
-    <link>http://localhost:1314/tags/kindle/</link>
+    <link>http://localhost:1313/tags/kindle/</link>
     <description>Recent content in Kindle on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 23 Jun 2024 23:13:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/kindle/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/kindle/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I get Daily News</title>
-      <link>http://localhost:1314/blog/how-i-get-daily-news/</link>
+      <link>http://localhost:1313/blog/how-i-get-daily-news/</link>
       <pubDate>Sun, 23 Jun 2024 23:13:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-i-get-daily-news/</guid>
-      <description>In this post I would discuss how I read news on my kindle, benefit of my method and how you can replicate this method by yourself.&#xA;How to Replicate Prerequisites: A smartphone with Termux and Anlinux installed. There must be at least 2 GB of storage free. Patience Time on your hand. Installing a Linux distro on termux Open the an Linux app and on the dashboard choose Fedora and click ok.</description>
+      <guid>http://localhost:1313/blog/how-i-get-daily-news/</guid>
+      <description>&lt;p&gt;In this post I would discuss how I read news on my kindle, benefit of my method and how you can replicate this method by yourself.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-to-replicate&#34;&gt;How to Replicate&lt;/h2&gt;&#xA;&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites:&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;A smartphone with Termux and Anlinux installed. There must be at least 2 GB of storage free.&lt;/li&gt;&#xA;&lt;li&gt;Patience&lt;/li&gt;&#xA;&lt;li&gt;Time on your hand.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;installing-a-linux-distro-on-termux&#34;&gt;Installing a Linux distro on termux&lt;/h3&gt;&#xA;&lt;p&gt;Open the an Linux app and on the dashboard choose &lt;strong&gt;Fedora&lt;/strong&gt; and click &lt;em&gt;ok&lt;/em&gt;.&#xA;Now click &lt;em&gt;copy&lt;/em&gt; and it should copy a command to your clipboard.&#xA;Now click on &lt;em&gt;launch&lt;/em&gt; and it would open termux terminal.&#xA;Now first run the command &lt;code&gt;pkg update &amp;amp;&amp;amp; pkg upgrade&lt;/code&gt;&#xA;If you are prompted to answer type Y and hit enter to upgrade.&#xA;Wait till it finishes downloading and installing the packages.&#xA;Now paste the copied command from the above step and hit &lt;em&gt;enter&lt;/em&gt;.&#xA;Give it time to download and install required packages. Make sure you have a fast internet connection.&#xA;It should install everything and set up your Fedora Linux distro.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

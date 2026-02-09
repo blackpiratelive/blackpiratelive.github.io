@@ -2,10 +2,515 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gallery on BlackPirateX</title>
-    <link>http://localhost:1314/gallery/</link>
+    <link>http://localhost:1313/gallery/</link>
     <description>Recent content in Gallery on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1314/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Aug 2025 15:57:56 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Beautiful Plateu</title>
+      <link>http://localhost:1313/gallery/a-beautiful-plateu/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/a-beautiful-plateu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>A Jungle View From Train</title>
+      <link>http://localhost:1313/gallery/a-jungle-view-from-train/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/a-jungle-view-from-train/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Black &amp; White Hills</title>
+      <link>http://localhost:1313/gallery/black-white-hills/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/black-white-hills/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gallery Image 6</title>
+      <link>http://localhost:1313/gallery/image-6/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/image-6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Highway</title>
+      <link>http://localhost:1313/gallery/highway/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/highway/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hill and a Chimney</title>
+      <link>http://localhost:1313/gallery/hill-and-a-chimney/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/hill-and-a-chimney/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hills in Ranchi 1</title>
+      <link>http://localhost:1313/gallery/hills-in-ranchi-1/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/hills-in-ranchi-1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hills in Ranchi 2</title>
+      <link>http://localhost:1313/gallery/hills-in-ranchi-2/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/hills-in-ranchi-2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Red Car</title>
+      <link>http://localhost:1313/gallery/the-red-car/</link>
+      <pubDate>Thu, 27 Mar 2025 20:09:43 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/the-red-car/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Light Works</title>
+      <link>http://localhost:1313/gallery/light-works/</link>
+      <pubDate>Thu, 27 Mar 2025 20:09:15 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/light-works/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bhutan Mandir</title>
+      <link>http://localhost:1313/gallery/bhutan-mandir/</link>
+      <pubDate>Thu, 27 Mar 2025 20:08:42 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/bhutan-mandir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tree and Factory</title>
+      <link>http://localhost:1313/gallery/tree-and-factory/</link>
+      <pubDate>Thu, 27 Mar 2025 20:08:04 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/tree-and-factory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Truck in Bhutan</title>
+      <link>http://localhost:1313/gallery/truck-in-bhutan/</link>
+      <pubDate>Thu, 27 Mar 2025 20:07:27 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/truck-in-bhutan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Saraswati at Bankura Christian College</title>
+      <link>http://localhost:1313/gallery/saraswati-at-bankura-christian-college/</link>
+      <pubDate>Thu, 27 Mar 2025 20:06:07 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/saraswati-at-bankura-christian-college/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Saraswati 1</title>
+      <link>http://localhost:1313/gallery/saraswati-1/</link>
+      <pubDate>Thu, 27 Mar 2025 19:49:29 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/saraswati-1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>About to Fly</title>
+      <link>http://localhost:1313/gallery/about-to-fly/</link>
+      <pubDate>Fri, 21 Mar 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/about-to-fly/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Amachu Bridge Bhutan</title>
+      <link>http://localhost:1313/gallery/amachu-bridge-bhutan/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/amachu-bridge-bhutan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Amachu Bridge Bhutan 2</title>
+      <link>http://localhost:1313/gallery/amachu-bridge-bhutan-2/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/amachu-bridge-bhutan-2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Buddhist Monastery Bhutan</title>
+      <link>http://localhost:1313/gallery/buddhist-monastery-bhutan/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/buddhist-monastery-bhutan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nature of Bhutan 1</title>
+      <link>http://localhost:1313/gallery/nature-of-bhutan-1/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/nature-of-bhutan-1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nature of Bhutan 2</title>
+      <link>http://localhost:1313/gallery/nature-of-bhutan-2/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/nature-of-bhutan-2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red Roof Bhutan</title>
+      <link>http://localhost:1313/gallery/red-roof-bhutan/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/red-roof-bhutan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raining Street</title>
+      <link>http://localhost:1313/gallery/raining-street/</link>
+      <pubDate>Thu, 26 Sep 2024 11:06:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/raining-street/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dragonfly Over Dried Leaves</title>
+      <link>http://localhost:1313/gallery/dragonfly-over-dried-leaves/</link>
+      <pubDate>Sat, 18 May 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/dragonfly-over-dried-leaves/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>3 Birdhouse</title>
+      <link>http://localhost:1313/gallery/3-birdhouse/</link>
+      <pubDate>Mon, 13 May 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/3-birdhouse/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Black Bird</title>
+      <link>http://localhost:1313/gallery/black-bird/</link>
+      <pubDate>Mon, 13 May 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/black-bird/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Don&#39;t Underestimate Me</title>
+      <link>http://localhost:1313/gallery/dont-underestimate-me/</link>
+      <pubDate>Sat, 11 May 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/dont-underestimate-me/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red Whiskered bulbul Palastala</title>
+      <link>http://localhost:1313/gallery/red-whiskered-bulbul-palastala/</link>
+      <pubDate>Sat, 13 Apr 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/red-whiskered-bulbul-palastala/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Black Drongo</title>
+      <link>http://localhost:1313/gallery/black-drongo/</link>
+      <pubDate>Mon, 18 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/black-drongo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spotted Dove</title>
+      <link>http://localhost:1313/gallery/spotted-dove/</link>
+      <pubDate>Mon, 18 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/spotted-dove/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>White Pigeon on Electric Pole</title>
+      <link>http://localhost:1313/gallery/white-pigeon-on-electric-pole/</link>
+      <pubDate>Mon, 18 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/white-pigeon-on-electric-pole/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Yellow-wattled Lapwing</title>
+      <link>http://localhost:1313/gallery/yellow-wattled-lapwing/</link>
+      <pubDate>Mon, 18 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/yellow-wattled-lapwing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Butterfly</title>
+      <link>http://localhost:1313/gallery/butterfly/</link>
+      <pubDate>Sat, 16 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/butterfly/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gray Wagtail</title>
+      <link>http://localhost:1313/gallery/gray-wagtail/</link>
+      <pubDate>Sat, 16 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/gray-wagtail/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Orange Headed Thrush</title>
+      <link>http://localhost:1313/gallery/orange-headed-thrush/</link>
+      <pubDate>Sat, 16 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/orange-headed-thrush/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose Ringed Parakeet</title>
+      <link>http://localhost:1313/gallery/rose-ringed-parakeet/</link>
+      <pubDate>Sat, 16 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-ringed-parakeet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sunset At Plashtala</title>
+      <link>http://localhost:1313/gallery/sunset-at-plashtala/</link>
+      <pubDate>Sat, 16 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/sunset-at-plashtala/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Couples Gossiping</title>
+      <link>http://localhost:1313/gallery/couples-gossiping/</link>
+      <pubDate>Mon, 04 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/couples-gossiping/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shikra</title>
+      <link>http://localhost:1313/gallery/shikra/</link>
+      <pubDate>Mon, 04 Dec 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/shikra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>053</title>
+      <link>http://localhost:1313/gallery/053/</link>
+      <pubDate>Sat, 01 Apr 2023 16:23:14 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/053/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Joba Flower</title>
+      <link>http://localhost:1313/gallery/joba-flower/</link>
+      <pubDate>Sun, 26 Feb 2023 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/joba-flower/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>052</title>
+      <link>http://localhost:1313/gallery/052/</link>
+      <pubDate>Thu, 24 Nov 2022 00:35:04 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/052/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sunflower</title>
+      <link>http://localhost:1313/gallery/sunflower/</link>
+      <pubDate>Thu, 24 Nov 2022 00:17:25 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/sunflower/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Starry Night</title>
+      <link>http://localhost:1313/gallery/starry-night/</link>
+      <pubDate>Fri, 07 Oct 2022 00:18:10 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/starry-night/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Moon Cloud Night Sky</title>
+      <link>http://localhost:1313/gallery/moon-cloud-night-sky/</link>
+      <pubDate>Wed, 14 Sep 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/moon-cloud-night-sky/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Same Scenery Different Day</title>
+      <link>http://localhost:1313/gallery/same-scenery-different-day/</link>
+      <pubDate>Sat, 28 May 2022 17:57:15 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/same-scenery-different-day/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clouds</title>
+      <link>http://localhost:1313/gallery/clouds/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/clouds/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clouds at Golden Hour</title>
+      <link>http://localhost:1313/gallery/clouds-at-golden-hour/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/clouds-at-golden-hour/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clouds on The Mountains</title>
+      <link>http://localhost:1313/gallery/clouds-on-the-mountains/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/clouds-on-the-mountains/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cloudy Coconut Tree</title>
+      <link>http://localhost:1313/gallery/cloudy-coconut-tree/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/cloudy-coconut-tree/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Colorful Sky</title>
+      <link>http://localhost:1313/gallery/colorful-sky/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/colorful-sky/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dark Leaves</title>
+      <link>http://localhost:1313/gallery/dark-leaves/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/dark-leaves/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Flowers on The Roof</title>
+      <link>http://localhost:1313/gallery/flowers-on-the-roof/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/flowers-on-the-roof/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Green Leaves</title>
+      <link>http://localhost:1313/gallery/green-leaves/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/green-leaves/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hiding Behind The Leaves</title>
+      <link>http://localhost:1313/gallery/hiding-behind-the-leaves/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/hiding-behind-the-leaves/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lamppost</title>
+      <link>http://localhost:1313/gallery/lamppost/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/lamppost/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Leaves</title>
+      <link>http://localhost:1313/gallery/leaves/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/leaves/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mustard Flower</title>
+      <link>http://localhost:1313/gallery/mustard-flower/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/mustard-flower/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Railway Track Through Window</title>
+      <link>http://localhost:1313/gallery/railway-track-through-window/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/railway-track-through-window/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raindrop at a Night</title>
+      <link>http://localhost:1313/gallery/raindrop-at-a-night/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/raindrop-at-a-night/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rainy Station at Night</title>
+      <link>http://localhost:1313/gallery/rainy-station-at-night/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rainy-station-at-night/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 1</title>
+      <link>http://localhost:1313/gallery/rose-1/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 2</title>
+      <link>http://localhost:1313/gallery/rose-2/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 3</title>
+      <link>http://localhost:1313/gallery/rose-3/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 4</title>
+      <link>http://localhost:1313/gallery/rose-4/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-4/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 6</title>
+      <link>http://localhost:1313/gallery/rose-6/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 8</title>
+      <link>http://localhost:1313/gallery/rose-8/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rose 9</title>
+      <link>http://localhost:1313/gallery/rose-9/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rose-9/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sunbathed Road</title>
+      <link>http://localhost:1313/gallery/sunbathed-road/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/sunbathed-road/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>That One Star</title>
+      <link>http://localhost:1313/gallery/that-one-star/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/that-one-star/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Midday Sun</title>
+      <link>http://localhost:1313/gallery/the-midday-sun/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/the-midday-sun/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Yellow Flower</title>
+      <link>http://localhost:1313/gallery/yellow-flower/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/yellow-flower/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

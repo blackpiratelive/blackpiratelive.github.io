@@ -2,46 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Meta on BlackPirateX</title>
-    <link>http://localhost:1314/tags/meta/</link>
+    <link>http://localhost:1313/tags/meta/</link>
     <description>Recent content in Meta on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Aug 2022 14:59:25 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/meta/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/meta/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-28-14-58-11/</link>
       <pubDate>Sun, 28 Aug 2022 14:58:11 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-28-14-58-11/</guid>
-      <description>Changed theme of my website again. Here is how it looks.&#xA;File: /img/052cde320bc8a85c64ac39c39018c865.png (1080x2243) File: /img/eee84ff2e6a1f539d17f3caee50a90cf.png (1080x2189) </description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-28-14-58-11/</guid>
+      <description>&lt;p&gt;Changed theme of my website again. Here is how it looks.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/052cde320bc8a85c64ac39c39018c865.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/052cde320bc8a85c64ac39c39018c865.png&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1080x2243)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/052cde320bc8a85c64ac39c39018c865.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/052cde320bc8a85c64ac39c39018c865_hu_7c7652ad75fc85f8.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;208&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/eee84ff2e6a1f539d17f3caee50a90cf.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/eee84ff2e6a1f539d17f3caee50a90cf.png&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1080x2189)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/eee84ff2e6a1f539d17f3caee50a90cf.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/eee84ff2e6a1f539d17f3caee50a90cf_hu_2cffae272ee5b637.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;203&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-21-16-18-21/</link>
       <pubDate>Sun, 21 Aug 2022 16:18:21 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-21-16-18-21/</guid>
-      <description>I&amp;rsquo;m so bad at choosing colors. Anyway, my website uses hugo now.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-21-16-18-21/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m so bad at choosing colors. Anyway, my website uses hugo now.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-20-17-06-07/</link>
       <pubDate>Sat, 20 Aug 2022 17:06:07 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-20-17-06-07/</guid>
-      <description>Website V3.0 is live now!! Consistent design and more minimal. Check: https://blackpiratex.com</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-20-17-06-07/</guid>
+      <description>&lt;p&gt;Website V3.0 is live now!! Consistent design and more minimal. Check: &lt;a href=&#34;https://blackpiratex.com&#34;&gt;https://blackpiratex.com&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Setting Up My Website on Hugo</title>
-      <link>http://localhost:1314/blog/setting-up-my-website-on-hugo/</link>
+      <link>http://localhost:1313/blog/setting-up-my-website-on-hugo/</link>
       <pubDate>Sun, 24 Jul 2022 17:43:10 +0530</pubDate>
-      <guid>http://localhost:1314/blog/setting-up-my-website-on-hugo/</guid>
-      <description>Inspiration: As far as I can remember, I came to know about Hugo from some personal blogs, which I have found through Hacker News. Before this I was coding everything manually for each blog post. (you can see examples of those here.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post.</description>
+      <guid>http://localhost:1313/blog/setting-up-my-website-on-hugo/</guid>
+      <description>&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration:&lt;/h2&gt;&#xA;&lt;p&gt;As far as I can remember, I came to know about &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; from some personal blogs, which I have found through &lt;a href=&#34;https://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt;. Before this I was coding everything manually for each blog post. (you can see examples of those &lt;a href=&#34;https://blackpiratex.com/blog&#34;&gt;here&lt;/a&gt;.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post. Clearly something needs to change. I started playing with Hugo. And With little bit of research and guides form Youtube, I started learning about it. Decided that I would make my blog separate from my website, that way it would be easier to manage. I initially used &lt;a href=&#34;https://themes.gohugo.io&#34;&gt;premade themes by community&lt;/a&gt; for my website. Themes usually decide how your website will look. (It&amp;rsquo;s just like wordpress themes.) I also created another seprate website on a subdomain for my &lt;a href=&#34;https://gallery.blackpiratex.com&#34;&gt;gallery&lt;/a&gt; website. Premade themes are very good nontheless, but they are not suitable for me. I do not want to use any JS if possible. So I needed to create my own theme. After reading on the Hugo Documentation and taking help from &lt;a href=&#34;https://youtu.be/ZFL09qhKi5I/&#34;&gt;this video&lt;/a&gt; by &lt;a href=&#34;https://lukesmith.xyz&#34;&gt;Luke Smith&lt;/a&gt;, I created my own theme. It is going to be a simple theme, but functional and beautiful.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Website Update #1</title>
-      <link>http://localhost:1314/blog/website-update-1/</link>
+      <link>http://localhost:1313/blog/website-update-1/</link>
       <pubDate>Fri, 22 Jul 2022 17:46:44 +0530</pubDate>
-      <guid>http://localhost:1314/blog/website-update-1/</guid>
-      <description>If you have visited my this blog before,(and can remember it) you can clearly see the difference. This blog is now simpler. I like it. Hope you like it too. As I am going to get busy with my life, I hope I would stick with this theme for very long.&#xA;How this website is made I use Hugo for creating this website. Hugo is great. I am loving it. Earlier also I was using Hugo, but that time I didn&amp;rsquo;t know much about it, so I used a ready made theme for my website.</description>
+      <guid>http://localhost:1313/blog/website-update-1/</guid>
+      <description>&lt;p&gt;If you have visited my this blog before,(and can remember it) you can clearly see the difference. This blog is now simpler. I like it. Hope you  like it too. As I am going to get busy with my life, I hope I would stick with this theme for very long.&lt;/p&gt;&#xA;&lt;h3 id=&#34;how-this-website-is-made&#34;&gt;How this website is made&lt;/h3&gt;&#xA;&lt;p&gt;I use &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; for creating this website. Hugo is  great. I am loving it. Earlier also I was using Hugo, but that time I didn&amp;rsquo;t know much about it, so I used a ready made theme for my website. This time the theme is mine. That is why it is so minimal. This theme uses only HTML and little bit of CSS, I would tweak as time goes on.  The inspiration came from &lt;a href=&#34;https://lukesmith.xyz&#34;&gt;Luke Smith&lt;/a&gt;, in this &lt;a href=&#34;https://youtu.be/ZFL09qhKi5I/&#34;&gt;video&lt;/a&gt; he explained things about hugo, which has helped me a lot. So I made this. I knew that I was going to make my own theme someday, beacuse I do not like those available.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

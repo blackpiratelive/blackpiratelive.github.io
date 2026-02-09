@@ -2,67 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software on BlackPirateX</title>
-    <link>http://localhost:1314/tags/software/</link>
+    <link>http://localhost:1313/tags/software/</link>
     <description>Recent content in Software on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Aug 2022 19:17:17 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/software/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WhatsApp Has Fake Reviews on Playstore</title>
-      <link>http://localhost:1314/blog/whatsapp-has-fake-reviews-on-playstore/</link>
+      <link>http://localhost:1313/blog/whatsapp-has-fake-reviews-on-playstore/</link>
       <pubDate>Sun, 28 Aug 2022 18:50:10 +0530</pubDate>
-      <guid>http://localhost:1314/blog/whatsapp-has-fake-reviews-on-playstore/</guid>
-      <description>I was reading reviews for Whatsapp on playstore and came to see this:&#xA;There is more:&#xA;And more:&#xA;This one too:&#xA;I am sure if you search, more will come. I wonder who&amp;rsquo;s doing these!</description>
+      <guid>http://localhost:1313/blog/whatsapp-has-fake-reviews-on-playstore/</guid>
+      <description>&lt;p&gt;I was reading reviews for Whatsapp on playstore and came to see this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-1.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;There is more:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-2.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-3.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;And more:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-4.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;This one too:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-5.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I am sure if you search, more will come. I wonder who&amp;rsquo;s doing these!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Making Microblogging Website Using Hugo &amp; Netlify</title>
-      <link>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</link>
+      <link>http://localhost:1313/blog/making-microblogging-website-using-hugo-and-netlify/</link>
       <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
-      <guid>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
-      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
-    </item>
-    <item>
-      <title>Making Twitter Using Hugo &amp; Netlify</title>
-      <link>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</link>
-      <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
-      <guid>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</guid>
-      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
+      <guid>http://localhost:1313/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
+      <description>&lt;h2 id=&#34;check-a-live-version&#34;&gt;Check a live version:&lt;/h2&gt;&#xA;&lt;p&gt;Check out live version of the website that I made.&#xA;&lt;a href=&#34;https://status.blackpiratex.com/&#34;&gt;https://status.blackpiratex.com/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Setting Up My Website on Hugo</title>
-      <link>http://localhost:1314/blog/setting-up-my-website-on-hugo/</link>
+      <link>http://localhost:1313/blog/setting-up-my-website-on-hugo/</link>
       <pubDate>Sun, 24 Jul 2022 17:43:10 +0530</pubDate>
-      <guid>http://localhost:1314/blog/setting-up-my-website-on-hugo/</guid>
-      <description>Inspiration: As far as I can remember, I came to know about Hugo from some personal blogs, which I have found through Hacker News. Before this I was coding everything manually for each blog post. (you can see examples of those here.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post.</description>
+      <guid>http://localhost:1313/blog/setting-up-my-website-on-hugo/</guid>
+      <description>&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration:&lt;/h2&gt;&#xA;&lt;p&gt;As far as I can remember, I came to know about &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; from some personal blogs, which I have found through &lt;a href=&#34;https://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt;. Before this I was coding everything manually for each blog post. (you can see examples of those &lt;a href=&#34;https://blackpiratex.com/blog&#34;&gt;here&lt;/a&gt;.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post. Clearly something needs to change. I started playing with Hugo. And With little bit of research and guides form Youtube, I started learning about it. Decided that I would make my blog separate from my website, that way it would be easier to manage. I initially used &lt;a href=&#34;https://themes.gohugo.io&#34;&gt;premade themes by community&lt;/a&gt; for my website. Themes usually decide how your website will look. (It&amp;rsquo;s just like wordpress themes.) I also created another seprate website on a subdomain for my &lt;a href=&#34;https://gallery.blackpiratex.com&#34;&gt;gallery&lt;/a&gt; website. Premade themes are very good nontheless, but they are not suitable for me. I do not want to use any JS if possible. So I needed to create my own theme. After reading on the Hugo Documentation and taking help from &lt;a href=&#34;https://youtu.be/ZFL09qhKi5I/&#34;&gt;this video&lt;/a&gt; by &lt;a href=&#34;https://lukesmith.xyz&#34;&gt;Luke Smith&lt;/a&gt;, I created my own theme. It is going to be a simple theme, but functional and beautiful.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Fedora Doesn&#39;t Like Me</title>
-      <link>http://localhost:1314/blog/fedora-doesnt-like-me/</link>
+      <link>http://localhost:1313/blog/fedora-doesnt-like-me/</link>
       <pubDate>Mon, 27 Jun 2022 14:54:23 +0530</pubDate>
-      <guid>http://localhost:1314/blog/fedora-doesnt-like-me/</guid>
-      <description>After listening lots of good things about fedora, I wanted to give it a try. I was previously using Archcraft, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).</description>
+      <guid>http://localhost:1313/blog/fedora-doesnt-like-me/</guid>
+      <description>&lt;p&gt;After listening lots of good things about fedora, I wanted to give it a try. I was previously using &lt;a href=&#34;https://archcraft.io/&#34;&gt;Archcraft&lt;/a&gt;, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).&#xA;I flashed &lt;a href=&#34;https://www.ventoy.net/en/index.html&#34;&gt;ventoy&lt;/a&gt; on my Samsung Pen Drive and copied the &lt;a href=&#34;https://getfedora.org/en/workstation/&#34;&gt;Fedora workstation&lt;/a&gt; iso file to the pen drive.Installation process went fairly smoothly, I am going to dual boot fedora and windows alongside, so had to do manual partitioning. After booting up I did a system update and installed all the softwares I needed. Everything is working just fine, as expected. After using it for more than a week a few problems started to appear.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Using Degoogled Phone Isn&#39;t as Hard as You Might Think</title>
-      <link>http://localhost:1314/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</link>
+      <link>http://localhost:1313/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</link>
       <pubDate>Tue, 17 May 2022 10:27:24 +0530</pubDate>
-      <guid>http://localhost:1314/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</guid>
-      <description>What is a degoogled phone? Vanilla Android is FOSS (Free and OpenSource Software), but the android that you get preinstalled in most phones isn&amp;rsquo;t completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn&amp;rsquo;t ship with Google Play Services by default.</description>
+      <guid>http://localhost:1313/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-degoogled-phone&#34;&gt;What is a degoogled phone?&lt;/h2&gt;&#xA;&lt;p&gt;Vanilla Android is &lt;a href=&#34;https://blog.blackpiratex.com/tags/FOSS/&#34;&gt;FOSS&lt;/a&gt; (Free and OpenSource Software), but the android that you get preinstalled in most phones isn&amp;rsquo;t completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn&amp;rsquo;t ship with Google Play Services by default.  LineageOs is a popular example.&lt;/p&gt;</description>
     </item>
     <item>
       <title>In Search for Perfect Daily Journal App</title>
-      <link>http://localhost:1314/blog/in-search-for-perfect-daily-journal-app/</link>
+      <link>http://localhost:1313/blog/in-search-for-perfect-daily-journal-app/</link>
       <pubDate>Thu, 28 Apr 2022 00:08:39 +0530</pubDate>
-      <guid>http://localhost:1314/blog/in-search-for-perfect-daily-journal-app/</guid>
-      <description>To be considered a viable app for my Daily Journal needs it must have following charateristics.&#xA;Decent UI Either end to end encrypted if the app is cloud based or data stays locally. Cross platform. Including Linux. Easy way to export for personal backups. Free Because of lack of privacy at my home, I had moved away from physical pen and paper diaries and moved completely to digital. It&amp;rsquo;s much easier to hide something online than trying to hide at my home.</description>
+      <guid>http://localhost:1313/blog/in-search-for-perfect-daily-journal-app/</guid>
+      <description>&lt;p&gt;To be considered a viable app for my Daily Journal needs it must have following charateristics.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Decent UI&lt;/li&gt;&#xA;&lt;li&gt;Either end to end encrypted if the app is cloud based or data stays locally.&lt;/li&gt;&#xA;&lt;li&gt;Cross platform. Including Linux.&lt;/li&gt;&#xA;&lt;li&gt;Easy way to export for personal backups.&lt;/li&gt;&#xA;&lt;li&gt;Free&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Because of lack of privacy at my home, I had moved away from physical pen and paper diaries and moved completely to digital. It&amp;rsquo;s much easier to hide something online than trying to hide at my home.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My Experience With Various Password Managers</title>
-      <link>http://localhost:1314/blog/my-experience-with-various-password-managers/</link>
+      <link>http://localhost:1313/blog/my-experience-with-various-password-managers/</link>
       <pubDate>Tue, 09 Nov 2021 18:53:53 +0530</pubDate>
-      <guid>http://localhost:1314/blog/my-experience-with-various-password-managers/</guid>
-      <description>Throughout the years i have used many password managers. One of the biggest reasons I started using a password manager is not because of the security but rather I wanted a quick way to type my passwords. Also its easy for me to loose track of the websites I have signed up for. Now you may ask why I didn&amp;rsquo;t use something like password manager built in most modern web browser?</description>
+      <guid>http://localhost:1313/blog/my-experience-with-various-password-managers/</guid>
+      <description>&lt;p&gt;Throughout the years i have used many password managers. One of the biggest reasons I started using a password manager is not because of the security but rather I wanted a quick way to type my passwords. Also its easy for me to loose track of the websites I have signed up for. Now you may ask why I didn&amp;rsquo;t use something like password manager built in most modern web browser? Well the answer to that question is I wanted all my passwords to sync to different browsers.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -2,67 +2,74 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on BlackPirateX</title>
-    <link>http://localhost:1314/tags/linux/</link>
+    <link>http://localhost:1313/tags/linux/</link>
     <description>Recent content in Linux on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Jul 2023 23:55:28 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Feb 2026 01:28:22 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting Up My New Laptop</title>
+      <link>http://localhost:1313/blog/setting-up-my-new-laptop/</link>
+      <pubDate>Tue, 10 Feb 2026 01:28:22 +0530</pubDate>
+      <guid>http://localhost:1313/blog/setting-up-my-new-laptop/</guid>
+      <description>&lt;h1 id=&#34;setting-up-my-new-laptop&#34;&gt;Setting Up My New Laptop&lt;/h1&gt;&#xA;&lt;p&gt;I have bought a new laptop because the old one is broken and it is beyond repair. This new laptop is significantly cheaper than the old one and also does not have the same capabilities as the old one.&#xA;The specifications for this laptop can be seen in the screenshot below.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/2026-02-10-004542_hyprshot.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/2026-02-10-004542_hyprshot.png&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1920x1080)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/2026-02-10-004542_hyprshot.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/2026-02-10-004542_hyprshot_hu_87617b614d27aa36.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;56&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&#xA;&lt;h3 id=&#34;installing-linux&#34;&gt;Installing linux&lt;/h3&gt;&#xA;&lt;p&gt;On the very first day of getting this laptop, I have downloaded linux ios, namely omarchy, linux mint and fedora. I used ventoy to to make a bootable drive to my 64GB samsung pen drive. I wanted to have a reliable set it and forget it linux desktop, so I went with Linux Mint.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Hyprland Experience</title>
-      <link>http://localhost:1314/blog/the-hyprland-experience/</link>
+      <link>http://localhost:1313/blog/the-hyprland-experience/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:1314/blog/the-hyprland-experience/</guid>
-      <description>I have been using Arch Linux with Hyprland. Initially I started using because of the cool animation it has. And stayed with it since.&#xA;Look and Feel Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&#xA;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.</description>
+      <guid>http://localhost:1313/blog/the-hyprland-experience/</guid>
+      <description>&lt;p&gt;I have been using &lt;a href=&#34;https://archlinux.orh&#34;&gt;Arch Linux&lt;/a&gt; with &lt;a href=&#34;https://hyprland.org/&#34;&gt;Hyprland&lt;/a&gt;. Initially I started using because of the cool animation it has. And stayed with it since.&lt;/p&gt;&#xA;&lt;h2 id=&#34;look-and-feel&#34;&gt;Look and Feel&lt;/h2&gt;&#xA;&lt;p&gt;Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/img/hyprland.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;&#xA;&lt;p&gt;Configuration was not as easy as I expected. I haven&amp;rsquo;t &lt;em&gt;really&lt;/em&gt; configured any tiling window manager previously, so it was bit hard for me.  But with few Google search I was easily able to pull it off. I didn&amp;rsquo;t change much. Only changed DPI along with few keybindings.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2023/2023-03-13-17-55-32/</link>
+      <link>http://localhost:1313/thoughts/2023/2023-03-13-17-55-32/</link>
       <pubDate>Mon, 13 Mar 2023 17:55:32 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2023/2023-03-13-17-55-32/</guid>
-      <description>Wayland is 10x better than xorg.</description>
+      <guid>http://localhost:1313/thoughts/2023/2023-03-13-17-55-32/</guid>
+      <description>&lt;p&gt;Wayland is 10x better than xorg.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2023/2023-03-13-16-02-49/</link>
+      <link>http://localhost:1313/thoughts/2023/2023-03-13-16-02-49/</link>
       <pubDate>Mon, 13 Mar 2023 16:02:49 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2023/2023-03-13-16-02-49/</guid>
-      <description>Installed Arch Linux. First time successfully on hardware. I forgot how fast Pacman is, or shall I say how slow dnf is.</description>
+      <guid>http://localhost:1313/thoughts/2023/2023-03-13-16-02-49/</guid>
+      <description>&lt;p&gt;Installed Arch Linux. First time successfully on hardware. I forgot how fast Pacman is, or shall I say how slow dnf is.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-10-02-09-48-51/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-10-02-09-48-51/</link>
       <pubDate>Sun, 02 Oct 2022 09:48:51 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-10-02-09-48-51/</guid>
-      <description>Trying out Fish shell, already I&amp;rsquo;m impressed. It&amp;rsquo;s better than Bash and Zsh.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-10-02-09-48-51/</guid>
+      <description>&lt;p&gt;Trying out Fish shell, already I&amp;rsquo;m impressed. It&amp;rsquo;s better than Bash and Zsh.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-28-11-10-34/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-28-11-10-34/</link>
       <pubDate>Wed, 28 Sep 2022 11:10:34 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-28-11-10-34/</guid>
-      <description>Appimages are better than flatpaks. Vscodium from flathub requires 500megs of dependencies, whereas vscodium appimage is only 100MB.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-28-11-10-34/</guid>
+      <description>&lt;p&gt;Appimages are better than flatpaks. Vscodium from flathub requires 500megs of dependencies, whereas vscodium appimage is only 100MB.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-24-10-11-40/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-24-10-11-40/</link>
       <pubDate>Sat, 24 Sep 2022 10:11:40 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-24-10-11-40/</guid>
-      <description>I&amp;rsquo;m distro hopping, to fedora. Archcraft is giving me some pains.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-24-10-11-40/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m distro hopping, to fedora. Archcraft is giving me some pains.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Fedora Doesn&#39;t Like Me</title>
-      <link>http://localhost:1314/blog/fedora-doesnt-like-me/</link>
+      <link>http://localhost:1313/blog/fedora-doesnt-like-me/</link>
       <pubDate>Mon, 27 Jun 2022 14:54:23 +0530</pubDate>
-      <guid>http://localhost:1314/blog/fedora-doesnt-like-me/</guid>
-      <description>After listening lots of good things about fedora, I wanted to give it a try. I was previously using Archcraft, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).</description>
+      <guid>http://localhost:1313/blog/fedora-doesnt-like-me/</guid>
+      <description>&lt;p&gt;After listening lots of good things about fedora, I wanted to give it a try. I was previously using &lt;a href=&#34;https://archcraft.io/&#34;&gt;Archcraft&lt;/a&gt;, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).&#xA;I flashed &lt;a href=&#34;https://www.ventoy.net/en/index.html&#34;&gt;ventoy&lt;/a&gt; on my Samsung Pen Drive and copied the &lt;a href=&#34;https://getfedora.org/en/workstation/&#34;&gt;Fedora workstation&lt;/a&gt; iso file to the pen drive.Installation process went fairly smoothly, I am going to dual boot fedora and windows alongside, so had to do manual partitioning. After booting up I did a system update and installed all the softwares I needed. Everything is working just fine, as expected. After using it for more than a week a few problems started to appear.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why I Love Tiling Window Manager</title>
-      <link>http://localhost:1314/blog/why-i-love-wm/</link>
+      <link>http://localhost:1313/blog/why-i-love-wm/</link>
       <pubDate>Wed, 30 Mar 2022 20:13:52 +0530</pubDate>
-      <guid>http://localhost:1314/blog/why-i-love-wm/</guid>
-      <description>Tiling Window Manager is alternative to using full blown desktop environment. More info on ArchWiki&#xA;I have recently started using WM, first i3 now on openbox. And absolutely love it.&#xA;If you are someone who is used to use normal desktop environment like gnome, kde, xfce or any other DE (Desktop Environment), I&amp;rsquo;d suggest to try out WM.You can start with anyone of those window manager you&amp;rsquo;re comfortable with. Setting up wm is easy on fresh arch install so it shouldn&amp;rsquo;t be a barrier.</description>
+      <guid>http://localhost:1313/blog/why-i-love-wm/</guid>
+      <description>&lt;p&gt;Tiling Window Manager is alternative to using full blown desktop environment. &lt;a href=&#34;https://wiki.archlinux.org/title/window_manager&#34;&gt;More info on ArchWiki&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;I have recently started using WM, first i3 now on openbox. And absolutely love it.&lt;/p&gt;&#xA;&lt;p&gt;If you are someone who is used to use normal desktop environment like gnome, kde, xfce or any other &lt;a href=&#34;https://wiki.archlinux.org/title/desktop_environment&#34;&gt;DE (Desktop Environment)&lt;/a&gt;, I&amp;rsquo;d suggest to try out WM.You can start with anyone of those window manager you&amp;rsquo;re comfortable with. Setting up wm is easy on fresh arch install so it shouldn&amp;rsquo;t be a barrier.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

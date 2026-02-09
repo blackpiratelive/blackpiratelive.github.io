@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rant on BlackPirateX</title>
-    <link>http://localhost:1314/tags/rant/</link>
+    <link>http://localhost:1313/tags/rant/</link>
     <description>Recent content in Rant on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Jul 2023 23:55:28 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/rant/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/rant/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Hyprland Experience</title>
-      <link>http://localhost:1314/blog/the-hyprland-experience/</link>
+      <link>http://localhost:1313/blog/the-hyprland-experience/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:1314/blog/the-hyprland-experience/</guid>
-      <description>I have been using Arch Linux with Hyprland. Initially I started using because of the cool animation it has. And stayed with it since.&#xA;Look and Feel Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&#xA;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.</description>
+      <guid>http://localhost:1313/blog/the-hyprland-experience/</guid>
+      <description>&lt;p&gt;I have been using &lt;a href=&#34;https://archlinux.orh&#34;&gt;Arch Linux&lt;/a&gt; with &lt;a href=&#34;https://hyprland.org/&#34;&gt;Hyprland&lt;/a&gt;. Initially I started using because of the cool animation it has. And stayed with it since.&lt;/p&gt;&#xA;&lt;h2 id=&#34;look-and-feel&#34;&gt;Look and Feel&lt;/h2&gt;&#xA;&lt;p&gt;Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/img/hyprland.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;&#xA;&lt;p&gt;Configuration was not as easy as I expected. I haven&amp;rsquo;t &lt;em&gt;really&lt;/em&gt; configured any tiling window manager previously, so it was bit hard for me.  But with few Google search I was easily able to pull it off. I didn&amp;rsquo;t change much. Only changed DPI along with few keybindings.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2023/2023-01-22-11-53-02/</link>
+      <link>http://localhost:1313/thoughts/2023/2023-01-22-11-53-02/</link>
       <pubDate>Sun, 22 Jan 2023 11:53:02 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2023/2023-01-22-11-53-02/</guid>
-      <description>It&amp;rsquo;s possible to play PS2 games on android.&#xA;It&amp;rsquo;s funny how smartphones are powerful enough to run console games yet we get games like candy crush and shitty endless running games.</description>
+      <guid>http://localhost:1313/thoughts/2023/2023-01-22-11-53-02/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s possible to play PS2 games on android.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s funny how smartphones are powerful enough to run console games yet we get games like candy crush and shitty endless running games.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Streaming on Spotify vs Using Mp3s</title>
-      <link>http://localhost:1314/blog/streaming-on-spotify-vs-using-mp3s/</link>
+      <link>http://localhost:1313/blog/streaming-on-spotify-vs-using-mp3s/</link>
       <pubDate>Fri, 30 Sep 2022 18:52:07 +0530</pubDate>
-      <guid>http://localhost:1314/blog/streaming-on-spotify-vs-using-mp3s/</guid>
-      <description>Disclaimer: here by mp3 I am referring to any playable music file, with any extension.&#xA;For most people Spotify is great, or at least it is better than managing your own mp3s like in the old days. But there are few things that I absolutely hate, which made me switch to MP3.&#xA;Things that pisses me off about Spotify: Podcasts - I know a lot of people who listens to podcast through Spotify, but I hate it.</description>
+      <guid>http://localhost:1313/blog/streaming-on-spotify-vs-using-mp3s/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Disclaimer: here by mp3 I am referring to any playable music file, with any extension.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;For most people Spotify is great, or at least it is better than managing your own mp3s like in the old days. But there are few things that I absolutely hate, which made me switch to MP3.&lt;/p&gt;&#xA;&lt;h1 id=&#34;things-that-pisses-me-off-about-spotify&#34;&gt;Things that pisses me off about Spotify:&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Podcasts - I know a lot of people who listens to podcast through Spotify, but I hate it. I follow podcasts through their RSS feed and listen to them on Antenapod. I wish there were an option to remove podcasts from my Spotify home screen completely, but currently there isn&amp;rsquo;t any.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-02-04-45-29/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-02-04-45-29/</link>
       <pubDate>Tue, 02 Aug 2022 04:45:29 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-02-04-45-29/</guid>
-      <description>Imagine getting your admit card the day of the exam or the night before exam, like what the actual fuck</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-02-04-45-29/</guid>
+      <description>&lt;p&gt;Imagine getting your admit card the day of the exam or the night before exam, like what the actual fuck&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-07-29-14-02-01/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-07-29-14-02-01/</link>
       <pubDate>Fri, 29 Jul 2022 14:02:01 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-07-29-14-02-01/</guid>
-      <description>Switching to 1password. Bitwarden is lagging for me so fucking much. I have over 1k items and it lags like shit. 1password is faster and I am liking the UI.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-07-29-14-02-01/</guid>
+      <description>&lt;p&gt;Switching to 1password. Bitwarden is lagging for me so fucking much. I have over 1k items and it lags like shit. 1password is faster and I am liking the UI.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Fedora Doesn&#39;t Like Me</title>
-      <link>http://localhost:1314/blog/fedora-doesnt-like-me/</link>
+      <link>http://localhost:1313/blog/fedora-doesnt-like-me/</link>
       <pubDate>Mon, 27 Jun 2022 14:54:23 +0530</pubDate>
-      <guid>http://localhost:1314/blog/fedora-doesnt-like-me/</guid>
-      <description>After listening lots of good things about fedora, I wanted to give it a try. I was previously using Archcraft, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).</description>
+      <guid>http://localhost:1313/blog/fedora-doesnt-like-me/</guid>
+      <description>&lt;p&gt;After listening lots of good things about fedora, I wanted to give it a try. I was previously using &lt;a href=&#34;https://archcraft.io/&#34;&gt;Archcraft&lt;/a&gt;, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).&#xA;I flashed &lt;a href=&#34;https://www.ventoy.net/en/index.html&#34;&gt;ventoy&lt;/a&gt; on my Samsung Pen Drive and copied the &lt;a href=&#34;https://getfedora.org/en/workstation/&#34;&gt;Fedora workstation&lt;/a&gt; iso file to the pen drive.Installation process went fairly smoothly, I am going to dual boot fedora and windows alongside, so had to do manual partitioning. After booting up I did a system update and installed all the softwares I needed. Everything is working just fine, as expected. After using it for more than a week a few problems started to appear.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

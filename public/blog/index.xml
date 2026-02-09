@@ -2,235 +2,207 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on BlackPirateX</title>
-    <link>http://localhost:1314/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content in Blogs on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Jan 2026 10:00:00 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Feb 2026 01:28:22 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>How to use anki beginners guide</title>
-      <link>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</link>
-      <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</guid>
-      <description>Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.&#xA;1. Install Anki and sync Download Anki for desktop first (Windows/Mac/Linux). The desktop app is where you create and edit cards. Then create a free AnkiWeb account so your cards sync across devices. The mobile apps are optional, but very useful for reviews.</description>
+      <title>Setting Up My New Laptop</title>
+      <link>http://localhost:1313/blog/setting-up-my-new-laptop/</link>
+      <pubDate>Tue, 10 Feb 2026 01:28:22 +0530</pubDate>
+      <guid>http://localhost:1313/blog/setting-up-my-new-laptop/</guid>
+      <description>&lt;h1 id=&#34;setting-up-my-new-laptop&#34;&gt;Setting Up My New Laptop&lt;/h1&gt;&#xA;&lt;p&gt;I have bought a new laptop because the old one is broken and it is beyond repair. This new laptop is significantly cheaper than the old one and also does not have the same capabilities as the old one.&#xA;The specifications for this laptop can be seen in the screenshot below.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/2026-02-10-004542_hyprshot.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/2026-02-10-004542_hyprshot.png&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1920x1080)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/2026-02-10-004542_hyprshot.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/2026-02-10-004542_hyprshot_hu_87617b614d27aa36.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;56&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&#xA;&lt;h3 id=&#34;installing-linux&#34;&gt;Installing linux&lt;/h3&gt;&#xA;&lt;p&gt;On the very first day of getting this laptop, I have downloaded linux ios, namely omarchy, linux mint and fedora. I used ventoy to to make a bootable drive to my 64GB samsung pen drive. I wanted to have a reliable set it and forget it linux desktop, so I went with Linux Mint.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My Experience With Meditation</title>
-      <link>http://localhost:1314/blog/my-experience-with-meditation/</link>
+      <link>http://localhost:1313/blog/my-experience-with-meditation/</link>
       <pubDate>Tue, 13 Jan 2026 18:10:37 +0530</pubDate>
-      <guid>http://localhost:1314/blog/my-experience-with-meditation/</guid>
-      <description>The motivation for meditation did not come from a book or a youtube video, it came from within me, my desire to get rid of those dreams I was getting so much. Earlier I would get those vivid dreams sometimes and they would be lucid sometimes, but after I left home and started living on my own, they started to become very frequent. I do not think I am less happy now that I am out of my house, but it definitely triggered something.</description>
+      <guid>http://localhost:1313/blog/my-experience-with-meditation/</guid>
+      <description>&lt;p&gt;The motivation for meditation did not come from a book or a youtube video, it came from within me, my desire to get rid of those dreams I was getting so much. Earlier I would get those vivid dreams sometimes and they would be lucid sometimes, but after I left home and started living on my own, they started to become very frequent. I do not think I am less happy now that I am out of my house, but it definitely triggered something. I do not know exactly when this started but it did after I left home and came to Bankura. Enough self diagnosing, lets talk about what&amp;rsquo;s relevant.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How I Use AI in Studies</title>
-      <link>http://localhost:1314/blog/how-i-use-ai-in-studies/</link>
+      <link>http://localhost:1313/blog/how-i-use-ai-in-studies/</link>
       <pubDate>Mon, 05 Jan 2026 22:54:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-i-use-ai-in-studies/</guid>
-      <description>Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life. Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life.</description>
+      <guid>http://localhost:1313/blog/how-i-use-ai-in-studies/</guid>
+      <description>&lt;p&gt;Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life.  Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life. I want to talk about how I have integrated AI in my studies in this blog post.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Year in Review - 2025</title>
-      <link>http://localhost:1314/blog/year-in-review-2025/</link>
+      <link>http://localhost:1313/blog/year-in-review-2025/</link>
       <pubDate>Mon, 29 Dec 2025 22:35:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/year-in-review-2025/</guid>
-      <description>So after trying to write for last two years, I think I am going to finish writing this year. Lets tackle different aspects of my life one by one.&#xA;Studies I finished my graduation this year on July-August. My college life is finally over, trying to take entry into work life and leave this student life behind. I do not plan on higher studies. Only places that I need higher degrees is in teaching related jobs, and I do not plan on doing those, trying to avoid it.</description>
+      <guid>http://localhost:1313/blog/year-in-review-2025/</guid>
+      <description>&lt;p&gt;So after trying to write for last two years, I think I am going to finish writing this year.&#xA;Lets tackle different aspects of my life one by one.&lt;/p&gt;&#xA;&lt;h2 id=&#34;studies&#34;&gt;Studies&lt;/h2&gt;&#xA;&lt;p&gt;I finished my graduation this year on July-August. My college life is finally over, trying to take entry into work life and leave this student life behind. I do not plan on higher studies. Only places that I need higher degrees is in teaching related jobs, and I do not plan on doing those, trying to avoid it.&#xA;I started preparing for govt-competitive exams this year seriously. Gave CGL pre for the first time, (mains in scheduled on January next year). MTS didnt happen yet this year. CHSL I wasn&amp;rsquo;t able to give due to distance of exam center. Gave Clarkship Mains at the end of the year.&#xA;Am I satisfied with my performance? Um, yes but actually no. I am scared, I think current studying is not adequate to get any good job.&#xA;Can I improve it? Yes i can. I want to average around 4-5 hours per day of study in 2026. It is not really ambitious. I am currently studying 3 hours on average (maybe a little less).&#xA;What things I want to change in 2026? I want to be just as good in maths like I am in English. I know I can do it. All I need to do is give one mock everyday, WHATEVER HAPPENS, just ONE mock.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dream: Meeting Someone</title>
-      <link>http://localhost:1314/blog/dream-meeting-someone/</link>
+      <link>http://localhost:1313/blog/dream-meeting-someone/</link>
       <pubDate>Tue, 26 Aug 2025 19:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/dream-meeting-someone/</guid>
-      <description>I went to see something by my college road. But in the way we met a weird person. It looked like a mentally unstable person. We were teasing him. He started following us. Then halfway through the journey, there was a shop type 2 story building. He quickly changed and transformed into a girl. Yep, he was trans. He kept following us. Now we are in the bhamuria Road, but I am actually going to the sammilani college.</description>
+      <guid>http://localhost:1313/blog/dream-meeting-someone/</guid>
+      <description>&lt;p&gt;I went to see something by my college road. But in the way we met a weird person. It looked like a mentally unstable person. We were teasing him. He started following us. Then halfway through the journey, there was a shop type 2 story building. He quickly changed and transformed into a girl. Yep, he was trans.&#xA;He kept following us. Now we are in the bhamuria Road, but I am actually going to the sammilani college. I was supposed to drop off at bhamuria more but i did not.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ranchi Experience</title>
-      <link>http://localhost:1314/blog/ranchi-experience/</link>
+      <link>http://localhost:1313/blog/ranchi-experience/</link>
       <pubDate>Sat, 16 Aug 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/ranchi-experience/</guid>
-      <description>Background This journey was because of NTPC (railway) exam, that happened on 14th August. I went there on 13th and came back home on 15th.&#xA;Things that I noticed are different. People in Jharkhand eats a lot of Samosa. Specially on train. The price is 10/piece. I bought 4 at Hatia Railway Station.&#xA;Female Hawkers, There are significant number of female hawkers, way more than that i see in West Bengal.</description>
+      <guid>http://localhost:1313/blog/ranchi-experience/</guid>
+      <description>&lt;h1 id=&#34;background&#34;&gt;Background&lt;/h1&gt;&#xA;&lt;p&gt;This journey was because of NTPC (railway) exam, that happened on 14th August. I went there on 13th and came back home on 15th.&lt;/p&gt;&#xA;&lt;h1 id=&#34;things-that-i-noticed-are-different&#34;&gt;Things that I noticed are different.&lt;/h1&gt;&#xA;&lt;p&gt;People in Jharkhand eats a lot of Samosa. Specially on train. The price is 10/piece. I bought 4 at Hatia Railway Station.&lt;/p&gt;&#xA;&lt;p&gt;Female Hawkers, There are significant number of female hawkers, way more than that i see in West Bengal. They mostly sell chana, chickpeas with salad, lemon and chili. They give it in plant leaves, I do not know the name, Ill add it here if i come to know. It costs 20rs.&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/chana.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/chana.jpg&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(3000x4000)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/chana.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/chana_hu_aa148744bcfcba23.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;133&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&#xA;Guest house for students was significantly cheaper and closer to the exam centre, I had trouble finding room at Kolkata for cheap, when I went there alone after passing 12th.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Achievements in College Life</title>
-      <link>http://localhost:1314/blog/achievements-in-college-life/</link>
+      <link>http://localhost:1313/blog/achievements-in-college-life/</link>
       <pubDate>Fri, 25 Jul 2025 23:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/achievements-in-college-life/</guid>
-      <description>Here is the list of achievements in my college life(2022-25). Both positive and negative.&#xA;Positive Achievements Rank second in college exam. Get paid for computer related work. Make friends with all the classmates. Become Class Monitor. Become first in something. Go out with a girl. Get gifts from someone for helping him/her. Become Close with someone. Become close with my crush. Influence whole class&amp;rsquo;s descision. Show my computer skill. Spend teacher&amp;rsquo;s day/farewell in other&amp;rsquo;s dept.</description>
+      <guid>http://localhost:1313/blog/achievements-in-college-life/</guid>
+      <description>&lt;p&gt;Here is the list of achievements in my college life(2022-25). Both positive and negative.&lt;/p&gt;&#xA;&lt;h2 id=&#34;positive-achievements&#34;&gt;Positive Achievements&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Rank second in college exam.&lt;/li&gt;&#xA;&lt;li&gt;Get paid for computer related work.&lt;/li&gt;&#xA;&lt;li&gt;Make friends with all the classmates.&lt;/li&gt;&#xA;&lt;li&gt;Become Class Monitor.&lt;/li&gt;&#xA;&lt;li&gt;Become first in something.&lt;/li&gt;&#xA;&lt;li&gt;Go out with a girl.&lt;/li&gt;&#xA;&lt;li&gt;Get gifts from someone for helping him/her.&lt;/li&gt;&#xA;&lt;li&gt;Become Close with someone.&lt;/li&gt;&#xA;&lt;li&gt;Become close with my crush.&lt;/li&gt;&#xA;&lt;li&gt;Influence whole class&amp;rsquo;s descision.&lt;/li&gt;&#xA;&lt;li&gt;Show my computer skill.&lt;/li&gt;&#xA;&lt;li&gt;Spend teacher&amp;rsquo;s day/farewell in other&amp;rsquo;s dept.&lt;/li&gt;&#xA;&lt;li&gt;Make friends outside my own classroom.&lt;/li&gt;&#xA;&lt;li&gt;Flirt with someone (didnt do face to face yet).&lt;/li&gt;&#xA;&lt;li&gt;Make money from classmates.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;negative-achievements&#34;&gt;Negative Achievements&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Argue with teachers - 4/6&lt;/li&gt;&#xA;&lt;li&gt;Get called by Principal&lt;/li&gt;&#xA;&lt;li&gt;Bunk a class&lt;/li&gt;&#xA;&lt;li&gt;End a friendship&lt;/li&gt;&#xA;&lt;li&gt;Simp over someone.&lt;/li&gt;&#xA;&lt;li&gt;Get my heart broken.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;neutral--achievements&#34;&gt;Neutral  Achievements&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Spend night at friend&amp;rsquo;s room.&lt;/li&gt;&#xA;&lt;li&gt;Go to a friend&amp;rsquo;s room at midnight to hang out.&lt;/li&gt;&#xA;&lt;li&gt;Cook for friends.&lt;/li&gt;&#xA;&lt;li&gt;Participate in a ralley for protest.&lt;/li&gt;&#xA;&lt;li&gt;Enter into girls&amp;rsquo; hostel.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;things-i-didnt-achieve&#34;&gt;Things I didn&amp;rsquo;t achieve&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Get into a fight.&lt;/li&gt;&#xA;&lt;li&gt;Any position in cultural programme&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Dream: A Beautiful Garden</title>
-      <link>http://localhost:1314/blog/dream-a-beautiful-garden/</link>
+      <link>http://localhost:1313/blog/dream-a-beautiful-garden/</link>
       <pubDate>Sun, 02 Feb 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/dream-a-beautiful-garden/</guid>
-      <description>I was someone else. Probably my brother and saw myself waiting in a hall. It was our college exam and somehow I forgot to do form fillup.&#xA;The me, in someone else&amp;rsquo;s body went to a hotel, but overheard the owner giving instructions to raise the prices for the students who came to give exam. So I left. The exam centre was right beside Ganga. So I reached one of the Gangas ghat, and when I entered the exam centre again it was the hall where all people who were not eligible was sitting and someone was instructing them to go with with to some office.</description>
+      <guid>http://localhost:1313/blog/dream-a-beautiful-garden/</guid>
+      <description>&lt;p&gt;I was someone else. Probably my brother and saw myself waiting in a hall. It was our college exam and somehow I forgot to do form fillup.&lt;/p&gt;&#xA;&lt;p&gt;The me, in someone else&amp;rsquo;s body went to a hotel, but overheard the owner giving instructions to raise the prices for the students who came to give exam. So I left. The exam centre was right beside Ganga. So I reached one of the Gangas ghat, and when I entered the exam centre again it was the hall where all people who were not eligible was sitting and someone was instructing them to go with with to some office. I saw myself there. Sad and still smiling. I was going to scold &amp;ldquo;me&amp;rdquo; but then that&amp;rsquo;s the point when I realised it&amp;rsquo;s me who&amp;rsquo;s forgot. Suhana was also there, I went and sat beside her and asked why she&amp;rsquo;s here. She said because they won&amp;rsquo;t open the other doors yet.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dream: A Movie</title>
-      <link>http://localhost:1314/blog/dream-a-movie/</link>
+      <link>http://localhost:1313/blog/dream-a-movie/</link>
       <pubDate>Thu, 16 Jan 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/dream-a-movie/</guid>
-      <description>Main character me, brother and another guy. Who is black.&#xA;I was cleaning a toilet because it was overflowing. That made vomit reflex and woke me up. Took me at least 3-4 tries to finish cleaning&#xA;There&amp;rsquo;s another scene where 3 of us were walking at the side of a road/railway. Suddenly a tank came and blocked the whole road. Veichles came fast and crashed into it. 2nd vehicle broke the tank itself.</description>
+      <guid>http://localhost:1313/blog/dream-a-movie/</guid>
+      <description>&lt;p&gt;Main character me, brother and another guy. Who is black.&lt;/p&gt;&#xA;&lt;p&gt;I was cleaning a toilet because it was overflowing. That made vomit reflex and woke me up. Took me at least 3-4 tries to finish cleaning&lt;/p&gt;&#xA;&lt;p&gt;There&amp;rsquo;s another scene where 3 of us were walking at the side of a road/railway. Suddenly a tank came and blocked the whole road. Veichles came fast and crashed into it. 2nd vehicle broke the tank itself. It happened very quickly in less than a minute and we can hear injured people crying.&#xA;I was scared because I was worried if some debris would come hitting us and injure us.&#xA;We left the scene quickly. It started to rain and we took shelter in a building. This building I have never seen before, it was big, a lot like shopping mall but abandoned. There was lots of people though who were seeking refuge in this rain. I was the first one to reach the building. But even after waiting for a while brother didn&amp;rsquo;t come, so anxiety took over and I went looking for him. I thought he probably lost direction. He was alone. Which was odd, but expected. I asked where the other guy was and he said that there&amp;rsquo;s some people looking for him and want to beat him up, so he went into hiding. I was on top of the balcony and saw two guys looking for someone, one guy had a big stick on his hand. I knew this guy. At first I was scared to make eye contact. But soon realised that they weren&amp;rsquo;t looking for me, so I made eye contact. I even thought of trying to persuade them to stop from hurting that guy. I talked with them, but memories of what happened is fuzzy.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dream: First Aeroplane Experience</title>
-      <link>http://localhost:1314/blog/dream-first-aeroplane-experience/</link>
+      <link>http://localhost:1313/blog/dream-first-aeroplane-experience/</link>
       <pubDate>Mon, 13 Jan 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/dream-first-aeroplane-experience/</guid>
-      <description>I dreamt this after drinking coffee.&#xA;I had my first experience of riding an aeroplane. It was riding very low and the windows were not glass. It was like a toy and it was fun.&#xA;Then in train Pabitra had a bhai who was not found. He said his brother came with us but he was not sure if actially. He said that he would say that he is dead and instructed us to make a fake dead body to show in case.</description>
+      <guid>http://localhost:1313/blog/dream-first-aeroplane-experience/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;I dreamt this after drinking coffee.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;I had my first experience of riding  an aeroplane.  It was riding very low and the windows were not glass.  It was like a toy and it was fun.&lt;/p&gt;&#xA;&lt;p&gt;Then in train Pabitra had a bhai who was not found. He said his brother came with us but he was not sure if actially. He said that he would say that he is dead and instructed us to make a fake dead body to show in case. I once heard someone crying and calling &amp;ldquo;dada&amp;rdquo; but cannot figure out from where and who it was. Trying to find, we found the snake. The snake was scaring an animal which was neither dog not a cat, rather a mixture of two. There was a snake in the train. Actually two. Some people caught it. I also hold it in my hands and didn&amp;rsquo;t let it bite me..&#xA;At the final dream I don&amp;rsquo;t remember its fraustating,&#xA;I woke after the 2nd sleep, thought about writing down and repeated in my mind what I dreamt then slept and saw the third dream. Maybe because of repeatation I was able to remember.&#xA;I took coffee just before sleep.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dream about painting a house and trying different food dishes</title>
-      <link>http://localhost:1314/blog/dream-about-painting-a-house-and-trying-different-food-dishes/</link>
+      <link>http://localhost:1313/blog/dream-about-painting-a-house-and-trying-different-food-dishes/</link>
       <pubDate>Thu, 09 Jan 2025 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/dream-about-painting-a-house-and-trying-different-food-dishes/</guid>
-      <description>I dreamt this on 9th Jan, 2025. I drank coffee that day.&#xA;I dreamt that I was with mom and we were trying dishes&#xA;There was a girl who was ironing some fabric that was supposed to be edible. She burnt some fabric and also in the process her sweater. Her dad took it from her and started doing it. I don&amp;rsquo;t know what it tasted becase we didn&amp;rsquo;t get to taste it.</description>
+      <guid>http://localhost:1313/blog/dream-about-painting-a-house-and-trying-different-food-dishes/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;I dreamt this on 9th Jan, 2025. I drank coffee that day.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;I dreamt that I was with mom and we were trying dishes&lt;/p&gt;&#xA;&lt;p&gt;There was a girl who was ironing some fabric that was supposed to be edible. She burnt some fabric and also in the process her sweater. Her dad took it from her and started doing it. I don&amp;rsquo;t know what it tasted becase we didn&amp;rsquo;t get to taste it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How I get Daily News</title>
-      <link>http://localhost:1314/blog/how-i-get-daily-news/</link>
+      <link>http://localhost:1313/blog/how-i-get-daily-news/</link>
       <pubDate>Sun, 23 Jun 2024 23:13:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-i-get-daily-news/</guid>
-      <description>In this post I would discuss how I read news on my kindle, benefit of my method and how you can replicate this method by yourself.&#xA;How to Replicate Prerequisites: A smartphone with Termux and Anlinux installed. There must be at least 2 GB of storage free. Patience Time on your hand. Installing a Linux distro on termux Open the an Linux app and on the dashboard choose Fedora and click ok.</description>
+      <guid>http://localhost:1313/blog/how-i-get-daily-news/</guid>
+      <description>&lt;p&gt;In this post I would discuss how I read news on my kindle, benefit of my method and how you can replicate this method by yourself.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-to-replicate&#34;&gt;How to Replicate&lt;/h2&gt;&#xA;&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites:&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;A smartphone with Termux and Anlinux installed. There must be at least 2 GB of storage free.&lt;/li&gt;&#xA;&lt;li&gt;Patience&lt;/li&gt;&#xA;&lt;li&gt;Time on your hand.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;installing-a-linux-distro-on-termux&#34;&gt;Installing a Linux distro on termux&lt;/h3&gt;&#xA;&lt;p&gt;Open the an Linux app and on the dashboard choose &lt;strong&gt;Fedora&lt;/strong&gt; and click &lt;em&gt;ok&lt;/em&gt;.&#xA;Now click &lt;em&gt;copy&lt;/em&gt; and it should copy a command to your clipboard.&#xA;Now click on &lt;em&gt;launch&lt;/em&gt; and it would open termux terminal.&#xA;Now first run the command &lt;code&gt;pkg update &amp;amp;&amp;amp; pkg upgrade&lt;/code&gt;&#xA;If you are prompted to answer type Y and hit enter to upgrade.&#xA;Wait till it finishes downloading and installing the packages.&#xA;Now paste the copied command from the above step and hit &lt;em&gt;enter&lt;/em&gt;.&#xA;Give it time to download and install required packages. Make sure you have a fast internet connection.&#xA;It should install everything and set up your Fedora Linux distro.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Hyprland Experience</title>
-      <link>http://localhost:1314/blog/the-hyprland-experience/</link>
+      <link>http://localhost:1313/blog/the-hyprland-experience/</link>
       <pubDate>Sat, 01 Jul 2023 23:55:28 +0530</pubDate>
-      <guid>http://localhost:1314/blog/the-hyprland-experience/</guid>
-      <description>I have been using Arch Linux with Hyprland. Initially I started using because of the cool animation it has. And stayed with it since.&#xA;Look and Feel Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&#xA;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.</description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1314/blog/test/</link>
-      <pubDate>Wed, 12 Apr 2023 00:29:34 +0530</pubDate>
-      <guid>http://localhost:1314/blog/test/</guid>
-      <description>This is a test</description>
+      <guid>http://localhost:1313/blog/the-hyprland-experience/</guid>
+      <description>&lt;p&gt;I have been using &lt;a href=&#34;https://archlinux.orh&#34;&gt;Arch Linux&lt;/a&gt; with &lt;a href=&#34;https://hyprland.org/&#34;&gt;Hyprland&lt;/a&gt;. Initially I started using because of the cool animation it has. And stayed with it since.&lt;/p&gt;&#xA;&lt;h2 id=&#34;look-and-feel&#34;&gt;Look and Feel&lt;/h2&gt;&#xA;&lt;p&gt;Hyprland excels at it. Animations are super smooth and eyecatchy.I don&amp;rsquo;t necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn&amp;rsquo;t have to do much ricing to get it look sexy.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/img/hyprland.jpg&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;h4&gt;A picture of my Hyprland setup, taken by phone, because I cannot figure out how to take screenshot.&lt;/h4&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;&#xA;&lt;p&gt;Configuration was not as easy as I expected. I haven&amp;rsquo;t &lt;em&gt;really&lt;/em&gt; configured any tiling window manager previously, so it was bit hard for me.  But with few Google search I was easily able to pull it off. I didn&amp;rsquo;t change much. Only changed DPI along with few keybindings.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dream Entry #1</title>
-      <link>http://localhost:1314/blog/dream-entry-1/</link>
+      <link>http://localhost:1313/blog/dream-entry-1/</link>
       <pubDate>Tue, 11 Apr 2023 21:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/dream-entry-1/</guid>
-      <description>I dreamt again.&#xA;This time I was running away from people of an universe of exact same people of this universe. Actually it was parallel universe, everything is exact copy.&#xA;A bean like thing has corrupted mind of almost all the people of that parallel universe and made everyone evil.I wasn&amp;rsquo;t effected by those beans for some reason. But I had no idea that I was not effected. At first there were no beans, then suddenly beans were everywhere, like it was raining beans.</description>
+      <guid>http://localhost:1313/blog/dream-entry-1/</guid>
+      <description>&lt;p&gt;I dreamt again.&lt;/p&gt;&#xA;&lt;p&gt;This time I was running away from people of an universe of exact same people of this universe. Actually it was parallel universe, everything is exact copy.&lt;/p&gt;&#xA;&lt;p&gt;A bean like thing has corrupted mind of almost all the people of that parallel universe and made everyone evil.I wasn&amp;rsquo;t effected by those beans for some reason. But I had no idea that I was not effected. At first there were no beans, then suddenly beans were everywhere, like it was raining beans. I remember collecting them. These beans were round bright yellow in color. There&amp;rsquo;s a whole story about how these beans took over that parallel universe, but I don&amp;rsquo;t remember much.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My Fountain Pen Collection</title>
-      <link>http://localhost:1314/blog/my-fountain-pen-collection/</link>
+      <link>http://localhost:1313/blog/my-fountain-pen-collection/</link>
       <pubDate>Sun, 12 Feb 2023 20:43:37 +0530</pubDate>
-      <guid>http://localhost:1314/blog/my-fountain-pen-collection/</guid>
-      <description>I like pens. If you ask my family they would tell you how much money I have spent (ahem, wasted) on pens. I used almost all type of pens there is, that is if they are available for purchase in India. My recent obsession is fountain pens. I love them. A good fountain pen writes miles better than any other kind of pen. But they are expensive. Like very expensive. But most the fountain pens are made so that they can be used for a very long time.</description>
+      <guid>http://localhost:1313/blog/my-fountain-pen-collection/</guid>
+      <description>&lt;p&gt;I like pens. If you ask my family they would tell you how much money I have spent (ahem, wasted) on pens. I used almost all type of pens there is, that is if they are available for purchase in India.&#xA;My recent obsession is fountain pens. I love them. A good fountain pen writes miles better than any other kind of pen. But they are expensive. Like very expensive. But most the fountain pens are made so that they can be used for a very long time. I bought some with my own money and some from parents.&#xA;Another benifit of using fountain pens is that a wide collection of inks, in color and in quality both. Right now I have 3 black inks one blue turquiose and one green shamrock. I mainly use black, as it is work appropriate and black probably looks the best on white paper.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Streaming on Spotify vs Using Mp3s</title>
-      <link>http://localhost:1314/blog/streaming-on-spotify-vs-using-mp3s/</link>
+      <link>http://localhost:1313/blog/streaming-on-spotify-vs-using-mp3s/</link>
       <pubDate>Fri, 30 Sep 2022 18:52:07 +0530</pubDate>
-      <guid>http://localhost:1314/blog/streaming-on-spotify-vs-using-mp3s/</guid>
-      <description>Disclaimer: here by mp3 I am referring to any playable music file, with any extension.&#xA;For most people Spotify is great, or at least it is better than managing your own mp3s like in the old days. But there are few things that I absolutely hate, which made me switch to MP3.&#xA;Things that pisses me off about Spotify: Podcasts - I know a lot of people who listens to podcast through Spotify, but I hate it.</description>
+      <guid>http://localhost:1313/blog/streaming-on-spotify-vs-using-mp3s/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Disclaimer: here by mp3 I am referring to any playable music file, with any extension.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;For most people Spotify is great, or at least it is better than managing your own mp3s like in the old days. But there are few things that I absolutely hate, which made me switch to MP3.&lt;/p&gt;&#xA;&lt;h1 id=&#34;things-that-pisses-me-off-about-spotify&#34;&gt;Things that pisses me off about Spotify:&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Podcasts - I know a lot of people who listens to podcast through Spotify, but I hate it. I follow podcasts through their RSS feed and listen to them on Antenapod. I wish there were an option to remove podcasts from my Spotify home screen completely, but currently there isn&amp;rsquo;t any.&lt;/p&gt;</description>
     </item>
     <item>
       <title>WhatsApp Has Fake Reviews on Playstore</title>
-      <link>http://localhost:1314/blog/whatsapp-has-fake-reviews-on-playstore/</link>
+      <link>http://localhost:1313/blog/whatsapp-has-fake-reviews-on-playstore/</link>
       <pubDate>Sun, 28 Aug 2022 18:50:10 +0530</pubDate>
-      <guid>http://localhost:1314/blog/whatsapp-has-fake-reviews-on-playstore/</guid>
-      <description>I was reading reviews for Whatsapp on playstore and came to see this:&#xA;There is more:&#xA;And more:&#xA;This one too:&#xA;I am sure if you search, more will come. I wonder who&amp;rsquo;s doing these!</description>
+      <guid>http://localhost:1313/blog/whatsapp-has-fake-reviews-on-playstore/</guid>
+      <description>&lt;p&gt;I was reading reviews for Whatsapp on playstore and came to see this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-1.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;There is more:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-2.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-3.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;And more:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-4.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;This one too:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/fake-review-5.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I am sure if you search, more will come. I wonder who&amp;rsquo;s doing these!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Making Microblogging Website Using Hugo &amp; Netlify</title>
-      <link>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</link>
+      <link>http://localhost:1313/blog/making-microblogging-website-using-hugo-and-netlify/</link>
       <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
-      <guid>http://localhost:1314/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
-      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
-    </item>
-    <item>
-      <title>Making Twitter Using Hugo &amp; Netlify</title>
-      <link>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</link>
-      <pubDate>Thu, 25 Aug 2022 19:30:17 +0530</pubDate>
-      <guid>http://localhost:1314/blog/making-twitter-using-hugo-and-netlify/</guid>
-      <description>Check a live version: Check out live version of the website that I made. https://status.blackpiratex.com/&#xA;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.</description>
+      <guid>http://localhost:1313/blog/making-microblogging-website-using-hugo-and-netlify/</guid>
+      <description>&lt;h2 id=&#34;check-a-live-version&#34;&gt;Check a live version:&lt;/h2&gt;&#xA;&lt;p&gt;Check out live version of the website that I made.&#xA;&lt;a href=&#34;https://status.blackpiratex.com/&#34;&gt;https://status.blackpiratex.com/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Blogs are great if you want to write something that is atleast one paragraph. But for those one line thoughts that comes to your mind, which you want to share with the world or want to write it down, &amp;lsquo;cause most likely you would not remember it in future, microblogging is the way to go. If you are not familier with this term, it means twitter like platform, where you can make posts but those would be not more than a paragraph.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Setting Up My Website on Hugo</title>
-      <link>http://localhost:1314/blog/setting-up-my-website-on-hugo/</link>
+      <link>http://localhost:1313/blog/setting-up-my-website-on-hugo/</link>
       <pubDate>Sun, 24 Jul 2022 17:43:10 +0530</pubDate>
-      <guid>http://localhost:1314/blog/setting-up-my-website-on-hugo/</guid>
-      <description>Inspiration: As far as I can remember, I came to know about Hugo from some personal blogs, which I have found through Hacker News. Before this I was coding everything manually for each blog post. (you can see examples of those here.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post.</description>
+      <guid>http://localhost:1313/blog/setting-up-my-website-on-hugo/</guid>
+      <description>&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration:&lt;/h2&gt;&#xA;&lt;p&gt;As far as I can remember, I came to know about &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; from some personal blogs, which I have found through &lt;a href=&#34;https://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt;. Before this I was coding everything manually for each blog post. (you can see examples of those &lt;a href=&#34;https://blackpiratex.com/blog&#34;&gt;here&lt;/a&gt;.) And yes it was tedious. I noticed that I spent most of my time making the html and css, instead of writting the actual content. Also the friction involed in getting my post published made me less likely to post. Clearly something needs to change. I started playing with Hugo. And With little bit of research and guides form Youtube, I started learning about it. Decided that I would make my blog separate from my website, that way it would be easier to manage. I initially used &lt;a href=&#34;https://themes.gohugo.io&#34;&gt;premade themes by community&lt;/a&gt; for my website. Themes usually decide how your website will look. (It&amp;rsquo;s just like wordpress themes.) I also created another seprate website on a subdomain for my &lt;a href=&#34;https://gallery.blackpiratex.com&#34;&gt;gallery&lt;/a&gt; website. Premade themes are very good nontheless, but they are not suitable for me. I do not want to use any JS if possible. So I needed to create my own theme. After reading on the Hugo Documentation and taking help from &lt;a href=&#34;https://youtu.be/ZFL09qhKi5I/&#34;&gt;this video&lt;/a&gt; by &lt;a href=&#34;https://lukesmith.xyz&#34;&gt;Luke Smith&lt;/a&gt;, I created my own theme. It is going to be a simple theme, but functional and beautiful.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Website Update #1</title>
-      <link>http://localhost:1314/blog/website-update-1/</link>
+      <link>http://localhost:1313/blog/website-update-1/</link>
       <pubDate>Fri, 22 Jul 2022 17:46:44 +0530</pubDate>
-      <guid>http://localhost:1314/blog/website-update-1/</guid>
-      <description>If you have visited my this blog before,(and can remember it) you can clearly see the difference. This blog is now simpler. I like it. Hope you like it too. As I am going to get busy with my life, I hope I would stick with this theme for very long.&#xA;How this website is made I use Hugo for creating this website. Hugo is great. I am loving it. Earlier also I was using Hugo, but that time I didn&amp;rsquo;t know much about it, so I used a ready made theme for my website.</description>
+      <guid>http://localhost:1313/blog/website-update-1/</guid>
+      <description>&lt;p&gt;If you have visited my this blog before,(and can remember it) you can clearly see the difference. This blog is now simpler. I like it. Hope you  like it too. As I am going to get busy with my life, I hope I would stick with this theme for very long.&lt;/p&gt;&#xA;&lt;h3 id=&#34;how-this-website-is-made&#34;&gt;How this website is made&lt;/h3&gt;&#xA;&lt;p&gt;I use &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; for creating this website. Hugo is  great. I am loving it. Earlier also I was using Hugo, but that time I didn&amp;rsquo;t know much about it, so I used a ready made theme for my website. This time the theme is mine. That is why it is so minimal. This theme uses only HTML and little bit of CSS, I would tweak as time goes on.  The inspiration came from &lt;a href=&#34;https://lukesmith.xyz&#34;&gt;Luke Smith&lt;/a&gt;, in this &lt;a href=&#34;https://youtu.be/ZFL09qhKi5I/&#34;&gt;video&lt;/a&gt; he explained things about hugo, which has helped me a lot. So I made this. I knew that I was going to make my own theme someday, beacuse I do not like those available.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Fedora Doesn&#39;t Like Me</title>
-      <link>http://localhost:1314/blog/fedora-doesnt-like-me/</link>
+      <link>http://localhost:1313/blog/fedora-doesnt-like-me/</link>
       <pubDate>Mon, 27 Jun 2022 14:54:23 +0530</pubDate>
-      <guid>http://localhost:1314/blog/fedora-doesnt-like-me/</guid>
-      <description>After listening lots of good things about fedora, I wanted to give it a try. I was previously using Archcraft, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).</description>
+      <guid>http://localhost:1313/blog/fedora-doesnt-like-me/</guid>
+      <description>&lt;p&gt;After listening lots of good things about fedora, I wanted to give it a try. I was previously using &lt;a href=&#34;https://archcraft.io/&#34;&gt;Archcraft&lt;/a&gt;, but recently it started to give me few errors. Dolphin won&amp;rsquo;t start for some reason. Same problem with OBS Studio also. I can live without dolphin, but needed obs studio. I got an workaround and used ffmpeg to record screen, but it wasn&amp;rsquo;t as good as obs studio. So I decided to distro-hop like any rational person would (I hope).&#xA;I flashed &lt;a href=&#34;https://www.ventoy.net/en/index.html&#34;&gt;ventoy&lt;/a&gt; on my Samsung Pen Drive and copied the &lt;a href=&#34;https://getfedora.org/en/workstation/&#34;&gt;Fedora workstation&lt;/a&gt; iso file to the pen drive.Installation process went fairly smoothly, I am going to dual boot fedora and windows alongside, so had to do manual partitioning. After booting up I did a system update and installed all the softwares I needed. Everything is working just fine, as expected. After using it for more than a week a few problems started to appear.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Simplelogin - Best Way to Manage Your Emails</title>
-      <link>http://localhost:1314/blog/simplelogin-best-way-to-manage-your-emails/</link>
+      <link>http://localhost:1313/blog/simplelogin-best-way-to-manage-your-emails/</link>
       <pubDate>Sat, 28 May 2022 19:31:47 +0530</pubDate>
-      <guid>http://localhost:1314/blog/simplelogin-best-way-to-manage-your-emails/</guid>
-      <description>SimpleLogin is a email aliasing service. Which basically means you can create as many emails as you want* and all those emails would land on single inbox. I&amp;rsquo;ve been using SimpleLogin for over a year now. Here&amp;rsquo;s my evaluation of the service. My Use Case As someone who cares about privacy, and had personal emails leaked in data breach previously, I treat emails just like my passwords. I don&amp;rsquo;t want fifty different companies to know my email address just so they can send me marketing emails.</description>
+      <guid>http://localhost:1313/blog/simplelogin-best-way-to-manage-your-emails/</guid>
+      <description>&lt;p&gt;SimpleLogin is a email aliasing service. Which basically means you can create as many emails as you want* and all those emails would land on single inbox. I&amp;rsquo;ve been using SimpleLogin for over a year now. Here&amp;rsquo;s my evaluation of the service. &lt;/p&gt;&#xA;&lt;h2 id=&#34;my-use-case&#34;&gt;My Use Case&lt;/h2&gt;&#xA;&lt;p&gt;As someone who cares about privacy, and had personal emails leaked in data breach previously, I treat emails just like my passwords. I don&amp;rsquo;t want fifty different companies to know my email address just so they can send me marketing emails. Also if you use same email everywhere its pretty easy to stalk you online. Anyone who has your email address would be able to know if you use (or have account) certain website. I don&amp;rsquo;t want others to know which website I visit or which website I have an&#xA;account. &lt;/p&gt;</description>
     </item>
     <item>
       <title>Using Degoogled Phone Isn&#39;t as Hard as You Might Think</title>
-      <link>http://localhost:1314/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</link>
+      <link>http://localhost:1313/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</link>
       <pubDate>Tue, 17 May 2022 10:27:24 +0530</pubDate>
-      <guid>http://localhost:1314/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</guid>
-      <description>What is a degoogled phone? Vanilla Android is FOSS (Free and OpenSource Software), but the android that you get preinstalled in most phones isn&amp;rsquo;t completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn&amp;rsquo;t ship with Google Play Services by default.</description>
-    </item>
-    <item>
-      <title>Sexual Reproduction in Flowering Plants</title>
-      <link>http://localhost:1314/blog/sexual-reproduction-in-flowering-plants/</link>
-      <pubDate>Fri, 13 May 2022 16:06:49 +0530</pubDate>
-      <guid>http://localhost:1314/blog/sexual-reproduction-in-flowering-plants/</guid>
-      <description>Pre-Fertilisation Events and Structures Several hormonal and structural changes happen which lead to the differentiation and further devlopment of floral primordium before flower in seen on a plant. Inflorecences are formed which bears the floral bud and then the flowers. Structures of a flower Androecium It is the male reproductive organ of the flower. Androecium consists of stamens. The number and length of stamens are variable in different species. Stamen has two parts.</description>
-    </item>
-    <item>
-      <title>Human Reproduction</title>
-      <link>http://localhost:1314/blog/human-reproduction/</link>
-      <pubDate>Mon, 02 May 2022 20:23:17 +0530</pubDate>
-      <guid>http://localhost:1314/blog/human-reproduction/</guid>
-      <description>Male Reproductive Organ Male reproductive organs consists of testes, accesssory glands, glands and external genetitalia. Male reproductive system is located in pelvic region. There&amp;rsquo;s one pair of testes which is situated outside the human body within a pouch called scrotum. Scrotum has lower temparature than the body (2-2.5 degree celcius less) This lower temparature is necessuary for spermatogenesis. testis is oval in shape 4-5cm in length and 2-3 cm in width.</description>
+      <guid>http://localhost:1313/blog/using-degoogled-phone-isnt-as-hard-as-you-might-think/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-degoogled-phone&#34;&gt;What is a degoogled phone?&lt;/h2&gt;&#xA;&lt;p&gt;Vanilla Android is &lt;a href=&#34;https://blog.blackpiratex.com/tags/FOSS/&#34;&gt;FOSS&lt;/a&gt; (Free and OpenSource Software), but the android that you get preinstalled in most phones isn&amp;rsquo;t completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn&amp;rsquo;t ship with Google Play Services by default.  LineageOs is a popular example.&lt;/p&gt;</description>
     </item>
     <item>
       <title>In Search for Perfect Daily Journal App</title>
-      <link>http://localhost:1314/blog/in-search-for-perfect-daily-journal-app/</link>
+      <link>http://localhost:1313/blog/in-search-for-perfect-daily-journal-app/</link>
       <pubDate>Thu, 28 Apr 2022 00:08:39 +0530</pubDate>
-      <guid>http://localhost:1314/blog/in-search-for-perfect-daily-journal-app/</guid>
-      <description>To be considered a viable app for my Daily Journal needs it must have following charateristics.&#xA;Decent UI Either end to end encrypted if the app is cloud based or data stays locally. Cross platform. Including Linux. Easy way to export for personal backups. Free Because of lack of privacy at my home, I had moved away from physical pen and paper diaries and moved completely to digital. It&amp;rsquo;s much easier to hide something online than trying to hide at my home.</description>
+      <guid>http://localhost:1313/blog/in-search-for-perfect-daily-journal-app/</guid>
+      <description>&lt;p&gt;To be considered a viable app for my Daily Journal needs it must have following charateristics.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Decent UI&lt;/li&gt;&#xA;&lt;li&gt;Either end to end encrypted if the app is cloud based or data stays locally.&lt;/li&gt;&#xA;&lt;li&gt;Cross platform. Including Linux.&lt;/li&gt;&#xA;&lt;li&gt;Easy way to export for personal backups.&lt;/li&gt;&#xA;&lt;li&gt;Free&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Because of lack of privacy at my home, I had moved away from physical pen and paper diaries and moved completely to digital. It&amp;rsquo;s much easier to hide something online than trying to hide at my home.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Digital Journaling Is Better Than Physical Journaling</title>
-      <link>http://localhost:1314/blog/digital-journaling-is-better-than-physical-journaling/</link>
+      <link>http://localhost:1313/blog/digital-journaling-is-better-than-physical-journaling/</link>
       <pubDate>Sat, 23 Apr 2022 20:18:34 +0530</pubDate>
-      <guid>http://localhost:1314/blog/digital-journaling-is-better-than-physical-journaling/</guid>
-      <description>Better Privacy A daily journal is probably going to be one of the most private thing in your life. Because I know for a fact that, doesn&amp;rsquo;t matter how close you are to me I&amp;rsquo;m never going to share my journal with anyone but me. If you are able to write digitally right way then it is very much possible to have greater privacy than that you&amp;rsquo;d get in physical journal.</description>
+      <guid>http://localhost:1313/blog/digital-journaling-is-better-than-physical-journaling/</guid>
+      <description>&lt;h2 id=&#34;better-privacy&#34;&gt;Better Privacy&lt;/h2&gt;&#xA;&lt;p&gt;A daily journal is probably going to be one of the most private thing in your life. Because I know for a fact that, doesn&amp;rsquo;t matter how close you are to me I&amp;rsquo;m never going to share my journal with anyone but me.&#xA;If you are able to write digitally right way then it is very much possible to have greater privacy than that you&amp;rsquo;d get in physical journal. If you dont live alone, then its possible they can sneak into your journal. Even if I trust that person completely I&amp;rsquo;ll still be more comfortable knowing that he/she cannot access it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why I Love Tiling Window Manager</title>
-      <link>http://localhost:1314/blog/why-i-love-wm/</link>
+      <link>http://localhost:1313/blog/why-i-love-wm/</link>
       <pubDate>Wed, 30 Mar 2022 20:13:52 +0530</pubDate>
-      <guid>http://localhost:1314/blog/why-i-love-wm/</guid>
-      <description>Tiling Window Manager is alternative to using full blown desktop environment. More info on ArchWiki&#xA;I have recently started using WM, first i3 now on openbox. And absolutely love it.&#xA;If you are someone who is used to use normal desktop environment like gnome, kde, xfce or any other DE (Desktop Environment), I&amp;rsquo;d suggest to try out WM.You can start with anyone of those window manager you&amp;rsquo;re comfortable with. Setting up wm is easy on fresh arch install so it shouldn&amp;rsquo;t be a barrier.</description>
+      <guid>http://localhost:1313/blog/why-i-love-wm/</guid>
+      <description>&lt;p&gt;Tiling Window Manager is alternative to using full blown desktop environment. &lt;a href=&#34;https://wiki.archlinux.org/title/window_manager&#34;&gt;More info on ArchWiki&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;I have recently started using WM, first i3 now on openbox. And absolutely love it.&lt;/p&gt;&#xA;&lt;p&gt;If you are someone who is used to use normal desktop environment like gnome, kde, xfce or any other &lt;a href=&#34;https://wiki.archlinux.org/title/desktop_environment&#34;&gt;DE (Desktop Environment)&lt;/a&gt;, I&amp;rsquo;d suggest to try out WM.You can start with anyone of those window manager you&amp;rsquo;re comfortable with. Setting up wm is easy on fresh arch install so it shouldn&amp;rsquo;t be a barrier.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My Experience With Various Password Managers</title>
-      <link>http://localhost:1314/blog/my-experience-with-various-password-managers/</link>
+      <link>http://localhost:1313/blog/my-experience-with-various-password-managers/</link>
       <pubDate>Tue, 09 Nov 2021 18:53:53 +0530</pubDate>
-      <guid>http://localhost:1314/blog/my-experience-with-various-password-managers/</guid>
-      <description>Throughout the years i have used many password managers. One of the biggest reasons I started using a password manager is not because of the security but rather I wanted a quick way to type my passwords. Also its easy for me to loose track of the websites I have signed up for. Now you may ask why I didn&amp;rsquo;t use something like password manager built in most modern web browser?</description>
+      <guid>http://localhost:1313/blog/my-experience-with-various-password-managers/</guid>
+      <description>&lt;p&gt;Throughout the years i have used many password managers. One of the biggest reasons I started using a password manager is not because of the security but rather I wanted a quick way to type my passwords. Also its easy for me to loose track of the websites I have signed up for. Now you may ask why I didn&amp;rsquo;t use something like password manager built in most modern web browser? Well the answer to that question is I wanted all my passwords to sync to different browsers.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nextdns Review</title>
-      <link>http://localhost:1314/blog/nextdns-review/</link>
+      <link>http://localhost:1313/blog/nextdns-review/</link>
       <pubDate>Fri, 21 May 2021 14:35:54 +0530</pubDate>
-      <guid>http://localhost:1314/blog/nextdns-review/</guid>
-      <description>What is DNS? The Domain Name System is a hierarchical and decentralized naming system for computers, services, or other resources connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating entities.&#xA;What is NextDNS? NextDNS is a dns service which lets you block sites at dns level. That means it can block ads and trackers. Which is the main selling point of this service.</description>
+      <guid>http://localhost:1313/blog/nextdns-review/</guid>
+      <description>&lt;h2 id=&#34;what-is-dns&#34;&gt;What is DNS?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;The Domain Name System is a hierarchical and decentralized naming system for computers, services, or other resources connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating entities.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;what-is-nextdns&#34;&gt;What is NextDNS?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;NextDNS is a dns service which lets you block sites at dns level. That means it can block ads and trackers. Which is the main selling point of this service.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cityscapes on BlackPirateX</title>
+    <link>http://localhost:1313/tags/cityscapes/</link>
+    <description>Recent content in Cityscapes on BlackPirateX</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Sep 2024 15:57:56 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cityscapes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Red Roof Bhutan</title>
+      <link>http://localhost:1313/gallery/red-roof-bhutan/</link>
+      <pubDate>Thu, 26 Sep 2024 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/red-roof-bhutan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raining Street</title>
+      <link>http://localhost:1313/gallery/raining-street/</link>
+      <pubDate>Thu, 26 Sep 2024 11:06:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/raining-street/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rainy Station at Night</title>
+      <link>http://localhost:1313/gallery/rainy-station-at-night/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/rainy-station-at-night/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

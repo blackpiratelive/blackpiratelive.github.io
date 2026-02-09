@@ -2,214 +2,207 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Study on BlackPirateX</title>
-    <link>http://localhost:1314/tags/study/</link>
+    <link>http://localhost:1313/tags/study/</link>
     <description>Recent content in Study on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 29 Jan 2026 15:31:09 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/study/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/study/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-29-untitled-659331/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-29-untitled-659331/</link>
       <pubDate>Thu, 29 Jan 2026 15:31:11 +0000</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-29-untitled-659331/</guid>
-      <description>I feel like my brains will fall out when i try to study for 4 hours continuously.</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-29-untitled-659331/</guid>
+      <description>&lt;p&gt;I feel like my brains will fall out when i try to study for 4 hours continuously.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-27-untitled-905776/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-27-untitled-905776/</link>
       <pubDate>Tue, 27 Jan 2026 21:18:25 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-27-untitled-905776/</guid>
-      <description>File: /img/1769528884424-1001764759.jpg (1280x327) 🤣🤣</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-27-untitled-905776/</guid>
+      <description>&lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/1769528884424-1001764759.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/1769528884424-1001764759.jpg&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1280x327)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/1769528884424-1001764759.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/1769528884424-1001764759_hu_3c585ba1dc52fb14.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;26&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&#xA;&lt;p&gt;🤣🤣&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-23-untitled-861344/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-23-untitled-861344/</link>
       <pubDate>Fri, 23 Jan 2026 23:07:41 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-23-untitled-861344/</guid>
-      <description>3 days of not studying, it is so hard to get back on track.</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-23-untitled-861344/</guid>
+      <description>&lt;p&gt;3 days of not studying, it is so hard to get back on track.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-23-untitled-776813/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-23-untitled-776813/</link>
       <pubDate>Fri, 23 Jan 2026 11:59:36 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-23-untitled-776813/</guid>
-      <description>i should write a post on how to use anki for ssc students.</description>
-    </item>
-    <item>
-      <title>How to use anki beginners guide</title>
-      <link>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</link>
-      <pubDate>Fri, 23 Jan 2026 10:00:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-to-use-anki-beginners-guide/</guid>
-      <description>Anki looks scary at first, but you only need a few basics to start learning fast. This guide keeps it simple and practical so you can make your first deck, review daily, and actually stick with it.&#xA;1. Install Anki and sync Download Anki for desktop first (Windows/Mac/Linux). The desktop app is where you create and edit cards. Then create a free AnkiWeb account so your cards sync across devices. The mobile apps are optional, but very useful for reviews.</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-23-untitled-776813/</guid>
+      <description>&lt;p&gt;i should write a post on how to use anki for ssc students.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-21-untitled-670001/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-21-untitled-670001/</link>
       <pubDate>Wed, 21 Jan 2026 00:06:45 +0000</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-21-untitled-670001/</guid>
-      <description>Exam was good but I dont think Im going to clear it. I feel sad</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-21-untitled-670001/</guid>
+      <description>&lt;p&gt;Exam was good but I dont think Im going to clear it. I feel sad&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-11-12-28-57/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-11-12-28-57/</link>
       <pubDate>Sun, 11 Jan 2026 12:28:57 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-11-12-28-57/</guid>
-      <description>I thought all I needed was pomodoro technique to increase the hours I study, but apperantly not. Studying continuously for hours at end is much better solution. All I need to do is do this for twice a day.</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-11-12-28-57/</guid>
+      <description>&lt;p&gt;I thought all I needed was pomodoro technique to increase the hours I study, but apperantly not. Studying continuously for hours at end is much better solution. All I need to do is do this for twice a day.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-08-18-05-23/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-08-18-05-23/</link>
       <pubDate>Thu, 08 Jan 2026 18:05:23 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-08-18-05-23/</guid>
-      <description>I studied continuously for 4hrs 40mins. I am proud of myself. I can do it.</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-08-18-05-23/</guid>
+      <description>&lt;p&gt;I studied continuously for 4hrs 40mins. I am proud of myself. I can do it.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2026/2026-01-06-07-49-23/</link>
+      <link>http://localhost:1313/thoughts/2026/2026-01-06-07-49-23/</link>
       <pubDate>Tue, 06 Jan 2026 07:49:23 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2026/2026-01-06-07-49-23/</guid>
-      <description>New blog post, How I use AI in my studies. https://blog.blackpiratex.com/how-i-use-ai-in-studies/</description>
+      <guid>http://localhost:1313/thoughts/2026/2026-01-06-07-49-23/</guid>
+      <description>&lt;p&gt;New blog post, How I use AI in my studies. &lt;a href=&#34;https://blog.blackpiratex.com/how-i-use-ai-in-studies/&#34;&gt;https://blog.blackpiratex.com/how-i-use-ai-in-studies/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>How I Use AI in Studies</title>
-      <link>http://localhost:1314/blog/how-i-use-ai-in-studies/</link>
+      <link>http://localhost:1313/blog/how-i-use-ai-in-studies/</link>
       <pubDate>Mon, 05 Jan 2026 22:54:00 +0530</pubDate>
-      <guid>http://localhost:1314/blog/how-i-use-ai-in-studies/</guid>
-      <description>Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life. Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life.</description>
+      <guid>http://localhost:1313/blog/how-i-use-ai-in-studies/</guid>
+      <description>&lt;p&gt;Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life.  Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life. I want to talk about how I have integrated AI in my studies in this blog post.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-11-26-16-28-08/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-11-26-16-28-08/</link>
       <pubDate>Wed, 26 Nov 2025 16:28:08 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-11-26-16-28-08/</guid>
-      <description>I am so slow in maths. I have to do 50 questions in 30mins. But so far i can only do half. Sigh!</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-26-16-28-08/</guid>
+      <description>&lt;p&gt;I am so slow in maths. I have to do 50 questions in 30mins. But so far i can only do half. Sigh!&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-11-25-20-51-15/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-11-25-20-51-15/</link>
       <pubDate>Tue, 25 Nov 2025 20:51:15 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-11-25-20-51-15/</guid>
-      <description>I gave a mock, its live ig? Idk when the results will come out. :-;</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-25-20-51-15/</guid>
+      <description>&lt;p&gt;I gave a mock, its live ig? Idk when the results will come out. :-;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-11-25-10-07-02/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-11-25-10-07-02/</link>
       <pubDate>Tue, 25 Nov 2025 10:07:02 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-11-25-10-07-02/</guid>
-      <description>I couldn&amp;rsquo;t go to give the exam because it was in Birbhum like wtf bro its so farr</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-25-10-07-02/</guid>
+      <description>&lt;p&gt;I couldn&amp;rsquo;t go to give the exam because it was in Birbhum like wtf bro its so farr&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-11-24-14-39-15/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-11-24-14-39-15/</link>
       <pubDate>Mon, 24 Nov 2025 14:39:15 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-11-24-14-39-15/</guid>
-      <description>I got 73.9 and cut off is 74.9.. I didnt get for 1 marks. Wow. Wow</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-24-14-39-15/</guid>
+      <description>&lt;p&gt;I got 73.9 and cut off is 74.9.. I didnt get for 1 marks. Wow. Wow&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-11-21-23-41-40/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-11-21-23-41-40/</link>
       <pubDate>Fri, 21 Nov 2025 23:41:40 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-11-21-23-41-40/</guid>
-      <description>Today for the first time i got such high marks in mocks. Im improving.</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-21-23-41-40/</guid>
+      <description>&lt;p&gt;Today for the first time i got such high marks in mocks. Im improving.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-08-25/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-08-25/</link>
       <pubDate>Mon, 25 Aug 2025 16:27:44 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-08-25/</guid>
-      <description>My performance tanked because i did not give mock for a long time. I need to study maths. And give mock everyday</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-08-25/</guid>
+      <description>&lt;p&gt;My performance tanked because i did not give mock for a long time. I need to study maths. And give mock everyday&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-08-14-13-12-04/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-08-14-13-12-04/</link>
       <pubDate>Thu, 14 Aug 2025 13:12:04 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-08-14-13-12-04/</guid>
-      <description>Exan went good. First time visiting a new state</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-08-14-13-12-04/</guid>
+      <description>&lt;p&gt;Exan went good. First time visiting a new state&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2025/2025-08-10-17-15-58/</link>
+      <link>http://localhost:1313/thoughts/2025/2025-08-10-17-15-58/</link>
       <pubDate>Sun, 10 Aug 2025 17:15:58 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2025/2025-08-10-17-15-58/</guid>
-      <description>CGL postponed to Sep first week. I should do maths and reasoning in these days. 200 reasoning each chapter.</description>
+      <guid>http://localhost:1313/thoughts/2025/2025-08-10-17-15-58/</guid>
+      <description>&lt;p&gt;CGL postponed to Sep first week. I should do maths and reasoning in these days. 200 reasoning each chapter.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2024/2024-11-08-10-47-17/</link>
+      <link>http://localhost:1313/thoughts/2024/2024-11-08-10-47-17/</link>
       <pubDate>Fri, 08 Nov 2024 10:47:17 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2024/2024-11-08-10-47-17/</guid>
-      <description>100k 🎉 File: /img/b5ad340c2943648c5e6f6b0f06e2ccc9.png (1080x1013) </description>
+      <guid>http://localhost:1313/thoughts/2024/2024-11-08-10-47-17/</guid>
+      <description>&lt;p&gt;100k 🎉&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/b5ad340c2943648c5e6f6b0f06e2ccc9.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/b5ad340c2943648c5e6f6b0f06e2ccc9.png&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1080x1013)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/b5ad340c2943648c5e6f6b0f06e2ccc9.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/b5ad340c2943648c5e6f6b0f06e2ccc9_hu_f16233340dd199d7.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;94&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-08-19-26-08/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-08-19-26-08/</link>
       <pubDate>Thu, 08 Sep 2022 19:26:08 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-08-19-26-08/</guid>
-      <description>I studied only 2 hours today but it feels like a lot.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-08-19-26-08/</guid>
+      <description>&lt;p&gt;I studied only 2 hours today but it feels like a lot.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-08-11-13-29/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-08-11-13-29/</link>
       <pubDate>Thu, 08 Sep 2022 11:13:29 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-08-11-13-29/</guid>
-      <description>NEET All India Rank is 6lakh 32k something. SC rank is 72k.💀 This is the hardest exam I gave so far.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-08-11-13-29/</guid>
+      <description>&lt;p&gt;NEET All India Rank is 6lakh 32k something. SC rank is 72k.💀 This is the hardest exam I gave so far.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-07-18-30-01/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-07-18-30-01/</link>
       <pubDate>Wed, 07 Sep 2022 18:30:01 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-07-18-30-01/</guid>
-      <description>Waiting for NEET results!</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-07-18-30-01/</guid>
+      <description>&lt;p&gt;Waiting for NEET results!&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-02-21-58-13/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-02-21-58-13/</link>
       <pubDate>Fri, 02 Sep 2022 21:58:13 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-02-21-58-13/</guid>
-      <description>Made daily planner on paper today: let&amp;rsquo;s see how much I follow this planner.&#xA;File: /img/83be8ad59608b02fc2b964a5f50e51f4.jpg (842x1165) </description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-02-21-58-13/</guid>
+      <description>&lt;p&gt;Made daily planner on paper today: let&amp;rsquo;s see how much I follow this planner.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/83be8ad59608b02fc2b964a5f50e51f4.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/83be8ad59608b02fc2b964a5f50e51f4.jpg&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(842x1165)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/83be8ad59608b02fc2b964a5f50e51f4.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/83be8ad59608b02fc2b964a5f50e51f4_hu_e68eba5441e49f18.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;138&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-09-02-00-19-22/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-09-02-00-19-22/</link>
       <pubDate>Fri, 02 Sep 2022 00:19:22 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-09-02-00-19-22/</guid>
-      <description>I&amp;rsquo;m getting addicted to studying, I hope it&amp;rsquo;s permanent.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-09-02-00-19-22/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m getting addicted to studying, I hope it&amp;rsquo;s permanent.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-29-13-34-10/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-29-13-34-10/</link>
       <pubDate>Mon, 29 Aug 2022 13:34:10 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-29-13-34-10/</guid>
-      <description>Sticky Notes/post it notes are so cute:)))</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-29-13-34-10/</guid>
+      <description>&lt;p&gt;Sticky Notes/post it notes are so cute:)))&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-22-01-02-01/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-22-01-02-01/</link>
       <pubDate>Mon, 22 Aug 2022 01:02:01 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-22-01-02-01/</guid>
-      <description>I feel shitty rn. Saved old biology notes to Evernote</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-22-01-02-01/</guid>
+      <description>&lt;p&gt;I feel shitty rn. Saved old biology notes to Evernote&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-08-05-01-00-21/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-08-05-01-00-21/</link>
       <pubDate>Fri, 05 Aug 2022 01:00:21 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-08-05-01-00-21/</guid>
-      <description>I love how evernote can recognise handwritten texts and search inside them, that is so powerful. Here is an example:&#xA;File: /img/00bb18c66c6e2ec42c09d3a2837b04c8.png (1080x2400) </description>
+      <guid>http://localhost:1313/thoughts/2022/2022-08-05-01-00-21/</guid>
+      <description>&lt;p&gt;I love how evernote can recognise handwritten texts and search inside them, that is so powerful. Here is an example:&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;    &#xA;    &#xA;&#xA;    &lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/00bb18c66c6e2ec42c09d3a2837b04c8.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/00bb18c66c6e2ec42c09d3a2837b04c8.png&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1080x2400)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/00bb18c66c6e2ec42c09d3a2837b04c8.png&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/00bb18c66c6e2ec42c09d3a2837b04c8_hu_1717cca73699d9d.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;222&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-07-29-11-55-01/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-07-29-11-55-01/</link>
       <pubDate>Fri, 29 Jul 2022 11:55:01 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-07-29-11-55-01/</guid>
-      <description>I should study. I need to make anki flash cards for a new chapter.</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-07-29-11-55-01/</guid>
+      <description>&lt;p&gt;I should study. I need to make anki flash cards for a new chapter.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1314/thoughts/2022/2022-07-27-18-58-46/</link>
+      <link>http://localhost:1313/thoughts/2022/2022-07-27-18-58-46/</link>
       <pubDate>Wed, 27 Jul 2022 18:58:46 +0530</pubDate>
-      <guid>http://localhost:1314/thoughts/2022/2022-07-27-18-58-46/</guid>
-      <description>Applying for colleges is so tedious. Only few days left to do:(</description>
+      <guid>http://localhost:1313/thoughts/2022/2022-07-27-18-58-46/</guid>
+      <description>&lt;p&gt;Applying for colleges is so tedious. Only few days left to do:(&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

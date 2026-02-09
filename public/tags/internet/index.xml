@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Internet on BlackPirateX</title>
-    <link>http://localhost:1314/tags/internet/</link>
+    <link>http://localhost:1313/tags/internet/</link>
     <description>Recent content in Internet on BlackPirateX</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 21 May 2021 14:35:54 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1314/tags/internet/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/internet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nextdns Review</title>
-      <link>http://localhost:1314/blog/nextdns-review/</link>
+      <link>http://localhost:1313/blog/nextdns-review/</link>
       <pubDate>Fri, 21 May 2021 14:35:54 +0530</pubDate>
-      <guid>http://localhost:1314/blog/nextdns-review/</guid>
-      <description>What is DNS? The Domain Name System is a hierarchical and decentralized naming system for computers, services, or other resources connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating entities.&#xA;What is NextDNS? NextDNS is a dns service which lets you block sites at dns level. That means it can block ads and trackers. Which is the main selling point of this service.</description>
+      <guid>http://localhost:1313/blog/nextdns-review/</guid>
+      <description>&lt;h2 id=&#34;what-is-dns&#34;&gt;What is DNS?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;The Domain Name System is a hierarchical and decentralized naming system for computers, services, or other resources connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating entities.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;what-is-nextdns&#34;&gt;What is NextDNS?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;NextDNS is a dns service which lets you block sites at dns level. That means it can block ads and trackers. Which is the main selling point of this service.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
