@@ -28,7 +28,7 @@
                     {{ if .Params.tags }}
                     <div class="micro-tags">
                         {{ range .Params.tags }}
-                        <a class="micro-tag" href="{{ " /tags/" | relLangURL }}{{ . | urlize }}"
+                        <a class="micro-tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}"
                             onclick="event.stopPropagation()">
                             #{{ . }}
                         </a>

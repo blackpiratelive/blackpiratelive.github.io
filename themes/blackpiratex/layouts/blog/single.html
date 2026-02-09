@@ -114,7 +114,7 @@
             {{ if .Params.tags }}
             <p class="post-tags">
                 {{ range .Params.tags }}
-                <a class="hashtag" href="{{ " /tags/" | relLangURL }}{{ . | urlize }}">
+                <a class="hashtag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
                     <span>#</span><span>{{ . }}</span>
                 </a>
                 {{ end }}
