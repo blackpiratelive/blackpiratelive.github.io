@@ -929,6 +929,7 @@ html[data-theme="dark"] {
     --chart-haze: #1b2333;
     --text-muted: #b0b0b0;
     --border-color: #444;
+    --bg-hover: #333;
 }
 
 html[data-theme="dark"] a {

@@ -30,59 +30,123 @@
         href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="/%20css/writeas.css">
+    
+    <link rel="stylesheet" href="/css/writeas.css">
+    
+    <link rel="stylesheet" href="/css/catpuccin-latte.css">
+    
+    <link rel="stylesheet" href="/css/catpuccin-mocha.css">
     
     
     
 
-    <script src="/%20js/vendor/lucide.min.js"></script>
+    
+    <script src="/js/vendor/lucide.min.js"></script>
     <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
-    <script src="/%20js/search.js"></script>
+    
+    <script src="/js/search.js"></script>
+
+    
+    
+    
+    
+    
+    <meta name="description" content="BlackPirateX">
+
+    
+    <meta property="og:title" content="Gallery">
+    <meta property="og:description" content="BlackPirateX">
+    <meta property="og:url" content="http://localhost:1313/gallery/">
+    <meta property="og:site_name" content="BlackPirateX">
+    
+    <meta property="og:type" content="website">
+    
+    
+
+    
+    
+    <meta name="twitter:card" content="summary">
+    
+    <meta name="twitter:title" content="Gallery">
+    <meta name="twitter:description" content="BlackPirateX">
+    
 </head>
 
 <body id="post">
 
-    <header>
-        <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
-        <nav>
-            <a class="home" href="http://localhost:1313/">Home</a>
-            <a href="/%20blog">Blog</a>
-            <a href="/%20thoughts">Thoughts</a>
-            <a href="/%20gallery">Gallery</a>
-            <a href="/%20books">Books</a>
-            <a href="/%20stats">Stats</a>
-            <a href="/%20on-this-day">On This Day</a>
-            <a href="/%20search">Search</a>
-            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+    <header class="retro-header">
+        <nav class="retro-navbar">
+            <div class="retro-top">
+                <div class="retro-brand">
+                    <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
+                </div>
+                <div class="retro-marquee">
+                    <div class="marquee-track">
+                        <span class="marquee-content">
+                            Welcome to the digital void... //
+                            <strong>Latest:</strong> Setting Up My New Laptop //
+                            System Status: <strong>ONLINE</strong> //
+                            <span class="cursor-blink">_</span>
+                        </span>
+                        
+                        <span class="marquee-content" aria-hidden="true">
+                            Welcome to the digital void... //
+                            <strong>Latest:</strong> Setting Up My New Laptop //
+                            System Status: <strong>ONLINE</strong> //
+                            <span class="cursor-blink">_</span>
+                        </span>
+                    </div>
+                </div>
+                <button class="retro-toggle" type="button" aria-label="Toggle Menu">
+                    <span class="toggle-icon">☰</span>
+                </button>
+            </div>
+            <div class="retro-links">
+                
+                
+                
+                
+                
+                
+                
+                <a href="http://localhost:1313/" class="retro-btn ">Home</a>
+                <a href="/blog" class="retro-btn ">Blog</a>
+                <a href="/thoughts" class="retro-btn ">Thoughts</a>
+                <a href="/gallery" class="retro-btn ">Gallery</a>
+                <a href="/books" class="retro-btn ">Books</a>
+                <a href="/stats" class="retro-btn ">Stats</a>
+                <a href="/on-this-day" class="retro-btn ">On
+                    This Day</a>
+                <a href="/search" class="retro-btn icon-btn">Search</a>
+                <button class="retro-btn theme-toggle" type="button">Theme</button>
+            </div>
         </nav>
-        
     </header>
+
+    <script>
+        
+        document.querySelector('.retro-toggle').addEventListener('click', function () {
+            document.querySelector('.retro-links').classList.toggle('open');
+        });
+    </script>
 
     <script>
         (function () {
             const storageKey = "bp-theme";
             const root = document.documentElement;
             const toggle = document.querySelector(".theme-toggle");
+            const themes = ["light", "dark", "catpuccin-latte", "catpuccin-mocha"];
+            const labels = { light: "Dark", dark: "Latte", "catpuccin-latte": "Mocha", "catpuccin-mocha": "Light" };
 
             const applyTheme = (value) => {
-                if (value === "dark") {
-                    root.setAttribute("data-theme", "dark");
-                } else {
+                if (value === "light") {
                     root.removeAttribute("data-theme");
+                } else {
+                    root.setAttribute("data-theme", value);
                 }
                 if (toggle) {
-                    const pressed = value === "dark";
-                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
-                    const icon = toggle.querySelector("i");
-                    if (icon) {
-                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
-                    } else {
-                        toggle.textContent = pressed ? "Light" : "Theme";
-                    }
-                    if (typeof lucide !== "undefined") {
-                        lucide.createIcons();
-                    }
+                    toggle.textContent = labels[value] || "Theme";
                 }
             };
 
@@ -94,7 +158,9 @@
 
             if (toggle) {
                 toggle.addEventListener("click", () => {
-                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                    const current = root.getAttribute("data-theme") || "light";
+                    const idx = themes.indexOf(current);
+                    const next = themes[(idx + 1) % themes.length];
                     localStorage.setItem(storageKey, next);
                     applyTheme(next);
                 });
