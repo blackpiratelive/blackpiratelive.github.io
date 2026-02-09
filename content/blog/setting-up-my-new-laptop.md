@@ -2,6 +2,8 @@
 title: "Setting Up My New Laptop"
 date: 2026-02-10T01:28:22+05:30
 tags: [computer, linux]
+cover: "/img/2026-02-10-004542_hyprshot.png"
+summary: In this post I talk about how I set up my laptop.
 ---
 
 # Setting Up My New Laptop

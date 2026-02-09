@@ -82,8 +82,29 @@
         {{ end }}
 
         <article class="norm {{ if .TableOfContents }}has-toc{{ end }}">
+            {{ if .Params.cover }}
+            {{ $coverImg := resources.Get .Params.cover }}
+            {{ if $coverImg }}
+            {{ $coverWebp := $coverImg.Resize "1200x webp q30" }}
+            <div class="cover-hero">
+                <img class="cover-hero-img" src="{{ $coverWebp.RelPermalink }}" alt="{{ .Title }}"
+                    width="{{ $coverWebp.Width }}" height="{{ $coverWebp.Height }}">
+                <div class="cover-hero-overlay">
+                    <h2 id="title">{{ .Title }}</h2>
+                    <div class="post-byline cover-byline">
+                        <div class="author-avatar">{{ slicestr (.Params.author | default "Sudip") 0 1 | upper }}</div>
+                        <div class="byline-info">
+                            <span class="authors">{{ .Params.author | default "Sudip" }}</span>
+                            <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02" }}">
+                                {{ .Date.Format "January 2, 2006" }} · {{ math.Round (div (countwords .Content) 200.0)
+                                }} min read
+                            </time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ else }}
             <h2 id="title">{{ .Title }}</h2>
-
             <div class="post-byline">
                 <div class="author-avatar">{{ slicestr (.Params.author | default "Sudip") 0 1 | upper }}</div>
                 <div class="byline-info">
@@ -94,16 +115,19 @@
                     </time>
                 </div>
             </div>
-
-            {{ if .Params.cover }}
-            {{ $coverImg := resources.Get .Params.cover }}
-            {{ if $coverImg }}
-            {{ $coverWebp := $coverImg.Resize "1200x webp q30" }}
-            <figure class="cover-image">
-                <img src="{{ $coverWebp.RelPermalink }}" alt="{{ .Title }}" width="{{ $coverWebp.Width }}"
-                    height="{{ $coverWebp.Height }}" loading="eager">
-            </figure>
             {{ end }}
+            {{ else }}
+            <h2 id="title">{{ .Title }}</h2>
+            <div class="post-byline">
+                <div class="author-avatar">{{ slicestr (.Params.author | default "Sudip") 0 1 | upper }}</div>
+                <div class="byline-info">
+                    <span class="authors">{{ .Params.author | default "Sudip" }}</span>
+                    <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02" }}">
+                        {{ .Date.Format "January 2, 2006" }} · {{ math.Round (div (countwords .Content) 200.0) }} min
+                        read
+                    </time>
+                </div>
+            </div>
             {{ end }}
 
             <!-- Mobile TOC (Collapsible) -->

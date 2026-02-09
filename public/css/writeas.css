@@ -1251,22 +1251,69 @@ html[data-theme="dark"] .gallery-overlay {
     background: #1f1f1f;
 }
 
-/* ===== COVER IMAGE ===== */
-.cover-image {
-    margin: 1.5em 0 2em;
-    padding: 0;
+/* ===== COVER HERO ===== */
+.cover-hero {
+    position: relative;
+    margin: -1em -1.5em 2em;
+    overflow: hidden;
+    border-radius: 0 0 12px 12px;
 }
 
-.cover-image img {
+.cover-hero-img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
     display: block;
+    object-fit: cover;
+}
+
+.cover-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3em 1.5em 1.5em;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.75) 0%,
+            rgba(0, 0, 0, 0.45) 50%,
+            transparent 100%);
+}
+
+.cover-hero-overlay #title {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0 0 0.4em;
+    font-size: 1.8em;
+    line-height: 1.2;
+}
+
+.cover-byline .author-avatar {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cover-byline .authors {
+    color: #fff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cover-byline .dt-published {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 600px) {
-    .cover-image img {
-        border-radius: 4px;
+    .cover-hero {
+        margin: -1em -1em 1.5em;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .cover-hero-overlay {
+        padding: 2em 1em 1em;
+    }
+
+    .cover-hero-overlay #title {
+        font-size: 1.3em;
     }
 }
 
