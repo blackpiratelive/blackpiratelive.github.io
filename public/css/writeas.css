@@ -1273,32 +1273,47 @@ html[data-theme="dark"] .gallery-overlay {
     right: 0;
     padding: 3em 1.5em 1.5em;
     background: linear-gradient(to top,
-            rgba(0, 0, 0, 0.75) 0%,
-            rgba(0, 0, 0, 0.45) 50%,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
             transparent 100%);
 }
 
 .cover-hero-overlay #title {
-    color: #fff;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    margin: 0 0 0.4em;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    margin: 0 0 0.5em;
     font-size: 1.8em;
     line-height: 1.2;
 }
 
-.cover-byline .author-avatar {
-    background: rgba(255, 255, 255, 0.25);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+/* Override the byline card styles inside the hero */
+#post article .post-byline.cover-byline {
+    background: none !important;
+    background-image: none !important;
+    border: none !important;
+    border-left: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-.cover-byline .authors {
+#post article .cover-byline .author-avatar {
+    background: rgba(255, 255, 255, 0.2) !important;
     color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(4px);
+}
+
+#post article .cover-byline .authors {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.cover-byline .dt-published {
+#post article .cover-byline .dt-published {
     color: rgba(255, 255, 255, 0.85) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
