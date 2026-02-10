@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/garden",
+      "destination": "https://garden.blackpiratex.com"
+    },
+    {
+      "source": "/garden/:path*",
+      "destination": "https://garden.blackpiratex.com/:path*"
+    }
+  ]
+}
