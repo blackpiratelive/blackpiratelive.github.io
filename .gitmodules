@@ -1,0 +1,3 @@
+[submodule "garden"]
+	path = garden
+	url = https://github.com/blackpirateapps/digital-garden.git
