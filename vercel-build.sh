@@ -8,7 +8,8 @@ log() {
 }
 
 log "start time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-log "cwd=$(pwd)"
+ROOT_DIR="$(pwd)"
+log "cwd=$ROOT_DIR"
 log "node=$(command -v node || true)"
 log "npm=$(command -v npm || true)"
 log "hugo=$(command -v hugo || true)"
@@ -89,11 +90,12 @@ log "Installing Garden dependencies"
 npm install
 log "Running Garden build"
 npm run build
-cd ..
+cd "$ROOT_DIR"
 
 # 5. Move Garden build to public/garden without overwriting
 log "Copying Garden build output to public/garden (no overwrite)"
-mkdir -p public/garden
+PUBLIC_DIR="$ROOT_DIR/public"
+mkdir -p "$PUBLIC_DIR/garden"
 
 if [ ! -d "$GARDEN_BUILD_DIR/public" ]; then
   log "ERROR: $GARDEN_BUILD_DIR/public not found after build"
@@ -103,23 +105,23 @@ fi
 # Copy files without overwriting existing ones; log conflicts
 find "$GARDEN_BUILD_DIR/public" -type f -print0 | while IFS= read -r -d '' src; do
   rel=${src#"$GARDEN_BUILD_DIR/public"/}
-  dest="public/garden/$rel"
+  dest="$PUBLIC_DIR/garden/$rel"
   if [ -e "$dest" ]; then
-    log "SKIP (exists): public/garden/$rel"
+    log "SKIP (exists): $PUBLIC_DIR/garden/$rel"
     continue
   fi
   mkdir -p "$(dirname "$dest")"
   cp "$src" "$dest"
-  log "COPIED: public/garden/$rel"
+  log "COPIED: $PUBLIC_DIR/garden/$rel"
 done
 
 # Copy empty directories that don't exist
 find "$GARDEN_BUILD_DIR/public" -type d -print0 | while IFS= read -r -d '' srcdir; do
   rel=${srcdir#"$GARDEN_BUILD_DIR/public"}
-  destdir="public/garden$rel"
+  destdir="$PUBLIC_DIR/garden$rel"
   if [ ! -d "$destdir" ]; then
     mkdir -p "$destdir"
-    log "DIR: public/garden$rel"
+    log "DIR: $PUBLIC_DIR/garden$rel"
   fi
 done
 
