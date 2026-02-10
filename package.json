@@ -1,0 +1,11 @@
+{
+  "name": "my-combined-site",
+  "version": "1.0.0",
+  "description": "Orchestrator for Hugo + Quartz",
+  "scripts": {
+    "build": "hugo --minify && cd garden && sh scripts/vercel-submodule.sh  && npx quartz build --output ../public/garden"
+  },
+  "devDependencies": {
+    "hugo-extended": "latest" 
+  }
+}
