@@ -35,8 +35,31 @@ fi
 # 4. Build Garden submodule
 log "Building Garden submodule"
 log "Syncing submodule: garden"
-git submodule update --init garden
-cd garden
+if [ -d "garden" ]; then
+  log "Garden directory exists"
+  ls -la garden || true
+  if git -C garden rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    log "Garden is a git working tree"
+  else
+    log "Garden is NOT a git working tree"
+  fi
+else
+  log "Garden directory does not exist yet"
+fi
+
+GARDEN_BUILD_DIR=""
+if git -C garden rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  log "Updating submodule in-place"
+  git submodule update --init garden
+  GARDEN_BUILD_DIR="garden"
+else
+  log "Cloning submodule to a temp directory to avoid conflicts"
+  GARDEN_BUILD_DIR="/tmp/garden-build"
+  rm -rf "$GARDEN_BUILD_DIR" || true
+  git clone https://github.com/blackpirateapps/digital-garden.git "$GARDEN_BUILD_DIR"
+fi
+
+cd "$GARDEN_BUILD_DIR"
 log "Garden cwd=$(pwd)"
 log "Installing Garden dependencies"
 npm install
@@ -48,14 +71,14 @@ cd ..
 log "Copying Garden build output to public/garden (no overwrite)"
 mkdir -p public/garden
 
-if [ ! -d "garden/public" ]; then
-  log "ERROR: garden/public not found after build"
+if [ ! -d "$GARDEN_BUILD_DIR/public" ]; then
+  log "ERROR: $GARDEN_BUILD_DIR/public not found after build"
   exit 1
 fi
 
 # Copy files without overwriting existing ones; log conflicts
-find garden/public -type f -print0 | while IFS= read -r -d '' src; do
-  rel=${src#garden/public/}
+find "$GARDEN_BUILD_DIR/public" -type f -print0 | while IFS= read -r -d '' src; do
+  rel=${src#"$GARDEN_BUILD_DIR/public"/}
   dest="public/garden/$rel"
   if [ -e "$dest" ]; then
     log "SKIP (exists): public/garden/$rel"
@@ -67,8 +90,8 @@ find garden/public -type f -print0 | while IFS= read -r -d '' src; do
 done
 
 # Copy empty directories that don't exist
-find garden/public -type d -print0 | while IFS= read -r -d '' srcdir; do
-  rel=${srcdir#garden/public}
+find "$GARDEN_BUILD_DIR/public" -type d -print0 | while IFS= read -r -d '' srcdir; do
+  rel=${srcdir#"$GARDEN_BUILD_DIR/public"}
   destdir="public/garden$rel"
   if [ ! -d "$destdir" ]; then
     mkdir -p "$destdir"
