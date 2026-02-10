@@ -13,9 +13,11 @@ fi
 echo "🚀 Building Hugo site..."
 # 3. Build Garden Submodule
 echo "🌿 Building Garden submodule..."
+git submodule deinit -f garden || true
+rm -rf garden
 git submodule update --init garden
 cd garden
-npm ci
+npm install
 npm run build
 cd ..
 

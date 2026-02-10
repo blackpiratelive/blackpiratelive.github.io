@@ -1,0 +1,9 @@
+{
+    "redirects": [
+        {
+            "source": "/garden",
+            "destination": "/garden/",
+            "permanent": true
+        }
+    ]
+}
