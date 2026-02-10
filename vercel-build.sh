@@ -82,6 +82,15 @@ if [ -z "$GARDEN_BUILD_DIR" ]; then
   git clone https://github.com/blackpirateapps/digital-garden.git "$GARDEN_BUILD_DIR"
 fi
 
+# Restore Quartz cache (content + transpiled build) if present
+if [ -d "node_modules/.cache/quartz_cache" ]; then
+  log "Restoring Quartz cache"
+  mkdir -p "$GARDEN_BUILD_DIR/.quartz-cache"
+  cp -r node_modules/.cache/quartz_cache/* "$GARDEN_BUILD_DIR/.quartz-cache/" || true
+else
+  log "No Quartz cache found"
+fi
+
 cd "$GARDEN_BUILD_DIR"
 log "Garden cwd=$(pwd)"
 log "Garden ls:"
@@ -124,6 +133,15 @@ find "$GARDEN_BUILD_DIR/public" -type d -print0 | while IFS= read -r -d '' srcdi
     log "DIR: $PUBLIC_DIR/garden$rel"
   fi
 done
+
+# Save Quartz cache for next build
+log "Saving Quartz cache"
+if [ -d "$GARDEN_BUILD_DIR/.quartz-cache" ]; then
+  mkdir -p node_modules/.cache/quartz_cache
+  cp -r "$GARDEN_BUILD_DIR/.quartz-cache/"* node_modules/.cache/quartz_cache/ || true
+else
+  log "No Quartz cache to save"
+fi
 
 # 6. Save resources to cache for next time
 log "Saving Hugo resources cache"
