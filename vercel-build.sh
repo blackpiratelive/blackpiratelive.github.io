@@ -11,6 +11,8 @@ fi
 
 # 2. Run the actual Hugo build
 echo "🚀 Building Hugo site..."
+hugo
+
 # 3. Build Garden Submodule
 echo "🌿 Building Garden submodule..."
 git submodule deinit -f garden || true
