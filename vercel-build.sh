@@ -63,9 +63,23 @@ else
   log "Garden directory does not exist yet"
 fi
 
-log "Ensuring garden submodule is present"
-git submodule update --init garden
-GARDEN_BUILD_DIR="garden"
+GARDEN_BUILD_DIR=""
+if [ -d "garden/.git" ] || [ -f "garden/.git" ]; then
+  log "Garden appears to be a git repository; updating submodule"
+  if git submodule update --init garden; then
+    GARDEN_BUILD_DIR="garden"
+  else
+    log "Submodule update failed; falling back to temp clone"
+  fi
+else
+  log "Garden is not a git repo; using temp clone to avoid deleting local files"
+fi
+
+if [ -z "$GARDEN_BUILD_DIR" ]; then
+  GARDEN_BUILD_DIR="/tmp/garden-build"
+  rm -rf "$GARDEN_BUILD_DIR" || true
+  git clone https://github.com/blackpirateapps/digital-garden.git "$GARDEN_BUILD_DIR"
+fi
 
 cd "$GARDEN_BUILD_DIR"
 log "Garden cwd=$(pwd)"
