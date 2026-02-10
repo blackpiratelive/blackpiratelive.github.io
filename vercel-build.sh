@@ -1,15 +1,26 @@
 #!/bin/bash
 set -euo pipefail
+export PS4='+ [vercel-build] ${BASH_SOURCE##*/}:${LINENO} '
+set -x
 
 log() {
   echo "[vercel-build] $*"
 }
 
+log "start time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 log "cwd=$(pwd)"
 log "node=$(command -v node || true)"
 log "npm=$(command -v npm || true)"
 log "hugo=$(command -v hugo || true)"
 log "git=$(command -v git || true)"
+log "node version=$(node -v || true)"
+log "npm version=$(npm -v || true)"
+log "hugo version=$(hugo version || true)"
+log "git version=$(git --version || true)"
+log "uname=$(uname -a || true)"
+log "env: NODE_ENV=${NODE_ENV-} VERCEL=${VERCEL-} VERCEL_ENV=${VERCEL_ENV-} VERCEL_GIT_COMMIT_SHA=${VERCEL_GIT_COMMIT_SHA-}"
+log "root ls:"
+ls -la || true
 
 # 1. Restore resources from cache (if they exist)
 if [ -d "node_modules/.cache/hugo_resources" ]; then
@@ -22,7 +33,10 @@ fi
 
 # 2. Run the actual Hugo build
 log "Building root Hugo site"
-hugo
+ROOT_BUILD_DIR="/tmp/hugo-build-root"
+rm -rf "$ROOT_BUILD_DIR" || true
+mkdir -p "$ROOT_BUILD_DIR"
+hugo -d "$ROOT_BUILD_DIR"
 
 # 3. Ensure public exists (Hugo default output)
 if [ -d "public" ]; then
@@ -31,6 +45,8 @@ else
   log "Hugo output directory missing; creating public"
   mkdir -p public
 fi
+log "Copying root Hugo output into public"
+cp -a "$ROOT_BUILD_DIR/." public/
 
 # 4. Build Garden submodule
 log "Building Garden submodule"
@@ -47,20 +63,14 @@ else
   log "Garden directory does not exist yet"
 fi
 
-GARDEN_BUILD_DIR=""
-if git -C garden rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  log "Updating submodule in-place"
-  git submodule update --init garden
-  GARDEN_BUILD_DIR="garden"
-else
-  log "Cloning submodule to a temp directory to avoid conflicts"
-  GARDEN_BUILD_DIR="/tmp/garden-build"
-  rm -rf "$GARDEN_BUILD_DIR" || true
-  git clone https://github.com/blackpirateapps/digital-garden.git "$GARDEN_BUILD_DIR"
-fi
+log "Ensuring garden submodule is present"
+git submodule update --init garden
+GARDEN_BUILD_DIR="garden"
 
 cd "$GARDEN_BUILD_DIR"
 log "Garden cwd=$(pwd)"
+log "Garden ls:"
+ls -la || true
 log "Installing Garden dependencies"
 npm install
 log "Running Garden build"
