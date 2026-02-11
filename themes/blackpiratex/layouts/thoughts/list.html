@@ -5,29 +5,10 @@
         <article class="norm thoughts-index">
             <h2 id="title">{{ .Title }}</h2>
             <p class="thoughts-meta"><span class="thoughts-count">{{ len .Pages }}</span> thoughts</p>
-            <div class="thoughts-filter">
-                <label class="thoughts-filter-label" for="thoughts-date-filter">Filter by date</label>
-                <div class="thoughts-filter-controls">
-                    <input id="thoughts-date-filter" class="thoughts-date-input" type="date" />
-                    <button type="button" class="thoughts-filter-clear" id="thoughts-filter-clear" disabled>Clear</button>
-                </div>
-                <div class="thoughts-filter-status" id="thoughts-filter-status">Showing all thoughts</div>
-            </div>
-            <div class="thoughts-stats" id="thoughts-stats">
-                <div class="thoughts-stats-block">
-                    <div class="thoughts-stats-title">Posts by month</div>
-                    <div class="thoughts-stats-list" id="thoughts-stats-months"></div>
-                </div>
-                <div class="thoughts-stats-block">
-                    <div class="thoughts-stats-title">Posts by year</div>
-                    <div class="thoughts-stats-list" id="thoughts-stats-years"></div>
-                </div>
-            </div>
 
             <div class="micro-feed">
                 {{ range $index, $page := (.Paginate .Pages 100).Pages }}
                 <div class="micro-item" data-thought-id="thought-{{ $index }}"
-                    data-date="{{ .Date.Format "2006-01-02" }}"
                     onclick="openThoughtModal('thought-{{ $index }}')">
                     <span class="micro-dot"></span>
                     <div class="micro-header">
@@ -108,148 +89,6 @@
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeThoughtModal();
     });
-
-    const tagsBaseUrl = "{{ "/tags/" | relLangURL }}";
-    const allThoughts = (function () {
-        const items = [
-            {{- $all := slice -}}
-            {{- range .Pages -}}
-            {{- $all = $all | append (dict
-            "date" (.Date.Format "2006-01-02")
-            "dateLabel" (.Date.Format "Jan 02, 2006")
-            "timeLabel" (.Date.Format "15:04")
-            "datetimeLabel" (.Date.Format "January 02, 2006 · 15:04")
-            "permalink" .Permalink
-            "content" .Content
-            "tags" .Params.tags
-            ) -}}
-            {{- end -}}
-            {{ $all | jsonify | safeJS }}
-        ];
-        return items;
-    })();
-
-    (function () {
-        const input = document.getElementById('thoughts-date-filter');
-        const clearBtn = document.getElementById('thoughts-filter-clear');
-        const status = document.getElementById('thoughts-filter-status');
-        const feed = document.querySelector('.micro-feed');
-        const initialItems = Array.from(document.querySelectorAll('.micro-item'));
-        const statsMonths = document.getElementById('thoughts-stats-months');
-        const statsYears = document.getElementById('thoughts-stats-years');
-
-        if (!input || !clearBtn || !status || !feed) return;
-
-        const updateStatus = (visibleCount, totalCount, dateValue) => {
-            if (dateValue) {
-                status.textContent = `Showing ${visibleCount} of ${totalCount} thoughts on ${dateValue}`;
-            } else {
-                status.textContent = 'Showing all thoughts';
-            }
-        };
-
-        const normalizeTags = (tags) => Array.isArray(tags) ? tags : [];
-
-        const renderThoughts = (thoughts) => {
-            const html = thoughts.map((thought, index) => {
-                const tagHtml = normalizeTags(thought.tags).length
-                    ? `<div class="micro-tags">${normalizeTags(thought.tags).map((tag) => (
-                        `<a class="micro-tag" href="${tagsBaseUrl}${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}" onclick="event.stopPropagation()">#${tag}</a>`
-                    )).join('')}</div>`
-                    : '';
-                return `
-                <div class="micro-item" data-date="${thought.date}" data-thought-index="${index}">
-                    <span class="micro-dot"></span>
-                    <div class="micro-header">
-                        <a href="${thought.permalink}" class="micro-timestamp-link" onclick="event.stopPropagation()">
-                            <span class="micro-date-time">
-                                <span class="micro-date">${thought.dateLabel}</span>
-                                <span class="micro-separator">·</span>
-                                <span class="micro-time">${thought.timeLabel}</span>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="micro-content">${thought.content}</div>
-                    ${tagHtml}
-                </div>
-                `;
-            }).join('');
-            feed.innerHTML = html || '<div class="thoughts-empty">No thoughts found for that date.</div>';
-            bindThoughtClicks(thoughts);
-        };
-
-        const bindThoughtClicks = (thoughts) => {
-            const nodes = Array.from(feed.querySelectorAll('.micro-item'));
-            nodes.forEach((node, idx) => {
-                node.addEventListener('click', () => {
-                    const thought = thoughts[idx];
-                    if (!thought) return;
-                    const content = document.getElementById('thought-modal-content');
-                    const overlay = document.getElementById('thought-modal-overlay');
-                    if (!content || !overlay) return;
-                    const tagHtml = normalizeTags(thought.tags).length
-                        ? `<div class="thought-modal-tags">${normalizeTags(thought.tags).map((tag) => `<span class="thought-modal-tag">#${tag}</span>`).join('')}</div>`
-                        : '';
-                    content.innerHTML = `
-                        <div class="thought-modal-date">${thought.datetimeLabel}</div>
-                        <div class="thought-modal-body">${thought.content}</div>
-                        ${tagHtml}
-                        <a href="${thought.permalink}" class="thought-modal-link">View full post →</a>
-                    `;
-                    overlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-        };
-
-        const applyFilter = (dateValue) => {
-            clearBtn.disabled = !dateValue;
-            if (!dateValue) {
-                initialItems.forEach((item) => {
-                    item.style.display = '';
-                });
-                updateStatus(initialItems.length, allThoughts.length, '');
-                if (feed.dataset.mode !== 'initial') {
-                    feed.innerHTML = '';
-                    initialItems.forEach((item) => feed.appendChild(item));
-                    feed.dataset.mode = 'initial';
-                }
-                return;
-            }
-            const filtered = allThoughts.filter((thought) => thought.date === dateValue);
-            updateStatus(filtered.length, allThoughts.length, dateValue);
-            renderThoughts(filtered);
-            feed.dataset.mode = 'filtered';
-        };
-
-        input.addEventListener('change', () => {
-            applyFilter(input.value);
-        });
-
-        clearBtn.addEventListener('click', () => {
-            input.value = '';
-            applyFilter('');
-        });
-
-        const buildStats = () => {
-            if (!statsMonths || !statsYears) return;
-            const byMonth = new Map();
-            const byYear = new Map();
-            allThoughts.forEach((thought) => {
-                const monthKey = thought.date.slice(0, 7);
-                const yearKey = thought.date.slice(0, 4);
-                byMonth.set(monthKey, (byMonth.get(monthKey) || 0) + 1);
-                byYear.set(yearKey, (byYear.get(yearKey) || 0) + 1);
-            });
-            const monthEntries = Array.from(byMonth.entries()).sort((a, b) => b[0].localeCompare(a[0]));
-            const yearEntries = Array.from(byYear.entries()).sort((a, b) => b[0].localeCompare(a[0]));
-            statsMonths.innerHTML = monthEntries.map(([key, count]) => `<span class="thoughts-stat-chip">${key} · ${count}</span>`).join('');
-            statsYears.innerHTML = yearEntries.map(([key, count]) => `<span class="thoughts-stat-chip">${key} · ${count}</span>`).join('');
-        };
-
-        buildStats();
-        applyFilter('');
-    })();
 </script>
 
 {{ partial "footer.html" . }}
