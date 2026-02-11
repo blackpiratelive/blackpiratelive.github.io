@@ -375,11 +375,13 @@ footer nav a.home:hover {
 }
 
 .thoughts-date-input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    height: 0;
-    width: 0;
+    font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+    padding: 0.45em 0.6em;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    color: #333;
+    background: #fff;
 }
 
 .thoughts-date-input:focus {
@@ -412,102 +414,6 @@ footer nav a.home:hover {
 .thoughts-filter-status {
     font-size: 0.85em;
     color: #666;
-}
-
-.thoughts-calendar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7em;
-    padding: 0.8em;
-    border: 1px solid var(--border-color, #eee);
-    border-radius: 12px;
-    background: #fff;
-}
-
-.thoughts-calendar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.6em;
-}
-
-.thoughts-calendar-month {
-    font-weight: 600;
-    font-size: 0.95em;
-    color: #333;
-}
-
-.thoughts-calendar-nav {
-    border: 1px solid var(--border-color, #ddd);
-    background: #fff;
-    color: #444;
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-    font-size: 1.1em;
-    line-height: 1;
-    transition: all 0.2s ease;
-}
-
-.thoughts-calendar-nav:hover {
-    border-color: var(--primary-blue, #0057ff);
-    color: var(--primary-blue, #0057ff);
-}
-
-.thoughts-calendar-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.2em;
-    text-align: center;
-    font-size: 0.75em;
-    color: #777;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.thoughts-calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.3em;
-}
-
-.thoughts-calendar-cell {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 34px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.85em;
-    background: transparent;
-    color: #333;
-    transition: all 0.2s ease;
-}
-
-.thoughts-calendar-cell.has-post {
-    border-color: rgba(0, 87, 255, 0.2);
-    background: rgba(0, 87, 255, 0.08);
-    cursor: pointer;
-}
-
-.thoughts-calendar-cell.has-post:hover {
-    border-color: var(--primary-blue, #0057ff);
-    color: var(--primary-blue, #0057ff);
-}
-
-.thoughts-calendar-cell.is-selected {
-    background: var(--primary-blue, #0057ff);
-    color: #fff;
-    border-color: var(--primary-blue, #0057ff);
-}
-
-.thoughts-calendar-cell.no-post {
-    color: #aaa;
-}
-
-.thoughts-calendar-cell.is-empty {
-    height: 34px;
 }
 
 .thoughts-stats {
@@ -1256,53 +1162,6 @@ html[data-theme="dark"] .thoughts-filter-clear {
 html[data-theme="dark"] .thoughts-filter-clear:hover:not(:disabled) {
     color: #82a6ff;
     border-color: #82a6ff;
-}
-
-html[data-theme="dark"] .thoughts-calendar {
-    background: #1a1a1a;
-    border-color: #333;
-}
-
-html[data-theme="dark"] .thoughts-calendar-month {
-    color: #e0e0e0;
-}
-
-html[data-theme="dark"] .thoughts-calendar-nav {
-    background: #1d1d1d;
-    border-color: #333;
-    color: #ccc;
-}
-
-html[data-theme="dark"] .thoughts-calendar-nav:hover {
-    border-color: #82a6ff;
-    color: #82a6ff;
-}
-
-html[data-theme="dark"] .thoughts-calendar-weekdays {
-    color: #9a9a9a;
-}
-
-html[data-theme="dark"] .thoughts-calendar-cell {
-    color: #ddd;
-}
-
-html[data-theme="dark"] .thoughts-calendar-cell.has-post {
-    background: rgba(130, 166, 255, 0.15);
-    border-color: rgba(130, 166, 255, 0.35);
-}
-
-html[data-theme="dark"] .thoughts-calendar-cell.has-post:hover {
-    border-color: #82a6ff;
-    color: #82a6ff;
-}
-
-html[data-theme="dark"] .thoughts-calendar-cell.is-selected {
-    background: #82a6ff;
-    color: #111;
-}
-
-html[data-theme="dark"] .thoughts-calendar-cell.no-post {
-    color: #666;
 }
 
 html[data-theme="dark"] .thoughts-stats-block {

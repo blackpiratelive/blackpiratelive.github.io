@@ -8,22 +8,8 @@
             <div class="thoughts-filter">
                 <label class="thoughts-filter-label" for="thoughts-date-filter">Filter by date</label>
                 <div class="thoughts-filter-controls">
-                    <input id="thoughts-date-filter" class="thoughts-date-input" type="date" aria-hidden="true"
-                        tabindex="-1" />
+                    <input id="thoughts-date-filter" class="thoughts-date-input" type="date" />
                     <button type="button" class="thoughts-filter-clear" id="thoughts-filter-clear" disabled>Clear</button>
-                </div>
-                <div class="thoughts-calendar" id="thoughts-calendar" aria-label="Thoughts calendar">
-                    <div class="thoughts-calendar-header">
-                        <button type="button" class="thoughts-calendar-nav" id="thoughts-calendar-prev"
-                            aria-label="Previous month">‹</button>
-                        <div class="thoughts-calendar-month" id="thoughts-calendar-month"></div>
-                        <button type="button" class="thoughts-calendar-nav" id="thoughts-calendar-next"
-                            aria-label="Next month">›</button>
-                    </div>
-                    <div class="thoughts-calendar-weekdays">
-                        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
-                    </div>
-                    <div class="thoughts-calendar-grid" id="thoughts-calendar-grid"></div>
                 </div>
                 <div class="thoughts-filter-status" id="thoughts-filter-status">Showing all thoughts</div>
             </div>
@@ -125,19 +111,22 @@
 
     const tagsBaseUrl = "{{ "/tags/" | relLangURL }}";
     const allThoughts = (function () {
-        {{- $all := slice -}}
-        {{- range .Pages -}}
-        {{- $all = $all | append (dict
-        "date" (.Date.Format "2006-01-02")
-        "dateLabel" (.Date.Format "Jan 02, 2006")
-        "timeLabel" (.Date.Format "15:04")
-        "datetimeLabel" (.Date.Format "January 02, 2006 · 15:04")
-        "permalink" .Permalink
-        "content" .Content
-        "tags" .Params.tags
-        ) -}}
-        {{- end -}}
-        return {{ $all | jsonify | safeJS }};
+        const items = [
+            {{- $all := slice -}}
+            {{- range .Pages -}}
+            {{- $all = $all | append (dict
+            "date" (.Date.Format "2006-01-02")
+            "dateLabel" (.Date.Format "Jan 02, 2006")
+            "timeLabel" (.Date.Format "15:04")
+            "datetimeLabel" (.Date.Format "January 02, 2006 · 15:04")
+            "permalink" .Permalink
+            "content" .Content
+            "tags" .Params.tags
+            ) -}}
+            {{- end -}}
+            {{ $all | jsonify | safeJS }}
+        ];
+        return items;
     })();
 
     (function () {
@@ -148,26 +137,18 @@
         const initialItems = Array.from(document.querySelectorAll('.micro-item'));
         const statsMonths = document.getElementById('thoughts-stats-months');
         const statsYears = document.getElementById('thoughts-stats-years');
-        const calendar = document.getElementById('thoughts-calendar');
-        const calendarGrid = document.getElementById('thoughts-calendar-grid');
-        const calendarMonth = document.getElementById('thoughts-calendar-month');
-        const calendarPrev = document.getElementById('thoughts-calendar-prev');
-        const calendarNext = document.getElementById('thoughts-calendar-next');
 
         if (!input || !clearBtn || !status || !feed) return;
 
-        const normalizeTags = (tags) => Array.isArray(tags) ? tags : [];
-        const availableDates = new Set(allThoughts.map((thought) => thought.date));
-        const dateLabels = new Map(allThoughts.map((thought) => [thought.date, thought.dateLabel]));
-
         const updateStatus = (visibleCount, totalCount, dateValue) => {
             if (dateValue) {
-                const label = dateLabels.get(dateValue) || dateValue;
-                status.textContent = `Showing ${visibleCount} of ${totalCount} thoughts on ${label}`;
+                status.textContent = `Showing ${visibleCount} of ${totalCount} thoughts on ${dateValue}`;
             } else {
                 status.textContent = 'Showing all thoughts';
             }
         };
+
+        const normalizeTags = (tags) => Array.isArray(tags) ? tags : [];
 
         const renderThoughts = (thoughts) => {
             const html = thoughts.map((thought, index) => {
@@ -241,62 +222,13 @@
             feed.dataset.mode = 'filtered';
         };
 
-        const formatMonthLabel = (year, month) => {
-            const date = new Date(Date.UTC(year, month, 1));
-            return date.toLocaleString(undefined, { month: 'long', year: 'numeric' });
-        };
-
-        const renderCalendar = (year, month, selectedDate) => {
-            if (!calendarGrid || !calendarMonth) return;
-            calendarMonth.textContent = formatMonthLabel(year, month);
-            const firstDay = new Date(year, month, 1);
-            const startDay = firstDay.getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const cells = [];
-            for (let i = 0; i < startDay; i += 1) {
-                cells.push('<span class="thoughts-calendar-cell is-empty"></span>');
-            }
-            for (let day = 1; day <= daysInMonth; day += 1) {
-                const dateValue = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const hasPost = availableDates.has(dateValue);
-                const isSelected = selectedDate === dateValue;
-                const classes = [
-                    'thoughts-calendar-cell',
-                    hasPost ? 'has-post' : 'no-post',
-                    isSelected ? 'is-selected' : ''
-                ].filter(Boolean).join(' ');
-                const disabled = hasPost ? '' : 'disabled';
-                cells.push(
-                    `<button type="button" class="${classes}" data-date="${dateValue}" ${disabled}>${day}</button>`
-                );
-            }
-            calendarGrid.innerHTML = cells.join('');
-            calendarGrid.querySelectorAll('button.has-post').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const dateValue = btn.getAttribute('data-date');
-                    input.value = dateValue;
-                    applyFilter(dateValue);
-                    renderCalendar(year, month, dateValue);
-                });
-            });
-        };
-
-        let calendarYear = null;
-        let calendarMonth = null;
-
         input.addEventListener('change', () => {
             applyFilter(input.value);
-            if (calendarYear !== null && calendarMonth !== null) {
-                renderCalendar(calendarYear, calendarMonth, input.value);
-            }
         });
 
         clearBtn.addEventListener('click', () => {
             input.value = '';
             applyFilter('');
-            if (calendarYear !== null && calendarMonth !== null) {
-                renderCalendar(calendarYear, calendarMonth, '');
-            }
         });
 
         const buildStats = () => {
@@ -316,35 +248,6 @@
         };
 
         buildStats();
-        if (calendar && allThoughts.length) {
-            const latestDate = allThoughts.reduce((latest, thought) => {
-                return thought.date > latest ? thought.date : latest;
-            }, '0000-00-00');
-            const [year, month] = latestDate.split('-').map((value, idx) => idx === 1 ? Number(value) - 1 : Number(value));
-            calendarYear = year;
-            calendarMonth = month;
-            renderCalendar(calendarYear, calendarMonth, '');
-            if (calendarPrev) {
-                calendarPrev.addEventListener('click', () => {
-                    calendarMonth -= 1;
-                    if (calendarMonth < 0) {
-                        calendarMonth = 11;
-                        calendarYear -= 1;
-                    }
-                    renderCalendar(calendarYear, calendarMonth, input.value);
-                });
-            }
-            if (calendarNext) {
-                calendarNext.addEventListener('click', () => {
-                    calendarMonth += 1;
-                    if (calendarMonth > 11) {
-                        calendarMonth = 0;
-                        calendarYear += 1;
-                    }
-                    renderCalendar(calendarYear, calendarMonth, input.value);
-                });
-            }
-        }
         applyFilter('');
     })();
 </script>
