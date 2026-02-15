@@ -16,6 +16,13 @@
       <description></description>
     </item>
     <item>
+      <title>Notes</title>
+      <link>http://localhost:1313/tags/notes/</link>
+      <pubDate>Fri, 13 Feb 2026 21:44:40 +0530</pubDate>
+      <guid>http://localhost:1313/tags/notes/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Articles</title>
       <link>http://localhost:1313/tags/articles/</link>
       <pubDate>Tue, 10 Feb 2026 19:43:18 +0530</pubDate>

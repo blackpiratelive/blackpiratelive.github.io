@@ -19,6 +19,12 @@ title = 'My New Hugo Site'
     weight = 20
 
   [[menus.main]]
+    name = 'Gallery'
+    pageRef = '/gallery'
+    weight = 20
+
+
+  [[menus.main]]
     name = 'Tags'
     pageRef = '/tags'
     weight = 30

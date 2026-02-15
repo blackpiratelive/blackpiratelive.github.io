@@ -97,3 +97,31 @@ hr {
 .tag-link {
   color: rgb(62, 62, 172);
 }
+
+.gallery-image {
+  max-width: 100%;
+}
+
+.gallery-grid {
+  column-count: 2;
+  column-gap: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-grid a {
+  display: block;
+  margin-bottom: 0.25rem;
+  break-inside: avoid;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    column-count: 3;
+  }
+}

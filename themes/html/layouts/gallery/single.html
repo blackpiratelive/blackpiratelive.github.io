@@ -1,0 +1,83 @@
+{{ define "main" }}
+
+
+<h2 id="title">{{ .Title }}</h2>
+
+<div class="writeas-gallery-meta">
+    <span>{{ .Date.Format "January 02, 2006" }}</span>
+    {{ if .Params.album }}
+    <span>Album: {{ .Params.album }}</span>
+    {{ end }}
+</div>
+<div class="gallery-image">
+    {{ $imgUrl := .Params.image.original.url }}
+    {{ $img := resources.GetRemote $imgUrl }}
+    {{ if $img }}
+    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" {{ if and .Params.image.original.width
+        .Params.image.original.height }} width="{{ .Params.image.original.width | int }}"
+        height="{{ .Params.image.original.height | int }}" {{ end }}>
+    {{ else }}
+    <img src="{{ $imgUrl }}" alt="{{ .Title }}">
+    {{ end }}
+</div>
+
+
+
+<div class="writeas-gallery-description">
+    {{ .Content }}
+</div>
+
+{{ if .Params.exif }}
+{{ $exif := .Params.exif }}
+{{ if or $exif.model $exif.iso }}
+<div class="writeas-exif">
+    <h3>Shot Details</h3>
+    <div class="writeas-exif-grid">
+        {{ if $exif.model }}
+        <div>
+            <span class="writeas-exif-label">Camera</span>
+            <span class="writeas-exif-value">{{ $exif.model }}</span>
+        </div>
+        {{ end }}
+
+        {{ if $exif.focalLength }}
+        <div>
+            <span class="writeas-exif-label">Focal Length</span>
+            <span class="writeas-exif-value">{{ $exif.focalLength }}</span>
+        </div>
+        {{ end }}
+
+        {{ if $exif.fstop }}
+        <div>
+            <span class="writeas-exif-label">Aperture</span>
+            <span class="writeas-exif-value">ƒ/{{ $exif.fstop }}</span>
+        </div>
+        {{ end }}
+
+        {{ if $exif.shutter }}
+        <div>
+            <span class="writeas-exif-label">Shutter</span>
+            <span class="writeas-exif-value">{{ $exif.shutter }}s</span>
+        </div>
+        {{ end }}
+
+        {{ if $exif.iso }}
+        <div>
+            <span class="writeas-exif-label">ISO</span>
+            <span class="writeas-exif-value">{{ $exif.iso }}</span>
+        </div>
+        {{ end }}
+
+        {{ if $exif.time }}
+        <div>
+            <span class="writeas-exif-label">Time</span>
+            <span class="writeas-exif-value">{{ $exif.time }}</span>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+{{ end }}
+
+
+{{ end }}

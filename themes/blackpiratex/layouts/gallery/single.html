@@ -7,7 +7,7 @@
 
             <div class="writeas-gallery-image">
                 {{ $img := .Params.image.original }}
-                <img src="{{ $img.url }}" alt="{{ .Title }}"{{ if and $img.width $img.height }} width="{{ $img.width | int }}" height="{{ $img.height | int }}"{{ end }}>
+                <img src="{{ $img.url }}" alt="{{ .Title }}"{{ if and $img.width $img.height }} width="{{ $img.width | int }}" height="{{ $img.height | int }}"{{ end }} class="gallery-image">
             </div>
 
             <h2 id="title">{{ .Title }}</h2>
