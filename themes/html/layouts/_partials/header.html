@@ -1,0 +1,8 @@
+<h1>{{ site.Title }}</h1>
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+{{- $posts := site.RegularPages -}}
+{{- $words := 0 -}}
+{{- range $posts -}}
+{{- $words = add $words .WordCount -}}
+{{- end -}}
+<small>{{ len $posts }} posts · {{ $words }} words</small>

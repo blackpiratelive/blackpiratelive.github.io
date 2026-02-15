@@ -1,7 +1,7 @@
 baseURL = 'https://blackpiratex.com'
 languageCode = 'en-us'
 title = 'BlackPirateX'
-theme = 'blackpiratex'
+theme = 'html'
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

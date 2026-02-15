@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+<h2>{{ .Title }}</h2>
+<p>By {{ .Params.author | default "Sudip" }}, <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02" }}">
+        {{ .Date.Format "January 2, 2006" }} · {{ math.Round (div (countwords .Content) 200.0) }} min read</time>
+</p>
+{{ if .TableOfContents }}
+<details>
+    <summary>Table of Contents</summary>
+    {{ .TableOfContents }}
+</details>
+
+{{ end }}
+<hr>
+{{ .Content }}
+{{ end }}

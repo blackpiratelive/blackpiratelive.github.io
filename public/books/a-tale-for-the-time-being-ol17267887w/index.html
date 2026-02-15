@@ -1,420 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en-us" dir="ltr">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Tale for the Time Being | BlackPirateX</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>A Tale for the Time Being | BlackPirateX</title>
 
-    
-    
-    
-    
-    
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    
-    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
-    
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="prefetch" as="font" type="font/woff2"
-        href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
-    <link rel="prefetch" as="font" type="font/woff2"
-        href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="/%20css/writeas.css">
-    
-    
-    <link rel="stylesheet" href="/%20css/books.css">
-    
-    
 
-    <script src="/%20js/vendor/lucide.min.js"></script>
-    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
-    <script src="/%20js/search.js"></script>
+      <script src="/js/main.js"></script>
+
+
 </head>
+<body>
+  <header>
+    <h1>BlackPirateX</h1>
 
-<body id="post">
-
-    <header>
-        <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
-        <nav>
-            <a class="home" href="http://localhost:1313/">Home</a>
-            <a href="/%20blog">Blog</a>
-            <a href="/%20thoughts">Thoughts</a>
-            <a href="/%20gallery">Gallery</a>
-            <a href="/%20books">Books</a>
-            <a href="/%20stats">Stats</a>
-            <a href="/%20on-this-day">On This Day</a>
-            <a href="/%20search">Search</a>
-            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
-        </nav>
-        
-    </header>
-
-    <script>
-        (function () {
-            const storageKey = "bp-theme";
-            const root = document.documentElement;
-            const toggle = document.querySelector(".theme-toggle");
-
-            const applyTheme = (value) => {
-                if (value === "dark") {
-                    root.setAttribute("data-theme", "dark");
-                } else {
-                    root.removeAttribute("data-theme");
-                }
-                if (toggle) {
-                    const pressed = value === "dark";
-                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
-                    const icon = toggle.querySelector("i");
-                    if (icon) {
-                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
-                    } else {
-                        toggle.textContent = pressed ? "Light" : "Theme";
-                    }
-                    if (typeof lucide !== "undefined") {
-                        lucide.createIcons();
-                    }
-                }
-            };
-
-            let theme = localStorage.getItem(storageKey);
-            if (!theme && window.matchMedia) {
-                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-            }
-            applyTheme(theme || "light");
-
-            if (toggle) {
-                toggle.addEventListener("click", () => {
-                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-                    localStorage.setItem(storageKey, next);
-                    applyTheme(next);
-                });
-            }
-        })();
-    </script>
-
-
-
-
-
+  <nav>
+    <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/thoughts/">Thoughts</a>
+    </li>
+    <li>
+      <a href="/blog/">Blog</a>
+    </li>
+    <li>
+      <a aria-current="true" class="ancestor" href="/books/">Book Notes</a>
+    </li>
+    <li>
+      <a href="/bookmarks/">Bookmarks</a>
+    </li>
+    <li>
+      <a href="/now/">Now</a>
+    </li>
+    <li>
+      <a>Uses</a>
+    </li>
+    <li>
+      <a href="/tags/">Tags</a>
+    </li>
+    </ul>
+  </nav>
+<small>834 posts · 31561 words</small>
+  </header>
+  <main>
     
+<h1>A Tale for the Time Being</h1>
+<table>
+    <tr>
+        <th>authors</th>
+        <td>Ruth Ozeki</td>
+    </tr>
+    <tr>
+        <th>cover</th>
+        <td>https://uaq9ylea6jcvv4ar.public.blob.vercel-storage.com/OL17267887W-YLx6ubNSQ8POkoK4EGN7G6PVgw4OKR.webp</td>
+    </tr>
+    <tr>
+        <th>finishedon</th>
+        <td>2024-01-21</td>
+    </tr>
+    <tr>
+        <th>fullpublishdate</th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>hashighlights</th>
+        <td>1</td>
+    </tr>
+    <tr>
+        <th>highlights</th>
+        <td>Print is predictable and impersonal, conveying information in a mechanical transaction with the reader’s eye. Handwriting, by contrast, resists the eye, reveals its meaning slowly, and is as intimate as skin., I believe it doesn’t matter what it is, as long as you can find something concrete to keep you busy while you are living your meaningless life., If you’ve ever tried to keep a diary, then you’ll know that the problem of trying to write about the past really starts in the present: No matter how fast you write, you’re always stuck in the then and you can never catch up to what’s happening now, which means that now is pretty much doomed to extinction., When you’re a nobody, you’re always happy when somebody else is getting tortured instead of you,, In reality, every reader, while he is reading, is the reader of his own self. The writer’s work is merely a kind of optical instrument, which he offers to the reader to permit him to discern what, without the book, he would perhaps never have seen in himself. The reader’s recognition in his own self of what the book says is the proof of its truth.   —Marcel Proust, Le temps retrouvé, How much can you really trust the promise of a suicidal father?, Think not-thinking. How do you think not-thinking? Nonthinking. This is the essential art of zazen., The girls started calling out, and as we got closer their cries grew louder and more screechy, and a couple of the squatting ones got to their feet. I moved in front, but when we were even with them, suddenly old Jiko stopped. She turned to face them, peering as if she was noticing them for the first time, and then she tugged on my hand and started shuffling in their direction. I held back, whispering, “Dame da yo, Obaachama! Iko yo!”117 but she didn’t listen. She went up and stood right in front of them and gave them a long look, which is how she looks at everything. Long and steady, probably on account of the time it takes for an image to form through the milky lenses of her cataracts. The girls, in their neon-colored pants and blue and orange and red mechanical coats with the big black kanji, must just have been a confusion of lines and bright colors to her eyes. No one said anything. The girls were jutting out their chins and hips and shifting restlessly from side to side. Finally, I guess old Jiko understood what she was looking at. She dropped my hand and I held my breath. And then she bowed. I couldn’t believe it. It wasn’t a little bow, either. It was a deep bow. The girls were, like, what the fuck? One of them, a fat girl squatting in front, kind of nodded back—not quite a bow, not completely respectful, but not a punch in the face either. But then the tall one in the middle, who was clearly the girl boss, reached over and gave the fat one a swift punch in the head. “Nameten no ka!” she snarled. “Chutohampa nan da yo. Chanto ojigi mo dekinei no ka?!”118 She smacked the fat girl once more, and then she stood up straight, put her palms together, and bowed deeply from the waist. The rest of her crew jumped up and did the same. Jiko bowed to them again, and nudged me, so I bowed, too, but I did it half-assed, so she made me do it again, which made things even because now it was like old Jiko was the girl boss of our gang, and I was the fat screwup who couldn’t bow properly. I didn’t think this was so funny, but the gangbangers thought it was hilarious, and Jiko smiled, too, and then she took my hand and we walked on. When the bus came, Jiko sat by the window and looked back out at the parking lot. “I wonder what omatsuri119 it is today?” she said. “Omatsuri?” “Yes,” she said. “Those pretty young people, dressed up in their matsuri clothes. They look so gay. I wonder what the occasion is. Muji remembers these things for me . . .” “It’s not a matsuri! Those were gangbangers, Granny. Biker chicks. Yanki girls.” “They were girls?” “Bad girls. Juvenile delinquents. They were saying stuff. I thought they were going to beat us up.” “Oh no,” Jiko said, shaking her head. “They were all dressed so nicely. Such cheerful colors.”, Muji has a thing for plastic bags and she would make me wash them carefully with soap and water and hang them outside, where they would catch the sunlight and spin in the wind like jellyfish balloons as they dried. I didn’t mind, because I didn’t have much else to do, but in my opinion, it took way too long. I tried to explain that it would be quicker and easier just to throw the old bags away and buy new ones, and then they would have more time for zazen, but Jiko disagreed. Sitting zazen, washing freezer bags, same thing, she said., “No. Haruki never hated Americans. He hated war. He hated fascism. He hated the government and its bullying politics of imperialism and capitalism and exploitation. He hated the idea of killing people he could not hate.”, Sometimes when she told stories about the past her eyes would get teary from all the memories she had, but they weren’t tears. She wasn’t crying. They were just the memories, leaking out., It was only when I saw your tears, dear Mother, that I realized the selfishness of my response, but sadly, I was too immature to correct myself. Instead, I grew impatient with you. Your tears made me feel ashamed. If I’d been more of a man, I would have thrown myself onto the floor at your feet and thanked your for your tears and for the strength of your love for me. Instead, your unworthy son asked you (somewhat coldly, I fear) to stop crying and to pull yourself together., Spinoza writes, “A free man, that is to say, a man who lives according to the dictates of reason alone, is not led by fear of death, but directly desires the good, that is to say, desires to act, and to preserve his being in accordance with the principle of seeking his own profit. He thinks, therefore, of nothing less than death, and his wisdom is a meditation upon life.”, you could ask what’s the point of having an education if you’re just going to fly your plane into the side of an enemy aircraft carrier? That’s true, but I felt it wouldn’t kill me to learn something before I died, and so I started to apply myself, and you know what? School got more interesting, especially science class., If you’re just going to die anyway, why not just get it over with?, Later, at the Super 8 motel, they watched a news report about the spate of hate crimes against Muslim Americans being committed across the country. “You know, I think I was wrong,” Oliver said. “About what?” “Our waitress. I don’t think it was Arab terrorists she was afraid of.”, Still, what’s the point in beating yourself up when other people will do it for you?, I started to cry. I’m not kidding. Until then nothing could make me cry, not losing all our money, not moving from my wonderful life in Sunnyvale to a crappy dump in Japan, not my crazy mother, or my suicidal father, or my best friend dumping me, or even all those months and months of ijime. I never cried. But for some reason, the sight of these stupid bugs tearing each other apart was too much for me. It was horrible, but of course it wasn’t the insects. It was the human beings who thought this would be fun to watch., “Don’t be ridiculous,” she said. “If I’d wanted a captain of industry, I would have married one.” He shook his head, sadly. “You picked a lemon in the garden of love.”, He always asserted that in Japan, suicide was primarily an aesthetic, not a moral, He always asserted that in Japan, suicide was primarily an aesthetic, not a moral, act, triggered by a sense of honor or shame., karmic connection with the girl and her father. The diary had washed up, “I’ve always thought of writing as the opposite of suicide,” she said. “That writing was about immortality. Defeating death, or at least forestalling it.”, “Am I crazy?” she asked. “I feel like I am sometimes.” “Maybe,” he said, rubbing her forehead. “But don’t worry about it. You need to be a little bit crazy. Crazy is the price you pay for having an imagination. It’s your superpower. Tapping into the dream. It’s a good thing, not a bad thing.”, Beauty, you walk on corpses of dead men you mock. / Among your stores of gems, Horror is not the least, Blessed Stars, please make this world into a place where we will never again be forced to kill an enemy whom we cannot hate. Were such a thing to come about, I would not complain even if my body were torn to pieces again and again., Dōgen also wrote that a single moment is all we need to establish our human will and attain truth. I never understood this before, because my understanding of time was murky and imprecise, but now that my death is imminent, I can appreciate his meaning. Both life and death manifest in every moment of existence. Our human body appears and disappears moment by moment, without cease, and this ceaseless arising and passing away is what we experience as time and being. They are not separate. They are one thing, and in even a fraction of a second, we have the opportunity to choose, and to turn the course of our action either toward the attainment of truth or away from it. Each instant is utterly critical to the whole world., Montaigne wrote that death itself is nothing. It is only the fear of death that makes death seem important. Am I afraid? Certainly, and yet . . ., “Everyone calls barbarity that to which he is not accustomed.”, I do not feel like a person who is going to die tomorrow. I feel like a person who is already dead., A book is like a large cemetery upon whose tombs one can no longer read the effaced names. On the other hand, sometimes one remembers well the name, without knowing if anything of the being, whose name it was, survives in these pages., “Nao-chan?” “What.” I knew my tone of voice was rude, but I didn’t care. He waited until he knew I was really listening, and then he spoke softly. “It’s like Grandma Jiko wrote, Nao-chan. We must do our best!” I shrugged. I mean, sure, it sounded good, but how could I trust him? “Ikiru shika nai!” he said, half to himself, and then he looked up and repeated it, urgently, in English this time, as if to make absolutely sure I understood. “We must live, Naoko! We have no choice. We must soldier on!”, He was still talking. “. . . so that’s why I cried today, when I read Uncle Haruki’s diary. I understood how he felt, you see? Haruki Number One made his decision. He steered his airplane into a wave. He knew it was a stupid, useless gesture, but what else could he do? I made a similar decision, also stupid and useless, only my plane was carrying our whole family. I felt so sorry for you, and for Mom, and for everyone, on account of my actions., I have a pretty good memory, but memories are time beings, too, like cherry blossoms or ginkgo leaves; for a while they are beautiful, and then they fade and die., I don’t really like uncertainty. I’d much rather know, but then again, not-knowing keeps all the possibilities open. It keeps all the worlds alive.</td>
+    </tr>
+    <tr>
+        <th>id</th>
+        <td>OL17267887W</td>
+    </tr>
+    <tr>
+        <th>pagecount</th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>publisheddate</th>
+        <td>2013</td>
+    </tr>
+    <tr>
+        <th>publisher</th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>readingmedium</th>
+        <td>Kindle Paperwhite</td>
+    </tr>
+    <tr>
+        <th>readingprogress</th>
+        <td>0</td>
+    </tr>
+    <tr>
+        <th>shelf</th>
+        <td>read</td>
+    </tr>
+    <tr>
+        <th>startedon</th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>subjects</th>
+        <td></td>
+    </tr>
+</table>
 
 
 
-<div id="post">
-    <div id="wrapper">
-        <article class="norm writeas-gallery-single">
-            <p><a href="/books/">&larr; Back to Books</a></p>
 
-            <div class="writeas-gallery-image book-cover-frame">
-                
-                <img src="https://uaq9ylea6jcvv4ar.public.blob.vercel-storage.com/OL17267887W-YLx6ubNSQ8POkoK4EGN7G6PVgw4OKR.webp" alt="Cover for A Tale for the Time Being" loading="lazy">
-                
-            </div>
+  </main>
+  <footer>
+    <p>Copyright 2026. All rights reserved.</p>
 
-            <h2 id="title">A Tale for the Time Being</h2>
-            
-            <p class="book-authors">Ruth Ozeki</p>
-            
-
-            <div class="writeas-gallery-meta">
-                
-                <span>Shelf: read</span>
-                
-                
-                <span>Medium: Kindle Paperwhite</span>
-                
-                
-                
-                
-                <span>Finished: Jan 21, 2024</span>
-                
-                
-                <span>Published: 2013</span>
-                
-                
-                
-            </div>
-
-            
-
-            
-            
-            <section class="writeas-section">
-                <h3 class="writeas-section-title">Highlights</h3>
-                <ol class="book-highlights">
-                    
-                    <li>Print is predictable and impersonal, conveying information in a mechanical transaction with the reader’s eye. Handwriting, by contrast, resists the eye, reveals its meaning slowly, and is as intimate as skin.</li>
-                    
-                    <li>I believe it doesn’t matter what it is, as long as you can find something concrete to keep you busy while you are living your meaningless life.</li>
-                    
-                    <li>If you’ve ever tried to keep a diary, then you’ll know that the problem of trying to write about the past really starts in the present: No matter how fast you write, you’re always stuck in the then and you can never catch up to what’s happening now, which means that now is pretty much doomed to extinction.</li>
-                    
-                    <li>When you’re a nobody, you’re always happy when somebody else is getting tortured instead of you,</li>
-                    
-                    <li>In reality, every reader, while he is reading, is the reader of his own self. The writer’s work is merely a kind of optical instrument, which he offers to the reader to permit him to discern what, without the book, he would perhaps never have seen in himself. The reader’s recognition in his own self of what the book says is the proof of its truth.   —Marcel Proust, Le temps retrouvé</li>
-                    
-                    <li>How much can you really trust the promise of a suicidal father?</li>
-                    
-                    <li>Think not-thinking. How do you think not-thinking? Nonthinking. This is the essential art of zazen.</li>
-                    
-                    <li>The girls started calling out, and as we got closer their cries grew louder and more screechy, and a couple of the squatting ones got to their feet. I moved in front, but when we were even with them, suddenly old Jiko stopped. She turned to face them, peering as if she was noticing them for the first time, and then she tugged on my hand and started shuffling in their direction. I held back, whispering, “Dame da yo, Obaachama! Iko yo!”117 but she didn’t listen. She went up and stood right in front of them and gave them a long look, which is how she looks at everything. Long and steady, probably on account of the time it takes for an image to form through the milky lenses of her cataracts. The girls, in their neon-colored pants and blue and orange and red mechanical coats with the big black kanji, must just have been a confusion of lines and bright colors to her eyes. No one said anything. The girls were jutting out their chins and hips and shifting restlessly from side to side. Finally, I guess old Jiko understood what she was looking at. She dropped my hand and I held my breath. And then she bowed. I couldn’t believe it. It wasn’t a little bow, either. It was a deep bow. The girls were, like, what the fuck? One of them, a fat girl squatting in front, kind of nodded back—not quite a bow, not completely respectful, but not a punch in the face either. But then the tall one in the middle, who was clearly the girl boss, reached over and gave the fat one a swift punch in the head. “Nameten no ka!” she snarled. “Chutohampa nan da yo. Chanto ojigi mo dekinei no ka?!”118 She smacked the fat girl once more, and then she stood up straight, put her palms together, and bowed deeply from the waist. The rest of her crew jumped up and did the same. Jiko bowed to them again, and nudged me, so I bowed, too, but I did it half-assed, so she made me do it again, which made things even because now it was like old Jiko was the girl boss of our gang, and I was the fat screwup who couldn’t bow properly. I didn’t think this was so funny, but the gangbangers thought it was hilarious, and Jiko smiled, too, and then she took my hand and we walked on. When the bus came, Jiko sat by the window and looked back out at the parking lot. “I wonder what omatsuri119 it is today?” she said. “Omatsuri?” “Yes,” she said. “Those pretty young people, dressed up in their matsuri clothes. They look so gay. I wonder what the occasion is. Muji remembers these things for me . . .” “It’s not a matsuri! Those were gangbangers, Granny. Biker chicks. Yanki girls.” “They were girls?” “Bad girls. Juvenile delinquents. They were saying stuff. I thought they were going to beat us up.” “Oh no,” Jiko said, shaking her head. “They were all dressed so nicely. Such cheerful colors.”</li>
-                    
-                    <li>Muji has a thing for plastic bags and she would make me wash them carefully with soap and water and hang them outside, where they would catch the sunlight and spin in the wind like jellyfish balloons as they dried. I didn’t mind, because I didn’t have much else to do, but in my opinion, it took way too long. I tried to explain that it would be quicker and easier just to throw the old bags away and buy new ones, and then they would have more time for zazen, but Jiko disagreed. Sitting zazen, washing freezer bags, same thing, she said.</li>
-                    
-                    <li>“No. Haruki never hated Americans. He hated war. He hated fascism. He hated the government and its bullying politics of imperialism and capitalism and exploitation. He hated the idea of killing people he could not hate.”</li>
-                    
-                    <li>Sometimes when she told stories about the past her eyes would get teary from all the memories she had, but they weren’t tears. She wasn’t crying. They were just the memories, leaking out.</li>
-                    
-                    <li>It was only when I saw your tears, dear Mother, that I realized the selfishness of my response, but sadly, I was too immature to correct myself. Instead, I grew impatient with you. Your tears made me feel ashamed. If I’d been more of a man, I would have thrown myself onto the floor at your feet and thanked your for your tears and for the strength of your love for me. Instead, your unworthy son asked you (somewhat coldly, I fear) to stop crying and to pull yourself together.</li>
-                    
-                    <li>Spinoza writes, “A free man, that is to say, a man who lives according to the dictates of reason alone, is not led by fear of death, but directly desires the good, that is to say, desires to act, and to preserve his being in accordance with the principle of seeking his own profit. He thinks, therefore, of nothing less than death, and his wisdom is a meditation upon life.”</li>
-                    
-                    <li>you could ask what’s the point of having an education if you’re just going to fly your plane into the side of an enemy aircraft carrier? That’s true, but I felt it wouldn’t kill me to learn something before I died, and so I started to apply myself, and you know what? School got more interesting, especially science class.</li>
-                    
-                    <li>If you’re just going to die anyway, why not just get it over with?</li>
-                    
-                    <li>Later, at the Super 8 motel, they watched a news report about the spate of hate crimes against Muslim Americans being committed across the country. “You know, I think I was wrong,” Oliver said. “About what?” “Our waitress. I don’t think it was Arab terrorists she was afraid of.”</li>
-                    
-                    <li>Still, what’s the point in beating yourself up when other people will do it for you?</li>
-                    
-                    <li>I started to cry. I’m not kidding. Until then nothing could make me cry, not losing all our money, not moving from my wonderful life in Sunnyvale to a crappy dump in Japan, not my crazy mother, or my suicidal father, or my best friend dumping me, or even all those months and months of ijime. I never cried. But for some reason, the sight of these stupid bugs tearing each other apart was too much for me. It was horrible, but of course it wasn’t the insects. It was the human beings who thought this would be fun to watch.</li>
-                    
-                    <li>“Don’t be ridiculous,” she said. “If I’d wanted a captain of industry, I would have married one.” He shook his head, sadly. “You picked a lemon in the garden of love.”</li>
-                    
-                    <li>He always asserted that in Japan, suicide was primarily an aesthetic, not a moral</li>
-                    
-                    <li>He always asserted that in Japan, suicide was primarily an aesthetic, not a moral, act, triggered by a sense of honor or shame.</li>
-                    
-                    <li>karmic connection with the girl and her father. The diary had washed up</li>
-                    
-                    <li>“I’ve always thought of writing as the opposite of suicide,” she said. “That writing was about immortality. Defeating death, or at least forestalling it.”</li>
-                    
-                    <li>“Am I crazy?” she asked. “I feel like I am sometimes.” “Maybe,” he said, rubbing her forehead. “But don’t worry about it. You need to be a little bit crazy. Crazy is the price you pay for having an imagination. It’s your superpower. Tapping into the dream. It’s a good thing, not a bad thing.”</li>
-                    
-                    <li>Beauty, you walk on corpses of dead men you mock. / Among your stores of gems, Horror is not the least</li>
-                    
-                    <li>Blessed Stars, please make this world into a place where we will never again be forced to kill an enemy whom we cannot hate. Were such a thing to come about, I would not complain even if my body were torn to pieces again and again.</li>
-                    
-                    <li>Dōgen also wrote that a single moment is all we need to establish our human will and attain truth. I never understood this before, because my understanding of time was murky and imprecise, but now that my death is imminent, I can appreciate his meaning. Both life and death manifest in every moment of existence. Our human body appears and disappears moment by moment, without cease, and this ceaseless arising and passing away is what we experience as time and being. They are not separate. They are one thing, and in even a fraction of a second, we have the opportunity to choose, and to turn the course of our action either toward the attainment of truth or away from it. Each instant is utterly critical to the whole world.</li>
-                    
-                    <li>Montaigne wrote that death itself is nothing. It is only the fear of death that makes death seem important. Am I afraid? Certainly, and yet . . .</li>
-                    
-                    <li>“Everyone calls barbarity that to which he is not accustomed.”</li>
-                    
-                    <li>I do not feel like a person who is going to die tomorrow. I feel like a person who is already dead.</li>
-                    
-                    <li>A book is like a large cemetery upon whose tombs one can no longer read the effaced names. On the other hand, sometimes one remembers well the name, without knowing if anything of the being, whose name it was, survives in these pages.</li>
-                    
-                    <li>“Nao-chan?” “What.” I knew my tone of voice was rude, but I didn’t care. He waited until he knew I was really listening, and then he spoke softly. “It’s like Grandma Jiko wrote, Nao-chan. We must do our best!” I shrugged. I mean, sure, it sounded good, but how could I trust him? “Ikiru shika nai!” he said, half to himself, and then he looked up and repeated it, urgently, in English this time, as if to make absolutely sure I understood. “We must live, Naoko! We have no choice. We must soldier on!”</li>
-                    
-                    <li>He was still talking. “. . . so that’s why I cried today, when I read Uncle Haruki’s diary. I understood how he felt, you see? Haruki Number One made his decision. He steered his airplane into a wave. He knew it was a stupid, useless gesture, but what else could he do? I made a similar decision, also stupid and useless, only my plane was carrying our whole family. I felt so sorry for you, and for Mom, and for everyone, on account of my actions.</li>
-                    
-                    <li>I have a pretty good memory, but memories are time beings, too, like cherry blossoms or ginkgo leaves; for a while they are beautiful, and then they fade and die.</li>
-                    
-                    <li>I don’t really like uncertainty. I’d much rather know, but then again, not-knowing keeps all the possibilities open. It keeps all the worlds alive.</li>
-                    
-                </ol>
-            </section>
-            
-            
-        </article>
-    </div>
-</div>
-
-<footer class="writeas-footer">
-    <details class="writeas-footer-section" open>
-        <summary class="writeas-footer-title">Browse</summary>
-        <div class="writeas-footer-links">
-            <a href="/projects">Projects</a>
-            <a href="https://blog.blackpiratex.com">Blog</a>
-            <a href="https://gallery.blackpiratex.com">Gallery</a>
-            <a href="https://music.blackpiratex.com">Music</a>
-            <a href="https://notes.blackpiratex.com">Notes</a>
-            <a href="https://status.blackpiratex.com">Status</a>
-            <a href="/bookmarks">Bookmarks</a>
-            <a href="/contact">Contact</a>
-            <a href="/credits">Credits</a>
-            <a href="/about">About</a>
-        </div>
-    </details>
-
-    <details class="writeas-footer-section">
-        <summary class="writeas-footer-title">Follow</summary>
-        <div class="writeas-footer-links">
-            <a href="https://links.blackpiratex.com/github">Github</a>
-            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
-            <a href="https://links.blackpiratex.com/yt">Youtube</a>
-            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
-            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
-            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
-        </div>
-    </details>
-
-    
-    
-    
-
-    <details class="writeas-footer-section">
-        <summary class="writeas-footer-title">Webrings</summary>
-        <div class="writeas-footer-links">
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">WebSutra</span>
-                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
-                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
-                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
-                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Hotline</span>
-                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
-                <a href="https://hotlinewebring.club">Index</a>
-                <a href="https://hotlinewebring.club/bpx/next">Next</a>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Retronut</span>
-                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
-                <a href="https://webring.dinhe.net">Index</a>
-                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Bucketfish</span>
-                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
-                <a href="https://webring.bucketfish.me">Index</a>
-                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
-                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Static.Quest</span>
-                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
-                <a href="https://static.quest/members">Members</a>
-                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
-                <a href="https://static.quest/random">Lucky?</a>
-            </div>
-
-            <div class="writeas-webring-row" id="focusfirst-webring">
-                <span class="writeas-webring-name">FocusFirst</span>
-                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
-                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
-                <noscript>
-                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
-                </noscript>
-            </div>
-        </div>
-    </details>
-
-    <div class="writeas-footer-credits">
-        <p>Uses self hosted Umami analytics.</p>
-        <p>
-            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
-            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
-        </p>
-    </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js"
-        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
-
-    
-    <script>
-        (function () {
-            const progressBar = document.getElementById('reading-progress');
-            if (!progressBar) return;
-
-            function updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                progressBar.style.width = Math.min(progress, 100) + '%';
-            }
-
-            window.addEventListener('scroll', updateProgress, { passive: true });
-            updateProgress();
-        })();
-    </script>
-</footer>
-<script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker.register("\/sw.js").catch((error) => {
-                console.warn("Service worker registration failed:", error);
-            });
-        });
-    }
-</script>
-<script>
-    (function () {
-        if (!("HTMLLinkElement" in window)) {
-            return;
-        }
-
-        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
-            return;
-        }
-
-        const prefetched = new Set();
-
-        const shouldPrefetch = (href) => {
-            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
-                return false;
-            }
-            let url;
-            try {
-                url = new URL(href, window.location.href);
-            } catch (error) {
-                return false;
-            }
-            if (url.origin !== window.location.origin) {
-                return false;
-            }
-            if (url.pathname === window.location.pathname && url.search === window.location.search) {
-                return false;
-            }
-            return true;
-        };
-
-        document.addEventListener(
-            "mouseover",
-            (event) => {
-                const anchor = event.target.closest("a[href]");
-                if (!anchor) {
-                    return;
-                }
-
-                const href = anchor.getAttribute("href");
-                if (!shouldPrefetch(href)) {
-                    return;
-                }
-
-                const url = new URL(href, window.location.href).href;
-                if (prefetched.has(url)) {
-                    return;
-                }
-
-                prefetched.add(url);
-                const link = document.createElement("link");
-                link.rel = "prefetch";
-                link.as = "document";
-                link.href = url;
-                document.head.appendChild(link);
-            },
-            { passive: true }
-        );
-    })();
-</script>
-<script defer src="https://u-one-livid.vercel.app/script.js"
-    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+  </footer>
+</body>
+</html>

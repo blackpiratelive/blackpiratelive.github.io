@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+<h1 class="section-title">Blog</h1>
+{{ range .Pages.ByDate.Reverse }}
+{{ .Date.Format "2006-01-02" }}
+<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+{{ with .Params.tags }}
+{{ range $index, $tag := . }}
+{{ if $index }} / {{ end }}
+<a href="{{ " /tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+{{ end }}
+{{ end }}
+<br>
+{{ end }}
+
+{{ end }}

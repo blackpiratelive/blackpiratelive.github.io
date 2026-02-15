@@ -1,396 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en-us" dir="ltr">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Hail Mary | BlackPirateX</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Project Hail Mary | BlackPirateX</title>
 
-    
-    
-    
-    
-    
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    
-    <link rel="dns-prefetch" href="//gallery.blackpiratex.com">
-    
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="prefetch" as="font" type="font/woff2"
-        href="https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2" crossorigin>
-    <link rel="prefetch" as="font" type="font/woff2"
-        href="https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="/%20css/writeas.css">
-    
-    
-    <link rel="stylesheet" href="/%20css/books.css">
-    
-    
 
-    <script src="/%20js/vendor/lucide.min.js"></script>
-    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js">
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
-    <script src="/%20js/search.js"></script>
+      <script src="/js/main.js"></script>
+
+
 </head>
+<body>
+  <header>
+    <h1>BlackPirateX</h1>
 
-<body id="post">
-
-    <header>
-        <h1><a href="http://localhost:1313/">BlackPirateX</a></h1>
-        <nav>
-            <a class="home" href="http://localhost:1313/">Home</a>
-            <a href="/%20blog">Blog</a>
-            <a href="/%20thoughts">Thoughts</a>
-            <a href="/%20gallery">Gallery</a>
-            <a href="/%20books">Books</a>
-            <a href="/%20stats">Stats</a>
-            <a href="/%20on-this-day">On This Day</a>
-            <a href="/%20search">Search</a>
-            <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
-        </nav>
-        
-    </header>
-
-    <script>
-        (function () {
-            const storageKey = "bp-theme";
-            const root = document.documentElement;
-            const toggle = document.querySelector(".theme-toggle");
-
-            const applyTheme = (value) => {
-                if (value === "dark") {
-                    root.setAttribute("data-theme", "dark");
-                } else {
-                    root.removeAttribute("data-theme");
-                }
-                if (toggle) {
-                    const pressed = value === "dark";
-                    toggle.setAttribute("aria-pressed", pressed ? "true" : "false");
-                    const icon = toggle.querySelector("i");
-                    if (icon) {
-                        icon.setAttribute("data-lucide", pressed ? "sun" : "moon");
-                    } else {
-                        toggle.textContent = pressed ? "Light" : "Theme";
-                    }
-                    if (typeof lucide !== "undefined") {
-                        lucide.createIcons();
-                    }
-                }
-            };
-
-            let theme = localStorage.getItem(storageKey);
-            if (!theme && window.matchMedia) {
-                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-            }
-            applyTheme(theme || "light");
-
-            if (toggle) {
-                toggle.addEventListener("click", () => {
-                    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-                    localStorage.setItem(storageKey, next);
-                    applyTheme(next);
-                });
-            }
-        })();
-    </script>
-
-
-
+  <nav>
+    <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/thoughts/">Thoughts</a>
+    </li>
+    <li>
+      <a href="/blog/">Blog</a>
+    </li>
+    <li>
+      <a aria-current="true" class="ancestor" href="/books/">Book Notes</a>
+    </li>
+    <li>
+      <a href="/bookmarks/">Bookmarks</a>
+    </li>
+    <li>
+      <a href="/now/">Now</a>
+    </li>
+    <li>
+      <a>Uses</a>
+    </li>
+    <li>
+      <a href="/tags/">Tags</a>
+    </li>
+    </ul>
+  </nav>
+<small>834 posts · 31561 words</small>
+  </header>
+  <main>
     
+<h1>Project Hail Mary</h1>
+<table>
+    <tr>
+        <th>authors</th>
+        <td>Andy Weir</td>
+    </tr>
+    <tr>
+        <th>cover</th>
+        <td>https://uaq9ylea6jcvv4ar.public.blob.vercel-storage.com/OL21745884W-z5CNJ1J9pnGjC0Tbw4eCWRgUGvHrNj.webp</td>
+    </tr>
+    <tr>
+        <th>finishedon</th>
+        <td>2025-09-18</td>
+    </tr>
+    <tr>
+        <th>fullpublishdate</th>
+        <td>2021-05-04</td>
+    </tr>
+    <tr>
+        <th>hashighlights</th>
+        <td>1</td>
+    </tr>
+    <tr>
+        <th>highlights</th>
+        <td>Kids make a mess of everything. Especially when they start chewing gum. They all go through a gum phase— at least, a lot of them do— and they leave it everywhere., Human suffering is often an abstract concept to kids. But animal suffering is something else entirely., I plop down onto a stool and stare at the cylinder. What a strange artifact. What do I even call noble gases that react with things? Ignobles?, What if Eridians have a life- span of 2 million years and waiting a century to reply is considered polite?, Wow. I’m sitting here in a spaceship in the Tau Ceti system waiting for the intelligent aliens I just met to continue our conversation… and I’m bored. Human beings have a remarkable ability to accept the abnormal and make it normal., I am not rested at all. Every pore of my being yells at me to go back to sleep, but I told Rocky I’d be back in two hours and I wouldn’t want him to think humans are untrustworthy. I mean… we’re pretty untrustworthy, but I don’t want him to know that., Oh thank God. I can’t imagine explaining “sleep” to someone who had never heard of it. Hey, I’m going to fall unconscious and hallucinate for a while. By the way, I spend a third of my time doing this. And if I can’t do it for a while, I go insane and eventually die. No need for concern., “I don’t like little dictators in their little kingdoms,” she said. “Drives me crazy.”, She nodded. “Humanity’s recklessness with our environment accidentally bought us an extra month of time by pre- heating the planet.” “We fell in poop and came out smelling like roses,” I said., “We’ll have to hope so. The Russian woman— Ilyukhina— is on the prime crew as well. She’s a materials expert and by far the best candidate for the task. The science expert is Martin DuBois— the American man. Two men and one woman. Recipe for disaster.”, “Hello!” Ilyukhina lunged forward and hugged Stratt. “I’m here to die for Earth! Pretty awesome, yes?!” I leaned to Dimitri. “Are all Russians crazy?” “Yes,” he said with a smile. “It is the only way to be Russian and happy at the same time.”, IVME was an acronym that stood for four words God never intended to be together: “in vacuo microbiology equipment.” Astrophage lives in space. We could study them on Earth in our atmosphere all we wanted, but we wouldn’t get the full picture of how they worked until we studied them in vacuum and in zero g. The crew of the Hail Mary would need these tools., An entire planet of intelligent people put together a ship based on incorrect scientific assumptions, and by some miracle, the sole survivor of the crew was clever enough at trial- and- error problem solving to actually get it to its destination. And out of that major screw- up comes my salvation. They thought they’d need a whole lot more fuel. So Rocky has boatloads to spare., Do you believe in God? I know it’s a personal question. I do. And I think He was pretty awesome to make relativity a thing, don’t you? The faster you go, the less time you experience. It’s like He’s inviting us to explore the universe, you know?”, One thing I learned back in my graduate school days: When you’re stupid tired, accept that you’re stupid tired. Don’t try to solve things right then., Three days off the painkillers and I’m a lot smarter than I was. At least he understands that much— I wasn’t just some stupid human. I was a human with enhanced stupidity., “You’re a coward and you always have been. You abandoned a promising scientific career because people didn’t like a paper you wrote. You retreated to the safety of children who worship you for being the cool teacher. You don’t have a romantic partner in your life because that would mean you might suffer heartbreak. You avoid risk like the plague.”, “I was eighteen years old and had no idea what to do with my life. I majored in history because I didn’t know what else to do.” She smirked. “Hard to imagine me like that, eh?”</td>
+    </tr>
+    <tr>
+        <th>id</th>
+        <td>OL21745884W</td>
+    </tr>
+    <tr>
+        <th>pagecount</th>
+        <td>496</td>
+    </tr>
+    <tr>
+        <th>publisheddate</th>
+        <td>2021</td>
+    </tr>
+    <tr>
+        <th>publisher</th>
+        <td>Audible Studios</td>
+    </tr>
+    <tr>
+        <th>readingmedium</th>
+        <td>Kindle Paperwhite</td>
+    </tr>
+    <tr>
+        <th>readingprogress</th>
+        <td>100</td>
+    </tr>
+    <tr>
+        <th>shelf</th>
+        <td>read</td>
+    </tr>
+    <tr>
+        <th>startedon</th>
+        <td>2025-09-14</td>
+    </tr>
+    <tr>
+        <th>subjects</th>
+        <td>&#34;\&#34;\\\&#34;\\\\\\\&#34;[\\\\\\\\\\\\\\\&#34;hard science-fiction\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;science-fiction\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;sci-fi\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;hard sci-fi\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;nyt:hardcover-fiction=2021-05-23\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;New York Times bestseller\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;New York Times reviewed\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Fiction, science fiction, action &amp; adventure\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Fiction, science fiction, hard science fiction\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;End of the world\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Fiction\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Astronauts\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Space flight\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Memory disorders\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Survival\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Fin du monde\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Romans, nouvelles\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Astronautes\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Vol spatial\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Habiletés de survie\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;FICTION / Science Fiction / Action &amp; Adventure\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;FICTION / Science Fiction / Hard Science Fiction\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;FICTION / Thrillers / Suspense\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;Survival after airplane accidents, shipwrecks\\\\\\\\\\\\\\\&#34;,\\\\\\\\\\\\\\\&#34;nyt:trade-fiction-paperback=2022-11-13\\\\\\\\\\\\\\\&#34;]\\\\\\\&#34;\\\&#34;\&#34;&#34;</td>
+    </tr>
+</table>
 
 
 
-    
 
+  </main>
+  <footer>
+    <p>Copyright 2026. All rights reserved.</p>
 
-
-<div id="post">
-    <div id="wrapper">
-        <article class="norm writeas-gallery-single">
-            <p><a href="/books/">&larr; Back to Books</a></p>
-
-            <div class="writeas-gallery-image book-cover-frame">
-                
-                <img src="https://uaq9ylea6jcvv4ar.public.blob.vercel-storage.com/OL21745884W-z5CNJ1J9pnGjC0Tbw4eCWRgUGvHrNj.webp" alt="Cover for Project Hail Mary" loading="lazy">
-                
-            </div>
-
-            <h2 id="title">Project Hail Mary</h2>
-            
-            <p class="book-authors">Andy Weir</p>
-            
-
-            <div class="writeas-gallery-meta">
-                
-                <span>Shelf: read</span>
-                
-                
-                <span>Medium: Kindle Paperwhite</span>
-                
-                
-                <span>496 pages</span>
-                
-                
-                <span>Started: Sep 14, 2025</span>
-                
-                
-                <span>Finished: Sep 18, 2025</span>
-                
-                
-                <span>Published: 2021-05-04</span>
-                
-                
-                <span>Publisher: Audible Studios</span>
-                
-                
-                <span>Progress: 100%</span>
-                
-            </div>
-
-            
-
-            
-            
-            <section class="writeas-section">
-                <h3 class="writeas-section-title">Highlights</h3>
-                <ol class="book-highlights">
-                    
-                    <li>Kids make a mess of everything. Especially when they start chewing gum. They all go through a gum phase— at least, a lot of them do— and they leave it everywhere.</li>
-                    
-                    <li>Human suffering is often an abstract concept to kids. But animal suffering is something else entirely.</li>
-                    
-                    <li>I plop down onto a stool and stare at the cylinder. What a strange artifact. What do I even call noble gases that react with things? Ignobles?</li>
-                    
-                    <li>What if Eridians have a life- span of 2 million years and waiting a century to reply is considered polite?</li>
-                    
-                    <li>Wow. I’m sitting here in a spaceship in the Tau Ceti system waiting for the intelligent aliens I just met to continue our conversation… and I’m bored. Human beings have a remarkable ability to accept the abnormal and make it normal.</li>
-                    
-                    <li>I am not rested at all. Every pore of my being yells at me to go back to sleep, but I told Rocky I’d be back in two hours and I wouldn’t want him to think humans are untrustworthy. I mean… we’re pretty untrustworthy, but I don’t want him to know that.</li>
-                    
-                    <li>Oh thank God. I can’t imagine explaining “sleep” to someone who had never heard of it. Hey, I’m going to fall unconscious and hallucinate for a while. By the way, I spend a third of my time doing this. And if I can’t do it for a while, I go insane and eventually die. No need for concern.</li>
-                    
-                    <li>“I don’t like little dictators in their little kingdoms,” she said. “Drives me crazy.”</li>
-                    
-                    <li>She nodded. “Humanity’s recklessness with our environment accidentally bought us an extra month of time by pre- heating the planet.” “We fell in poop and came out smelling like roses,” I said.</li>
-                    
-                    <li>“We’ll have to hope so. The Russian woman— Ilyukhina— is on the prime crew as well. She’s a materials expert and by far the best candidate for the task. The science expert is Martin DuBois— the American man. Two men and one woman. Recipe for disaster.”</li>
-                    
-                    <li>“Hello!” Ilyukhina lunged forward and hugged Stratt. “I’m here to die for Earth! Pretty awesome, yes?!” I leaned to Dimitri. “Are all Russians crazy?” “Yes,” he said with a smile. “It is the only way to be Russian and happy at the same time.”</li>
-                    
-                    <li>IVME was an acronym that stood for four words God never intended to be together: “in vacuo microbiology equipment.” Astrophage lives in space. We could study them on Earth in our atmosphere all we wanted, but we wouldn’t get the full picture of how they worked until we studied them in vacuum and in zero g. The crew of the Hail Mary would need these tools.</li>
-                    
-                    <li>An entire planet of intelligent people put together a ship based on incorrect scientific assumptions, and by some miracle, the sole survivor of the crew was clever enough at trial- and- error problem solving to actually get it to its destination. And out of that major screw- up comes my salvation. They thought they’d need a whole lot more fuel. So Rocky has boatloads to spare.</li>
-                    
-                    <li>Do you believe in God? I know it’s a personal question. I do. And I think He was pretty awesome to make relativity a thing, don’t you? The faster you go, the less time you experience. It’s like He’s inviting us to explore the universe, you know?”</li>
-                    
-                    <li>One thing I learned back in my graduate school days: When you’re stupid tired, accept that you’re stupid tired. Don’t try to solve things right then.</li>
-                    
-                    <li>Three days off the painkillers and I’m a lot smarter than I was. At least he understands that much— I wasn’t just some stupid human. I was a human with enhanced stupidity.</li>
-                    
-                    <li>“You’re a coward and you always have been. You abandoned a promising scientific career because people didn’t like a paper you wrote. You retreated to the safety of children who worship you for being the cool teacher. You don’t have a romantic partner in your life because that would mean you might suffer heartbreak. You avoid risk like the plague.”</li>
-                    
-                    <li>“I was eighteen years old and had no idea what to do with my life. I majored in history because I didn’t know what else to do.” She smirked. “Hard to imagine me like that, eh?”</li>
-                    
-                </ol>
-            </section>
-            
-            
-        </article>
-    </div>
-</div>
-
-<footer class="writeas-footer">
-    <details class="writeas-footer-section" open>
-        <summary class="writeas-footer-title">Browse</summary>
-        <div class="writeas-footer-links">
-            <a href="/projects">Projects</a>
-            <a href="https://blog.blackpiratex.com">Blog</a>
-            <a href="https://gallery.blackpiratex.com">Gallery</a>
-            <a href="https://music.blackpiratex.com">Music</a>
-            <a href="https://notes.blackpiratex.com">Notes</a>
-            <a href="https://status.blackpiratex.com">Status</a>
-            <a href="/bookmarks">Bookmarks</a>
-            <a href="/contact">Contact</a>
-            <a href="/credits">Credits</a>
-            <a href="/about">About</a>
-        </div>
-    </details>
-
-    <details class="writeas-footer-section">
-        <summary class="writeas-footer-title">Follow</summary>
-        <div class="writeas-footer-links">
-            <a href="https://links.blackpiratex.com/github">Github</a>
-            <a href="https://links.blackpiratex.com/pixelfed">Pixelfed</a>
-            <a href="https://links.blackpiratex.com/yt">Youtube</a>
-            <a href="https://links.blackpiratex.com/mastodon">Mastodon</a>
-            <a href="https://links.blackpiratex.com/wa">WhatsApp</a>
-            <a href="https://links.blackpiratex.com/last.fm">Last.fm</a>
-        </div>
-    </details>
-
-    
-    
-    
-
-    <details class="writeas-footer-section">
-        <summary class="writeas-footer-title">Webrings</summary>
-        <div class="writeas-footer-links">
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">WebSutra</span>
-                <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">Prev</a>
-                <a href="https://webring.blackpiratex.com/api/ring?action=random">Random</a>
-                <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">Next</a>
-                <span>(Member of <a href="https://webring.blackpiratex.com">WebSutra</a>)</span>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Hotline</span>
-                <a href="https://hotlinewebring.club/bpx/previous">Prev</a>
-                <a href="https://hotlinewebring.club">Index</a>
-                <a href="https://hotlinewebring.club/bpx/next">Next</a>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Retronut</span>
-                <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">Prev</a>
-                <a href="https://webring.dinhe.net">Index</a>
-                <a href="https://webring.dinhe.net/next/https://blackpiratex.com">Next</a>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Bucketfish</span>
-                <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">Prev</a>
-                <a href="https://webring.bucketfish.me">Index</a>
-                <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">Next</a>
-                <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">Random</a>
-            </div>
-
-            <div class="writeas-webring-row">
-                <span class="writeas-webring-name">Static.Quest</span>
-                <a href="https://static.quest/previous/?host=blackpiratex.com">Prev</a>
-                <a href="https://static.quest/members">Members</a>
-                <a href="https://static.quest/next/?host=blackpiratex.com">Next</a>
-                <a href="https://static.quest/random">Lucky?</a>
-            </div>
-
-            <div class="writeas-webring-row" id="focusfirst-webring">
-                <span class="writeas-webring-name">FocusFirst</span>
-                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-variables.js"></script>
-                <script type="text/javascript" src="https://www.beepbird.net/webring/onionring-widget.js"></script>
-                <noscript>
-                    <a href="https://www.beepbird.net/index.html">Focus First Index</a>
-                </noscript>
-            </div>
-        </div>
-    </details>
-
-    <div class="writeas-footer-credits">
-        <p>Uses self hosted Umami analytics.</p>
-        <p>
-            &copy; 2026 BlackPirateX. Website made using <a href="https://gohugo.io">Hugo</a> and Love on Android.
-            Follow on <a rel="me" href="https://mastodon.social/@pizzle">Mastodon</a>.
-        </p>
-    </div>
-    <script defer src="https://u-one-livid.vercel.app/script.js"
-        data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
-
-    
-    <script>
-        (function () {
-            const progressBar = document.getElementById('reading-progress');
-            if (!progressBar) return;
-
-            function updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                progressBar.style.width = Math.min(progress, 100) + '%';
-            }
-
-            window.addEventListener('scroll', updateProgress, { passive: true });
-            updateProgress();
-        })();
-    </script>
-</footer>
-<script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker.register("\/sw.js").catch((error) => {
-                console.warn("Service worker registration failed:", error);
-            });
-        });
-    }
-</script>
-<script>
-    (function () {
-        if (!("HTMLLinkElement" in window)) {
-            return;
-        }
-
-        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        if (connection && (connection.saveData || /2g/.test(connection.effectiveType || ""))) {
-            return;
-        }
-
-        const prefetched = new Set();
-
-        const shouldPrefetch = (href) => {
-            if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
-                return false;
-            }
-            let url;
-            try {
-                url = new URL(href, window.location.href);
-            } catch (error) {
-                return false;
-            }
-            if (url.origin !== window.location.origin) {
-                return false;
-            }
-            if (url.pathname === window.location.pathname && url.search === window.location.search) {
-                return false;
-            }
-            return true;
-        };
-
-        document.addEventListener(
-            "mouseover",
-            (event) => {
-                const anchor = event.target.closest("a[href]");
-                if (!anchor) {
-                    return;
-                }
-
-                const href = anchor.getAttribute("href");
-                if (!shouldPrefetch(href)) {
-                    return;
-                }
-
-                const url = new URL(href, window.location.href).href;
-                if (prefetched.has(url)) {
-                    return;
-                }
-
-                prefetched.add(url);
-                const link = document.createElement("link");
-                link.rel = "prefetch";
-                link.as = "document";
-                link.href = url;
-                document.head.appendChild(link);
-            },
-            { passive: true }
-        );
-    })();
-</script>
-<script defer src="https://u-one-livid.vercel.app/script.js"
-    data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+  </footer>
+</body>
+</html>

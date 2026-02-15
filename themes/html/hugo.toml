@@ -1,0 +1,48 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-US'
+title = 'My New Hugo Site'
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Thoughts'
+    pageRef = '/thoughts'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Blog'
+    pageRef = '/blog'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 30
+   
+  [[menus.main]]
+    name = 'Book Notes'
+    pageRef = '/books'
+    weight = 20
+  
+  [[menus.main]]
+    name = 'Bookmarks'
+    pageRef = '/bookmarks'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Uses'
+    pageRef = '/uses'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Now'
+    pageRef = '/now'
+    weight = 20
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'

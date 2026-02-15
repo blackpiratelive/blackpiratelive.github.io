@@ -6,7 +6,15 @@
     <description>Recent content in Thoughts on BlackPirateX</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 10 Feb 2026 14:13:15 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/thoughts/2026/2026-02-10-untitled-798775/</link>
+      <pubDate>Tue, 10 Feb 2026 19:43:18 +0530</pubDate>
+      <guid>http://localhost:1313/thoughts/2026/2026-02-10-untitled-798775/</guid>
+      <description>&lt;div class=&#34;image-container&#34; style=&#34;display: inline-block; margin: 0.5rem 0.5rem 1rem 0;&#34;&gt;&#xA;        &lt;div class=&#34;image-info&#34; style=&#34;font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace;&#34;&gt;&#xA;            File: &lt;a href=&#34;http://localhost:1313/img/1770732729290-1001802073.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; title=&#34;Click to open full image&#34;&gt;/img/1770732729290-1001802073.jpg&lt;/a&gt;&#xA;            &lt;span style=&#34;color: var(--text-muted);&#34;&gt;(1280x535)&lt;/span&gt;&#xA;        &lt;/div&gt;&#xA;        &lt;a href=&#34;http://localhost:1313/img/1770732729290-1001802073.jpg&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&#xA;            &lt;img &#xA;                src=&#34;http://localhost:1313/img/1770732729290-1001802073_hu_3b46c0f7638d8c3c.webp&#34; &#xA;                width=&#34;100&#34;&#xA;                height=&#34;42&#34;&#xA;                alt=&#34;Image thumbnail (click to expand)&#34; &#xA;                loading=&#34;lazy&#34; &#xA;                style=&#34;border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;&#34;&#xA;            &gt;&#xA;        &lt;/a&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&#xA;&lt;p&gt;🤣🤣&#xA;source: &lt;a href=&#34;https://www.himthe.dev/blog/microsoft-to-linux&#34;&gt;https://www.himthe.dev/blog/microsoft-to-linux&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title></title>
       <link>http://localhost:1313/thoughts/2026/2026-02-09-untitled-015994/</link>
@@ -1419,7 +1427,7 @@
       <link>http://localhost:1313/thoughts/2025/2025-08-23-19-34-16/</link>
       <pubDate>Sat, 23 Aug 2025 19:34:16 +0530</pubDate>
       <guid>http://localhost:1313/thoughts/2025/2025-08-23-19-34-16/</guid>
-      <description>&lt;p&gt;I have made a website for shortening url. Heres what looks like &lt;a href=&#34;http://localhost:1313/img/a36c63cc246b1206477aac1950b1b9b9.png&#34;&gt;Image&lt;/a&gt;.&#xA;Check one url from it: &lt;a href=&#34;https://go.blackpiratex.com/scsb6C4&#34;&gt;https://go.blackpiratex.com/scsb6C4&lt;/a&gt;&#xA;Password: password&lt;/p&gt;</description>
+      <description>&lt;p&gt;I have made a website for shortening url. Heres what looks like &lt;img src=&#34;http://localhost:1313/img/a36c63cc246b1206477aac1950b1b9b9.png&#34; alt=&#34;Image&#34; /&gt;.&#xA;Check one url from it: &lt;a href=&#34;https://go.blackpiratex.com/scsb6C4&#34;&gt;https://go.blackpiratex.com/scsb6C4&lt;/a&gt;&#xA;Password: password&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
@@ -1447,7 +1455,7 @@
       <link>http://localhost:1313/thoughts/2025/2025-08-20-20-05-11/</link>
       <pubDate>Wed, 20 Aug 2025 20:05:11 +0530</pubDate>
       <guid>http://localhost:1313/thoughts/2025/2025-08-20-20-05-11/</guid>
-      <description>&lt;p&gt;I am making a social media webisite. Right now It is very basic. Here is a screenshot. It also has live chat feature using Ably.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/img/3336fc18220da8e562e02333e449115c.png&#34;&gt;Screenshot 1&lt;/a&gt;&#xA;&lt;a href=&#34;http://localhost:1313/img/486b8b1e2e5ee8c735f1f4d470f4d1d6.png&#34;&gt;screenshot 2&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;I am making a social media webisite. Right now It is very basic. Here is a screenshot. It also has live chat feature using Ably.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/3336fc18220da8e562e02333e449115c.png&#34; alt=&#34;Screenshot 1&#34; /&gt;&#xA;&lt;img src=&#34;http://localhost:1313/img/486b8b1e2e5ee8c735f1f4d470f4d1d6.png&#34; alt=&#34;screenshot 2&#34; /&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
@@ -1538,7 +1546,7 @@
       <link>http://localhost:1313/thoughts/2025/2025-08-12-20-16-46/</link>
       <pubDate>Tue, 12 Aug 2025 20:16:46 +0530</pubDate>
       <guid>http://localhost:1313/thoughts/2025/2025-08-12-20-16-46/</guid>
-      <description>&lt;p&gt;There is update on websites. The music.blackpiratex.com has been revamped. I have made a web app using gemini. &lt;a href=&#34;https://last-fm-app.netlify.app/&#34;&gt;https://last-fm-app.netlify.app/&lt;/a&gt; If i get bored ill make again.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/img/2366357fd5c1e1ed8c5cc048d2720173.png&#34;&gt;View Screenshot #1&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/img/f30b6d8baf4251f7d5f557bbf7a47720.png&#34;&gt;View Screenshot #2&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/img/5c3864ee444534143bd8a470f6f5c597.png&#34;&gt;View Screenshot #3&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/img/b1c0cbdc5f90b6b45ea73bde6ec76e4a.png&#34;&gt;View Screenshot #4&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;There is update on websites. The music.blackpiratex.com has been revamped. I have made a web app using gemini. &lt;a href=&#34;https://last-fm-app.netlify.app/&#34;&gt;https://last-fm-app.netlify.app/&lt;/a&gt; If i get bored ill make again.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/2366357fd5c1e1ed8c5cc048d2720173.png&#34; alt=&#34;View Screenshot #1&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/f30b6d8baf4251f7d5f557bbf7a47720.png&#34; alt=&#34;View Screenshot #2&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/5c3864ee444534143bd8a470f6f5c597.png&#34; alt=&#34;View Screenshot #3&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/b1c0cbdc5f90b6b45ea73bde6ec76e4a.png&#34; alt=&#34;View Screenshot #4&#34; /&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
@@ -1776,7 +1784,7 @@
       <link>http://localhost:1313/thoughts/2025/2025-08-01-20-32-56/</link>
       <pubDate>Fri, 01 Aug 2025 20:32:56 +0530</pubDate>
       <guid>http://localhost:1313/thoughts/2025/2025-08-01-20-32-56/</guid>
-      <description>&lt;p&gt;Website looks like this now;)&#xA;&lt;a href=&#34;http://localhost:1313/img/9b89f85282589dca33e61e124300ee62.png&#34;&gt;Click to view image&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Website looks like this now;)&#xA;&lt;img src=&#34;http://localhost:1313/img/9b89f85282589dca33e61e124300ee62.png&#34; alt=&#34;Click to view image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>

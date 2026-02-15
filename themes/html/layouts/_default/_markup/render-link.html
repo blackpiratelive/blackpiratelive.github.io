@@ -1,0 +1,15 @@
+{{- $dest := .Destination -}}
+{{- $isImage := findRE `(?i)\.(png|jpe?g|gif|webp|svg|bmp)$` $dest -}}
+
+{{- if $isImage -}}
+{{- /* Handle Obsidian ![[image]] embeds which are parsed as links but we want images */ -}}
+{{- /* The ! prefix is outside the link in markdown, so it renders as text '!' before the image */ -}}
+{{- /* Check if it's a relative path and prepend / if needed (for static/ handling) */ -}}
+{{- if not (or (hasPrefix $dest "http") (hasPrefix $dest "/")) -}}
+{{- $dest = printf "/%s" $dest -}}
+{{- end -}}
+<img src="{{ $dest | safeURL }}" alt="{{ .Text }}" />
+{{- else -}}
+{{- /* Standard link rendering */ -}}
+<a href="{{ .Destination | safeURL }}">{{ .Text | safeHTML }}</a>
+{{- end -}}

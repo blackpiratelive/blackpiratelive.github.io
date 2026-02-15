@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{ $me := resources.Get "img/me-2.jpg" }}
+{{ if $me }}
+{{ $me = $me.Resize "160x webp q90" }}
+<img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img" />
+{{ end }}
+{{ .Content }}
+
+<h2>Recent Blog Posts</h2>
+<ul>
+  {{ range first 10 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
+  <li>{{ .Date.Format "01-02" }} - <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{ end }}
+</ul>
+<h2>Recent Thoughts</h2>
+<ul>
+  {{ range first 5 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+  <li>{{ .Content }}</li>
+  {{ end }}
+</ul>
+{{ end }}
