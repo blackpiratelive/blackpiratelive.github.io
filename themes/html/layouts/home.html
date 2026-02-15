@@ -1,8 +1,12 @@
 {{ define "main" }}
 {{ $me := resources.Get "img/me-2.jpg" }}
-{{ if $me }}
-{{ $me = $me.Resize "160x webp q90" }}
-<img src="{{ $me.RelPermalink }}" alt="Sudip" class="profile-img" />
+{{ $me = $me.Resize "160x webp q30" }}
+
+
+{{ $welcome := resources.Get "img/welcome.png" }}
+{{ if $welcome }}
+{{ $welcome = $welcome.Resize "600x webp q30"}}
+<img src="{{ $welcome.RelPermalink }}" alt="" srcset="">
 {{ end }}
 {{ .Content }}
 

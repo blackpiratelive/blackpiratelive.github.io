@@ -2,25 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2026-02-15T14:06:42+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/linux/</loc>
+    <lastmod>2026-02-15T14:06:42+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/qute-browser-is-the-best-browser/</loc>
+    <lastmod>2026-02-15T14:06:42+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-02-15T14:06:42+05:30</lastmod>
+  </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-02-10-untitled-798775/</loc>
     <lastmod>2026-02-10T14:13:15+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/articles/</loc>
     <lastmod>2026-02-10T14:13:15+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-02-10T14:13:15+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/thoughts/</loc>
     <lastmod>2026-02-10T14:13:15+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2026-02-10T01:28:22+05:30</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/computer/</loc>
-    <lastmod>2026-02-10T01:28:22+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
     <lastmod>2026-02-10T01:28:22+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/setting-up-my-new-laptop/</loc>

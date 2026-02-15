@@ -6,8 +6,15 @@
     <description>Recent content in Tags on BlackPirateX</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Feb 2026 14:13:15 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Feb 2026 14:06:42 +0530</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>http://localhost:1313/tags/linux/</link>
+      <pubDate>Sun, 15 Feb 2026 14:06:42 +0530</pubDate>
+      <guid>http://localhost:1313/tags/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Articles</title>
       <link>http://localhost:1313/tags/articles/</link>
@@ -20,13 +27,6 @@
       <link>http://localhost:1313/tags/computer/</link>
       <pubDate>Tue, 10 Feb 2026 01:28:22 +0530</pubDate>
       <guid>http://localhost:1313/tags/computer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>http://localhost:1313/tags/linux/</link>
-      <pubDate>Tue, 10 Feb 2026 01:28:22 +0530</pubDate>
-      <guid>http://localhost:1313/tags/linux/</guid>
       <description></description>
     </item>
     <item>

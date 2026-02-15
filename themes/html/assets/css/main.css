@@ -1,3 +1,8 @@
+:root {
+  --accent: blue;
+}
+
+
 body {
   max-width: 720px;
   margin: 2rem auto;
@@ -16,6 +21,7 @@ header nav ul {
   list-style: none;
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 header nav a.active {
@@ -31,7 +37,15 @@ footer {
 }
 
 a {
-  color: #00e;
+  color: var(--accent);
+}
+
+h1 {}
+
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
 }
 
 blockquote {
@@ -63,4 +77,23 @@ th {
 
 hr {
   color: rgb(195, 194, 194);
+}
+
+.thought-item {
+  padding: 0.25rem 1rem 0 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(237, 237, 237);
+  border-radius: 5px;
+}
+
+.thought-meta {
+  max-width: fit-content;
+  color: grey;
+  font-size: small;
+  margin: 0;
+  padding: 0;
+}
+
+.tag-link {
+  color: rgb(62, 62, 172);
 }

@@ -3,7 +3,9 @@ title = 'Home'
 date = 2023-01-01T08:00:00-07:00
 draft = false
 +++
- Hey there! I'm Sudip. Thanks for stopping by my little corner of the internet.
+
+# Hey there! I'm Sudip.
+ Thanks for stopping by my little corner of the internet.
 I made this page to store things I like, free from algorithms.
 I'm in my early twenties, finished Zoology graduation in 2025, now preparing for govt job exams.
   Building websites is my hobby. I love ducks and cats.
