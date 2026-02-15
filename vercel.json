@@ -5,5 +5,11 @@
             "destination": "/garden/",
             "permanent": true
         }
+    ],
+    "rewrites": [
+        {
+            "source": "/garden/:path*",
+            "destination": "/garden/:path*.html"
+        }
     ]
 }

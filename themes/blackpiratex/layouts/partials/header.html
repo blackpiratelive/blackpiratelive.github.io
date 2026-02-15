@@ -136,6 +136,7 @@
             </div>
             <div class="retro-links">
                 {{ $blog := "blog" }}
+                {{ $garden := "garden" }}
                 {{ $thoughts := "thoughts" }}
                 {{ $gallery := "gallery" }}
                 {{ $books := "books" }}
@@ -144,6 +145,7 @@
                 {{ $search := "search" }}
                 <a href="{{ .Site.BaseURL }}" class="retro-btn {{ if .IsHome }}active{{ end }}">Home</a>
                 <a href="{{ $blog | relURL }}" class="retro-btn {{ if eq .Section " blog" }}active{{ end }}">Blog</a>
+                <a href="{{ $garden | relURL }}" class="retro-btn">Garden</a>
                 <a href="{{ $thoughts | relURL }}" class="retro-btn {{ if eq .Section " thoughts" }}active{{ end
                     }}">Thoughts</a>
                 <a href="{{ $gallery | relURL }}" class="retro-btn {{ if eq .Section " gallery" }}active{{ end
