@@ -11,7 +11,10 @@
 </div>
 <div class="gallery-image">
     {{ $imgUrl := .Params.image.original.url }}
-    {{ $img := resources.GetRemote $imgUrl }}
+    {{ $img := "" }}
+    {{ if not hugo.IsServer }}
+    {{ $img = resources.GetRemote $imgUrl }}
+    {{ end }}
     {{ if $img }}
     <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" {{ if and .Params.image.original.width
         .Params.image.original.height }} width="{{ .Params.image.original.width | int }}"

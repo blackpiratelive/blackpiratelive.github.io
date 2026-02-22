@@ -40,8 +40,6 @@ a {
   color: var(--accent);
 }
 
-h1 {}
-
 h2,
 h3,
 h4 {
@@ -100,6 +98,24 @@ hr {
 
 .gallery-image {
   max-width: 100%;
+}
+
+.post-image {
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.post-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post-image figcaption {
+  font-size: 0.85em;
+  color: #666;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 .gallery-grid {

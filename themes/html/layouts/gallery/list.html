@@ -11,7 +11,10 @@
 <div class="gallery-grid">
   {{ range $featuredSorted }}
   {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
-  {{ $img := resources.GetRemote $imgUrl }}
+  {{ $img := "" }}
+  {{ if not hugo.IsServer }}
+  {{ $img = resources.GetRemote $imgUrl }}
+  {{ end }}
   <a href="{{ .RelPermalink }}">
     {{ if $img }}
     <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy" {{ if and .Params.image.thumbnail.width
@@ -32,7 +35,10 @@
 <div class="gallery-grid">
   {{ range .Pages }}
   {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
-  {{ $img := resources.GetRemote $imgUrl }}
+  {{ $img := "" }}
+  {{ if not hugo.IsServer }}
+  {{ $img = resources.GetRemote $imgUrl }}
+  {{ end }}
   <a href="{{ .RelPermalink }}">
     {{ if $img }}
     <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy">

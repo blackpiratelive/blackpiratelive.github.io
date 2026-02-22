@@ -6,8 +6,15 @@
     <description>Recent content in Linux on BlackPirateX</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Feb 2026 14:06:42 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 22 Feb 2026 08:34:39 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/thoughts/2026/2026-02-22-untitled-279810/</link>
+      <pubDate>Sun, 22 Feb 2026 14:04:39 +0530</pubDate>
+      <guid>http://localhost:1313/thoughts/2026/2026-02-22-untitled-279810/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m slowing starting to understand why people prefer zsh over fish.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Qute Browser Is the Best Browser</title>
       <link>http://localhost:1313/blog/qute-browser-is-the-best-browser/</link>

@@ -1,32 +1,18 @@
-{{/*
-    4chan-Style Image Shortcode for Hugo
-    Usage: {{< img src="/img/your-image-name.jpg" >}}
-    Looks for the image inside the /assets folder.
-*/}}
 {{ $src := .Get "src" }}
-{{/* Remove leading slash if it exists to make the path relative to /assets */}}
 {{ $path := strings.TrimPrefix "/" $src }}
 
 {{ with resources.Get $path }}
-    {{ $original := . }}
-    {{ $thumbnail := .Resize "100x webp q50" }}
-
-    <div class="image-container" style="display: inline-block; margin: 0.5rem 0.5rem 1rem 0;">
-        <div class="image-info" style="font-size: 0.8rem; color: var(--secondary-text-color); margin-bottom: 0.25rem; font-family: monospace; max-width:fit-content; overflow:hidden; ">
-            File: <a href="{{ $original.RelPermalink }}" target="_blank" rel="noopener noreferrer" title="Click to open full image">{{ .Name }}</a>
-            <span style="color: var(--text-muted);">({{ $original.Width }}x{{ $original.Height }})</span>
-        </div>
-        <a href="{{ $original.RelPermalink }}" target="_blank" rel="noopener noreferrer">
-            <img 
-                src="{{ $thumbnail.RelPermalink }}" 
-                width="{{ $thumbnail.Width }}"
-                height="{{ $thumbnail.Height }}"
-                alt="Image thumbnail (click to expand)" 
-                loading="lazy" 
-                style="border: 1px solid var(--border-color); display: block; max-width: 250px; height: auto; cursor: zoom-in;"
-            >
-        </a>
-    </div>
+{{ $processed := . }}
+{{ if not hugo.IsServer }}
+{{ $processed = .Process "webp q30" }}
+{{ end }}
+<figure class="post-image">
+    <img src="{{ $processed.RelPermalink }}" {{ with $processed.Width }}width="{{ . }}" {{ end }} {{ with
+        $processed.Height }}height="{{ . }}" {{ end }} alt="{{ $.Get " alt" | default .Name }}" loading="lazy">
+    {{ with $.Get "caption" }}
+    <figcaption>{{ . }}</figcaption>
+    {{ end }}
+</figure>
 {{ else }}
-    <p style="color: red;">Image not found at /assets/{{ $path }}</p>
+<p style="color: red;">Image not found: {{ $path }}</p>
 {{ end }}
