@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-27-untitled-554672/</loc>
+    <lastmod>2026-02-27T14:12:34+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/</loc>
+    <lastmod>2026-02-27T14:12:34+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-26-untitled-045319/</loc>
+    <lastmod>2026-02-26T03:20:45+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-25-untitled-082547/</loc>
+    <lastmod>2026-02-25T13:28:02+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-25-untitled-488657/</loc>
+    <lastmod>2026-02-25T08:18:08+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-23-untitled-212337/</loc>
+    <lastmod>2026-02-23T09:50:12+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-23-untitled-813046/</loc>
+    <lastmod>2026-02-23T07:46:53+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-22-untitled-365521/</loc>
+    <lastmod>2026-02-22T16:39:25+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-02-22-untitled-279810/</loc>
     <lastmod>2026-02-22T08:34:39+00:00</lastmod>
   </url><url>
@@ -9,9 +33,6 @@
     <lastmod>2026-02-22T08:34:39+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-02-22T08:34:39+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/thoughts/</loc>
     <lastmod>2026-02-22T08:34:39+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-02-22-untitled-788623/</loc>
