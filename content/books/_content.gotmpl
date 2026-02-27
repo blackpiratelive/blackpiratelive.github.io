@@ -7,7 +7,12 @@
     {{ warnf "Books Adapter Error: %s" $result.Err }}
 {{ else }}
     {{ with $result.Value }}
-        {{ $data = . | transform.Unmarshal }}
+        {{ $parsed := try (. | transform.Unmarshal (dict "format" "json")) }}
+        {{ if $parsed.Err }}
+            {{ warnf "Books Adapter Parse Error: %s (content-type: %s)" $parsed.Err .MediaType.Type }}
+        {{ else }}
+            {{ $data = $parsed.Value }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
