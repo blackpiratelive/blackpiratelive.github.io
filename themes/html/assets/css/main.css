@@ -1,9 +1,13 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Betania+Patmos&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+	
+	:root {
   --accent: #FF9B51;
   --bg: #1C1C1C;
   --bg-2: #2C2C2C;
   --font: #F3F4F4;
+  --secondary: #676767;
 }
+
 
 body {
   max-width: 720px;
@@ -12,6 +16,10 @@ body {
   line-height: 1.6;
   background-color: var(--bg);
   color: var(--font);
+  border: 1px solid var (--accent);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 header {
@@ -44,10 +52,19 @@ a {
   color: var(--accent);
 }
 
+h1 {
+color: var(--accent);
+font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 h2,
 h3,
 h4 {
   text-transform: uppercase;
+  font-family: "Betania Patmos", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 blockquote {
@@ -78,22 +95,29 @@ th {
 }
 
 hr {
-  color: var(--bg-2);
+  color: rgb(195, 194, 194);
 }
 
 .thought-item {
-  padding: 0.25rem 1rem 0 1rem;
+  padding: 0.5rem 1rem 0.25rem 1rem;
   margin-bottom: 1rem;
   background-color: var(--bg-2);
   border-radius: 5px;
+  
 }
 
 .thought-meta {
   max-width: fit-content;
-  color: grey;
+  color: var(--secondary);
   font-size: small;
   margin: 0;
   padding: 0;
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.thought-meta:before {
+content: "👉"
 }
 
 .tag-link {
@@ -144,4 +168,7 @@ hr {
   .gallery-grid {
     column-count: 3;
   }
+}
+.content {
+border: 1px solid var (--accent);
 }
