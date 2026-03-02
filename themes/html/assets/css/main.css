@@ -1,10 +1,9 @@
 :root {
-  --accent: #853953;
-  --bg: #2C2C2C;
-  --bg-2: #612D53;
-  --font: #F3F4F4
+  --accent: #FF9B51;
+  --bg: #1C1C1C;
+  --bg-2: #2C2C2C;
+  --font: #F3F4F4;
 }
-
 
 body {
   max-width: 720px;
@@ -79,7 +78,7 @@ th {
 }
 
 hr {
-  color: rgb(195, 194, 194);
+  color: var(--bg-2);
 }
 
 .thought-item {
