@@ -1,5 +1,7 @@
 :root {
-  --accent: blue;
+  --accent: #853953;
+  --bg: #2C2C2C;
+  --bg-2: #612D53;
 }
 
 
@@ -8,6 +10,8 @@ body {
   margin: 2rem auto;
   padding: 0 1rem;
   line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--font);
 }
 
 header {
@@ -80,7 +84,7 @@ hr {
 .thought-item {
   padding: 0.25rem 1rem 0 1rem;
   margin-bottom: 1rem;
-  background-color: rgb(237, 237, 237);
+  background-color: var(--bg-2);
   border-radius: 5px;
 }
 
@@ -93,7 +97,7 @@ hr {
 }
 
 .tag-link {
-  color: rgb(62, 62, 172);
+  color: var(--accent);
 }
 
 .gallery-image {
