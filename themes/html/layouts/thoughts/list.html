@@ -13,7 +13,7 @@
       {{ with .Params.tags }}
       {{ range $index, $tag := . }}
       {{ if $index }} / {{ end }}
-      <a href="{{ " /tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+      <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
       {{ end }}
       {{ end }}
     </div>

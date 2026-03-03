@@ -1,4 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Betania+Patmos&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+  font-family: "Alfa Slab One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/alfa-slab-one-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Betania Patmos";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/betania-patmos-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/montserrat-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/montserrat-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/montserrat-400-italic.ttf") format("truetype");
+}
 	
 	:root {
   --accent: #FF9B51;
@@ -171,4 +209,50 @@ content: "👉"
 }
 .content {
 border: 1px solid var (--accent);
+}
+
+.site-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-head h1 {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.site-head .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.home-profile {
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (max-width: 520px) {
+  .site-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .site-head .profile {
+    width: 44px;
+    height: 44px;
+  }
+
+  .site-head h1 {
+    font-size: 1.5rem;
+  }
 }

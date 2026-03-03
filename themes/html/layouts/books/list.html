@@ -1,0 +1,22 @@
+{{ define "main" }}
+<h1 class="section-title">{{ .Title }}</h1>
+{{ .Content }}
+
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ if gt (len $pages) 0 }}
+<div class="gallery-grid">
+  {{ range $pages }}
+  {{ $book := . }}
+  <a href="{{ .RelPermalink }}">
+    {{ with .Params.cover }}
+    <img src="{{ . }}" alt="Cover for {{ $book.Title }}">
+    {{ else }}
+    <span>No cover: {{ $book.Title }}</span>
+    {{ end }}
+  </a>
+  {{ end }}
+</div>
+{{ else }}
+<p>No books found yet.</p>
+{{ end }}
+{{ end }}

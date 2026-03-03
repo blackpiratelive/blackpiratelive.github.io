@@ -33,6 +33,11 @@ title = 'My New Hugo Site'
     name = 'Book Notes'
     pageRef = '/books'
     weight = 20
+
+   [[menus.main]]
+    name = 'Movies'
+    pageRef = '/movies'
+    weight = 20
   
   [[menus.main]]
     name = 'Bookmarks'

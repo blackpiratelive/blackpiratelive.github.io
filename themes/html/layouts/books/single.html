@@ -1,0 +1,55 @@
+{{ define "main" }}
+<p><a href="{{ "/books/" | relURL }}">&larr; Back to Books</a></p>
+
+<h1>{{ .Title }}</h1>
+{{ with .Params.authors }}
+<p>{{ delimit . ", " }}</p>
+{{ end }}
+{{ with .Params.cover }}
+<p>
+  <img src="{{ . }}" alt="Cover for {{ $.Title }}" class="gallery-image">
+</p>
+{{ end }}
+
+{{ .Content }}
+
+{{ $highlights := .Params.highlights | default (slice) }}
+
+{{ with .Params.id }}
+{{ $bookID := printf "%v" . }}
+{{ $url := "https://notes.blackpiratex.com/api/hugo-export" }}
+{{ $result := try (resources.GetRemote $url) }}
+
+{{ if $result.Err }}
+{{ warnf "Book Highlights Error for %q: %s" $.Title $result.Err }}
+{{ else }}
+{{ with $result.Value }}
+{{ $parsed := try (. | transform.Unmarshal (dict "format" "json")) }}
+{{ if $parsed.Err }}
+{{ warnf "Book Highlights Parse Error for %q: %s" $.Title $parsed.Err }}
+{{ else }}
+{{ $books := $parsed.Value.books | default (slice) }}
+{{ range $books }}
+{{ if eq (printf "%v" (.id | default "")) $bookID }}
+{{ $remoteHighlights := .highlights | default (slice) }}
+{{ if gt (len $remoteHighlights) 0 }}
+{{ $highlights = $remoteHighlights }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ with $highlights }}
+{{ if gt (len .) 0 }}
+<h2>Highlights</h2>
+<ol>
+  {{ range . }}
+  <li>{{ . }}</li>
+  {{ end }}
+</ol>
+{{ end }}
+{{ end }}
+{{ end }}

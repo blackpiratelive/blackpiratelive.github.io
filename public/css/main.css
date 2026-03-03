@@ -1,5 +1,49 @@
-:root {
-  --accent: blue;
+@font-face {
+  font-family: "Alfa Slab One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/alfa-slab-one-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Betania Patmos";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/betania-patmos-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/montserrat-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/montserrat-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/montserrat-400-italic.ttf") format("truetype");
+}
+	
+	:root {
+  --accent: #FF9B51;
+  --bg: #1C1C1C;
+  --bg-2: #2C2C2C;
+  --font: #F3F4F4;
+  --secondary: #676767;
 }
 
 
@@ -8,6 +52,12 @@ body {
   margin: 2rem auto;
   padding: 0 1rem;
   line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--font);
+  border: 1px solid var (--accent);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 header {
@@ -40,10 +90,19 @@ a {
   color: var(--accent);
 }
 
+h1 {
+color: var(--accent);
+font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 h2,
 h3,
 h4 {
   text-transform: uppercase;
+  font-family: "Betania Patmos", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 blockquote {
@@ -78,22 +137,29 @@ hr {
 }
 
 .thought-item {
-  padding: 0.25rem 1rem 0 1rem;
+  padding: 0.5rem 1rem 0.25rem 1rem;
   margin-bottom: 1rem;
-  background-color: rgb(237, 237, 237);
+  background-color: var(--bg-2);
   border-radius: 5px;
+  
 }
 
 .thought-meta {
   max-width: fit-content;
-  color: grey;
+  color: var(--secondary);
   font-size: small;
   margin: 0;
   padding: 0;
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.thought-meta:before {
+content: "👉"
 }
 
 .tag-link {
-  color: rgb(62, 62, 172);
+  color: var(--accent);
 }
 
 .gallery-image {
@@ -139,5 +205,54 @@ hr {
 @media (min-width: 768px) {
   .gallery-grid {
     column-count: 3;
+  }
+}
+.content {
+border: 1px solid var (--accent);
+}
+
+.site-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-head h1 {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.site-head .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.home-profile {
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (max-width: 520px) {
+  .site-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .site-head .profile {
+    width: 44px;
+    height: 44px;
+  }
+
+  .site-head h1 {
+    font-size: 1.5rem;
   }
 }

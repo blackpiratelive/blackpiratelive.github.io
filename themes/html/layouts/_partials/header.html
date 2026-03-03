@@ -1,4 +1,10 @@
+{{ $me := resources.Get "img/me-2.jpg" }}
+{{ $me = $me.Resize "200x webp q70" }}
+<div class="site-head">
+	
+<img src="{{ $me.RelPermalink }}" alt="" class="profile">
 <h1>{{ site.Title }}</h1>
+</div>
 {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
 {{- $posts := site.RegularPages -}}
 {{- $words := 0 -}}

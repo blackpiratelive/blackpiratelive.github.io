@@ -1,0 +1,21 @@
+{{ define "main" }}
+<p><a href="{{ "/movies/" | relURL }}">&larr; Back to Movies</a></p>
+
+<h1>{{ .Title }}</h1>
+
+{{ .Content }}
+
+{{ $images := resources.Match "movies/*" }}
+{{ if gt (len $images) 0 }}
+<div class="gallery-grid">
+  {{ range sort $images "Name" }}
+  <a href="{{ .RelPermalink }}">
+    <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
+  </a>
+  {{ end }}
+</div>
+{{ else }}
+<p>No movie images found in <code>assets/movies</code>.</p>
+{{ end }}
+
+{{ end }}

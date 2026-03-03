@@ -1,13 +1,8 @@
 {{ define "main" }}
 {{ $me := resources.Get "img/me-2.jpg" }}
-{{ $me = $me.Resize "160x webp q30" }}
+{{ $me = $me.Resize "200x webp q70" }}
 
 
-{{ $welcome := resources.Get "img/welcome.png" }}
-{{ if $welcome }}
-{{ $welcome = $welcome.Resize "600x webp q30"}}
-<img src="{{ $welcome.RelPermalink }}" alt="" srcset="">
-{{ end }}
 {{ .Content }}
 
 <h2>Recent Blog Posts</h2>

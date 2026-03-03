@@ -2,10 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/thoughts/2026/2026-02-27-untitled-554672/</loc>
-    <lastmod>2026-02-27T14:12:34+00:00</lastmod>
+    <loc>http://localhost:1313/movies/</loc>
+    <lastmod>2026-03-03T13:23:01+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-03-untitled-509827/</loc>
+    <lastmod>2026-03-03T03:28:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/</loc>
+    <lastmod>2026-03-03T03:28:29+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-02-untitled-194397/</loc>
+    <lastmod>2026-03-02T18:13:14+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-02-untitled-263178/</loc>
+    <lastmod>2026-03-02T02:41:03+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-27-untitled-255752/</loc>
+    <lastmod>2026-02-27T16:04:15+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-02-27-untitled-554672/</loc>
     <lastmod>2026-02-27T14:12:34+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-02-26-untitled-045319/</loc>
