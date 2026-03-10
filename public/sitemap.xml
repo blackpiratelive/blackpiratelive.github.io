@@ -2,13 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-10-untitled-180415/</loc>
+    <lastmod>2026-03-10T18:09:40+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/</loc>
+    <lastmod>2026-03-10T18:09:40+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-07-untitled-952986/</loc>
+    <lastmod>2026-03-07T13:42:28+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/quotes/</loc>
+    <lastmod>2026-03-07T13:42:28+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-03-07T13:42:28+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-07-untitled-615775/</loc>
+    <lastmod>2026-03-07T01:40:15+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/thoughts/2026/2026-03-06-untitled-814222/</loc>
+    <lastmod>2026-03-06T07:56:48+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/movies/</loc>
     <lastmod>2026-03-03T13:23:01+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-03-03-untitled-509827/</loc>
-    <lastmod>2026-03-03T03:28:29+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/thoughts/</loc>
     <lastmod>2026-03-03T03:28:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-03-02-untitled-194397/</loc>
@@ -45,9 +63,6 @@
     <lastmod>2026-02-22T08:34:39+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/linux/</loc>
-    <lastmod>2026-02-22T08:34:39+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-02-22T08:34:39+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2026/2026-02-22-untitled-788623/</loc>
@@ -238,9 +253,6 @@
     <lastmod>2025-12-31T14:41:29+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2025/2025-12-30-09-30-51/</loc>
-    <lastmod>2025-12-30T09:32:43+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/quotes/</loc>
     <lastmod>2025-12-30T09:32:43+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/thoughts/2025/2025-12-30-untitled-762307/</loc>
