@@ -1,0 +1,19 @@
+{{- $name := .Get 0 -}}
+{{- $path := printf "/stickers/%s.webp" $name -}}
+<style>
+    .sticker {
+        display: inline-block;
+        height: 8em;
+        max-height: 120px;
+        vertical-align: middle;
+        margin: 0.15em 0.2em;
+        transition: transform 0.2s ease;
+        cursor: default;
+        -webkit-user-drag: none;
+    }
+
+    .sticker:hover {
+        transform: scale(1.15);
+    }
+</style>
+<img src="{{ $path }}" alt="{{ $name }} sticker" class="sticker" loading="lazy" decoding="async" />
