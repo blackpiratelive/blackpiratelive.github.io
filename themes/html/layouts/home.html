@@ -1,7 +1,10 @@
 {{ define "main" }}
 {{ $me := resources.Get "img/me-2.jpg" }}
 {{ $me = $me.Resize "200x webp q70" }}
+{{ $mebig := resources.Get "img/me-big.png" }}
+{{ $mebig = $mebig.Resize "800x webp q70" }}
 
+<img src=" {{ $mebig.RelPermalink }}" alt="" class="big-profile">
 
 {{ .Content }}
 

@@ -109,7 +109,7 @@ a {
 }
 
 h1 {
-  color: var(--accent);
+  color: var(--font);
   font-family: sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -284,4 +284,8 @@ hr {
 	justify-content: flex-start;
 	gap: 1rem;
 	align-items: flex-start;
+}
+.big-profile {
+	width: 100%;
+	border-radius: 15px;
 }
