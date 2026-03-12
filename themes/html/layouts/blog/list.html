@@ -2,15 +2,14 @@
 
 <h1 class="section-title">Blog</h1>
 {{ range .Pages.ByDate.Reverse }}
+<div class="entry">
+	<div class="date">
 {{ .Date.Format "2006-01-02" }}
+</div>
+<div class="title">
 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-{{ with .Params.tags }}
-{{ range $index, $tag := . }}
-{{ if $index }} / {{ end }}
-<a href="{{ " /tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">#{{ $tag }}</a>
-{{ end }}
-{{ end }}
-<br>
+</div>
+</div>
 {{ end }}
 
 {{ end }}

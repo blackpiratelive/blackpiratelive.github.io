@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cityscape on BlackPirateX</title>
+    <link>http://localhost:1313/tags/cityscape/</link>
+    <description>Recent content in Cityscape on BlackPirateX</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Aug 2025 15:57:56 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cityscape/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Highway</title>
+      <link>http://localhost:1313/gallery/highway/</link>
+      <pubDate>Thu, 14 Aug 2025 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/highway/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Light Works</title>
+      <link>http://localhost:1313/gallery/light-works/</link>
+      <pubDate>Thu, 27 Mar 2025 20:09:15 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/light-works/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

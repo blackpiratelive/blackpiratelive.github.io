@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cooking on BlackPirateX</title>
+    <link>http://localhost:1313/tags/cooking/</link>
+    <description>Recent content in Cooking on BlackPirateX</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Nov 2025 13:19:31 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cooking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/thoughts/2025/2025-11-22-13-18-41/</link>
+      <pubDate>Sat, 22 Nov 2025 13:18:41 +0530</pubDate>
+      <guid>http://localhost:1313/thoughts/2025/2025-11-22-13-18-41/</guid>
+      <description>&lt;p&gt;I completely forgot that I have to cook today, sigh. Plans for the whole day has been changed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/thoughts/2025/2025-08-26_2/</link>
+      <pubDate>Tue, 26 Aug 2025 17:50:18 +0530</pubDate>
+      <guid>http://localhost:1313/thoughts/2025/2025-08-26_2/</guid>
+      <description>&lt;p&gt;I made grilled chicken legs, for the first time.&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure class=&#34;post-image&#34;&gt;&#xA;    &lt;img src=&#34;http://localhost:1313/img/8e70a8939b048e05720ac191a2517f9f.jpg&#34; width=&#34;3000&#34;  height=&#34;4000&#34;  alt=&#34;/img/8e70a8939b048e05720ac191a2517f9f.jpg&#34; loading=&#34;lazy&#34;&gt;&#xA;    &#xA;&lt;/figure&gt;&#xA;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

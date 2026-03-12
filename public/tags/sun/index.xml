@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sun on BlackPirateX</title>
+    <link>http://localhost:1313/tags/sun/</link>
+    <description>Recent content in Sun on BlackPirateX</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 May 2022 15:57:56 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sun/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Clouds at Golden Hour</title>
+      <link>http://localhost:1313/gallery/clouds-at-golden-hour/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/clouds-at-golden-hour/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Colorful Sky</title>
+      <link>http://localhost:1313/gallery/colorful-sky/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/colorful-sky/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dark Leaves</title>
+      <link>http://localhost:1313/gallery/dark-leaves/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/dark-leaves/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Railway Track Through Window</title>
+      <link>http://localhost:1313/gallery/railway-track-through-window/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/railway-track-through-window/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sunbathed Road</title>
+      <link>http://localhost:1313/gallery/sunbathed-road/</link>
+      <pubDate>Sat, 28 May 2022 15:57:56 +0530</pubDate>
+      <guid>http://localhost:1313/gallery/sunbathed-road/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
