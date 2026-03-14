@@ -517,3 +517,39 @@ button {
     text-align: left;
   }
 }
+
+/* Shelf styling */
+.book-shelf {
+  margin-bottom: 4rem;
+  padding: 1.5rem;
+  background: rgba(44, 44, 44, 0.3);
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.shelf-reading {
+  border: 1px solid var(--accent);
+  background: rgba(124, 168, 223, 0.05);
+}
+
+.book-shelf h2 {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--font);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.shelf-reading h2::before {
+  content: "📖";
+}
+
+.shelf-read h2::before {
+  content: "✅";
+}
+
+.shelf-watchlist h2::before {
+  content: "⏳";
+}
