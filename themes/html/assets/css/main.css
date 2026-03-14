@@ -55,11 +55,18 @@
 }
 
 :root {
-  --accent: #7ca8df;
   --bg: #1b1f24;
-  --bg-2: #2C2C2C;
-  --font: #e1e2e3;
-  --secondary: #676767;
+  --text: #e1e2e3;
+  --accent: #7ca8df;
+  --visited: #b88fca;
+  --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
+  --surface: color-mix(in srgb, var(--text) 5%, var(--bg));
+  --border: color-mix(in srgb, var(--text) 14%, var(--bg));
+
+  /* Compatibility Mapping */
+  --font: var(--text);
+  --secondary: var(--muted);
+  --bg-2: var(--surface);
 }
 
 
@@ -68,9 +75,9 @@ body {
   margin: 2rem auto;
   padding: 0 1rem;
   line-height: 1.6;
-  background-color: var(--bg);
+  background-color: var(--surface);
   color: var(--font);
-  border: 1px solid var (--accent);
+  border: 1px solid var(--accent);
   font-family: sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
