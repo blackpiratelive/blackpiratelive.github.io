@@ -19,7 +19,7 @@
     {{ with .Params.tags }}
     <div class="thought-tags">
       {{ range $index, $tag := . }}
-      <a href="{{ " /tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">#{{ $tag }}</a>
+      <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">#{{ $tag }}</a>
       {{ end }}
     </div>
     {{ end }}
