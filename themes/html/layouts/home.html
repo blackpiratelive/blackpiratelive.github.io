@@ -1,28 +1,20 @@
-{{ define "main" }}
-{{ $me := resources.Get "img/me-2.jpg" }}
-{{ $me = $me.Resize "200x webp q70" }}
-{{ $mebig := resources.Get "img/me-big.png" }}
-{{ $mebig = $mebig.Resize "800x webp q70" }}
-
-<img src=" {{ $mebig.RelPermalink }}" alt="" class="big-profile">
-
-{{ .Content }}
-
-<div class="action-buttons">
-  <a href="/index.xml" class="btn btn-rss">Subscribe via RSS 💖</a>
-  <a href="/guestbook" class="btn btn-guestbook">Sign my Guestbook 📝</a>
+<iframe
+  id="guestbook-embed"
+  src="https://sudip-gb.blackpiratex.com/u/sudip?embed=1"
+  style="width:100%;border:0;height:650px"
+  loading="lazy"
+></iframe>
+<script>
+(function () {
+  var iframe = document.getElementById('guestbook-embed');
+  function onMessage(e) {
+    if (!iframe || e.source !== iframe.contentWindow) return;
+    if (!e.data || e.data.type !== 'guestbook:resize') return;
+    if (typeof e.data.height === 'number') iframe.style.height = (e.data.height + 20) + 'px';
+  }
+  window.addEventListener('message', onMessage, false);
+})();
+</script>
+<div style="margin-top:8px;font-size:12px;opacity:.75;font-family:ui-serif,Georgia,Cambria,'Times New Roman',Times,serif">
+  Powered by <a href="https://guestbook.blackpiratex.com" target="_blank" rel="noreferrer">Guestbook Service</a>
 </div>
-
-<h2>Recent Blog Posts</h2>
-<ul>
-  {{ range first 10 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
-  <li>{{ .Date.Format "01-02" }} - <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-  {{ end }}
-</ul>
-<h2>Recent Thoughts</h2>
-<ul>
-  {{ range first 5 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
-  <li>{{ .Content }}</li>
-  {{ end }}
-</ul>
-{{ end }}
