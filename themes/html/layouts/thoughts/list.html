@@ -1,25 +1,30 @@
 {{ define "main" }}
 
-
-<section class="col panel panel--thoughts">
+<header class="thoughts-header">
   <h1 class="section-title">Micro Feed</h1>
-  <div class="thoughts-feed">
-    {{ range (.Paginate .Pages 100).Pages }}
-    <div class="thought-item">
-      <div class="thought-meta">
-        {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
-      </div>
+  <div class="action-buttons">
+    <a href="/thoughts/index.xml" class="btn btn-rss">Subscribe via RSS 💖</a>
+  </div>
+</header>
+
+<section class="thoughts-feed">
+  {{ range (.Paginate .Pages 100).Pages }}
+  <div class="thought-item">
+    <div class="thought-meta">
+      {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
+    </div>
+    <div class="thought-content">
       {{ .Content }}
-      {{ with .Params.tags }}
+    </div>
+    {{ with .Params.tags }}
+    <div class="thought-tags">
       {{ range $index, $tag := . }}
-      {{ if $index }} / {{ end }}
-      <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
-      {{ end }}
+      <a href="{{ " /tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">#{{ $tag }}</a>
       {{ end }}
     </div>
-    <div class="divider"></div>
     {{ end }}
   </div>
+  {{ end }}
 </section>
 
 {{ $paginator := .Paginator }}
