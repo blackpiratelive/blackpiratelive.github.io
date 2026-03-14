@@ -206,26 +206,38 @@ hr {
 }
 
 .gallery-grid {
-  column-count: 2;
-  column-gap: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.gallery-grid a {
+.book-item {
   display: block;
-  margin-bottom: 0.25rem;
-  break-inside: avoid;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.book-item:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
 }
 
 .gallery-grid img {
   width: 100%;
   height: auto;
   display: block;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  background-color: var(--bg-2);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 480px) {
   .gallery-grid {
-    column-count: 3;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
   }
 }
 
