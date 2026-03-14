@@ -278,14 +278,55 @@ hr {
     font-size: 1.5rem;
   }
 }
-.entry {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	gap: 1rem;
-	align-items: flex-start;
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
 }
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-rss {
+  background-color: var(--accent);
+  color: black !important;
+  border: 1px solid var(--accent);
+}
+
+.btn-guestbook {
+  background-color: var(--bg-2);
+  /* The dark grey accent */
+  color: var(--accent) !important;
+  border: 1px solid var(--accent);
+}
+
+.entry {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
 .big-profile {
-	width: 100%;
-	border-radius: 15px;
+  width: 100%;
+  border-radius: 15px;
 }

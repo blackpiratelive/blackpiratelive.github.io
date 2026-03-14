@@ -8,6 +8,11 @@
 
 {{ .Content }}
 
+<div class="action-buttons">
+  <a href="/index.xml" class="btn btn-rss">Subscribe via RSS 💖</a>
+  <a href="https://guestbook.blackpiratex.com/" class="btn btn-guestbook" target="_blank">Sign my Guestbook 📝</a>
+</div>
+
 <h2>Recent Blog Posts</h2>
 <ul>
   {{ range first 10 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
