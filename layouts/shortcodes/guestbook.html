@@ -1,20 +1,43 @@
-<iframe
-  id="guestbook-embed"
-  src="https://sudip-gb.blackpiratex.com/u/sudip?embed=1"
-  style="width:100%;border:0;height:650px"
-  loading="lazy"
-></iframe>
+<form id="guestbook-form">
+  <input name="name" placeholder="Your name" required />
+  <br>
+  <input name="website" placeholder="https://example.com (optional)" />
+  <br>
+  <textarea name="message" placeholder="Leave a note..." required></textarea>
+  <br>
+  <button type="submit">Sign Guestbook</button>
+</form>
+
 <script>
-(function () {
-  var iframe = document.getElementById('guestbook-embed');
-  function onMessage(e) {
-    if (!iframe || e.source !== iframe.contentWindow) return;
-    if (!e.data || e.data.type !== 'guestbook:resize') return;
-    if (typeof e.data.height === 'number') iframe.style.height = (e.data.height + 20) + 'px';
-  }
-  window.addEventListener('message', onMessage, false);
-})();
+  const baseUrl = "https://sudip-gb.blackpiratex.com";
+  const owner = "sudip";
+  document.getElementById("guestbook-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const payload = {
+      owner_username: owner,
+      sender_name: fd.get("name"),
+      sender_website: fd.get("website"),
+      message: fd.get("message"),
+      is_private: false,
+      bot_field: ""
+    };
+    const res = await fetch(baseUrl + "/api/entries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error("Failed to submit");
+    alert("Submitted!");
+  });
 </script>
-<div style="margin-top:8px;font-size:12px;opacity:.75;font-family:ui-serif,Georgia,Cambria,'Times New Roman',Times,serif">
-  Powered by <a href="https://guestbook.blackpiratex.com" target="_blank" rel="noreferrer">Guestbook Service</a>
-</div>
+
+<div id="guestbook-entries"></div>
+<script src="https://sudip-gb.blackpiratex.com/guestbook-widget.js"></script>
+<script>
+  GuestbookWidget.mount({
+    baseUrl: "https://sudip-gb.blackpiratex.com",
+    username: "sudip",
+    container: "#guestbook-entries"
+  });
+</script>
