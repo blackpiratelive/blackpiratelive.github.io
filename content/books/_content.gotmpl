@@ -1,4 +1,4 @@
-{{ $url := "https://notes.blackpiratex.com/api/books" }}
+{{ $url := "https://notes.blackpiratex.com/api/public?action=export" }}
 
 {{ $books := slice }}
 {{ $result := try (resources.GetRemote $url) }}
@@ -21,66 +21,20 @@
 {{ end }}
 
 {{ range $i, $book := $books }}
-    {{ $title := $book.title | default (printf "Book %d" $i) }}
+    {{ $title := $book.bookName | default (printf "Book %d" $i) }}
     {{ $slug := $title | urlize }}
-    {{ with $book.id }}
-        {{ $slug = printf "%s-%v" $slug . | urlize }}
-    {{ end }}
-    {{ if eq $slug "" }}
-        {{ $slug = printf "book-%d" $i }}
-    {{ end }}
-
-    {{ $dateString := $book.finishedOn | default $book.startedOn }}
+    
+    {{ $dateString := $book.endDate | default $book.startingDate }}
     {{ $dateObj := time.Now }}
     {{ with $dateString }}
         {{ $dateObj = time.AsTime . }}
     {{ end }}
 
-    {{ $cover := "" }}
-    {{ $imageLinksObj := dict }}
-    {{ with $book.imageLinks }}
-        {{ if eq (printf "%T" .) "string" }}
-            {{ $p := try (. | transform.Unmarshal) }}
-            {{ if not $p.Err }}{{ $imageLinksObj = $p.Value }}{{ end }}
-        {{ else }}
-            {{ $imageLinksObj = . }}
-        {{ end }}
-    {{ end }}
-    {{ with $imageLinksObj }}
-        {{ $cover = .thumbnail | default .smallThumbnail }}
-    {{ end }}
+    {{ $authors := $book.authors | default (slice) }}
+    {{ $highlights := $book.highlights | default (slice) }}
+    {{ $cover := $book.thumbnailUrl | default "" }}
 
-    {{ $authors := slice }}
-    {{ with $book.authors }}
-        {{ if eq (printf "%T" .) "string" }}
-            {{ $p := try (. | transform.Unmarshal) }}
-            {{ if not $p.Err }}{{ $authors = $p.Value | default (slice) }}{{ end }}
-        {{ else }}
-            {{ $authors = . }}
-        {{ end }}
-    {{ end }}
-
-    {{ $highlights := slice }}
-    {{ with $book.highlights }}
-        {{ if eq (printf "%T" .) "string" }}
-            {{ $p := try (. | transform.Unmarshal) }}
-            {{ if not $p.Err }}{{ $highlights = $p.Value | default (slice) }}{{ end }}
-        {{ else }}
-            {{ $highlights = . }}
-        {{ end }}
-    {{ end }}
-
-    {{ $subjects := slice }}
-    {{ with $book.subjects }}
-        {{ if eq (printf "%T" .) "string" }}
-            {{ $p := try (. | transform.Unmarshal) }}
-            {{ if not $p.Err }}{{ $subjects = $p.Value | default (slice) }}{{ end }}
-        {{ else }}
-            {{ $subjects = . }}
-        {{ end }}
-    {{ end }}
-
-    {{ $contentValue := $book.bookDescription | default "" }}
+    {{ $contentValue := $book.description | default "" }}
     {{ $content := dict
         "mediaType" "text/markdown"
         "value" $contentValue
@@ -91,21 +45,15 @@
     }}
 
     {{ $params := dict
-        "id" $book.id
         "authors" $authors
         "cover" $cover
-        "pageCount" $book.pageCount
-        "publishedDate" $book.publishedDate
-        "fullPublishDate" $book.fullPublishDate
-        "publisher" $book.publisher
+        "pageCount" $book.pagesCount
         "readingMedium" $book.readingMedium
         "shelf" $book.shelf
-        "startedOn" $book.startedOn
-        "finishedOn" $book.finishedOn
+        "startedOn" $book.startingDate
+        "finishedOn" $book.endDate
         "readingProgress" $book.readingProgress
         "highlights" $highlights
-        "hasHighlights" $book.hasHighlights
-        "subjects" $subjects
     }}
 
     {{ $page := dict
@@ -119,3 +67,4 @@
 
     {{ $.AddPage $page }}
 {{ end }}
+
