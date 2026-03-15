@@ -1,17 +1,12 @@
 {{ define "main" }}
 {{ $me := resources.Get "img/me-2.jpg" }}
-{{ $me = $me.Resize "200x webp q70" }}
-{{ $mebig := resources.Get "img/me-big.png" }}
+{{ $me = $me.Resize "600x webp q70" }}
+{{ $mebig := resources.Get "img/me-collage.jpg" }}
 {{ $mebig = $mebig.Resize "800x webp q70" }}
 
 <img src=" {{ $mebig.RelPermalink }}" alt="" class="big-profile">
 
 {{ .Content }}
-
-<div class="action-buttons">
-  <a href="/index.xml" class="btn btn-rss">Subscribe via RSS 💖</a>
-  <a href="/guestbook" class="btn btn-guestbook">Sign my Guestbook 📝</a>
-</div>
 
 <h2>Recent Blog Posts</h2>
 <ul>
@@ -20,9 +15,10 @@
   {{ end }}
 </ul>
 <h2>Recent Thoughts</h2>
-<ul>
+<div class="thoughts-feed">
+	
   {{ range first 5 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
-  <li>{{ .Content }}</li>
+  <div class="thought-item">{{ .Content }}</div>
   {{ end }}
-</ul>
+</div>
 {{ end }}

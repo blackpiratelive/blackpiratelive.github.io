@@ -1,6 +1,9 @@
 <form id="guestbook-form">
+	<label for="name">Your Name</label>
   <input name="name" placeholder="Your name" required />
+  <label for="website">Your Website(optional)</label>
   <input name="website" placeholder="https://example.com (optional)" />
+  <label for="message">Your Message</label>
   <textarea name="message" placeholder="Leave a note..." required></textarea>
   <button type="submit" class="btn">Sign Guestbook</button>
 </form>
@@ -28,7 +31,7 @@
     alert("Submitted!");
   });
 </script>
-
+<h2>Messages</h2>
 <div id="guestbook-entries"></div>
 <script src="https://sudip-gb.blackpiratex.com/guestbook-widget.js"></script>
 <script>

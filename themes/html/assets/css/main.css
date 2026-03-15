@@ -1,75 +1,43 @@
-@font-face {
-  font-family: "Lora";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/lora-variable.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Lora";
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/lora-italic-variable.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Alfa Slab One";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/alfa-slab-one-400.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Betania Patmos";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/betania-patmos-400.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/montserrat-400.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/montserrat-700.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Montserrat";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/montserrat-400-italic.ttf") format("truetype");
-}
-
 :root {
+  color-scheme: light dark;
+  --bg: #f9f7f4;
+  --text: #2c2d2e;
+  --link: #1f5fbf;
+  --visited: #7c5a91;
+  --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
+  --surface: color-mix(in srgb, var(--text) 5%, var(--bg));
+  --border: color-mix(in srgb, var(--text) 12%, var(--bg));
+  --space-block: 1.8rem;
+  --font-small: 0.9rem;
+  --font-mono: ui-monospace, monospace;
+  --radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1f23;
+    --text: #e6e7e8;
+    --link: #74b0f4;
+    --visited: #a88bbd;
+    --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
+    --surface: color-mix(in srgb, var(--text) 5%, var(--bg));
+    --border: color-mix(in srgb, var(--text) 14%, var(--bg));
+  }
+}
+/* :root {
   --accent: #7ca8df;
-  --bg: #1b1f24;
   --bg-2: #2C2C2C;
   --font: #e1e2e3;
   --secondary: #676767;
 
   /* Custom palette */
-  --text: #e1e2e3;
+ /*  --text: #e1e2e3;
   --link: #7ca8df;
   --visited: #b88fca;
   --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
   --surface: color-mix(in srgb, var(--text) 5%, var(--bg));
   --border: color-mix(in srgb, var(--text) 14%, var(--bg));
 }
-
+*/
 
 body {
   max-width: 720px;
@@ -77,8 +45,8 @@ body {
   padding: 0 1rem;
   line-height: 1.6;
   background-color: var(--bg);
-  color: var(--font);
-  border: 1px solid var (--accent);
+  color: var(--text);
+  border: 1px solid var (--link);
   font-family: sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -112,22 +80,27 @@ footer {
 }
 
 a {
-  color: var(--accent);
+  color: var(--link);
   text-decoration: none;
 }
 
 h1 {
-  color: var(--font);
-  font-family: sans-serif;
+  color: var(--text);
+  font-family: serif;
   font-weight: 400;
   font-style: normal;
+  text-transform: uppercase;
+}
+.site-title {
+	letter-spacing: 0.5rem;
+	font-weight: 900;
 }
 
 h2,
 h3,
 h4 {
   text-transform: uppercase;
-  font-family: monospace;
+  font-family: serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -184,7 +157,7 @@ hr {
   font-size: 1.15rem;
   margin: 0;
   padding: 0;
-  color: var(--font);
+  color: var(--text);
 }
 
 .thought-tags {
@@ -247,7 +220,7 @@ hr {
   display: block;
   aspect-ratio: 2/3;
   object-fit: cover;
-  background-color: var(--bg-2);
+  background-color: var(--surface);
 }
 
 @media (max-width: 480px) {
@@ -258,7 +231,7 @@ hr {
 }
 
 .content {
-  border: 1px solid var (--accent);
+  border: 1px solid var (--link);
 }
 
 .site-head {
@@ -334,16 +307,16 @@ hr {
 }
 
 .btn-rss {
-  background-color: var(--accent);
+  background-color: var(--link);
   color: black !important;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--link);
 }
 
 .btn-guestbook {
-  background-color: var(--bg-2);
+  background-color: var(--surface);
   /* The dark grey accent */
-  color: var(--accent) !important;
-  border: 1px solid var(--accent);
+  color: var(--link) !important;
+  border: 1px solid var(--link);
 }
 
 .entry {
@@ -360,7 +333,7 @@ hr {
 }
 
 button {
-  background-color: var(--accent);
+  background-color: var(--link);
   border-radius: 5px;
   color: black;
   font-size: 1.2rem;
@@ -377,7 +350,7 @@ button {
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 3rem;
-  background: var(--bg-2);
+  background: var(--surface);
   padding: 1.5rem;
   border-radius: 8px;
   border: 1px solid var(--secondary);
@@ -387,7 +360,7 @@ button {
 #guestbook-form textarea {
   background: var(--bg);
   border: 1px solid var(--secondary);
-  color: var(--font);
+  color: var(--text);
   padding: 0.8rem;
   border-radius: 4px;
   font-family: inherit;
@@ -397,7 +370,7 @@ button {
 #guestbook-form input:focus,
 #guestbook-form textarea:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--link);
 }
 
 #guestbook-form textarea {
@@ -407,7 +380,7 @@ button {
 
 #guestbook-form button {
   align-self: flex-start;
-  background: var(--accent);
+  background: var(--link);
   color: var(--bg);
   border: none;
   cursor: pointer;
@@ -431,10 +404,10 @@ button {
 }
 
 .gbw-entry {
-  background: var(--bg-2);
+  background: var(--surface);
   padding: 1.2rem;
   border-radius: 8px;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--link);
 }
 
 .gbw-entry-header {
@@ -450,7 +423,7 @@ button {
 }
 
 .gbw-author {
-  color: var(--accent);
+  color: var(--link);
 }
 
 .gbw-date {
@@ -460,7 +433,7 @@ button {
 }
 
 .gbw-entry-body {
-  font-family: "Lora", serif;
+  font-family: "Lora", sans-serif;
   line-height: 1.6;
   font-size: 1.05rem;
 }
@@ -509,13 +482,13 @@ button {
 }
 
 .book-meta-list strong {
-  color: var(--accent);
+  color: var(--link);
 }
 
 .book-highlights {
   margin-top: 3rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--secondary);
+  border-top: 1px solid var(--surface);
 }
 
 .book-highlights h2 {
@@ -544,7 +517,7 @@ button {
 }
 
 .shelf-reading {
-  border: 1px solid var(--accent);
+  border: 1px solid var(--link);
   background: rgba(124, 168, 223, 0.05);
 }
 
@@ -553,7 +526,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--font);
+  color: var(--text);
   font-size: 1.2rem;
   letter-spacing: 1px;
 }
@@ -595,5 +568,5 @@ button {
 }
 
 .btn-raw:hover {
-  color: var(--accent);
+  color: var(--link);
 }
