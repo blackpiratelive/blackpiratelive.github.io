@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $me := resources.Get "img/me-2.jpg" }}
-{{ $me = $me.Resize "600x webp q70" }}
+{{ $me = $me.Resize "200x webp q30" }}
 {{ $mebig := resources.Get "img/me-collage.jpg" }}
 {{ $mebig = $mebig.Resize "800x webp q70" }}
 
