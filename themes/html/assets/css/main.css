@@ -6,6 +6,8 @@
   --visited: #7c5a91;
   --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
   --surface: color-mix(in srgb, var(--text) 5%, var(--bg));
+  --surface-2: color-mix(in srgb, var(--link) 20%, var(--bg));
+  --shadow: rgba(0, 0, 0, .5);
   --border: color-mix(in srgb, var(--text) 12%, var(--bg));
   --space-block: 1.8rem;
   --font-small: 0.9rem;
@@ -21,6 +23,8 @@
     --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
     --surface: color-mix(in srgb, var(--text) 5%, var(--bg));
     --border: color-mix(in srgb, var(--text) 14%, var(--bg));
+    --shadow: rgba(255, 255, 255, .5);
+ 
   }
 }
 /* :root {
@@ -109,6 +113,9 @@ h4 {
   font-family: serif;
   font-weight: 400;
   font-style: normal;
+  background-color: var(--surface-2);
+  border-radius: 5px;
+  padding: 0 1rem 0 1rem;
 }
 
 blockquote {
@@ -144,26 +151,35 @@ hr {
 
 .thought-item {
   margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   background-color: var(--surface);
   padding-right: 0.5rem;
-  padding-left: 0.5rem;
-  border: 1px solid var(--border);
+  padding-left: 	0.5rem;
   border-radius: 4px;
 }
 
 .thought-meta {
-  color: var(--secondary);
+  color: var(--muted);
   font-size: 0.85rem;
   margin-bottom: 0rem;
   font-family: sans-serif;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.5rem;
 }
 
 .thought-content {
   font-family: sans-serif;
   font-size: 1.15rem;
   margin: 0;
-  padding: 0;
+  padding: 0 0.5rem 0 0.5rem;
   color: var(--text);
+}
+.thought-content p {
+	padding: 0;
+	margin: 0;
 }
 
 .thought-tags {
@@ -341,6 +357,8 @@ grid-template-rows: masonry;
 .big-profile {
   width: 100%;
   border-radius: 15px;
+box-shadow: 1px 10px 100px 1px var(--shadow);
+
 }
 
 button {
@@ -580,4 +598,19 @@ button {
 
 .btn-raw:hover {
   color: var(--link);
+}
+.highlight {
+	color: var(--link);
+	font-size: 5rem;
+	padding: 0 1rem 0 1rem;
+	text-transform: uppercase;
+	background-color: var(--surface-2);
+	border-radius: 15px;
+	font: sans-serif;
+	margin: 0;
+}
+.stylish {
+	margin: auto;
+	text-align: center;
+	padding: 0;
 }
