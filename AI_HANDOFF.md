@@ -220,3 +220,34 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 - `api/mood.js` requires `MOOD_API_TOKEN` environment variable
 - Never commit secrets or API keys
 - Use `.gitignore` for sensitive files
+
+---
+
+## Recent Homepage Updates (March 2026)
+
+- Homepage uses a full-width, two-column layout in `themes/html/layouts/home.html` and `themes/html/assets/css/main.css`.
+- Left column now contains:
+  - About + interests content (`{{ .Content }}` from `themes/html/content/_index.md`)
+  - Featured gallery images (3 items, prefers `featured: true` gallery entries)
+  - Latest read books (3 items from `books` section where `Params.shelf == "read"`)
+- Right column now contains:
+  - Recent blog posts (5 items)
+  - Recent thoughts (3 items)
+  - WebSutra members list (fetched from API) and WebSutra ad banner
+- Mobile behavior:
+  - Main homepage columns stack
+  - Featured pics and latest books use compact single-row 3-column thumbnail grids
+
+### WebSutra API Integration
+
+- API endpoint used: `https://webring.blackpiratex.com/api/latest`
+- Client-side fetch implemented in `themes/html/assets/js/main.js`
+- Renders member title + URL in the homepage right column (`[data-webring-list]`)
+- Includes loading, empty, and error states via `[data-webring-status]`
+
+### Notable Styling / Layout Changes
+
+- Header and hero already use full-width breakout layout.
+- Homepage two-column area also uses breakout/full-width behavior.
+- Hero keeps cropped mobile image behavior (`background-size: cover`).
+- Lora font is active for body text via local font files in `themes/html/static/fonts/`.

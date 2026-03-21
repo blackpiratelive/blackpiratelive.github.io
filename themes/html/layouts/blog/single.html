@@ -1,16 +1,44 @@
 {{ define "main" }}
+<div class="blog-layout">
+  <aside class="blog-sidebar-left">
+    {{ if .TableOfContents }}
+    <div class="sidebar-toc">
+      <h3>Contents</h3>
+      {{ .TableOfContents }}
+    </div>
+    {{ end }}
 
-<h2>{{ .Title }}</h2>
-<p>By {{ .Params.author | default "Sudip" }}, <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02" }}">
-        {{ .Date.Format "January 2, 2006" }} · {{ math.Round (div (countwords .Content) 200.0) }} min read</time>
-</p>
-{{ if .TableOfContents }}
-<details>
-    <summary>Table of Contents</summary>
-    {{ .TableOfContents }}
-</details>
+    <a href="https://webring.blackpiratex.com" class="web1-ad" target="_blank" rel="noopener">
+      <div class="web1-stars">~ ~ ~ ~ ~</div>
+      <div class="web1-text">
+        <span class="web1-question">Are you an Indian?<span class="web1-flag"></span></span>
+        <span class="web1-cta">Join <span>WebSutra</span></span>
+      </div>
+      <div class="web1-subtitle">Indian Webring Network</div>
+      <div class="web1-stars">~ ~ ~ ~ ~</div>
+    </a>
+  </aside>
 
-{{ end }}
-<hr>
-{{ .Content }}
+  <article class="blog-content">
+    <h2>{{ .Title }}</h2>
+    <p>By {{ .Params.author | default "Sudip" }}, <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02" }}">
+            {{ .Date.Format "January 2, 2006" }} · {{ math.Round (div (countwords .Content) 200.0) }} min read</time>
+    </p>
+    <hr>
+    {{ .Content }}
+  </article>
+
+  <aside class="blog-sidebar-right">
+    <h3>Recent Thoughts</h3>
+    <div class="sidebar-thoughts">
+      {{ range first 5 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+      <div class="sidebar-thought-item">
+        <div class="sidebar-thought-meta">{{ .Date.Format "Jan 02" }}</div>
+        <div class="sidebar-thought-content">{{ .Content }}</div>
+      </div>
+      {{ end }}
+    </div>
+    <a href="/thoughts/" class="sidebar-link">View all thoughts &rarr;</a>
+  </aside>
+</div>
 {{ end }}
