@@ -1217,6 +1217,12 @@ button {
     flex-direction: column;
   }
 
+  .hero {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+
   .home-columns {
     grid-template-columns: 1fr;
     gap: 1.25rem;
