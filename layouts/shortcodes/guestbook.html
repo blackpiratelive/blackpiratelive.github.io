@@ -5,12 +5,41 @@
   <input name="website" placeholder="https://example.com (optional)" />
   <label for="message">Your Message</label>
   <textarea name="message" placeholder="Leave a note..." required></textarea>
+  <div id="guestbook-reply-context" hidden>
+    Replying to <strong id="guestbook-reply-name"></strong>
+    <button type="button" id="guestbook-reply-cancel" class="gbw-inline-btn">Cancel</button>
+  </div>
   <button type="submit" class="btn">Sign Guestbook</button>
 </form>
+<p class="guestbook-powered-by">
+  Powered by <a href="https://guestbook.blackpiratex.com" target="_blank" rel="noopener noreferrer">BlackPirateX's Guestbook</a>
+</p>
 
 <script>
   const baseUrl = "https://sudip-gb.blackpiratex.com";
   const owner = "sudip";
+  let replyParentId = null;
+
+  const formEl = document.getElementById("guestbook-form");
+  const replyContextEl = document.getElementById("guestbook-reply-context");
+  const replyNameEl = document.getElementById("guestbook-reply-name");
+  const replyCancelEl = document.getElementById("guestbook-reply-cancel");
+
+  const clearReplyTarget = () => {
+    replyParentId = null;
+    replyContextEl.hidden = true;
+    replyNameEl.textContent = "";
+  };
+
+  const setReplyTarget = (entryId, senderName) => {
+    replyParentId = entryId;
+    replyNameEl.textContent = senderName || "this entry";
+    replyContextEl.hidden = false;
+    formEl.querySelector("textarea[name='message']")?.focus();
+  };
+
+  replyCancelEl.addEventListener("click", clearReplyTarget);
+
   document.getElementById("guestbook-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const fd = new FormData(e.target);
@@ -19,6 +48,7 @@
       sender_name: fd.get("name"),
       sender_website: fd.get("website"),
       message: fd.get("message"),
+      parent_id: replyParentId,
       is_private: false,
       bot_field: ""
     };
@@ -28,16 +58,170 @@
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error("Failed to submit");
-    alert("Submitted!");
+
+    e.target.reset();
+    clearReplyTarget();
+    await mountGuestbook();
   });
 </script>
 <h2>Messages</h2>
 <div id="guestbook-entries"></div>
 <script src="https://sudip-gb.blackpiratex.com/guestbook-widget.js"></script>
 <script>
-  GuestbookWidget.mount({
-    baseUrl: "https://sudip-gb.blackpiratex.com",
-    username: "sudip",
-    container: "#guestbook-entries"
+  const escapeHtml = (text) => String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+  const normalizeId = (value) => {
+    if (value === null || value === undefined || value === "") return null;
+    return String(value);
+  };
+
+  const renderEntry = (entry, isReply = false) => {
+    const senderName = (entry.sender_name || "Anonymous").trim();
+    const senderNameLower = senderName.toLowerCase();
+    const ownerLower = owner.toLowerCase();
+    const isOwner = Boolean(entry.is_owner) || senderNameLower === ownerLower;
+    const name = escapeHtml(senderName);
+    const entryId = normalizeId(entry.id) || "";
+    const date = entry.created_at ? new Date(entry.created_at).toLocaleString() : "";
+    const message = escapeHtml(entry.message || "");
+    const website = (entry.sender_website || "").trim();
+    const likes = Number(entry.likes || 0);
+    const isOwnerReply = isReply && isOwner;
+
+    const nameHtml = website
+      ? `<a class="gbw-author" href="${escapeHtml(website)}" target="_blank" rel="noopener noreferrer">${name}</a>`
+      : `<span class="gbw-author">${name}</span>`;
+
+    return `
+      <article class="gbw-entry${isOwnerReply ? " gbw-owner-reply" : ""}">
+        <header class="gbw-entry-header">
+          <div class="gbw-entry-title">
+            ${nameHtml}
+            ${isOwner ? '<span class="gbw-owner-tag">OWNER</span>' : ""}
+            <span class="gbw-date"> - ${escapeHtml(date)}</span>
+          </div>
+        </header>
+        <div class="gbw-entry-body">${message}</div>
+        <div class="gbw-entry-actions">
+          <button type="button" class="gbw-action-btn" data-action="like" data-entry-id="${escapeHtml(entryId)}">
+            Like (<span class="gbw-like-count">${likes}</span>)
+          </button>
+          <button type="button" class="gbw-action-btn" data-action="reply" data-entry-id="${escapeHtml(entryId)}" data-entry-name="${name}">
+            Reply
+          </button>
+        </div>
+      </article>
+    `;
+  };
+
+  const sendLike = async (entryId) => {
+    const id = Number(entryId);
+    if (!Number.isFinite(id)) {
+      return { ok: false };
+    }
+
+    try {
+      const response = await fetch(`${baseUrl}/api/entries`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "like", id })
+      });
+
+      if (!response.ok) {
+        return { ok: false };
+      }
+
+      const data = await response.json().catch(() => ({}));
+      return { ok: true, data };
+    } catch (_) {
+      return { ok: false };
+    }
+  };
+
+  const mountGuestbook = async () => {
+    const container = document.querySelector("#guestbook-entries");
+    if (!container) return;
+
+    try {
+      const entries = await GuestbookWidget.fetchEntries({
+        baseUrl: "https://sudip-gb.blackpiratex.com",
+        username: "sudip"
+      });
+
+      const topLevel = [];
+      const repliesByParent = new Map();
+
+      entries.forEach((entry) => {
+        const parentId = normalizeId(entry.parent_id);
+
+        if (parentId !== null) {
+          const list = repliesByParent.get(parentId) || [];
+          list.push(entry);
+          repliesByParent.set(parentId, list);
+          return;
+        }
+
+        topLevel.push(entry);
+      });
+
+      const renderThread = (entry, depth = 0) => {
+        const entryId = normalizeId(entry.id);
+        const currentHtml = renderEntry(entry, depth > 0);
+        const replies = entryId ? (repliesByParent.get(entryId) || []) : [];
+        const repliesHtml = replies.map((reply) => renderThread(reply, depth + 1)).join("");
+        return `${currentHtml}${repliesHtml}`;
+      };
+
+      const html = topLevel.map((entry) => renderThread(entry, 0)).join("");
+
+      container.innerHTML = html;
+    } catch (_) {
+      container.innerHTML = "<p>Could not load guestbook entries.</p>";
+    }
+  };
+
+  document.getElementById("guestbook-entries").addEventListener("click", async (event) => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+
+    const action = button.dataset.action;
+    const entryId = button.dataset.entryId;
+
+    if (!entryId) return;
+
+    if (action === "reply") {
+      setReplyTarget(entryId, button.dataset.entryName || "this entry");
+      return;
+    }
+
+    if (action === "like") {
+      if (button.disabled) return;
+
+      button.disabled = true;
+      const result = await sendLike(entryId);
+
+      if (result.ok) {
+        const countEl = button.querySelector(".gbw-like-count");
+        if (countEl) {
+          const apiLikes = Number(result.data.likes);
+          if (Number.isFinite(apiLikes)) {
+            countEl.textContent = String(apiLikes);
+          } else {
+            countEl.textContent = String(Number(countEl.textContent || "0") + 1);
+          }
+        }
+      } else {
+        alert("Could not like this entry. Please try again.");
+      }
+
+      button.disabled = false;
+    }
   });
+
+  mountGuestbook();
 </script>

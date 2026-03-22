@@ -251,3 +251,34 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 - Homepage two-column area also uses breakout/full-width behavior.
 - Hero keeps cropped mobile image behavior (`background-size: cover`).
 - Lora font is active for body text via local font files in `themes/html/static/fonts/`.
+
+---
+
+## Guestbook Updates (March 2026)
+
+- Guestbook shortcode updated in `layouts/shortcodes/guestbook.html`.
+- Entries are now rendered as threaded conversations, so replies appear directly below the entry they respond to.
+- Owner replies are visually indented and include an `OWNER` tag for clear identification.
+- Added per-entry actions:
+  - `Like` button
+  - `Reply` button (sets `parent_id` and shows reply context above the form)
+- Like API wiring now matches backend docs:
+  - `PUT https://sudip-gb.blackpiratex.com/api/entries`
+  - Body: `{ "action": "like", "id": <entry id> }`
+- Reply creation continues via:
+  - `POST https://sudip-gb.blackpiratex.com/api/entries`
+  - Uses `parent_id` when replying to an existing entry.
+- Added a small attribution below the form:
+  - `Powered by BlackPirateX's Guestbook`
+  - Links to `https://guestbook.blackpiratex.com`
+
+### Guestbook Styling
+
+- Guestbook UI additions are in `themes/html/assets/css/main.css`.
+- Added styles for:
+  - `.gbw-owner-reply`
+  - `.gbw-owner-tag`
+  - `.gbw-entry-actions`
+  - `.gbw-action-btn`, `.gbw-inline-btn`
+  - `#guestbook-reply-context`
+  - `.guestbook-powered-by`

@@ -533,6 +533,16 @@ button {
   transform: translateY(-2px);
 }
 
+.guestbook-powered-by {
+  margin: -2rem 0 2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.guestbook-powered-by a {
+  color: var(--link);
+}
+
 #guestbook-entries {
   display: flex;
   flex-direction: column;
@@ -546,6 +556,18 @@ button {
   border-left: 4px solid var(--link);
 }
 
+.gbw-owner-reply {
+  margin-left: 1.5rem;
+  border-left-color: color-mix(in srgb, var(--link) 65%, var(--text));
+  background: color-mix(in srgb, var(--surface) 80%, var(--bg));
+}
+
+@media (max-width: 520px) {
+  .gbw-owner-reply {
+    margin-left: 0.9rem;
+  }
+}
+
 .gbw-entry-header {
   margin-bottom: 0.5rem;
   border-bottom: 1px solid var(--secondary);
@@ -556,6 +578,20 @@ button {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
+}
+
+.gbw-owner-tag {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.06rem;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--link);
+  border-radius: 2px;
+  vertical-align: middle;
 }
 
 .gbw-author {
@@ -572,6 +608,36 @@ button {
   font-family: "Lora", sans-serif;
   line-height: 1.6;
   font-size: 1.05rem;
+}
+
+.gbw-entry-actions {
+  margin-top: 0.7rem;
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.gbw-action-btn,
+.gbw-inline-btn {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.82rem;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: sans-serif;
+}
+
+.gbw-action-btn:hover,
+.gbw-inline-btn:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+#guestbook-reply-context {
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 /* Book Details styling */
