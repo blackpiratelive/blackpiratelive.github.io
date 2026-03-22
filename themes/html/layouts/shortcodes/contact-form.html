@@ -1,21 +1,50 @@
 
 <h2>{{ .Inner }}</h2>
 
-<p>This contact form only works on <a href="https://blackpiratex.com/contact/"><i>https://blackpiratex.com</i></a> and <a href="https://blackpiratex.netlify.app/contact/"><i>https://blackpiratex.netlify.app</i></a>. If you are using any other mirror it might not work.</p>
-<form name="contact-me" method="POST" data-netlify="true" action="/success/">
-  <div class="form-text">
-    <label for="your-name">Your Name: </label>
-    <input type="text" name="name" id="your-name" required placeholder="Jhon Doe">
+<form id="contact-form-ezkflb9b">
+  <div class="form-group">
+    <label for="name">Name *</label>
+    <input type="text" id="name" name="name" required>
   </div>
-  <div class="form-text">
-    <label for="your-email">Your Email:</label>
-    <input type="email" name="email" id="your-email" required placeholder="anything@yourdomain.tld">
+  <div class="form-group">
+    <label for="email">Email *</label>
+    <input type="email" id="email" name="email" required>
   </div>
-  <div class="form-text">
-    <label for="textarea">Message: </label>
-    <textarea name="message" id="textarea" required placeholder="Start by writting a joke"></textarea>
+  <div class="form-group">
+    <label for="website">Website</label>
+    <input type="url" id="website" name="website">
   </div>
-  <div>
-    <button type="submit" class="submit-button">Submit</button>
+  <div class="form-group">
+    <label for="other">Other contact info</label>
+    <input type="text" id="other" name="other">
   </div>
+  <div class="form-group">
+    <label for="message">Message *</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+  <!-- Honeypot field for spam protection -->
+  <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+  <button type="submit">Submit</button>
 </form>
+
+<script>
+document.getElementById("contact-form-ezkflb9b").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd.entries());
+  
+  const res = await fetch("https://guestbook.blackpiratex.com/api/submit?form=ezkflb9b", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  
+  const result = await res.json();
+  if (res.ok) {
+    alert(result.message || "Form submitted successfully!");
+    e.target.reset();
+  } else {
+    alert(result.error || "Failed to submit form");
+  }
+});
+</script>
