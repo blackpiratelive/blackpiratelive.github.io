@@ -292,6 +292,8 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 - **Rate Limiting**: Added a client-side wait timer that requires visitors to stay on the page for at least 60 seconds before submitting a comment.
   - The submit button is disabled and shows a countdown (e.g., "Post Comment (45s)").
   - Once the timer expires, the button is enabled and returns to its original state.
+- **Honeypot**: Added a hidden field `website_url_check` to the form.
+  - Submissions with this field filled are treated as bot spam.
 - Styled to match the website theme and Guestbook UI:
   - Uses `.comment-form` with `var(--surface)` background and consistent padding.
   - Reuses `.gbw-owner-tag` and `.gbw-action-btn` for consistency.
