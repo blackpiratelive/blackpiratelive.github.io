@@ -78,10 +78,34 @@
   const parentInput = document.getElementById("parent-id-cvofw6q4");
   const replyInfo = document.getElementById("replying-to-info-cvofw6q4");
   const cancelReplyBtn = document.getElementById("cancel-reply-cvofw6q4");
+  const submitBtn = form.querySelector('button[type="submit"]');
   const baseUrl = "https://guestbook.blackpiratex.com";
   const sectionId = "cvofw6q4";
   let pageUrl = window.location.origin + window.location.pathname;
   if (!pageUrl.endsWith("/")) pageUrl += "/";
+
+  // Rate limiting: wait 60 seconds before allowing submission
+  let canSubmit = false;
+  let secondsLeft = 60;
+  const originalBtnText = submitBtn.textContent;
+  
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = "0.6";
+  submitBtn.style.cursor = "not-allowed";
+
+  const timer = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft <= 0) {
+      clearInterval(timer);
+      canSubmit = true;
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = "1";
+      submitBtn.style.cursor = "pointer";
+      submitBtn.textContent = originalBtnText;
+    } else {
+      submitBtn.textContent = `${originalBtnText} (${secondsLeft}s)`;
+    }
+  }, 1000);
 
   async function fetchComments() {
     try {
@@ -182,6 +206,10 @@
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!canSubmit) {
+      alert(`Please wait ${secondsLeft} more seconds before submitting.`);
+      return;
+    }
     const fd = new FormData(e.target);
     const data = Object.fromEntries(fd.entries());
     data.section_id = sectionId;

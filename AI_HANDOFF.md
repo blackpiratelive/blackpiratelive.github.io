@@ -289,6 +289,9 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 
 - Moved comment section inside `article.blog-content` in `themes/html/layouts/blog/single.html`.
 - Comment box now appears directly below the post content, sharing the same column.
+- **Rate Limiting**: Added a client-side wait timer that requires visitors to stay on the page for at least 60 seconds before submitting a comment.
+  - The submit button is disabled and shows a countdown (e.g., "Post Comment (45s)").
+  - Once the timer expires, the button is enabled and returns to its original state.
 - Styled to match the website theme and Guestbook UI:
   - Uses `.comment-form` with `var(--surface)` background and consistent padding.
   - Reuses `.gbw-owner-tag` and `.gbw-action-btn` for consistency.
