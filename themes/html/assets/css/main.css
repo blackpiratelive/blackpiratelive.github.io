@@ -549,6 +549,177 @@ button {
   gap: 1.5rem;
 }
 
+/* Blog Comments Styles */
+.comments-container {
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+.comments-loading {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.comment {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.comment-author {
+  font-weight: 700;
+  color: var(--text);
+  font-family: "Montserrat", sans-serif;
+}
+
+.comment-date {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.comment-body {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.comment-footer {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.comment .replies {
+  margin-top: 1.5rem;
+  margin-left: 2rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border);
+}
+
+/* Comment Form Styles */
+.comment-form {
+  margin-top: 3rem;
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.comment-form h4 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.comment-form .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.comment-form .form-group-anon {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.comment-form .form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.comment-form .form-row .form-group {
+  flex: 1;
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: var(--link);
+}
+
+.comment-form .reply-context {
+  background: var(--surface-2);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-submit {
+  background: var(--link);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-inline {
+  background: none;
+  border: none;
+  color: var(--link);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: inherit;
+}
+
+@media (max-width: 600px) {
+  .comment-form .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .comment .replies {
+    margin-left: 1rem;
+    padding-left: 1rem;
+  }
+}
+
 .gbw-entry {
   background: var(--surface);
   padding: 1.2rem;

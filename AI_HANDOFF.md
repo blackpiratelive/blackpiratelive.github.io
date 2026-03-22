@@ -282,3 +282,17 @@ Edit `themes/html/hugo.toml` under `[menus]` section
   - `.gbw-action-btn`, `.gbw-inline-btn`
   - `#guestbook-reply-context`
   - `.guestbook-powered-by`
+
+---
+
+## Blog Comment Updates (March 2026)
+
+- Moved comment section inside `article.blog-content` in `themes/html/layouts/blog/single.html`.
+- Comment box now appears directly below the post content, sharing the same column.
+- Styled to match the website theme and Guestbook UI:
+  - Uses `.comment-form` with `var(--surface)` background and consistent padding.
+  - Reuses `.gbw-owner-tag` and `.gbw-action-btn` for consistency.
+  - Improved date formatting in `renderComment` using `toLocaleDateString`.
+  - Added responsive behavior for mobile (stacking form fields, reduced reply indentation).
+- API wiring remains connected to `https://guestbook.blackpiratex.com`.
+- Removed inline `<style>` block from the template; all styles moved to `themes/html/assets/css/main.css`.

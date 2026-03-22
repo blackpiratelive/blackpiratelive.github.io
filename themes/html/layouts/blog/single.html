@@ -26,7 +26,189 @@
     </p>
     <hr>
     {{ .Content }}
+
+    <hr>
+    <div id="comments-section-cvofw6q4" class="comments-container">
+      <h3>Comments</h3>
+      <!-- Comments List Container -->
+      <div id="comments-list-cvofw6q4">
+        <p class="comments-loading">Loading comments...</p>
+      </div>
+
+      <!-- Post Comment Form -->
+      <form id="comment-form-cvofw6q4" class="comment-form">
+        <h4>Post a Comment</h4>
+        <div class="form-group-anon">
+          <label>
+            <input type="checkbox" name="is_anonymous" id="anon-check">
+            Comment as Anonymous
+          </label>
+        </div>
+        <div class="form-row">
+          <div class="form-group field-name">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="sender_name" required>
+          </div>
+          <div class="form-group field-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="sender_email">
+          </div>
+        </div>
+        <div class="form-group field-url">
+          <label for="url">Website</label>
+          <input type="url" id="url" name="sender_url">
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment *</label>
+          <textarea id="comment" name="comment_text" required rows="4"></textarea>
+        </div>
+        <input type="hidden" name="parent_id" id="parent-id-cvofw6q4">
+        <div id="replying-to-info-cvofw6q4" class="reply-context" style="display:none;">
+          Replying to a comment... <button type="button" id="cancel-reply-cvofw6q4" class="btn-inline">Cancel</button>
+        </div>
+        <button type="submit" class="btn-submit">Post Comment</button>
+      </form>
+    </div>
   </article>
+
+<script>
+(function() {
+  const form = document.getElementById("comment-form-cvofw6q4");
+  const list = document.getElementById("comments-list-cvofw6q4");
+  const parentInput = document.getElementById("parent-id-cvofw6q4");
+  const replyInfo = document.getElementById("replying-to-info-cvofw6q4");
+  const cancelReplyBtn = document.getElementById("cancel-reply-cvofw6q4");
+  const baseUrl = "https://guestbook.blackpiratex.com";
+  const sectionId = "cvofw6q4";
+  let pageUrl = window.location.origin + window.location.pathname;
+  if (!pageUrl.endsWith("/")) pageUrl += "/";
+
+  async function fetchComments() {
+    try {
+      const res = await fetch(baseUrl + "/api/comments?section=" + sectionId + "&page_url=" + encodeURIComponent(pageUrl));
+      const data = await res.json();
+      renderComments(data.comments);
+    } catch (err) {
+      list.innerHTML = "Error loading comments.";
+    }
+  }
+
+  function renderComments(comments) {
+    if (!comments || comments.length === 0) {
+      list.innerHTML = "<p>No comments yet.</p>";
+      return;
+    }
+
+    const roots = comments.filter(c => !c.parent_id);
+    list.innerHTML = roots.map(c => renderComment(c, comments)).join("");
+  }
+
+  function renderComment(comment, all) {
+    const replies = all.filter(c => c.parent_id === comment.id);
+    const date = new Date(comment.created_at).toLocaleDateString(undefined, { 
+      year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+    });
+    
+    return `
+      <div class="comment" id="comment-${comment.id}">
+        <div class="comment-header">
+          <span class="comment-author">${escapeHtml(comment.sender_name || "Anonymous")}</span>
+          ${comment.is_owner ? '<span class="gbw-owner-tag">OWNER</span>' : ''}
+          <span class="comment-date">${date}</span>
+        </div>
+        <div class="comment-body">${escapeHtml(comment.comment_text)}</div>
+        <div class="comment-footer">
+          <button type="button" class="gbw-action-btn" onclick="window.__cw_like(${comment.id})">
+            <span>❤</span> <span>${comment.likes || 0}</span>
+          </button>
+          <button type="button" class="gbw-action-btn" onclick="window.__cw_reply(${comment.id})">
+            <span>Reply</span>
+          </button>
+        </div>
+        ${replies.length > 0 ? `
+          <div class="replies">
+            ${replies.map(r => renderComment(r, all)).join("")}
+          </div>
+        ` : ""}
+      </div>
+    `;
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  window.__cw_like = async (id) => {
+    await fetch(baseUrl + "/api/comments", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "like", id })
+    });
+    fetchComments();
+  };
+
+  window.__cw_reply = (id) => {
+    parentInput.value = id;
+    replyInfo.style.display = "block";
+    form.scrollIntoView({ behavior: 'smooth' });
+    form.querySelector("textarea").focus();
+  };
+
+  cancelReplyBtn.onclick = () => {
+    parentInput.value = "";
+    replyInfo.style.display = "none";
+  };
+
+  // Handle anonymous toggle
+  const anonCheck = document.getElementById("anon-check");
+  if (anonCheck) {
+    anonCheck.addEventListener("change", (e) => {
+      const isAnon = e.target.checked;
+      ["name", "email", "url"].forEach(f => {
+        const el = form.querySelector(".field-" + f);
+        if (el) el.style.display = isAnon ? "none" : "block";
+        const input = form.querySelector("[name='sender_" + f + "']");
+        if (input) input.required = isAnon ? false : (input.dataset.wasRequired === "true");
+      });
+    });
+    // Store original requirement
+    ["name", "email", "url"].forEach(f => {
+      const input = form.querySelector("[name='sender_" + f + "']");
+      if (input) input.dataset.wasRequired = input.required ? "true" : "false";
+    });
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+    data.section_id = sectionId;
+    data.page_url = pageUrl;
+    data.is_anonymous = anonCheck ? anonCheck.checked : false;
+    
+    const res = await fetch(baseUrl + "/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await res.json();
+    if (res.ok) {
+      alert(result.status === "pending" ? "Awaiting approval!" : "Comment posted!");
+      e.target.reset();
+      parentInput.value = "";
+      replyInfo.style.display = "none";
+      fetchComments();
+    } else {
+      alert(result.error || "Failed to post");
+    }
+  });
+
+  fetchComments();
+})();
+</script>
 
   <aside class="blog-sidebar-right">
     <h3>Recent Thoughts</h3>
