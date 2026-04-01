@@ -1511,35 +1511,51 @@ video {
     }
 
     .blog-box-nav {
-      order: 1;
+      order: 2;
+      grid-column: 1 / -1;
+      grid-row: 2;
     }
 
     .blog-box-hero {
-      order: 2;
+      order: 1;
+      grid-column: 1 / -1;
+      grid-row: 1;
     }
 
     .blog-box-meta {
       order: 3;
+      grid-column: 1 / -1;
+      grid-row: 3;
     }
 
     .blog-box-article {
       order: 4;
+      grid-column: 1 / -1;
+      grid-row: 4;
     }
 
     .blog-box-toc {
       order: 5;
+      grid-column: 1 / -1;
+      grid-row: 5;
     }
 
     .blog-box-next {
       order: 6;
+      grid-column: 1 / -1;
+      grid-row: 6;
     }
 
     .blog-box-ad {
       order: 7;
+      grid-column: 1 / -1;
+      grid-row: 7;
     }
 
     .blog-box-footer {
       order: 8;
+      grid-column: 1 / -1;
+      grid-row: 8;
     }
   }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -1581,10 +1597,12 @@ video {
     .blog-box-hero {
       grid-column: 1 / 4;
       height: 380px;
+      grid-row: 1;
     }
 
     .blog-left-column {
       grid-column: 1 / 2;
+      grid-row: 2;
       position: sticky;
       top: 1.5rem;
       max-height: calc(100vh - 3rem);
@@ -1594,10 +1612,12 @@ video {
     .blog-box-article,
     .blog-box-list {
       grid-column: 2 / 3;
+      grid-row: 2;
     }
 
     .blog-right-column {
       grid-column: 3 / 4;
+      grid-row: 2;
       position: sticky;
       top: 1.5rem;
       max-height: calc(100vh - 3rem);
@@ -1606,9 +1626,10 @@ video {
 
     .blog-box-footer {
       grid-column: 1 / 4;
+      grid-row: 3;
     }
   }
-.mosaic-grid {
+body.mosaic-home .mosaic-grid {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr;
@@ -1627,124 +1648,124 @@ body.mosaic-home .mosaic-box:hover {
     z-index: 10;
   }
 @media (min-width: 768px) {
-    .mosaic-grid {
+    body.mosaic-home .mosaic-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
 
-    .box-hero {
+    body.mosaic-home .box-hero {
       grid-column: span 2;
       grid-row: span 2;
     }
 
-    .box-nav {
+    body.mosaic-home .box-nav {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-about {
+    body.mosaic-home .box-about {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-posts {
+    body.mosaic-home .box-posts {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-pics {
+    body.mosaic-home .box-pics {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-books {
+    body.mosaic-home .box-books {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-interests {
+    body.mosaic-home .box-interests {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-thoughts {
+    body.mosaic-home .box-thoughts {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-webring {
+    body.mosaic-home .box-webring {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-buttons {
+    body.mosaic-home .box-buttons {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-footer {
+    body.mosaic-home .box-footer {
       grid-column: span 2;
       grid-row: span 1;
     }
   }
 @media (min-width: 1024px) {
-    .mosaic-grid {
+    body.mosaic-home .mosaic-grid {
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       grid-auto-rows: 280px;
     }
 
-    .box-nav {
+    body.mosaic-home .box-nav {
       grid-column: span 1;
       grid-row: span 2;
     }
 
-    .box-hero {
+    body.mosaic-home .box-hero {
       grid-column: span 2;
       grid-row: span 2;
     }
 
-    .box-about {
+    body.mosaic-home .box-about {
       grid-column: span 1;
       grid-row: span 2;
     }
 
-    .box-posts {
+    body.mosaic-home .box-posts {
       grid-column: span 1;
       grid-row: span 2;
     }
 
-    .box-pics {
+    body.mosaic-home .box-pics {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-interests {
+    body.mosaic-home .box-interests {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-books {
+    body.mosaic-home .box-books {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-thoughts {
+    body.mosaic-home .box-thoughts {
       grid-column: span 1;
       grid-row: span 1;
     }
 
-    .box-webring {
+    body.mosaic-home .box-webring {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-buttons {
+    body.mosaic-home .box-buttons {
       grid-column: span 2;
       grid-row: span 1;
     }
 
-    .box-footer {
+    body.mosaic-home .box-footer {
       grid-column: span 4;
       grid-row: span 1;
     }
@@ -1950,6 +1971,9 @@ body.mosaic-home .mosaic-box:hover {
 }
 .items-center {
   align-items: center;
+}
+.justify-start {
+  justify-content: flex-start;
 }
 .justify-end {
   justify-content: flex-end;
@@ -2252,6 +2276,9 @@ body.mosaic-home .mosaic-box:hover {
 }
 .pb-10 {
   padding-bottom: 2.5rem;
+}
+.pt-10 {
+  padding-top: 2.5rem;
 }
 .pt-6 {
   padding-top: 1.5rem;
@@ -2936,6 +2963,10 @@ body.mosaic-home .mosaic-box:hover {
     padding: 3rem;
   }
 
+  .md\:pt-12 {
+    padding-top: 3rem;
+  }
+
   .md\:text-left {
     text-align: left;
   }
@@ -3025,6 +3056,10 @@ body.mosaic-home .mosaic-box:hover {
 
   .lg\:pb-6 {
     padding-bottom: 1.5rem;
+  }
+
+  .lg\:pt-14 {
+    padding-top: 3.5rem;
   }
 
   .lg\:pt-8 {
