@@ -207,6 +207,28 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 
 ---
 
+## OS Experience (/os)
+
+- **Route**: `/os/` from `content/os.md` using `type: "os"`.
+- **Layout**: `themes/html/layouts/os/single.html` (standalone HTML, no header/footer).
+- **Assets**:
+  - CSS: `assets/css/os.css`
+  - JS: `assets/js/os.js`
+  - Animation lib: `assets/js/vendor/anime.min.js` (loaded only on `/os`).
+- **Design**: Retro OS UI with boot + login, draggable/resizable windows, taskbar, start menu.
+- **Login flow**: Skippable login overlay (auto types 8 dots) before boot sequence.
+- **Apps**:
+  - About, Blog, Projects, Contact, Guestbook, Calendar, Photos.
+  - Desktop icons: Blog, Guestbook, Photos.
+  - Start menu: full app list with search.
+- **Calendar**: Month view with date selection; shows `thoughts` content by date (build-time JSON embed).
+- **Weather/Clock**: Open-Meteo (Kolkata) + 24h time with seconds/date; shown on desktop and taskbar.
+- **Guestbook**: Uses shortcode `{{< guestbook >}}` in the OS window; OS-scoped styling in `assets/css/os.css`.
+- **Photos**: Split view (thumb list + preview) fed from `https://gallery.blackpiratex.com/index.json`, with fullscreen overlay.
+- **Animations**: anime.js-driven transitions for boot, windows, start menu, calendar, taskbar hover, widgets (skips Photos app).
+
+---
+
 ## External Dependencies
 
 - Mood Tracker API: `https://mood-tracker.blackpiratex.com`
