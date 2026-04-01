@@ -226,6 +226,7 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 ## Recent Homepage Updates (March 2026)
 
 - Homepage uses a full-width, two-column layout in `themes/html/layouts/home.html` and `themes/html/assets/css/main.css`.
+- Homepage background now reuses the hero image with a semi-transparent overlay (CSS-only parallax effect on desktop) configured in `themes/html/layouts/baseof.html` and `themes/html/assets/css/main.css`.
 - Left column now contains:
   - About + interests content (`{{ .Content }}` from `themes/html/content/_index.md`)
   - Featured gallery images (3 items, prefers `featured: true` gallery entries)

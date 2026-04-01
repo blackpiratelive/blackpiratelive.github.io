@@ -3,7 +3,13 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body>
+{{ if .IsHome }}
+  {{ $mebig := resources.Get "img/me-collage.jpg" }}
+  {{ $mebig = $mebig.Resize "1600x webp q80" }}
+  <body class="home" style="--home-hero-image: url('{{ $mebig.RelPermalink }}');">
+{{ else }}
+  <body>
+{{ end }}
   <header>
     {{ partial "header.html" . }}
   </header>

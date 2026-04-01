@@ -73,6 +73,32 @@ body {
   font-size: 1.1rem;
 }
 
+body.home {
+  background-color: transparent;
+  background-image: linear-gradient(rgba(249, 247, 244, 0.92), rgba(249, 247, 244, 0.92)), var(--home-hero-image);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.home {
+    background-image: linear-gradient(rgba(28, 31, 35, 0.9), rgba(28, 31, 35, 0.9)), var(--home-hero-image);
+  }
+}
+
+@media (max-width: 768px) {
+  body.home {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home {
+    background-attachment: scroll;
+  }
+}
+
 header {
   border-bottom: 1px solid var(--border);
   margin-bottom: 1.5rem;
