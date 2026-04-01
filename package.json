@@ -6,6 +6,7 @@
     "dev:css": "tailwindcss -i ./themes/mosaic/assets/css/tailwind.css -o ./themes/mosaic/assets/css/main.generated.css --watch"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",

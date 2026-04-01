@@ -1,15 +1,138 @@
 {{ define "main" }}
+{{ $me := resources.Get "img/me1.jpg" }}
+{{ $me = $me.Resize "120x webp q80" }}
+{{ $hero := resources.Get "img/me-collage.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
 
-<h1 class="section-title">Blog</h1>
-{{ range .Pages.ByDate.Reverse }}
-<div class="entry">
-	<div class="date">
-{{ .Date.Format "2006-01-02" }}
-</div>
-<div class="title">
-<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-</div>
-</div>
-{{ end }}
+<main class="w-full">
+  <div class="blog-grid">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-[2rem] overflow-hidden relative group bg-zinc-800">
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
 
+      <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-3 mb-3 lg:mb-4">
+          <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Blog</span>
+          <span class="text-zinc-300 font-medium text-xs lg:text-sm">{{ len .Pages }} posts</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-2 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+          Latest Writings
+        </h1>
+      </div>
+    </div>
+
+    <div class="left-column blog-left-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-[2rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+        <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
+          {{ with $me }}
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          {{ end }}
+          <div>
+            <h2 class="text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+          </div>
+        </div>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Home</a>
+          <a href="{{ "/blog/" | relURL }}" class="shrink-0 bg-zinc-800/50 hover:bg-zinc-700 text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> All Posts</a>
+          <a href="{{ "/gallery/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="image" class="w-4 h-4"></i> Gallery</a>
+        </nav>
+      </div>
+
+      <div class="mosaic-box interactive-box box-meta blog-box-meta bg-pink-600 rounded-[2rem] p-4 lg:p-6 text-pink-50 flex flex-col gap-2 lg:gap-4">
+        <h3 class="hidden lg:block font-bold text-lg text-white">Blog Stats</h3>
+        <ul class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs lg:text-sm font-medium">
+          <li class="shrink-0 flex items-center gap-2 bg-pink-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="file-text" class="w-4 h-4 opacity-70"></i> {{ len .Pages }} posts</li>
+          {{ with index .Pages.ByDate.Reverse 0 }}
+          <li class="shrink-0 flex items-center gap-2 bg-pink-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="clock" class="w-4 h-4 opacity-70"></i> Updated {{ .Date.Format "Jan 2, 2006" }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+
+    <section class="mosaic-box blog-box-list bg-zinc-900 rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">All Posts</h2>
+        <span class="text-xs font-medium text-zinc-400 uppercase tracking-wider">{{ len .Pages }} entries</span>
+      </div>
+      <div class="space-y-4">
+        {{ range .Pages.ByDate.Reverse }}
+        {{ $thumb := .Params.cover | default .Params.image | default "" }}
+        {{ if not $thumb }}
+          {{ with .Resources.GetMatch "cover.*" }}
+            {{ $thumb = .RelPermalink }}
+          {{ end }}
+        {{ end }}
+        <a href="{{ .RelPermalink }}" class="blog-card block rounded-2xl border border-zinc-800/60 bg-zinc-800/40 p-5 transition hover:bg-zinc-800">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center">
+            <div class="flex-1">
+              <div class="text-xs font-semibold uppercase tracking-widest text-zinc-400">{{ .Date.Format "January 2, 2006" }}</div>
+              <h3 class="mt-2 text-xl font-bold text-white">{{ .Title }}</h3>
+              <p class="mt-2 text-sm text-zinc-300">
+                {{ .Summary | truncate 160 }}
+              </p>
+            </div>
+            <div class="flex shrink-0 items-center gap-3">
+              {{ if $thumb }}
+              <div class="h-20 w-20 overflow-hidden rounded-xl border border-zinc-700">
+                <img src="{{ $thumb }}" alt="{{ .Title }}" class="h-full w-full object-cover" loading="lazy">
+              </div>
+              {{ end }}
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-white">
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </span>
+            </div>
+          </div>
+        </a>
+        {{ end }}
+      </div>
+    </section>
+
+    <div class="right-column blog-right-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-[2rem] p-6 text-blue-50">
+        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5"></i> Featured Tags</h3>
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          {{ range first 12 (sort site.Taxonomies.tags "Count" "desc") }}
+          <a href="{{ .Page.RelPermalink }}" class="rounded-full bg-blue-500/30 px-3 py-1 transition hover:bg-blue-500/50">#{{ .Page.Title }}</a>
+          {{ end }}
+        </div>
+      </div>
+
+      {{ with index .Pages.ByDate.Reverse 0 }}
+      <div class="mosaic-box interactive-box box-next blog-box-next bg-amber-500 rounded-[2rem] p-6 text-amber-950 flex flex-col justify-between h-full">
+        <div>
+          <h3 class="font-black text-lg mb-1 opacity-80 uppercase tracking-widest text-xs">Latest Post</h3>
+          <a href="{{ .RelPermalink }}" class="block text-xl font-bold hover:underline mb-4">{{ .Title }}</a>
+        </div>
+        <a href="{{ .RelPermalink }}" class="w-10 h-10 rounded-full bg-amber-950 text-amber-50 flex items-center justify-center hover:scale-110 transition-transform self-end">
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+      {{ end }}
+
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-[2rem] p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+        <div class="text-lg font-black mb-1">WebSutra</div>
+        <div class="text-xs opacity-80 font-medium mb-3">Indian Webring Network</div>
+        <div class="bg-white/20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
+      </a>
+    </div>
+
+    <footer class="mosaic-box interactive-box box-footer blog-box-footer bg-zinc-900 rounded-[2rem] p-8 border border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+        <a href="{{ "/" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">← Home</a>
+        <a href="{{ "/projects" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">Projects</a>
+        <a href="{{ "/about" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">About</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="{{ "/index.xml" | relURL }}" class="text-zinc-500 hover:text-orange-400 transition"><i data-lucide="rss" class="w-5 h-5"></i></a>
+        {{ with site.Params.github }}
+        <a href="{{ . }}" class="text-zinc-500 hover:text-white transition"><i data-lucide="github" class="w-5 h-5"></i></a>
+        {{ end }}
+        {{ with site.Params.mastodon }}
+        <a href="{{ . }}" class="text-zinc-500 hover:text-blue-400 transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+        {{ end }}
+      </div>
+    </footer>
+  </div>
+</main>
 {{ end }}
