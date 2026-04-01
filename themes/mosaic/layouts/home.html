@@ -1,0 +1,257 @@
+{{ define "main" }}
+{{ $me := resources.Get "img/me-2.jpg" }}
+{{ $me = $me.Resize "300x webp q80" }}
+{{ $hero := resources.Get "img/me1.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
+{{ $author := site.Params.author | default "Sudip" }}
+{{ $tagline := site.Params.tagline | default "Welcome to my website" }}
+
+{{- $posts := site.RegularPages -}}
+{{- $words := 0 -}}
+{{- range $posts -}}
+  {{- $words = add $words .WordCount -}}
+{{- end -}}
+
+{{ $featuredGallery := where (where site.RegularPages "Section" "gallery") "Params.featured" true }}
+{{ $featuredGallery = sort $featuredGallery "Params.weight" "asc" }}
+{{ if eq (len $featuredGallery) 0 }}
+  {{ $featuredGallery = first 3 (sort (where site.RegularPages "Section" "gallery") "Date" "desc") }}
+{{ else }}
+  {{ $featuredGallery = first 3 $featuredGallery }}
+{{ end }}
+
+{{ $recentReadBooks := first 3 (sort (where (where site.RegularPages "Section" "books") "Params.shelf" "read") "Date" "desc") }}
+
+<div class="mosaic-grid">
+    <div class="mosaic-box box-nav bg-zinc-900 rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between overflow-y-auto no-scrollbar border border-zinc-800/50">
+      <div class="flex flex-col items-center mb-4 sm:mb-6 text-center">
+        {{ with $me }}
+        <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-16 h-16 sm:w-24 sm:h-24 rounded-full mb-3 sm:mb-4 object-cover shadow-lg border-4 border-zinc-800">
+        {{ end }}
+        <h1 class="text-xl sm:text-2xl font-bold mb-1">{{ site.Title }}</h1>
+        <p class="text-[10px] sm:text-xs font-medium text-zinc-400 uppercase tracking-wider hidden sm:block">{{ len $posts }} posts · {{ $words }} words</p>
+      </div>
+      <nav class="flex flex-col gap-2 w-full flex-grow justify-center">
+        <a href="{{ "/" | relURL }}" class="bg-zinc-800/50 hover:bg-zinc-700 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="home" class="w-4 h-4"></i> Home</a>
+        <a href="{{ "/thoughts/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="message-square" class="w-4 h-4"></i> Thoughts</a>
+        <a href="{{ "/blog/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> Blog</a>
+        <a href="{{ "/books/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="book" class="w-4 h-4"></i> Book Notes</a>
+        <a href="{{ "/gallery/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="image" class="w-4 h-4"></i> Gallery</a>
+        <a href="{{ "/uses/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="monitor" class="w-4 h-4"></i> Uses</a>
+      </nav>
+    </div>
+
+    <div class="mosaic-box box-hero rounded-[2rem] overflow-hidden relative group bg-rose-900">
+      {{ with $hero }}
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ .RelPermalink }}');"></div>
+      {{ end }}
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
+      <div class="relative h-full flex flex-col justify-end p-8 sm:p-12">
+        <p class="text-xl font-medium text-rose-300 mb-2 tracking-wide">Hello, I am</p>
+        <h1 class="text-6xl md:text-8xl font-black text-white mb-4 tracking-tight">{{ $author }}</h1>
+        <p class="text-xl md:text-2xl font-medium text-white/90 opacity-90">{{ $tagline }}</p>
+      </div>
+    </div>
+
+    <div class="mosaic-box box-about bg-violet-600 rounded-[2rem] p-8 overflow-y-auto no-scrollbar">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">About Me</h2>
+        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm"><i data-lucide="user" class="w-5 h-5"></i></div>
+      </div>
+      <div class="space-y-4 text-sm md:text-base font-medium leading-relaxed opacity-90">
+        {{ with site.Params.about }}
+          {{ . | markdownify }}
+        {{ else }}
+          {{ with site.Params.description }}
+            {{ . | markdownify }}
+          {{ else }}
+            <p>Hey there! I'm Sudip. Thanks for stopping by my little corner of the internet. I made this page to store things I like, free from algorithms.</p>
+            <p>I'm in my early twenties, finished Zoology graduation in 2025, now preparing for govt job exams.</p>
+            <p><strong class="text-white">Building websites</strong> is my hobby. I love ducks and cats. Preparing for exams. Graduate in <strong class="text-white">Zoology</strong> from Bankura Christian College. Now living in Midnapore.</p>
+            <p>Who am I? Almost <strong class="text-white">extroverted</strong>, but definitely like solitude. I spend a lot of time working with tech stuff but I also study, and sometimes when I have a chance I travel. Good balance I guess?</p>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="mosaic-box box-posts bg-blue-600 rounded-[2rem] p-8 overflow-y-auto no-scrollbar">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5"></i> Recent Posts</h2>
+      <div class="flex flex-col gap-3">
+        {{ range first 5 (sort (where site.RegularPages "Section" "blog") "Date" "desc") }}
+        <a href="{{ .RelPermalink }}" class="group block bg-blue-700/40 hover:bg-blue-700 p-4 rounded-xl transition">
+          <span class="text-xs font-bold text-blue-300 block mb-1">{{ .Date.Format "01-02" }}</span>
+          <span class="font-medium group-hover:text-white leading-tight block">{{ .Title }}</span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="mosaic-box box-pics bg-amber-500 rounded-[2rem] p-6 sm:p-8 flex flex-col overflow-hidden text-amber-950">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-black">Featured Pics</h2>
+        <a href="{{ "/gallery/" | relURL }}" class="text-sm font-bold opacity-80 hover:opacity-100 flex items-center gap-1">View All <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="grid grid-cols-3 gap-3 h-full">
+        {{ range $featuredGallery }}
+        {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+        {{ $img := "" }}
+        {{ if not hugo.IsServer }}
+          {{ $img = resources.GetRemote $imgUrl }}
+        {{ end }}
+        <a href="{{ .RelPermalink }}" class="block rounded-xl overflow-hidden group/img relative">
+          {{ if $img }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500" loading="lazy">
+          {{ else if $imgUrl }}
+          <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500" loading="lazy">
+          {{ end }}
+          <div class="absolute inset-0 bg-black/20 group-hover/img:bg-transparent transition-colors"></div>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="mosaic-box box-interests bg-pink-600 rounded-[2rem] p-8 flex flex-col justify-center">
+      <h2 class="text-2xl font-bold mb-4">My Interests</h2>
+      <ul class="space-y-3 font-medium text-sm md:text-base">
+        <li class="bg-pink-700/50 p-3 rounded-xl flex items-center gap-3">💻 <span>Computers</span></li>
+        <li class="bg-pink-700/50 p-3 rounded-xl flex items-center gap-3">✈️ <span>Travelling</span></li>
+        <li class="bg-pink-700/50 p-3 rounded-xl flex items-center gap-3">📸 <span>Photography</span></li>
+      </ul>
+    </div>
+
+    <div class="mosaic-box box-books bg-emerald-500 rounded-[2rem] p-6 sm:p-8 flex flex-col text-emerald-950">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-black">Latest Reads</h2>
+        <a href="{{ "/books/" | relURL }}" class="text-sm font-bold opacity-80 hover:opacity-100 flex items-center gap-1">More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="flex justify-around items-center h-full gap-4">
+        {{ range $recentReadBooks }}
+        <a href="{{ .RelPermalink }}" class="hover:-translate-y-3 transition-transform duration-300">
+          {{ with .Params.cover }}
+          <img src="{{ . }}" alt="{{ $.Title }}" class="h-32 sm:h-40 object-cover rounded shadow-lg border-2 border-emerald-300" loading="lazy">
+          {{ else }}
+          <div class="h-32 sm:h-40 w-24 bg-emerald-200/60 rounded shadow-lg border-2 border-emerald-300 flex items-center justify-center text-emerald-900 text-sm font-semibold px-3 text-center">{{ .Title }}</div>
+          {{ end }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="mosaic-box box-thoughts bg-teal-600 rounded-[2rem] p-8 overflow-y-auto no-scrollbar">
+      <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><i data-lucide="lightbulb" class="w-5 h-5"></i> Thoughts</h2>
+      <div class="space-y-3">
+{{ range first 3 (sort (where site.RegularPages "Section" "thoughts") "Date" "desc") }}
+        <div class="bg-teal-700/40 p-4 rounded-xl text-sm font-medium leading-relaxed">
+          {{ .Plain | truncate 180 }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="mosaic-box box-webring bg-fuchsia-600 rounded-[2rem] p-8 flex flex-col justify-center items-center text-center">
+      <h2 class="text-xl font-bold mb-4">WebSutra Members</h2>
+
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="w-full max-w-sm bg-fuchsia-800/50 hover:bg-fuchsia-800 p-4 rounded-xl border border-fuchsia-400/30 transition shadow-inner">
+        <div class="text-xs opacity-60 mb-1 tracking-widest">~ ~ ~ ~ ~</div>
+        <div class="font-bold mb-1 flex items-center justify-center gap-2">Are you an Indian? <span class="text-lg">🇮🇳</span></div>
+        <div class="text-lg font-black text-fuchsia-200 mb-1">Join WebSutra</div>
+        <div class="text-xs opacity-80 font-medium">Indian Webring Network</div>
+        <div class="text-xs opacity-60 mt-1 tracking-widest">~ ~ ~ ~ ~</div>
+      </a>
+    </div>
+
+    <div class="mosaic-box box-buttons bg-indigo-600 rounded-[2rem] p-8 flex flex-col justify-center">
+      <div class="flex flex-col sm:flex-row gap-3 mb-6">
+        <a href="{{ "/index.xml" | relURL }}" class="flex-1 bg-indigo-800/50 hover:bg-indigo-800 text-center py-4 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2 border border-indigo-400/20 shadow-sm"><i data-lucide="rss" class="w-4 h-4 text-orange-400"></i> Subscribe via RSS</a>
+        <a href="{{ "/guestbook" | relURL }}" class="flex-1 bg-indigo-800/50 hover:bg-indigo-800 text-center py-4 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2 border border-indigo-400/20 shadow-sm"><i data-lucide="book-open" class="w-4 h-4 text-yellow-400"></i> Sign my Guestbook</a>
+      </div>
+
+      <div class="flex flex-wrap gap-2 justify-center items-center opacity-90 hover:opacity-100 transition-opacity">
+        <img src="{{ "/human.png" | relURL }}" alt="" class="h-8 rendering-pixelated rounded-sm">
+        <a href="{{ "/index.xml" | relURL }}"><img src="{{ "/img/rss.gif" | relURL }}" alt="" class="h-8 rendering-pixelated rounded-sm"></a>
+        <img src="{{ "/img/internetprivacy.png" | relURL }}" alt="" class="h-8 rendering-pixelated rounded-sm">
+        <img src="{{ "/img/learnhtmlbutton.gif" | relURL }}" alt="" class="h-8 rendering-pixelated rounded-sm">
+        <a href="https://readingproject.au/"><img src="{{ "/img/readingproject.png" | relURL }}" alt="" class="h-8 rendering-pixelated rounded-sm"></a>
+        <img src="{{ "/img/sw.png" | relURL }}" alt="" class="h-8 rendering-pixelated rounded-sm">
+      </div>
+      <p class="text-center text-xs font-medium opacity-60 mt-4 tracking-wider uppercase">Made with Love on Cachy OS Linux</p>
+      <script src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
+    </div>
+
+    <footer class="mosaic-box box-footer bg-zinc-900 rounded-[2rem] p-8 md:p-10 flex flex-col md:flex-row justify-between gap-8 md:gap-4 border border-zinc-800/50">
+      <div class="flex-1">
+        <h3 class="font-bold text-lg mb-4 text-zinc-200 flex items-center gap-2"><i data-lucide="compass" class="w-5 h-5"></i> Browse</h3>
+        <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm font-medium">
+          <a href="{{ "/projects" | relURL }}" class="text-zinc-400 hover:text-white transition">Projects</a>
+          <a href="{{ "/blog" | relURL }}" class="text-zinc-400 hover:text-white transition">Blog</a>
+          <a href="https://gallery.blackpiratex.com" class="text-zinc-400 hover:text-white transition">Gallery</a>
+          <a href="https://music.blackpiratex.com" class="text-zinc-400 hover:text-white transition">Music</a>
+          <a href="https://notes.blackpiratex.com" class="text-zinc-400 hover:text-white transition">Notes</a>
+          <a href="https://status.blackpiratex.com" class="text-zinc-400 hover:text-white transition">Status</a>
+          <a href="{{ "/bookmarks" | relURL }}" class="text-zinc-400 hover:text-white transition">Bookmarks</a>
+          <a href="{{ "/contact" | relURL }}" class="text-zinc-400 hover:text-white transition">Contact</a>
+          <a href="{{ "/credits" | relURL }}" class="text-zinc-400 hover:text-white transition">Credits</a>
+          <a href="{{ "/about" | relURL }}" class="text-zinc-400 hover:text-white transition">About</a>
+        </div>
+      </div>
+
+      <div class="flex-1">
+        <h3 class="font-bold text-lg mb-4 text-zinc-200 flex items-center gap-2"><i data-lucide="share-2" class="w-5 h-5"></i> Follow</h3>
+        <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm font-medium">
+          <a href="https://links.blackpiratex.com/github" class="text-zinc-400 hover:text-white transition">Github</a>
+          <a href="https://links.blackpiratex.com/pixelfed" class="text-zinc-400 hover:text-white transition">Pixelfed</a>
+          <a href="https://links.blackpiratex.com/yt" class="text-zinc-400 hover:text-white transition">Youtube</a>
+          <a href="https://links.blackpiratex.com/mastodon" class="text-zinc-400 hover:text-white transition">Mastodon</a>
+          <a href="https://links.blackpiratex.com/wa" class="text-zinc-400 hover:text-white transition">WhatsApp</a>
+          <a href="https://links.blackpiratex.com/last.fm" class="text-zinc-400 hover:text-white transition">Last.fm</a>
+        </div>
+      </div>
+
+      <div class="flex-[1.5]">
+        <h3 class="font-bold text-lg mb-4 text-zinc-200 flex items-center gap-2"><i data-lucide="globe" class="w-5 h-5"></i> Webrings</h3>
+        <div class="flex flex-col gap-3 text-sm font-medium">
+          <div class="flex flex-wrap items-center gap-3 bg-zinc-800/50 p-2 rounded-lg">
+            <span class="font-bold text-white w-20">WebSutra</span>
+            <div class="flex gap-2 text-zinc-400">
+              <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home" class="hover:text-white transition">Prev</a> •
+              <a href="https://webring.blackpiratex.com/api/ring?action=random" class="hover:text-white transition">Random</a> •
+              <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home" class="hover:text-white transition">Next</a>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 bg-zinc-800/50 p-2 rounded-lg">
+            <span class="font-bold text-white w-20">Hotline</span>
+            <div class="flex gap-2 text-zinc-400">
+              <a href="https://hotlinewebring.club/bpx/previous" class="hover:text-white transition">Prev</a> •
+              <a href="https://hotlinewebring.club" class="hover:text-white transition">Index</a> •
+              <a href="https://hotlinewebring.club/bpx/next" class="hover:text-white transition">Next</a>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 bg-zinc-800/50 p-2 rounded-lg">
+            <span class="font-bold text-white w-20">Retronut</span>
+            <div class="flex gap-2 text-zinc-400">
+              <a href="https://webring.dinhe.net/prev/https://blackpiratex.com" class="hover:text-white transition">Prev</a> •
+              <a href="https://webring.dinhe.net" class="hover:text-white transition">Index</a> •
+              <a href="https://webring.dinhe.net/next/https://blackpiratex.com" class="hover:text-white transition">Next</a>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 bg-zinc-800/50 p-2 rounded-lg">
+            <span class="font-bold text-white w-20">Bucketfish</span>
+            <div class="flex gap-2 text-zinc-400">
+              <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex" class="hover:text-white transition">Prev</a> •
+              <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex" class="hover:text-white transition">Random</a> •
+              <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex" class="hover:text-white transition">Next</a>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 bg-zinc-800/50 p-2 rounded-lg">
+            <span class="font-bold text-white w-20">Static.Quest</span>
+            <div class="flex gap-2 text-zinc-400">
+              <a href="https://static.quest/previous/?host=blackpiratex.com" class="hover:text-white transition">Prev</a> •
+              <a href="https://static.quest/members" class="hover:text-white transition">Index</a> •
+              <a href="https://static.quest/next/?host=blackpiratex.com" class="hover:text-white transition">Next</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+{{ end }}

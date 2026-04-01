@@ -7,6 +7,12 @@ log() {
   echo "[vercel-build] $*"
 }
 
+if [ -f "package.json" ]; then
+  log "Installing node dependencies"
+  npm install
+  export PATH="$PWD/node_modules/.bin:$PATH"
+fi
+
 
 # 1. Restore resources from cache (if they exist)
 if [ -d "node_modules/.cache/hugo_resources" ]; then

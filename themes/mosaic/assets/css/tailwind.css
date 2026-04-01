@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body.mosaic-home header,
+  body.mosaic-home .site-header {
+    display: none;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body.mosaic-home {
+    font-family: "Space Grotesk", sans-serif;
+    background-color: #09090b;
+    color: #ffffff;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+    line-height: 1.5;
+    border: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-transform: none;
+    letter-spacing: normal;
+    background: none;
+    padding: 0;
+  }
+
+  body.mosaic-home a {
+    color: inherit;
+  }
+
+  body.mosaic-home main {
+    width: 100%;
+  }
+
+  body.mosaic-home footer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  body.mosaic-home a {
+    text-decoration: none;
+  }
+
+  body.mosaic-home ul,
+  body.mosaic-home li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .rendering-pixelated {
+    image-rendering: pixelated;
+  }
+}
+
+@layer components {
+  .mosaic-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(240px, auto);
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .mosaic-box {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .mosaic-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .mosaic-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .box-hero {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .box-nav {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-about {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-posts {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-pics {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-books {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-interests {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-thoughts {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-webring {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-buttons {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-footer {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mosaic-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      grid-auto-rows: 280px;
+    }
+
+    .box-nav {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+
+    .box-hero {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .box-about {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+
+    .box-posts {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+
+    .box-pics {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-interests {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-books {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-thoughts {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .box-webring {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-buttons {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .box-footer {
+      grid-column: span 4;
+      grid-row: span 1;
+    }
+  }
+}

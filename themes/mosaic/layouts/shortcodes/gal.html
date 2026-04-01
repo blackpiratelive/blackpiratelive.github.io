@@ -1,0 +1,32 @@
+{{ $images := .Inner | transform.Unmarshal }}
+
+<div class="justified-gallery" data-row-height="180" data-margins="5">
+  {{ range $images }}
+    <a href="{{ .src }}" {{ with .caption }}title="{{ . }}"{{ end }}>
+      <img src="{{ .thumb | default .src }}" loading="lazy" alt="{{ .alt | default "Image" }}">
+    </a>
+  {{ end }}
+</div>
+
+{{ if not (.Page.Scratch.Get "gal-loaded") }}
+  {{ .Page.Scratch.Set "gal-loaded" true }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      $('.justified-gallery').justifiedGallery({
+        rowHeight: 180,
+        margins: 5,
+        captions: true
+      }).on('jg.complete', function () {
+        lightGallery(document.querySelector('.justified-gallery'), {
+          selector: 'a',
+          download: false
+        });
+      });
+    });
+  </script>
+{{ end }}

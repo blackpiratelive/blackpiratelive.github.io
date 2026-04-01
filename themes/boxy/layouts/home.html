@@ -1,0 +1,64 @@
+{{ define "main" }}
+<div class="grid-home">
+    
+    <!-- 1. NAVIGATION -->
+    {{ partial "nav-profile.html" . }}
+
+    <!-- 2. HERO -->
+    <div class="mosaic-box interactive-box h-box-hero rounded-[2rem] overflow-hidden relative group bg-rose-900">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ "img/me-collage_hu_4c7d35a8de0db301.webp" | absURL }}');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
+        <div class="relative h-full flex flex-col justify-end p-8 sm:p-12">
+            <p class="text-xl font-medium text-rose-300 mb-2 tracking-wide">Hello, I am</p>
+            <h1 class="text-6xl md:text-8xl font-black text-white mb-4 tracking-tight">{{ site.Params.author }}</h1>
+            <p class="text-xl md:text-2xl font-medium text-white/90 opacity-90">{{ site.Params.tagline }}</p>
+        </div>
+    </div>
+
+    <!-- 3. ABOUT -->
+    <div class="mosaic-box interactive-box h-box-about bg-violet-600 rounded-[2rem] p-8 overflow-y-auto no-scrollbar">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold">About Me</h2>
+            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm"><i data-lucide="user" class="w-5 h-5"></i></div>
+        </div>
+        <div class="space-y-4 text-sm md:text-base font-medium leading-relaxed opacity-90">
+            {{ site.Params.description | markdownify }}
+        </div>
+    </div>
+
+    <!-- 4. RECENT POSTS -->
+    <div class="mosaic-box interactive-box h-box-posts bg-blue-600 rounded-[2rem] p-8 overflow-y-auto no-scrollbar">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5"></i> Recent Posts</h2>
+        <div class="flex flex-col gap-3">
+            {{ range first 5 (where site.RegularPages "Section" "blog") }}
+            <a href="{{ .RelPermalink }}" class="group block bg-blue-700/40 hover:bg-blue-700 p-4 rounded-xl transition">
+                <span class="text-xs font-bold text-blue-300 block mb-1">{{ .Date.Format "01-02" }}</span>
+                <span class="font-medium group-hover:text-white leading-tight block">{{ .Title }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- 5. FEATURED PICS -->
+    <div class="mosaic-box interactive-box h-box-pics bg-amber-500 rounded-[2rem] p-6 sm:p-8 flex flex-col overflow-hidden text-amber-950">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-black">Featured Pics</h2>
+            <a href="/gallery/" class="text-sm font-bold opacity-80 hover:opacity-100 flex items-center gap-1">View All <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+        <div class="grid grid-cols-3 gap-3 h-full">
+            {{ range first 3 (where site.RegularPages "Section" "gallery") }}
+            <a href="{{ .RelPermalink }}" class="block rounded-xl overflow-hidden group/img relative">
+                {{ with .Resources.GetMatch "cover.*" }}
+                <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500">
+                {{ end }}
+                <div class="absolute inset-0 bg-black/20 group-hover/img:bg-transparent transition-colors"></div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- 6. FOOTER -->
+    {{ partial "footer.html" . }}
+
+</div>
+{{ end }}

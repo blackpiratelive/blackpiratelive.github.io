@@ -1,0 +1,128 @@
+{{- $id := delimit (slice "lightbox" (now.UnixNano)) "-" -}}
+{{- $images := .Params -}}
+{{- $thumbnail := "" -}}
+{{- if gt (len $images) 0 -}}
+    {{- $thumbnail = index $images 0 -}}
+{{- end -}}
+
+<div class="lightbox-trigger" data-lightbox-id="{{ $id }}">
+    {{- if .Inner -}}
+        {{ .Inner | markdownify }}
+    {{- else if $thumbnail -}}
+        <img src="{{ $thumbnail }}" alt="Lightbox trigger" style="cursor: pointer; max-width: 200px;"/>
+    {{- else -}}
+        <button class="btn">View Image</button>
+    {{- end -}}
+</div>
+
+<div id="{{ $id }}" class="lightbox-modal">
+    <span class="lightbox-close">&times;</span>
+
+    <div class="lightbox-content">
+        {{- range $index, $image_url := $images -}}
+            <img class="lightbox-image {{ if ne $index 0 }}hidden{{ end }}" src="{{ $image_url }}" alt="Image {{ add $index 1 }}">
+        {{- end -}}
+    </div>
+
+    {{- if gt (len $images) 1 -}}
+        <a class="lightbox-prev">&#10094;</a>
+        <a class="lightbox-next">&#10095;</a>
+    {{- end -}}
+</div>
+
+
+
+<script>
+    (function() {
+        // Find all lightbox triggers on the page
+        const triggers = document.querySelectorAll('.lightbox-trigger');
+
+        // Check if a global keyboard listener already exists
+        let keyboardListenerAttached = document.body.hasAttribute('data-lightbox-keyboard-listener');
+
+        triggers.forEach(trigger => {
+            const lightboxId = trigger.dataset.lightboxId;
+            const modal = document.getElementById(lightboxId);
+
+            // If for some reason a trigger or modal is missing, skip
+            if (!trigger || !modal) {
+                console.warn(`Lightbox elements not found for ID: ${lightboxId}`);
+                return;
+            }
+
+            const closeBtn = modal.querySelector('.lightbox-close');
+            const images = modal.querySelectorAll('.lightbox-image');
+            const prevBtn = modal.querySelector('.lightbox-prev');
+            const nextBtn = modal.querySelector('.lightbox-next');
+            let currentIndex = 0;
+
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    img.classList.add('hidden');
+                    if (i === index) {
+                        img.classList.remove('hidden');
+                    }
+                });
+                currentIndex = index;
+            }
+
+            // --- Event Listeners for THIS specific lightbox instance ---
+
+            // 1. Open Modal
+            trigger.addEventListener('click', () => {
+                modal.style.display = 'flex'; // Use flex to center, as per CSS
+                showImage(0); // Always show the first image on open
+            });
+
+            // 2. Close Button
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // VERY IMPORTANT: Prevent click from bubbling to modal background
+                modal.style.display = 'none';
+            });
+
+            // 3. Click outside image (on modal background) to close
+            modal.addEventListener('click', (e) => {
+                // Ensure the click was directly on the modal background, not on any child element
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // 4. Navigation Buttons (if they exist)
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent modal from closing
+                    let newIndex = (currentIndex - 1 + images.length) % images.length;
+                    showImage(newIndex);
+                });
+
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent modal from closing
+                    let newIndex = (currentIndex + 1) % images.length;
+                    showImage(newIndex);
+                });
+            }
+        }); // End of forEach trigger
+
+        // --- Global Keyboard Listener (attached only once) ---
+        if (!keyboardListenerAttached) {
+            document.addEventListener('keydown', (e) => {
+                const openModal = document.querySelector('.lightbox-modal[style*="display: flex"]'); // Look for open modal using 'flex'
+                if (openModal) {
+                    if (e.key === 'Escape') {
+                        openModal.style.display = 'none';
+                    }
+                    if (e.key === 'ArrowLeft') {
+                        const openPrevBtn = openModal.querySelector('.lightbox-prev');
+                        if (openPrevBtn) openPrevBtn.click();
+                    }
+                    if (e.key === 'ArrowRight') {
+                        const openNextBtn = openModal.querySelector('.lightbox-next');
+                        if (openNextBtn) openNextBtn.click();
+                    }
+                }
+            });
+            document.body.setAttribute('data-lightbox-keyboard-listener', 'true'); // Mark that listener is attached
+        }
+    })();
+</script>

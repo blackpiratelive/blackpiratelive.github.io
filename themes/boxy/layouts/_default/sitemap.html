@@ -1,0 +1,37 @@
+{{ define "main" }}
+<h1 class="section-title">{{ .Title }}</h1>
+
+{{ $allPages := where site.RegularPages "RelPermalink" "ne" .RelPermalink }}
+
+{{ range ($allPages.GroupBy "Section") }}
+{{ $section := .Key }}
+{{ $label := cond (eq $section "") "Pages" ($section | humanize) }}
+<section>
+  <h2>{{ $label }}</h2>
+
+  {{ if eq $section "thoughts" }}
+  <div class="thoughts-feed">
+    {{ range .Pages.ByDate.Reverse }}
+    <div class="thought-item">
+      <div class="thought-meta">
+        {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }} ·
+        <a href="{{ .RelPermalink }}">Permalink</a>
+      </div>
+      {{ .Content }}
+    </div>
+    <div class="divider"></div>
+    {{ end }}
+  </div>
+  {{ else }}
+  <ul>
+    {{ range .Pages.ByDate.Reverse }}
+    <li>
+      {{ .Date.Format "2006-01-02" }} -
+      <a href="{{ .RelPermalink }}">{{ or .Title .LinkTitle }}</a>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</section>
+{{ end }}
+{{ end }}

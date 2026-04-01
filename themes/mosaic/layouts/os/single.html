@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ printf "%s | %s" .Title site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    {{- with resources.Get "css/os.css" }}
+      {{- if hugo.IsDevelopment }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}">
+      {{- else }}
+        {{- with . | minify | fingerprint }}
+          <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  </head>
+  <body class="os" data-os>
+    <div class="os-login" data-login>
+      <div class="os-login-card">
+        <div class="os-login-avatar"></div>
+        <h1 class="os-login-title">BlackPirateX</h1>
+        <div class="os-login-field" aria-label="Password">
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+          <span class="os-login-dot" data-login-dot></span>
+        </div>
+        <p class="os-login-status" data-login-status>Signing in...</p>
+      </div>
+    </div>
+    <div class="os-boot" data-boot>
+      <div class="boot-panel">
+        <p class="boot-title">BlackPirateX OS</p>
+        <p class="boot-line" data-boot-status>Starting system...</p>
+        <div class="boot-progress" aria-hidden="true">
+          <span class="boot-bar" data-boot-bar></span>
+        </div>
+        <p class="boot-hint">Press any key to skip</p>
+      </div>
+    </div>
+    <div class="os-shell" data-shell>
+      <div class="os-wallpaper" style="--os-wallpaper: url('https://images.unsplash.com/photo-1431440869543-efaf3388c585?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=breno-machado-in9-n0JwgZ0-unsplash.jpg');">
+        <main class="os-desktop" aria-label="Desktop">
+          <div class="os-icons" aria-label="Desktop apps">
+            <button class="os-icon" type="button" data-open="blog">
+              <span class="os-icon-tile"><i data-lucide="pen-square"></i></span>
+              <span class="os-icon-label">Blog</span>
+            </button>
+            <button class="os-icon" type="button" data-open="guestbook">
+              <span class="os-icon-tile"><i data-lucide="notebook-pen"></i></span>
+              <span class="os-icon-label">Guestbook</span>
+            </button>
+            <button class="os-icon" type="button" data-open="photos">
+              <span class="os-icon-tile"><i data-lucide="image"></i></span>
+              <span class="os-icon-label">Photos</span>
+            </button>
+          </div>
+
+          <section class="os-window" data-window="about" data-start-x="320" data-start-y="40" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>About.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="about" aria-label="Maximize About window">[]</button>
+                <button class="os-window-btn" type="button" data-close="about" aria-label="Close About window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body os-window-body-scroll">
+              <div class="os-window-content">
+                {{- with site.GetPage "/about" }}
+                  {{ .Content }}
+                {{- else }}
+                  <p>About page not found.</p>
+                {{- end }}
+              </div>
+              <p><a class="os-link" href="/about">Open the About page</a></p>
+            </div>
+            <span class="os-window-resize" data-resize="about" aria-hidden="true"></span>
+          </section>
+
+          <section class="os-window" data-window="blog" data-start-x="360" data-start-y="90" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>Blog.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="blog" aria-label="Maximize Blog window">[]</button>
+                <button class="os-window-btn" type="button" data-close="blog" aria-label="Close Blog window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body">
+              <div class="os-window-content">
+                {{- with site.GetPage "section" "blog" }}
+                  <div class="os-blog-layout">
+                    <div class="os-blog-listing" aria-label="Blog posts">
+                      <ul class="os-blog-list">
+                        {{- range .RegularPages.ByDate.Reverse }}
+                          <li>
+                            <button class="os-blog-link" type="button" data-blog-target="{{ .RelPermalink }}">
+                              <span class="os-blog-title">{{ .Title }}</span>
+                              <span class="os-blog-date">{{ .Date.Format "2006-01-02" }}</span>
+                            </button>
+                          </li>
+                        {{- end }}
+                      </ul>
+                    </div>
+                    <article class="os-blog-viewer" data-blog-viewer>
+                      <p>Select a post to read it here.</p>
+                    </article>
+                  </div>
+                  <div class="os-blog-cache" hidden>
+                    {{- range .RegularPages.ByDate.Reverse }}
+                      <div data-blog-content="{{ .RelPermalink }}">
+                        <h2>{{ .Title }}</h2>
+                        <p class="os-blog-date">{{ .Date.Format "2006-01-02" }}</p>
+                        {{ .Content }}
+                      </div>
+                    {{- end }}
+                  </div>
+                {{- else }}
+                  <p>Blog page not found.</p>
+                {{- end }}
+              </div>
+              <p><a class="os-link" href="/blog">Open the Blog</a></p>
+            </div>
+            <span class="os-window-resize" data-resize="blog" aria-hidden="true"></span>
+          </section>
+
+          <section class="os-window" data-window="projects" data-start-x="380" data-start-y="140" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>Projects.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="projects" aria-label="Maximize Projects window">[]</button>
+                <button class="os-window-btn" type="button" data-close="projects" aria-label="Close Projects window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body os-window-body-scroll">
+              <div class="os-window-content">
+                {{- with site.GetPage "/projects" }}
+                  {{ .Content }}
+                {{- else }}
+                  <p>Projects page not found.</p>
+                {{- end }}
+              </div>
+              <p><a class="os-link" href="/projects">Open Projects</a></p>
+            </div>
+            <span class="os-window-resize" data-resize="projects" aria-hidden="true"></span>
+          </section>
+
+          <section class="os-window" data-window="contact" data-start-x="420" data-start-y="190" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>Contact.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="contact" aria-label="Maximize Contact window">[]</button>
+                <button class="os-window-btn" type="button" data-close="contact" aria-label="Close Contact window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body os-window-body-scroll">
+              <div class="os-window-content">
+                {{- with site.GetPage "/contact" }}
+                  {{ .Content }}
+                {{- else }}
+                  <p>Contact page not found.</p>
+                {{- end }}
+              </div>
+              <p><a class="os-link" href="/contact">Open Contact</a></p>
+            </div>
+            <span class="os-window-resize" data-resize="contact" aria-hidden="true"></span>
+          </section>
+          <section class="os-window" data-window="guestbook" data-start-x="460" data-start-y="220" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>Guestbook.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="guestbook" aria-label="Maximize Guestbook window">[]</button>
+                <button class="os-window-btn" type="button" data-close="guestbook" aria-label="Close Guestbook window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body os-window-body-scroll">
+              <div class="os-window-content">
+                {{ .Page.RenderString "{{< guestbook >}}" }}
+              </div>
+            </div>
+            <span class="os-window-resize" data-resize="guestbook" aria-hidden="true"></span>
+          </section>
+          <section class="os-window" data-window="calendar" data-start-x="500" data-start-y="260" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>Calendar.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="calendar" aria-label="Maximize Calendar window">[]</button>
+                <button class="os-window-btn" type="button" data-close="calendar" aria-label="Close Calendar window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body">
+              <div class="os-window-content os-calendar" data-calendar>
+                <div class="os-calendar-header">
+                  <button class="os-action-btn" type="button" data-calendar-prev aria-label="Previous month">Prev</button>
+                  <div class="os-calendar-title" data-calendar-month>Month 2026</div>
+                  <button class="os-action-btn" type="button" data-calendar-next aria-label="Next month">Next</button>
+                </div>
+                <div class="os-calendar-grid" data-calendar-grid></div>
+                <div class="os-calendar-panel">
+                  <p class="os-calendar-selected" data-calendar-selected>Select a date to view thoughts.</p>
+                  <div class="os-calendar-thoughts" data-calendar-thoughts></div>
+                </div>
+              </div>
+            </div>
+            <span class="os-window-resize" data-resize="calendar" aria-hidden="true"></span>
+          </section>
+          <section class="os-window" data-window="photos" data-start-x="520" data-start-y="200" aria-hidden="true">
+            <header class="os-window-header" data-drag-handle>
+              <span>Photos.exe</span>
+              <div class="os-window-actions">
+                <button class="os-window-btn" type="button" data-maximize="photos" aria-label="Maximize Photos window">[]</button>
+                <button class="os-window-btn" type="button" data-close="photos" aria-label="Close Photos window">X</button>
+              </div>
+            </header>
+            <div class="os-window-body">
+              <div class="os-window-content os-photos">
+                {{- $galleryUrl := "https://gallery.blackpiratex.com/index.json" -}}
+                {{- $gallery := slice -}}
+                {{- $result := try (resources.GetRemote $galleryUrl) -}}
+                {{- if $result.Err -}}
+                  <p>Could not load gallery images.</p>
+                {{- else -}}
+                  {{- with $result.Value -}}
+                    {{- $gallery = . | transform.Unmarshal -}}
+                  {{- end -}}
+                  {{- if gt (len $gallery) 0 -}}
+                    {{- $first := index $gallery 0 -}}
+                    <div class="os-photos-list" data-photo-list>
+                      {{- range $gallery -}}
+                        {{- $thumb := .image.thumbnail.url | default .image.original.url -}}
+                        {{- $full := .image.original.url | default $thumb -}}
+                        <button class="os-photo-thumb" type="button" data-photo-button data-photo-full="{{ $full }}" data-photo-title="{{ .title | default "Photo" }}" data-photo-date="{{ (time.AsTime .date).Format "2006-01-02" }}">
+                          <img src="{{ $thumb }}" alt="{{ .title | default "Photo" }}" loading="lazy">
+                        </button>
+                      {{- end -}}
+                    </div>
+                    <div class="os-photos-preview">
+                      <div class="os-photos-frame">
+                        <img data-photo-preview src="{{ $first.image.original.url | default $first.image.thumbnail.url }}" alt="{{ $first.title | default "Photo" }}">
+                        <button class="os-action-btn os-photo-full" type="button" data-photo-fullscreen>Fullscreen</button>
+                      </div>
+                      <div class="os-photos-meta">
+                        <h3 data-photo-title>{{ $first.title | default "Photo" }}</h3>
+                        <p data-photo-date>{{ (time.AsTime $first.date).Format "2006-01-02" }}</p>
+                      </div>
+                    </div>
+                    <div class="os-photo-overlay" data-photo-overlay hidden>
+                      <button class="os-action-btn os-photo-close" type="button" data-photo-close>Close</button>
+                      <img data-photo-overlay-img src="" alt="Full photo view">
+                    </div>
+                  {{- else -}}
+                    <p>No gallery images found.</p>
+                  {{- end -}}
+                {{- end -}}
+              </div>
+            </div>
+            <span class="os-window-resize" data-resize="photos" aria-hidden="true"></span>
+          </section>
+          <aside class="os-widgets" aria-label="Widgets">
+            <div class="os-widget os-widget-clock">
+              <p class="os-widget-title">Clock</p>
+              <p class="os-widget-time" data-clock-time>00:00:00</p>
+              <p class="os-widget-date" data-clock-date>0000-00-00</p>
+            </div>
+            <div class="os-widget os-widget-weather">
+              <p class="os-widget-title">Kolkata Weather</p>
+              <p class="os-widget-temp" data-weather-temp>--°C</p>
+              <p class="os-widget-status" data-weather-status>Loading...</p>
+              <p class="os-widget-updated" data-weather-updated>--</p>
+            </div>
+          </aside>
+        </main>
+      </div>
+
+      <div class="os-taskbar" role="contentinfo">
+        <button class="taskbar-start" type="button" aria-label="Start menu" data-start-toggle>Start</button>
+        <div class="taskbar-apps" aria-label="Open apps">
+          <button class="taskbar-app" type="button" data-task="about" data-tooltip="About">
+            <i data-lucide="user-circle-2"></i>
+          </button>
+          <button class="taskbar-app" type="button" data-task="blog" data-tooltip="Blog">
+            <i data-lucide="pen-square"></i>
+          </button>
+          <button class="taskbar-app" type="button" data-task="projects" data-tooltip="Projects">
+            <i data-lucide="folder-open"></i>
+          </button>
+          <button class="taskbar-app" type="button" data-task="contact" data-tooltip="Contact">
+            <i data-lucide="message-circle"></i>
+          </button>
+          <button class="taskbar-app" type="button" data-task="guestbook" data-tooltip="Guestbook">
+            <i data-lucide="notebook-pen"></i>
+          </button>
+          <button class="taskbar-app" type="button" data-task="calendar" data-tooltip="Calendar">
+            <i data-lucide="calendar-days"></i>
+          </button>
+          <button class="taskbar-app" type="button" data-fullscreen-toggle data-tooltip="Fullscreen">
+            <i data-lucide="maximize-2"></i>
+          </button>
+        </div>
+        <div class="taskbar-status">
+          <div class="taskbar-weather">
+            <span data-weather-temp>--°C</span>
+            <span data-weather-status>Loading...</span>
+          </div>
+          <div class="taskbar-clock">
+            <span data-clock-time>00:00:00</span>
+            <span data-clock-date>0000-00-00</span>
+          </div>
+        </div>
+      </div>
+      <div class="os-start-menu" data-start-menu hidden>
+        <div class="os-start-header">Apps</div>
+        <label class="os-start-search">
+          <span class="os-start-search-label">Search</span>
+          <input type="search" placeholder="Type to filter apps" data-start-search />
+        </label>
+        <div class="os-start-list" data-start-list>
+          <button class="os-start-app" type="button" data-open="about">
+            <i data-lucide="user-circle-2"></i>
+            <span>About</span>
+          </button>
+          <button class="os-start-app" type="button" data-open="blog">
+            <i data-lucide="pen-square"></i>
+            <span>Blog</span>
+          </button>
+          <button class="os-start-app" type="button" data-open="projects">
+            <i data-lucide="folder-open"></i>
+            <span>Projects</span>
+          </button>
+          <button class="os-start-app" type="button" data-open="contact">
+            <i data-lucide="message-circle"></i>
+            <span>Contact</span>
+          </button>
+          <button class="os-start-app" type="button" data-open="guestbook">
+            <i data-lucide="notebook-pen"></i>
+            <span>Guestbook</span>
+          </button>
+          <button class="os-start-app" type="button" data-open="calendar">
+            <i data-lucide="calendar-days"></i>
+            <span>Calendar</span>
+          </button>
+          <button class="os-start-app" type="button" data-open="photos">
+            <i data-lucide="image"></i>
+            <span>Photos</span>
+          </button>
+        </div>
+        <p class="os-start-empty" data-start-empty hidden>No apps found.</p>
+      </div>
+    </div>
+    {{- with resources.Get "js/os.js" }}
+      {{- $opts := dict
+        "minify" (not hugo.IsDevelopment)
+        "sourceMap" (cond hugo.IsDevelopment "external" "")
+        "targetPath" "js/os.js"
+      }}
+      {{- with resources.Get "js/vendor/anime.min.js" }}
+        {{- if hugo.IsDevelopment }}
+          <script src="{{ .RelPermalink }}"></script>
+        {{- else }}
+          {{- with . | minify | fingerprint }}
+            <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- with . | js.Build $opts }}
+        {{- if hugo.IsDevelopment }}
+          <script src="{{ .RelPermalink }}"></script>
+          <script>
+            if (window.lucide) {
+              window.lucide.createIcons();
+            }
+          </script>
+        {{- else }}
+          {{- with . | fingerprint }}
+            <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+            <script>
+              if (window.lucide) {
+                window.lucide.createIcons();
+              }
+            </script>
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- $thoughts := slice -}}
+    {{- with site.GetPage "section" "thoughts" }}
+      {{- range .RegularPages.ByDate }}
+        {{- $thoughts = $thoughts | append (dict
+          "date" (.Date.Format "2006-01-02")
+          "title" .Title
+          "content" .Content
+        ) -}}
+      {{- end }}
+    {{- end }}
+    <script type="application/json" data-thoughts-json>{{ $thoughts | jsonify }}</script>
+  </body>
+</html>

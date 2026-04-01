@@ -1,0 +1,15 @@
+baseURL = 'https://blackpiratex.com/'
+languageCode = 'en-us'
+title = 'BlackPirateX'
+
+[params]
+  author = "Sudip"
+  tagline = "Welcome to my website"
+  description = "I'm in my early twenties, finished Zoology graduation in 2025, now preparing for govt job exams."
+  github = "https://links.blackpiratex.com/github"
+  youtube = "https://links.blackpiratex.com/yt"
+  mastodon = "https://links.blackpiratex.com/mastodon"
+  
+[taxonomies]
+  tag = "tags"
+  category = "categories"

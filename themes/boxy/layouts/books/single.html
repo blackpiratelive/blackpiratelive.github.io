@@ -1,0 +1,64 @@
+{{ define "main" }}
+<p><a href="{{ " /books/" | relURL }}">&larr; Back to Books</a></p>
+
+<div class="book-details">
+  <div class="book-cover">
+    {{ with .Params.cover }}
+    <img src="{{ . }}" alt="Cover for {{ $.Title }}" class="gallery-image">
+    {{ end }}
+  </div>
+
+  <div class="book-info">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.authors }}
+    <p class="book-authors">By {{ delimit . ", " }}</p>
+    {{ end }}
+
+    <ul class="book-meta-list">
+      {{ with .Params.shelf }}
+      <li><strong>Shelf:</strong> {{ if eq . "currentlyReading" }}Currently Reading{{ else }}{{ . | humanize }}{{ end }}
+      </li>
+      {{ end }}
+
+      {{ with .Params.pageCount }}
+      <li><strong>Pages:</strong> {{ . }}</li>
+      {{ end }}
+
+      {{ with .Params.readingProgress }}
+      {{ if lt . 100 }}
+      <li><strong>Progress:</strong> {{ . }}%</li>
+      {{ end }}
+      {{ end }}
+
+      {{ with .Params.readingMedium }}
+      <li><strong>Medium:</strong> {{ . }}</li>
+      {{ end }}
+
+      {{ with .Params.startedOn }}
+      <li><strong>Started:</strong> {{ . }}</li>
+      {{ end }}
+
+      {{ with .Params.finishedOn }}
+      <li><strong>Finished:</strong> {{ . }}</li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+<div class="book-content">
+  {{ .Content }}
+</div>
+
+{{ with .Params.highlights }}
+{{ if gt (len .) 0 }}
+<div class="book-highlights">
+  <h2>Highlights</h2>
+  <ol>
+    {{ range . }}
+    <li>{{ . }}</li>
+    {{ end }}
+  </ol>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}

@@ -1,0 +1,28 @@
+{{ $me := resources.Get "img/me1.jpg" }}
+{{ $me = $me.Resize "160x webp q80" }}
+{{- $posts := site.RegularPages -}}
+{{- $words := 0 -}}
+{{- range $posts -}}
+  {{- $words = add $words .WordCount -}}
+{{- end -}}
+
+<div class="mx-auto w-full max-w-5xl px-6 py-6">
+  <div class="flex flex-col gap-4 rounded-3xl border border-zinc-800/50 bg-zinc-900 px-6 py-5 text-white md:flex-row md:items-center md:justify-between">
+    <a href="{{ "/" | relURL }}" class="flex items-center gap-4">
+      {{ with $me }}
+      <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="h-14 w-14 rounded-full border-2 border-zinc-800 object-cover">
+      {{ end }}
+      <div>
+        <div class="text-lg font-bold">{{ site.Title }}</div>
+        <div class="text-xs font-medium uppercase tracking-wider text-zinc-400">{{ len $posts }} posts · {{ $words }} words</div>
+      </div>
+    </a>
+    <nav class="flex flex-wrap items-center gap-2 text-sm font-medium text-zinc-300">
+      <a href="{{ "/" | relURL }}" class="rounded-xl px-3 py-2 transition hover:bg-zinc-800 hover:text-white">Home</a>
+      <a href="{{ "/blog/" | relURL }}" class="rounded-xl px-3 py-2 transition hover:bg-zinc-800 hover:text-white">Blog</a>
+      <a href="{{ "/thoughts/" | relURL }}" class="rounded-xl px-3 py-2 transition hover:bg-zinc-800 hover:text-white">Thoughts</a>
+      <a href="{{ "/gallery/" | relURL }}" class="rounded-xl px-3 py-2 transition hover:bg-zinc-800 hover:text-white">Gallery</a>
+      <a href="{{ "/books/" | relURL }}" class="rounded-xl px-3 py-2 transition hover:bg-zinc-800 hover:text-white">Books</a>
+    </nav>
+  </div>
+</div>

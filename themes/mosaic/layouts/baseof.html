@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+{{ if .IsHome }}
+  <body class="mosaic-home selection:bg-white selection:text-black min-h-screen">
+{{ else }}
+  <body>
+{{ end }}
+  {{ if not .IsHome }}
+  <header>
+    {{ partial "header.html" . }}
+  </header>
+  {{ end }}
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ if not .IsHome }}
+  <footer>
+    {{ partial "footer.html" . }}
+  </footer>
+  {{ end }}
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

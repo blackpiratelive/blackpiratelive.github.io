@@ -1,0 +1,62 @@
+{{ define "main" }}
+<h1 class="section-title">{{ .Title }}</h1>
+{{ .Content }}
+
+{{ $currentlyReading := where .Pages "Params.shelf" "currentlyReading" }}
+{{ if gt (len $currentlyReading) 0 }}
+<section class="book-shelf shelf-reading">
+  <h2>Currently Reading</h2>
+  <div class="gallery-grid">
+    {{ range $currentlyReading }}
+    <a href="{{ .RelPermalink }}" class="book-item">
+      {{ with .Params.cover }}
+      <img src="{{ . }}" alt="Cover for {{ $.Title }}">
+      {{ else }}
+      <span>No cover: {{ $.Title }}</span>
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ $read := where .Pages "Params.shelf" "read" }}
+{{ if gt (len $read) 0 }}
+<section class="book-shelf shelf-read">
+  <h2>Read</h2>
+  <div class="gallery-grid">
+    {{ range $read.ByDate.Reverse }}
+    <a href="{{ .RelPermalink }}" class="book-item">
+      {{ with .Params.cover }}
+      <img src="{{ . }}" alt="Cover for {{ $.Title }}">
+      {{ else }}
+      <span>No cover: {{ $.Title }}</span>
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ $watchlist := where .Pages "Params.shelf" "watchlist" }}
+{{ if gt (len $watchlist) 0 }}
+<section class="book-shelf shelf-watchlist">
+  <h2>Watchlist</h2>
+  <div class="gallery-grid">
+    {{ range $watchlist }}
+    <a href="{{ .RelPermalink }}" class="book-item">
+      {{ with .Params.cover }}
+      <img src="{{ . }}" alt="Cover for {{ $.Title }}">
+      {{ else }}
+      <span>No cover: {{ $.Title }}</span>
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ if and (eq (len $currentlyReading) 0) (eq (len $read) 0) (eq (len $watchlist) 0) }}
+<p>No books found yet.</p>
+{{ end }}
+{{ end }}

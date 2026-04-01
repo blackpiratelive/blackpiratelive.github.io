@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+{{- $skip := slice "draft" "iscjklanguage" -}}
+{{- $params := dict -}}
+{{- range $k, $v := .Params -}}
+{{- if not (in $skip $k) -}}
+{{- $params = merge $params (dict $k $v) -}}
+{{- end -}}
+{{- end -}}
+
+{{ with $params }}
+
+{{ end }}
+
+{{ .Content }}
+{{ end }}

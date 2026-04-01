@@ -1,0 +1,66 @@
+{{/* layouts/_default/single.html */}}
+{{ define "main" }}
+<div class="grid-single">
+    
+    <!-- 1. HERO -->
+    <div class="mosaic-box interactive-box s-box-hero rounded-[2rem] overflow-hidden relative group bg-zinc-800">
+        {{ with .Resources.GetMatch "cover.*" }}
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ .RelPermalink }}');"></div>
+        {{ end }}
+        <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+        
+        <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
+            <div class="flex items-center gap-3 mb-3 lg:mb-4">
+                <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{{ .Section }}</span>
+                <span class="text-zinc-300 font-medium text-xs lg:text-sm">{{ .Date.Format "January 2, 2006" }}</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-2 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">{{ .Title }}</h1>
+        </div>
+    </div>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="s-left-col no-scrollbar">
+        {{ partial "nav-profile.html" . }}
+        
+        <div class="mosaic-box interactive-box s-box-meta bg-pink-600 rounded-[2rem] p-4 lg:p-6 text-pink-50 flex flex-col gap-2 lg:gap-4">
+            <h3 class="hidden lg:block font-bold text-lg text-white">Post Details</h3>
+            <ul class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs lg:text-sm font-medium">
+                <li class="shrink-0 flex items-center gap-2 bg-pink-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="clock" class="w-4 h-4 opacity-70"></i> {{ .ReadingTime }} min read</li>
+                <li class="shrink-0 flex items-center gap-2 bg-pink-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="calendar" class="w-4 h-4 opacity-70"></i> {{ .Date.Format "Jan 02, 2006" }}</li>
+                <li class="shrink-0 flex items-center gap-2 bg-pink-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="book-open" class="w-4 h-4 opacity-70"></i> {{ .WordCount }} words</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MAIN ARTICLE -->
+    <article class="mosaic-box s-box-article bg-zinc-900 rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
+        <div class="prose prose-invert prose-zinc prose-base lg:prose-lg max-w-none">
+            {{ .Content }}
+        </div>
+    </article>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="s-right-col no-scrollbar">
+        <div class="mosaic-box interactive-box s-box-toc bg-blue-600 rounded-[2rem] p-6 text-blue-50">
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="list" class="w-5 h-5"></i> On This Page</h3>
+            <div class="text-sm font-medium prose prose-invert prose-a:no-underline">
+                {{ .TableOfContents }}
+            </div>
+        </div>
+
+        {{ with .NextInSection }}
+        <div class="mosaic-box interactive-box s-box-next bg-amber-500 rounded-[2rem] p-6 text-amber-950 flex flex-col justify-between h-full">
+            <div>
+                <h3 class="font-black text-lg mb-1 opacity-80 uppercase tracking-widest text-xs">Read Next</h3>
+                <a href="{{ .RelPermalink }}" class="block text-xl font-bold hover:underline mb-4">{{ .Title }}</a>
+            </div>
+            <a href="{{ .RelPermalink }}" class="w-10 h-10 rounded-full bg-amber-950 text-amber-50 flex items-center justify-center hover:scale-110 transition-transform self-end"><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+        </div>
+        {{ end }}
+    </div>
+
+    <!-- FOOTER -->
+    {{ partial "footer.html" . }}
+
+</div>
+{{ end }}

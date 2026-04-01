@@ -1,0 +1,89 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} - {{ site.Title }}{{ end }}</title>
+
+<!-- Tailwind & Typography -->
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+<!-- Google Fonts: Space Grotesk -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+         </div>
+
+<style>
+    body { font-family: 'Space Grotesk', sans-serif; background-color: #09090b; margin: 0; color: white; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Hover Animations */
+    .mosaic-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
+    .interactive-box:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); z-index: 10; }
+
+    /* --- HOME GRID (.grid-home) --- */
+    .grid-home { display: grid; gap: 1rem; grid-template-columns: 1fr; grid-auto-rows: minmax(240px, auto); padding: 1rem; max-width: 1400px; margin: 0 auto; }
+    @media (min-width: 768px) {
+        .grid-home { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+        .h-box-hero { grid-column: span 2; grid-row: span 2; }
+        .h-box-nav { grid-column: span 1; grid-row: span 1; }
+        .h-box-about { grid-column: span 1; grid-row: span 1; }
+        .h-box-posts { grid-column: span 2; grid-row: span 1; }
+        .h-box-pics { grid-column: span 2; grid-row: span 1; }
+        .h-box-books { grid-column: span 2; grid-row: span 1; }
+        .h-box-interests { grid-column: span 1; grid-row: span 1; }
+        .h-box-thoughts { grid-column: span 1; grid-row: span 1; }
+        .h-box-webring { grid-column: span 1; grid-row: span 1; }
+        .h-box-buttons { grid-column: span 1; grid-row: span 1; }
+        .h-box-footer { grid-column: span 2; grid-row: span 1; }
+    }
+    @media (min-width: 1024px) {
+        .grid-home { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; grid-auto-rows: 280px; }
+        .h-box-nav { grid-column: span 1; grid-row: span 2; }
+        .h-box-hero { grid-column: span 2; grid-row: span 2; }
+        .h-box-about { grid-column: span 1; grid-row: span 2; }
+        .h-box-posts { grid-column: span 1; grid-row: span 2; }
+        .h-box-pics { grid-column: span 2; grid-row: span 1; }
+        .h-box-interests { grid-column: span 1; grid-row: span 1; }
+        .h-box-books { grid-column: span 2; grid-row: span 1; }
+        .h-box-thoughts { grid-column: span 1; grid-row: span 1; }
+        .h-box-webring { grid-column: span 2; grid-row: span 1; }
+        .h-box-buttons { grid-column: span 2; grid-row: span 1; }
+        .h-box-footer { grid-column: span 4; grid-row: span 1; }
+    }
+
+    /* --- SINGLE POST GRID (.grid-single) --- */
+    .grid-single { display: grid; gap: 1rem; grid-template-columns: 1fr; padding: 1rem; max-width: 1400px; margin: 0 auto; align-items: start; }
+    @media (max-width: 1023px) {
+        .s-left-col, .s-right-col { display: contents; }
+        .s-box-nav { order: 1; }
+        .s-box-hero { order: 2; }
+        .s-box-meta { order: 3; }
+        .s-box-article { order: 4; }
+        .s-box-toc { order: 5; }
+        .s-box-next { order: 6; }
+        .s-box-ad { order: 7; }
+        .s-box-footer { order: 8; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .grid-single { grid-template-columns: repeat(2, 1fr); }
+        .s-box-nav, .s-box-hero, .s-box-meta, .s-box-article, .s-box-ad, .s-box-footer { grid-column: 1 / 3; }
+        .s-box-toc { grid-column: 1 / 2; }
+        .s-box-next { grid-column: 2 / 3; }
+    }
+    @media (min-width: 1024px) {
+        .grid-single { grid-template-columns: 220px 1fr 240px; gap: 1.5rem; }
+        .s-left-col, .s-right-col { display: flex; flex-direction: column; gap: 1.5rem; }
+        .s-box-hero { grid-column: 1 / 4; height: 380px; }
+        .s-left-col { grid-column: 1 / 2; position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+        .s-box-article { grid-column: 2 / 3; }
+        .s-right-col { grid-column: 3 / 4; position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+        .s-box-footer { grid-column: 1 / 4; }
+    }
+
+    /* Typography Overrides */
+    .prose h1, .prose h2, .prose h3, .prose h4, .prose blockquote { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.025em; }
+</style>

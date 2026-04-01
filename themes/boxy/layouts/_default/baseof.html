@@ -1,0 +1,12 @@
+{{/* layouts/_default/baseof.html */}}
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default "en-us" }}" dir="ltr">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body class="selection:bg-white selection:text-black min-h-screen">
+    <main class="w-full">
+        {{ block "main" . }}{{ end }}
+    </main>
+    <!-- Initialize Icons -->
+    <script>lucide.createIcons();

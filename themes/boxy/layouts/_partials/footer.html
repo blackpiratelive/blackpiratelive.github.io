@@ -1,0 +1,12 @@
+<footer class="mosaic-box interactive-box {{ if .IsHome }}h-box-footer{{ else }}s-box-footer{{ end }} bg-zinc-900 rounded-[2rem] p-8 border border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+        <a href="/blog" class="text-sm font-medium text-zinc-400 hover:text-white transition">All Posts</a>
+        <a href="/projects" class="text-sm font-medium text-zinc-400 hover:text-white transition">Projects</a>
+        <a href="/about" class="text-sm font-medium text-zinc-400 hover:text-white transition">About</a>
+    </div>
+    <div class="flex gap-4">
+        <a href="/index.xml" class="text-zinc-500 hover:text-orange-400 transition"><i data-lucide="rss" class="w-5 h-5"></i></a>
+        {{ with site.Params.github }}<a href="{{ . }}" class="text-zinc-500 hover:text-white transition"><i data-lucide="github" class="w-5 h-5"></i></a>{{ end }}
+        {{ with site.Params.mastodon }}<a href="{{ . }}" class="text-zinc-500 hover:text-blue-400 transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>{{ end }}
+    </div>
+</footer>

@@ -1,0 +1,15 @@
+<div class="mosaic-box interactive-box {{ if .IsHome }}h-box-nav{{ else }}s-box-nav{{ end }} bg-zinc-900 rounded-[2rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col justify-between overflow-y-auto no-scrollbar gap-4">
+    <div class="flex {{ if .IsHome }}flex-col text-center{{ else }}items-center lg:mb-2 lg:pb-6 lg:border-b{{ end }} items-center gap-3 border-zinc-800">
+        <img src="{{ "img/me1_hu_b1a43aa761fc4586.webp" | absURL }}" alt="Profile" class="{{ if .IsHome }}w-24 h-24 border-4{{ else }}w-10 h-10 lg:w-12 lg:h-12{{ end }} rounded-full object-cover shadow-lg border-zinc-800 mb-2">
+        <div>
+            <h1 class="{{ if .IsHome }}text-2xl{{ else }}text-base lg:text-lg{{ end }} font-bold leading-tight">{{ site.Title }}</h1>
+            <a href="/" class="text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author }}</a>
+        </div>
+    </div>
+    
+    <nav class="flex {{ if .IsHome }}flex-col{{ else }}flex-row lg:flex-col overflow-x-auto no-scrollbar w-full{{ end }} gap-2 flex-grow justify-center">
+        <a href="/" class="shrink-0 {{ if .IsHome }}bg-zinc-800/50{{ else }}hover:bg-zinc-800{{ end }} hover:bg-zinc-700 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="home" class="w-4 h-4"></i> Home</a>
+        <a href="/blog/" class="shrink-0 {{ if in .RelPermalink "/blog/" }}bg-zinc-800/50{{ else }}hover:bg-zinc-800{{ end }} text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> Blog</a>
+        <a href="/gallery/" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="image" class="w-4 h-4"></i> Gallery</a>
+    </nav>
+</div>

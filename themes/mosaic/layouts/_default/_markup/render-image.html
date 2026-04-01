@@ -1,0 +1,5 @@
+{{- $url := .Destination -}}
+{{- if not (or (hasPrefix $url "http") (hasPrefix $url "/")) -}}
+{{- $url = printf "/%s" $url -}}
+{{- end -}}
+<img src="{{ $url }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }}>
