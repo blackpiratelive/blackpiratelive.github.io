@@ -4,10 +4,11 @@
   {{ with .Date }}
   <p class="content-meta"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time></p>
   {{ end }}
-  {{ if .TableOfContents }}
+  {{ $toc := .TableOfContents }}
+  {{ if and $toc (ne $toc "<nav id=\"TableOfContents\"></nav>") }}
   <section>
     <h2>Contents</h2>
-    {{ .TableOfContents }}
+    {{ $toc }}
   </section>
   {{ end }}
   {{ .Content }}
