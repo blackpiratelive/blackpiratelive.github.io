@@ -4,6 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+    {{- $title := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) -}}
+    {{- $desc := or .Params.description .Summary (.Content | plainify | truncate 160) -}}
+    {{- $desc = $desc | replaceRE "\s+" " " -}}
+    {{- $image := "" -}}
+    {{- with .Params.image -}}
+      {{- if .thumbnail -}}
+        {{- $image = .thumbnail.url -}}
+      {{- else if .original -}}
+        {{- $image = .original.url -}}
+      {{- else if (isString .) -}}
+        {{- $image = . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if eq $image "" -}}
+      {{- $image = "/img/og-me-2.webp" -}}
+    {{- end -}}
+    {{- $image = $image | absURL -}}
+    <meta name="description" content="{{ $desc }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ site.Title }}">
+    <meta property="og:image" content="{{ $image }}">
+    <meta property="og:locale" content="{{ site.Language.LanguageCode }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $desc }}">
+    <meta name="twitter:image" content="{{ $image }}">
     <style>
       :root {
         color-scheme: light;
