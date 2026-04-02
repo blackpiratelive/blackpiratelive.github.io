@@ -6,7 +6,7 @@
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
     {{- $title := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) -}}
     {{- $desc := or .Params.description .Summary (.Content | plainify | truncate 160) -}}
-    {{- $desc = $desc | replaceRE "\s+" " " -}}
+    {{- $desc = $desc | replaceRE "\\s+" " " -}}
     {{- $image := "" -}}
     {{- with .Params.image -}}
       {{- if .thumbnail -}}
