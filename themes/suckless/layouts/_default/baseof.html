@@ -9,11 +9,13 @@
     {{- $desc = $desc | replaceRE "\\s+" " " -}}
     {{- $image := "" -}}
     {{- with .Params.image -}}
-      {{- if .thumbnail -}}
-        {{- $image = .thumbnail.url -}}
-      {{- else if .original -}}
-        {{- $image = .original.url -}}
-      {{- else if (isString .) -}}
+      {{- if reflect.IsMap . -}}
+        {{- if .thumbnail -}}
+          {{- $image = .thumbnail.url -}}
+        {{- else if .original -}}
+          {{- $image = .original.url -}}
+        {{- end -}}
+      {{- else -}}
         {{- $image = . -}}
       {{- end -}}
     {{- end -}}
