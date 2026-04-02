@@ -1,0 +1,32 @@
+{{ define "main" }}
+<section class="sitemap-page">
+  <h1>{{ .Title }}</h1>
+  {{ $sections := slice "blog" "thoughts" "gallery" "books" "projects" "archive" }}
+  {{ range $sections }}
+    {{ $section := . }}
+    {{ $pages := where $.Site.RegularPages "Section" $section }}
+    {{ if gt (len $pages) 0 }}
+    <section>
+      <h2>{{ $section | title }}</h2>
+      <ul class="content-list">
+        {{ range $pages.ByTitle }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ end }}
+  {{ end }}
+
+  {{ $other := where .Site.RegularPages "Section" "" }}
+  {{ if gt (len $other) 0 }}
+  <section>
+    <h2>Pages</h2>
+    <ul class="content-list">
+      {{ range $other.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</section>
+{{ end }}

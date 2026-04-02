@@ -34,5 +34,19 @@ theme = 'suckless'
     pageRef = '/uses'
     weight = 20
 
+  [[menus.main]]
+    name = 'search-icon'
+    pageRef = '/search'
+    weight = 30
+    [menus.main.params]
+      icon = 'search'
+
+  [[menus.main]]
+    name = 'on-this-day-icon'
+    pageRef = '/on-this-day'
+    weight = 31
+    [menus.main.params]
+      icon = 'calendar'
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]

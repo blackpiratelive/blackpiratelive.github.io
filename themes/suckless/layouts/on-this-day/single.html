@@ -1,0 +1,68 @@
+{{ define "main" }}
+<section class="on-this-day">
+  <h1>{{ .Title }}</h1>
+  {{ $month := now.Format "01" }}
+  {{ $day := now.Format "02" }}
+  {{ $matches := where .Site.RegularPages "Date" "ne" nil }}
+  {{ $matches = where $matches "Date.Format" "01" $month }}
+  {{ $matches = where $matches "Date.Format" "02" $day }}
+  {{ $blog := where $matches "Section" "blog" }}
+  {{ $thoughts := where $matches "Section" "thoughts" }}
+  {{ $gallery := where $matches "Section" "gallery" }}
+
+  {{ if and (eq (len $blog) 0) (eq (len $thoughts) 0) (eq (len $gallery) 0) }}
+  <p>No entries for this day yet.</p>
+  {{ end }}
+
+  {{ if gt (len $blog) 0 }}
+  <section>
+    <h2>Blog</h2>
+    <ul class="content-list">
+      {{ range $blog.ByDate.Reverse }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <div class="content-meta">{{ .Date.Format "Jan 02, 2006" }}</div>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  {{ if gt (len $thoughts) 0 }}
+  <section>
+    <h2>Thoughts</h2>
+    <ul class="content-list">
+      {{ range $thoughts.ByDate.Reverse }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  {{ if gt (len $gallery) 0 }}
+  <section>
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      {{ range $gallery.ByDate.Reverse }}
+      {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+      {{ $img := "" }}
+      {{ if not hugo.IsServer }}
+      {{ $img = resources.GetRemote $imgUrl }}
+      {{ end }}
+      <a href="{{ .RelPermalink }}">
+        {{ if $img }}
+        <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy">
+        {{ else if $imgUrl }}
+        <img src="{{ $imgUrl }}" alt="{{ .Title }}" loading="lazy">
+        {{ else }}
+        <span>{{ .Title }}</span>
+        {{ end }}
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</section>
+{{ end }}

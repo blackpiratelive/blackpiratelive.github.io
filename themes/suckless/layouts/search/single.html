@@ -1,0 +1,67 @@
+{{ define "main" }}
+<section class="search-page">
+  <h1>{{ .Title }}</h1>
+  <div class="search-controls">
+    <label for="search-input">Search the site</label>
+    <input id="search-input" type="search" placeholder="Search posts, thoughts, gallery..." autocomplete="off">
+  </div>
+  <div class="search-status" id="search-status">Type to search.</div>
+  <ul class="search-results" id="search-results"></ul>
+</section>
+
+<script>
+(function() {
+  const input = document.getElementById("search-input");
+  const status = document.getElementById("search-status");
+  const results = document.getElementById("search-results");
+  let index = [];
+
+  const renderResults = (items) => {
+    results.innerHTML = items.map((item) => {
+      const title = item.title || item.permalink;
+      const date = item.date ? new Date(item.date).toLocaleDateString() : "";
+      const tagHtml = (item.tags || []).map((tag) => `<span class="tag-pill">#${tag}</span>`).join("");
+      const meta = [item.section, date].filter(Boolean).join(" · ");
+      return `
+        <li>
+          <a href="${item.permalink}">${title}</a>
+          ${meta ? `<div class="content-meta">${meta}</div>` : ""}
+          ${tagHtml ? `<div class="tag-list">${tagHtml}</div>` : ""}
+        </li>
+      `;
+    }).join("");
+  };
+
+  const searchIndex = (query) => {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      status.textContent = "Type to search.";
+      results.innerHTML = "";
+      return;
+    }
+    const matches = index.filter((item) => {
+      const haystack = [
+        item.title,
+        item.section,
+        item.content,
+        (item.tags || []).join(" ")
+      ].join(" ").toLowerCase();
+      return haystack.includes(q);
+    });
+    status.textContent = `${matches.length} result${matches.length === 1 ? "" : "s"}`;
+    renderResults(matches);
+  };
+
+  fetch("/index.json")
+    .then((res) => res.json())
+    .then((data) => {
+      index = data || [];
+    })
+    .catch(() => {
+      status.textContent = "Search index unavailable.";
+    });
+
+  input.addEventListener("input", (e) => searchIndex(e.target.value));
+})();
+</script>
+{{ end }}
