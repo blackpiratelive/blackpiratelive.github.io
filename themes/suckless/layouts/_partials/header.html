@@ -1,0 +1,21 @@
+{{ $me := resources.Get "img/me1.jpg" }}
+{{ $me = $me.Resize "600x webp q70" }}
+<div class="site-header">
+  <div class="site-header-left">
+    <a href="/" class="site-head">
+      <img src="{{ $me.RelPermalink }}" alt="" class="profile">
+      <div class="site-head-text">
+        <h1 class="site-title">{{ site.Title }}</h1>
+        {{- $posts := site.RegularPages -}}
+        {{- $words := 0 -}}
+        {{- range $posts -}}
+        {{- $words = add $words .WordCount -}}
+        {{- end -}}
+        <small class="site-stats">{{ len $posts }} posts · {{ $words }} words</small>
+      </div>
+    </a>
+  </div>
+  <div class="site-header-right">
+    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  </div>
+</div>

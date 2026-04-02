@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #000;
+        font-family: sans-serif;
+        line-height: 1.55;
+      }
+      a {
+        color: #005577;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      header {
+        background: #222;
+        color: #eee;
+        border-bottom: 2px solid #005577;
+      }
+      .site-header {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1rem 1.25rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .site-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .profile {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+      }
+      .site-head-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+      .site-title {
+        margin: 0;
+        font-size: 1.4rem;
+        color: #eee;
+      }
+      .site-stats {
+        color: #ccc;
+        font-size: 0.85rem;
+      }
+      nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      nav li {
+        margin: 0;
+        padding: 0;
+      }
+      nav a {
+        color: #eee;
+        padding: 0.15rem 0.35rem;
+        border: 1px solid transparent;
+      }
+      nav a.active,
+      nav a.ancestor {
+        border-color: #005577;
+      }
+      nav a:hover,
+      nav a:focus {
+        border-color: #005577;
+      }
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 3rem;
+      }
+      footer {
+        border-top: 2px solid #222;
+        background: #eee;
+        color: #000;
+      }
+      .site-footer {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1rem 1.25rem 2rem;
+        font-size: 0.9rem;
+      }
+      .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .btn {
+        border: 1px solid #222;
+        padding: 0.3rem 0.6rem;
+        color: #000;
+        background: #fff;
+      }
+      .icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .icons img {
+        border: 1px solid #ccc;
+        padding: 0.1rem;
+        background: #fff;
+      }
+      .writeas-footer-section {
+        border-top: 1px solid #ccc;
+        padding-top: 0.75rem;
+        margin-top: 0.75rem;
+      }
+      .writeas-footer-title {
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .writeas-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem 1rem;
+        margin-top: 0.5rem;
+      }
+      .writeas-webring-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 0.4rem 0.6rem;
+        background: #fff;
+      }
+      .writeas-webring-name {
+        font-weight: bold;
+        color: #222;
+      }
+      #guestbook-form,
+      #contact-form-ezkflb9b {
+        border: 1px solid #ccc;
+        padding: 0.75rem;
+        background: #fff;
+        margin-bottom: 1rem;
+      }
+      #guestbook-form label,
+      #contact-form-ezkflb9b label {
+        display: block;
+        margin: 0.6rem 0 0.2rem;
+      }
+      #guestbook-form input,
+      #guestbook-form textarea,
+      #contact-form-ezkflb9b input,
+      #contact-form-ezkflb9b textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 0.35rem 0.5rem;
+        background: #fff;
+        color: #000;
+      }
+      #guestbook-form textarea,
+      #contact-form-ezkflb9b textarea {
+        min-height: 120px;
+      }
+      #guestbook-form button,
+      #contact-form-ezkflb9b button,
+      .gbw-action-btn {
+        border: 1px solid #222;
+        background: #eee;
+        padding: 0.3rem 0.6rem;
+        cursor: pointer;
+      }
+      .guestbook-powered-by {
+        font-size: 0.9rem;
+        color: #555;
+      }
+      .gbw-entry {
+        border: 1px solid #ccc;
+        padding: 0;
+        margin-bottom: 0.75rem;
+        background: #fff;
+      }
+      .gbw-entry-header {
+        margin: 0;
+        padding: 0.4rem 0.6rem;
+        background: #222;
+        color: #eee;
+        border-bottom: 2px solid #005577;
+      }
+      .gbw-entry-title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-items: center;
+      }
+      .gbw-author {
+        color: #eee;
+        font-weight: bold;
+      }
+      .gbw-date {
+        color: #ccc;
+        font-size: 0.85rem;
+      }
+      .gbw-entry-body {
+        padding: 0.6rem;
+      }
+      .gbw-entry-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        padding: 0 0.6rem 0.6rem;
+      }
+      .gbw-owner-tag {
+        border: 1px solid #005577;
+        padding: 0.05rem 0.3rem;
+        font-size: 0.75rem;
+        margin-left: 0.35rem;
+        color: #eee;
+      }
+      .contact-bg {
+        border: 1px solid #ccc;
+        padding: 0.75rem;
+        background: #eee;
+        margin-bottom: 1rem;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: 1.5rem 0 0.75rem;
+        line-height: 1.2;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      hr {
+        border: 0;
+        border-bottom: 2px solid #ccc;
+        margin: 2rem 0;
+      }
+      section {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 1.5rem;
+      }
+      blockquote {
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        border-left: 6px solid #005577;
+        background: #eee;
+      }
+      pre, code {
+        font-family: monospace;
+        background: #eee;
+        border: 1px solid #ccc;
+      }
+      code {
+        padding: 0.1rem 0.25rem;
+      }
+      pre {
+        padding: 0.75rem 1rem;
+        overflow-x: auto;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+      }
+      figure {
+        margin: 1.5rem 0;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        background: #fff;
+      }
+      figcaption {
+        margin-top: 0.5rem;
+        font-family: monospace;
+        text-align: center;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1.5rem 0;
+      }
+      th, td {
+        border: 1px solid #ccc;
+        padding: 0.4rem 0.6rem;
+        text-align: left;
+      }
+      .content-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .content-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ccc;
+      }
+      .content-meta {
+        color: #555;
+        font-size: 0.9rem;
+      }
+      article {
+        margin-top: 1rem;
+      }
+      article p {
+        margin: 0 0 1rem;
+      }
+      article ul,
+      article ol {
+        margin: 0 0 1.25rem 1.5rem;
+        padding: 0;
+      }
+      article li {
+        margin-bottom: 0.4rem;
+      }
+      #TableOfContents {
+        border: 1px solid #ccc;
+        padding: 0.75rem 1rem;
+        background: #eee;
+        color: #000;
+      }
+      #TableOfContents a {
+        color: #005577;
+      }
+      #TableOfContents a:hover {
+        text-decoration: underline;
+      }
+      #TableOfContents ul,
+      #TableOfContents ol {
+        list-style: none;
+        margin: 0.5rem 0 0;
+        padding: 0;
+      }
+      #TableOfContents li {
+        margin: 0.35rem 0;
+      }
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.35rem;
+      }
+      .tag-list a {
+        border: 1px solid #ccc;
+        padding: 0.1rem 0.35rem;
+        font-size: 0.85rem;
+      }
+      .gallery-grid {
+        column-count: 3;
+        column-gap: 0.75rem;
+      }
+      .gallery-grid a {
+        display: inline-block;
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 0.4rem;
+        background: #fff;
+        margin: 0 0 0.75rem;
+        break-inside: avoid;
+      }
+      .writeas-gallery-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        color: #555;
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+      }
+      .writeas-gallery-description {
+        margin-top: 1rem;
+      }
+      .writeas-exif {
+        border: 1px solid #ccc;
+        padding: 0.75rem;
+        background: #eee;
+        margin-top: 1.5rem;
+      }
+      .writeas-exif-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.75rem;
+      }
+      .writeas-exif-label {
+        display: block;
+        font-size: 0.8rem;
+        color: #555;
+      }
+      .writeas-exif-value {
+        display: block;
+        font-weight: bold;
+      }
+      .book-details {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 1.5rem;
+        align-items: start;
+        margin: 1rem 0 1.5rem;
+      }
+      .book-cover img {
+        width: 100%;
+        height: auto;
+      }
+      .book-meta-list {
+        list-style: none;
+        padding: 0;
+        margin: 0.75rem 0 0;
+      }
+      .book-meta-list li {
+        padding: 0.2rem 0;
+      }
+      .book-highlights {
+        border-top: 1px solid #ccc;
+        padding-top: 1rem;
+        margin-top: 1.5rem;
+      }
+      .book-highlights ol {
+        margin-left: 1.5rem;
+      }
+      .hero {
+        border: 2px solid #222;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: #fff;
+      }
+      .hero-content {
+        max-width: 600px;
+      }
+      .hero-image {
+        display: block;
+        max-width: 220px;
+        margin-bottom: 0.75rem;
+      }
+      .hero-subtitle {
+        margin: 0.25rem 0 0;
+        color: #555;
+      }
+      .hero-name {
+        margin: 0 0 0.5rem;
+      }
+      .hero-tagline {
+        margin: 0;
+        color: #333;
+      }
+      .home-columns {
+        display: block;
+      }
+      .home-left-column,
+      .home-right-column {
+        min-width: 0;
+      }
+      .home-featured-grid,
+      .home-books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.75rem;
+      }
+      .home-recent-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .home-recent-list li {
+        border-bottom: 1px solid #ccc;
+        padding: 0.4rem 0;
+      }
+      .thoughts-feed {
+        display: grid;
+        gap: 0.75rem;
+      }
+      .thought-item {
+        border: 1px solid #ccc;
+        padding: 0.4rem 0.6rem;
+        background: #fff;
+      }
+      .thought-meta {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0.3rem;
+      }
+      .thought-content {
+        margin-bottom: 0.4rem;
+      }
+      .thought-meta a {
+        color: #005577;
+      }
+      .thought-tags {
+        margin-top: 0.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .thought-tags a {
+        border: 1px solid #ccc;
+        padding: 0.1rem 0.35rem;
+        font-size: 0.85rem;
+      }
+      .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+      .pagination-link {
+        border: 1px solid #ccc;
+        padding: 0.2rem 0.45rem;
+      }
+      .pagination-link.active {
+        border-color: #005577;
+      }
+      .web1-ad {
+        display: block;
+        border: 2px solid #005577;
+        padding: 0.75rem;
+        background: #eee;
+        color: #000;
+      }
+      .web1-stars {
+        font-family: monospace;
+        color: #005577;
+      }
+      .web1-text {
+        margin: 0.5rem 0;
+        font-weight: bold;
+      }
+      .web1-subtitle {
+        color: #555;
+        font-size: 0.9rem;
+      }
+      @media (max-width: 700px) {
+        nav ul {
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+        .site-header {
+          align-items: flex-start;
+        }
+        .book-details {
+          grid-template-columns: 1fr;
+        }
+        .gallery-grid {
+          column-count: 2;
+        }
+        .home-columns {
+          display: block;
+        }
+        .writeas-footer-links {
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+      }
+      @media (max-width: 500px) {
+        .gallery-grid {
+          column-count: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      {{ partial "header.html" . }}
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer>
+      <div class="site-footer">
+        {{ partial "footer.html" . }}
+      </div>
+    </footer>
+  </body>
+</html>

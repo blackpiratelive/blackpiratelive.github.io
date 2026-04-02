@@ -1,7 +1,38 @@
 baseURL = 'https://blackpiratex.com'
 languageCode = 'en-us'
 title = 'BlackPirateX'
-theme = 'html'
+theme = 'suckless'
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Thoughts'
+    pageRef = '/thoughts'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Blog'
+    pageRef = '/blog'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Gallery'
+    pageRef = '/gallery'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Book Notes'
+    pageRef = '/books'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Uses'
+    pageRef = '/uses'
+    weight = 20
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

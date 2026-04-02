@@ -1,0 +1,12 @@
+name = "suckless"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "Brutalist, minimal Hugo theme inspired by suckless aesthetics."
+homepage = "https://blackpiratex.com"
+tags = ["minimal", "brutalist", "simple"]
+features = ["clean", "responsive"]
+min_version = "0.111.0"
+
+[author]
+  name = "BlackPirateX"
+  homepage = "https://blackpiratex.com"

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="thought-single">
+  <p><a href="{{ "/thoughts/" | relURL }}">&larr; Back to Thoughts</a></p>
+  <div class="thought-meta">
+    {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
+  </div>
+  <div class="thought-content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

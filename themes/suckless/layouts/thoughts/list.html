@@ -1,0 +1,45 @@
+{{ define "main" }}
+<header class="thoughts-header">
+  <h1 class="section-title">Micro Feed</h1>
+  <div class="action-buttons">
+    <a href="/thoughts/index.xml" class="btn">Subscribe via RSS</a>
+  </div>
+</header>
+
+<section class="thoughts-feed">
+  {{ range (.Paginate .Pages 100).Pages }}
+  <article class="thought-item">
+    <div class="thought-meta">
+      <a href="{{ .RelPermalink }}">{{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}</a>
+    </div>
+    <div class="thought-content">
+      {{ .Content }}
+    </div>
+    {{ with .Params.tags }}
+    <div class="thought-tags">
+      {{ range . }}
+      <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </article>
+  {{ end }}
+</section>
+
+{{ $paginator := .Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+<div class="pagination">
+  {{ if $paginator.HasPrev }}
+  <a href="{{ $paginator.Prev.URL }}" class="pagination-link">« Prev</a>
+  {{ end }}
+
+  {{ range $paginator.Pagers }}
+  <a href="{{ .URL }}" class="pagination-link{{ if eq . $paginator }} active{{ end }}">{{ .PageNumber }}</a>
+  {{ end }}
+
+  {{ if $paginator.HasNext }}
+  <a href="{{ $paginator.Next.URL }}" class="pagination-link">Next »</a>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
