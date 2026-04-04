@@ -345,6 +345,11 @@
         flex-wrap: wrap;
         gap: 0.4rem;
       }
+      .visitor-counter {
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+      }
       .comment-date {
         color: #ccc;
         font-size: 0.85rem;
@@ -991,6 +996,103 @@
           document.addEventListener('DOMContentLoaded', initLikes);
         } else {
           initLikes();
+        }
+      })();
+    </script>
+    <script>
+      (function() {
+        function getOrdinalSuffix(value) {
+          const mod100 = value % 100;
+          if (mod100 >= 11 && mod100 <= 13) {
+            return 'th';
+          }
+          switch (value % 10) {
+            case 1:
+              return 'st';
+            case 2:
+              return 'nd';
+            case 3:
+              return 'rd';
+            default:
+              return 'th';
+          }
+        }
+
+        function initVisitorCounter() {
+          const countEl = document.querySelector('[data-visitor-count]');
+          const suffixEl = document.querySelector('[data-visitor-suffix]');
+          if (!countEl || !suffixEl) {
+            return;
+          }
+
+          const cacheKey = 'umami:visitors:count';
+          const cacheTtlMs = 30 * 60 * 1000;
+
+          const readCache = () => {
+            try {
+              const raw = localStorage.getItem(cacheKey);
+              if (!raw) {
+                return null;
+              }
+              const data = JSON.parse(raw);
+              if (!data || typeof data.count !== 'number' || typeof data.timestamp !== 'number') {
+                return null;
+              }
+              if (Date.now() - data.timestamp > cacheTtlMs) {
+                return null;
+              }
+              return data.count;
+            } catch (err) {
+              return null;
+            }
+          };
+
+          const writeCache = (count) => {
+            try {
+              localStorage.setItem(cacheKey, JSON.stringify({ count, timestamp: Date.now() }));
+            } catch (err) {
+              return;
+            }
+          };
+
+          const updateDisplay = (count) => {
+            if (!Number.isFinite(count)) {
+              countEl.textContent = '—';
+              suffixEl.textContent = 'th';
+              return;
+            }
+            countEl.textContent = count.toLocaleString();
+            suffixEl.textContent = getOrdinalSuffix(count);
+          };
+
+          const cached = readCache();
+          if (cached !== null) {
+            updateDisplay(cached);
+          }
+
+          fetch('/api/visitors')
+            .then((res) => {
+              if (!res.ok) {
+                throw new Error('Bad response');
+              }
+              return res.json();
+            })
+            .then((data) => {
+              const count = data && typeof data.visitors === 'number' ? data.visitors : undefined;
+              if (Number.isFinite(count)) {
+                updateDisplay(count);
+                writeCache(count);
+              }
+            })
+            .catch(() => {
+              return;
+            });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initVisitorCounter);
+        } else {
+          initVisitorCounter();
         }
       })();
     </script>

@@ -320,3 +320,20 @@ Edit `config.toml` under `[menus]` section
   - Uses `data-like-url` with `{{ .Permalink }}` for stable `post_url`
   - Local cache (localStorage) for counts with 15-minute TTL
   - One-like-per-user enforced client-side via localStorage flag
+
+---
+
+## Umami Visitor Counter (April 2026)
+
+- **Counter Text**: "You are the Nth visitor" in `themes/suckless/layouts/_partials/footer.html`
+- **Client Fetch**: `/api/visitors` with localStorage cache (30-minute TTL) in `themes/suckless/layouts/_default/baseof.html`
+- **Vercel Function**: `api/visitors.js`
+  - Authenticates via `POST /api/auth/login`
+  - Attempts v2 stats: `/api/websites/{id}/stats?startAt&endAt`
+  - Falls back to v1 metrics: `/api/websites/{id}/metrics?type=visitors&startAt&endAt`
+- **Environment Variables**:
+  - `UMAMI_BASE_URL=https://u-one-livid.vercel.app`
+  - `UMAMI_USERNAME=...`
+  - `UMAMI_PASSWORD=...`
+  - `UMAMI_SITE_ID=80888a44-8645-40c5-9c06-a1e5a2da24fc`
+  - `UMAMI_START_DATE=2025-11-02`
