@@ -483,6 +483,45 @@
         background: #eee;
         color: #000;
       }
+      .toc {
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 0.5rem 0.75rem;
+        margin: 1rem 0;
+      }
+      .toc summary {
+        cursor: pointer;
+        font-weight: bold;
+        list-style: none;
+      }
+      .toc summary::-webkit-details-marker {
+        display: none;
+      }
+      .toc summary::before {
+        content: "> ";
+        font-family: monospace;
+        margin-right: 0.3rem;
+      }
+      .toc[open] summary::before {
+        content: "v ";
+      }
+      .toc #TableOfContents {
+        border: 0;
+        padding: 0.5rem 0 0;
+        background: transparent;
+      }
+      #TableOfContents ul {
+        list-style: disc;
+        margin: 0.5rem 0 0.5rem 1.25rem;
+        padding: 0;
+      }
+      #TableOfContents ul ul {
+        list-style: circle;
+        margin-left: 1.25rem;
+      }
+      #TableOfContents li {
+        margin: 0.25rem 0;
+      }
       #TableOfContents a {
         color: #005577;
       }

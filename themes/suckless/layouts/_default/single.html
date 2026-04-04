@@ -4,6 +4,13 @@
   {{ with .Date }}
   <p class="content-meta"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time></p>
   {{ end }}
+  {{ $toc := .TableOfContents }}
+  {{ if and $toc (ne $toc "<nav id=\"TableOfContents\"></nav>") }}
+  <details class="toc">
+    <summary>Contents</summary>
+    {{ $toc }}
+  </details>
+  {{ end }}
   {{ .Content }}
 </article>
 {{ end }}

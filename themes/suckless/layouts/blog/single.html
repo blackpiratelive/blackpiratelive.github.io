@@ -6,10 +6,10 @@
   {{ end }}
   {{ $toc := .TableOfContents }}
   {{ if and $toc (ne $toc "<nav id=\"TableOfContents\"></nav>") }}
-  <section>
-    <h2>Contents</h2>
+  <details class="toc">
+    <summary>Contents</summary>
     {{ $toc }}
-  </section>
+  </details>
   {{ end }}
   {{ .Content }}
 
