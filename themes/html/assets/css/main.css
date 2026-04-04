@@ -358,6 +358,71 @@ hr {
   gap: 0.4rem;
 }
 
+.thought-single {
+  background-color: var(--surface);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.likes-block {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.likes-block-compact {
+  margin-top: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.likes-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85rem;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: sans-serif;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.likes-button:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+.likes-button.is-loading {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.likes-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+}
+
+.likes-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.likes-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
+}
+
+.likes-count {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .tag-link {
   color: var(--secondary);
   font-size: 0.85rem;

@@ -15,6 +15,16 @@
     <div class="thought-content">
       {{ .Content }}
     </div>
+    <div class="likes-block likes-block-compact">
+      <button class="likes-button" type="button" data-like-button data-like-owner="sudip" data-like-url="{{ .Permalink }}" aria-label="Like this thought">
+        <span class="likes-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+            <path d="M3.172 5.172a4 4 0 015.656 0L12 8.343l3.172-3.171a4 4 0 115.656 5.656L12 21.343 3.172 10.828a4 4 0 010-5.656z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="likes-count" data-like-count>—</span>
+      </button>
+    </div>
     {{ with .Params.tags }}
     <div class="thought-tags">
       {{ range . }}

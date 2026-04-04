@@ -655,6 +655,47 @@
         padding: 0.1rem 0.35rem;
         font-size: 0.85rem;
       }
+      .likes-block {
+        margin-top: 0.4rem;
+        display: flex;
+        align-items: center;
+      }
+      .likes-block-compact {
+        margin-top: 0.35rem;
+      }
+      .likes-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        border: 1px solid #222;
+        background: #eee;
+        padding: 0.2rem 0.45rem;
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+      .likes-button.is-liked {
+        color: #c00;
+      }
+      .likes-button:hover {
+        border-color: #005577;
+        color: #005577;
+      }
+      .likes-button.is-loading {
+        opacity: 0.6;
+        cursor: progress;
+      }
+      .likes-icon {
+        display: inline-flex;
+        width: 16px;
+        height: 16px;
+      }
+      .likes-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+      .likes-count {
+        font-weight: bold;
+      }
       .pagination {
         display: flex;
         flex-wrap: wrap;
@@ -765,5 +806,193 @@
         {{ partial "footer.html" . }}
       </div>
     </footer>
+    <script>
+      (function() {
+        function initLikes() {
+          const likeButtons = Array.from(document.querySelectorAll('[data-like-button]'));
+
+          if (!likeButtons.length) {
+            return;
+          }
+
+          const endpoint = 'https://tools.blackpiratex.com/api/likes';
+          const cacheTtlMs = 15 * 60 * 1000;
+
+          const storageAvailable = () => {
+            try {
+              const testKey = '__likes_test__';
+              localStorage.setItem(testKey, '1');
+              localStorage.removeItem(testKey);
+              return true;
+            } catch (err) {
+              return false;
+            }
+          };
+
+          const canStore = storageAvailable();
+
+          const getCacheKey = (button) => {
+            const owner = button.getAttribute('data-like-owner') || '';
+            const url = button.getAttribute('data-like-url') || '';
+            return `likes:${owner}:${url}`;
+          };
+
+          const getLikeFlagKey = (button) => `${getCacheKey(button)}:liked`;
+
+          const readCache = (button) => {
+            if (!canStore) {
+              return null;
+            }
+            const raw = localStorage.getItem(getCacheKey(button));
+            if (!raw) {
+              return null;
+            }
+            try {
+              const data = JSON.parse(raw);
+              if (!data || typeof data.count !== 'number' || typeof data.timestamp !== 'number') {
+                return null;
+              }
+              if (Date.now() - data.timestamp > cacheTtlMs) {
+                return null;
+              }
+              return data.count;
+            } catch (err) {
+              return null;
+            }
+          };
+
+          const writeCache = (button, count) => {
+            if (!canStore || !Number.isFinite(count)) {
+              return;
+            }
+            const payload = {
+              count,
+              timestamp: Date.now()
+            };
+            localStorage.setItem(getCacheKey(button), JSON.stringify(payload));
+          };
+
+          const readLiked = (button) => {
+            if (!canStore) {
+              return false;
+            }
+            return localStorage.getItem(getLikeFlagKey(button)) === '1';
+          };
+
+          const writeLiked = (button) => {
+            if (!canStore) {
+              return;
+            }
+            localStorage.setItem(getLikeFlagKey(button), '1');
+          };
+
+          const getPayload = (button, action) => {
+            const owner = button.getAttribute('data-like-owner');
+            const url = button.getAttribute('data-like-url');
+            return {
+              action,
+              owner_username: owner,
+              post_url: url
+            };
+          };
+
+          const updateCount = (button, count) => {
+            const countEl = button.querySelector('[data-like-count]');
+            if (!countEl) {
+              return;
+            }
+            countEl.textContent = Number.isFinite(count) ? String(count) : '—';
+          };
+
+          const setLiked = (button, isLiked) => {
+            if (isLiked) {
+              button.classList.add('is-liked');
+              button.disabled = true;
+            } else {
+              button.classList.remove('is-liked');
+            }
+          };
+
+          const setLoading = (button, isLoading) => {
+            if (isLoading) {
+              button.classList.add('is-loading');
+              button.disabled = true;
+            } else {
+              button.classList.remove('is-loading');
+              button.disabled = false;
+            }
+          };
+
+          const request = async (button, action) => {
+            const payload = getPayload(button, action);
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+              throw new Error('Request failed');
+            }
+
+            return res.json();
+          };
+
+          likeButtons.forEach((button) => {
+            const cachedCount = readCache(button);
+            if (cachedCount !== null) {
+              updateCount(button, cachedCount);
+            }
+
+            const wasLiked = readLiked(button);
+            if (wasLiked) {
+              setLiked(button, true);
+            }
+
+            setLoading(button, true);
+            request(button, 'get')
+              .then((data) => {
+                const count = data && typeof data.likes === 'number' ? data.likes : undefined;
+                updateCount(button, count);
+                writeCache(button, count);
+              })
+              .catch(() => {
+                updateCount(button, undefined);
+              })
+              .finally(() => {
+                setLoading(button, false);
+              });
+
+            button.addEventListener('click', async () => {
+              if (button.classList.contains('is-loading')) {
+                return;
+              }
+              if (button.classList.contains('is-liked')) {
+                return;
+              }
+              setLoading(button, true);
+              try {
+                const data = await request(button, 'like');
+                const count = data && typeof data.likes === 'number' ? data.likes : undefined;
+                updateCount(button, count);
+                writeCache(button, count);
+                writeLiked(button);
+                setLiked(button, true);
+              } catch (err) {
+                updateCount(button, undefined);
+              } finally {
+                setLoading(button, false);
+              }
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initLikes);
+        } else {
+          initLikes();
+        }
+      })();
+    </script>
   </body>
 </html>

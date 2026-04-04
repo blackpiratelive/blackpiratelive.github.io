@@ -1,6 +1,5 @@
 {{ define "main" }}
-<article class="thought-single">
-  <p><a href="{{ "/thoughts/" | relURL }}">&larr; Back to Thoughts</a></p>
+<div class="thought-single">
   <div class="thought-meta">
     {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
   </div>
@@ -11,11 +10,12 @@
     <button class="likes-button" type="button" data-like-button data-like-owner="sudip" data-like-url="{{ .Permalink }}" aria-label="Like this thought">
       <span class="likes-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-          <path d="M3.172 5.172a4 4 0 015.656 0L12 8.343l3.172-3.171a4 4 0 115.656 5.656L12 21.343 3.172 10.828a4 4 0 010-5.656z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
         </svg>
       </span>
+      <span class="likes-label">Like</span>
       <span class="likes-count" data-like-count>—</span>
     </button>
   </div>
-</article>
+</div>
 {{ end }}

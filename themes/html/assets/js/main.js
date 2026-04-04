@@ -66,3 +66,93 @@ if (document.readyState === 'loading') {
 } else {
     initWebringMembers();
 }
+
+function initLikes() {
+    const likeButtons = Array.from(document.querySelectorAll('[data-like-button]'));
+
+    if (!likeButtons.length) {
+        return;
+    }
+
+    const endpoint = 'https://tools.blackpiratex.com/api/likes';
+
+    const getPayload = (button, action) => {
+        const owner = button.getAttribute('data-like-owner');
+        const url = button.getAttribute('data-like-url');
+        return {
+            action,
+            owner_username: owner,
+            post_url: url
+        };
+    };
+
+    const updateCount = (button, count) => {
+        const countEl = button.querySelector('[data-like-count]');
+        if (!countEl) {
+            return;
+        }
+        countEl.textContent = Number.isFinite(count) ? String(count) : '—';
+    };
+
+    const setLoading = (button, isLoading) => {
+        if (isLoading) {
+            button.classList.add('is-loading');
+            button.disabled = true;
+        } else {
+            button.classList.remove('is-loading');
+            button.disabled = false;
+        }
+    };
+
+    const request = async (button, action) => {
+        const payload = getPayload(button, action);
+        const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+            throw new Error('Request failed');
+        }
+
+        return res.json();
+    };
+
+    likeButtons.forEach((button) => {
+        setLoading(button, true);
+        request(button, 'get')
+            .then((data) => {
+                const count = data && typeof data.likes === 'number' ? data.likes : undefined;
+                updateCount(button, count);
+            })
+            .catch(() => {
+                updateCount(button, undefined);
+            })
+            .finally(() => {
+                setLoading(button, false);
+            });
+
+        button.addEventListener('click', async () => {
+            if (button.classList.contains('is-loading')) {
+                return;
+            }
+            setLoading(button, true);
+            try {
+                const data = await request(button, 'like');
+                const count = data && typeof data.likes === 'number' ? data.likes : undefined;
+                updateCount(button, count);
+            } catch (err) {
+                updateCount(button, undefined);
+            } finally {
+                setLoading(button, false);
+            }
+        });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLikes);
+} else {
+    initLikes();
+}

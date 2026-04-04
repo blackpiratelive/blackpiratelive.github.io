@@ -4,7 +4,7 @@
 - **Site**: Personal website for "BlackPirateX" (Sudip)
 - **URL**: https://blackpiratex.com
 - **Built with**: Hugo static site generator
-- **Theme**: Custom "html" theme in `themes/html/`
+- **Theme**: Custom "suckless" theme in `themes/suckless/`
 - **Build**: Static HTML generated from Markdown content
 
 ---
@@ -26,7 +26,7 @@
 │   ├── contact.md          # Contact page
 │   ├── search.md           # Search page
 │   └── [other pages]
-├── themes/html/            # Main theme (active)
+├── themes/suckless/        # Main theme (active)
 │   ├── layouts/            # Template layouts
 │   │   ├── baseof.html     # Base template
 │   │   ├── _partials/      # Partials (header, footer, head)
@@ -34,9 +34,7 @@
 │   │   ├── books/          # Book list/single layouts
 │   │   ├── thoughts/       # Thoughts layouts
 │   │   └── gallery/        # Gallery layouts
-│   ├── assets/             # CSS/JS processed by Hugo
-│   ├── static/             # Static assets (fonts, images)
-│   └── hugo.toml           # Theme config
+│   └── theme.toml          # Theme config
 ├── layouts/                # Root-level overrides
 │   └── shortcodes/         # Custom shortcodes (guestbook, s)
 ├── api/                    # Serverless functions
@@ -55,13 +53,13 @@
 baseURL = 'https://blackpiratex.com'
 languageCode = 'en-us'
 title = 'BlackPirateX'
-theme = 'html'
+theme = 'suckless'
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 ```
 
-**Theme menu** (defined in `themes/html/hugo.toml`):
+**Theme menu** (defined in `config.toml`):
 - Home (`/`)
 - Thoughts (`/thoughts`)
 - Blog (`/blog`)
@@ -102,7 +100,7 @@ draft: true
 
 ## Available Shortcodes
 
-Located in `themes/html/layouts/shortcodes/`:
+Located in `themes/suckless/layouts/shortcodes/`:
 
 | Shortcode | Usage | Example |
 |-----------|-------|---------|
@@ -164,7 +162,7 @@ Located in `layouts/shortcodes/`:
 
 ## Styling
 
-- **Main CSS**: `themes/html/assets/css/main.css`
+- **Main CSS**: Inline in `themes/suckless/layouts/_default/baseof.html`
 - **Fonts**: Montserrat (400, 700, 400-italic), Alfa Slab One, Lora, Betania Patmos
 - **CSS Framework**: Custom (no major framework detected)
 
@@ -194,7 +192,7 @@ draft: true
 - Or in `static/` (served directly)
 
 ### Update navigation
-Edit `themes/html/hugo.toml` under `[menus]` section
+Edit `config.toml` under `[menus]` section
 
 ---
 
@@ -247,33 +245,17 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 
 ## Recent Homepage Updates (March 2026)
 
-- Homepage uses a full-width, two-column layout in `themes/html/layouts/home.html` and `themes/html/assets/css/main.css`.
-- Homepage background now reuses the hero image with a semi-transparent overlay (CSS-only parallax effect on desktop) configured in `themes/html/layouts/baseof.html` and `themes/html/assets/css/main.css`.
-- Left column now contains:
-  - About + interests content (`{{ .Content }}` from `themes/html/content/_index.md`)
-  - Featured gallery images (3 items, prefers `featured: true` gallery entries)
-  - Latest read books (3 items from `books` section where `Params.shelf == "read"`)
-- Right column now contains:
-  - Recent blog posts (5 items)
-  - Recent thoughts (3 items)
-  - WebSutra members list (fetched from API) and WebSutra ad banner
-- Mobile behavior:
-  - Main homepage columns stack
-  - Featured pics and latest books use compact single-row 3-column thumbnail grids
+- Homepage uses a simple hero + content layout in `themes/suckless/layouts/home.html` with inline styling from `themes/suckless/layouts/_default/baseof.html`.
+- Left column includes the about content, featured gallery items, recent books, recent blog posts, recent thoughts, and the WebSutra promo.
 
 ### WebSutra API Integration
 
 - API endpoint used: `https://webring.blackpiratex.com/api/latest`
-- Client-side fetch implemented in `themes/html/assets/js/main.js`
-- Renders member title + URL in the homepage right column (`[data-webring-list]`)
-- Includes loading, empty, and error states via `[data-webring-status]`
+- Client-side fetch implemented inline in `themes/suckless/layouts/home.html`
 
 ### Notable Styling / Layout Changes
 
-- Header and hero already use full-width breakout layout.
-- Homepage two-column area also uses breakout/full-width behavior.
-- Hero keeps cropped mobile image behavior (`background-size: cover`).
-- Lora font is active for body text via local font files in `themes/html/static/fonts/`.
+- Styling is inline within `themes/suckless/layouts/_default/baseof.html`.
 
 ---
 
@@ -297,7 +279,7 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 
 ### Guestbook Styling
 
-- Guestbook UI additions are in `themes/html/assets/css/main.css`.
+- Guestbook UI additions are in the inline CSS within `themes/suckless/layouts/_default/baseof.html`.
 - Added styles for:
   - `.gbw-owner-reply`
   - `.gbw-owner-tag`
@@ -310,17 +292,31 @@ Edit `themes/html/hugo.toml` under `[menus]` section
 
 ## Blog Comment Updates (March 2026)
 
-- Moved comment section inside `article.blog-content` in `themes/html/layouts/blog/single.html`.
-- Comment box now appears directly below the post content, sharing the same column.
+- Comment section appears below post content in `themes/suckless/layouts/blog/single.html`.
 - **Rate Limiting**: Added a client-side wait timer that requires visitors to stay on the page for at least 60 seconds before submitting a comment.
   - The submit button is disabled and shows a countdown (e.g., "Post Comment (45s)").
   - Once the timer expires, the button is enabled and returns to its original state.
 - **Honeypot**: Added a hidden field `website_url_check` to the form.
   - Submissions with this field filled are treated as bot spam.
-- Styled to match the website theme and Guestbook UI:
-  - Uses `.comment-form` with `var(--surface)` background and consistent padding.
-  - Reuses `.gbw-owner-tag` and `.gbw-action-btn` for consistency.
+- Styled to match the website theme and Guestbook UI via inline CSS in `themes/suckless/layouts/_default/baseof.html`.
   - Improved date formatting in `renderComment` using `toLocaleDateString`.
   - Added responsive behavior for mobile (stacking form fields, reduced reply indentation).
 - API wiring remains connected to `https://guestbook.blackpiratex.com`.
-- Removed inline `<style>` block from the template; all styles moved to `themes/html/assets/css/main.css`.
+- Styles live inline in `themes/suckless/layouts/_default/baseof.html`.
+
+---
+
+## Likes Integration (April 2026)
+
+- **API Endpoint**: `https://tools.blackpiratex.com/api/likes`
+- **Owner Username**: `sudip`
+- **Endpoints**: Single POST with actions `like`, `get`, `summary`
+- **Where it appears**:
+  - Blog posts: `themes/suckless/layouts/blog/single.html`
+  - Thoughts list: `themes/suckless/layouts/thoughts/list.html`
+  - Thought single: `themes/suckless/layouts/thoughts/single.html`
+- **Implementation**:
+  - Inline JS and CSS in `themes/suckless/layouts/_default/baseof.html`
+  - Uses `data-like-url` with `{{ .Permalink }}` for stable `post_url`
+  - Local cache (localStorage) for counts with 15-minute TTL
+  - One-like-per-user enforced client-side via localStorage flag
