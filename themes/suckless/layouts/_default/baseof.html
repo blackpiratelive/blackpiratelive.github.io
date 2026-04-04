@@ -1021,6 +1021,9 @@
         function initVisitorCounter() {
           const countEl = document.querySelector('[data-visitor-count]');
           const suffixEl = document.querySelector('[data-visitor-suffix]');
+          const heroCountEl = document.querySelector('[data-hero-visitor-count]');
+          const heroSuffixEl = document.querySelector('[data-hero-visitor-suffix]');
+          const heroSubtitle = heroCountEl ? heroCountEl.closest('.hero-subtitle') : null;
           if (!countEl || !suffixEl) {
             return;
           }
@@ -1059,10 +1062,17 @@
             if (!Number.isFinite(count)) {
               countEl.textContent = '—';
               suffixEl.textContent = 'th';
+              if (heroSubtitle) {
+                heroSubtitle.textContent = 'Hello, I am';
+              }
               return;
             }
             countEl.textContent = count.toLocaleString();
             suffixEl.textContent = getOrdinalSuffix(count);
+            if (heroCountEl && heroSuffixEl) {
+              heroCountEl.textContent = count.toLocaleString();
+              heroSuffixEl.textContent = getOrdinalSuffix(count);
+            }
           };
 
           const cached = readCache();

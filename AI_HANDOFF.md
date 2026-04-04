@@ -326,6 +326,7 @@ Edit `config.toml` under `[menus]` section
 ## Umami Visitor Counter (April 2026)
 
 - **Counter Text**: "You are the Nth visitor" in `themes/suckless/layouts/_partials/footer.html`
+- **Hero Subtitle**: Uses visitor count in `themes/suckless/layouts/home.html` with fallback to "Hello, I am" when unavailable
 - **Client Fetch**: `/api/visitors` with localStorage cache (30-minute TTL) in `themes/suckless/layouts/_default/baseof.html`
 - **Vercel Function**: `api/visitors.js`
   - Authenticates via `POST /api/auth/login`
