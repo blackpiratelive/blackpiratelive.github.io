@@ -1,6 +1,8 @@
 ---
 title: "My Thoughts on Epstein Files"
 date: 2026-03-16T00:26:56+05:30
+tags: [politics]
+cover: "/img/epstein.webp"
 ---
 I have watched an one hour documentry about epstein files yesterday, and I want to write down my thoughts. This is going to be my first post on politics (can you call it politics? its more of a true crime)
 ### Why do I think they did it? 
