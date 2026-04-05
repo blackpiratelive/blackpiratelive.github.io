@@ -178,6 +178,7 @@ Located in `layouts/shortcodes/`:
   - Optional: `cover_alt: "Alt text"`
 - **Post meta**: Blog single page shows date, word count, reading time, and tags in a single meta row.
 - **Footnotes**: Enabled globally via Goldmark. Use standard Markdown footnote syntax in any content.
+- **Tag pages**: Tag term pages split content into Blog/Thoughts/Gallery sections; thoughts show content with clickable date links.
 
 ---
 
@@ -215,6 +216,7 @@ Edit `config.toml` under `[menus]` section
 - **RSS/JSON**: Home page outputs RSS and JSON (see `config.toml` `[outputs]`)
 - **Gallery**: Fetched from external JSON (per AGENTS.md)
 - **Gallery shortcode**: `{{< gal >}}` uses justifiedGallery only; no LightGallery integration.
+- **Footer tags**: Footer includes a Tags section listing all tags by count.
 - **Testing**: No automated tests - validate manually via browser
 
 ---

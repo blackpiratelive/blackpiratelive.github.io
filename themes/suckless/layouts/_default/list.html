@@ -1,14 +1,63 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
 {{ with .Content }}{{ . }}{{ end }}
-<ul class="content-list">
-  {{ range .Pages.ByDate.Reverse }}
-  <li>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    {{ with .Date }}
-    <div class="content-meta">{{ .Format "2006-01-02" }}</div>
+{{ if eq .Kind "term" }}
+  {{ $blog := where .Pages "Section" "blog" }}
+  {{ $thoughts := where .Pages "Section" "thoughts" }}
+  {{ $gallery := where .Pages "Section" "gallery" }}
+
+  {{ if gt (len $blog) 0 }}
+  <h2>Blog</h2>
+  <ul class="content-list">
+    {{ range $blog.ByDate.Reverse }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Date }}
+      <div class="content-meta">{{ .Format "2006-01-02" }}</div>
+      {{ end }}
+    </li>
     {{ end }}
-  </li>
+  </ul>
   {{ end }}
-</ul>
+
+  {{ if gt (len $thoughts) 0 }}
+  <h2>Thoughts</h2>
+  <ul class="content-list">
+    {{ range $thoughts.ByDate.Reverse }}
+    {{ $page := . }}
+    <li>
+      {{ with $page.Date }}
+      <div class="content-meta"><a href="{{ $page.RelPermalink }}">{{ .Format "Jan 02, 2006" }} · {{ .Format "15:04" }}</a></div>
+      {{ end }}
+      <div>{{ $page.Content }}</div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+
+  {{ if gt (len $gallery) 0 }}
+  <h2>Gallery</h2>
+  <ul class="content-list">
+    {{ range $gallery.ByDate.Reverse }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Date }}
+      <div class="content-meta">{{ .Format "2006-01-02" }}</div>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+{{ else }}
+  <ul class="content-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Date }}
+      <div class="content-meta">{{ .Format "2006-01-02" }}</div>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+{{ end }}
 {{ end }}

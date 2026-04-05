@@ -46,6 +46,15 @@
 </details>
 
 <details class="writeas-footer-section">
+  <summary class="writeas-footer-title">Tags</summary>
+  <div class="tag-list">
+    {{ range site.Taxonomies.tags.ByCount }}
+    <a href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}</a>
+    {{ end }}
+  </div>
+</details>
+
+<details class="writeas-footer-section">
   <summary class="writeas-footer-title">Webrings</summary>
   <div class="writeas-footer-links">
     <div class="writeas-webring-row">
