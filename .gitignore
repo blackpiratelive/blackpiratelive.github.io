@@ -1,2 +1,4 @@
 writeas-extracted.css
 /public/*
+/resources/
+/static/pdf/

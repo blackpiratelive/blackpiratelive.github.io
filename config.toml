@@ -50,3 +50,8 @@ theme = 'suckless'
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      footnote = true

@@ -57,6 +57,11 @@ theme = 'suckless'
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      footnote = true
 ```
 
 **Theme menu** (defined in `config.toml`):
@@ -166,6 +171,14 @@ Located in `layouts/shortcodes/`:
 - **Fonts**: Montserrat (400, 700, 400-italic), Alfa Slab One, Lora, Betania Patmos
 - **CSS Framework**: Custom (no major framework detected)
 
+### Blog Enhancements (April 2026)
+
+- **Cover images**: Blog posts can use `cover` front matter (path in `assets/`), rendered as WebP on the post page and used for OG/Twitter sharing.
+  - Example: `cover: "img/my-cover.jpg"`
+  - Optional: `cover_alt: "Alt text"`
+- **Post meta**: Blog single page shows date, word count, reading time, and tags in a single meta row.
+- **Footnotes**: Enabled globally via Goldmark. Use standard Markdown footnote syntax in any content.
+
 ---
 
 ## Common Tasks
@@ -201,6 +214,7 @@ Edit `config.toml` under `[menus]` section
 - **Drafts**: Use `draft: true` in front matter, visible with `hugo server -D`
 - **RSS/JSON**: Home page outputs RSS and JSON (see `config.toml` `[outputs]`)
 - **Gallery**: Fetched from external JSON (per AGENTS.md)
+- **Gallery shortcode**: `{{< gal >}}` uses justifiedGallery only; no LightGallery integration.
 - **Testing**: No automated tests - validate manually via browser
 
 ---

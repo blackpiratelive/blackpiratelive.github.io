@@ -8,15 +8,29 @@
     {{- $desc := or .Params.description .Summary (.Content | plainify | truncate 160) -}}
     {{- $desc = $desc | replaceRE "\\s+" " " -}}
     {{- $image := "" -}}
-    {{- with .Params.image -}}
-      {{- if reflect.IsMap . -}}
-        {{- if .thumbnail -}}
-          {{- $image = .thumbnail.url -}}
-        {{- else if .original -}}
-          {{- $image = .original.url -}}
+    {{- $coverImage := "" -}}
+    {{- with .Params.cover -}}
+      {{- $coverPath := . -}}
+      {{- $coverPath = strings.TrimPrefix "/" $coverPath -}}
+      {{- $coverRes := resources.Get $coverPath -}}
+      {{- if $coverRes -}}
+        {{- $coverSocial := $coverRes.Fill "1200x630 center webp q80" -}}
+        {{- $coverImage = $coverSocial.RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if ne $coverImage "" -}}
+      {{- $image = $coverImage -}}
+    {{- else -}}
+      {{- with .Params.image -}}
+        {{- if reflect.IsMap . -}}
+          {{- if .thumbnail -}}
+            {{- $image = .thumbnail.url -}}
+          {{- else if .original -}}
+            {{- $image = .original.url -}}
+          {{- end -}}
+        {{- else -}}
+          {{- $image = . -}}
         {{- end -}}
-      {{- else -}}
-        {{- $image = . -}}
       {{- end -}}
     {{- end -}}
     {{- if eq $image "" -}}
@@ -429,6 +443,18 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .post-cover {
+        margin: 1rem 0 1.5rem;
+        border: 1px solid #ccc;
+        padding: 0.4rem;
+        background: #fff;
+      }
+      .post-cover img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 0;
+      }
       figure {
         margin: 1.5rem 0;
         padding: 0.75rem;
@@ -462,6 +488,31 @@
       .content-meta {
         color: #555;
         font-size: 0.9rem;
+      }
+      .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        color: #555;
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+      }
+      .post-meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .post-meta-item::after {
+        content: "·";
+        color: #999;
+        margin-left: 0.5rem;
+      }
+      .post-meta-item:last-child::after {
+        content: "";
+        margin: 0;
+      }
+      .post-meta-tags a {
+        margin-right: 0.35rem;
       }
       article {
         margin-top: 1rem;
@@ -546,6 +597,30 @@
       .tag-list a {
         border: 1px solid #ccc;
         padding: 0.1rem 0.35rem;
+        font-size: 0.85rem;
+      }
+      .footnotes {
+        margin-top: 2rem;
+        font-size: 0.95rem;
+      }
+      .footnotes hr {
+        border: 0;
+        border-bottom: 2px solid #ccc;
+        margin: 0 0 1rem;
+      }
+      .footnotes ol {
+        margin: 0.75rem 0 0 1.25rem;
+      }
+      .footnotes li {
+        margin-bottom: 0.5rem;
+      }
+      .footnote-ref {
+        font-size: 0.75rem;
+        vertical-align: super;
+        margin-left: 0.1rem;
+      }
+      .footnote-backref {
+        margin-left: 0.35rem;
         font-size: 0.85rem;
       }
       .gallery-grid {
@@ -831,6 +906,12 @@
         .writeas-footer-links {
           flex-direction: column;
           gap: 0.4rem;
+        }
+        .post-meta {
+          gap: 0.35rem 0.6rem;
+        }
+        .post-meta-item::after {
+          margin-left: 0.35rem;
         }
       }
       @media (max-width: 500px) {
