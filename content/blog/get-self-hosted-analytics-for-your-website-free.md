@@ -2,6 +2,7 @@
 title: "Get Self Hosted Analytics for Your Website Free"
 date: 2026-04-04T11:33:29+05:30
 tags: [website, guide, self-host]
+cover: "/img/umami-analytics.png"
 ---
 So you  have quit social media and made your own website. You have started writing blog posts and slowly your website is getting visitors. People are reading your posts and commenting or sending you emails about what they think about your post. Congratulations. Now you want to see which posts of yours are popular or from where are you getting bulk of your visitors. But you do not wan to use mainstream analytics like google analytics or something. Because privacy my dude. So the next step is self hosting. You are looking for ways to self host an analytics tool. There are some great ones. But it should be easy to set up, set it and forget it. You dont want to be a sysadmin now do you?
 
