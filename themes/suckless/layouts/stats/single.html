@@ -1,0 +1,235 @@
+{{ define "main" }}
+<section class="stats-page">
+  <h1>{{ .Title }}</h1>
+  <p class="content-meta">Yearly word and post counts for content sections.</p>
+
+  {{- $sections := slice "blog" "thoughts" "books" "gallery" -}}
+  {{- $palette := slice "#005577" "#222" "#c03" "#0a7" "#666" "#a60" "#077" -}}
+
+  {{- $charts := slice -}}
+  {{- range $sIndex, $section := $sections -}}
+    {{- $pages := where site.RegularPages "Section" $section -}}
+    {{- if gt (len $pages) 0 -}}
+      {{- $years := slice -}}
+      {{- $yearData := slice -}}
+      {{- range $group := ($pages.GroupByDate "2006") -}}
+        {{- $wordTotal := 0 -}}
+        {{- range $group.Pages -}}
+          {{- $wordTotal = add $wordTotal .WordCount -}}
+        {{- end -}}
+        {{- $years = $years | append $group.Key -}}
+        {{- $yearData = $yearData | append (dict "year" $group.Key "posts" (len $group.Pages) "words" $wordTotal) -}}
+      {{- end -}}
+
+      {{- $charts = $charts | append (dict "section" $section "years" $years "data" $yearData) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if gt (len $charts) 0 -}}
+    <div class="stats-grid">
+      {{- range $index, $chart := $charts -}}
+        {{- $colorIndex := mod $index (len $palette) -}}
+        {{- $color := index $palette $colorIndex -}}
+        <div class="stats-card" data-stats-card>
+          <div class="stats-card-header">
+            <h2>{{ $chart.section | title }}</h2>
+            <div class="content-meta">
+              {{ len $chart.data }} year{{ if ne (len $chart.data) 1 }}s{{ end }} tracked
+            </div>
+          </div>
+          <div class="stats-canvas-wrap">
+            <canvas
+              class="stats-chart"
+              data-stats-chart
+              data-stats-section="{{ $chart.section }}"
+              data-stats-color="{{ $color }}"
+              data-stats-years='{{ $chart.years | jsonify | safeHTMLAttr }}'
+              data-stats-data='{{ $chart.data | jsonify | safeHTMLAttr }}'
+            ></canvas>
+          </div>
+          <div class="stats-legend">
+            <span class="stats-dot" style="background: {{ $color }}"></span>
+            <span class="stats-legend-label">Words</span>
+            <span class="stats-dot stats-dot-muted"></span>
+            <span class="stats-legend-label">Posts</span>
+          </div>
+        </div>
+      {{- end -}}
+    </div>
+  {{- else -}}
+    <p>No content entries found for stats.</p>
+  {{- end -}}
+</section>
+
+<script src="/vendor/chart.umd.min.js"></script>
+<script>
+(function() {
+  function numberFormat(value) {
+    if (!Number.isFinite(value)) {
+      return "0";
+    }
+    return value.toLocaleString();
+  }
+
+  function parseJsonAttribute(node, name) {
+    const raw = node.getAttribute(name);
+    if (!raw) {
+      return null;
+    }
+    try {
+      return JSON.parse(raw);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function buildChart(canvas) {
+    const years = parseJsonAttribute(canvas, "data-stats-years") || [];
+    const data = parseJsonAttribute(canvas, "data-stats-data") || [];
+    const color = canvas.getAttribute("data-stats-color") || "#005577";
+    const posts = data.map((item) => item.posts || 0);
+    const words = data.map((item) => item.words || 0);
+
+    return new Chart(canvas, {
+      type: "bar",
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: "Words",
+            data: words,
+            backgroundColor: color,
+            borderColor: color,
+            borderWidth: 1,
+            yAxisID: "yWords"
+          },
+          {
+            label: "Posts",
+            data: posts,
+            backgroundColor: "#dddddd",
+            borderColor: "#555",
+            borderWidth: 1,
+            yAxisID: "yPosts"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const value = context.parsed.y;
+                return context.dataset.label + ": " + numberFormat(value);
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: "#333"
+            },
+            grid: {
+              color: "#e0e0e0"
+            }
+          },
+          yWords: {
+            position: "left",
+            ticks: {
+              color: "#333",
+              callback: numberFormat
+            },
+            grid: {
+              color: "#e0e0e0"
+            }
+          },
+          yPosts: {
+            position: "right",
+            ticks: {
+              color: "#333",
+              callback: numberFormat
+            },
+            grid: {
+              drawOnChartArea: false
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function initCharts() {
+    const charts = Array.from(document.querySelectorAll("[data-stats-chart]"));
+    if (!charts.length || typeof Chart === "undefined") {
+      return;
+    }
+    charts.forEach(buildChart);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCharts);
+  } else {
+    initCharts();
+  }
+})();
+</script>
+
+<style>
+  .stats-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top: 1.5rem;
+  }
+  .stats-card {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 0.9rem 0.9rem 0.75rem;
+  }
+  .stats-card-header h2 {
+    margin: 0;
+  }
+  .stats-canvas-wrap {
+    margin-top: 0.75rem;
+    height: 260px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    padding: 0.5rem;
+  }
+  .stats-chart {
+    width: 100%;
+    height: 100%;
+  }
+  .stats-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  .stats-dot {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border: 1px solid #222;
+  }
+  .stats-dot-muted {
+    background: #ddd;
+  }
+  .stats-legend-label {
+    margin-right: 0.4rem;
+  }
+  @media (max-width: 700px) {
+    .stats-canvas-wrap {
+      height: 220px;
+    }
+  }
+</style>
+{{ end }}

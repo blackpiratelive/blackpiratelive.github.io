@@ -218,6 +218,7 @@ Edit `config.toml` under `[menus]` section
 - **Gallery shortcode**: `{{< gal >}}` uses justifiedGallery only; no LightGallery integration.
 - **Footer tags**: Footer includes a Tags section listing all tags by count.
 - **Testing**: No automated tests - validate manually via browser
+- **Stats page**: `/stats/` uses `content/stats/index.md` with layout `themes/suckless/layouts/stats/single.html` to show yearly word/post counts for blog, thoughts, books, and gallery entries. Charts are rendered with local Chart.js at `static/vendor/chart.umd.min.js`. Footer Browse section links to `/stats`.
 
 ---
 
