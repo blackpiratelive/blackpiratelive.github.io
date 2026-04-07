@@ -2,6 +2,7 @@
 title: "Parasite Movie - My Experience"
 date: 2026-04-07T20:45:28+05:30
 cover: "/img/parasite.jpg"
+tags: [movie, review]
 ---
 This movie was in my list for more than few years I never have taken the time to watch it. But yesterday I asked Ashfiya randomly to suggest me some east asian movies. She named few movies including this one. I recognised this and told her that today is going to be movie night then. The movie was on Sony Liv app, I had the subscription so I watched there.
 
