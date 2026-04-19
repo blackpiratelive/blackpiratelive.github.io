@@ -3,36 +3,46 @@
 <header class="thoughts-header">
   <h1 class="section-title">Micro Feed</h1>
   <div class="action-buttons">
-    <a href="/thoughts/index.xml" class="btn-raw">Subscribe via RSS</a>
+    <a href="/thoughts/index.xml" class="btn-rss-pill" aria-label="Subscribe via RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+      RSS
+    </a>
   </div>
 </header>
 
-<section class="thoughts-feed">
-  {{ range (.Paginate .Pages 100).Pages }}
-  <div class="thought-item">
-    <div class="thought-meta">
-      {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
-    </div>
-    <div class="thought-content">
-      {{ .Content }}
-    </div>
-    <div class="likes-block likes-block-compact">
-      <button class="likes-button" type="button" data-like-button data-like-owner="sudip" data-like-url="{{ .Permalink }}" aria-label="Like this thought">
-        <span class="likes-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-          </svg>
-        </span>
-        <span class="likes-label">Like</span>
-        <span class="likes-count" data-like-count>—</span>
-      </button>
-    </div>
-    {{ with .Params.tags }}
-    <div class="thought-tags">
-      {{ range $index, $tag := . }}
-      <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">#{{ $tag }}</a>
+<section class="timeline">
+  {{ $pages := (.Paginate .Pages 100).Pages }}
+  {{ $grouped := $pages.GroupByDate "January 2, 2006" }}
+  {{ range $grouped }}
+  <div class="timeline-day">
+    <div class="timeline-date-label">{{ .Key }}</div>
+    {{ range .Pages }}
+    <article class="thought-item">
+      <div class="thought-meta">
+        <a href="{{ .Permalink }}" class="thought-time-link">{{ .Date.Format "15:04" }}</a>
+      </div>
+      <div class="thought-content">
+        {{ .Content }}
+      </div>
+      {{ with .Params.tags }}
+      <div class="thought-tags">
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">#{{ . }}</a>
+        {{ end }}
+      </div>
       {{ end }}
-    </div>
+      <div class="likes-block likes-block-compact">
+        <button class="likes-button" type="button" data-like-button data-like-owner="sudip" data-like-url="{{ .Permalink }}" aria-label="Like this thought">
+          <span class="likes-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </span>
+          <span class="likes-label">Like</span>
+          <span class="likes-count" data-like-count>—</span>
+        </button>
+      </div>
+    </article>
     {{ end }}
   </div>
   {{ end }}

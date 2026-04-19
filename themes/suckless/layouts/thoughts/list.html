@@ -1,38 +1,47 @@
 {{ define "main" }}
+
 <header class="thoughts-header">
-  <h1 class="section-title">Micro Feed</h1>
-  <div class="action-buttons">
-    <a href="/thoughts/index.xml" class="btn">Subscribe via RSS</a>
-  </div>
+  <h1>Micro Feed</h1>
+  <a href="/thoughts/index.xml" class="btn-rss" aria-label="Subscribe via RSS">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+    RSS
+  </a>
 </header>
 
-<section class="thoughts-feed">
-  {{ range (.Paginate .Pages 100).Pages }}
-  <article class="thought-item">
-    <div class="thought-meta">
-      <a href="{{ .RelPermalink }}">{{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}</a>
-    </div>
-    <div class="thought-content">
-      {{ .Content }}
-    </div>
-    <div class="likes-block likes-block-compact">
-      <button class="likes-button" type="button" data-like-button data-like-owner="sudip" data-like-url="{{ .Permalink }}" aria-label="Like this thought">
-        <span class="likes-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-            <path d="M3.172 5.172a4 4 0 015.656 0L12 8.343l3.172-3.171a4 4 0 115.656 5.656L12 21.343 3.172 10.828a4 4 0 010-5.656z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </span>
-        <span class="likes-count" data-like-count>—</span>
-      </button>
-    </div>
-    {{ with .Params.tags }}
-    <div class="thought-tags">
-      {{ range . }}
-      <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+<section class="timeline" style="border: 0; padding-bottom: 0; margin-bottom: 0;">
+  {{ $pages := (.Paginate .Pages 100).Pages }}
+  {{ $grouped := $pages.GroupByDate "January 2, 2006" }}
+  {{ range $grouped }}
+  <div class="timeline-day">
+    <div class="timeline-date-label">{{ .Key }}</div>
+    {{ range .Pages }}
+    <article class="thought-item">
+      <div class="thought-meta">
+        <a href="{{ .RelPermalink }}">{{ .Date.Format "15:04" }}</a>
+      </div>
+      <div class="thought-content">
+        {{ .Content }}
+      </div>
+      {{ with .Params.tags }}
+      <div class="thought-tags">
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">#{{ . }}</a>
+        {{ end }}
+      </div>
       {{ end }}
-    </div>
+      <div class="likes-block likes-block-compact">
+        <button class="likes-button" type="button" data-like-button data-like-owner="sudip" data-like-url="{{ .Permalink }}" aria-label="Like this thought">
+          <span class="likes-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+              <path d="M3.172 5.172a4 4 0 015.656 0L12 8.343l3.172-3.171a4 4 0 115.656 5.656L12 21.343 3.172 10.828a4 4 0 010-5.656z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span class="likes-count" data-like-count>—</span>
+        </button>
+      </div>
+    </article>
     {{ end }}
-  </article>
+  </div>
   {{ end }}
 </section>
 

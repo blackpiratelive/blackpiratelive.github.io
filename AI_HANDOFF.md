@@ -355,3 +355,44 @@ Edit `config.toml` under `[menus]` section
   - `UMAMI_PASSWORD=...`
   - `UMAMI_SITE_ID=80888a44-8645-40c5-9c06-a1e5a2da24fc`
   - `UMAMI_START_DATE=2025-11-02`
+
+---
+
+## Thoughts Page Redesign (April 2026)
+
+- **Layout**: Changed from flat card list to a **timeline micro feed** with a vertical left-border spine
+- **Date Grouping**: Uses Hugo's `.GroupByDate "January 2, 2006"` to cluster thoughts by day
+- **Date Labels**: Sticky dark (`#222`) labels with a teal (`#005577`) dot, positioned against the timeline spine
+- **Animation**: `@keyframes date-slide-in` — date labels fade + slide in from the left on page load
+- **Thought Cards**: Left accent border (`3px solid #ccc`) that turns teal on hover, with subtle `translateY(-1px)` elevation and box-shadow
+- **Timestamps**: Displayed in monospace, linked to individual thought pages via `.RelPermalink`
+- **Tags**: Styled as small bordered pills with hover accent
+- **RSS Button**: Styled as a minimal outlined pill (`#eee` background, `#ccc` border) in the page header
+- **Header**: `h1` downsized to `1.3rem` with a `#005577` bottom-border accent
+
+### Files Changed
+- `themes/suckless/layouts/thoughts/list.html` — template rewrite with date grouping
+- `themes/suckless/layouts/_default/baseof.html` — inline CSS for timeline, date labels, cards, animations
+
+---
+
+## Homepage Redesign (April 2026)
+
+- **Hero**: Changed from centered large photo + text to a compact left-aligned layout (`.hero-compact`):
+  - 80px avatar inline with name + greeting text (font-size 1.6rem)
+  - Visitor counter woven into a casual sentence: "Hello, Nth visitor — welcome to my corner of the web"
+  - Status line showing latest thought (fetched at build time from `/thoughts`), displayed in monospace with a pulsing teal dot
+- **Animations (CSS-only)**:
+  - `@keyframes fade-up`: all `.home-section` elements fade in + slide up with staggered `animation-delay` (0.06s increments)
+  - `@keyframes pulse-border`: avatar border pulses between `#ccc` and `#005577` once on load
+  - `@keyframes blink`: used for the `/now` teaser cursor
+- **Blog Posts**: Styled as a list with monospace dates, transparent left-border that turns teal on hover
+- **Recent Thoughts**: Uses the same thought-card style from the timeline redesign, with a "→ all thoughts" monospace link
+- **Now Teaser**: A dark (`#222`) terminal-style box: `$ cat /now` with a blinking teal cursor, links to `/now/`
+- **WebSutra**: Kept as-is with the existing `web1-ad` styling
+- **Layout**: Single column flow, no sidebar or multi-column grid
+- **Mobile**: Avatar shrinks to 60px, hero-name to 1.3rem, status text to 0.78rem
+
+### Files Changed
+- `themes/suckless/layouts/home.html` — full template rewrite
+- `themes/suckless/layouts/_default/baseof.html` — inline CSS for homepage styles, animations

@@ -2,98 +2,117 @@
 {{ $me := resources.Get "img/me-2.jpg" }}
 {{ $me = $me.Resize "800x webp q80" }}
 
-<section class="hero">
-  <div class="hero-content">
-    <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-image">
+{{/* Grab latest thought for status line */}}
+{{ $latestThought := first 1 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+
+<section class="hero-compact home-section" style="border: 0;">
+  <img src="{{ $me.RelPermalink }}" alt="Sudip" class="hero-avatar">
+  <div class="hero-text">
     <h1 class="hero-name">Sudip</h1>
-    <p class="hero-subtitle">Hello, <span data-hero-visitor-count>—</span><span data-hero-visitor-suffix>th</span> visitor,</p>
-    <p class="hero-tagline">Welcome to my website</p>
+    <p class="hero-subtitle">Hello, <span data-hero-visitor-count>—</span><span data-hero-visitor-suffix>th</span> visitor — welcome to my corner of the web.</p>
+    {{ with index $latestThought 0 }}
+    <p class="hero-status"><span class="status-dot"></span> latest thought: <a href="{{ .RelPermalink }}">{{ .Content | plainify | truncate 80 }}</a></p>
+    {{ end }}
   </div>
 </section>
 
-<section class="home-columns">
-  <div class="home-left-column">
-    {{ .Content }}
+<section class="home-section home-about" style="border: 0; padding-bottom: 0.5rem;">
+  {{ .Content }}
+</section>
 
-    {{ $featuredGallery := where (where .Site.RegularPages "Section" "gallery") "Params.featured" true }}
-    {{ $featuredGallery = sort $featuredGallery "Params.weight" "asc" }}
-    {{ if eq (len $featuredGallery) 0 }}
-      {{ $featuredGallery = first 3 (sort (where .Site.RegularPages "Section" "gallery") "Date" "desc") }}
-    {{ else }}
-      {{ $featuredGallery = first 3 $featuredGallery }}
+{{ $featuredGallery := where (where .Site.RegularPages "Section" "gallery") "Params.featured" true }}
+{{ $featuredGallery = sort $featuredGallery "Params.weight" "asc" }}
+{{ if eq (len $featuredGallery) 0 }}
+  {{ $featuredGallery = first 3 (sort (where .Site.RegularPages "Section" "gallery") "Date" "desc") }}
+{{ else }}
+  {{ $featuredGallery = first 3 $featuredGallery }}
+{{ end }}
+
+{{ if gt (len $featuredGallery) 0 }}
+<section class="home-section">
+  <h2>Featured Pics</h2>
+  <div class="home-featured-grid">
+    {{ range $featuredGallery }}
+    {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+    {{ $img := "" }}
+    {{ if not hugo.IsServer }}
+      {{ $img = resources.GetRemote $imgUrl }}
     {{ end }}
-
-    {{ if gt (len $featuredGallery) 0 }}
-    <section class="home-featured-gallery">
-      <h2>Featured Pics</h2>
-      <div class="home-featured-grid">
-        {{ range $featuredGallery }}
-        {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
-        {{ $img := "" }}
-        {{ if not hugo.IsServer }}
-          {{ $img = resources.GetRemote $imgUrl }}
-        {{ end }}
-        <a href="{{ .RelPermalink }}">
-          {{ if $img }}
-          <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy">
-          {{ else if $imgUrl }}
-          <img src="{{ $imgUrl }}" alt="{{ .Title }}" loading="lazy">
-          {{ else }}
-          <span>{{ .Title }}</span>
-          {{ end }}
-        </a>
-        {{ end }}
-      </div>
-    </section>
+    <a href="{{ .RelPermalink }}">
+      {{ if $img }}
+      <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy">
+      {{ else if $imgUrl }}
+      <img src="{{ $imgUrl }}" alt="{{ .Title }}" loading="lazy">
+      {{ else }}
+      <span>{{ .Title }}</span>
+      {{ end }}
+    </a>
     {{ end }}
-
-    {{ $recentReadBooks := first 3 (sort (where (where .Site.RegularPages "Section" "books") "Params.shelf" "read") "Date" "desc") }}
-    {{ if gt (len $recentReadBooks) 0 }}
-    <section class="home-recent-books">
-      <h2>Latest Read Books</h2>
-      <div class="home-books-grid">
-        {{ range $recentReadBooks }}
-        {{ $book := . }}
-        <a href="{{ .RelPermalink }}" class="home-book-item">
-          {{ with .Params.cover }}
-          <img src="{{ . }}" alt="Cover for {{ $book.Title }}" loading="lazy">
-          {{ else }}
-          <span>{{ .Title }}</span>
-          {{ end }}
-        </a>
-        {{ end }}
-      </div>
-    </section>
-    {{ end }}
-
-    <section class="home-recent-posts">
-      <h2>Recent Blog Posts</h2>
-      <ul class="home-recent-list">
-        {{ range first 5 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
-        <li>{{ .Date.Format "01-02" }} - <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-        {{ end }}
-      </ul>
-    </section>
-
-    <section class="home-recent-thoughts">
-      <h2>Recent Thoughts</h2>
-      <div class="thoughts-feed">
-        {{ range first 3 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
-        <div class="thought-item">{{ .Content }}</div>
-        {{ end }}
-      </div>
-    </section>
-
-    <section class="home-webring" aria-labelledby="home-webring-title">
-      <h2 id="home-webring-title">WebSutra Members</h2>
-      <p>Indian Webring Network with brutalist spirit.</p>
-      <a href="https://webring.blackpiratex.com" class="web1-ad" target="_blank" rel="noopener">
-        <div class="web1-stars">~ ~ ~ ~ ~</div>
-        <div class="web1-text">Join WebSutra</div>
-        <div class="web1-subtitle">Visit webring.blackpiratex.com</div>
-        <div class="web1-stars">~ ~ ~ ~ ~</div>
-      </a>
-    </section>
   </div>
+</section>
+{{ end }}
+
+{{ $recentReadBooks := first 3 (sort (where (where .Site.RegularPages "Section" "books") "Params.shelf" "read") "Date" "desc") }}
+{{ if gt (len $recentReadBooks) 0 }}
+<section class="home-section">
+  <h2>Latest Read Books</h2>
+  <div class="home-books-grid">
+    {{ range $recentReadBooks }}
+    {{ $book := . }}
+    <a href="{{ .RelPermalink }}" class="home-book-item">
+      {{ with .Params.cover }}
+      <img src="{{ . }}" alt="Cover for {{ $book.Title }}" loading="lazy">
+      {{ else }}
+      <span>{{ .Title }}</span>
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<section class="home-section">
+  <h2>Recent Blog Posts</h2>
+  <ul class="home-blog-list">
+    {{ range first 5 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
+    <li>
+      <span class="blog-date">{{ .Date.Format "Jan 02" }}</span>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Recent Thoughts</h2>
+  <div class="home-thoughts-feed">
+    {{ range first 3 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+    <article class="thought-item">
+      <div class="thought-meta">
+        <a href="{{ .RelPermalink }}">{{ .Date.Format "Jan 02" }} · {{ .Date.Format "15:04" }}</a>
+      </div>
+      <div class="thought-content">{{ .Content }}</div>
+    </article>
+    {{ end }}
+  </div>
+  <a href="/thoughts/" class="home-more-link">→ all thoughts</a>
+</section>
+
+<section class="home-section home-now-teaser">
+  <a href="/now/" class="now-box">
+    <span class="now-label">$ cat /now</span>
+    <span class="now-cursor">▮</span>
+  </a>
+</section>
+
+<section class="home-section" style="border: 0;">
+  <h2>WebSutra</h2>
+  <p>Indian Webring Network with brutalist spirit.</p>
+  <a href="https://webring.blackpiratex.com" class="web1-ad" target="_blank" rel="noopener">
+    <div class="web1-stars">~ ~ ~ ~ ~</div>
+    <div class="web1-text">Join WebSutra</div>
+    <div class="web1-subtitle">Visit webring.blackpiratex.com</div>
+    <div class="web1-stars">~ ~ ~ ~ ~</div>
+  </a>
 </section>
 {{ end }}
