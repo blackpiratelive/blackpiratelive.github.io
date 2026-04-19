@@ -1,20 +1,24 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
+<header class="thoughts-header">
+  <h1>{{ .Title }}</h1>
+  <a href="/blog/index.xml" class="btn-rss" aria-label="Subscribe via RSS">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+    RSS
+  </a>
+</header>
 {{ with .Content }}{{ . }}{{ end }}
-<ul class="content-list">
+<ul class="home-blog-list">
   {{ range .Pages.ByDate.Reverse }}
   <li>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    {{ with .Date }}
-    <div class="content-meta">{{ .Format "2006-01-02" }}</div>
-    {{ end }}
-    {{ with .Params.tags }}
-    <div class="tag-list">
-      {{ range . }}
-      <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+    <span class="blog-date">{{ .Date.Format "Jan 02" }}</span>
+    <span class="blog-entry">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Params.tags }}
+      <span class="blog-tags">
+        {{ range . }}<a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">#{{ . }}</a>{{ end }}
+      </span>
       {{ end }}
-    </div>
-    {{ end }}
+    </span>
   </li>
   {{ end }}
 </ul>
