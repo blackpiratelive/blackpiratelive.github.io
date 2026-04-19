@@ -396,3 +396,35 @@ Edit `config.toml` under `[menus]` section
 ### Files Changed
 - `themes/suckless/layouts/home.html` — full template rewrite
 - `themes/suckless/layouts/_default/baseof.html` — inline CSS for homepage styles, animations
+
+---
+
+## Blog List Redesign (April 2026)
+
+- **Layout**: Same style as homepage blog posts — monospace `Jan 02` dates, left accent border turning teal on hover
+- **Tags**: Displayed inline as small `.tag-pill` badges after each post title
+- **Header**: Same styled header with RSS pill button (`.btn-rss`) as thoughts page
+
+### Files Changed
+- `themes/suckless/layouts/blog/list.html` — template rewrite
+- `themes/suckless/layouts/_default/baseof.html` — `.blog-entry`, `.blog-tags` CSS
+
+---
+
+## WebSutra Ad Styling (April 2026)
+
+- **Homepage ad** (`.web1-ad`): Retro flashy dark banner with:
+  - Animated border cycling teal → red → orange (`@keyframes ad-border-cycle`)
+  - Shimmer gradient text on "Join WebSutra" (`@keyframes ad-text-shimmer`)
+  - Scanline overlay sweeping top-to-bottom (`@keyframes ad-scanline`)
+  - Pulsing glow matching border colors (`@keyframes ad-glow`)
+  - "Are you an Indian? 🇮🇳" question text, star decorators
+- **Footer ad** (`.footer-websutra`): Compact one-line dark banner with:
+  - Magenta border, cyan "WebSutra" text
+  - Sparkle stars cycling magenta → cyan → yellow (`@keyframes fws-sparkle`)
+  - Hover changes border to cyan
+
+### Files Changed
+- `themes/suckless/layouts/home.html` — WebSutra ad markup update
+- `themes/suckless/layouts/_partials/footer.html` — compact footer banner added
+- `themes/suckless/layouts/_default/baseof.html` — retro ad CSS + footer banner CSS

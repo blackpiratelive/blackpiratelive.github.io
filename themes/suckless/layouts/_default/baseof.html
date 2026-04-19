@@ -1174,6 +1174,33 @@
         font-size: 0.78rem;
         letter-spacing: 0.5px;
       }
+      /* ── Footer WebSutra ── */
+      @keyframes fws-sparkle {
+        0%, 100% { color: #f0f; }
+        33% { color: #0ff; }
+        66% { color: #ff0; }
+      }
+      .footer-websutra {
+        display: block;
+        text-align: center;
+        padding: 0.35rem 0.6rem;
+        margin: 0.75rem 0;
+        background: #111;
+        border: 1px solid #f0f;
+        font-family: monospace;
+        font-size: 0.82rem;
+        color: #eee;
+        text-decoration: none;
+        letter-spacing: 0.3px;
+      }
+      .footer-websutra:hover {
+        background: #1a1a1a;
+        border-color: #0ff;
+        text-decoration: none;
+      }
+      .fws-star {
+        animation: fws-sparkle 2s linear infinite;
+      }
       @media (max-width: 700px) {
         nav ul {
           flex-wrap: wrap;
