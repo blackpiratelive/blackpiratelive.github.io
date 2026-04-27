@@ -704,17 +704,15 @@
 
       .themed-post-study {
         position: relative;
-        padding: 1.35rem 1.35rem 1.35rem 4.25rem;
+        padding: 1.35rem;
         border: 3px solid #1d4ed8;
-        background:
-          linear-gradient(90deg, transparent 0 50px, rgba(220, 38, 38, 0.45) 51px, transparent 52px),
-          repeating-linear-gradient(180deg, #fffef7 0, #fffef7 30px, #c7dbff 31px, #fffef7 32px);
+        background: repeating-linear-gradient(180deg, #fffef7 0, #fffef7 30px, #c7dbff 31px, #fffef7 32px);
         color: #172033;
         box-shadow: 8px 8px 0 #facc15;
       }
       .themed-post-study .themed-post-header {
-        margin: -1.35rem -1.35rem 1.25rem -4.25rem;
-        padding: 1rem 1.35rem 1rem 4.25rem;
+        margin: -1.35rem -1.35rem 1.25rem;
+        padding: 1rem 1.35rem;
         border-bottom: 3px double #1d4ed8;
         background: rgba(255, 255, 255, 0.82);
       }
@@ -1103,10 +1101,7 @@
       .themed-post-life {
         padding: 1.25rem;
         border: 3px solid #1f6f68;
-        background:
-          linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0 25%, transparent 25% 50%, rgba(25, 130, 196, 0.18) 50% 75%, transparent 75%),
-          #fff9ea;
-        background-size: 44px 44px;
+        background: #fff9ea;
         color: #272019;
         box-shadow: 9px 9px 0 #ffbf47;
       }
@@ -1655,6 +1650,254 @@
         transform: translateY(-1px);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       }
+      .thought-themed {
+        position: relative;
+        border-left-width: 6px;
+        overflow: hidden;
+      }
+      .thought-single.thought-themed {
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+      .thought-themed .thought-meta {
+        font-weight: bold;
+      }
+      .thought-themed .likes-button,
+      .thought-themed .tag-pill {
+        font-weight: bold;
+      }
+      .thought-theme-cooking {
+        border-color: #d97706;
+        border-left-color: #2e7d32;
+        background:
+          linear-gradient(90deg, rgba(46, 125, 50, 0.12) 0 8px, transparent 8px),
+          #fff8e7;
+        color: #2f160f;
+        box-shadow: 4px 4px 0 rgba(217, 119, 6, 0.28);
+      }
+      .thought-theme-cooking .thought-meta,
+      .thought-theme-cooking .thought-meta a {
+        color: #9a3412;
+      }
+      .thought-theme-cooking .thought-content h2,
+      .thought-theme-cooking .thought-content h3 {
+        color: #7f1d1d;
+      }
+      .thought-theme-cooking .tag-pill,
+      .thought-theme-cooking .likes-button {
+        border-color: #2e7d32;
+        background: #fff0bf;
+        color: #5f160d;
+      }
+      .thought-theme-study {
+        border-color: #93c5fd;
+        border-left-color: #1d4ed8;
+        background: repeating-linear-gradient(180deg, #fffef7 0, #fffef7 23px, #c7dbff 24px, #fffef7 25px);
+        color: #172033;
+        box-shadow: 4px 4px 0 rgba(250, 204, 21, 0.7);
+      }
+      .thought-theme-study .thought-meta,
+      .thought-theme-study .thought-meta a {
+        color: #1d4ed8;
+      }
+      .thought-theme-study .thought-content strong {
+        background: #fef08a;
+        color: #111827;
+      }
+      .thought-theme-study .tag-pill,
+      .thought-theme-study .likes-button {
+        border-color: #1d4ed8;
+        background: #fff;
+        color: #1d4ed8;
+      }
+      .thought-theme-computer {
+        border-color: #00d7ff;
+        border-left-color: #22c55e;
+        background: #05080f;
+        color: #d8f7ff;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        box-shadow: 0 0 18px rgba(0, 215, 255, 0.22);
+      }
+      .thought-theme-computer::before {
+        content: "$";
+        position: absolute;
+        right: 0.65rem;
+        top: 0.35rem;
+        color: #22c55e;
+        opacity: 0.65;
+      }
+      .thought-theme-computer .thought-meta,
+      .thought-theme-computer .thought-meta a,
+      .thought-theme-computer a {
+        color: #67e8f9;
+      }
+      .thought-theme-computer .thought-content,
+      .thought-theme-computer .thought-content p,
+      .thought-theme-computer .thought-content li {
+        color: #d8f7ff;
+      }
+      .thought-theme-computer code {
+        background: #111827;
+        border-color: #334155;
+        color: #86efac;
+      }
+      .thought-theme-computer .tag-pill,
+      .thought-theme-computer .likes-button {
+        border-color: #00d7ff;
+        background: #020617;
+        color: #67e8f9;
+        font-family: inherit;
+      }
+      .thought-theme-dream {
+        border-color: #f9d66b;
+        border-left-color: #f0abfc;
+        background:
+          radial-gradient(circle at 90% 14%, rgba(249, 214, 107, 0.28) 0 20px, transparent 21px),
+          linear-gradient(135deg, #15112a 0%, #231942 52%, #102a43 100%);
+        color: #f8f0d8;
+        box-shadow: 0 0 22px rgba(249, 214, 107, 0.24);
+      }
+      .thought-theme-dream .thought-meta,
+      .thought-theme-dream .thought-meta a,
+      .thought-theme-dream a {
+        color: #f9d66b;
+      }
+      .thought-theme-dream .thought-content,
+      .thought-theme-dream .thought-content p,
+      .thought-theme-dream .thought-content li {
+        color: #f8f0d8;
+      }
+      .thought-theme-dream .tag-pill,
+      .thought-theme-dream .likes-button {
+        border-color: #f9d66b;
+        background: #15112a;
+        color: #f9d66b;
+      }
+      .thought-theme-life {
+        border-color: #1f6f68;
+        border-left-color: #ff6b6b;
+        background: #fff9ea;
+        color: #272019;
+        box-shadow: 4px 4px 0 #ffbf47;
+      }
+      .thought-theme-life .thought-meta,
+      .thought-theme-life .thought-meta a {
+        color: #1f6f68;
+      }
+      .thought-theme-life .tag-pill,
+      .thought-theme-life .likes-button {
+        border-color: #1f6f68;
+        background: #ffbf47;
+        color: #272019;
+      }
+      .thought-theme-movie {
+        border-color: #111;
+        border-left-color: #d8b45b;
+        background:
+          linear-gradient(90deg, #111 0 8px, transparent 8px calc(100% - 8px), #111 calc(100% - 8px)),
+          #fff6df;
+        color: #18130b;
+      }
+      .thought-theme-movie .thought-meta,
+      .thought-theme-movie .thought-meta a {
+        color: #7f1d1d;
+      }
+      .thought-theme-movie .thought-content h2,
+      .thought-theme-movie .thought-content h3 {
+        color: #7f1d1d;
+        text-transform: uppercase;
+      }
+      .thought-theme-movie .tag-pill,
+      .thought-theme-movie .likes-button {
+        border-color: #d8b45b;
+        background: #111;
+        color: #ffe8a3;
+      }
+      .thought-theme-politics {
+        border-color: #111;
+        border-left-color: #b91c1c;
+        background:
+          linear-gradient(90deg, rgba(17, 17, 17, 0.06) 0 1px, transparent 1px 8px),
+          #f3efe1;
+        color: #111;
+        font-family: Georgia, "Times New Roman", serif;
+      }
+      .thought-theme-politics .thought-meta,
+      .thought-theme-politics .thought-meta a {
+        color: #b91c1c;
+        font-family: sans-serif;
+        text-transform: uppercase;
+      }
+      .thought-theme-politics .tag-pill,
+      .thought-theme-politics .likes-button {
+        border-color: #111;
+        background: #111;
+        color: #fff;
+        font-family: sans-serif;
+      }
+      .thought-theme-reading {
+        border-color: #6b4f2a;
+        border-left-color: #2f6f73;
+        background:
+          linear-gradient(90deg, rgba(47, 111, 115, 0.12) 0 6px, transparent 6px),
+          #fbf3df;
+        color: #2d2416;
+        box-shadow: 4px 4px 0 rgba(107, 79, 42, 0.25);
+      }
+      .thought-theme-reading::before {
+        content: "saved";
+        position: absolute;
+        right: 0.65rem;
+        top: 0.35rem;
+        border: 1px solid #2f6f73;
+        padding: 0.05rem 0.35rem;
+        color: #2f6f73;
+        font-family: monospace;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        background: #fffaf0;
+      }
+      .thought-theme-reading .thought-meta,
+      .thought-theme-reading .thought-meta a {
+        color: #2f6f73;
+      }
+      .thought-theme-reading .tag-pill,
+      .thought-theme-reading .likes-button {
+        border-color: #6b4f2a;
+        background: #fffaf0;
+        color: #2d2416;
+      }
+      .thought-theme-quotes {
+        border-color: #5b5f97;
+        border-left-color: #d97706;
+        background: #fffaf3;
+        color: #241a11;
+        font-family: Georgia, "Times New Roman", serif;
+        box-shadow: inset 0 0 0 1px rgba(91, 95, 151, 0.18), 4px 4px 0 rgba(217, 119, 6, 0.22);
+      }
+      .thought-theme-quotes::before {
+        content: open-quote;
+        position: absolute;
+        right: 0.55rem;
+        top: -0.45rem;
+        color: rgba(91, 95, 151, 0.2);
+        font-size: 4rem;
+        line-height: 1;
+      }
+      .thought-theme-quotes .thought-meta,
+      .thought-theme-quotes .thought-meta a {
+        color: #5b5f97;
+        font-family: sans-serif;
+      }
+      .thought-theme-quotes .thought-content {
+        font-size: 1.05rem;
+      }
+      .thought-theme-quotes .tag-pill,
+      .thought-theme-quotes .likes-button {
+        border-color: #5b5f97;
+        background: #f7ead2;
+        color: #241a11;
+      }
       .home-recent-thoughts .thought-item {
         padding: 0.35rem 0.5rem;
         font-size: 0.95rem;
@@ -1938,9 +2181,7 @@
         .themed-post-study {
           padding: 1rem;
           box-shadow: none;
-          background:
-            linear-gradient(90deg, transparent 0 22px, rgba(220, 38, 38, 0.45) 23px, transparent 24px),
-            repeating-linear-gradient(180deg, #fffef7 0, #fffef7 30px, #c7dbff 31px, #fffef7 32px);
+          background: repeating-linear-gradient(180deg, #fffef7 0, #fffef7 30px, #c7dbff 31px, #fffef7 32px);
         }
         .themed-post-study .themed-post-header {
           margin: -1rem -1rem 1rem;
@@ -2009,6 +2250,12 @@
         }
         .thought-item {
           padding: 0.4rem 0.5rem;
+        }
+        .thought-single.thought-themed {
+          padding: 0.75rem;
+        }
+        .thought-theme-study {
+          background: repeating-linear-gradient(180deg, #fffef7 0, #fffef7 23px, #c7dbff 24px, #fffef7 25px);
         }
         .thought-content img {
           max-height: 300px;

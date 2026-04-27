@@ -15,7 +15,8 @@
   <div class="timeline-day">
     <div class="timeline-date-label">{{ .Key }}</div>
     {{ range .Pages }}
-    <article class="thought-item">
+    {{ $thoughtTheme := partial "thought-theme.html" . }}
+    <article class="thought-item{{ with $thoughtTheme }} thought-themed thought-theme-{{ . }}{{ end }}">
       <div class="thought-meta">
         <a href="{{ .RelPermalink }}">{{ .Date.Format "15:04" }}</a>
       </div>

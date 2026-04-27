@@ -1,0 +1,27 @@
+{{- $tags := slice -}}
+{{- with .Params.tags -}}
+  {{- range . -}}
+    {{- $tags = $tags | append (lower .) -}}
+  {{- end -}}
+{{- end -}}
+{{- $theme := "" -}}
+{{- if in $tags "cooking" -}}
+  {{- $theme = "cooking" -}}
+{{- else if in $tags "study" -}}
+  {{- $theme = "study" -}}
+{{- else if or (in $tags "computer") (or (in $tags "linux") (or (in $tags "software") (or (in $tags "internet") (or (in $tags "self-host") (or (in $tags "android") (or (in $tags "ai") (or (in $tags "privacy") (or (in $tags "website") (in $tags "ai privacy"))))))))) -}}
+  {{- $theme = "computer" -}}
+{{- else if or (in $tags "dream") (in $tags "dreams") -}}
+  {{- $theme = "dream" -}}
+{{- else if in $tags "life" -}}
+  {{- $theme = "life" -}}
+{{- else if or (in $tags "movie") (in $tags "review") -}}
+  {{- $theme = "movie" -}}
+{{- else if in $tags "politics" -}}
+  {{- $theme = "politics" -}}
+{{- else if or (in $tags "bookmarks") (or (in $tags "articles") (in $tags "article")) -}}
+  {{- $theme = "reading" -}}
+{{- else if in $tags "quotes" -}}
+  {{- $theme = "quotes" -}}
+{{- end -}}
+{{- $theme -}}
