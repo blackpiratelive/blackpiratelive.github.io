@@ -1,0 +1,24 @@
+{{ define "main" }}
+<article class="themed-post themed-post-computer">
+  <header class="themed-post-header">
+    <div class="terminal-titlebar" aria-hidden="true">
+      <span class="terminal-dot terminal-dot-red"></span>
+      <span class="terminal-dot terminal-dot-yellow"></span>
+      <span class="terminal-dot terminal-dot-green"></span>
+    </div>
+    <p class="theme-kicker">~/blog/computer</p>
+    <h1>{{ .Title }}</h1>
+    {{ partial "blog/post-meta.html" . }}
+  </header>
+
+  {{ partial "blog/post-cover.html" . }}
+
+  <div class="themed-post-content">
+    {{ partial "blog/post-toc.html" . }}
+    {{ .Content }}
+  </div>
+
+  {{ partial "blog/post-likes.html" . }}
+  {{ partial "blog/post-comments.html" . }}
+</article>
+{{ end }}

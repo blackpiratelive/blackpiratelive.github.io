@@ -2,6 +2,7 @@
 title: "My Fountain Pen Collection"
 date: 2023-02-12T20:43:37+05:30
 tags: [pens]
+layout: life
 ---
 I like pens. If you ask my family they would tell you how much money I have spent (ahem, wasted) on pens. I used almost all type of pens there is, that is if they are available for purchase in India. 
 My recent obsession is fountain pens. I love them. A good fountain pen writes miles better than any other kind of pen. But they are expensive. Like very expensive. But most the fountain pens are made so that they can be used for a very long time. I bought some with my own money and some from parents. 

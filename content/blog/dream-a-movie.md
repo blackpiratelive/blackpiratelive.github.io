@@ -2,6 +2,7 @@
 title: "Dream: A Movie"
 date: 2025-01-16T21:00:00+05:30
 tags: [dream]
+layout: dream
 ---
 
 

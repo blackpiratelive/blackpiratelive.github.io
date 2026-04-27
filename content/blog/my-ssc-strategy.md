@@ -3,6 +3,7 @@ title: "My Ssc Strategy"
 date: 2026-04-05T23:20:20+05:30
 cover: "/img/ssc.jpg"
 tags: [study, life]
+layout: study
 ---
 In this post I have wrriten down all the things that I have done for the exam preparations of SSC. I am talking about Staff Selection Commission of Government of India and **not the school service commission** of west bengal. 
 

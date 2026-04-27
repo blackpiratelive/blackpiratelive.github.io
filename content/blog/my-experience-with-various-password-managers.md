@@ -3,6 +3,7 @@ title: "My Experience With Various Password Managers"
 date: 2021-11-09T18:53:53+05:30
 tags: [software]
 lastmod: 2022-04-29
+layout: computer
 ---
 Throughout the years i have used many password managers. One of the biggest reasons I started using a password manager is not because of the security but rather I wanted a quick way to type my passwords. Also its easy for me to loose track of the websites I have signed up for. Now you may ask why I didn't use something like password manager built in most modern web browser? Well the answer to that question is I wanted all my passwords to sync to different browsers.
 

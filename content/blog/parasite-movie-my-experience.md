@@ -3,6 +3,7 @@ title: "Parasite Movie - My Experience"
 date: 2026-04-07T20:45:28+05:30
 cover: "/img/parasite.jpg"
 tags: [movie, review]
+layout: movie
 ---
 This movie was in my list for more than few years I never have taken the time to watch it. But yesterday I asked Ashfiya randomly to suggest me some east asian movies. She named few movies including this one. I recognised this and told her that today is going to be movie night then. The movie was on Sony Liv app, I had the subscription so I watched there.
 
@@ -13,4 +14,3 @@ I am very conflicted about whom to support in the movie. I do not want to suppor
 {{< img src="/img/parasite-2.jpg" >}}
 
 And yes the ending was not what I expected. I cannot imagine the ending. But that’s what happens when things start to go out of control in a situation. This is why I love east asian movies. They have some of the most unexpected endings. Overall, time well spent.
-

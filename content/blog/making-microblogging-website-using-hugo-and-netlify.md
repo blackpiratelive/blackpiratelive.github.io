@@ -3,6 +3,7 @@ title: 'Making Microblogging Website Using Hugo & Netlify'
 date: 2022-08-25T19:30:17+05:30
 lastmod: 2022-08-28T19:17:17+05:30
 tags: [website, software, guide]
+layout: computer
 ---
 
 ## Check a live version: 

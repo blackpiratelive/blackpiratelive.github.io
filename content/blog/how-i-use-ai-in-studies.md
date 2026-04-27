@@ -2,6 +2,7 @@
 title: "How I Use AI in Studies"
 date: 2026-01-05T22:54:00+05:30
 tags: [guide, ai, study]
+layout: study
 ---
 
 Unlike most Tech youtubers i do not think AI is useless. It is far from being useless. I think these techtubers are so confined to their own little worlds that they lack the imagination of what can be done in other areas of life.  Specially for a low skilled person like me it has been useful so far for me. From the last year I have been using ai in different parts of my life. I want to talk about how I have integrated AI in my studies in this blog post. 

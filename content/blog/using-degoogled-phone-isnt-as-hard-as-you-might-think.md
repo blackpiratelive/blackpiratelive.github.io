@@ -2,6 +2,7 @@
 title: "Using Degoogled Phone Isn't as Hard as You Might Think"
 date: 2022-05-17T10:27:24+05:30
 tags: [software, privacy]
+layout: computer
 ---
 ## What is a degoogled phone?
 Vanilla Android is [FOSS](https://blog.blackpiratex.com/tags/FOSS/) (Free and OpenSource Software), but the android that you get preinstalled in most phones isn't completely FOSS. It has a blackbox, which is called Google Play Services. A lot of android apps and all google apps relies on this. Sure it provides features like instant notification, but privacy is a nightmare. Degoogling a phone means removing this blackbox, by installing a different flavour of Android which doesn't ship with Google Play Services by default.  LineageOs is a popular example. 

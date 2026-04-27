@@ -3,6 +3,7 @@ title: "On Website Design"
 date: 2026-04-03T00:19:00+05:30
 cover: "/img/minimalism.jpeg"
 tags: [website, design]
+layout: computer
 ---
 
 This post is going to be a rant about something I face. I cannot seem to stay on a single design for long, and the AI agents have made it worse. You can redesign your whole site within few hours. So what do I do in this situation? 

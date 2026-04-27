@@ -2,6 +2,7 @@
 title: "Dream Entry #1"
 date: 2023-04-11T21:00:00+05:30
 tags: [dream]
+layout: dream
 ---
 
 
@@ -32,4 +33,3 @@ entered, then locked the door again. He saw me entering. He came in from differe
 He saw the nameplate on the wall. It's his dad's house. Biological dad. His dad left him, when he was young. They had no contact. His dad has a new son. He started talking with his dad turning away from me. Catching the moment, I tried to escape. 
 
 I woke up, with sweats on my neck. 
-

@@ -1,0 +1,14 @@
+<div class="post-meta">
+  {{ with .Date }}
+  <span class="post-meta-item"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time></span>
+  {{ end }}
+  <span class="post-meta-item">{{ .WordCount }} words</span>
+  <span class="post-meta-item">{{ .ReadingTime }} min read</span>
+  {{ with .Params.tags }}
+  <span class="post-meta-item post-meta-tags">
+    {{ range . }}
+    <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+    {{ end }}
+  </span>
+  {{ end }}
+</div>

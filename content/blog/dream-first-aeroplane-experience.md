@@ -2,6 +2,7 @@
 title: "Dream: First Aeroplane Experience"
 date: 2025-01-13T21:00:00+05:30
 tags: [dream]
+layout: dream
 ---
 > I dreamt this after drinking coffee. 
 

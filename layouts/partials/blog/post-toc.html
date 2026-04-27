@@ -1,0 +1,7 @@
+{{ $toc := .TableOfContents }}
+{{ if and $toc (ne $toc "<nav id=\"TableOfContents\"></nav>") }}
+<details class="toc">
+  <summary>Contents</summary>
+  {{ $toc }}
+</details>
+{{ end }}

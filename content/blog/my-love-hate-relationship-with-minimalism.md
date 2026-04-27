@@ -3,6 +3,7 @@ title: "My Love Hate Relationship With Minimalism"
 date: 2026-03-21T17:29:07+05:30
 tags: [website]
 cover: "/img/minimalism-japan.jpg"
+layout: computer
 ---
 When I moved from wordpress to static site like hugo I wanted to do it because it is minimal. But as my site grew to contain more and more stuff I am now thinking if it is right call to still keep my site minimal. 
 I do like a minimal site and I think they are pretty. It is easier to make something pretty when you have very few things to play with. For example if your website is only on black and white there is no way to get it wrong, (don't challenge me on that) but if you are planning to use multiple colors and not just one accent color it is very easy to mess things up and very difficult to make it perfect. As someone with almost no design skills thats what I feel. 

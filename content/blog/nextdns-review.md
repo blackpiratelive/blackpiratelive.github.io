@@ -2,6 +2,7 @@
 title: "Nextdns Review"
 date: 2021-05-21T14:35:54+05:30
 tags: [internet, review]
+layout: computer
 ---
 ## What is DNS?
 > The Domain Name System is a hierarchical and decentralized naming system for computers, services, or other resources connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating entities.

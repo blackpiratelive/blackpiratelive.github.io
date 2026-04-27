@@ -2,6 +2,7 @@
 title: "Simplelogin - Best Way to Manage Your Emails"
 date: 2022-05-28T19:31:47+05:30
 tags: [review, privacy]
+layout: computer
 ---
 SimpleLogin is a email aliasing service. Which basically means you can create as many emails as you want* and all those emails would land on single inbox. I've been using SimpleLogin for over a year now. Here's my evaluation of the service. 
 

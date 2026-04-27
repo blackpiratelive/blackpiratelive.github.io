@@ -2,6 +2,7 @@
 title: "Setting Up My Website on Hugo"
 date: 2022-07-24T17:43:10+05:30
 tags: [meta, software, guide]
+layout: computer
 ---
 
 ## Inspiration:

@@ -2,6 +2,7 @@
 title: "Why I Love Tiling Window Manager"
 date: 2022-03-30T20:13:52+05:30
 tags: [linux]
+layout: computer
 ---
 
 Tiling Window Manager is alternative to using full blown desktop environment. [More info on ArchWiki](https://wiki.archlinux.org/title/window_manager)

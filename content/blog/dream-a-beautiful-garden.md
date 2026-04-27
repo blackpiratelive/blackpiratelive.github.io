@@ -2,6 +2,7 @@
 title: "Dream: A Beautiful Garden"
 date: 2025-02-02T21:00:00+05:30
 tags: [dream]
+layout: dream
 ---
 
 I was someone else. Probably my brother and saw myself waiting in a hall. It was our college exam and somehow I forgot to do form fillup. 

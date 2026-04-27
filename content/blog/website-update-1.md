@@ -2,6 +2,7 @@
 title: "Website Update #1"
 date: 2022-07-22T17:46:44+05:30
 tags: [meta]
+layout: computer
 ---
 
 If you have visited my this blog before,(and can remember it) you can clearly see the difference. This blog is now simpler. I like it. Hope you  like it too. As I am going to get busy with my life, I hope I would stick with this theme for very long.  

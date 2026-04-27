@@ -2,6 +2,7 @@
 title: "Year in Review - 2025"
 date: 2025-12-29T22:35:00+05:30
 tags: [life]
+layout: life
 ---
 
 So after trying to write for last two years, I think I am going to finish writing this year. 

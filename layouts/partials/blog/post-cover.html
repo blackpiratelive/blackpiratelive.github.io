@@ -1,0 +1,10 @@
+{{ with .Params.cover }}
+{{ $coverPath := strings.TrimPrefix "/" . }}
+{{ $coverRes := resources.Get $coverPath }}
+{{ if $coverRes }}
+{{ $coverWebp := $coverRes.Resize "1200x webp q80" }}
+<div class="post-cover">
+  <img src="{{ $coverWebp.RelPermalink }}" alt="{{ with $.Params.cover_alt }}{{ . }}{{ else }}{{ $.Title }} cover{{ end }}" loading="lazy">
+</div>
+{{ end }}
+{{ end }}

@@ -2,6 +2,7 @@
 title: "Streaming on Spotify vs Using Mp3s"
 date: 2022-09-30T18:52:07+05:30
 tags: [rant]
+layout: computer
 ---
 > Disclaimer: here by mp3 I am referring to any playable music file, with any extension.
 

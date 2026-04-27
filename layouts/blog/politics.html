@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="themed-post themed-post-politics">
+  <header class="themed-post-header">
+    <p class="theme-kicker">Dispatch</p>
+    <h1>{{ .Title }}</h1>
+    {{ partial "blog/post-meta.html" . }}
+  </header>
+
+  {{ partial "blog/post-cover.html" . }}
+
+  <div class="themed-post-content">
+    {{ partial "blog/post-toc.html" . }}
+    {{ .Content }}
+  </div>
+
+  {{ partial "blog/post-likes.html" . }}
+  {{ partial "blog/post-comments.html" . }}
+</article>
+{{ end }}

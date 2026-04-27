@@ -2,6 +2,7 @@
 title: "My Experience With Meditation"
 date: 2026-01-13T18:10:37+05:30
 tags: [life]
+layout: life
 ---
 
 
@@ -29,4 +30,3 @@ If you are at the end of this post and still reading this, I have a suggestion f
 - Make sure to notice the state of mind you are in after 7 days, if you do not notice the change you are never going to continue. 
 - Do not listen to music or anything, if you cannot get complete silence put on white noises and headphones. After a while you will feel silence. 
 - Do not make excuses for not doing. 
-

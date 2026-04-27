@@ -2,6 +2,7 @@
 title: "How I get Daily News"
 date: 2024-06-23T23:13:00+05:30
 tags: [obsidian, android, kindle]
+layout: computer
 ---
 
 In this post I would discuss how I read news on my kindle, benefit of my method and how you can replicate this method by yourself. 

@@ -2,6 +2,7 @@
 title: "Ranchi Experience"
 date: 2025-08-16T21:00:00+05:30
 tags: [travel]
+layout: life
 ---
 # Background
 This journey was because of NTPC (railway) exam, that happened on 14th August. I went there on 13th and came back home on 15th. 
