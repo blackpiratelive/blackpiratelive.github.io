@@ -1,0 +1,10 @@
+{{ $href := .Get "href" | default "https://tools.blackpiratex.com/" }}
+{{ $label := .Get "label" | default "Sign up today" }}
+
+<div class="retro-signup-wrap">
+  <a class="retro-signup-button" href="{{ $href | safeURL }}" target="_blank" rel="noopener">
+    <span class="retro-signup-light"></span>
+    <span>{{ $label }}</span>
+    <span class="retro-signup-arrow">&raquo;</span>
+  </a>
+</div>

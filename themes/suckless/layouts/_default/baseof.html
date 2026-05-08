@@ -2009,6 +2009,171 @@
       .pagination-link.active {
         border-color: #005577;
       }
+      /* Website Tools promos */
+      @keyframes retro-signup-stripes {
+        0% { background-position: 0 0; }
+        100% { background-position: 36px 0; }
+      }
+      @keyframes retro-signup-pop {
+        0%, 100% {
+          box-shadow: 4px 4px 0 #000, 0 0 0 4px #00f;
+        }
+        50% {
+          box-shadow: 6px 6px 0 #000, 0 0 0 4px #f0f, 0 0 14px #ff0;
+        }
+      }
+      @keyframes retro-signup-light {
+        0%, 45% { background: #0f0; }
+        46%, 100% { background: #ff0; }
+      }
+      .retro-signup-wrap {
+        margin: 2rem 0 1rem;
+        text-align: center;
+      }
+      .retro-signup-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        max-width: 100%;
+        min-height: 48px;
+        border: 3px outset #fff;
+        outline: 2px dotted #000;
+        outline-offset: 3px;
+        padding: 0.75rem 1.2rem;
+        background: repeating-linear-gradient(135deg, #ff0 0 10px, #ff66cc 10px 20px, #00e5ff 20px 30px);
+        background-size: 36px 36px;
+        color: #000;
+        font-family: "Courier New", monospace;
+        font-size: 1.05rem;
+        font-weight: 900;
+        text-decoration: none;
+        text-align: center;
+        animation: retro-signup-stripes 1.2s linear infinite, retro-signup-pop 1.7s ease-in-out infinite;
+      }
+      .retro-signup-button:hover,
+      .retro-signup-button:focus {
+        color: #000;
+        text-decoration: none;
+        border-style: inset;
+        background: repeating-linear-gradient(135deg, #0f0 0 10px, #ff0 10px 20px, #f0f 20px 30px);
+      }
+      .retro-signup-light {
+        width: 0.75rem;
+        height: 0.75rem;
+        border: 1px solid #000;
+        display: inline-block;
+        flex: 0 0 auto;
+        animation: retro-signup-light 0.65s steps(2, end) infinite;
+      }
+      .retro-signup-arrow {
+        font-family: monospace;
+        font-weight: 900;
+      }
+      @keyframes tools-ad-frame {
+        0%, 100% { border-color: #ff0; }
+        25% { border-color: #0ff; }
+        50% { border-color: #f0f; }
+        75% { border-color: #0f0; }
+      }
+      @keyframes tools-ad-flash {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0.55; }
+      }
+      @keyframes tools-ad-ticker {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+      @keyframes tools-ad-scan {
+        0% { background-position: 0 0; }
+        100% { background-position: 48px 0; }
+      }
+      .home-tools-ad-section {
+        margin-top: 0.25rem;
+      }
+      .tools-web1-ad {
+        display: grid;
+        grid-template-columns: auto auto minmax(0, 1fr) auto;
+        gap: 0.35rem;
+        align-items: center;
+        margin: 0.45rem 0 0.65rem;
+        border: 2px double #ff0;
+        padding: 0.25rem 0.35rem;
+        background: #000;
+        color: #fff;
+        font-family: "Courier New", monospace;
+        font-size: 0.86rem;
+        line-height: 1.15;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        animation: tools-ad-frame 2.4s steps(4, end) infinite;
+      }
+      .tools-web1-ad::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(90deg, transparent 0 12px, rgba(255, 255, 255, 0.08) 12px 13px);
+        pointer-events: none;
+        animation: tools-ad-scan 3.5s linear infinite;
+      }
+      .tools-web1-ad:hover,
+      .tools-web1-ad:focus {
+        color: #fff;
+        text-decoration: none;
+        background: #101010;
+      }
+      .tools-web1-ad > span {
+        position: relative;
+        z-index: 1;
+      }
+      .tools-ad-badge {
+        border: 2px outset #fff;
+        padding: 0.12rem 0.35rem;
+        background: #ff0;
+        color: #000;
+        font-weight: 900;
+        animation: tools-ad-flash 0.8s steps(2, end) infinite;
+      }
+      .tools-ad-title {
+        color: #0ff;
+        font-size: 0.92rem;
+        font-weight: 900;
+        text-shadow: 1px 1px 0 #f0f;
+        white-space: nowrap;
+      }
+      .tools-ad-ticker {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px inset #888;
+        background: #111;
+        color: #ff0;
+        white-space: nowrap;
+        padding: 0.08rem 0;
+      }
+      .tools-ad-ticker span {
+        display: inline-block;
+        min-width: 100%;
+        padding-left: 100%;
+        animation: tools-ad-ticker 11s linear infinite;
+      }
+      .tools-ad-copy {
+        display: none;
+        color: #ddd;
+        font-size: 0.85rem;
+      }
+      .tools-ad-cta {
+        border: 2px outset #fff;
+        padding: 0.12rem 0.4rem;
+        background: #0f0;
+        color: #000;
+        font-weight: 900;
+        white-space: nowrap;
+        animation: tools-ad-flash 1.1s steps(2, end) infinite;
+      }
+      .tools-web1-ad-footer {
+        font-size: 0.8rem;
+      }
       /* ── Retro Web1 Ad ── */
       @keyframes ad-border-cycle {
         0%, 100% { border-color: #005577; }
@@ -2231,6 +2396,15 @@
         .action-buttons {
           gap: 0.4rem;
         }
+        .tools-web1-ad {
+          grid-template-columns: auto auto minmax(0, 1fr) auto;
+          gap: 0.25rem;
+          padding: 0.22rem;
+          text-align: left;
+        }
+        .tools-ad-title {
+          font-size: 0.82rem;
+        }
         .writeas-footer-links {
           flex-direction: column;
           gap: 0.4rem;
@@ -2271,6 +2445,20 @@
         }
         nav ul {
           gap: 0.3rem 0.5rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .retro-signup-button,
+        .retro-signup-light,
+        .tools-web1-ad,
+        .tools-web1-ad::before,
+        .tools-ad-badge,
+        .tools-ad-ticker span,
+        .tools-ad-cta {
+          animation: none;
+        }
+        .tools-ad-ticker span {
+          padding-left: 0;
         }
       }
     </style>

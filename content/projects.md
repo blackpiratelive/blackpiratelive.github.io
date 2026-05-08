@@ -19,4 +19,13 @@ URL: https://notes.blackpiratex.com
 
 Source: https://github.com/blackpirateapps/book-tracker.git
 
+Now this app has an android version, where you can sign up and track your book. Follows cupertino theme of flutter. 
+Source code: https://github.com/blackpirateapps/book-tracker.git
+
 ---
+
+### Microblogging site: 
+This contains all the codes for my [thoughts](/thoughts) section. This website is fully static and all the codes for this site can be found in this git repo. https://github.com/blackpiratelive/blackpiratelive.github.io.git 
+I have an android app that lets me post quickly to my website. source code here: https://github.com/blackpirateapps/upgraded-journey.git, This app uses a backend that is hosted on vercel and uses github api to directly commit to the repo. Source of the backend: https://github.com/blackpiratelive/post-to-status.git This backend also has a web ui. 
+
+
