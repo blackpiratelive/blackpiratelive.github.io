@@ -49,7 +49,20 @@ theme = 'basic'
       icon = 'calendar'
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "ATOM", "JSON"]
+  section = ["HTML", "RSS", "ATOM"]
+  taxonomy = ["HTML", "RSS", "ATOM"]
+  term = ["HTML", "RSS", "ATOM"]
+
+[mediaTypes]
+  [mediaTypes."application/atom+xml"]
+    suffixes = ["xml"]
+
+[outputFormats]
+  [outputFormats.ATOM]
+    mediaType = "application/atom+xml"
+    baseName = "atom"
+    isPlainText = false
 
 [markup]
   [markup.goldmark]
