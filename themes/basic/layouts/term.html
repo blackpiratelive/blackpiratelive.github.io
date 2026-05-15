@@ -1,7 +1,22 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
+  <ul>
+    {{ range .Pages.ByDate.Reverse }}
+      <li>
+        {{ if eq .Section "blog" }}
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ else if eq .Section "thoughts" }}
+          {{ .Content }}
+          <a href="{{ .RelPermalink }}">
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006 15:04" }}</time>
+          </a>
+        {{ else }}
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
 {{ end }}
