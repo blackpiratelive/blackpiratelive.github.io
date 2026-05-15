@@ -1,0 +1,53 @@
+{{ define "main" }}
+
+{{/* Grab latest thought for status line */}}
+
+    <h1 class="hero-name">Hi, I'm Sudip</h1>
+    <p class="hero-subtitle">Hello, stranger on the web, welcome to my corner of the web.</p>
+  </div>
+</section>
+
+
+<section class="home-section">
+  {{ .Content }}
+</section>
+
+
+<section class="home-section">
+  <h2>Recent Blog Posts</h2>
+  <ul class="home-blog-list">
+    {{ range first 10 (sort (where .Site.RegularPages "Section" "blog") "Date" "desc") }}
+    <li>
+      <span class="blog-date">{{ .Date.Format "Jan 02" }}</span>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Recent Thoughts</h2>
+  <div class="home-thoughts-feed">
+    {{ range first 10 (sort (where .Site.RegularPages "Section" "thoughts") "Date" "desc") }}
+    <article class="thought-item">
+      <div class="thought-meta">
+        <a href="{{ .RelPermalink }}">{{ .Date.Format "Jan 02" }} · {{ .Date.Format "15:04" }}</a>
+      </div>
+      {{ $thoughtPreview := .Plain | replaceRE "\\s+" " " | truncate 120 }}
+      <div class="thought-content">
+        {{ if $thoughtPreview }}{{ $thoughtPreview }}{{ else }}Open thought{{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  <a href="/thoughts/" class="home-more-link">→ all thoughts</a>
+</section>
+
+<section class="home-section home-now-teaser">
+  <a href="/now/" class="now-box">
+    <span class="now-label">$ cat /now</span>
+    <span class="now-cursor">▮</span>
+  </a>
+</section>
+
+{{ end }}

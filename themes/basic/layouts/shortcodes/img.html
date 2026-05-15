@@ -1,0 +1,18 @@
+{{ $src := .Get "src" }}
+{{ $path := strings.TrimPrefix "/" $src }}
+
+{{ with resources.Get $path }}
+{{ $processed := . }}
+{{ if not hugo.IsServer }}
+{{ $processed = .Process "webp q30" }}
+{{ end }}
+<figure class="post-image">
+    <img src="{{ $processed.RelPermalink }}" {{ with $processed.Width }}width="{{ . }}" {{ end }} {{ with
+        $processed.Height }}height="{{ . }}" {{ end }} alt="{{ $.Get " alt" | default .Name }}" loading="lazy">
+    {{ with $.Get "caption" }}
+    <figcaption>{{ . }}</figcaption>
+    {{ end }}
+</figure>
+{{ else }}
+<p style="color: red;">Image not found: {{ $path }}</p>
+{{ end }}

@@ -1,7 +1,7 @@
 baseURL = 'https://blackpiratex.com'
 languageCode = 'en-us'
 title = 'BlackPirateX'
-theme = 'suckless'
+theme = 'basic'
 
 [menus]
   [[menus.main]]
@@ -35,14 +35,14 @@ theme = 'suckless'
     weight = 20
 
   [[menus.main]]
-    name = 'search-icon'
+    name = 'Search'
     pageRef = '/search'
     weight = 30
     [menus.main.params]
       icon = 'search'
 
   [[menus.main]]
-    name = 'on-this-day-icon'
+    name = 'On this day'
     pageRef = '/on-this-day'
     weight = 31
     [menus.main.params]

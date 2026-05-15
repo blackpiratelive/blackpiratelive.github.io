@@ -2,7 +2,6 @@
 title: "Dream Entry #1"
 date: 2023-04-11T21:00:00+05:30
 tags: [dream]
-layout: dream
 ---
 
 

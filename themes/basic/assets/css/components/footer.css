@@ -1,0 +1,23 @@
+footer {
+  border-top: 1px solid #222;
+  margin-top: 1rem;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.icons a {
+  display: inline-flex;
+}
+
+.icons img {
+  width: auto;
+  height: auto;
+  max-height: 31px;
+  display: block;
+}

@@ -2,7 +2,6 @@
 title: "Digital Journaling Is Better Than Physical Journaling"
 date: 2022-04-23T20:18:34+05:30
 tags: [journaling]
-layout: life
 ---
 
 

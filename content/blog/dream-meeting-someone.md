@@ -2,7 +2,6 @@
 title: "Dream: Meeting Someone"
 date: 2025-08-26T19:00:00+05:30
 tags: [dream]
-layout: dream
 ---
 
 

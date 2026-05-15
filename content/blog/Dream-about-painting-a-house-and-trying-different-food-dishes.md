@@ -2,7 +2,6 @@
 title: "Dream about painting a house and trying different food dishes"
 date: 2025-01-09T21:00:00+05:30
 tags: [dream]
-layout: dream
 ---
 
 > I dreamt this on 9th Jan, 2025. I drank coffee that day.

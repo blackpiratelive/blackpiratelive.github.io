@@ -2,7 +2,6 @@
 title: "In Search for Perfect Daily Journal App"
 date: 2022-04-28T00:08:39+05:30
 tags: [journaling, software]
-layout: computer
 ---
 
 To be considered a viable app for my Daily Journal needs it must have following charateristics.

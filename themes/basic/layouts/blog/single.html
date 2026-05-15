@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ partial "blog/post-meta.html" . }}
+  {{ partial "blog/post-cover.html" . }}
+  {{ partial "blog/post-toc.html" . }}
+  {{ .Content }}
+  {{ partial "blog/post-likes.html" . }}
+  {{ partial "blog/post-comments.html" . }}
+</article>
+{{ end }}

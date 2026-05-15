@@ -2,7 +2,6 @@
 title: "My Experience With Meditation"
 date: 2026-01-13T18:10:37+05:30
 tags: [life]
-layout: life
 ---
 
 

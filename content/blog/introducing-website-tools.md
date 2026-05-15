@@ -34,4 +34,3 @@ I have made this to be most feature complete so you do not have to sign up for m
 - I have more questions..
     -  You can contact me [here](/contact). 
 
-{{< website-tools-signup >}}

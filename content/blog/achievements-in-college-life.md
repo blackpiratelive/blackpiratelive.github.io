@@ -2,7 +2,6 @@
 title: "Achievements in College Life"
 date: 2025-07-25T23:00:00+05:30
 tags: [life]
-layout: life
 ---
 
 

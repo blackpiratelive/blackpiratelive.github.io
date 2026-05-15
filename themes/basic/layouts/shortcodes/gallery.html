@@ -1,0 +1,21 @@
+{{ $image := resources.GetMatch (.Get "src") }}
+{{ $img := $image.Resize "500x webp q70" }}
+<div class="all-images">
+    <div id="mygallery" >
+<a href="{{ $image.RelPermalink }}" id="img-link">
+    <img src="{{ $img.RelPermalink }}">
+</a>
+<div class="view-original-div">
+    <a href="{{ $image.RelPermalink }}" id="view-original-link" class="view-original-link">View Original</a>
+</div>
+    </div>
+<script>
+      $("#mygallery").justifiedGallery(
+        {
+            rowHeight : 500,
+            margins : 20,
+            captions : true
+        }
+      );
+    </script>
+</div>

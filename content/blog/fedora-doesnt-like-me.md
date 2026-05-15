@@ -3,7 +3,6 @@ title: "Fedora Doesn't Like Me"
 date: 2022-06-27T14:54:23+05:30
 tags: [linux, software, rant]
 lastmod: 2022-06-27T14:54:23+05:30
-layout: computer
 ---
 
 

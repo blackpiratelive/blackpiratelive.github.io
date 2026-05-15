@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+<header class="thoughts-header">
+  <h1>Micro Feed</h1>
+  <a href="/thoughts/index.xml" class="btn-rss" aria-label="Subscribe via RSS">
+    RSS
+  </a>
+</header>
+
+<section class="timeline" style="border: 0; padding-bottom: 0; margin-bottom: 0;">
+  {{ $pages := (.Paginate .Pages 100).Pages }}
+  {{ $grouped := $pages.GroupByDate "January 2, 2006" }}
+  {{ range $grouped }}
+  <div class="timeline-day">
+    <div class="timeline-date-label">{{ .Key }}</div>
+    {{ range .Pages }}
+    {{ $thoughtTheme := partial "thought-theme.html" . }}
+    <article class="thought-item{{ with $thoughtTheme }} thought-themed thought-theme-{{ . }}{{ end }}">
+      <div class="thought-meta">
+        <a href="{{ .RelPermalink }}">{{ .Date.Format "15:04" }}</a>
+      </div>
+      <div class="thought-content">
+        {{ .Content }}
+      </div>
+      {{ with .Params.tags }}
+      <div class="thought-tags">
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">#{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+
+{{ $paginator := .Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+<div class="pagination">
+  {{ if $paginator.HasPrev }}
+  <a href="{{ $paginator.Prev.URL }}" class="pagination-link">« Prev</a>
+  {{ end }}
+
+  {{ range $paginator.Pagers }}
+  <a href="{{ .URL }}" class="pagination-link{{ if eq . $paginator }} active{{ end }}">{{ .PageNumber }}</a>
+  {{ end }}
+
+  {{ if $paginator.HasNext }}
+  <a href="{{ $paginator.Next.URL }}" class="pagination-link">Next »</a>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}

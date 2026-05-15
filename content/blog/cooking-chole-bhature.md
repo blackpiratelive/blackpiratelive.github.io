@@ -3,7 +3,6 @@ title: "Cooking Chole Bhature"
 date: 2026-04-27T22:56:05+05:30
 tags: [cooking]
 cover: "/img/chole-bhature.jpg"
-layout: cooking
 ---
 Few days ago I decided to make the curry of chola batura. I bought 250gms of kabli chola and let them soak overnight. I tried to find some recipes for chola batura but I could not find it that might work with the ingrediencts I have. I do not want to follow all the steps for chola batura to make the perfect one as it would take so much time. I am so bored of eating chicken and fish most of the time that I need to try something new. Enough of chicken recipes (I tried 2 recipes, resturant style, so far), I want to make something different. 
 
