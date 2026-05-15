@@ -1,10 +1,54 @@
 {{ define "main" }}
-<article>
+<article class="blog-single">
   <h1>{{ .Title }}</h1>
-  {{ partial "blog/post-meta.html" . }}
-  {{ partial "blog/post-cover.html" . }}
-  {{ partial "blog/post-toc.html" . }}
-  {{ .Content }}
+
+  <div>
+    <ul>
+      <li>
+        Published:
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+          {{ .Date.Format "January 2, 2006" }}
+        </time>
+      </li>
+      {{ if gt .Lastmod.Unix .Date.Unix }}
+      <li>
+        Updated:
+        <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+          {{ .Lastmod.Format "January 2, 2006" }}
+        </time>
+      </li>
+      {{ end }}
+      {{ with .Params.tags }}
+      <li>
+        Tags:
+        <ul>
+          {{ range . }}
+          <li><a href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+
+  {{ with .Params.cover }}
+    {{ $coverPath := strings.TrimPrefix "/" . }}
+    {{ with resources.Get $coverPath }}
+      {{ $coverImage := .Resize "1200x webp q80" }}
+      <figure class="post-cover">
+        <img
+          src="{{ $coverImage.RelPermalink }}"
+          alt="{{ with $.Params.cover_alt }}{{ . }}{{ else }}{{ $.Title }} cover{{ end }}"
+          loading="lazy"
+        >
+      </figure>
+    {{ end }}
+  {{ end }}
+
+  <div>
+    {{ .Content }}
+  </div>
+
   {{ partial "blog/post-likes.html" . }}
   {{ partial "blog/post-comments.html" . }}
 </article>

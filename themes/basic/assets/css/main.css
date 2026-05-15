@@ -2,11 +2,14 @@
 @import "components/footer.css";
 
 :root {
-		--background: #0e1111;
+		--background: rgb(28, 28, 30);
 		--text: #EFEEEA;
-		--accent: #4359fe;
-		--card-bg: #232b2b;
+		--accent-dark: hsl(233, 99%, 43%);
+		--accent: rgb(0, 145, 255);
+		--card-bg: rgb(44, 44, 46);
 }
+
+
 body {
   color: var(--text);
   background-color: var(--background);
@@ -16,11 +19,18 @@ body {
   max-width: 768px;
   margin: auto;
   padding: 1rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .thought-item {
@@ -35,6 +45,12 @@ nav ul {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
+		list-style-type: none;
+		background-color: var(--accent-dark);
+		
+}
+nav ul li a {
+	color: var(--text);
 }
 img {
 		width: 100%;
@@ -86,4 +102,56 @@ img {
 }
 .sticker {
 		max-width: 50px;
+}
+.timeline-date-label {
+	background: linear-gradient(to right, var(--accent-dark), var(--accent));
+	color: var(--text);
+	padding: 0.25rem 0.5rem;
+	border-radius: 3px;
+	font-size: 0.9rem;
+	margin: 1rem 0 0.5rem;
+}
+input {
+	background-color: var(--card-bg);
+	border: 1px solid var(--text);
+	color: var(--text);
+	padding: 0.5rem;
+	border-radius: 3px;
+	margin: 0.5rem;
+}
+button {
+	background-color: var(--accent-dark);
+	border: none;
+	color: var(--text);
+	padding: 0.5rem 1rem;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+input textarea {
+	background-color: var(--card-bg);
+	border: 1px solid var(--text);
+	color: var(--text);
+	padding: 0.5rem;
+	border-radius: 3px;
+	margin: 0.5rem;
+}
+button:hover {
+	background-color: var(--accent);
+}
+.btn {
+	background-color: var(--accent-dark);
+	border: none;
+	color: var(--text);
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+.btn:hover {
+	background-color: var(--accent);
+}
+hr {
+	background-color: red;
+	color: violet;
 }
