@@ -2,10 +2,10 @@
 @import "components/footer.css";
 
 :root {
-		--background: rgb(28, 28, 30);
-		--text: #EFEEEA;
+		--background: rgb(242, 242, 247);
+		--text: rgb(28, 28, 30);
 		--accent-dark: hsl(233, 99%, 43%);
-		--accent: rgb(0, 145, 255);
+		--accent: rgb(0, 136, 255);
 		--card-bg: rgb(44, 44, 46);
 }
 
@@ -45,18 +45,13 @@ nav ul {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-		align-items: center;
-		justify-items: center;
 		justify-content: flex-start;
 		padding-bottom: 0.5rem;
 		padding-top: 0.5rem;
 		list-style-type: none;
-		border-radius: 10px;
-		background-color: var(--accent-dark);
 		
 }
 nav ul li a {
-	color: var(--text);
 	font-size: large;
 }
 img {
