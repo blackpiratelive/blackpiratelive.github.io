@@ -6,7 +6,8 @@
 		--text: rgb(28, 28, 30);
 		--accent-dark: hsl(233, 99%, 43%);
 		--accent: rgb(0, 136, 255);
-		--card-bg: rgb(44, 44, 46);
+		--card-bg: rgb(229, 229, 234);
+		--date: rgb(44,44,46)
 }
 
 
@@ -46,13 +47,9 @@ nav ul {
 		flex-wrap: wrap;
 		gap: 0.5rem;
 		justify-content: flex-start;
-		padding-bottom: 0.5rem;
-		padding-top: 0.5rem;
+
 		list-style-type: none;
 		
-}
-nav ul li a {
-	font-size: large;
 }
 img {
 		width: 100%;
@@ -106,8 +103,8 @@ img {
 		max-width: 50px;
 }
 .timeline-date-label {
-	background: linear-gradient(to right, var(--accent-dark), var(--accent));
-	color: var(--text);
+		background-color: var(--date);
+	color: var(--background);
 	padding: 0.25rem 0.5rem;
 	border-radius: 3px;
 	font-size: 0.9rem;
@@ -122,9 +119,9 @@ input {
 	margin: 0.5rem;
 }
 button {
-	background-color: var(--accent-dark);
+	background-color: var(--date);
 	border: none;
-	color: var(--text);
+	color: var(--background);
 	padding: 0.5rem 1rem;
 	border-radius: 3px;
 	cursor: pointer;
@@ -142,9 +139,9 @@ button:hover {
 	background-color: var(--accent);
 }
 .btn {
-	background-color: var(--accent-dark);
+	background-color: var(--date);
 	border: none;
-	color: var(--text);
+	color: var(--background);
 	padding: 0.5rem 1rem;
 	border-radius: 10px;
 	cursor: pointer;
@@ -156,4 +153,14 @@ button:hover {
 hr {
 	background-color: red;
 	color: violet;
+}
+.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 0.5rem;
+}
+@media ( min-width: 600px ) {
+		.gallery-grid {
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		}
 }

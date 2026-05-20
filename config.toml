@@ -30,23 +30,9 @@ theme = 'basic'
     weight = 20
 
   [[menus.main]]
-    name = 'Uses'
-    pageRef = '/uses'
-    weight = 20
-
-  [[menus.main]]
-    name = 'Search'
-    pageRef = '/search'
-    weight = 30
-    [menus.main.params]
-      icon = 'search'
-
-  [[menus.main]]
-    name = 'On this day'
-    pageRef = '/on-this-day'
-    weight = 31
-    [menus.main.params]
-      icon = 'calendar'
+    name = 'About'
+    pageRef = '/about'
+    weight = 15
 
 [outputs]
   home = ["HTML", "RSS", "ATOM", "JSON"]

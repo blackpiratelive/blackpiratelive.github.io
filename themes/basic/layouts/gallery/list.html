@@ -1,0 +1,53 @@
+{{ define "main" }}
+<h2 class="section-title">Gallery</h2>
+
+{{ $featured := where .Pages "Params.featured" true }}
+{{ $featuredSorted := sort $featured "Params.weight" "asc" }}
+{{ $regular := where .Pages "Params.featured" "ne" true }}
+
+{{ if gt (len $featuredSorted) 0 }}
+<h2 class="section-title">Featured</h2>
+<div class="gallery-grid">
+  {{ range $featuredSorted }}
+  {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+  {{ $img := "" }}
+  {{ if not hugo.IsServer }}
+  {{ $img = resources.GetRemote $imgUrl }}
+  {{ end }}
+  <a href="{{ .RelPermalink }}">
+    {{ if $img }}
+    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy" {{ if and .Params.image.thumbnail.width
+      .Params.image.thumbnail.height }} width="{{ .Params.image.thumbnail.width | int }}"
+      height="{{ .Params.image.thumbnail.height | int }}" {{ end }}>
+    {{ else if $imgUrl }}
+    <img src="{{ $imgUrl }}" alt="{{ .Title }}" loading="lazy">
+    {{ else }}
+    <span>{{ .Title }}</span>
+    {{ end }}
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ range $regular.GroupByDate "2006" }}
+<h2 class="section-title">{{ .Key }}</h2>
+<div class="gallery-grid">
+  {{ range .Pages }}
+  {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+  {{ $img := "" }}
+  {{ if not hugo.IsServer }}
+  {{ $img = resources.GetRemote $imgUrl }}
+  {{ end }}
+  <a href="{{ .RelPermalink }}">
+    {{ if $img }}
+    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy">
+    {{ else if $imgUrl }}
+    <img src="{{ $imgUrl }}" alt="{{ .Title }}" loading="lazy">
+    {{ else }}
+    <span>{{ .Title }}</span>
+    {{ end }}
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
