@@ -1,0 +1,25 @@
+{{/* Get the match pattern */}}
+{{ $match := .Get "match" }}
+{{/* Get a size parameter, defaulting to 800px wide if not provided */}}
+{{ $size := .Get "size" | default "800x" }}
+
+<div class="gallery-grid">
+  {{ range resources.Match $match }}
+    
+    {{/* Process the image: combine the size with the webp instruction */}}
+    {{ $processString := printf "%s webp" $size }}
+    {{ $processedImg := .Resize $processString }}
+
+    <div class="gallery-item">
+      {{/* Use the properties of the PROCESSED image, not the original */}}
+      <img 
+        src="{{ $processedImg.RelPermalink }}" 
+        width="{{ $processedImg.Width }}" 
+        height="{{ $processedImg.Height }}" 
+        alt="{{ .Name }}"
+        loading="lazy">
+    </div>
+  {{ else }}
+    <p>No images found matching "{{ $match }}"</p>
+  {{ end }}
+</div>
