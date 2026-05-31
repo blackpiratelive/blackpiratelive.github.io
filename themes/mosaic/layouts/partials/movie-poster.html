@@ -6,15 +6,18 @@
 {{ if and $isVercel $tmdbId (ne $tmdbId "0") }}
   {{/* Build-time TMDB fetch for Vercel */}}
   {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%s?api_key=%s" $type $tmdbId site.Params.tmdb_api_key }}
-  {{ $cacheKey := printf "tmdb-%s-%s" $type $tmdbId }}
   
   {{ with try (resources.GetRemote $tmdbApiUrl) }}
-    {{ if not .Err }}
+    {{ if .Err }}
+      {{ warnf "TMDB API Error for %s %s: %s" $type $tmdbId .Err }}
+    {{ else }}
       {{ $data := .Value | transform.Unmarshal }}
       {{ if $data.poster_path }}
         {{ $imgUrl := printf "https://image.tmdb.org/t/p/w500%s" $data.poster_path }}
         {{ with try (resources.GetRemote $imgUrl) }}
-          {{ if not .Err }}
+          {{ if .Err }}
+            {{ warnf "TMDB Image Fetch Error for %s: %s" $imgUrl .Err }}
+          {{ else }}
             {{/* Optimize and convert to WebP */}}
             {{ $img := .Value.Resize "500x webp q80" }}
             {{ $posterUrl = $img.RelPermalink }}
@@ -29,9 +32,9 @@
   {{ if $posterUrl }}
     <img src="{{ $posterUrl }}" alt="{{ .Title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
   {{ else }}
-    {{/* Fallback to client-side JS (Local) or Placeholder */}}
+    {{/* Fallback to client-side JS if $posterUrl is empty (either Local or Build-time failed) */}}
     <div class="h-full w-full flex items-center justify-center p-4 text-center bg-zinc-800 animate-pulse poster-placeholder" 
-         {{ if not $isVercel }}data-needs-fetch="true"{{ end }}>
+         data-needs-fetch="true">
       <i data-lucide="image" class="w-8 h-8 text-zinc-700"></i>
     </div>
   {{ end }}

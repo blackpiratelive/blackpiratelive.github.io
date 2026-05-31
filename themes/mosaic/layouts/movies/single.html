@@ -188,17 +188,20 @@
   const TMDB_API_KEY = "{{ site.Params.tmdb_api_key }}";
   const tmdbId = "{{ .Params.tmdb_id }}";
   const type = "{{ if eq .Params.type "show" }}tv{{ else }}movie{{ end }}";
-  const isVercel = {{ $isVercel }};
   
-  if (!isVercel && tmdbId && tmdbId !== "0") {
+  const container = document.getElementById('poster-container');
+  const backdrop = document.getElementById('hero-backdrop');
+  const needsPoster = container && container.classList.contains('animate-pulse');
+  const needsBackdrop = backdrop && !backdrop.style.backgroundImage;
+
+  if ((needsPoster || needsBackdrop) && tmdbId && tmdbId !== "0") {
     fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`)
       .then(res => {
         if(!res.ok) throw new Error("API failure");
         return res.json();
       })
       .then(data => {
-        if (data.poster_path) {
-          const container = document.getElementById('poster-container');
+        if (needsPoster && data.poster_path) {
           const img = new Image();
           img.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
           img.className = "w-full h-auto";
@@ -211,16 +214,16 @@
             container.appendChild(img);
           };
         }
-        if (data.backdrop_path) {
-          const backdrop = document.getElementById('hero-backdrop');
+        if (needsBackdrop && data.backdrop_path) {
           backdrop.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${data.backdrop_path})`;
         }
       })
       .catch(e => {
         console.error("Poster fetch failed", e);
-        const container = document.getElementById('poster-container');
-        container.classList.remove('animate-pulse');
-        container.innerHTML = '<div class="text-zinc-600 font-bold uppercase text-xs">No Poster</div>';
+        if (needsPoster) {
+          container.classList.remove('animate-pulse');
+          container.innerHTML = '<div class="text-zinc-600 font-bold uppercase text-xs">No Poster</div>';
+        }
       });
   }
 })();
