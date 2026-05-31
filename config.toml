@@ -74,3 +74,5 @@ theme = 'mosaic'
 [security]
   enableInlineShortcodes = false
   allowContent = ['^text/html$', '^text/markdown$']
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^VERCEL$']
