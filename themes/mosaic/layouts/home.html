@@ -178,5 +178,57 @@
       <script src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
     </div>
 
+    <!-- Cinema Section -->
+    <div class="mosaic-box box-cinema col-span-1 lg:col-span-2 bg-zinc-900 rounded-[1.25rem] p-6 sm:p-8 border border-zinc-800/50">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-xl sm:text-2xl font-black flex items-center gap-3 italic">
+          <i data-lucide="tv" class="w-6 h-6 text-rose-500"></i> Cinema
+        </h2>
+        <a href="{{ "/movies/" | relURL }}" class="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition flex items-center gap-2 text-right">Explore Hub <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Recent Episodes -->
+        <div>
+          <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 flex items-center gap-2">
+            <i data-lucide="play-circle" class="w-3 h-3"></i> Latest Episodes
+          </h3>
+          <div class="space-y-4">
+            {{ range first 3 site.Data.trakt }}
+            <div class="flex items-center gap-4 group">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-zinc-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-zinc-700/30">
+                <i data-lucide="monitor" class="w-4 h-4 sm:w-5 sm:h-5 text-zinc-600 group-hover:text-rose-400 transition-colors"></i>
+              </div>
+              <div class="min-w-0">
+                <div class="text-[11px] font-black text-white truncate leading-tight">{{ .show.title }}</div>
+                <div class="text-[9px] sm:text-[10px] font-medium text-zinc-500 truncate mt-1">S{{ printf "%02d" .episode.season }}E{{ printf "%02d" .episode.number }} · {{ .episode.title }}</div>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Recent Movies -->
+        <div>
+          <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6 flex items-center gap-2">
+            <i data-lucide="film" class="w-3 h-3"></i> Recently Watched
+          </h3>
+          <div class="space-y-4">
+            {{ range first 3 (where site.RegularPages "Params.type" "movie").ByDate.Reverse }}
+            <a href="{{ .RelPermalink }}" class="flex items-center gap-4 group">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-zinc-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-zinc-700/30">
+                <i data-lucide="film" class="w-4 h-4 sm:w-5 sm:h-5 text-zinc-600 group-hover:text-rose-400 transition-colors"></i>
+              </div>
+              <div class="min-w-0">
+                <div class="text-[11px] font-black text-white truncate group-hover:text-rose-400 transition-colors leading-tight">{{ .Title }}</div>
+                <div class="text-[9px] sm:text-[10px] font-medium text-zinc-500 truncate mt-1">{{ .Params.year }} · Watched {{ .Date.Format "Jan 02" }}</div>
+              </div>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 {{ end }}

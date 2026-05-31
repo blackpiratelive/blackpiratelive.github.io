@@ -4,64 +4,64 @@
 {{ $hero := resources.Get "img/me-collage.jpg" }}
 {{ $hero = $hero.Resize "1600x webp q80" }}
 
-<main class="w-full">
+<main class="w-full px-2 sm:px-4 md:px-0">
   <div class="blog-grid">
     <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-xl overflow-hidden relative group bg-zinc-800">
       <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
 
-      <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
-        <div class="flex items-center gap-3 mb-3 lg:mb-4">
-          <span class="bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Cinema</span>
+      <div class="relative h-full flex flex-col justify-end p-4 sm:p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-2 mb-2 lg:mb-4">
+          <span class="bg-rose-600 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider">Cinema</span>
           {{ if eq .Params.view "all_movies" }}
-            <span class="text-zinc-300 font-medium text-xs lg:text-sm">All Movies</span>
+            <span class="text-zinc-300 font-medium text-[10px] sm:text-xs lg:text-sm">All Movies</span>
           {{ else if eq .Params.view "all_shows" }}
-            <span class="text-zinc-300 font-medium text-xs lg:text-sm">All TV Shows</span>
+            <span class="text-zinc-300 font-medium text-[10px] sm:text-xs lg:text-sm">All TV Shows</span>
           {{ else }}
-            <span class="text-zinc-300 font-medium text-xs lg:text-sm">{{ len .Pages }} titles</span>
+            <span class="text-zinc-300 font-medium text-[10px] sm:text-xs lg:text-sm">{{ len .Pages }} titles</span>
           {{ end }}
         </div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-2 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white mb-1 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
           {{ if eq .Params.view "all_movies" }}All Movies{{ else if eq .Params.view "all_shows" }}All TV Shows{{ else }}Movies & Shows{{ end }}
         </h1>
       </div>
     </div>
 
-    <div class="left-column blog-left-column no-scrollbar">
-      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-xl p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+    <div class="left-column blog-left-column no-scrollbar px-2 sm:px-0">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-xl p-3 sm:p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
         <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
           {{ with $resizing }}
-          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full object-cover">
           {{ end }}
           <div>
-            <h2 class="text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
-            <a href="{{ "/" | relURL }}" class="text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+            <h2 class="text-sm sm:text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-[10px] sm:text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
           </div>
         </div>
-        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs sm:text-sm font-medium">
-          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Home</a>
-          <a href="{{ "/movies/" | relURL }}" class="shrink-0 {{ if not .Params.view }}bg-zinc-800/50 text-white{{ else }}text-zinc-300 hover:bg-zinc-800 hover:text-white{{ end }} px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="tv" class="w-4 h-4"></i> Cinema</a>
-          <a href="{{ "/movies/all/" | relURL }}" class="shrink-0 {{ if eq .Params.view "all_movies" }}bg-zinc-800/50 text-white{{ else }}text-zinc-300 hover:bg-zinc-800 hover:text-white{{ end }} px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="film" class="w-4 h-4"></i> Movies</a>
-          <a href="{{ "/shows/all/" | relURL }}" class="shrink-0 {{ if eq .Params.view "all_shows" }}bg-zinc-800/50 text-white{{ else }}text-zinc-300 hover:bg-zinc-800 hover:text-white{{ end }} px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="monitor" class="w-4 h-4"></i> TV Shows</a>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-[10px] sm:text-sm font-medium">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Home</a>
+          <a href="{{ "/movies/" | relURL }}" class="shrink-0 {{ if not .Params.view }}bg-zinc-800/50 text-white{{ else }}text-zinc-300 hover:bg-zinc-800 hover:text-white{{ end }} px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="tv" class="w-3 h-3 sm:w-4 sm:h-4"></i> Cinema</a>
+          <a href="{{ "/movies/all/" | relURL }}" class="shrink-0 {{ if eq .Params.view "all_movies" }}bg-zinc-800/50 text-white{{ else }}text-zinc-300 hover:bg-zinc-800 hover:text-white{{ end }} px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="film" class="w-3 h-3 sm:w-4 sm:h-4"></i> Movies</a>
+          <a href="{{ "/shows/all/" | relURL }}" class="shrink-0 {{ if eq .Params.view "all_shows" }}bg-zinc-800/50 text-white{{ else }}text-zinc-300 hover:bg-zinc-800 hover:text-white{{ end }} px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="monitor" class="w-3 h-3 sm:w-4 sm:h-4"></i> TV Shows</a>
         </nav>
       </div>
     </div>
 
-    <div class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-6 sm:p-8 md:p-12 border border-zinc-800/50 w-full">
+    <div class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-4 sm:p-6 md:p-12 border border-zinc-800/50 w-full">
       {{ if not .Params.view }}
         {{/* OVERVIEW VIEW */}}
-        <div class="prose prose-invert prose-zinc mb-12">
+        <div class="prose prose-invert prose-zinc mb-12 px-2">
           {{ .Content }}
         </div>
 
         {{/* Favorites Section */}}
         {{ $favorites := where .Pages "Params.is_favorite" true }}
         {{ if gt (len $favorites) 0 }}
-        <section class="mb-16">
-          <h2 class="text-2xl font-black mb-8 flex items-center gap-3">
-            <i data-lucide="heart" class="w-6 h-6 text-rose-500 fill-rose-500"></i> Favorite Cinema
+        <section class="mb-12 sm:mb-16">
+          <h2 class="text-xl sm:text-2xl font-black mb-6 sm:mb-8 flex items-center gap-3">
+            <i data-lucide="heart" class="w-5 h-5 sm:w-6 sm:h-6 text-rose-500 fill-rose-500"></i> Favorite Cinema
           </h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8">
             {{ range $favorites }}
               {{ partial "movie-card.html" . }}
             {{ end }}
@@ -70,41 +70,36 @@
         {{ end }}
 
         {{/* Recently Watched Section */}}
-        <section class="mb-16">
-          <div class="flex items-center justify-between mb-8">
-            <h2 class="text-2xl font-black flex items-center gap-3">
-              <i data-lucide="clock" class="w-6 h-6 text-blue-400"></i> Recently Watched
+        <section class="mb-12 sm:mb-16">
+          <div class="flex items-center justify-between mb-6 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl font-black flex items-center gap-3">
+              <i data-lucide="clock" class="w-5 h-5 sm:w-6 sm:h-6 text-blue-400"></i> Recently Watched
             </h2>
-            <div class="flex gap-2">
-              <a href="{{ "/movies/all/" | relURL }}" class="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition flex items-center gap-1">Movies <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
-              <span class="text-zinc-800">|</span>
-              <a href="{{ "/shows/all/" | relURL }}" class="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition flex items-center gap-1">Shows <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
-            </div>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8">
             {{ range first 10 .Pages.ByDate.Reverse }}
               {{ partial "movie-card.html" . }}
             {{ end }}
           </div>
-          <div class="mt-12 flex flex-col sm:flex-row gap-4">
-             <a href="{{ "/movies/all/" | relURL }}" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-3">
-               <i data-lucide="film" class="w-5 h-5 text-rose-500"></i> View All Movies
+          <div class="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4">
+             <a href="{{ "/movies/all/" | relURL }}" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 sm:py-4 rounded-xl transition flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
+               <i data-lucide="film" class="w-4 h-4 sm:w-5 sm:h-5 text-rose-500"></i> View All Movies
              </a>
-             <a href="{{ "/shows/all/" | relURL }}" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-3">
-               <i data-lucide="monitor" class="w-5 h-5 text-blue-400"></i> View All TV Shows
+             <a href="{{ "/shows/all/" | relURL }}" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 sm:py-4 rounded-xl transition flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
+               <i data-lucide="monitor" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-400"></i> View All TV Shows
              </a>
           </div>
         </section>
 
       {{ else }}
         {{/* PAGINATED VIEWS WITH SEARCH/FILTER */}}
-        <div class="flex flex-col md:flex-row gap-4 mb-12 pb-12 border-b border-zinc-800/50">
+        <div class="flex flex-col md:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12 pb-8 sm:pb-12 border-b border-zinc-800/50 px-2 sm:px-0">
           <div class="relative flex-1">
             <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4"></i>
             <input type="text" id="cinema-search" placeholder="Search by title..." 
-                   class="w-full bg-zinc-800/50 border border-zinc-700/50 text-white pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all text-sm font-medium">
+                   class="w-full bg-zinc-800/50 border border-zinc-700/50 text-white pl-10 pr-4 py-2.5 sm:py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all text-xs sm:text-sm font-medium">
           </div>
-          <select id="cinema-filter" class="bg-zinc-800/50 border border-zinc-700/50 text-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all text-sm font-medium">
+          <select id="cinema-filter" class="bg-zinc-800/50 border border-zinc-700/50 text-white px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all text-xs sm:text-sm font-medium">
             <option value="last_added">Last Added</option>
             <option value="title_az">Title (A-Z)</option>
             <option value="title_za">Title (Z-A)</option>
@@ -114,39 +109,39 @@
         </div>
 
         <div id="cinema-default-view">
-          <h2 class="text-2xl font-black mb-8 flex items-center gap-3">
-            <i data-lucide="list" class="w-6 h-6 text-blue-400"></i> Library
+          <h2 class="text-xl sm:text-2xl font-black mb-6 sm:mb-8 flex items-center gap-3 px-2 sm:px-0">
+            <i data-lucide="list" class="w-5 h-5 sm:w-6 sm:h-6 text-blue-400"></i> Library
           </h2>
 
           {{ $type := cond (eq .Params.view "all_movies") "movie" "show" }}
           {{ $items := where site.RegularPages "Params.type" $type }}
           {{ $paginator := .Paginate $items.ByDate.Reverse 40 }}
           
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 mb-12">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8 mb-12">
             {{ range $paginator.Pages }}
               {{ partial "movie-card.html" . }}
             {{ end }}
           </div>
 
           {{ if gt $paginator.TotalPages 1 }}
-          <div class="flex justify-center gap-2 mt-12 pt-12 border-t border-zinc-800/50">
+          <div class="flex justify-center gap-2 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-zinc-800/50">
             {{ if $paginator.HasPrev }}
-              <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-xs uppercase tracking-widest flex items-center gap-2"><i data-lucide="chevron-left" class="w-4 h-4"></i> Prev</a>
+              <a href="{{ $paginator.Prev.URL }}" class="px-3 sm:px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center gap-2"><i data-lucide="chevron-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Prev</a>
             {{ end }}
             
-            <span class="px-4 py-2 bg-zinc-900 text-zinc-500 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center border border-zinc-800/50">
+            <span class="px-3 sm:px-4 py-2 bg-zinc-900 text-zinc-500 rounded-lg font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center border border-zinc-800/50">
               Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
             </span>
 
             {{ if $paginator.HasNext }}
-              <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-xs uppercase tracking-widest flex items-center gap-2">Next <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+              <a href="{{ $paginator.Next.URL }}" class="px-3 sm:px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center gap-2">Next <i data-lucide="chevron-right" class="w-3 h-3 sm:w-4 sm:h-4"></i></a>
             {{ end }}
           </div>
           {{ end }}
         </div>
 
         <div id="cinema-results-view" class="hidden">
-           <div id="cinema-results-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 mb-12">
+           <div id="cinema-results-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-8 mb-12">
              <!-- Results will be injected here -->
            </div>
            <div id="cinema-no-results" class="hidden text-center py-20 text-zinc-500">
