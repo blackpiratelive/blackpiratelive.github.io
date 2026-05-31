@@ -100,10 +100,10 @@
           {{ end }}
           {{ with .Params.runtime }}
           <li class="flex flex-col bg-zinc-900/50 p-2 lg:p-3 rounded-xl border border-zinc-700/30">
-            <span class="text-zinc-500 mb-1">{{ if eq $.Params.type "show" }}Total Watched{{ else }}Runtime{{ end }}</span>
+            <span class="text-zinc-500 mb-1">{{ if eq $.Params.type "show" }}Watched{{ else }}Runtime{{ end }}</span>
             <span class="text-zinc-200">
-              {{ $h := div . 60 }}
-              {{ $m := mod . 60 }}
+              {{ $h := div (int .) 60 }}
+              {{ $m := mod (int .) 60 }}
               {{ if gt $h 0 }}{{ $h }}h {{ end }}{{ $m }}m
             </span>
           </li>

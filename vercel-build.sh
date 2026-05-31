@@ -101,10 +101,10 @@ TOTAL_COUNT=0
 check_presence() {
   local type=$1
   local id=$2
-  ((TOTAL_COUNT++))
+  TOTAL_COUNT=$((TOTAL_COUNT + 1))
   if [ ! -f "$IMG_DIR/${type}_${id}.jpg" ]; then
     log "MISSING: $type $id"
-    ((MISSING_COUNT++))
+    MISSING_COUNT=$((MISSING_COUNT + 1))
   fi
 }
 
