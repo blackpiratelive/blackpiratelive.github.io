@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}">
 <head>
   {{ partial "head.html" . }}
 </head>
 {{ $bodyClass := "" }}
 {{ if .IsHome }}
   {{ $bodyClass = "mosaic-home" }}
-{{ else if eq .Section "blog" }}
+{{ else if or (eq .Section "blog") (eq .Section "thoughts") (eq .Section "guestbook") (eq .Section "gallery") }}
   {{ $bodyClass = "blog-page" }}
 {{ end }}
 {{ if $bodyClass }}
@@ -14,7 +14,7 @@
 {{ else }}
   <body class="selection:bg-white selection:text-black min-h-screen">
 {{ end }}
-  {{ if and (not .IsHome) (ne .Section "blog") }}
+  {{ if and (not .IsHome) (ne .Section "blog") (ne .Section "thoughts") }}
   <header>
     {{ partial "header.html" . }}
   </header>
@@ -22,7 +22,7 @@
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-  {{ if and (not .IsHome) (ne .Section "blog") }}
+  {{ if and (not .IsHome) (ne .Section "blog") (ne .Section "thoughts") }}
   <footer>
     {{ partial "footer.html" . }}
   </footer>

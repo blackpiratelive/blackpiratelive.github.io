@@ -1,47 +1,129 @@
 {{ define "main" }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
+{{ $me = $me.Resize "120x webp q80" }}
+{{ $hero := resources.Get "img/me-collage.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
 
-<header class="thoughts-header">
-  <h1 class="section-title">Micro Feed</h1>
-  <div class="action-buttons">
-    <a href="/thoughts/index.xml" class="btn-raw">Subscribe via RSS</a>
-  </div>
-</header>
+<main class="w-full">
+  <div class="blog-grid">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-[2rem] overflow-hidden relative group bg-zinc-800">
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
 
-<section class="thoughts-feed">
-  {{ range (.Paginate .Pages 100).Pages }}
-  <div class="thought-item">
-    <div class="thought-meta">
-      {{ .Date.Format "Jan 02, 2006" }} · {{ .Date.Format "15:04" }}
+      <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-3 mb-3 lg:mb-4">
+          <span class="bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Thoughts</span>
+          <span class="text-zinc-300 font-medium text-xs lg:text-sm">{{ len .Pages }} entries</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-2 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+          Micro Feed
+        </h1>
+      </div>
     </div>
-    <div class="thought-content">
-      {{ .Content }}
+
+    <div class="left-column blog-left-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-[2rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+        <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
+          {{ with $me }}
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          {{ end }}
+          <div>
+            <h2 class="text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+          </div>
+        </div>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Home</a>
+          <a href="{{ "/thoughts/" | relURL }}" class="shrink-0 bg-zinc-800/50 hover:bg-zinc-700 text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="message-square" class="w-4 h-4"></i> All Thoughts</a>
+          <a href="{{ "/blog/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition text-sm font-medium flex items-center gap-2 lg:gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> Blog</a>
+        </nav>
+      </div>
+
+      <div class="mosaic-box interactive-box box-meta blog-box-meta bg-teal-600 rounded-[2rem] p-4 lg:p-6 text-teal-50 flex flex-col gap-2 lg:gap-4">
+        <h3 class="hidden lg:block font-bold text-lg text-white">Feed Stats</h3>
+        <ul class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs lg:text-sm font-medium">
+          <li class="shrink-0 flex items-center gap-2 bg-teal-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="message-circle" class="w-4 h-4 opacity-70"></i> {{ len .Pages }} thoughts</li>
+          {{ with index .Pages.ByDate.Reverse 0 }}
+          <li class="shrink-0 flex items-center gap-2 bg-teal-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="clock" class="w-4 h-4 opacity-70"></i> Last entry: {{ .Date.Format "Jan 2, 2006" }}</li>
+          {{ end }}
+        </ul>
+      </div>
     </div>
-    {{ with .Params.tags }}
-    <div class="thought-tags">
-      {{ range $index, $tag := . }}
-      <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">#{{ $tag }}</a>
+
+    <section class="mosaic-box blog-box-list bg-zinc-900 rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold">Recent Thoughts</h2>
+        <span class="text-xs font-medium text-zinc-400 uppercase tracking-wider">Showing {{ len .Pages }} entries</span>
+      </div>
+      
+      <div class="space-y-8">
+        {{ range (.Paginate .Pages 50).Pages }}
+        <div class="thought-card group relative">
+          <div class="absolute -left-4 top-0 bottom-0 w-1 bg-teal-500/20 rounded-full group-hover:bg-teal-500 transition-colors"></div>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-zinc-500">
+              <span>{{ .Date.Format "January 2, 2006" }} · {{ .Date.Format "15:04" }}</span>
+              <a href="{{ .RelPermalink }}" class="opacity-0 group-hover:opacity-100 transition-opacity text-teal-500">Permalink #</a>
+            </div>
+            <div class="prose prose-invert prose-zinc max-w-none text-zinc-200">
+              {{ .Content }}
+            </div>
+            {{ with .Params.tags }}
+            <div class="flex flex-wrap gap-2">
+              {{ range . }}
+              <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="text-xs font-bold text-zinc-500 hover:text-teal-400 transition">#{{ . }}</a>
+              {{ end }}
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ if ne (index (last 1 $.Pages) 0) . }}
+        <div class="h-px w-full bg-zinc-800/50 my-8"></div>
+        {{ end }}
+        {{ end }}
+      </div>
+
+      {{ $paginator := .Paginator }}
+      {{ if gt $paginator.TotalPages 1 }}
+      <div class="mt-12 flex items-center justify-center gap-2">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-xl text-sm font-bold transition">Prev</a>
+        {{ end }}
+        <span class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm font-medium text-zinc-400">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-xl text-sm font-bold transition">Next</a>
+        {{ end }}
+      </div>
       {{ end }}
+    </section>
+
+    <div class="right-column blog-right-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-[2rem] p-6 text-blue-50">
+        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="rss" class="w-5 h-5"></i> Stay Updated</h3>
+        <p class="text-sm text-blue-100 mb-4 font-medium">Follow my micro-blog updates via RSS.</p>
+        <a href="{{ "/thoughts/index.xml" | relURL }}" class="inline-block bg-blue-500 hover:bg-blue-400 text-white px-6 py-3 rounded-xl font-bold text-sm transition shadow-lg">Subscribe RSS</a>
+      </div>
+
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-[2rem] p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+        <div class="text-lg font-black mb-1">WebSutra</div>
+        <div class="text-xs opacity-80 font-medium mb-3">Indian Webring Network</div>
+        <div class="bg-white/20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
+      </a>
     </div>
-    {{ end }}
+
+    <footer class="mosaic-box interactive-box box-footer blog-box-footer bg-zinc-900 rounded-[2rem] p-8 border border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+        <a href="{{ "/" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">← Home</a>
+        <a href="{{ "/blog" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">Blog</a>
+        <a href="{{ "/about" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">About</a>
+      </div>
+      <div class="flex gap-4">
+        <a href="{{ "/index.xml" | relURL }}" class="text-zinc-500 hover:text-orange-400 transition"><i data-lucide="rss" class="w-5 h-5"></i></a>
+        {{ with site.Params.github }}
+        <a href="{{ . }}" class="text-zinc-500 hover:text-white transition"><i data-lucide="github" class="w-5 h-5"></i></a>
+        {{ end }}
+      </div>
+    </footer>
   </div>
-  {{ end }}
-</section>
-
-{{ $paginator := .Paginator }}
-{{ if gt $paginator.TotalPages 1 }}
-<div class="pagination">
-  {{ if $paginator.HasPrev }}
-  <a href="{{ $paginator.Prev.URL }}" class="pagination-link">« Prev</a>
-  {{ end }}
-
-  {{ range $paginator.Pagers }}
-  <a href="{{ .URL }}" class="pagination-link{{ if eq . $paginator }} active{{ end }}">{{ .PageNumber }}</a>
-  {{ end }}
-
-  {{ if $paginator.HasNext }}
-  <a href="{{ $paginator.Next.URL }}" class="pagination-link">Next »</a>
-  {{ end }}
-</div>
-{{ end }}
-
+</main>
 {{ end }}

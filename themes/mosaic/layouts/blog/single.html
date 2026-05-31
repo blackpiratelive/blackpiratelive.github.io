@@ -1,10 +1,15 @@
 {{ define "main" }}
-{{ $me := resources.Get "img/me1.jpg" }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
 {{ $me = $me.Resize "120x webp q80" }}
 {{ $hero := .Params.cover | default .Params.image | default "" }}
 {{ $heroUrl := "" }}
 {{ if $hero }}
-  {{ $heroUrl = $hero }}
+  {{ $res := resources.Get (strings.TrimPrefix "/" $hero) }}
+  {{ if $res }}
+    {{ $heroUrl = $res.RelPermalink }}
+  {{ else }}
+    {{ $heroUrl = $hero | relURL }}
+  {{ end }}
 {{ else }}
   {{ with .Resources.GetMatch "cover.*" }}
     {{ $heroUrl = .RelPermalink }}
@@ -77,10 +82,10 @@
 
       <div class="mt-10 lg:mt-12 pt-6 lg:pt-8 border-t border-zinc-800 flex flex-wrap gap-4 items-center justify-between">
         <div class="flex items-center gap-2">
-          <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2" type="button">
+          <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2" type="button" onclick="alert('Like feature coming soon!')">
             <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i> Like
           </button>
-          <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2" type="button">
+          <button id="share-button" class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2" type="button">
             <i data-lucide="share" class="w-4 h-4 text-blue-400"></i> Share
           </button>
         </div>
@@ -91,42 +96,54 @@
 
       <div id="comments-section-cvofw6q4" class="comments-container">
         <h3>Comments</h3>
-        <div id="comments-list-cvofw6q4">
-          <p class="comments-loading">Loading comments...</p>
+        <div id="comments-list-cvofw6q4" class="space-y-4 mb-8">
+          <div class="flex justify-center py-8">
+            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
+          </div>
         </div>
 
-        <form id="comment-form-cvofw6q4" class="comment-form">
-          <h4>Post a Comment</h4>
+        <form id="comment-form-cvofw6q4" class="space-y-4 border-t border-zinc-800 pt-8">
+          <h4 class="text-lg font-bold text-white mb-4">Post a Comment</h4>
           <input type="text" name="website_url_check" style="display:none !important;" tabindex="-1" autocomplete="off">
-          <div class="form-group-anon">
-            <label>
-              <input type="checkbox" name="is_anonymous" id="anon-check">
-              Comment as Anonymous
-            </label>
+          
+          <div class="flex items-center gap-2 mb-4 bg-zinc-800/50 p-3 rounded-xl">
+            <input type="checkbox" name="is_anonymous" id="anon-check" class="w-4 h-4 rounded border-zinc-700 bg-zinc-800 text-blue-600 focus:ring-blue-500">
+            <label for="anon-check" class="text-sm font-medium text-zinc-300 cursor-pointer">Comment as Anonymous</label>
           </div>
-          <div class="form-row">
+
+          <div id="non-anon-fields" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="form-group field-name">
-              <label for="name">Name *</label>
-              <input type="text" id="name" name="sender_name" required>
+              <label class="gb-label" for="name">Name *</label>
+              <input type="text" id="name" name="sender_name" class="gb-input mb-0" placeholder="Your name" required>
             </div>
             <div class="form-group field-email">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="sender_email">
+              <label class="gb-label" for="email">Email</label>
+              <input type="email" id="email" name="sender_email" class="gb-input mb-0" placeholder="Optional (not public)">
+            </div>
+            <div class="form-group field-url sm:col-span-2">
+              <label class="gb-label" for="url">Website</label>
+              <input type="url" id="url" name="sender_url" class="gb-input mb-0" placeholder="https://your-site.com">
             </div>
           </div>
-          <div class="form-group field-url">
-            <label for="url">Website</label>
-            <input type="url" id="url" name="sender_url">
-          </div>
+
           <div class="form-group">
-            <label for="comment">Comment *</label>
-            <textarea id="comment" name="comment_text" required rows="4"></textarea>
+            <label class="gb-label" for="comment">Comment *</label>
+            <textarea id="comment" name="comment_text" class="gb-textarea mb-0" required rows="4" placeholder="Share your thoughts..."></textarea>
           </div>
+
           <input type="hidden" name="parent_id" id="parent-id-cvofw6q4">
-          <div id="replying-to-info-cvofw6q4" class="reply-context" style="display:none;">
-            Replying to a comment... <button type="button" id="cancel-reply-cvofw6q4" class="btn-inline">Cancel</button>
+          
+          <div id="replying-to-info-cvofw6q4" class="bg-blue-900/30 border border-blue-800 rounded-xl p-4 items-center justify-between">
+            <div class="text-sm text-blue-200">
+              <i data-lucide="reply" class="w-4 h-4 inline-block mr-1"></i>
+              Replying to a comment...
+            </div>
+            <button type="button" id="cancel-reply-cvofw6q4" class="text-xs font-bold uppercase tracking-wider text-blue-400 hover:text-white transition">Cancel</button>
           </div>
-          <button type="submit" class="btn-submit">Post Comment</button>
+
+          <button type="submit" class="gb-submit w-full sm:w-auto">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Post Comment
+          </button>
         </form>
       </div>
     </article>
@@ -181,6 +198,38 @@
 
 <script>
 (function() {
+  // Native Share Functionality
+  const shareBtn = document.getElementById('share-button');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: document.title,
+            text: 'Check out this post on {{ site.Title }}',
+            url: window.location.href
+          });
+        } catch (err) {
+          console.log('Share failed:', err.message);
+        }
+      } else {
+        // Fallback: Copy to clipboard
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const originalHtml = shareBtn.innerHTML;
+          shareBtn.innerHTML = '<i data-lucide="check" class="w-4 h-4 text-green-500"></i> Copied!';
+          lucide.createIcons();
+          setTimeout(() => {
+            shareBtn.innerHTML = originalHtml;
+            lucide.createIcons();
+          }, 2000);
+        } catch (err) {
+          alert('Could not copy link to clipboard');
+        }
+      }
+    });
+  }
+
   const form = document.getElementById("comment-form-cvofw6q4");
   const list = document.getElementById("comments-list-cvofw6q4");
   const parentInput = document.getElementById("parent-id-cvofw6q4");
@@ -193,12 +242,11 @@
   if (!pageUrl.endsWith("/")) pageUrl += "/";
 
   let canSubmit = false;
-  let secondsLeft = 60;
-  const originalBtnText = submitBtn.textContent;
+  let secondsLeft = 10; // Reduced for testing, adjust as needed
+  const originalBtnText = submitBtn.innerHTML;
 
   submitBtn.disabled = true;
   submitBtn.style.opacity = "0.6";
-  submitBtn.style.cursor = "not-allowed";
 
   const timer = setInterval(() => {
     secondsLeft--;
@@ -207,12 +255,14 @@
       canSubmit = true;
       submitBtn.disabled = false;
       submitBtn.style.opacity = "1";
-      submitBtn.style.cursor = "pointer";
-      submitBtn.textContent = originalBtnText;
+      submitBtn.innerHTML = originalBtnHtml_clean;
+      lucide.createIcons();
     } else {
-      submitBtn.textContent = `${originalBtnText} (${secondsLeft}s)`;
+      submitBtn.innerText = `Post Comment (${secondsLeft}s)`;
     }
   }, 1000);
+  
+  const originalBtnHtml_clean = submitBtn.innerHTML;
 
   async function fetchComments() {
     try {
@@ -220,18 +270,19 @@
       const data = await res.json();
       renderComments(data.comments);
     } catch (err) {
-      list.innerHTML = "Error loading comments.";
+      list.innerHTML = "<p class='text-center py-8 text-rose-400'>Error loading comments.</p>";
     }
   }
 
   function renderComments(comments) {
     if (!comments || comments.length === 0) {
-      list.innerHTML = "<p>No comments yet.</p>";
+      list.innerHTML = "<p class='text-center py-8 text-zinc-500 font-medium'>No comments yet. Be the first to start the conversation!</p>";
       return;
     }
 
     const roots = comments.filter(c => !c.parent_id);
     list.innerHTML = roots.map(c => renderComment(c, comments)).join("");
+    lucide.createIcons();
   }
 
   function renderComment(comment, all) {
@@ -243,16 +294,19 @@
     return `
       <div class="comment" id="comment-${comment.id}">
         <div class="comment-header">
+          <i data-lucide="user" class="w-4 h-4 text-zinc-500"></i>
           <span class="comment-author">${escapeHtml(comment.sender_name || "Anonymous")}</span>
-          ${comment.is_owner ? '<span class="gbw-owner-tag">OWNER</span>' : ''}
-          <span class="comment-date">${date}</span>
+          ${comment.is_owner ? '<span class="gb-owner-tag">OWNER</span>' : ''}
+          <span class="comment-date">· ${date}</span>
         </div>
         <div class="comment-body">${escapeHtml(comment.comment_text)}</div>
         <div class="comment-footer">
-          <button type="button" class="gbw-action-btn" onclick="window.__cw_like(${comment.id})">
-            <span>❤</span> <span>${comment.likes || 0}</span>
+          <button type="button" class="gb-action-btn group" onclick="window.__cw_like(${comment.id})">
+            <i data-lucide="heart" class="w-3.5 h-3.5 group-hover:text-rose-500 transition-colors"></i>
+            <span>${comment.likes || 0}</span>
           </button>
-          <button type="button" class="gbw-action-btn" onclick="window.__cw_reply(${comment.id})">
+          <button type="button" class="gb-action-btn group" onclick="window.__cw_reply(${comment.id})">
+            <i data-lucide="reply" class="w-3.5 h-3.5 group-hover:text-blue-400 transition-colors"></i>
             <span>Reply</span>
           </button>
         </div>
@@ -282,28 +336,29 @@
 
   window.__cw_reply = (id) => {
     parentInput.value = id;
-    replyInfo.style.display = "block";
+    replyInfo.classList.add("flex");
     form.scrollIntoView({ behavior: 'smooth' });
     form.querySelector("textarea").focus();
+    lucide.createIcons();
   };
 
   cancelReplyBtn.onclick = () => {
     parentInput.value = "";
-    replyInfo.style.display = "none";
+    replyInfo.classList.remove("flex");
   };
 
   const anonCheck = document.getElementById("anon-check");
+  const nonAnonFields = document.getElementById("non-anon-fields");
   if (anonCheck) {
     anonCheck.addEventListener("change", (e) => {
       const isAnon = e.target.checked;
-      ["name", "email", "url"].forEach(f => {
-        const el = form.querySelector(".field-" + f);
-        if (el) el.style.display = isAnon ? "none" : "block";
+      nonAnonFields.style.display = isAnon ? "none" : "grid";
+      ["name"].forEach(f => {
         const input = form.querySelector("[name='sender_" + f + "']");
         if (input) input.required = isAnon ? false : (input.dataset.wasRequired === "true");
       });
     });
-    ["name", "email", "url"].forEach(f => {
+    ["name"].forEach(f => {
       const input = form.querySelector("[name='sender_" + f + "']");
       if (input) input.dataset.wasRequired = input.required ? "true" : "false";
     });
@@ -315,27 +370,42 @@
       alert(`Please wait ${secondsLeft} more seconds before submitting.`);
       return;
     }
-    const fd = new FormData(e.target);
-    const data = Object.fromEntries(fd.entries());
-    data.section_id = sectionId;
-    data.page_url = pageUrl;
-    data.is_anonymous = anonCheck ? anonCheck.checked : false;
+    
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalBtnInner = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Posting...';
+    lucide.createIcons();
 
-    const res = await fetch(baseUrl + "/api/comments", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+    try {
+      const fd = new FormData(e.target);
+      const data = Object.fromEntries(fd.entries());
+      data.section_id = sectionId;
+      data.page_url = pageUrl;
+      data.is_anonymous = anonCheck ? anonCheck.checked : false;
 
-    const result = await res.json();
-    if (res.ok) {
-      alert(result.status === "pending" ? "Awaiting approval!" : "Comment posted!");
-      e.target.reset();
-      parentInput.value = "";
-      replyInfo.style.display = "none";
-      fetchComments();
-    } else {
-      alert(result.error || "Failed to post");
+      const res = await fetch(baseUrl + "/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert(result.status === "pending" ? "Awaiting approval!" : "Comment posted!");
+        e.target.reset();
+        parentInput.value = "";
+        replyInfo.style.display = "none";
+        fetchComments();
+      } else {
+        alert(result.error || "Failed to post");
+      }
+    } catch (err) {
+      alert("Error: " + err.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnInner;
+      lucide.createIcons();
     }
   });
 

@@ -1,227 +1,244 @@
-<form id="guestbook-form">
-	<label for="name">Your Name</label>
-  <input name="name" placeholder="Your name" required />
-  <label for="website">Your Website(optional)</label>
-  <input name="website" placeholder="https://example.com (optional)" />
-  <label for="message">Your Message</label>
-  <textarea name="message" placeholder="Leave a note..." required></textarea>
-  <div id="guestbook-reply-context" hidden>
-    Replying to <strong id="guestbook-reply-name"></strong>
-    <button type="button" id="guestbook-reply-cancel" class="gbw-inline-btn">Cancel</button>
+<div class="gb-form-container">
+  <h2>Sign the Guestbook</h2>
+  <form id="guestbook-form" class="space-y-4">
+    <div>
+      <label class="gb-label" for="name">Your Name</label>
+      <input id="name" name="name" class="gb-input" placeholder="How should I call you?" required />
+    </div>
+    <div>
+      <label class="gb-label" for="website">Your Website (optional)</label>
+      <input id="website" name="website" class="gb-input" placeholder="https://your-site.com" />
+    </div>
+    <div>
+      <label class="gb-label" for="message">Your Message</label>
+      <textarea id="message" name="message" class="gb-textarea" rows="4" placeholder="Leave a nice note..." required></textarea>
+    </div>
+    
+    <div id="guestbook-reply-context" class="bg-blue-900/30 border border-blue-800 rounded-xl p-4 mb-4 items-center justify-between">
+      <div class="text-sm text-blue-200">
+        <i data-lucide="reply" class="w-4 h-4 inline-block mr-1"></i>
+        Replying to <strong id="guestbook-reply-name" class="text-white"></strong>
+      </div>
+      <button type="button" id="guestbook-reply-cancel" class="text-xs font-bold uppercase tracking-wider text-blue-400 hover:text-white transition">Cancel</button>
+    </div>
+    
+    <button type="submit" class="gb-submit">
+      <i data-lucide="send" class="w-4 h-4"></i> Sign Guestbook
+    </button>
+  </form>
+</div>
+
+<div class="mt-12">
+  <div class="flex items-center justify-between mb-8">
+    <h2 class="text-2xl font-bold">Messages</h2>
+    <div class="text-xs font-medium text-zinc-500 uppercase tracking-widest bg-zinc-800/50 px-3 py-1 rounded-full">
+      Powered by <a href="https://guestbook.blackpiratex.com" target="_blank" rel="noopener" class="hover:text-white transition">BPX Guestbook</a>
+    </div>
   </div>
-  <button type="submit" class="btn">Sign Guestbook</button>
-</form>
-<p class="guestbook-powered-by">
-  Powered by <a href="https://guestbook.blackpiratex.com" target="_blank" rel="noopener noreferrer">BlackPirateX's Guestbook</a>
-</p>
+  <div id="guestbook-entries" class="space-y-6">
+    <div class="flex justify-center py-12">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+    </div>
+  </div>
+</div>
 
-<script>
-  const baseUrl = "https://sudip-gb.blackpiratex.com";
-  const owner = "sudip";
-  let replyParentId = null;
-
-  const formEl = document.getElementById("guestbook-form");
-  const replyContextEl = document.getElementById("guestbook-reply-context");
-  const replyNameEl = document.getElementById("guestbook-reply-name");
-  const replyCancelEl = document.getElementById("guestbook-reply-cancel");
-
-  const clearReplyTarget = () => {
-    replyParentId = null;
-    replyContextEl.hidden = true;
-    replyNameEl.textContent = "";
-  };
-
-  const setReplyTarget = (entryId, senderName) => {
-    replyParentId = entryId;
-    replyNameEl.textContent = senderName || "this entry";
-    replyContextEl.hidden = false;
-    formEl.querySelector("textarea[name='message']")?.focus();
-  };
-
-  replyCancelEl.addEventListener("click", clearReplyTarget);
-
-  document.getElementById("guestbook-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const fd = new FormData(e.target);
-    const payload = {
-      owner_username: owner,
-      sender_name: fd.get("name"),
-      sender_website: fd.get("website"),
-      message: fd.get("message"),
-      parent_id: replyParentId,
-      is_private: false,
-      bot_field: ""
-    };
-    const res = await fetch(baseUrl + "/api/entries", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error("Failed to submit");
-
-    e.target.reset();
-    clearReplyTarget();
-    await mountGuestbook();
-  });
-</script>
-<h2>Messages</h2>
-<div id="guestbook-entries"></div>
 <script src="https://sudip-gb.blackpiratex.com/guestbook-widget.js"></script>
 <script>
-  const escapeHtml = (text) => String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  (function() {
+    const baseUrl = "https://sudip-gb.blackpiratex.com";
+    const owner = "sudip";
+    let replyParentId = null;
 
-  const normalizeId = (value) => {
-    if (value === null || value === undefined || value === "") return null;
-    return String(value);
-  };
+    const formEl = document.getElementById("guestbook-form");
+    const replyContextEl = document.getElementById("guestbook-reply-context");
+    const replyNameEl = document.getElementById("guestbook-reply-name");
+    const replyCancelEl = document.getElementById("guestbook-reply-cancel");
+    const entriesContainer = document.getElementById("guestbook-entries");
 
-  const renderEntry = (entry, isReply = false) => {
-    const senderName = (entry.sender_name || "Anonymous").trim();
-    const senderNameLower = senderName.toLowerCase();
-    const ownerLower = owner.toLowerCase();
-    const isOwner = Boolean(entry.is_owner) || senderNameLower === ownerLower;
-    const name = escapeHtml(senderName);
-    const entryId = normalizeId(entry.id) || "";
-    const date = entry.created_at ? new Date(entry.created_at).toLocaleString() : "";
-    const message = escapeHtml(entry.message || "");
-    const website = (entry.sender_website || "").trim();
-    const likes = Number(entry.likes || 0);
-    const isOwnerReply = isReply && isOwner;
+    const clearReplyTarget = () => {
+      replyParentId = null;
+      replyContextEl.classList.remove("flex");
+      replyNameEl.textContent = "";
+    };
 
-    const nameHtml = website
-      ? `<a class="gbw-author" href="${escapeHtml(website)}" target="_blank" rel="noopener noreferrer">${name}</a>`
-      : `<span class="gbw-author">${name}</span>`;
+    const setReplyTarget = (entryId, senderName) => {
+      replyParentId = entryId;
+      replyNameEl.textContent = senderName || "this entry";
+      replyContextEl.classList.add("flex");
+      formEl.querySelector("textarea[name='message']")?.focus();
+      formEl.scrollIntoView({ behavior: 'smooth' });
+    };
 
-    return `
-      <article class="gbw-entry${isOwnerReply ? " gbw-owner-reply" : ""}">
-        <header class="gbw-entry-header">
-          <div class="gbw-entry-title">
-            ${nameHtml}
-            ${isOwner ? '<span class="gbw-owner-tag">OWNER</span>' : ""}
-            <span class="gbw-date"> - ${escapeHtml(date)}</span>
+    replyCancelEl.addEventListener("click", clearReplyTarget);
+
+    formEl.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnHtml = submitBtn.innerHTML;
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Sending...';
+      lucide.createIcons();
+
+      try {
+        const fd = new FormData(e.target);
+        const payload = {
+          owner_username: owner,
+          sender_name: fd.get("name"),
+          sender_website: fd.get("website"),
+          message: fd.get("message"),
+          parent_id: replyParentId,
+          is_private: false,
+          bot_field: ""
+        };
+        const res = await fetch(baseUrl + "/api/entries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!res.ok) throw new Error("Failed to submit");
+
+        e.target.reset();
+        clearReplyTarget();
+        await mountGuestbook();
+        alert("Entry posted successfully!");
+      } catch (err) {
+        alert("Error: " + err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        lucide.createIcons();
+      }
+    });
+
+    const escapeHtml = (text) => String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+    const normalizeId = (value) => {
+      if (value === null || value === undefined || value === "") return null;
+      return String(value);
+    };
+
+    const renderEntry = (entry, isReply = false) => {
+      const senderName = (entry.sender_name || "Anonymous").trim();
+      const isOwner = Boolean(entry.is_owner) || senderName.toLowerCase() === owner.toLowerCase();
+      const name = escapeHtml(senderName);
+      const entryId = normalizeId(entry.id) || "";
+      const date = entry.created_at ? new Date(entry.created_at).toLocaleDateString(undefined, {
+        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+      }) : "";
+      const message = escapeHtml(entry.message || "");
+      const website = (entry.sender_website || "").trim();
+      const likes = Number(entry.likes || 0);
+
+      const nameHtml = website
+        ? `<a class="gb-author" href="${escapeHtml(website)}" target="_blank" rel="noopener noreferrer">${name}</a>`
+        : `<span class="gb-author">${name}</span>`;
+
+      return `
+        <article class="gb-entry ${isReply ? 'ml-0' : ''}" id="entry-${entryId}">
+          <header class="gb-entry-header">
+            <div class="flex items-center gap-2">
+              <i data-lucide="user" class="w-4 h-4 text-zinc-500"></i>
+              ${nameHtml}
+              ${isOwner ? '<span class="gb-owner-tag">OWNER</span>' : ""}
+              <span class="gb-date">· ${escapeHtml(date)}</span>
+            </div>
+          </header>
+          <div class="gb-content">${message}</div>
+          <div class="gb-actions">
+            <button type="button" class="gb-action-btn group" data-action="like" data-entry-id="${escapeHtml(entryId)}">
+              <i data-lucide="heart" class="w-3.5 h-3.5 group-hover:text-rose-500 transition-colors"></i>
+              <span class="gb-like-count">${likes}</span>
+            </button>
+            <button type="button" class="gb-action-btn group" data-action="reply" data-entry-id="${escapeHtml(entryId)}" data-entry-name="${name}">
+              <i data-lucide="reply" class="w-3.5 h-3.5 group-hover:text-blue-400 transition-colors"></i>
+              <span>Reply</span>
+            </button>
           </div>
-        </header>
-        <div class="gbw-entry-body">${message}</div>
-        <div class="gbw-entry-actions">
-          <button type="button" class="gbw-action-btn" data-action="like" data-entry-id="${escapeHtml(entryId)}">
-            Like (<span class="gbw-like-count">${likes}</span>)
-          </button>
-          <button type="button" class="gbw-action-btn" data-action="reply" data-entry-id="${escapeHtml(entryId)}" data-entry-name="${name}">
-            Reply
-          </button>
-        </div>
-      </article>
-    `;
-  };
+        </article>
+      `;
+    };
 
-  const sendLike = async (entryId) => {
-    const id = Number(entryId);
-    if (!Number.isFinite(id)) {
-      return { ok: false };
-    }
+    const mountGuestbook = async () => {
+      try {
+        const entries = await GuestbookWidget.fetchEntries({
+          baseUrl: baseUrl,
+          username: owner
+        });
 
-    try {
-      const response = await fetch(`${baseUrl}/api/entries`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "like", id })
-      });
+        const topLevel = [];
+        const repliesByParent = new Map();
 
-      if (!response.ok) {
-        return { ok: false };
-      }
-
-      const data = await response.json().catch(() => ({}));
-      return { ok: true, data };
-    } catch (_) {
-      return { ok: false };
-    }
-  };
-
-  const mountGuestbook = async () => {
-    const container = document.querySelector("#guestbook-entries");
-    if (!container) return;
-
-    try {
-      const entries = await GuestbookWidget.fetchEntries({
-        baseUrl: "https://sudip-gb.blackpiratex.com",
-        username: "sudip"
-      });
-
-      const topLevel = [];
-      const repliesByParent = new Map();
-
-      entries.forEach((entry) => {
-        const parentId = normalizeId(entry.parent_id);
-
-        if (parentId !== null) {
-          const list = repliesByParent.get(parentId) || [];
-          list.push(entry);
-          repliesByParent.set(parentId, list);
-          return;
-        }
-
-        topLevel.push(entry);
-      });
-
-      const renderThread = (entry, depth = 0) => {
-        const entryId = normalizeId(entry.id);
-        const currentHtml = renderEntry(entry, depth > 0);
-        const replies = entryId ? (repliesByParent.get(entryId) || []) : [];
-        const repliesHtml = replies.map((reply) => renderThread(reply, depth + 1)).join("");
-        return `${currentHtml}${repliesHtml}`;
-      };
-
-      const html = topLevel.map((entry) => renderThread(entry, 0)).join("");
-
-      container.innerHTML = html;
-    } catch (_) {
-      container.innerHTML = "<p>Could not load guestbook entries.</p>";
-    }
-  };
-
-  document.getElementById("guestbook-entries").addEventListener("click", async (event) => {
-    const button = event.target.closest("button[data-action]");
-    if (!button) return;
-
-    const action = button.dataset.action;
-    const entryId = button.dataset.entryId;
-
-    if (!entryId) return;
-
-    if (action === "reply") {
-      setReplyTarget(entryId, button.dataset.entryName || "this entry");
-      return;
-    }
-
-    if (action === "like") {
-      if (button.disabled) return;
-
-      button.disabled = true;
-      const result = await sendLike(entryId);
-
-      if (result.ok) {
-        const countEl = button.querySelector(".gbw-like-count");
-        if (countEl) {
-          const apiLikes = Number(result.data.likes);
-          if (Number.isFinite(apiLikes)) {
-            countEl.textContent = String(apiLikes);
+        entries.forEach((entry) => {
+          const parentId = normalizeId(entry.parent_id);
+          if (parentId !== null) {
+            const list = repliesByParent.get(parentId) || [];
+            list.push(entry);
+            repliesByParent.set(parentId, list);
           } else {
-            countEl.textContent = String(Number(countEl.textContent || "0") + 1);
+            topLevel.push(entry);
           }
-        }
-      } else {
-        alert("Could not like this entry. Please try again.");
+        });
+
+        const renderThread = (entry, depth = 0) => {
+          const entryId = normalizeId(entry.id);
+          const currentHtml = renderEntry(entry, depth > 0);
+          const replies = entryId ? (repliesByParent.get(entryId) || []) : [];
+          
+          let threadHtml = currentHtml;
+          if (replies.length > 0) {
+            threadHtml += `<div class="gb-replies">${replies.map(r => renderThread(r, depth + 1)).join("")}</div>`;
+          }
+          return threadHtml;
+        };
+
+        entriesContainer.innerHTML = topLevel.map(entry => renderThread(entry, 0)).join("") || "<p class='text-center py-12 text-zinc-500'>No messages yet. Be the first to sign!</p>";
+        lucide.createIcons();
+      } catch (err) {
+        entriesContainer.innerHTML = "<p class='text-center py-12 text-rose-400'>Could not load guestbook entries.</p>";
       }
+    };
 
-      button.disabled = false;
-    }
-  });
+    entriesContainer.addEventListener("click", async (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
 
-  mountGuestbook();
+      const action = button.dataset.action;
+      const entryId = button.dataset.entryId;
+      if (!entryId) return;
+
+      if (action === "reply") {
+        setReplyTarget(entryId, button.dataset.entryName || "this entry");
+      } else if (action === "like") {
+        if (button.disabled) return;
+        button.disabled = true;
+        
+        try {
+          const res = await fetch(`${baseUrl}/api/entries`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "like", id: Number(entryId) })
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const countEl = button.querySelector(".gb-like-count");
+            if (countEl) countEl.textContent = data.likes;
+          }
+        } catch (err) {
+          console.error("Like failed", err);
+        } finally {
+          button.disabled = false;
+        }
+      }
+    });
+
+    mountGuestbook();
+  })();
 </script>

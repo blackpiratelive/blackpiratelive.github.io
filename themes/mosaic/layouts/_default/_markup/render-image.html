@@ -1,5 +1,13 @@
-{{- $url := .Destination -}}
-{{- if not (or (hasPrefix $url "http") (hasPrefix $url "/")) -}}
-{{- $url = printf "/%s" $url -}}
+{{- $u := .Destination -}}
+{{- $isRemote := or (hasPrefix $u "http") (hasPrefix $u "https") -}}
+{{- $src := $u -}}
+{{- if not $isRemote -}}
+  {{- $path := strings.TrimPrefix "/" $u -}}
+  {{- $res := resources.Get $path -}}
+  {{- if $res -}}
+    {{- $src = $res.RelPermalink -}}
+  {{- else -}}
+    {{- $src = $u | relURL -}}
+  {{- end -}}
 {{- end -}}
-<img src="{{ $url }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }}>
+<img src="{{ $src }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }} loading="lazy">

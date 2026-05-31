@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $me := resources.Get "img/me1.jpg" }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
 {{ $me = $me.Resize "120x webp q80" }}
 {{ $hero := resources.Get "img/me-collage.jpg" }}
 {{ $hero = $hero.Resize "1600x webp q80" }}
@@ -58,7 +58,14 @@
       <div class="space-y-4">
         {{ range .Pages.ByDate.Reverse }}
         {{ $thumb := .Params.cover | default .Params.image | default "" }}
-        {{ if not $thumb }}
+        {{ if $thumb }}
+          {{ $res := resources.Get (strings.TrimPrefix "/" $thumb) }}
+          {{ if $res }}
+            {{ $thumb = $res.RelPermalink }}
+          {{ else }}
+            {{ $thumb = $thumb | relURL }}
+          {{ end }}
+        {{ else }}
           {{ with .Resources.GetMatch "cover.*" }}
             {{ $thumb = .RelPermalink }}
           {{ end }}
@@ -69,7 +76,7 @@
               <div class="text-xs font-semibold uppercase tracking-widest text-zinc-400">{{ .Date.Format "January 2, 2006" }}</div>
               <h3 class="mt-2 text-xl font-bold text-white">{{ .Title }}</h3>
               <p class="mt-2 text-sm text-zinc-300">
-                {{ .Summary | truncate 160 }}
+                {{ .Summary | plainify | truncate 160 }}
               </p>
             </div>
             <div class="flex shrink-0 items-center gap-3">

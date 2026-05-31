@@ -423,4 +423,85 @@
   .blog-page .prose li {
     margin-bottom: 0.5rem;
   }
+
+  .blog-page .prose img {
+    @apply rounded-3xl border border-zinc-800/50 shadow-xl max-w-full h-auto mx-auto my-8;
+  }
+
+  .blog-page .prose figure {
+    @apply my-8;
+  }
+
+  .blog-page .prose figure img {
+    @apply my-0;
+  }
+
+  .blog-page .prose figcaption {
+    @apply text-center text-xs font-medium text-zinc-500 mt-3 uppercase tracking-wider;
+  }
+
+  /* Guestbook & Comments Styling */
+  .gb-form-container, .comments-container {
+    @apply bg-zinc-900 border border-zinc-800/50 rounded-[2rem] p-6 sm:p-8 mt-12;
+  }
+
+  #guestbook-reply-context, #replying-to-info-cvofw6q4 {
+    display: none !important;
+  }
+
+  #guestbook-reply-context.flex, #replying-to-info-cvofw6q4.flex {
+    display: flex !important;
+  }
+
+  .gb-form-container h2, .comments-container h3 {
+    @apply text-2xl font-bold mb-6 text-white;
+  }
+
+  .gb-input, .gb-textarea {
+    @apply w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors mb-4;
+  }
+
+  .gb-label {
+    @apply block text-sm font-bold text-zinc-400 mb-2 uppercase tracking-wider;
+  }
+
+  .gb-submit {
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .gb-entry, .comment {
+    @apply bg-zinc-800/40 border border-zinc-800/60 rounded-2xl p-6 mb-4 transition-all hover:bg-zinc-800;
+  }
+
+  .gb-entry-header, .comment-header {
+    @apply flex flex-wrap items-center gap-2 mb-3 text-sm;
+  }
+
+  .gb-author, .comment-author {
+    @apply font-bold text-blue-400;
+  }
+
+  .gb-owner-tag, .gbw-owner-tag {
+    @apply bg-rose-600 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter text-white;
+  }
+
+  .gb-date, .comment-date {
+    @apply text-zinc-500 text-xs;
+  }
+
+  .gb-content, .comment-body {
+    @apply text-zinc-300 leading-relaxed text-sm sm:text-base;
+  }
+
+  .gb-actions, .comment-footer {
+    @apply flex items-center gap-4 mt-4;
+  }
+
+  .gb-action-btn, .gbw-action-btn {
+    @apply flex items-center gap-1.5 text-xs font-bold text-zinc-500 hover:text-white transition-colors uppercase tracking-wider;
+  }
+
+  .gb-replies, .replies {
+    @apply mt-4 ml-4 sm:ml-8 border-l-2 border-zinc-800 pl-4 sm:pl-8 space-y-4;
+  }
 }

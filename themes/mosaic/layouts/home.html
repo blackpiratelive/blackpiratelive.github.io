@@ -1,7 +1,7 @@
 {{ define "main" }}
-{{ $me := resources.Get "img/me-2.jpg" }}
+{{ $me := resources.Get "img/selfie/me-2.jpg" }}
 {{ $me = $me.Resize "300x webp q80" }}
-{{ $hero := resources.Get "img/me1.jpg" }}
+{{ $hero := resources.Get "img/selfie/me1.jpg" }}
 {{ $hero = $hero.Resize "1600x webp q80" }}
 {{ $author := site.Params.author | default "Sudip" }}
 {{ $tagline := site.Params.tagline | default "Welcome to my website" }}

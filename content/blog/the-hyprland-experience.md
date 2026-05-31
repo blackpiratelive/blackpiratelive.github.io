@@ -3,7 +3,7 @@ title: "The Hyprland Experience"
 date: 2023-07-01T23:55:28+05:30
 tags: [linux, rant]
 ---
-I have been using [Arch Linux](https://archlinux.orh) with [Hyprland](https://hyprland.org/). Initially I started using because of the cool animation it has. And stayed with it since.  
+I have been using [Arch Linux](https://archlinux.org) with [Hyprland](https://hyprland.org/). Initially I started using because of the cool animation it has. And stayed with it since.  
 
 ## Look and Feel
 Hyprland excels at it. Animations are super smooth and eyecatchy.I don't necessarily care for eye candy features, but this time made an exception. The default look is actually pretty good. I didn't have to do much ricing to get it look sexy. 

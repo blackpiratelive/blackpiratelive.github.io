@@ -1,0 +1,33 @@
+{{- $src := .Get "src" -}}
+{{- $path := strings.TrimPrefix "/" $src -}}
+{{- $res := resources.Get $path -}}
+{{- $finalSrc := "" -}}
+{{- if $res -}}
+  {{- $finalSrc = $res.RelPermalink -}}
+{{- else -}}
+  {{- $finalSrc = $src | relURL -}}
+{{- end -}}
+<figure {{ with .Get "class" }}class="{{ . }}"{{ end }}>
+  {{- if .Get "link" -}}
+    <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+  {{- end -}}
+  <img src="{{ $finalSrc }}"
+    {{- if or (.Get "alt") (.Get "caption") }}
+    alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | plainify }}{{ end }}"
+    {{- end -}}
+    {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+    {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+    loading="lazy"
+  />
+  {{- if .Get "link" }}</a>{{ end -}}
+  {{- if or (.Get "caption") (.Get "attr") -}}
+    <figcaption>
+      {{- with .Get "caption" }}<p>{{ . | safeHTML }}</p>{{ end -}}
+      {{- if .Get "attr" -}}
+        {{- with .Get "attrlink" }}<a href="{{ . }}">{{ end -}}
+        {{- .Get "attr" | safeHTML -}}
+        {{- if .Get "attrlink" }}</a>{{ end -}}
+      {{- end -}}
+    </figcaption>
+  {{- end -}}
+</figure>
