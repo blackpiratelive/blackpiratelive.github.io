@@ -22,11 +22,10 @@
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-  {{ if and (not .IsHome) (ne .Section "blog") (ne .Section "thoughts") }}
-  <footer class="mx-auto w-full max-w-5xl px-6">
+
+  <footer class="mx-auto w-full max-w-[1400px] px-4 md:px-6">
     {{ partial "footer.html" . }}
   </footer>
-  {{ end }}
   <script>
     if (window.lucide && typeof window.lucide.createIcons === "function") {
       window.lucide.createIcons();

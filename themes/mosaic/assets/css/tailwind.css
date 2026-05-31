@@ -442,7 +442,7 @@
 
   /* Guestbook & Comments Styling */
   .gb-form-container, .comments-container {
-    @apply bg-zinc-900 border border-zinc-800/50 rounded-[1.25rem] p-6 sm:p-8 mt-12;
+    @apply bg-zinc-900 border border-zinc-800/50 rounded-[1.25rem] p-5 sm:p-8 mt-8 sm:mt-12;
   }
 
   #guestbook-reply-context, #replying-to-info-cvofw6q4 {
@@ -454,54 +454,54 @@
   }
 
   .gb-form-container h2, .comments-container h3 {
-    @apply text-2xl font-bold mb-6 text-white;
+    @apply text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white;
   }
 
   .gb-input, .gb-textarea {
-    @apply w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors mb-4;
+    @apply w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors mb-3 sm:mb-4;
   }
 
   .gb-label {
-    @apply block text-sm font-bold text-zinc-400 mb-2 uppercase tracking-wider;
+    @apply block text-[10px] sm:text-xs font-bold text-zinc-400 mb-1 sm:mb-2 uppercase tracking-wider;
   }
 
   .gb-submit {
-    @apply bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2;
+    @apply w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-6 sm:py-3 sm:px-8 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base;
   }
 
   .gb-entry, .comment {
-    @apply bg-zinc-800/40 border border-zinc-800/60 rounded-xl p-6 mb-4 transition-all hover:bg-zinc-800;
+    @apply bg-zinc-800/40 border border-zinc-800/60 rounded-xl p-4 sm:p-6 mb-3 sm:mb-4 transition-all hover:bg-zinc-800;
   }
 
   .gb-entry-header, .comment-header {
-    @apply flex flex-wrap items-center gap-2 mb-3 text-sm;
+    @apply flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 text-[11px] sm:text-sm;
   }
 
   .gb-author, .comment-author {
-    @apply font-bold text-blue-400;
+    @apply font-bold text-blue-400 max-w-[150px] sm:max-w-none truncate;
   }
 
   .gb-owner-tag, .gbw-owner-tag {
-    @apply bg-rose-600 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter text-white;
+    @apply bg-rose-600 text-[8px] sm:text-[10px] font-black px-1.5 py-0.5 rounded uppercase tracking-tighter text-white;
   }
 
   .gb-date, .comment-date {
-    @apply text-zinc-500 text-xs;
+    @apply text-zinc-500 text-[10px] sm:text-xs;
   }
 
   .gb-content, .comment-body {
-    @apply text-zinc-300 leading-relaxed text-sm sm:text-base;
+    @apply text-zinc-300 leading-relaxed text-xs sm:text-base break-words;
   }
 
   .gb-actions, .comment-footer {
-    @apply flex items-center gap-4 mt-4;
+    @apply flex items-center gap-3 sm:gap-4 mt-3 sm:mt-4;
   }
 
   .gb-action-btn, .gbw-action-btn {
-    @apply flex items-center gap-1.5 text-xs font-bold text-zinc-500 hover:text-white transition-colors uppercase tracking-wider;
+    @apply flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-bold text-zinc-500 hover:text-white transition-colors uppercase tracking-wider;
   }
 
   .gb-replies, .replies {
-    @apply mt-4 ml-4 sm:ml-8 border-l-2 border-zinc-800 pl-4 sm:pl-8 space-y-4;
+    @apply mt-3 sm:mt-4 ml-3 sm:ml-8 border-l-2 border-zinc-800 pl-3 sm:pl-8 space-y-3 sm:space-y-4;
   }
 }

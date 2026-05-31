@@ -4,6 +4,13 @@ locale = 'en-us'
 title = 'BlackPirateX'
 theme = 'mosaic'
 
+[params]
+  author = "Sudip"
+  tagline = "Welcome to my website"
+  github = "https://github.com/blackpiratelive"
+  trakt_username = "bpx"
+  trakt_client_id = "a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0"
+
 [menus]
   [[menus.main]]
     name = 'Home'
@@ -28,6 +35,11 @@ theme = 'mosaic'
   [[menus.main]]
     name = 'Book Notes'
     pageRef = '/books'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Cinema'
+    pageRef = '/movies'
     weight = 20
 
   [[menus.main]]

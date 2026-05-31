@@ -1,0 +1,139 @@
+{{ define "main" }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
+{{ $resizing := $me.Resize "120x webp q80" }}
+{{ $hero := resources.Get "img/me-collage.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
+
+<main class="w-full">
+  <div class="blog-grid">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-xl overflow-hidden relative group bg-zinc-800">
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+
+      <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-3 mb-3 lg:mb-4">
+          <span class="bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Cinema</span>
+          <span class="text-zinc-300 font-medium text-xs lg:text-sm">{{ len .Pages }} titles</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-2 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+          Movies & Shows
+        </h1>
+      </div>
+    </div>
+
+    <div class="left-column blog-left-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-xl p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+        <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
+          {{ with $resizing }}
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          {{ end }}
+          <div>
+            <h2 class="text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+          </div>
+        </div>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs sm:text-sm font-medium">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Home</a>
+          <a href="{{ "/movies/" | relURL }}" class="shrink-0 bg-zinc-800/50 hover:bg-zinc-700 text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="tv" class="w-4 h-4"></i> Cinema</a>
+          <a href="{{ "/blog/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> Blog</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-6 sm:p-8 md:p-12 border border-zinc-800/50 w-full">
+      <div class="prose prose-invert prose-zinc mb-12">
+        {{ .Content }}
+      </div>
+
+      {{ $types := slice (dict "id" "movie" "title" "Movies" "icon" "film" "color" "text-rose-400") (dict "id" "show" "title" "TV Shows" "icon" "tv" "color" "text-blue-400") }}
+
+      {{ range $types }}
+        {{ $typePages := where $.Pages "Params.type" .id }}
+        {{ if gt (len $typePages) 0 }}
+        <section class="mb-16 last:mb-0">
+          <h2 class="text-2xl font-black mb-8 flex items-center gap-3">
+            <i data-lucide="{{ .icon }}" class="w-6 h-6 {{ .color }}"></i> {{ .title }}
+          </h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8">
+            {{ range $typePages.ByDate.Reverse }}
+            <a href="{{ .RelPermalink }}" class="group block relative movie-card" data-tmdb-id="{{ .Params.tmdb_id }}" data-type="{{ .Params.type }}">
+              <div class="aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800 border border-zinc-800/50 shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:border-zinc-700 relative">
+                <div class="poster-container h-full w-full">
+                  <div class="h-full w-full flex items-center justify-center p-4 text-center bg-zinc-800 animate-pulse poster-placeholder">
+                    <i data-lucide="image" class="w-8 h-8 text-zinc-700"></i>
+                  </div>
+                </div>
+                {{ if eq .Params.type "show" }}
+                <div class="absolute top-2 left-2 bg-blue-600/90 backdrop-blur-md px-2 py-0.5 rounded text-[8px] font-black text-white border border-white/10 uppercase tracking-tighter">
+                  {{ .Params.seasons_watched }} Seasons
+                </div>
+                {{ end }}
+                <div class="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {{ .Params.year }}
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-sm font-bold text-zinc-200 line-clamp-1 group-hover:text-white transition-colors">{{ .Title }}</h3>
+                <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">Watched {{ .Date.Format "Jan 2006" }}</p>
+              </div>
+            </a>
+            {{ end }}
+          </div>
+        </section>
+        {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="right-column blog-right-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-zinc-800/50 rounded-xl p-6 border border-zinc-800/50">
+        <h3 class="font-bold text-sm mb-4 text-zinc-300 uppercase tracking-widest flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i> Library Stats</h3>
+        <ul class="space-y-3 text-xs font-bold uppercase tracking-widest text-zinc-400">
+          <li class="flex justify-between border-b border-zinc-800/50 pb-2"><span>Movies</span> <span class="text-white">{{ len (where .Pages "Params.type" "movie") }}</span></li>
+          <li class="flex justify-between"><span>TV Shows</span> <span class="text-white">{{ len (where .Pages "Params.type" "show") }}</span></li>
+        </ul>
+      </div>
+
+      <a href="https://trakt.tv/users/{{ site.Params.trakt_username }}" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-[#ed1c24] rounded-xl p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+        <div class="text-lg font-black mb-1">Trakt.tv</div>
+        <div class="text-xs opacity-80 font-medium mb-3">View my full profile</div>
+        <div class="bg-white/20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Visit Profile</div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<script>
+(function() {
+  const TMDB_API_KEY = "15d2ea6d0dc1d83f329d00104332924a"; 
+  const cards = document.querySelectorAll('.movie-card');
+  
+  cards.forEach(async (card) => {
+    const tmdbId = card.dataset.tmdbId;
+    const type = card.dataset.type === 'show' ? 'tv' : 'movie';
+    const container = card.querySelector('.poster-container');
+    
+    if (tmdbId && tmdbId !== "0") {
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`);
+        if (!res.ok) throw new Error('Fetch failed');
+        const data = await res.json();
+        if (data.poster_path) {
+          const img = new Image();
+          img.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+          img.className = "h-full w-full object-cover transition-transform duration-500 group-hover:scale-110";
+          img.onload = () => {
+            container.innerHTML = '';
+            container.appendChild(img);
+          };
+        } else {
+           container.innerHTML = '<div class="h-full w-full flex items-center justify-center bg-zinc-800 text-zinc-600 text-[10px] font-bold p-2 text-center uppercase">No Poster</div>';
+        }
+      } catch (e) {
+        console.error("Poster fetch failed", e);
+        container.innerHTML = '<div class="h-full w-full flex items-center justify-center bg-zinc-800 text-zinc-600 text-[10px] font-bold p-2 text-center uppercase">Error</div>';
+      }
+    }
+  });
+})();
+</script>
+{{ end }}

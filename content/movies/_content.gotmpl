@@ -1,0 +1,103 @@
+{{ $username := site.Params.trakt_username }}
+{{ $clientId := site.Params.trakt_client_id }}
+
+{{ $moviesUrl := printf "https://api.trakt.tv/users/%s/watched/movies?extended=full" $username }}
+{{ $showsUrl := printf "https://api.trakt.tv/users/%s/watched/shows?extended=full" $username }}
+
+{{ $headers := dict 
+    "Content-Type" "application/json" 
+    "trakt-api-version" "2" 
+    "trakt-api-key" $clientId 
+}}
+
+{{ $movies := slice }}
+{{ $moviesResult := try (resources.GetRemote $moviesUrl (dict "headers" $headers)) }}
+{{ if $moviesResult.Err }}
+    {{ warnf "Movies Adapter Error (Movies): %s" $moviesResult.Err }}
+{{ else }}
+    {{ with $moviesResult.Value }}
+        {{ $movies = . | transform.Unmarshal }}
+    {{ end }}
+{{ end }}
+
+{{ $shows := slice }}
+{{ $showsResult := try (resources.GetRemote $showsUrl (dict "headers" $headers)) }}
+{{ if $showsResult.Err }}
+    {{ warnf "Movies Adapter Error (Shows): %s" $showsResult.Err }}
+{{ else }}
+    {{ with $showsResult.Value }}
+        {{ $shows = . | transform.Unmarshal }}
+    {{ end }}
+{{ end }}
+
+{{/* Process Movies */}}
+{{ range $i, $item := $movies }}
+    {{ $movie := $item.movie }}
+    {{ $title := $movie.title }}
+    {{ $slug := printf "movie-%s" ($movie.ids.slug | default ($title | urlize)) }}
+    
+    {{ $date := time.AsTime $item.last_watched_at }}
+
+    {{ $page := dict
+        "kind" "page"
+        "path" $slug
+        "title" $title
+        "dates" (dict "date" $date)
+        "params" (dict 
+            "type" "movie"
+            "year" $movie.year
+            "trakt_id" $movie.ids.trakt
+            "tmdb_id" $movie.ids.tmdb
+            "imdb_id" $movie.ids.imdb
+            "tagline" $movie.tagline
+            "overview" $movie.overview
+            "rating" $movie.rating
+            "runtime" $movie.runtime
+            "genres" $movie.genres
+            "last_watched" $item.last_watched_at
+            "plays" $item.plays
+        )
+        "content" (dict "mediaType" "text/markdown" "value" ($movie.overview | default ""))
+    }}
+    {{ $.AddPage $page }}
+{{ end }}
+
+{{/* Process Shows */}}
+{{ range $i, $item := $shows }}
+    {{ $show := $item.show }}
+    {{ $title := $show.title }}
+    {{ $slug := printf "show-%s" ($show.ids.slug | default ($title | urlize)) }}
+    
+    {{ $date := time.AsTime $item.last_watched_at }}
+
+    {{/* Calculate Season Stats */}}
+    {{ $seasonsWatched := len $item.seasons }}
+    {{ $totalEpisodes := 0 }}
+    {{ range $item.seasons }}
+        {{ $totalEpisodes = add $totalEpisodes (len .episodes) }}
+    {{ end }}
+
+    {{ $page := dict
+        "kind" "page"
+        "path" $slug
+        "title" $title
+        "dates" (dict "date" $date)
+        "params" (dict 
+            "type" "show"
+            "year" $show.year
+            "trakt_id" $show.ids.trakt
+            "tmdb_id" $show.ids.tmdb
+            "imdb_id" $show.ids.imdb
+            "overview" $show.overview
+            "rating" $show.rating
+            "runtime" $show.runtime
+            "genres" $show.genres
+            "last_watched" $item.last_watched_at
+            "plays" $item.plays
+            "seasons_watched" $seasonsWatched
+            "episodes_watched" $totalEpisodes
+        )
+        "content" (dict "mediaType" "text/markdown" "value" ($show.overview | default ""))
+    }}
+    {{ $.AddPage $page }}
+{{ end }}

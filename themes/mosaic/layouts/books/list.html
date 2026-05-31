@@ -1,62 +1,106 @@
 {{ define "main" }}
-<h1 class="section-title">{{ .Title }}</h1>
-{{ .Content }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
+{{ $resizing := $me.Resize "120x webp q80" }}
+{{ $hero := resources.Get "img/me-collage.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
 
-{{ $currentlyReading := where .Pages "Params.shelf" "currentlyReading" }}
-{{ if gt (len $currentlyReading) 0 }}
-<section class="book-shelf shelf-reading">
-  <h2>Currently Reading</h2>
-  <div class="gallery-grid">
-    {{ range $currentlyReading }}
-    <a href="{{ .RelPermalink }}" class="book-item">
-      {{ with .Params.cover }}
-      <img src="{{ . }}" alt="Cover for {{ $.Title }}">
-      {{ else }}
-      <span>No cover: {{ $.Title }}</span>
+<main class="w-full">
+  <div class="blog-grid">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-xl overflow-hidden relative group bg-zinc-800">
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+
+      <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-3 mb-3 lg:mb-4">
+          <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bookshelf</span>
+          <span class="text-zinc-300 font-medium text-xs lg:text-sm">{{ len .Pages }} titles</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-2 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+          My Library
+        </h1>
+      </div>
+    </div>
+
+    <div class="left-column blog-left-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-xl p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+        <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
+          {{ with $resizing }}
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          {{ end }}
+          <div>
+            <h2 class="text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+          </div>
+        </div>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs sm:text-sm font-medium">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Home</a>
+          <a href="{{ "/books/" | relURL }}" class="shrink-0 bg-zinc-800/50 hover:bg-zinc-700 text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="book" class="w-4 h-4"></i> Library</a>
+          <a href="{{ "/blog/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> Blog</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-6 sm:p-8 md:p-12 border border-zinc-800/50 w-full">
+      <div class="prose prose-invert prose-zinc mb-12">
+        {{ .Content }}
+      </div>
+
+      {{ $shelves := slice (dict "id" "currentlyReading" "title" "Currently Reading" "icon" "book-open" "color" "text-blue-400") (dict "id" "read" "title" "Read" "icon" "check-circle" "color" "text-emerald-400") (dict "id" "watchlist" "title" "Watchlist" "icon" "bookmark" "color" "text-amber-400") }}
+
+      {{ range $shelves }}
+        {{ $shelfPages := where $.Pages "Params.shelf" .id }}
+        {{ if gt (len $shelfPages) 0 }}
+        <section class="mb-16 last:mb-0">
+          <h2 class="text-2xl font-black mb-8 flex items-center gap-3">
+            <i data-lucide="{{ .icon }}" class="w-6 h-6 {{ .color }}"></i> {{ .title }}
+          </h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8">
+            {{ range $shelfPages }}
+            <a href="{{ .RelPermalink }}" class="group block relative">
+              <div class="aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800 border border-zinc-800/50 shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:border-zinc-700">
+                {{ with .Params.cover }}
+                <img src="{{ . }}" alt="{{ $.Title }}" class="h-full w-full object-cover">
+                {{ else }}
+                <div class="h-full w-full flex items-center justify-center p-4 text-center">
+                  <span class="text-xs font-bold text-zinc-500 uppercase tracking-widest">{{ .Title }}</span>
+                </div>
+                {{ end }}
+              </div>
+              <div class="mt-4">
+                <h3 class="text-sm font-bold text-zinc-200 line-clamp-1 group-hover:text-white transition-colors">{{ .Title }}</h3>
+                {{ with .Params.authors }}
+                <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">{{ index . 0 }}</p>
+                {{ end }}
+              </div>
+            </a>
+            {{ end }}
+          </div>
+        </section>
+        {{ end }}
       {{ end }}
-    </a>
-    {{ end }}
-  </div>
-</section>
-{{ end }}
 
-{{ $read := where .Pages "Params.shelf" "read" }}
-{{ if gt (len $read) 0 }}
-<section class="book-shelf shelf-read">
-  <h2>Read</h2>
-  <div class="gallery-grid">
-    {{ range $read.ByDate.Reverse }}
-    <a href="{{ .RelPermalink }}" class="book-item">
-      {{ with .Params.cover }}
-      <img src="{{ . }}" alt="Cover for {{ $.Title }}">
-      {{ else }}
-      <span>No cover: {{ $.Title }}</span>
+      {{ if not .Pages }}
+      <p class="text-center py-12 text-zinc-500 font-medium">Your library is empty. Time to start reading!</p>
       {{ end }}
-    </a>
-    {{ end }}
-  </div>
-</section>
-{{ end }}
+    </div>
 
-{{ $watchlist := where .Pages "Params.shelf" "watchlist" }}
-{{ if gt (len $watchlist) 0 }}
-<section class="book-shelf shelf-watchlist">
-  <h2>Watchlist</h2>
-  <div class="gallery-grid">
-    {{ range $watchlist }}
-    <a href="{{ .RelPermalink }}" class="book-item">
-      {{ with .Params.cover }}
-      <img src="{{ . }}" alt="Cover for {{ $.Title }}">
-      {{ else }}
-      <span>No cover: {{ $.Title }}</span>
-      {{ end }}
-    </a>
-    {{ end }}
-  </div>
-</section>
-{{ end }}
+    <div class="right-column blog-right-column no-scrollbar">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-zinc-800/50 rounded-xl p-6 border border-zinc-800/50">
+        <h3 class="font-bold text-sm mb-4 text-zinc-300 uppercase tracking-widest flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i> Reading Stats</h3>
+        <ul class="space-y-3 text-xs font-bold uppercase tracking-widest text-zinc-400">
+          <li class="flex justify-between border-b border-zinc-800/50 pb-2"><span>Total</span> <span class="text-white">{{ len .Pages }}</span></li>
+          <li class="flex justify-between border-b border-zinc-800/50 pb-2"><span>Read</span> <span class="text-white">{{ len (where .Pages "Params.shelf" "read") }}</span></li>
+          <li class="flex justify-between"><span>Wishlist</span> <span class="text-white">{{ len (where .Pages "Params.shelf" "watchlist") }}</span></li>
+        </ul>
+      </div>
 
-{{ if and (eq (len $currentlyReading) 0) (eq (len $read) 0) (eq (len $watchlist) 0) }}
-<p>No books found yet.</p>
-{{ end }}
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-xl p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+        <div class="text-lg font-black mb-1">WebSutra</div>
+        <div class="text-xs opacity-80 font-medium mb-3">Indian Webring Network</div>
+        <div class="bg-white/20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
+      </a>
+    </div>
+
+  </div>
+</main>
 {{ end }}
