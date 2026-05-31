@@ -1797,7 +1797,7 @@ body.mosaic-home .mosaic-box:hover {
   margin-bottom: 2rem;
   height: auto;
   max-width: 100%;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   border-width: 1px;
   border-color: rgb(39 39 42 / 0.5);
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
@@ -2371,9 +2371,6 @@ body.mosaic-home .mosaic-box:hover {
 }
 .rounded-2xl {
   border-radius: 1rem;
-}
-.rounded-3xl {
-  border-radius: 1.5rem;
 }
 .rounded-\[1\.25rem\] {
   border-radius: 1.25rem;

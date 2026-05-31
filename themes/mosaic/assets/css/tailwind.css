@@ -425,7 +425,7 @@
   }
 
   .blog-page .prose img {
-    @apply rounded-2xl border border-zinc-800/50 shadow-xl max-w-full h-auto mx-auto my-8;
+    @apply rounded-xl border border-zinc-800/50 shadow-xl max-w-full h-auto mx-auto my-8;
   }
 
   .blog-page .prose figure {
