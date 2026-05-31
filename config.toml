@@ -50,7 +50,7 @@ theme = 'mosaic'
 
 [outputs]
   home = ["HTML", "RSS", "ATOM", "JSON"]
-  section = ["HTML", "RSS", "ATOM"]
+  section = ["HTML", "RSS", "ATOM", "JSON"]
   taxonomy = ["HTML", "RSS", "ATOM"]
   term = ["HTML", "RSS", "ATOM"]
 

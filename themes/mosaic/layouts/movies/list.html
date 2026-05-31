@@ -97,32 +97,63 @@
         </section>
 
       {{ else }}
-        {{/* PAGINATED VIEWS */}}
-        {{ $type := cond (eq .Params.view "all_movies") "movie" "show" }}
-        {{ $items := where site.RegularPages "Params.type" $type }}
-        {{ $paginator := .Paginate $items.ByDate.Reverse 40 }}
-        
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 mb-12">
-          {{ range $paginator.Pages }}
-            {{ partial "movie-card.html" . }}
-          {{ end }}
+        {{/* PAGINATED VIEWS WITH SEARCH/FILTER */}}
+        <div class="flex flex-col md:flex-row gap-4 mb-12 pb-12 border-b border-zinc-800/50">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4"></i>
+            <input type="text" id="cinema-search" placeholder="Search by title..." 
+                   class="w-full bg-zinc-800/50 border border-zinc-700/50 text-white pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all text-sm font-medium">
+          </div>
+          <select id="cinema-filter" class="bg-zinc-800/50 border border-zinc-700/50 text-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all text-sm font-medium">
+            <option value="last_added">Last Added</option>
+            <option value="title_az">Title (A-Z)</option>
+            <option value="title_za">Title (Z-A)</option>
+            <option value="rated">Rated by me</option>
+            <option value="reviewed">Reviewed by me</option>
+          </select>
         </div>
 
-        {{ if gt $paginator.TotalPages 1 }}
-        <div class="flex justify-center gap-2 mt-12 pt-12 border-t border-zinc-800/50">
-          {{ if $paginator.HasPrev }}
-            <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-xs uppercase tracking-widest flex items-center gap-2"><i data-lucide="chevron-left" class="w-4 h-4"></i> Prev</a>
-          {{ end }}
+        <div id="cinema-default-view">
+          <h2 class="text-2xl font-black mb-8 flex items-center gap-3">
+            <i data-lucide="list" class="w-6 h-6 text-blue-400"></i> Library
+          </h2>
+
+          {{ $type := cond (eq .Params.view "all_movies") "movie" "show" }}
+          {{ $items := where site.RegularPages "Params.type" $type }}
+          {{ $paginator := .Paginate $items.ByDate.Reverse 40 }}
           
-          <span class="px-4 py-2 bg-zinc-900 text-zinc-500 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center border border-zinc-800/50">
-            Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
-          </span>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 mb-12">
+            {{ range $paginator.Pages }}
+              {{ partial "movie-card.html" . }}
+            {{ end }}
+          </div>
 
-          {{ if $paginator.HasNext }}
-            <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-xs uppercase tracking-widest flex items-center gap-2">Next <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+          {{ if gt $paginator.TotalPages 1 }}
+          <div class="flex justify-center gap-2 mt-12 pt-12 border-t border-zinc-800/50">
+            {{ if $paginator.HasPrev }}
+              <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-xs uppercase tracking-widest flex items-center gap-2"><i data-lucide="chevron-left" class="w-4 h-4"></i> Prev</a>
+            {{ end }}
+            
+            <span class="px-4 py-2 bg-zinc-900 text-zinc-500 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center border border-zinc-800/50">
+              Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
+            </span>
+
+            {{ if $paginator.HasNext }}
+              <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition font-bold text-xs uppercase tracking-widest flex items-center gap-2">Next <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            {{ end }}
+          </div>
           {{ end }}
         </div>
-        {{ end }}
+
+        <div id="cinema-results-view" class="hidden">
+           <div id="cinema-results-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 mb-12">
+             <!-- Results will be injected here -->
+           </div>
+           <div id="cinema-no-results" class="hidden text-center py-20 text-zinc-500">
+             <i data-lucide="search-x" class="w-12 h-12 mx-auto mb-4 opacity-20"></i>
+             <p class="text-lg font-medium">No matches found for your filters.</p>
+           </div>
+        </div>
       {{ end }}
     </div>
 
@@ -147,37 +178,111 @@
 <script>
 (function() {
   const TMDB_API_KEY = "{{ site.Params.tmdb_api_key }}"; 
-  const placeholders = document.querySelectorAll('.poster-placeholder[data-needs-fetch="true"]');
+  const viewType = "{{ .Params.view }}";
+  const contentType = viewType === "all_movies" ? "movie" : "show";
   
-  placeholders.forEach(async (placeholder) => {
-    const card = placeholder.closest('.movie-card');
-    if (!card) return;
-    const tmdbId = card.dataset.tmdbId;
-    const type = card.dataset.type === 'show' ? 'tv' : 'movie';
-    const container = card.querySelector('.poster-container');
+  if (viewType) {
+    const searchInput = document.getElementById('cinema-search');
+    const filterSelect = document.getElementById('cinema-filter');
+    const defaultView = document.getElementById('cinema-default-view');
+    const resultsView = document.getElementById('cinema-results-view');
+    const resultsGrid = document.getElementById('cinema-results-grid');
+    const noResults = document.getElementById('cinema-no-results');
     
-    if (tmdbId && tmdbId !== "0") {
-      try {
-        const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`);
-        if (!res.ok) throw new Error('Fetch failed');
-        const data = await res.json();
-        if (data.poster_path) {
-          const img = new Image();
-          img.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-          img.className = "h-full w-full object-cover transition-transform duration-500 group-hover:scale-110";
-          img.onload = () => {
-            container.innerHTML = '';
-            container.appendChild(img);
-          };
-        } else {
-           container.innerHTML = '<div class="h-full w-full flex items-center justify-center bg-zinc-800 text-zinc-600 text-[10px] font-bold p-2 text-center uppercase">No Poster</div>';
-        }
-      } catch (e) {
-        console.error("Poster fetch failed", e);
-        container.innerHTML = '<div class="h-full w-full flex items-center justify-center bg-zinc-800 text-zinc-600 text-[10px] font-bold p-2 text-center uppercase">Error</div>';
+    let cinemaData = [];
+
+    // Load data
+    fetch('/index.json')
+      .then(res => res.json())
+      .then(data => {
+        cinemaData = data.filter(item => item.type === contentType);
+      });
+
+    function renderResults(results) {
+      if (results.length === 0) {
+        resultsGrid.innerHTML = '';
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+        resultsGrid.innerHTML = results.map(item => `
+          <a href="${item.url}" class="group block relative movie-card" data-tmdb-id="${item.tmdb_id}" data-type="${item.type}">
+            <div class="aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800 border border-zinc-800/50 shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:border-zinc-700 relative">
+              <div class="poster-container h-full w-full">
+                <div class="h-full w-full flex items-center justify-center p-4 text-center bg-zinc-800 animate-pulse poster-placeholder" data-needs-fetch="true">
+                  <i data-lucide="image" class="w-8 h-8 text-zinc-700"></i>
+                </div>
+              </div>
+              ${item.type === 'show' ? `<div class="absolute top-2 left-2 bg-blue-600/90 backdrop-blur-md px-2 py-0.5 rounded text-[8px] font-black text-white border border-white/10 uppercase tracking-tighter">Series</div>` : ''}
+              <div class="absolute top-2 right-2 flex flex-col items-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10">${item.year || ''}</div>
+                ${item.user_rating ? `<div class="bg-rose-600/90 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10 flex items-center gap-1">${item.user_rating.toFixed(1)} <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i></div>` : ''}
+              </div>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-sm font-bold text-zinc-200 line-clamp-1 group-hover:text-white transition-colors">${item.title}</h3>
+              <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">${new Date(item.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
+            </div>
+          </a>
+        `).join('');
+        
+        if (window.lucide) window.lucide.createIcons();
+        initPosterFetch(resultsGrid);
       }
     }
-  });
+
+    function handleAction() {
+      const query = searchInput.value.toLowerCase();
+      const filter = filterSelect.value;
+      
+      if (!query && filter === 'last_added') {
+        defaultView.classList.remove('hidden');
+        resultsView.classList.add('hidden');
+        return;
+      }
+
+      defaultView.classList.add('hidden');
+      resultsView.classList.remove('hidden');
+
+      let filtered = cinemaData.filter(item => item.title.toLowerCase().includes(query));
+
+      if (filter === 'rated') filtered = filtered.filter(item => item.user_rating);
+      if (filter === 'reviewed') filtered = filtered.filter(item => item.user_review);
+      
+      if (filter === 'title_az') filtered.sort((a, b) => a.title.localeCompare(b.title));
+      if (filter === 'title_za') filtered.sort((a, b) => b.title.localeCompare(a.title));
+      if (filter === 'last_added') filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      renderResults(filtered);
+    }
+
+    searchInput.addEventListener('input', handleAction);
+    filterSelect.addEventListener('change', handleAction);
+  }
+
+  function initPosterFetch(root = document) {
+    const placeholders = root.querySelectorAll('.poster-placeholder[data-needs-fetch="true"]');
+    placeholders.forEach(async (placeholder) => {
+      const card = placeholder.closest('.movie-card');
+      if (!card) return;
+      const tmdbId = card.dataset.tmdbId;
+      const type = card.dataset.type === 'show' ? 'tv' : 'movie';
+      const container = card.querySelector('.poster-container');
+      if (tmdbId && tmdbId !== "0") {
+        try {
+          const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`);
+          const data = await res.json();
+          if (data.poster_path) {
+            const img = new Image();
+            img.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+            img.className = "h-full w-full object-cover transition-transform duration-500 group-hover:scale-110";
+            img.onload = () => { container.innerHTML = ''; container.appendChild(img); };
+          }
+        } catch (e) {}
+      }
+    });
+  }
+
+  initPosterFetch();
 })();
 </script>
 {{ end }}

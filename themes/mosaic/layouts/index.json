@@ -1,0 +1,12 @@
+{{- $all := slice -}}
+{{- range .Site.RegularPages -}}
+    {{- $content := .Plain | htmlUnescape | plainify -}}
+    {{- $description := "" -}}
+    {{- if eq .Section "thoughts" -}}
+        {{- $description = $content -}}
+    {{- else -}}
+        {{- $description = .Description | default (substr $content 0 200) -}}
+    {{- end -}}
+    {{- $all = $all | append (dict "title" .Title "url" .RelPermalink "content" $content "description" $description "section" .Section "tags" .Params.tags "type" .Params.type "date" .Date "user_rating" .Params.user_rating "user_review" .Params.user_review "year" .Params.year "tmdb_id" .Params.tmdb_id) -}}
+{{- end -}}
+{{- $all | jsonify -}}
