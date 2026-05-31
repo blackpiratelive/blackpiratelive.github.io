@@ -5,7 +5,7 @@
 
 {{ if and $isVercel $tmdbId (ne $tmdbId "0") }}
   {{/* Build-time TMDB fetch for Vercel */}}
-  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%s?api_key=%s" $type $tmdbId site.Params.tmdb_api_key }}
+  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%v?api_key=%s" $type $tmdbId site.Params.tmdb_api_key }}
   
   {{ with try (resources.GetRemote $tmdbApiUrl) }}
     {{ if .Err }}

@@ -14,7 +14,6 @@
 {{ $showRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/shows" $username }}
 {{ $commentsUrl := printf "https://api.trakt.tv/users/%s/comments/all/all?extended=full" $username }}
 {{ $favoritesUrl := printf "https://api.trakt.tv/users/%s/lists/favorites/items?extended=full" $username }}
-{{ $recentEpisodesUrl := printf "https://api.trakt.tv/users/%s/history/episodes?limit=3" $username }}
 
 {{/* Fetch all data */}}
 {{ $watchedMovies := slice }}
@@ -34,9 +33,6 @@
 
 {{ $favorites := slice }}
 {{ $res := try (resources.GetRemote $favoritesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $favorites = . | transform.Unmarshal }}{{ end }}{{ end }}
-
-{{ $recentEpisodes := slice }}
-{{ $res := try (resources.GetRemote $recentEpisodesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $recentEpisodes = . | transform.Unmarshal }}{{ end }}{{ end }}
 
 {{/* Create Lookup Maps */}}
 {{ $movieRatingsMap := dict }}
@@ -65,20 +61,6 @@
     {{ end }}
 {{ end }}
 
-{{/* Store global data in site params for use in layouts */}}
-{{ $recentEpData := slice }}
-{{ range $recentEpisodes }}
-  {{ $recentEpData = append (dict 
-    "show_title" .show.title 
-    "show_tmdb_id" .show.ids.tmdb 
-    "ep_title" .episode.title 
-    "season" .episode.season 
-    "number" .episode.number 
-    "watched_at" .watched_at
-  ) $recentEpData }}
-{{ end }}
-{{ site.Params.Set "recent_episodes" $recentEpData }}
-
 {{/* Process Movies */}}
 {{ range $i, $item := $watchedMovies }}
     {{ $movie := $item.movie }}
@@ -100,7 +82,7 @@
             "type" "movie"
             "year" $movie.year
             "trakt_id" $movie.ids.trakt
-            "tmdb_id" $movie.ids.tmdb
+            "tmdb_id" (int $movie.ids.tmdb)
             "imdb_id" $movie.ids.imdb
             "tagline" $movie.tagline
             "overview" $movie.overview
@@ -157,7 +139,7 @@
             "type" "show"
             "year" $show.year
             "trakt_id" $show.ids.trakt
-            "tmdb_id" $show.ids.tmdb
+            "tmdb_id" (int $show.ids.tmdb)
             "imdb_id" $show.ids.imdb
             "overview" $show.overview
             "status" $show.status
