@@ -68,8 +68,24 @@
                   {{ .Params.seasons_watched }} Seasons
                 </div>
                 {{ end }}
-                <div class="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {{ .Params.year }}
+                <div class="absolute top-2 right-2 flex flex-col items-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div class="bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10">
+                    {{ .Params.year }}
+                  </div>
+                  {{ if .Params.user_rating }}
+                  <div class="bg-rose-600/90 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10 flex items-center gap-1">
+                    {{ printf "%.1f" (float .Params.user_rating) }} <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+                  </div>
+                  {{ else if .Params.rating }}
+                  <div class="bg-zinc-800/90 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-zinc-300 border border-white/10 flex items-center gap-1">
+                    {{ printf "%.1f" .Params.rating }} <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i>
+                  </div>
+                  {{ end }}
+                  {{ if .Params.user_review }}
+                  <div class="bg-blue-600/90 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10">
+                    <i data-lucide="message-square" class="w-2.5 h-2.5 fill-current"></i>
+                  </div>
+                  {{ end }}
                 </div>
               </div>
               <div class="mt-4">

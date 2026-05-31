@@ -1,40 +1,73 @@
 {{ $username := site.Params.trakt_username }}
 {{ $clientId := site.Params.trakt_client_id }}
 
-{{ $moviesUrl := printf "https://api.trakt.tv/users/%s/watched/movies?extended=full" $username }}
-{{ $showsUrl := printf "https://api.trakt.tv/users/%s/watched/shows?extended=full" $username }}
-
 {{ $headers := dict 
     "Content-Type" "application/json" 
     "trakt-api-version" "2" 
     "trakt-api-key" $clientId 
 }}
 
-{{ $movies := slice }}
-{{ $moviesResult := try (resources.GetRemote $moviesUrl (dict "headers" $headers)) }}
-{{ if $moviesResult.Err }}
-    {{ warnf "Movies Adapter Error (Movies): %s" $moviesResult.Err }}
-{{ else }}
-    {{ with $moviesResult.Value }}
-        {{ $movies = . | transform.Unmarshal }}
+{{/* Endpoints */}}
+{{ $moviesUrl := printf "https://api.trakt.tv/users/%s/watched/movies?extended=full" $username }}
+{{ $showsUrl := printf "https://api.trakt.tv/users/%s/watched/shows?extended=full" $username }}
+{{ $movieRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/movies" $username }}
+{{ $showRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/shows" $username }}
+{{ $commentsUrl := printf "https://api.trakt.tv/users/%s/comments/all/all?extended=full" $username }}
+
+{{/* Helper function to fetch data */}}
+{{ $fetch := func (url string) (any) }}
+    {{ $res := try (resources.GetRemote $url (dict "headers" $headers)) }}
+    {{ if $res.Err }}
+        {{ warnf "Trakt API Error: %s" $res.Err }}
+        {{ return slice }}
     {{ end }}
+    {{ with $res.Value }}
+        {{ return . | transform.Unmarshal }}
+    {{ end }}
+    {{ return slice }}
 {{ end }}
 
-{{ $shows := slice }}
-{{ $showsResult := try (resources.GetRemote $showsUrl (dict "headers" $headers)) }}
-{{ if $showsResult.Err }}
-    {{ warnf "Movies Adapter Error (Shows): %s" $showsResult.Err }}
-{{ else }}
-    {{ with $showsResult.Value }}
-        {{ $shows = . | transform.Unmarshal }}
+{{/* Fetch all data */}}
+{{ $watchedMovies := slice }}
+{{ $res := try (resources.GetRemote $moviesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}{{ end }}
+
+{{ $watchedShows := slice }}
+{{ $res := try (resources.GetRemote $showsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $watchedShows = . | transform.Unmarshal }}{{ end }}{{ end }}
+
+{{ $movieRatings := slice }}
+{{ $res := try (resources.GetRemote $movieRatingsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $movieRatings = . | transform.Unmarshal }}{{ end }}{{ end }}
+
+{{ $showRatings := slice }}
+{{ $res := try (resources.GetRemote $showRatingsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $showRatings = . | transform.Unmarshal }}{{ end }}{{ end }}
+
+{{ $comments := slice }}
+{{ $res := try (resources.GetRemote $commentsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $comments = . | transform.Unmarshal }}{{ end }}{{ end }}
+
+{{/* Create Lookup Maps */}}
+{{ $movieRatingsMap := dict }}
+{{ range $movieRatings }}{{ $movieRatingsMap = merge $movieRatingsMap (dict (string .movie.ids.trakt) .rating) }}{{ end }}
+
+{{ $showRatingsMap := dict }}
+{{ range $showRatings }}{{ $showRatingsMap = merge $showRatingsMap (dict (string .show.ids.trakt) .rating) }}{{ end }}
+
+{{ $commentsMap := dict }}
+{{ range $comments }}
+    {{ $id := "" }}
+    {{ if .movie }}{{ $id = string .movie.ids.trakt }}
+    {{ else if .show }}{{ $id = string .show.ids.trakt }}{{ end }}
+    {{ if and $id .comment }}
+        {{ $commentsMap = merge $commentsMap (dict $id .comment) }}
     {{ end }}
 {{ end }}
 
 {{/* Process Movies */}}
-{{ range $i, $item := $movies }}
+{{ range $i, $item := $watchedMovies }}
     {{ $movie := $item.movie }}
     {{ $title := $movie.title }}
     {{ $slug := printf "movie-%s" ($movie.ids.slug | default ($title | urlize)) }}
+    {{ $traktId := string $movie.ids.trakt }}
+    {{ $userRating := index $movieRatingsMap $traktId }}
+    {{ $userReview := index $commentsMap $traktId }}
     
     {{ $date := time.AsTime $item.last_watched_at }}
 
@@ -52,6 +85,8 @@
             "tagline" $movie.tagline
             "overview" $movie.overview
             "rating" $movie.rating
+            "user_rating" $userRating
+            "user_review" $userReview
             "runtime" $movie.runtime
             "genres" $movie.genres
             "last_watched" $item.last_watched_at
@@ -63,10 +98,13 @@
 {{ end }}
 
 {{/* Process Shows */}}
-{{ range $i, $item := $shows }}
+{{ range $i, $item := $watchedShows }}
     {{ $show := $item.show }}
     {{ $title := $show.title }}
     {{ $slug := printf "show-%s" ($show.ids.slug | default ($title | urlize)) }}
+    {{ $traktId := string $show.ids.trakt }}
+    {{ $userRating := index $showRatingsMap $traktId }}
+    {{ $userReview := index $commentsMap $traktId }}
     
     {{ $date := time.AsTime $item.last_watched_at }}
 
@@ -90,6 +128,8 @@
             "imdb_id" $show.ids.imdb
             "overview" $show.overview
             "rating" $show.rating
+            "user_rating" $userRating
+            "user_review" $userReview
             "runtime" $show.runtime
             "genres" $show.genres
             "last_watched" $item.last_watched_at

@@ -53,10 +53,15 @@
             <span class="text-zinc-200">Watched</span>
           </li>
           {{ end }}
-          {{ with .Params.rating }}
+          {{ if .Params.user_rating }}
+          <li class="flex flex-col bg-rose-600/20 p-2 lg:p-3 rounded-xl border border-rose-500/30">
+            <span class="text-rose-400 mb-1">My Rating</span>
+            <span class="text-rose-400 flex items-center gap-1 text-lg">{{ printf "%.1f" (float .Params.user_rating) }} <i data-lucide="star" class="w-4 h-4 fill-current"></i></span>
+          </li>
+          {{ else if .Params.rating }}
           <li class="flex flex-col bg-zinc-900/50 p-2 lg:p-3 rounded-xl border border-zinc-700/30">
-            <span class="text-zinc-500 mb-1">Rating</span>
-            <span class="text-rose-400 flex items-center gap-1">{{ printf "%.1f" . }} <i data-lucide="star" class="w-3 h-3 fill-current"></i></span>
+            <span class="text-zinc-500 mb-1">Trakt Rating</span>
+            <span class="text-zinc-200 flex items-center gap-1">{{ printf "%.1f" .Params.rating }} <i data-lucide="star" class="w-3 h-3 fill-current"></i></span>
           </li>
           {{ end }}
           {{ with .Params.runtime }}
@@ -76,6 +81,16 @@
         </div>
         <div class="flex-1">
           <div class="prose prose-invert prose-zinc max-w-none">
+            {{ with .Params.user_review }}
+            <div class="mb-8 p-6 bg-zinc-800/50 rounded-2xl border-l-4 border-rose-600 italic relative">
+              <i data-lucide="quote" class="absolute top-2 right-4 w-8 h-8 text-zinc-700 opacity-50"></i>
+              <h3 class="text-rose-400 not-italic text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
+                <i data-lucide="message-square" class="w-4 h-4"></i> My Review
+              </h3>
+              <p class="text-zinc-200 text-lg leading-relaxed">"{{ . }}"</p>
+            </div>
+            {{ end }}
+
             <h2 class="text-white">Overview</h2>
             {{ .Content }}
           </div>
