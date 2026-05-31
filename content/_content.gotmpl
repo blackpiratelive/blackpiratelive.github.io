@@ -1,10 +1,10 @@
-{{/* Load data from locally fetched JSON files */}}
-{{ $watchedMovies := slice }}{{ if (fileExists "data/trakt/watched_movies.json") }}{{ $watchedMovies = getJSON "data/trakt/watched_movies.json" }}{{ end }}
-{{ $watchedShows := slice }}{{ if (fileExists "data/trakt/watched_shows.json") }}{{ $watchedShows = getJSON "data/trakt/watched_shows.json" }}{{ end }}
-{{ $movieRatings := slice }}{{ if (fileExists "data/trakt/movie_ratings.json") }}{{ $movieRatings = getJSON "data/trakt/movie_ratings.json" }}{{ end }}
-{{ $showRatings := slice }}{{ if (fileExists "data/trakt/show_ratings.json") }}{{ $showRatings = getJSON "data/trakt/show_ratings.json" }}{{ end }}
-{{ $comments := slice }}{{ if (fileExists "data/trakt/comments.json") }}{{ $comments = getJSON "data/trakt/comments.json" }}{{ end }}
-{{ $favorites := slice }}{{ if (fileExists "data/trakt/favorites.json") }}{{ $favorites = getJSON "data/trakt/favorites.json" }}{{ end }}
+{{/* Load data from locally fetched JSON files in assets/trakt/ */}}
+{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}
+{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $watchedShows = . | transform.Unmarshal }}{{ end }}
+{{ $movieRatings := slice }}{{ with resources.Get "trakt/movie_ratings.json" }}{{ $movieRatings = . | transform.Unmarshal }}{{ end }}
+{{ $showRatings := slice }}{{ with resources.Get "trakt/show_ratings.json" }}{{ $showRatings = . | transform.Unmarshal }}{{ end }}
+{{ $comments := slice }}{{ with resources.Get "trakt/comments.json" }}{{ $comments = . | transform.Unmarshal }}{{ end }}
+{{ $favorites := slice }}{{ with resources.Get "trakt/favorites.json" }}{{ $favorites = . | transform.Unmarshal }}{{ end }}
 
 {{/* Create Lookup Maps */}}
 {{ $movieRatingsMap := dict }}

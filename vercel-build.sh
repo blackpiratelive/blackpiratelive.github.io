@@ -7,7 +7,7 @@ set -x
 TRAKT_USERNAME="bpx"
 TRAKT_CLIENT_ID="a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0"
 TMDB_API_KEY="61c9bbbefe48beed3b4f02f0cc4794e7"
-DATA_DIR="data/trakt"
+DATA_DIR="assets/trakt"
 IMG_DIR="assets/cinema/posters"
 
 log() {
@@ -31,7 +31,7 @@ fetch_trakt() {
   local endpoint=$1
   local output=$2
   log "Fetching $endpoint -> $output"
-  curl -s -H "Content-Type: application/json" \
+  curl -s -L -H "Content-Type: application/json" \
        -H "trakt-api-version: 2" \
        -H "trakt-api-key: $TRAKT_CLIENT_ID" \
        "https://api.trakt.tv/$endpoint" > "$output"
@@ -43,7 +43,11 @@ fetch_trakt "users/$TRAKT_USERNAME/ratings/movies" "$DATA_DIR/movie_ratings.json
 fetch_trakt "users/$TRAKT_USERNAME/ratings/shows" "$DATA_DIR/show_ratings.json"
 fetch_trakt "users/$TRAKT_USERNAME/comments/all/all?extended=full" "$DATA_DIR/comments.json"
 fetch_trakt "users/$TRAKT_USERNAME/lists/favorites/items?extended=full" "$DATA_DIR/favorites.json"
-fetch_trakt "users/$TRAKT_USERNAME/history/episodes?limit=3" "data/trakt.json" # Legacy compat for home/shows
+
+# Legacy compat for home/shows (needs to be in data/ for site.Data)
+mkdir -p data
+cp "$DATA_DIR/favorites.json" data/trakt_favorites.json # Use different name to avoid confusion
+fetch_trakt "users/$TRAKT_USERNAME/history/episodes?limit=3" "data/trakt.json"
 
 # 2. Download Posters from TMDB
 log "Downloading posters from TMDB..."
@@ -59,43 +63,42 @@ download_poster() {
 
   log "Processing $type $tmdb_id..."
   
-  # Get poster path from TMDB
+  # Get poster path from TMDB using node to parse instead of jq
   local meta_url="https://api.themoviedb.org/3/$type/$tmdb_id?api_key=$TMDB_API_KEY"
-  local poster_path=$(curl -s "$meta_url" | jq -r '.poster_path // empty')
+  local meta_json=$(curl -s -L "$meta_url")
+  local poster_path=$(node -e "try { console.log(JSON.parse(process.argv[1]).poster_path || '') } catch(e) { console.log('') }" "$meta_json")
   
-  if [ "$poster_path" != "empty" ] && [ -n "$poster_path" ]; then
+  if [ -n "$poster_path" ] && [ "$poster_path" != "null" ]; then
     local img_url="https://image.tmdb.org/t/p/w500$poster_path"
     log "Downloading $img_url -> $target"
-    if ! curl -s -f "$img_url" -o "$target"; then
+    if ! curl -s -f -L "$img_url" -o "$target"; then
       log "ERROR: Failed to download poster for $type $tmdb_id"
     fi
   else
-    log "WARN: No poster path found for $type $tmdb_id (URL: $meta_url)"
+    log "WARN: No poster path found for $type $tmdb_id"
   fi
 }
 
-# Iterate through movies and shows to download posters
-if command -v jq >/dev/null; then
-  log "Extracting TMDB IDs and downloading posters..."
-  
-  # Movies
-  for id in $(jq -r '.[].movie.ids.tmdb' "$DATA_DIR/watched_movies.json" 2>/dev/null | grep -v null); do
-    download_poster "movie" "$id"
-  done
-  
-  # Shows
-  for id in $(jq -r '.[].show.ids.tmdb' "$DATA_DIR/watched_shows.json" 2>/dev/null | grep -v null); do
-    download_poster "tv" "$id"
-  done
-else
-  log "ERROR: jq not found, skipping poster downloads"
-fi
+# Extract TMDB IDs using node
+log "Extracting TMDB IDs and downloading posters..."
+
+# Movies
+MOVIE_IDS=$(node -e "try { const d = require('./$DATA_DIR/watched_movies.json'); console.log(d.map(m => m.movie.ids.tmdb).filter(id => id).join(' ')) } catch(e) { console.error(e) }")
+for id in $MOVIE_IDS; do
+  download_poster "movie" "$id"
+done
+
+# Shows
+SHOW_IDS=$(node -e "try { const d = require('./$DATA_DIR/watched_shows.json'); console.log(d.map(s => s.show.ids.tmdb).filter(id => id).join(' ')) } catch(e) { console.error(e) }")
+for id in $SHOW_IDS; do
+  download_poster "tv" "$id"
+done
 
 # 3. Restore resources from cache (if they exist)
 if [ -d "node_modules/.cache/hugo_resources" ]; then
   log "Restoring Hugo resources cache"
   mkdir -p resources
-  cp -r node_modules/.cache/hugo_resources/* resources/ || true
+  cp -r node_modules/.cache/hugo_resources/_gen resources/ || true
 fi
 
 # 4. Run the actual Hugo build
