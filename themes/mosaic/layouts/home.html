@@ -24,20 +24,15 @@
 
 <div class="mosaic-grid">
     <div class="mosaic-box box-nav bg-zinc-900 rounded-[1.25rem] p-6 sm:p-8 flex flex-col border border-zinc-800/50">
-      <div class="flex flex-col items-center mb-6 text-center relative">
+      <div class="flex flex-col items-center mb-4 sm:mb-6 text-center relative">
         {{ with $me }}
         <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-16 h-16 sm:w-24 sm:h-24 rounded-full mb-3 sm:mb-4 object-cover shadow-lg border-4 border-zinc-800">
         {{ end }}
         <h1 class="text-xl sm:text-2xl font-bold mb-1">{{ site.Title }}</h1>
         <p class="text-[10px] sm:text-xs font-medium text-zinc-400 uppercase tracking-wider hidden sm:block">{{ len $posts }} posts · {{ $words }} words</p>
-        
-        <!-- Mobile Menu Toggle -->
-        <button id="menu-toggle" class="sm:hidden absolute top-0 right-0 p-2 text-zinc-400 hover:text-white transition">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
       </div>
 
-      <nav id="main-nav" class="hidden sm:flex flex-col gap-2 w-full flex-grow">
+      <nav id="main-nav" class="flex flex-col gap-2 w-full flex-grow justify-center">
         <a href="{{ "/" | relURL }}" class="bg-zinc-800/50 hover:bg-zinc-700 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="home" class="w-4 h-4"></i> Home</a>
         <a href="{{ "/thoughts/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="message-square" class="w-4 h-4"></i> Thoughts</a>
         <a href="{{ "/blog/" | relURL }}" class="hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl transition text-sm font-medium flex items-center gap-3"><i data-lucide="pen-tool" class="w-4 h-4"></i> Blog</a>
