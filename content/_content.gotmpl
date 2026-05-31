@@ -1,38 +1,10 @@
-{{ $username := site.Params.trakt_username }}
-{{ $clientId := site.Params.trakt_client_id }}
-
-{{ $headers := dict 
-    "Content-Type" "application/json" 
-    "trakt-api-version" "2" 
-    "trakt-api-key" $clientId 
-}}
-
-{{/* Endpoints */}}
-{{ $moviesUrl := printf "https://api.trakt.tv/users/%s/watched/movies?extended=full" $username }}
-{{ $showsUrl := printf "https://api.trakt.tv/users/%s/watched/shows?extended=full" $username }}
-{{ $movieRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/movies" $username }}
-{{ $showRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/shows" $username }}
-{{ $commentsUrl := printf "https://api.trakt.tv/users/%s/comments/all/all?extended=full" $username }}
-{{ $favoritesUrl := printf "https://api.trakt.tv/users/%s/lists/favorites/items?extended=full" $username }}
-
-{{/* Fetch all data */}}
-{{ $watchedMovies := slice }}
-{{ $res := try (resources.GetRemote $moviesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}{{ end }}
-
-{{ $watchedShows := slice }}
-{{ $res := try (resources.GetRemote $showsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $watchedShows = . | transform.Unmarshal }}{{ end }}{{ end }}
-
-{{ $movieRatings := slice }}
-{{ $res := try (resources.GetRemote $movieRatingsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $movieRatings = . | transform.Unmarshal }}{{ end }}{{ end }}
-
-{{ $showRatings := slice }}
-{{ $res := try (resources.GetRemote $showRatingsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $showRatings = . | transform.Unmarshal }}{{ end }}{{ end }}
-
-{{ $comments := slice }}
-{{ $res := try (resources.GetRemote $commentsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $comments = . | transform.Unmarshal }}{{ end }}{{ end }}
-
-{{ $favorites := slice }}
-{{ $res := try (resources.GetRemote $favoritesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $favorites = . | transform.Unmarshal }}{{ end }}{{ end }}
+{{/* Load data from locally fetched JSON files */}}
+{{ $watchedMovies := slice }}{{ if (fileExists "data/trakt/watched_movies.json") }}{{ $watchedMovies = getJSON "data/trakt/watched_movies.json" }}{{ end }}
+{{ $watchedShows := slice }}{{ if (fileExists "data/trakt/watched_shows.json") }}{{ $watchedShows = getJSON "data/trakt/watched_shows.json" }}{{ end }}
+{{ $movieRatings := slice }}{{ if (fileExists "data/trakt/movie_ratings.json") }}{{ $movieRatings = getJSON "data/trakt/movie_ratings.json" }}{{ end }}
+{{ $showRatings := slice }}{{ if (fileExists "data/trakt/show_ratings.json") }}{{ $showRatings = getJSON "data/trakt/show_ratings.json" }}{{ end }}
+{{ $comments := slice }}{{ if (fileExists "data/trakt/comments.json") }}{{ $comments = getJSON "data/trakt/comments.json" }}{{ end }}
+{{ $favorites := slice }}{{ if (fileExists "data/trakt/favorites.json") }}{{ $favorites = getJSON "data/trakt/favorites.json" }}{{ end }}
 
 {{/* Create Lookup Maps */}}
 {{ $movieRatingsMap := dict }}

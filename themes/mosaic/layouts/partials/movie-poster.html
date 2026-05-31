@@ -1,38 +1,21 @@
 {{ $tmdbId := .Params.tmdb_id }}
-{{ $type := cond (eq .Params.type "show") "tv" "movie" }}
+{{ $type := .Params.type }} {{/* movie or show */}}
+{{ $typeKey := cond (eq $type "show") "tv" "movie" }}
+{{ $posterPath := printf "cinema/posters/%s_%v.jpg" $typeKey $tmdbId }}
+{{ $localPoster := resources.Get $posterPath }}
 {{ $posterUrl := "" }}
-{{ $isVercel := eq (os.Getenv "VERCEL") "1" }}
 
-{{ if and $isVercel $tmdbId (ne $tmdbId "0") }}
-  {{/* Build-time TMDB fetch for Vercel */}}
-  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%v?api_key=%s" $type $tmdbId site.Params.tmdb_api_key }}
-  
-  {{ with try (resources.GetRemote $tmdbApiUrl) }}
-    {{ if .Err }}
-      {{ warnf "TMDB API Error for %s %s: %s" $type $tmdbId .Err }}
-    {{ else }}
-      {{ $data := .Value | transform.Unmarshal }}
-      {{ if $data.poster_path }}
-        {{ $imgUrl := printf "https://image.tmdb.org/t/p/w500%s" $data.poster_path }}
-        {{ with try (resources.GetRemote $imgUrl) }}
-          {{ if .Err }}
-            {{ warnf "TMDB Image Fetch Error for %s: %s" $imgUrl .Err }}
-          {{ else }}
-            {{/* Optimize and convert to WebP */}}
-            {{ $img := .Value.Resize "500x webp q80" }}
-            {{ $posterUrl = $img.RelPermalink }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
+{{ if $localPoster }}
+  {{/* Use locally downloaded and optimized image */}}
+  {{ $img := $localPoster.Resize "500x webp q80" }}
+  {{ $posterUrl = $img.RelPermalink }}
 {{ end }}
 
 <div class="poster-container h-full w-full">
   {{ if $posterUrl }}
     <img src="{{ $posterUrl }}" alt="{{ .Title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
   {{ else }}
-    {{/* Fallback to client-side JS if $posterUrl is empty (either Local or Build-time failed) */}}
+    {{/* Fallback to client-side JS (for Local or failed downloads) */}}
     <div class="h-full w-full flex items-center justify-center p-4 text-center bg-zinc-800 animate-pulse poster-placeholder" 
          data-needs-fetch="true">
       <i data-lucide="image" class="w-8 h-8 text-zinc-700"></i>

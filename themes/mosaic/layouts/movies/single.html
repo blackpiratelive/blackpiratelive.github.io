@@ -3,31 +3,15 @@
 {{ $resizing := $me.Resize "120x webp q80" }}
 
 {{ $tmdbId := .Params.tmdb_id }}
-{{ $type := cond (eq .Params.type "show") "tv" "movie" }}
-{{ $isVercel := eq (os.Getenv "VERCEL") "1" }}
+{{ $type := .Params.type }}
+{{ $typeKey := cond (eq $type "show") "tv" "movie" }}
 {{ $posterUrl := "" }}
 {{ $backdropUrl := "" }}
 
-{{ if and $isVercel $tmdbId (ne $tmdbId "0") }}
-  {{/* Build-time TMDB fetch for Vercel */}}
-  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%v?api_key=%s" $type $tmdbId site.Params.tmdb_api_key }}
-  {{ with try (resources.GetRemote $tmdbApiUrl) }}
-    {{ if not .Err }}
-      {{ $data := .Value | transform.Unmarshal }}
-      {{ if $data.poster_path }}
-        {{ $imgUrl := printf "https://image.tmdb.org/t/p/w500%s" $data.poster_path }}
-        {{ with try (resources.GetRemote $imgUrl) }}
-          {{ if not .Err }}{{ $img := .Value.Resize "600x webp q80" }}{{ $posterUrl = $img.RelPermalink }}{{ end }}
-        {{ end }}
-      {{ end }}
-      {{ if $data.backdrop_path }}
-        {{ $imgUrl := printf "https://image.tmdb.org/t/p/original%s" $data.backdrop_path }}
-        {{ with try (resources.GetRemote $imgUrl) }}
-          {{ if not .Err }}{{ $img := .Value.Resize "1600x webp q80" }}{{ $backdropUrl = $img.RelPermalink }}{{ end }}
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
+{{/* Look for local files */}}
+{{ $localPoster := resources.Get (printf "cinema/posters/%s_%v.jpg" $typeKey $tmdbId) }}
+{{ if $localPoster }}
+  {{ $img := $localPoster.Resize "600x webp q80" }}{{ $posterUrl = $img.RelPermalink }}
 {{ end }}
 
 <main class="w-full px-2 sm:px-4 md:px-0">
