@@ -6,7 +6,7 @@
 
 <main class="w-full">
   <div class="blog-grid">
-    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-[2rem] overflow-hidden relative group bg-zinc-800">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-[1.25rem] overflow-hidden relative group bg-zinc-800">
       <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="left-column blog-left-column no-scrollbar">
-      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-[2rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-[1.25rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
         <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
           {{ with $resizing }}
           <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
@@ -39,37 +39,27 @@
       </div>
     </div>
 
-    <article class="mosaic-box blog-box-list bg-zinc-900 rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
+    <article class="mosaic-box blog-box-list bg-zinc-900 rounded-[1.25rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
       <div class="prose prose-invert prose-zinc prose-base lg:prose-lg max-w-none">
         {{ .Content }}
       </div>
     </article>
 
     <div class="right-column blog-right-column no-scrollbar">
-      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-[2rem] p-6 text-blue-50">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-[1.25rem] p-6 text-blue-50">
         <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="info" class="w-5 h-5"></i> Info</h3>
         <p class="text-sm opacity-90 font-medium">This is a static page on {{ site.Title }}.</p>
       </div>
 
-      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-[2rem] p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-[1.25rem] p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
         <div class="text-lg font-black mb-1">WebSutra</div>
         <div class="text-xs opacity-80 font-medium mb-3">Indian Webring Network</div>
         <div class="bg-white/20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
       </a>
     </div>
 
-    <footer class="mosaic-box interactive-box box-footer blog-box-footer bg-zinc-900 rounded-[2rem] p-8 border border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-        <a href="{{ "/" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">← Home</a>
-        <a href="{{ "/projects" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">Projects</a>
-        <a href="{{ "/about" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">About</a>
-      </div>
-      <div class="flex gap-4">
-        <a href="{{ "/index.xml" | relURL }}" class="text-zinc-500 hover:text-orange-400 transition"><i data-lucide="rss" class="w-5 h-5"></i></a>
-        {{ with site.Params.github }}
-        <a href="{{ . }}" class="text-zinc-500 hover:text-white transition"><i data-lucide="github" class="w-5 h-5"></i></a>
-        {{ end }}
-      </div>
+    <footer class="lg:col-span-3 md:col-span-2">
+      {{ partial "footer.html" . }}
     </footer>
   </div>
 </main>

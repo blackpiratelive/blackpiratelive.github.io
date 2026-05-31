@@ -23,7 +23,7 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ if and (not .IsHome) (ne .Section "blog") (ne .Section "thoughts") }}
-  <footer>
+  <footer class="mx-auto w-full max-w-5xl px-6">
     {{ partial "footer.html" . }}
   </footer>
   {{ end }}

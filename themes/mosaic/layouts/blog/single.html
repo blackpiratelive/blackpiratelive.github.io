@@ -32,7 +32,7 @@
 
 <main class="w-full">
   <div class="blog-grid">
-    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-[2rem] overflow-hidden relative group bg-zinc-800">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-[1.25rem] overflow-hidden relative group bg-zinc-800">
       <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $heroUrl }}');"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div class="left-column blog-left-column no-scrollbar">
-      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-[2rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-[1.25rem] p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
         <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
           {{ with $me }}
           <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover">
@@ -65,7 +65,7 @@
         </nav>
       </div>
 
-      <div class="mosaic-box interactive-box box-meta blog-box-meta bg-pink-600 rounded-[2rem] p-4 lg:p-6 text-pink-50 flex flex-col gap-2 lg:gap-4">
+      <div class="mosaic-box interactive-box box-meta blog-box-meta bg-pink-600 rounded-[1.25rem] p-4 lg:p-6 text-pink-50 flex flex-col gap-2 lg:gap-4">
         <h3 class="hidden lg:block font-bold text-lg text-white">Post Details</h3>
         <ul class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-xs lg:text-sm font-medium">
           <li class="shrink-0 flex items-center gap-2 bg-pink-700/50 px-3 py-2 lg:p-3 rounded-xl"><i data-lucide="clock" class="w-4 h-4 opacity-70"></i> {{ $readingTime }} min read</li>
@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    <article class="mosaic-box box-article blog-box-article bg-zinc-900 rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
+    <article class="mosaic-box box-article blog-box-article bg-zinc-900 rounded-[1.25rem] p-6 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
       <div class="prose prose-invert prose-zinc prose-base lg:prose-lg max-w-none">
         {{ .Content }}
       </div>
@@ -150,7 +150,7 @@
 
     <div class="right-column blog-right-column no-scrollbar">
       {{ if .TableOfContents }}
-      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-[2rem] p-6 text-blue-50">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-[1.25rem] p-6 text-blue-50">
         <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="list" class="w-5 h-5"></i> On This Page</h3>
         <div class="prose prose-invert prose-sm max-w-none text-blue-50">
           {{ .TableOfContents }}
@@ -159,7 +159,7 @@
       {{ end }}
 
       {{ with .NextInSection }}
-      <div class="mosaic-box interactive-box box-next blog-box-next bg-amber-500 rounded-[2rem] p-6 text-amber-950 flex flex-col justify-between h-full">
+      <div class="mosaic-box interactive-box box-next blog-box-next bg-amber-500 rounded-[1.25rem] p-6 text-amber-950 flex flex-col justify-between h-full">
         <div>
           <h3 class="font-black text-lg mb-1 opacity-80 uppercase tracking-widest text-xs">Read Next</h3>
           <a href="{{ .RelPermalink }}" class="block text-xl font-bold hover:underline mb-4">{{ .Title }}</a>
@@ -170,28 +170,15 @@
       </div>
       {{ end }}
 
-      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-[2rem] p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-[1.25rem] p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
         <div class="text-lg font-black mb-1">WebSutra</div>
         <div class="text-xs opacity-80 font-medium mb-3">Indian Webring Network</div>
         <div class="bg-white/20 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
       </a>
     </div>
 
-    <footer class="mosaic-box interactive-box box-footer blog-box-footer bg-zinc-900 rounded-[2rem] p-8 border border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-        <a href="{{ "/blog" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">← All Posts</a>
-        <a href="{{ "/projects" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">Projects</a>
-        <a href="{{ "/about" | relURL }}" class="text-sm font-medium text-zinc-400 hover:text-white transition">About</a>
-      </div>
-      <div class="flex gap-4">
-        <a href="{{ "/index.xml" | relURL }}" class="text-zinc-500 hover:text-orange-400 transition"><i data-lucide="rss" class="w-5 h-5"></i></a>
-        {{ with site.Params.github }}
-        <a href="{{ . }}" class="text-zinc-500 hover:text-white transition"><i data-lucide="github" class="w-5 h-5"></i></a>
-        {{ end }}
-        {{ with site.Params.mastodon }}
-        <a href="{{ . }}" class="text-zinc-500 hover:text-blue-400 transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
-        {{ end }}
-      </div>
+    <footer class="lg:col-span-3 md:col-span-2">
+      {{ partial "footer.html" . }}
     </footer>
   </div>
 </main>

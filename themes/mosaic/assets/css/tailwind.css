@@ -425,7 +425,7 @@
   }
 
   .blog-page .prose img {
-    @apply rounded-3xl border border-zinc-800/50 shadow-xl max-w-full h-auto mx-auto my-8;
+    @apply rounded-2xl border border-zinc-800/50 shadow-xl max-w-full h-auto mx-auto my-8;
   }
 
   .blog-page .prose figure {
@@ -442,7 +442,7 @@
 
   /* Guestbook & Comments Styling */
   .gb-form-container, .comments-container {
-    @apply bg-zinc-900 border border-zinc-800/50 rounded-[2rem] p-6 sm:p-8 mt-12;
+    @apply bg-zinc-900 border border-zinc-800/50 rounded-[1.25rem] p-6 sm:p-8 mt-12;
   }
 
   #guestbook-reply-context, #replying-to-info-cvofw6q4 {
@@ -470,7 +470,7 @@
   }
 
   .gb-entry, .comment {
-    @apply bg-zinc-800/40 border border-zinc-800/60 rounded-2xl p-6 mb-4 transition-all hover:bg-zinc-800;
+    @apply bg-zinc-800/40 border border-zinc-800/60 rounded-xl p-6 mb-4 transition-all hover:bg-zinc-800;
   }
 
   .gb-entry-header, .comment-header {
