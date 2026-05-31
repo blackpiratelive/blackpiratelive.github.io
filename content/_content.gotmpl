@@ -47,7 +47,7 @@
     {{ if .movie }}{{ $id = string .movie.ids.trakt }}
     {{ else if .show }}{{ $id = string .show.ids.trakt }}{{ end }}
     {{ if and $id .comment }}
-        {{ $commentsMap = merge $commentsMap (dict $id .comment) }}
+        {{ $commentsMap = merge $commentsMap (dict $id .comment.comment) }}
     {{ end }}
 {{ end }}
 
