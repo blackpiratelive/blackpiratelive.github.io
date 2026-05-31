@@ -14,19 +14,6 @@
 {{ $showRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/shows" $username }}
 {{ $commentsUrl := printf "https://api.trakt.tv/users/%s/comments/all/all?extended=full" $username }}
 
-{{/* Helper function to fetch data */}}
-{{ $fetch := func (url string) (any) }}
-    {{ $res := try (resources.GetRemote $url (dict "headers" $headers)) }}
-    {{ if $res.Err }}
-        {{ warnf "Trakt API Error: %s" $res.Err }}
-        {{ return slice }}
-    {{ end }}
-    {{ with $res.Value }}
-        {{ return . | transform.Unmarshal }}
-    {{ end }}
-    {{ return slice }}
-{{ end }}
-
 {{/* Fetch all data */}}
 {{ $watchedMovies := slice }}
 {{ $res := try (resources.GetRemote $moviesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}{{ end }}
@@ -115,6 +102,17 @@
         {{ $totalEpisodes = add $totalEpisodes (len .episodes) }}
     {{ end }}
 
+    {{/* Calculate Total Runtime */}}
+    {{ $totalRuntime := mul $totalEpisodes (int ($show.runtime | default 0)) }}
+
+    {{/* Determine if Completed */}}
+    {{ $isCompleted := false }}
+    {{ if or (eq $show.status "ended") (eq $show.status "canceled") }}
+        {{ if eq $show.aired_episodes $totalEpisodes }}
+            {{ $isCompleted = true }}
+        {{ end }}
+    {{ end }}
+
     {{ $page := dict
         "kind" "page"
         "path" $slug
@@ -127,10 +125,13 @@
             "tmdb_id" $show.ids.tmdb
             "imdb_id" $show.ids.imdb
             "overview" $show.overview
+            "status" $show.status
+            "is_completed" $isCompleted
             "rating" $show.rating
             "user_rating" $userRating
             "user_review" $userReview
-            "runtime" $show.runtime
+            "runtime" $totalRuntime
+            "ep_runtime" $show.runtime
             "genres" $show.genres
             "last_watched" $item.last_watched_at
             "plays" $item.plays
