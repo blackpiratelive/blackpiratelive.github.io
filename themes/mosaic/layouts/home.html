@@ -195,13 +195,24 @@
           </h3>
           <div class="space-y-4">
             {{ range first 3 site.Data.trakt }}
-            <div class="flex items-center gap-4 group">
-              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-zinc-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-zinc-700/30">
-                <i data-lucide="monitor" class="w-4 h-4 sm:w-5 sm:h-5 text-zinc-600 group-hover:text-rose-400 transition-colors"></i>
+            <div class="flex items-center gap-4 group movie-card" data-tmdb-id="{{ .show.ids.tmdb }}" data-type="show">
+              <div class="w-12 h-16 sm:w-14 sm:h-20 rounded-lg bg-zinc-800 flex-shrink-0 overflow-hidden border border-zinc-700/30 poster-container relative">
+                {{ $tmdbId := .show.ids.tmdb }}
+                {{ $localPoster := resources.Get (printf "cinema/posters/tv_%v.jpg" $tmdbId) }}
+                {{ if $localPoster }}
+                  {{ $img := $localPoster.Resize "200x webp q80" }}
+                  <img src="{{ $img.RelPermalink }}" alt="{{ .show.title }}" class="w-full h-full object-cover">
+                {{ else }}
+                  <div class="w-full h-full flex items-center justify-center poster-placeholder" data-needs-fetch="true">
+                    <i data-lucide="monitor" class="w-5 h-5 text-zinc-600"></i>
+                  </div>
+                {{ end }}
               </div>
               <div class="min-w-0">
                 <div class="text-[11px] font-black text-white truncate leading-tight">{{ .show.title }}</div>
-                <div class="text-[9px] sm:text-[10px] font-medium text-zinc-500 truncate mt-1">S{{ printf "%02d" .episode.season }}E{{ printf "%02d" .episode.number }} · {{ .episode.title }}</div>
+                <div class="text-[10px] font-medium text-zinc-500 truncate mt-1">
+                  S{{ printf "%02d" (int .episode.season) }}E{{ printf "%02d" (int .episode.number) }} · {{ .episode.title }}
+                </div>
               </div>
             </div>
             {{ end }}
@@ -215,13 +226,22 @@
           </h3>
           <div class="space-y-4">
             {{ range first 3 (where site.RegularPages "Params.type" "movie").ByDate.Reverse }}
-            <a href="{{ .RelPermalink }}" class="flex items-center gap-4 group">
-              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-zinc-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-zinc-700/30">
-                <i data-lucide="film" class="w-4 h-4 sm:w-5 sm:h-5 text-zinc-600 group-hover:text-rose-400 transition-colors"></i>
+            <a href="{{ .RelPermalink }}" class="flex items-center gap-4 group movie-card" data-tmdb-id="{{ .Params.tmdb_id }}" data-type="movie">
+              <div class="w-12 h-16 sm:w-14 sm:h-20 rounded-lg bg-zinc-800 flex-shrink-0 overflow-hidden border border-zinc-700/30 poster-container relative">
+                {{ $tmdbId := .Params.tmdb_id }}
+                {{ $localPoster := resources.Get (printf "cinema/posters/movie_%v.jpg" $tmdbId) }}
+                {{ if $localPoster }}
+                  {{ $img := $localPoster.Resize "200x webp q80" }}
+                  <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                {{ else }}
+                  <div class="w-full h-full flex items-center justify-center poster-placeholder" data-needs-fetch="true">
+                    <i data-lucide="film" class="w-5 h-5 text-zinc-600"></i>
+                  </div>
+                {{ end }}
               </div>
               <div class="min-w-0">
                 <div class="text-[11px] font-black text-white truncate group-hover:text-rose-400 transition-colors leading-tight">{{ .Title }}</div>
-                <div class="text-[9px] sm:text-[10px] font-medium text-zinc-500 truncate mt-1">{{ .Params.year }} · Watched {{ .Date.Format "Jan 02" }}</div>
+                <div class="text-[10px] font-medium text-zinc-500 truncate mt-1">{{ .Params.year }} · Watched {{ .Date.Format "Jan 02" }}</div>
               </div>
             </a>
             {{ end }}
@@ -231,4 +251,35 @@
     </div>
 
   </div>
+
+<script>
+(function() {
+  const TMDB_API_KEY = "{{ site.Params.tmdb_api_key }}"; 
+  const placeholders = document.querySelectorAll('.poster-placeholder[data-needs-fetch="true"]');
+  
+  placeholders.forEach(async (placeholder) => {
+    const card = placeholder.closest('.movie-card');
+    if (!card) return;
+    const tmdbId = card.dataset.tmdbId;
+    const type = card.dataset.type === 'show' ? 'tv' : 'movie';
+    const container = card.querySelector('.poster-container');
+    
+    if (tmdbId && tmdbId !== "0") {
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`);
+        const data = await res.json();
+        if (data.poster_path) {
+          const img = new Image();
+          img.src = `https://image.tmdb.org/t/p/w200${data.poster_path}`;
+          img.className = "w-full h-full object-cover";
+          img.onload = () => {
+            container.innerHTML = '';
+            container.appendChild(img);
+          };
+        }
+      } catch (e) {}
+    }
+  });
+})();
+</script>
 {{ end }}
