@@ -1,0 +1,84 @@
+{{- $title := .Title -}}
+{{- $siteTitle := site.Title -}}
+{{- $description := .Description | default .Summary | default site.Params.tagline -}}
+{{- $type := "website" -}}
+{{- $image := (resources.Get "img/selfie/me1.jpg").Permalink -}}
+
+{{- if .IsPage -}}
+  {{- $type = "article" -}}
+{{- end -}}
+
+{{- if eq .Section "movies" -}}
+  {{- if .Params.tmdb_id -}}
+    {{- $image = printf "https://image.tmdb.org/t/p/w600_and_h900_bestv2%s" (strings.TrimPrefix "https://image.tmdb.org/t/p/w500" (or .Params.poster_url "")) -}}
+    {{- /* Special case for our local posters */ -}}
+    {{- $typeKey := cond (eq .Params.type "show") "tv" "movie" -}}
+    {{- $localPoster := resources.Get (printf "cinema/posters/%s_%v.jpg" $typeKey .Params.tmdb_id) -}}
+    {{- if $localPoster -}}
+      {{- $image = $localPoster.Permalink -}}
+    {{- else -}}
+      {{- /* Fallback to TMDB if local doesn't exist yet */ -}}
+      {{- $image = printf "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/%v" .Params.tmdb_id -}}
+      {{- /* Wait, TMDB image URLs need the actual hash. Let's just use a high-res default or the one from frontmatter if we had it. */ -}}
+      {{- /* Since we don't store the hash in frontmatter, and resources.Get only works for files in assets, we use a global default if local is missing. */ -}}
+      {{- $image = (resources.Get "img/me-collage.jpg").Permalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- else if eq .Section "shows" -}}
+    {{- $typeKey := "tv" -}}
+    {{- $localPoster := resources.Get (printf "cinema/posters/%s_%v.jpg" $typeKey .Params.tmdb_id) -}}
+    {{- if $localPoster -}}
+      {{- $image = $localPoster.Permalink -}}
+    {{- else -}}
+      {{- $image = (resources.Get "img/me-collage.jpg").Permalink -}}
+    {{- end -}}
+{{- else if eq .Section "blog" -}}
+  {{- with .Params.image -}}
+    {{- if (fileExists (printf "static/%s" .)) -}}
+      {{- $image = (resources.Get .).Permalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- else if eq .Section "books" -}}
+  {{- with .Params.cover -}}
+    {{- $image = . | absURL -}}
+  {{- end -}}
+{{- else if eq .Section "thoughts" -}}
+  {{- $description = .Plain | truncate 160 -}}
+{{- end -}}
+
+{{- if .IsHome -}}
+  {{- $title = $siteTitle -}}
+  {{- $description = site.Params.tagline -}}
+{{- else -}}
+  {{- $title = printf "%s | %s" .Title $siteTitle -}}
+{{- end -}}
+
+<!-- Standard Meta Tags -->
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ site.Params.author }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ $type }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:image" content="{{ $image }}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ .Permalink }}">
+<meta property="twitter:title" content="{{ $title }}">
+<meta property="twitter:description" content="{{ $description }}">
+<meta property="twitter:image" content="{{ $image }}">
+
+<!-- Additional tags for Cinema -->
+{{- if or (eq .Section "movies") (eq .Section "shows") -}}
+  {{- with .Params.user_rating -}}
+    <meta name="twitter:label1" value="My Rating">
+    <meta name="twitter:data1" value="{{ . }}/10">
+  {{- end -}}
+  {{- with .Params.year -}}
+    <meta name="twitter:label2" value="Release Year">
+    <meta name="twitter:data2" value="{{ . }}">
+  {{- end -}}
+{{- end -}}

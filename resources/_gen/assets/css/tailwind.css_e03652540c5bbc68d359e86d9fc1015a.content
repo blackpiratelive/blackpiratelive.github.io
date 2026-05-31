@@ -1638,6 +1638,12 @@ body.mosaic-home .mosaic-grid {
     max-width: 1400px;
     margin: 0 auto;
   }
+@media (max-width: 767px) {
+    body.mosaic-home .box-nav {
+      grid-auto-rows: auto;
+      min-height: 0;
+    }
+  }
 .mosaic-box {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -2192,6 +2198,9 @@ body.mosaic-home .mosaic-box:hover {
 }
 .left-4 {
   left: 1rem;
+}
+.right-0 {
+  right: 0px;
 }
 .right-2 {
   right: 0.5rem;
@@ -3399,6 +3408,12 @@ body.mosaic-home .mosaic-box:hover {
 .rendering-pixelated {
     image-rendering: pixelated;
   }
+@media (min-width: 640px) {
+
+  .sm\:flex#guestbook-reply-context,.sm\:flex #replying-to-info-cvofw6q4 {
+    display: flex !important;
+  }
+}
 @media (min-width: 1024px) {
 
   .lg\:prose-lg {
@@ -3905,10 +3920,6 @@ body.mosaic-home .mosaic-box:hover {
     margin-bottom: 1rem;
   }
 
-  .sm\:mb-6 {
-    margin-bottom: 1.5rem;
-  }
-
   .sm\:mb-8 {
     margin-bottom: 2rem;
   }
@@ -3929,12 +3940,24 @@ body.mosaic-home .mosaic-box:hover {
     display: block;
   }
 
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
   .sm\:h-10 {
     height: 2.5rem;
   }
 
   .sm\:h-12 {
     height: 3rem;
+  }
+
+  .sm\:h-20 {
+    height: 5rem;
   }
 
   .sm\:h-24 {
@@ -3967,6 +3990,10 @@ body.mosaic-home .mosaic-box:hover {
 
   .sm\:w-12 {
     width: 3rem;
+  }
+
+  .sm\:w-14 {
+    width: 3.5rem;
   }
 
   .sm\:w-24 {
