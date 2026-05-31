@@ -13,6 +13,12 @@ if [ -f "package.json" ]; then
   export PATH="$PWD/node_modules/.bin:$PATH"
 fi
 
+# Fetch latest Trakt episodes
+log "Fetching latest Trakt episodes"
+mkdir -p data
+curl -s -H "Content-Type: application/json" -H "trakt-api-version: 2" -H "trakt-api-key: a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0" "https://api.trakt.tv/users/bpx/history/episodes?limit=3" > data/trakt.json
+
+
 
 # 1. Restore resources from cache (if they exist)
 if [ -d "node_modules/.cache/hugo_resources" ]; then
