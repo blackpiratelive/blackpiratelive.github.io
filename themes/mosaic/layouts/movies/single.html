@@ -2,10 +2,39 @@
 {{ $me := resources.Get "img/selfie/me1.jpg" }}
 {{ $resizing := $me.Resize "120x webp q80" }}
 
+{{ $tmdbId := .Params.tmdb_id }}
+{{ $type := cond (eq .Params.type "show") "tv" "movie" }}
+{{ $isVercel := eq (os.Getenv "VERCEL") "1" }}
+{{ $posterUrl := "" }}
+{{ $backdropUrl := "" }}
+
+{{ if and $isVercel $tmdbId (ne $tmdbId "0") }}
+  {{/* Build-time TMDB fetch for Vercel */}}
+  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%s?api_key=%s" $type $tmdbId site.Params.tmdb_api_key }}
+  {{ with try (resources.GetRemote $tmdbApiUrl) }}
+    {{ if not .Err }}
+      {{ $data := .Value | transform.Unmarshal }}
+      {{ if $data.poster_path }}
+        {{ $imgUrl := printf "https://image.tmdb.org/t/p/w500%s" $data.poster_path }}
+        {{ with try (resources.GetRemote $imgUrl) }}
+          {{ if not .Err }}{{ $img := .Value.Resize "600x webp q80" }}{{ $posterUrl = $img.RelPermalink }}{{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if $data.backdrop_path }}
+        {{ $imgUrl := printf "https://image.tmdb.org/t/p/original%s" $data.backdrop_path }}
+        {{ with try (resources.GetRemote $imgUrl) }}
+          {{ if not .Err }}{{ $img := .Value.Resize "1600x webp q80" }}{{ $backdropUrl = $img.RelPermalink }}{{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 <main class="w-full">
   <div class="blog-grid">
     <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-xl overflow-hidden relative group bg-zinc-800">
-      <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center blur-xl opacity-30 transition-transform duration-1000 group-hover:scale-105"></div>
+      <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center blur-xl opacity-30 transition-transform duration-1000 group-hover:scale-105"
+           {{ if $backdropUrl }}style="background-image: url('{{ $backdropUrl }}');"{{ end }}></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/60 to-transparent"></div>
 
       <div class="relative h-full flex flex-col justify-end p-6 md:p-10 lg:p-12 z-10">
@@ -85,8 +114,12 @@
 
     <article class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-6 sm:p-8 md:p-12 border border-zinc-800/50 w-full">
       <div class="flex flex-col md:flex-row gap-10 mb-12">
-        <div id="poster-container" class="shrink-0 w-64 mx-auto md:mx-0 rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-800 animate-pulse aspect-[2/3] flex items-center justify-center">
-            <i data-lucide="image" class="w-12 h-12 text-zinc-700"></i>
+        <div id="poster-container" class="shrink-0 w-64 mx-auto md:mx-0 rounded-xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-800 {{ if not $posterUrl }}animate-pulse flex items-center justify-center aspect-[2/3]{{ end }}">
+            {{ if $posterUrl }}
+              <img src="{{ $posterUrl }}" alt="{{ .Title }}" class="w-full h-auto">
+            {{ else }}
+              <i data-lucide="image" class="w-12 h-12 text-zinc-700"></i>
+            {{ end }}
         </div>
         <div class="flex-1">
           <div class="prose prose-invert prose-zinc max-w-none">
@@ -152,11 +185,12 @@
 
 <script>
 (function() {
-  const TMDB_API_KEY = "61c9bbbefe48beed3b4f02f0cc4794e7";
+  const TMDB_API_KEY = "{{ site.Params.tmdb_api_key }}";
   const tmdbId = "{{ .Params.tmdb_id }}";
   const type = "{{ if eq .Params.type "show" }}tv{{ else }}movie{{ end }}";
+  const isVercel = {{ $isVercel }};
   
-  if (tmdbId && tmdbId !== "0") {
+  if (!isVercel && tmdbId && tmdbId !== "0") {
     fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`)
       .then(res => {
         if(!res.ok) throw new Error("API failure");
@@ -171,6 +205,9 @@
           img.onload = () => {
             container.innerHTML = '';
             container.classList.remove('animate-pulse');
+            container.classList.remove('flex');
+            container.classList.remove('items-center');
+            container.classList.remove('justify-center');
             container.appendChild(img);
           };
         }

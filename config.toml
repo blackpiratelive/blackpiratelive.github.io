@@ -10,6 +10,7 @@ theme = 'mosaic'
   github = "https://github.com/blackpiratelive"
   trakt_username = "bpx"
   trakt_client_id = "a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0"
+  tmdb_api_key = "61c9bbbefe48beed3b4f02f0cc4794e7"
 
 [menus]
   [[menus.main]]

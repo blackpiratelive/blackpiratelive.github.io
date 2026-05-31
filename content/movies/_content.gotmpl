@@ -13,6 +13,7 @@
 {{ $movieRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/movies" $username }}
 {{ $showRatingsUrl := printf "https://api.trakt.tv/users/%s/ratings/shows" $username }}
 {{ $commentsUrl := printf "https://api.trakt.tv/users/%s/comments/all/all?extended=full" $username }}
+{{ $favoritesUrl := printf "https://api.trakt.tv/users/%s/lists/favorites/items?extended=full" $username }}
 
 {{/* Fetch all data */}}
 {{ $watchedMovies := slice }}
@@ -29,6 +30,9 @@
 
 {{ $comments := slice }}
 {{ $res := try (resources.GetRemote $commentsUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $comments = . | transform.Unmarshal }}{{ end }}{{ end }}
+
+{{ $favorites := slice }}
+{{ $res := try (resources.GetRemote $favoritesUrl (dict "headers" $headers)) }}{{ if not $res.Err }}{{ with $res.Value }}{{ $favorites = . | transform.Unmarshal }}{{ end }}{{ end }}
 
 {{/* Create Lookup Maps */}}
 {{ $movieRatingsMap := dict }}
@@ -47,6 +51,16 @@
     {{ end }}
 {{ end }}
 
+{{ $favoritesMap := dict }}
+{{ range $favorites }}
+    {{ $id := "" }}
+    {{ if .movie }}{{ $id = string .movie.ids.trakt }}
+    {{ else if .show }}{{ $id = string .show.ids.trakt }}{{ end }}
+    {{ if $id }}
+        {{ $favoritesMap = merge $favoritesMap (dict $id true) }}
+    {{ end }}
+{{ end }}
+
 {{/* Process Movies */}}
 {{ range $i, $item := $watchedMovies }}
     {{ $movie := $item.movie }}
@@ -55,6 +69,7 @@
     {{ $traktId := string $movie.ids.trakt }}
     {{ $userRating := index $movieRatingsMap $traktId }}
     {{ $userReview := index $commentsMap $traktId }}
+    {{ $isFavorite := index $favoritesMap $traktId | default false }}
     
     {{ $date := time.AsTime $item.last_watched_at }}
 
@@ -74,6 +89,7 @@
             "rating" $movie.rating
             "user_rating" $userRating
             "user_review" $userReview
+            "is_favorite" $isFavorite
             "runtime" $movie.runtime
             "genres" $movie.genres
             "last_watched" $item.last_watched_at
@@ -92,6 +108,7 @@
     {{ $traktId := string $show.ids.trakt }}
     {{ $userRating := index $showRatingsMap $traktId }}
     {{ $userReview := index $commentsMap $traktId }}
+    {{ $isFavorite := index $favoritesMap $traktId | default false }}
     
     {{ $date := time.AsTime $item.last_watched_at }}
 
@@ -130,6 +147,7 @@
             "rating" $show.rating
             "user_rating" $userRating
             "user_review" $userReview
+            "is_favorite" $isFavorite
             "runtime" $totalRuntime
             "ep_runtime" $show.runtime
             "genres" $show.genres
