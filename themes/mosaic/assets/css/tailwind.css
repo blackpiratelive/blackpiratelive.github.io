@@ -109,10 +109,16 @@
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr;
-    padding: 1rem;
+    padding: 0.5rem;
     max-width: 1400px;
     margin: 0 auto;
     align-items: start;
+  }
+
+  @media (min-width: 640px) {
+    .blog-grid {
+      padding: 1rem;
+    }
   }
 
   .blog-card {
