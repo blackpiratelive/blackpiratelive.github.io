@@ -65,7 +65,7 @@
 {{ range $i, $item := $watchedMovies }}
     {{ $movie := $item.movie }}
     {{ $title := $movie.title }}
-    {{ $slug := printf "movie-%s" ($movie.ids.slug | default ($title | urlize)) }}
+    {{ $slug := printf "movies/movie-%s" ($movie.ids.slug | default ($title | urlize)) }}
     {{ $traktId := string $movie.ids.trakt }}
     {{ $userRating := index $movieRatingsMap $traktId }}
     {{ $userReview := index $commentsMap $traktId }}
@@ -104,7 +104,7 @@
 {{ range $i, $item := $watchedShows }}
     {{ $show := $item.show }}
     {{ $title := $show.title }}
-    {{ $slug := printf "show-%s" ($show.ids.slug | default ($title | urlize)) }}
+    {{ $slug := printf "shows/show-%s" ($show.ids.slug | default ($title | urlize)) }}
     {{ $traktId := string $show.ids.trakt }}
     {{ $userRating := index $showRatingsMap $traktId }}
     {{ $userReview := index $commentsMap $traktId }}

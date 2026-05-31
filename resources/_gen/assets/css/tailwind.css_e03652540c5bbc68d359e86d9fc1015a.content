@@ -2861,6 +2861,9 @@ body.mosaic-home .mosaic-box:hover {
 .fill-current {
   fill: currentColor;
 }
+.fill-rose-500 {
+  fill: #f43f5e;
+}
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
