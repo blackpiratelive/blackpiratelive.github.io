@@ -196,27 +196,30 @@
             <i data-lucide="play-circle" class="w-3 h-3"></i> Latest Episodes
           </h3>
           <div class="space-y-4">
-            {{ range first 3 site.Data.trakt }}
-            <div class="flex items-center gap-4 group movie-card" data-tmdb-id="{{ .show.ids.tmdb }}" data-type="show">
-              <div class="w-12 h-16 sm:w-14 sm:h-20 rounded-lg bg-zinc-800 flex-shrink-0 overflow-hidden border border-zinc-700/30 poster-container relative">
-                {{ $tmdbId := .show.ids.tmdb }}
-                {{ $localPoster := resources.Get (printf "cinema/posters/tv_%v.jpg" $tmdbId) }}
-                {{ if $localPoster }}
-                  {{ $img := $localPoster.Resize "200x webp q80" }}
-                  <img src="{{ $img.RelPermalink }}" alt="{{ .show.title }}" class="w-full h-full object-cover">
-                {{ else }}
-                  <div class="w-full h-full flex items-center justify-center poster-placeholder" data-needs-fetch="true">
-                    <i data-lucide="monitor" class="w-5 h-5 text-zinc-600"></i>
-                  </div>
-                {{ end }}
-              </div>
-              <div class="min-w-0">
-                <div class="text-[11px] font-black text-white truncate leading-tight">{{ .show.title }}</div>
-                <div class="text-[10px] font-medium text-zinc-500 truncate mt-1">
-                  S{{ printf "%02d" (int .episode.season) }}E{{ printf "%02d" (int .episode.number) }} · {{ .episode.title }}
+            {{ if reflect.IsSlice site.Data.trakt }}
+              {{ range first 3 site.Data.trakt }}
+              <div class="flex items-center gap-4 group movie-card" data-tmdb-id="{{ .show.ids.tmdb }}" data-type="show">
+                <div class="w-12 h-16 sm:w-14 sm:h-20 rounded-lg bg-zinc-800 flex-shrink-0 overflow-hidden border border-zinc-700/30 poster-container relative">
+                  {{ $tmdbId := .show.ids.tmdb }}
+                  {{ $localPoster := resources.Get (printf "cinema/posters/tv_%v.jpg" $tmdbId) }}
+                  {{ if $localPoster }}
+                    {{ $img := $localPoster.Resize "200x webp q80" }}
+                    <img src="{{ $img.RelPermalink }}" alt="{{ .show.title }}" class="w-full h-full object-cover">
+                  {{ else }}
+                    <div class="w-full h-full flex items-center justify-center poster-placeholder" data-needs-fetch="true">
+                      <i data-lucide="monitor" class="w-5 h-5 text-zinc-600"></i>
+                    </div>
+                  {{ end }}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">{{ .show.year }}</div>
+                  <h4 class="font-bold text-sm sm:text-base text-zinc-200 group-hover:text-blue-400 transition truncate">{{ .show.title }}</h4>
+                  <div class="text-[10px] sm:text-xs text-zinc-400 truncate mt-0.5">S{{ printf "%02d" (int .episode.season) }}E{{ printf "%02d" (int .episode.number) }} &middot; {{ .episode.title }}</div>
                 </div>
               </div>
-            </div>
+              {{ end }}
+            {{ else }}
+              <div class="text-xs text-zinc-500">No recently watched episodes available.</div>
             {{ end }}
           </div>
         </div>

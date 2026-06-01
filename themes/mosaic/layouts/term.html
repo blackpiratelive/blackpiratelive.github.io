@@ -48,6 +48,15 @@
       <div class="space-y-4">
         {{ range .Pages.ByDate.Reverse }}
         {{ $thumb := .Params.cover | default .Params.image | default "" }}
+        {{ if reflect.IsMap $thumb }}
+          {{ if index $thumb "original" }}
+            {{ $thumb = index (index $thumb "original") "url" }}
+          {{ else if index $thumb "url" }}
+            {{ $thumb = index $thumb "url" }}
+          {{ else }}
+            {{ $thumb = "" }}
+          {{ end }}
+        {{ end }}
         {{ if $thumb }}
           {{ $res := resources.Get (strings.TrimPrefix "/" $thumb) }}
           {{ if $res }}
