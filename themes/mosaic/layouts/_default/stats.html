@@ -1,0 +1,297 @@
+{{ define "main" }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
+{{ $resizing := $me.Resize "120x webp q80" }}
+{{ $hero := resources.Get "img/me-collage.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
+
+<main class="w-full px-2 sm:px-4 md:px-0">
+  <div class="blog-grid">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-xl overflow-hidden relative group bg-zinc-800">
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+
+      <div class="relative h-full flex flex-col justify-end p-4 sm:p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-2 mb-2 lg:mb-4">
+          <span class="bg-indigo-600 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider">Analytics</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white mb-1 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+          Site Statistics
+        </h1>
+      </div>
+    </div>
+
+    <div class="left-column blog-left-column no-scrollbar px-2 sm:px-0">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-xl p-3 sm:p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+        <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
+          {{ with $resizing }}
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          {{ end }}
+          <div>
+            <h2 class="text-sm sm:text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-[10px] sm:text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+          </div>
+        </div>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-[10px] sm:text-sm font-medium">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Home</a>
+          <a href="{{ "/stats/" | relURL }}" class="shrink-0 bg-zinc-800/50 text-white px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="bar-chart-2" class="w-3 h-3 sm:w-4 sm:h-4"></i> Stats</a>
+        </nav>
+      </div>
+    </div>
+
+    <section class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-4 sm:p-8 md:p-12 border border-zinc-800/50 w-full overflow-hidden">
+      
+      {{/* Data Processing */}}
+      {{ $blogPages := where site.RegularPages "Section" "blog" }}
+      {{ $thoughtPages := where site.RegularPages "Section" "thoughts" }}
+      {{ $bookPages := where site.RegularPages "Section" "books" }}
+      {{ $moviePages := where site.RegularPages "Params.type" "movie" }}
+      {{ $showPages := where site.RegularPages "Params.type" "show" }}
+
+      {{/* Word Counts & Post Counts by Year */}}
+      {{ $blogData := dict }}
+      {{ range $blogPages }}
+        {{ $year := .Date.Format "2006" }}
+        {{ $yearData := index $blogData $year | default (dict "count" 0 "words" 0) }}
+        {{ $blogData = merge $blogData (dict $year (dict "count" (add $yearData.count 1) "words" (add $yearData.words .WordCount))) }}
+      {{ end }}
+
+      {{ $thoughtData := dict }}
+      {{ range $thoughtPages }}
+        {{ $year := .Date.Format "2006" }}
+        {{ $yearData := index $thoughtData $year | default (dict "count" 0 "words" 0) }}
+        {{ $thoughtData = merge $thoughtData (dict $year (dict "count" (add $yearData.count 1) "words" (add $yearData.words .WordCount))) }}
+      {{ end }}
+
+      {{/* Movie/Show Runtimes */}}
+      {{ $movieRuntime := 0 }}
+      {{ range $moviePages }}
+        {{ $movieRuntime = add $movieRuntime (int .Params.runtime | default 0) }}
+      {{ end }}
+
+      {{ $showRuntime := 0 }}
+      {{ range $showPages }}
+        {{ $showRuntime = add $showRuntime (int .Params.runtime | default 0) }}
+      {{ end }}
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div class="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-700/30">
+          <h3 class="text-zinc-500 text-xs font-black uppercase tracking-widest mb-2">Total Posts</h3>
+          <p class="text-3xl font-black text-white">{{ add (len $blogPages) (len $thoughtPages) }}</p>
+          <div class="mt-4 flex gap-4 text-[10px] font-bold uppercase tracking-tighter">
+            <span class="text-blue-400">{{ len $blogPages }} Blog</span>
+            <span class="text-teal-400">{{ len $thoughtPages }} Thoughts</span>
+          </div>
+        </div>
+        <div class="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-700/30">
+          <h3 class="text-zinc-500 text-xs font-black uppercase tracking-widest mb-2">Total Cinema</h3>
+          <p class="text-3xl font-black text-white">{{ add (len $moviePages) (len $showPages) }}</p>
+          <div class="mt-4 flex gap-4 text-[10px] font-bold uppercase tracking-tighter">
+            <span class="text-rose-400">{{ len $moviePages }} Movies</span>
+            <span class="text-blue-500">{{ len $showPages }} TV Shows</span>
+          </div>
+        </div>
+        <div class="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-700/30">
+          <h3 class="text-zinc-500 text-xs font-black uppercase tracking-widest mb-2">Books Logged</h3>
+          <p class="text-3xl font-black text-white">{{ len $bookPages }}</p>
+          <div class="mt-4 flex gap-4 text-[10px] font-bold uppercase tracking-tighter">
+            <span class="text-emerald-400">Total Read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        {{/* Blog & Thoughts Charts */}}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="bg-zinc-800/30 p-6 rounded-3xl border border-zinc-800/50">
+            <h3 class="text-lg font-bold mb-6 flex items-center gap-2"><i data-lucide="pen-tool" class="w-5 h-5 text-blue-400"></i> Writings Over Time</h3>
+            <canvas id="writingCountChart"></canvas>
+          </div>
+          <div class="bg-zinc-800/30 p-6 rounded-3xl border border-zinc-800/50">
+            <h3 class="text-lg font-bold mb-6 flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5 text-teal-400"></i> Word Count Distribution</h3>
+            <canvas id="wordCountChart"></canvas>
+          </div>
+        </div>
+
+        {{/* Cinema Charts */}}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="bg-zinc-800/30 p-6 rounded-3xl border border-zinc-800/50">
+            <h3 class="text-lg font-bold mb-6 flex items-center gap-2"><i data-lucide="tv" class="w-5 h-5 text-rose-500"></i> Cinema Ratios</h3>
+            <canvas id="cinemaRatioChart"></canvas>
+          </div>
+          <div class="bg-zinc-800/30 p-6 rounded-3xl border border-zinc-800/50">
+            <h3 class="text-lg font-bold mb-6 flex items-center gap-2"><i data-lucide="clock" class="w-5 h-5 text-blue-500"></i> Total Watch Time</h3>
+            <div class="flex flex-col items-center justify-center h-full pb-8">
+                {{ $totalMins := add $movieRuntime $showRuntime }}
+                {{ $totalHours := div $totalMins 60 }}
+                {{ $totalDays := div $totalHours 24 }}
+                <div class="text-5xl font-black text-white mb-2">{{ $totalHours }}h</div>
+                <div class="text-zinc-500 font-bold uppercase tracking-widest text-xs">≈ {{ $totalDays }} Full Days Watched</div>
+                
+                <div class="w-full mt-8 space-y-4">
+                    <div>
+                        <div class="flex justify-between text-[10px] font-black uppercase tracking-widest mb-1">
+                            <span class="text-rose-400">Movies</span>
+                            <span class="text-zinc-400">{{ div $movieRuntime 60 }}h</span>
+                        </div>
+                        <div class="w-full bg-zinc-800 rounded-full h-2">
+                            <div class="bg-rose-500 h-2 rounded-full" style="width: {{ mul (div (float $movieRuntime) (float $totalMins)) 100 }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] font-black uppercase tracking-widest mb-1">
+                            <span class="text-blue-500">TV Shows</span>
+                            <span class="text-zinc-400">{{ div $showRuntime 60 }}h</span>
+                        </div>
+                        <div class="w-full bg-zinc-800 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: {{ mul (div (float $showRuntime) (float $totalMins)) 100 }}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        {{/* Books Section */}}
+        <div class="bg-zinc-800/30 p-6 rounded-3xl border border-zinc-800/50">
+             <h3 class="text-lg font-bold mb-6 flex items-center gap-2"><i data-lucide="book" class="w-5 h-5 text-emerald-400"></i> Reading Progress</h3>
+             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                 {{ range $status, $pages := $bookPages.GroupByParam "shelf" }}
+                 <div class="bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800/50 text-center">
+                     <div class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-1">{{ $status }}</div>
+                     <div class="text-2xl font-black text-white">{{ len $pages }}</div>
+                 </div>
+                 {{ end }}
+             </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="right-column blog-right-column no-scrollbar px-2 sm:px-0">
+      <div class="mosaic-box interactive-box box-toc blog-box-toc bg-blue-600 rounded-xl p-4 sm:p-6 text-blue-50">
+        <h3 class="font-bold text-sm sm:text-lg mb-4 flex items-center gap-2"><i data-lucide="info" class="w-4 h-4 sm:w-5 sm:h-5"></i> About Stats</h3>
+        <p class="text-xs font-medium opacity-90 leading-relaxed">
+            This page provides a visual overview of my content creation and consumption habits. All data is automatically gathered from the markdown files and external APIs used on this site.
+        </p>
+      </div>
+
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-xl p-4 sm:p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+        <div class="text-base sm:text-lg font-black mb-1">WebSutra</div>
+        <div class="text-[10px] opacity-80 font-medium mb-3">Indian Webring Network</div>
+        <div class="bg-white/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
+      </a>
+    </div>
+  </div>
+</main>
+
+{{ $chartjs := resources.Get "js/chart.min.js" | fingerprint }}
+<script src="{{ $chartjs.RelPermalink }}" integrity="{{ $chartjs.Data.Integrity }}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ctxCount = document.getElementById('writingCountChart').getContext('2d');
+    const ctxWord = document.getElementById('wordCountChart').getContext('2d');
+    const ctxCinema = document.getElementById('cinemaRatioChart').getContext('2d');
+
+    const years = {{ sort (union (urls.Parse "" | (lambda $x: slice)).Site.Data.blogData.Keys (urls.Parse "" | (lambda $x: slice)).Site.Data.thoughtData.Keys) }};
+    {{/* Actually I need to collect years from both and sort them */}}
+    {{ $allYears := slice }}
+    {{ range $k, $v := $blogData }}{{ $allYears = $allYears | append $k }}{{ end }}
+    {{ range $k, $v := $thoughtData }}{{ $allYears = $allYears | append $k }}{{ end }}
+    {{ $sortedYears := $allYears | uniq | sort }}
+    
+    const labels = [{{ range $sortedYears }}"{{ . }}",{{ end }}];
+    
+    const blogCounts = [{{ range $sortedYears }}{{ (index $blogData .).count | default 0 }},{{ end }}];
+    const thoughtCounts = [{{ range $sortedYears }}{{ (index $thoughtData .).count | default 0 }},{{ end }}];
+    
+    const blogWords = [{{ range $sortedYears }}{{ (index $blogData .).words | default 0 }},{{ end }}];
+    const thoughtWords = [{{ range $sortedYears }}{{ (index $thoughtData .).words | default 0 }},{{ end }}];
+
+    new Chart(ctxCount, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Blog Posts',
+                    data: blogCounts,
+                    backgroundColor: '#3b82f6',
+                    borderRadius: 6,
+                },
+                {
+                    label: 'Thoughts',
+                    data: thoughtCounts,
+                    backgroundColor: '#2dd4bf',
+                    borderRadius: 6,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: '#a1a1aa', font: { weight: 'bold' } } }
+            },
+            scales: {
+                x: { grid: { display: false }, ticks: { color: '#71717a' } },
+                y: { grid: { color: '#27272a' }, ticks: { color: '#71717a' } }
+            }
+        }
+    });
+
+    new Chart(ctxWord, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Blog Words',
+                    data: blogWords,
+                    borderColor: '#3b82f6',
+                    backgroundColor: '#3b82f633',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Thought Words',
+                    data: thoughtWords,
+                    borderColor: '#2dd4bf',
+                    backgroundColor: '#2dd4bf33',
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: '#a1a1aa', font: { weight: 'bold' } } }
+            },
+            scales: {
+                x: { grid: { display: false }, ticks: { color: '#71717a' } },
+                y: { grid: { color: '#27272a' }, ticks: { color: '#71717a' } }
+            }
+        }
+    });
+
+    new Chart(ctxCinema, {
+        type: 'doughnut',
+        data: {
+            labels: ['Movies', 'TV Shows'],
+            datasets: [{
+                data: [{{ len $moviePages }}, {{ len $showPages }}],
+                backgroundColor: ['#e11d48', '#2563eb'],
+                borderWidth: 0,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '70%',
+            plugins: {
+                legend: { position: 'bottom', labels: { color: '#a1a1aa', font: { weight: 'bold' }, padding: 20 } }
+            }
+        }
+    });
+});
+</script>
+{{ end }}
