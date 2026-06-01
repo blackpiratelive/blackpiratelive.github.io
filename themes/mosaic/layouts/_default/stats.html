@@ -192,8 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctxWord = document.getElementById('wordCountChart').getContext('2d');
     const ctxCinema = document.getElementById('cinemaRatioChart').getContext('2d');
 
-    const years = {{ sort (union (urls.Parse "" | (lambda $x: slice)).Site.Data.blogData.Keys (urls.Parse "" | (lambda $x: slice)).Site.Data.thoughtData.Keys) }};
-    {{/* Actually I need to collect years from both and sort them */}}
+    {{/* Collect years from both and sort them */}}
     {{ $allYears := slice }}
     {{ range $k, $v := $blogData }}{{ $allYears = $allYears | append $k }}{{ end }}
     {{ range $k, $v := $thoughtData }}{{ $allYears = $allYears | append $k }}{{ end }}
