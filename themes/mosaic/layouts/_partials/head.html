@@ -3,9 +3,9 @@
 <meta name="generator" content="Hugo {{ hugo.Version }}">
 {{ partial "seo.html" . }}
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+{{ $fonts := resources.Get "css/fonts.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}" integrity="{{ $fonts.Data.Integrity }}">
+{{ $lucide := resources.Get "js/lucide.min.js" | fingerprint }}
+<script src="{{ $lucide.RelPermalink }}" integrity="{{ $lucide.Data.Integrity }}"></script>
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}

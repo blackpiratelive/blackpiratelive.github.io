@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>{{ printf "%s | %s" .Title site.Title }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    {{ $fonts := resources.Get "css/fonts.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $fonts.RelPermalink }}" integrity="{{ $fonts.Data.Integrity }}">
+    {{ $lucide := resources.Get "js/lucide.min.js" | fingerprint }}
+    <script src="{{ $lucide.RelPermalink }}" integrity="{{ $lucide.Data.Integrity }}"></script>
     {{- with resources.Get "css/os.css" }}
       {{- if hugo.IsDevelopment }}
         <link rel="stylesheet" href="{{ .RelPermalink }}">

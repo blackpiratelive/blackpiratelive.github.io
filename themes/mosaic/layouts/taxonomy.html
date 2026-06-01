@@ -1,7 +1,68 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ .Content }}
-{{ range .Pages }}
-<h2><a href="{{ .RelPermalink }}">{{ or .LinkTitle .File.ContentBaseName }}</a></h2>
-{{ end }}
+{{ $me := resources.Get "img/selfie/me1.jpg" }}
+{{ $me = $me.Resize "120x webp q80" }}
+{{ $hero := resources.Get "img/me-collage.jpg" }}
+{{ $hero = $hero.Resize "1600x webp q80" }}
+
+<main class="w-full px-2 sm:px-4 md:px-0">
+  <div class="blog-grid">
+    <div class="mosaic-box interactive-box box-hero blog-box-hero rounded-xl overflow-hidden relative group bg-zinc-800">
+      <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('{{ $hero.RelPermalink }}');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+
+      <div class="relative h-full flex flex-col justify-end p-4 sm:p-6 md:p-10 lg:p-12 z-10">
+        <div class="flex items-center gap-2 mb-2 lg:mb-4">
+          <span class="bg-zinc-700 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider">Explore</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white mb-1 lg:mb-4 tracking-tight max-w-4xl leading-[1.1]">
+          All Tags
+        </h1>
+      </div>
+    </div>
+
+    <div class="left-column blog-left-column no-scrollbar px-2 sm:px-0">
+      <div class="mosaic-box interactive-box box-nav blog-box-nav bg-zinc-900 rounded-xl p-3 sm:p-4 lg:p-6 border border-zinc-800/50 flex flex-col gap-4">
+        <div class="flex items-center gap-3 lg:mb-2 lg:pb-6 lg:border-b border-zinc-800">
+          {{ with $me }}
+          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full object-cover">
+          {{ end }}
+          <div>
+            <h2 class="text-sm sm:text-base lg:text-lg font-bold leading-tight">{{ site.Title }}</h2>
+            <a href="{{ "/" | relURL }}" class="text-[10px] sm:text-xs text-zinc-400 hover:text-white transition">@{{ site.Params.author | default "sudip" | lower }}</a>
+          </div>
+        </div>
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full text-[10px] sm:text-sm font-medium">
+          <a href="{{ "/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Home</a>
+          <a href="{{ "/blog/" | relURL }}" class="shrink-0 hover:bg-zinc-800 text-zinc-300 hover:text-white px-3 py-2 lg:py-3 rounded-xl transition flex items-center gap-2 lg:gap-3"><i data-lucide="pen-tool" class="w-3 h-3 sm:w-4 sm:h-4"></i> Blog</a>
+        </nav>
+      </div>
+    </div>
+
+    <section class="mosaic-box blog-box-list bg-zinc-900 rounded-xl p-4 sm:p-8 md:p-12 lg:p-16 border border-zinc-800/50 w-full">
+      <div class="flex items-center justify-between mb-6 px-1">
+        <h2 class="text-xl sm:text-2xl font-bold">Browse by Tags</h2>
+        <span class="text-[10px] sm:text-xs font-medium text-zinc-400 uppercase tracking-wider">{{ len .Data.Terms }} tags</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{ range .Data.Terms.ByCount }}
+        <a href="{{ .Page.RelPermalink }}" class="group block p-4 rounded-xl border border-zinc-800 bg-zinc-800/40 hover:bg-zinc-800 transition">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">#{{ .Page.Title }}</h3>
+            <span class="text-xs font-medium px-2 py-1 rounded-lg bg-zinc-900 text-zinc-400">{{ .Count }}</span>
+          </div>
+        </a>
+        {{ end }}
+      </div>
+    </section>
+
+    <div class="right-column blog-right-column no-scrollbar px-2 sm:px-0">
+      <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener" class="box-ad blog-box-ad mosaic-box interactive-box bg-fuchsia-600 rounded-xl p-4 sm:p-6 flex flex-col justify-center items-center text-center text-white mt-auto">
+        <div class="text-base sm:text-lg font-black mb-1">WebSutra</div>
+        <div class="text-[10px] opacity-80 font-medium mb-3">Indian Webring Network</div>
+        <div class="bg-white/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">Explore</div>
+      </a>
+    </div>
+
+  </div>
+</main>
 {{ end }}
