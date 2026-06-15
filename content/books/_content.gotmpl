@@ -24,8 +24,8 @@
     {{ $title := $book.bookName | default (printf "Book %d" $i) }}
     {{ $slug := $title | urlize }}
     
-    {{ $dateString := $book.endDate | default $book.startingDate }}
-    {{ $dateObj := time.Now }}
+    {{ $dateString := $book.endDate }}
+    {{ $dateObj := time.AsTime "0001-01-01" }}
     {{ with $dateString }}
         {{ $dateObj = time.AsTime . }}
     {{ end }}

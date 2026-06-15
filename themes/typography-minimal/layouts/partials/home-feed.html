@@ -6,7 +6,7 @@
     {{ $activityPages := where site.RegularPages "Params.feed_type" "in" (slice "movies" "episode" "episodes") }}
     {{ $feed := $regularPages | union $moviePages | union $activityPages }}
     {{ $feed = sort $feed "Date" "desc" }}
-    {{ $paginator := .Paginate $feed }}
+    {{ $paginator := .Paginate $feed 50 }}
 
     {{ range $paginator.Pages }}
       {{ if eq .Params.feed_type "movies" }}
