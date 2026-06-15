@@ -33,6 +33,15 @@
     {{ end }}
 {{ end }}
 
+{{ $moviesByDay := dict }}
+{{ range $watchedMovies }}
+    {{ $date := time.AsTime .last_watched_at }}
+    {{ $dayKey := $date.Format "2006-01-02" }}
+    {{ $dayMovies := index $moviesByDay $dayKey | default (slice) }}
+    {{ $dayMovies = $dayMovies | append . }}
+    {{ $moviesByDay = merge $moviesByDay (dict $dayKey $dayMovies) }}
+{{ end }}
+
 {{/* Process Movies */}}
 {{ range $i, $item := $watchedMovies }}
     {{ $movie := $item.movie }}
@@ -44,6 +53,9 @@
     {{ $isFavorite := index $favoritesMap $traktId | default false }}
     
     {{ $date := time.AsTime $item.last_watched_at }}
+    {{ $dayKey := $date.Format "2006-01-02" }}
+    {{ $dayMovies := index $moviesByDay $dayKey | default (slice) }}
+    {{ $feedExclude := gt (len $dayMovies) 2 }}
 
     {{ $page := dict
         "kind" "page"
@@ -66,10 +78,41 @@
             "genres" $movie.genres
             "last_watched" $item.last_watched_at
             "plays" $item.plays
+            "feed_exclude" $feedExclude
         )
         "content" (dict "mediaType" "text/markdown" "value" ($movie.overview | default ""))
     }}
     {{ $.AddPage $page }}
+{{ end }}
+
+{{ range $dayKey, $movies := $moviesByDay }}
+    {{ $sortedMovies := sort $movies "last_watched_at" "desc" }}
+    {{ if gt (len $sortedMovies) 2 }}
+        {{ $firstMovie := index $sortedMovies 0 }}
+        {{ $date := time.AsTime $firstMovie.last_watched_at }}
+        {{ $feedItems := slice }}
+        {{ range first 2 $sortedMovies }}
+            {{ $movie := .movie }}
+            {{ $movieURL := printf "/movies/movie-%s/" ($movie.ids.slug | default ($movie.title | urlize)) }}
+            {{ $feedItems = $feedItems | append (dict "title" $movie.title "url" $movieURL "year" $movie.year) }}
+        {{ end }}
+
+        {{ $page := dict
+            "kind" "page"
+            "path" (printf "feed/movies-%s" $dayKey)
+            "title" (printf "Watched %d movies" (len $sortedMovies))
+            "dates" (dict "date" $date)
+            "params" (dict
+                "feed_type" "movies"
+                "feed_items" $feedItems
+                "remaining" (sub (len $sortedMovies) 2)
+                "total" (len $sortedMovies)
+                "hidden" true
+            )
+            "content" (dict "mediaType" "text/markdown" "value" "")
+        }}
+        {{ $.AddPage $page }}
+    {{ end }}
 {{ end }}
 
 {{/* Process Shows */}}
@@ -131,4 +174,73 @@
         "content" (dict "mediaType" "text/markdown" "value" ($show.overview | default ""))
     }}
     {{ $.AddPage $page }}
+{{ end }}
+
+{{ $episodesByDay := dict }}
+{{ range $watchedShows }}
+    {{ $show := .show }}
+    {{ $showURL := printf "/shows/show-%s/" ($show.ids.slug | default ($show.title | urlize)) }}
+    {{ range .seasons }}
+        {{ $seasonNumber := int .number }}
+        {{ range .episodes }}
+            {{ $date := time.AsTime .last_watched_at }}
+            {{ $dayKey := $date.Format "2006-01-02" }}
+            {{ $dayEpisodes := index $episodesByDay $dayKey | default (slice) }}
+            {{ $episode := dict
+                "date" $date
+                "show_title" $show.title
+                "show_url" $showURL
+                "season" $seasonNumber
+                "episode_number" (int .number)
+            }}
+            {{ $dayEpisodes = $dayEpisodes | append $episode }}
+            {{ $episodesByDay = merge $episodesByDay (dict $dayKey $dayEpisodes) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ range $dayKey, $episodes := $episodesByDay }}
+    {{ $sortedEpisodes := sort $episodes "date" "desc" }}
+    {{ if gt (len $sortedEpisodes) 2 }}
+        {{ $firstEpisode := index $sortedEpisodes 0 }}
+        {{ $feedItems := slice }}
+        {{ range first 2 $sortedEpisodes }}
+            {{ $feedItems = $feedItems | append (dict "show_title" .show_title "show_url" .show_url "season" .season "episode_number" .episode_number) }}
+        {{ end }}
+
+        {{ $page := dict
+            "kind" "page"
+            "path" (printf "feed/episodes-%s" $dayKey)
+            "title" (printf "Watched %d episodes" (len $sortedEpisodes))
+            "dates" (dict "date" $firstEpisode.date)
+            "params" (dict
+                "feed_type" "episodes"
+                "feed_items" $feedItems
+                "remaining" (sub (len $sortedEpisodes) 2)
+                "total" (len $sortedEpisodes)
+                "hidden" true
+            )
+            "content" (dict "mediaType" "text/markdown" "value" "")
+        }}
+        {{ $.AddPage $page }}
+    {{ else }}
+        {{ range $sortedEpisodes }}
+            {{ $page := dict
+                "kind" "page"
+                "path" (printf "feed/episode-%s-s%02de%02d-%s" (.show_title | urlize) .season .episode_number $dayKey)
+                "title" (printf "%s S%02dE%02d" .show_title .season .episode_number)
+                "dates" (dict "date" .date)
+                "params" (dict
+                    "feed_type" "episode"
+                    "show_title" .show_title
+                    "show_url" .show_url
+                    "season" .season
+                    "episode_number" .episode_number
+                    "hidden" true
+                )
+                "content" (dict "mediaType" "text/markdown" "value" "")
+            }}
+            {{ $.AddPage $page }}
+        {{ end }}
+    {{ end }}
 {{ end }}

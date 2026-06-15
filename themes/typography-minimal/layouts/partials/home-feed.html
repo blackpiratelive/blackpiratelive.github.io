@@ -1,0 +1,133 @@
+<section class="home-feed">
+  <h2 class="feed-heading">Recent Feed</h2>
+  <div class="unified-feed">
+    {{ $regularPages := where site.RegularPages "Section" "in" (slice "blog" "thoughts" "books") }}
+    {{ $moviePages := where (where site.RegularPages "Params.type" "movie") "Params.feed_exclude" "ne" true }}
+    {{ $activityPages := where site.RegularPages "Params.feed_type" "in" (slice "movies" "episode" "episodes") }}
+    {{ $feed := $regularPages | union $moviePages | union $activityPages }}
+    {{ $feed = sort $feed "Date" "desc" }}
+    {{ $paginator := .Paginate $feed }}
+
+    {{ range $paginator.Pages }}
+      {{ if eq .Params.feed_type "movies" }}
+        <article class="feed-entry entry-movies">
+          <div class="entry-meta">
+            <span class="entry-type label-movie">Movies</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">{{ .Title }}</h3>
+          <ul class="entry-list">
+            {{ range .Params.feed_items }}
+              <li><a href="{{ .url }}">{{ .title }}</a>{{ with .year }} <span class="entry-muted">({{ . }})</span>{{ end }}</li>
+            {{ end }}
+            <li class="entry-muted">and {{ .Params.remaining }} more</li>
+          </ul>
+        </article>
+      {{ else if eq .Params.feed_type "episode" }}
+        <article class="feed-entry entry-episode">
+          <div class="entry-meta">
+            <span class="entry-type label-show">Episode</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .Params.show_url }}">{{ .Params.show_title }}</a>
+          </h3>
+          <p class="entry-summary">S{{ printf "%02d" (int .Params.season) }}E{{ printf "%02d" (int .Params.episode_number) }}</p>
+        </article>
+      {{ else if eq .Params.feed_type "episodes" }}
+        <article class="feed-entry entry-episodes">
+          <div class="entry-meta">
+            <span class="entry-type label-show">Episodes</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">{{ .Title }}</h3>
+          <ul class="entry-list">
+            {{ range .Params.feed_items }}
+              <li><a href="{{ .show_url }}">{{ .show_title }}</a> <span class="entry-muted">S{{ printf "%02d" (int .season) }}E{{ printf "%02d" (int .episode_number) }}</span></li>
+            {{ end }}
+            <li class="entry-muted">and {{ .Params.remaining }} more</li>
+          </ul>
+        </article>
+      {{ else if eq .Params.type "movie" }}
+        <article class="feed-entry entry-movie">
+          <div class="entry-meta">
+            <span class="entry-type label-movie">Movie</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          {{ with .Params.year }}
+            <p class="entry-summary">{{ . }}</p>
+          {{ end }}
+        </article>
+      {{ else if eq .Section "blog" }}
+        <article class="feed-entry entry-blog">
+          <div class="entry-meta">
+            <span class="entry-type label-blog">Writing</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+        </article>
+      {{ else if eq .Section "thoughts" }}
+        <article class="feed-entry entry-thought">
+          <div class="entry-meta">
+            <span class="entry-type label-thought">Thought</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <div class="entry-content thought-content">
+            {{ .Content }}
+          </div>
+          <div class="entry-footer">
+            {{ with .Params.tags }}
+              <div class="entry-tags">
+                {{ range . }}
+                  <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag-link">#{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            <a href="{{ .RelPermalink }}" class="entry-permalink" title="Permalink">
+              <i data-lucide="link"></i>
+            </a>
+          </div>
+        </article>
+      {{ else if eq .Section "books" }}
+        <article class="feed-entry entry-book">
+          <div class="entry-meta">
+            <span class="entry-type label-book">Book note</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          {{ with .Params.authors }}
+            <p class="entry-summary">{{ delimit . ", " }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    {{ else }}
+      <p class="feed-empty">No updates found.</p>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Recent feed pagination">
+      {{ if $paginator.HasPrev }}
+        <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
+      {{ end }}
+      <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+      {{ if $paginator.HasNext }}
+        <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
+      {{ end }}
+    </nav>
+  {{ end }}
+</section>

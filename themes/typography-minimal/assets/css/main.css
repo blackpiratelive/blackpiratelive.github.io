@@ -327,6 +327,18 @@ pre code {
   color: #c2185b;
 }
 
+.label-book {
+  color: #8a5a00;
+}
+
+.label-movie {
+  color: #007a5a;
+}
+
+.label-show {
+  color: #7a3db8;
+}
+
 .entry-title {
   margin: 0;
   font-size: 1.5rem;
@@ -340,6 +352,28 @@ pre code {
 
 .entry-title a:hover {
   color: var(--accent-color);
+}
+
+.entry-summary {
+  margin-top: var(--spacing-xs);
+  margin-bottom: 0;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.entry-list {
+  margin: var(--spacing-sm) 0 0;
+  padding-left: 1.2rem;
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.entry-muted {
+  color: var(--text-muted);
 }
 
 /* Thoughts formatting */
