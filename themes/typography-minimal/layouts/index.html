@@ -28,8 +28,9 @@
   <div class="unified-feed">
     {{ $feed := where site.RegularPages "Section" "in" (slice "blog" "thoughts") }}
     {{ $feed = sort $feed "Date" "desc" }}
+    {{ $paginator := .Paginate $feed }}
     
-    {{ range $feed }}
+    {{ range $paginator.Pages }}
       {{ if eq .Section "blog" }}
         <article class="feed-entry entry-blog">
           <div class="entry-meta">
@@ -68,5 +69,17 @@
       <p class="feed-empty">No updates found.</p>
     {{ end }}
   </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Recent feed pagination">
+      {{ if $paginator.HasPrev }}
+        <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
+      {{ end }}
+      <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+      {{ if $paginator.HasNext }}
+        <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
+      {{ end }}
+    </nav>
+  {{ end }}
 </section>
 {{ end }}
