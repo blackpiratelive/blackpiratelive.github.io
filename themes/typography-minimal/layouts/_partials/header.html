@@ -1,0 +1,13 @@
+<header class="mobile-header">
+  <div class="mobile-header-container">
+    <a href="{{ "/" | relURL }}" class="mobile-brand">
+      {{ site.Title }}
+    </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.mobile-nav').classList.toggle('active')">
+      <i data-lucide="menu" class="icon-menu"></i>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    {{ partial "menu.html" . }}
+  </nav>
+</header>

@@ -1,0 +1,293 @@
+{{ define "main" }}
+<article class="post-single">
+  <header class="post-header">
+    <div class="post-meta-top">
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}" class="read-next-link" title="Read Next: {{ .Title }}">Read Next »</a>
+      {{ end }}
+    </div>
+    
+    <h1 class="post-title">{{ .Title }}</h1>
+    
+    <div class="post-meta-bottom">
+      {{ $readingTime := math.Round (div (countwords .Content) 200.0) }}
+      <span class="post-reading-time">{{ $readingTime }} min read</span>
+      {{ with .Params.tags }}
+      <span class="post-tags">
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="post-tag">#{{ . }}</a>
+        {{ end }}
+      </span>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="post-content serif-content">
+    {{ .Content }}
+  </div>
+
+  <footer class="post-footer">
+    <!-- Like & Share Actions -->
+    <div class="post-actions">
+      <button class="action-btn btn-like" type="button" onclick="alert('Like feature coming soon!')">
+        <span class="icon">♥</span> Like
+      </button>
+      <button id="share-button" class="action-btn btn-share" type="button">
+        <span class="icon">⌲</span> Share
+      </button>
+    </div>
+    
+    <!-- Dynamic Comments Section -->
+    <div id="comments-section-cvofw6q4" class="comments-container">
+      <h3 class="comments-title">Comments</h3>
+      <div id="comments-list-cvofw6q4" class="comments-list">
+        <div class="comments-loading">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+      <form id="comment-form-cvofw6q4" class="comment-form">
+        <h4 class="form-title">Post a Comment</h4>
+        <input type="text" name="website_url_check" style="display:none !important;" tabindex="-1" autocomplete="off">
+        
+        <div class="form-row-anon">
+          <input type="checkbox" name="is_anonymous" id="anon-check" class="anon-checkbox">
+          <label for="anon-check" class="anon-label">Comment as Anonymous</label>
+        </div>
+
+        <div id="non-anon-fields" class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="name">Name *</label>
+            <input type="text" id="name" name="sender_name" class="form-input" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="sender_email" class="form-input" placeholder="Optional (not public)">
+          </div>
+          <div class="form-group full-width">
+            <label class="form-label" for="url">Website</label>
+            <input type="url" id="url" name="sender_url" class="form-input" placeholder="https://your-site.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="comment">Comment *</label>
+          <textarea id="comment" name="comment_text" class="form-textarea" required rows="4" placeholder="Share your thoughts..."></textarea>
+        </div>
+
+        <input type="hidden" name="parent_id" id="parent-id-cvofw6q4">
+        
+        <div id="replying-to-info-cvofw6q4" class="reply-banner" style="display:none;">
+          <span class="reply-text">Replying to a comment...</span>
+          <button type="button" id="cancel-reply-cvofw6q4" class="btn-cancel-reply">Cancel</button>
+        </div>
+
+        <button type="submit" class="btn-submit">Post Comment</button>
+      </form>
+    </div>
+  </footer>
+</article>
+
+<script>
+(function() {
+  // Native Share Functionality
+  const shareBtn = document.getElementById('share-button');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: document.title,
+            text: 'Check out this post on {{ site.Title }}',
+            url: window.location.href
+          });
+        } catch (err) {
+          console.log('Share failed:', err.message);
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const originalText = shareBtn.innerHTML;
+          shareBtn.innerHTML = '✓ Copied!';
+          setTimeout(() => {
+            shareBtn.innerHTML = originalText;
+          }, 2000);
+        } catch (err) {
+          alert('Could not copy link to clipboard');
+        }
+      }
+    });
+  }
+
+  const form = document.getElementById("comment-form-cvofw6q4");
+  const list = document.getElementById("comments-list-cvofw6q4");
+  const parentInput = document.getElementById("parent-id-cvofw6q4");
+  const replyInfo = document.getElementById("replying-to-info-cvofw6q4");
+  const cancelReplyBtn = document.getElementById("cancel-reply-cvofw6q4");
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const baseUrl = "https://guestbook.blackpiratex.com";
+  const sectionId = "cvofw6q4";
+  let pageUrl = window.location.origin + window.location.pathname;
+  if (!pageUrl.endsWith("/")) pageUrl += "/";
+
+  let canSubmit = false;
+  let secondsLeft = 10;
+  const originalBtnText = submitBtn.innerText;
+
+  submitBtn.disabled = true;
+
+  const timer = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft <= 0) {
+      clearInterval(timer);
+      canSubmit = true;
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalBtnText;
+    } else {
+      submitBtn.innerText = `Post Comment (${secondsLeft}s)`;
+    }
+  }, 1000);
+
+  async function fetchComments() {
+    try {
+      const res = await fetch(baseUrl + "/api/comments?section=" + sectionId + "&page_url=" + encodeURIComponent(pageUrl));
+      const data = await res.json();
+      renderComments(data.comments);
+    } catch (err) {
+      list.innerHTML = "<p class='error-msg'>Error loading comments.</p>";
+    }
+  }
+
+  function renderComments(comments) {
+    if (!comments || comments.length === 0) {
+      list.innerHTML = "<p class='no-comments-msg'>No comments yet. Be the first to start the conversation!</p>";
+      return;
+    }
+
+    const roots = comments.filter(c => !c.parent_id);
+    list.innerHTML = roots.map(c => renderComment(c, comments)).join("");
+  }
+
+  function renderComment(comment, all) {
+    const replies = all.filter(c => c.parent_id === comment.id);
+    const date = new Date(comment.created_at).toLocaleDateString(undefined, {
+      year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+
+    return `
+      <div class="comment" id="comment-${comment.id}">
+        <div class="comment-header">
+          <span class="comment-author">${escapeHtml(comment.sender_name || "Anonymous")}</span>
+          ${comment.is_owner ? '<span class="owner-tag">OWNER</span>' : ''}
+          <span class="comment-date">· ${date}</span>
+        </div>
+        <div class="comment-body">${escapeHtml(comment.comment_text)}</div>
+        <div class="comment-footer">
+          <button type="button" class="like-btn" onclick="window.__cw_like(${comment.id})">
+            <span>♥</span> <span>${comment.likes || 0}</span>
+          </button>
+          <button type="button" class="reply-btn" onclick="window.__cw_reply(${comment.id})">
+            <span>Reply</span>
+          </button>
+        </div>
+        ${replies.length > 0 ? `
+          <div class="comment-replies">
+            ${replies.map(r => renderComment(r, all)).join("")}
+          </div>
+        ` : ""}
+      </div>
+    `;
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  window.__cw_like = async (id) => {
+    await fetch(baseUrl + "/api/comments", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "like", id })
+    });
+    fetchComments();
+  };
+
+  window.__cw_reply = (id) => {
+    parentInput.value = id;
+    replyInfo.style.display = "flex";
+    form.scrollIntoView({ behavior: 'smooth' });
+    form.querySelector("textarea").focus();
+  };
+
+  cancelReplyBtn.onclick = () => {
+    parentInput.value = "";
+    replyInfo.style.display = "none";
+  };
+
+  const anonCheck = document.getElementById("anon-check");
+  const nonAnonFields = document.getElementById("non-anon-fields");
+  if (anonCheck) {
+    anonCheck.addEventListener("change", (e) => {
+      const isAnon = e.target.checked;
+      nonAnonFields.style.display = isAnon ? "none" : "grid";
+      ["name"].forEach(f => {
+        const input = form.querySelector("[name='sender_" + f + "']");
+        if (input) input.required = isAnon ? false : (input.dataset.wasRequired === "true");
+      });
+    });
+    ["name"].forEach(f => {
+      const input = form.querySelector("[name='sender_" + f + "']");
+      if (input) input.dataset.wasRequired = input.required ? "true" : "false";
+    });
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!canSubmit) {
+      alert(`Please wait ${secondsLeft} more seconds before submitting.`);
+      return;
+    }
+    
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalBtnInner = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Posting...';
+
+    try {
+      const fd = new FormData(e.target);
+      const data = Object.fromEntries(fd.entries());
+      data.section_id = sectionId;
+      data.page_url = pageUrl;
+      data.is_anonymous = anonCheck ? anonCheck.checked : false;
+
+      const res = await fetch(baseUrl + "/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert(result.status === "pending" ? "Awaiting approval!" : "Comment posted!");
+        e.target.reset();
+        parentInput.value = "";
+        replyInfo.style.display = "none";
+        fetchComments();
+      } else {
+        alert(result.error || "Failed to post");
+      }
+    } catch (err) {
+      alert("Error: " + err.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnInner;
+    }
+  });
+
+  fetchComments();
+})();
+</script>
+{{ end }}

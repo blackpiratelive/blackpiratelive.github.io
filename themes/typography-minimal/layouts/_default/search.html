@@ -1,0 +1,96 @@
+{{ define "main" }}
+<section class="search-container">
+  <header class="search-header">
+    <h1 class="search-title">{{ .Title }}</h1>
+  </header>
+
+  <div class="search-wrapper">
+    <input type="text" id="search-input" placeholder="Search the site..." class="search-input" autocomplete="off">
+    
+    <div id="search-results" class="search-results">
+      <div class="search-placeholder">
+        <p>Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  let fuse;
+
+  try {
+    const response = await fetch('/index.json');
+    const data = await response.json();
+    
+    fuse = new Fuse(data, {
+      keys: ['title', 'content', 'description', 'tags', 'section'],
+      threshold: 0.3,
+      includeMatches: true,
+      minMatchCharLength: 2
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value;
+      if (query.length < 2) {
+        searchResults.innerHTML = `
+          <div class="search-placeholder">
+            <p>Start typing to search...</p>
+          </div>
+        `;
+        return;
+      }
+
+      const results = fuse.search(query);
+      displayResults(results);
+    });
+
+  } catch (err) {
+    console.error('Search index failed to load:', err);
+    searchResults.innerHTML = '<p class="search-error">Failed to load search index.</p>';
+  }
+
+  function displayResults(results) {
+    if (results.length === 0) {
+      searchResults.innerHTML = '<p class="search-no-results">No results found for your query.</p>';
+      return;
+    }
+
+    searchResults.innerHTML = results.map(result => {
+      const item = result.item;
+      let typeLabel = item.section || 'page';
+      
+      const title = item.section === 'thoughts' 
+        ? (item.content.length > 80 ? item.content.substring(0, 80) + '...' : item.content) 
+        : (item.title || 'Untitled');
+      
+      const description = item.section === 'thoughts' ? '' : (item.description || '');
+      const dateStr = item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '';
+
+      return `
+        <article class="search-result-item">
+          <header class="search-result-header">
+            <span class="search-result-type">${typeLabel}</span>
+            ${dateStr ? `<span class="search-result-date">${dateStr}</span>` : ''}
+          </header>
+          <h3 class="search-result-title">
+            <a href="${item.url}">${title}</a>
+          </h3>
+          ${description ? `<p class="search-result-description">${description}</p>` : ''}
+        </article>
+      `;
+    }).join('');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+    }
+  });
+});
+</script>
+{{ end }}

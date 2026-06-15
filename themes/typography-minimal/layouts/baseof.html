@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="theme-minimal">
+  <div class="site-container">
+    <!-- Desktop Sidebar -->
+    <aside class="site-sidebar">
+      <div class="sidebar-sticky">
+        <div class="sidebar-brand">
+          <a href="{{ "/" | relURL }}" class="brand-link">{{ site.Title }}</a>
+          {{ with site.Params.tagline }}
+            <p class="brand-tagline">{{ . }}</p>
+          {{ end }}
+        </div>
+        
+        <nav class="sidebar-nav-container">
+          {{ partial "menu.html" . }}
+        </nav>
+        
+        <div class="sidebar-footer">
+          <div class="sidebar-social">
+            {{ with site.Params.instagram | default "https://instagram.com" }}
+            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Instagram" class="sidebar-social-link">
+              <i data-lucide="instagram"></i>
+            </a>
+            {{ end }}
+            {{ with site.Params.threads | default "https://threads.net" }}
+            <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Threads" class="sidebar-social-link">
+              <i data-lucide="at-sign"></i>
+            </a>
+            {{ end }}
+            {{ with site.Params.email | default "mailto:sudip@example.com" }}
+            <a href="{{ . | safeURL }}" aria-label="Email" class="sidebar-social-link">
+              <i data-lucide="mail"></i>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    {{ partial "header.html" . }}
+
+    <!-- Main Content and Footer wrapper -->
+    <div class="site-content-wrapper">
+      <main class="site-main">
+        {{ block "main" . }}{{ end }}
+      </main>
+
+      {{ partial "footer.html" . }}
+    </div>
+  </div>
+
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

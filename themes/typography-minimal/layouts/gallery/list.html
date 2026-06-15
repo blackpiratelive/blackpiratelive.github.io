@@ -1,0 +1,55 @@
+{{ define "main" }}
+<div class="gallery-list-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title | default "Gallery" }}</h1>
+    <div class="page-metadata">
+      <span class="stat-badge">{{ len .Pages }} moments</span>
+    </div>
+  </header>
+
+  <div class="page-content prose">
+    {{ .Content }}
+  </div>
+
+  {{ $featured := where .Pages "Params.featured" true }}
+  {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
+  {{ $regular := where .Pages "Params.featured" "ne" true }}
+
+  {{ if gt (len $featuredSorted) 0 }}
+  <section class="gallery-section featured-gallery">
+    <h2 class="gallery-section-title">Featured Highlights</h2>
+    <div class="gallery-grid featured-grid">
+      {{ range $featuredSorted }}
+        {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+        <a href="{{ .RelPermalink }}" class="gallery-item featured-item">
+          <div class="image-wrapper">
+            <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="gallery-img" loading="lazy">
+          </div>
+          <div class="item-overlay">
+            <span class="item-title">{{ .Title }}</span>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <div class="timeline-gallery">
+    {{ range $regular.GroupByDate "2006" }}
+    <section class="gallery-section year-section">
+      <h2 class="gallery-section-title">{{ .Key }}</h2>
+      <div class="gallery-grid regular-grid">
+        {{ range .Pages }}
+          {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+          <a href="{{ .RelPermalink }}" class="gallery-item">
+            <div class="image-wrapper">
+              <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="gallery-img" loading="lazy">
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

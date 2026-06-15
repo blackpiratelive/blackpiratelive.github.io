@@ -1,0 +1,49 @@
+{{ define "main" }}
+<section class="thoughts-list-container">
+  <header class="list-header">
+    <h1 class="list-title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="list-description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="thoughts-feed">
+    {{ $paginator := .Paginate .Pages 50 }}
+    {{ range $paginator.Pages }}
+    <article class="thought-entry" id="thought-{{ .Date.Format "20060102150405" }}">
+      <div class="thought-meta">
+        <time class="thought-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+          {{ .Date.Format "Jan 02, 2006" }} at {{ .Date.Format "15:04" }}
+        </time>
+        <span class="thought-separator">·</span>
+        <a class="thought-permalink" href="{{ .RelPermalink }}">Permalink</a>
+      </div>
+      
+      <div class="thought-content">
+        {{ .Content }}
+      </div>
+
+      {{ with .Params.tags }}
+      <div class="thought-tags">
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="thought-tag">#{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination">
+    {{ if $paginator.HasPrev }}
+    <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
+    {{ end }}
+    <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+    <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

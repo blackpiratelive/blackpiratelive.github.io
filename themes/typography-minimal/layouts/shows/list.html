@@ -1,0 +1,230 @@
+{{ define "main" }}
+<div class="cinema-list-page">
+  <header class="page-header">
+    <h1 class="page-title">TV Shows</h1>
+    <div class="page-metadata">
+      <span class="stat-badge">{{ len (where site.RegularPages "Params.type" "show") }} tv shows</span>
+    </div>
+  </header>
+
+  <nav class="cinema-nav">
+    <a href="{{ "/movies/" | relURL }}" class="nav-link">Overview</a>
+    <a href="{{ "/movies/all/" | relURL }}" class="nav-link">All Movies</a>
+    <a href="{{ "/shows/all/" | relURL }}" class="nav-link active">All TV Shows</a>
+  </nav>
+
+  <div class="cinema-content">
+    {{/* RECENT EPISODES SECTION */}}
+    <div id="shows-recent-episodes">
+      {{ if site.Data.trakt }}
+      <section class="cinema-section recently-watched-episodes">
+        <h2 class="cinema-section-title">Recently Watched Episodes</h2>
+        <div class="episodes-grid">
+          {{ range site.Data.trakt }}
+          <div class="episode-card">
+            <div class="episode-image-wrapper">
+               {{ $tmdbId := .show.ids.tmdb }}
+               {{ $posterUrl := "" }}
+               {{ if eq (os.Getenv "VERCEL") "1" }}
+                 {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/tv/%v?api_key=%s" $tmdbId site.Params.tmdb_api_key }}
+                 {{ with try (resources.GetRemote $tmdbApiUrl) }}
+                   {{ if not .Err }}
+                     {{ $data := .Value | transform.Unmarshal }}
+                     {{ if $data.backdrop_path }}
+                        {{ $imgUrl := printf "https://image.tmdb.org/t/p/w500%s" $data.backdrop_path }}
+                        {{ with try (resources.GetRemote $imgUrl) }}
+                          {{ if not .Err }}{{ $img := .Value.Resize "500x q80" }}{{ $posterUrl = $img.RelPermalink }}{{ end }}
+                        {{ end }}
+                     {{ end }}
+                   {{ end }}
+                 {{ end }}
+               {{ end }}
+               
+               {{ if $posterUrl }}
+                 <img src="{{ $posterUrl }}" alt="{{ .show.title }}" class="episode-img" loading="lazy">
+               {{ else }}
+                 <div class="episode-placeholder">
+                    <span class="placeholder-icon">📺</span>
+                 </div>
+               {{ end }}
+               <div class="episode-number-badge">S{{ printf "%02d" .episode.season }} E{{ printf "%02d" .episode.number }}</div>
+            </div>
+            <div class="episode-details">
+              <h3 class="episode-title">{{ .episode.title }}</h3>
+              <p class="episode-show">{{ .show.title }}</p>
+              <p class="episode-date">{{ (time.AsTime .watched_at).Format "Jan 02, 2006" }}</p>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
+    </div>
+
+    {{/* SEARCH & FILTERS */}}
+    <div class="search-filter-bar">
+      <div class="search-wrapper">
+        <input type="text" id="cinema-search" placeholder="Search by title..." class="search-input">
+      </div>
+      <div class="filter-wrapper">
+        <select id="cinema-filter" class="filter-select">
+          <option value="last_added">Last Added</option>
+          <option value="title_az">Title (A-Z)</option>
+          <option value="title_za">Title (Z-A)</option>
+          <option value="rated">Rated by me</option>
+          <option value="reviewed">Reviewed by me</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="cinema-default-view">
+      <div class="cinema-grid-container">
+        {{ $items := where site.RegularPages "Params.type" "show" }}
+        {{ $paginator := .Paginate $items.ByDate.Reverse 40 }}
+        
+        <div class="cinema-grid">
+          {{ range $paginator.Pages }}
+            {{ partial "movie-card.html" . }}
+          {{ end }}
+        </div>
+
+        {{ if gt $paginator.TotalPages 1 }}
+        <div class="pagination">
+          {{ if $paginator.HasPrev }}
+            <a href="{{ $paginator.Prev.URL }}" class="pagination-btn prev-btn">Prev</a>
+          {{ end }}
+          
+          <span class="pagination-info">
+            Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
+          </span>
+
+          {{ if $paginator.HasNext }}
+            <a href="{{ $paginator.Next.URL }}" class="pagination-btn next-btn">Next</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <div id="cinema-results-view" class="hidden">
+       <div id="cinema-results-grid" class="cinema-grid">
+         <!-- Results will be injected here -->
+       </div>
+       <div id="cinema-no-results" class="hidden no-results">
+         <p>No matches found for your filters.</p>
+       </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const TMDB_API_KEY = "{{ site.Params.tmdb_api_key }}"; 
+  const contentType = "show";
+  
+  const searchInput = document.getElementById('cinema-search');
+  const filterSelect = document.getElementById('cinema-filter');
+  const defaultView = document.getElementById('cinema-default-view');
+  const recentSection = document.getElementById('shows-recent-episodes');
+  const resultsView = document.getElementById('cinema-results-view');
+  const resultsGrid = document.getElementById('cinema-results-grid');
+  const noResults = document.getElementById('cinema-no-results');
+  
+  let cinemaData = [];
+
+  // Load data
+  fetch('/index.json')
+    .then(res => res.json())
+    .then(data => {
+      cinemaData = data.filter(item => item.type === contentType);
+    });
+
+  function renderResults(results) {
+    if (results.length === 0) {
+      resultsGrid.innerHTML = '';
+      noResults.classList.remove('hidden');
+    } else {
+      noResults.classList.add('hidden');
+      resultsGrid.innerHTML = results.map(item => `
+        <a href="${item.url}" class="group block relative movie-card" data-tmdb-id="${item.tmdb_id}" data-type="${item.type}">
+          <div class="aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800 border border-zinc-800/50 shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:border-zinc-700 relative">
+            <div class="poster-container h-full w-full">
+              <div class="h-full w-full flex items-center justify-center p-4 text-center bg-zinc-800 animate-pulse poster-placeholder" data-needs-fetch="true">
+                <i data-lucide="image" class="w-8 h-8 text-zinc-700"></i>
+              </div>
+            </div>
+            ${item.type === 'show' ? `<div class="absolute top-2 left-2 bg-blue-600/90 backdrop-blur-md px-2 py-0.5 rounded text-[8px] font-black text-white border border-white/10 uppercase tracking-tighter">Series</div>` : ''}
+            <div class="absolute top-2 right-2 flex flex-col items-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div class="bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10">${item.year || ''}</div>
+              ${item.user_rating ? `<div class="bg-rose-600/90 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black text-white border border-white/10 flex items-center gap-1">${item.user_rating.toFixed(1)} <i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i></div>` : ''}
+            </div>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-sm font-bold text-zinc-200 line-clamp-1 group-hover:text-white transition-colors">${item.title}</h3>
+            <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">${new Date(item.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
+          </div>
+        </a>
+      `).join('');
+      
+      if (window.lucide) window.lucide.createIcons();
+      initPosterFetch(resultsGrid);
+    }
+  }
+
+  function handleAction() {
+    const query = searchInput.value.toLowerCase();
+    const filter = filterSelect.value;
+    
+    if (!query && filter === 'last_added') {
+      defaultView.classList.remove('hidden');
+      if (recentSection) recentSection.classList.remove('hidden');
+      resultsView.classList.add('hidden');
+      return;
+    }
+
+    defaultView.classList.add('hidden');
+    if (recentSection) recentSection.classList.add('hidden');
+    resultsView.classList.remove('hidden');
+
+    let filtered = cinemaData.filter(item => item.title.toLowerCase().includes(query));
+
+    if (filter === 'rated') filtered = filtered.filter(item => item.user_rating);
+    if (filter === 'reviewed') filtered = filtered.filter(item => item.user_review);
+    
+    if (filter === 'title_az') filtered.sort((a, b) => a.title.localeCompare(b.title));
+    if (filter === 'title_za') filtered.sort((a, b) => b.title.localeCompare(a.title));
+    if (filter === 'last_added') filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderResults(filtered);
+  }
+
+  searchInput.addEventListener('input', handleAction);
+  filterSelect.addEventListener('change', handleAction);
+
+  function initPosterFetch(root = document) {
+    const placeholders = root.querySelectorAll('.poster-placeholder[data-needs-fetch="true"]');
+    placeholders.forEach(async (placeholder) => {
+      const card = placeholder.closest('.movie-card');
+      if (!card) return;
+      const tmdbId = card.dataset.tmdbId;
+      const type = card.dataset.type === 'show' ? 'tv' : 'movie';
+      const container = card.querySelector('.poster-container');
+      if (tmdbId && tmdbId !== "0") {
+        try {
+          const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`);
+          const data = await res.json();
+          if (data.poster_path) {
+            const img = new Image();
+            img.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+            img.className = "h-full w-full object-cover transition-transform duration-500 group-hover:scale-110";
+            img.onload = () => { container.innerHTML = ''; container.appendChild(img); };
+          }
+        } catch (e) {}
+      }
+    });
+  }
+
+  initPosterFetch();
+})();
+</script>
+{{ end }}

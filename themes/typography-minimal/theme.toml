@@ -1,0 +1,12 @@
+name = "typography-minimal"
+description = "A minimal, typography-centric Hugo theme featuring a sticky sidebar layout, unified chronological feed, and modern styling."
+homepage = "https://github.com/blackpiratelive/blackpiratelive.github.io"
+
+[author]
+  name = "Sudip"
+  homepage = "https://blackpiratex.com"
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.146.0"

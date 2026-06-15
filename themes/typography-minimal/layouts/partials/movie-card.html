@@ -1,0 +1,25 @@
+<a href="{{ .RelPermalink }}" class="movie-card" data-tmdb-id="{{ .Params.tmdb_id }}" data-type="{{ .Params.type }}">
+  <div class="movie-poster-wrapper">
+    {{ partial "movie-poster.html" . }}
+    
+    {{ if eq .Params.type "show" }}
+    <div class="movie-show-badge">
+      {{ .Params.seasons_watched }} Seasons
+    </div>
+    {{ end }}
+    
+    <div class="movie-hover-info">
+      <div class="movie-hover-badge">{{ .Params.year }}</div>
+      {{ if .Params.user_rating }}
+      <div class="movie-hover-badge rating-badge my-rating">{{ printf "%.1f" (float .Params.user_rating) }} ★</div>
+      {{ else if .Params.rating }}
+      <div class="movie-hover-badge rating-badge site-rating">{{ printf "%.1f" .Params.rating }} ★</div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="movie-card-info">
+    <h3 class="movie-title">{{ .Title }}</h3>
+    <p class="movie-meta">Watched {{ .Date.Format "Jan 2006" }}</p>
+  </div>
+</a>
+

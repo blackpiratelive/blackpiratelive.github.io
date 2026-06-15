@@ -1,0 +1,59 @@
+{{ define "main" }}
+<article class="gallery-single-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="page-metadata">
+      <span class="photo-date">{{ .Date.Format "January 2, 2006" }}</span>
+      {{ with .Params.album }}
+      <span class="metadata-separator">•</span>
+      <span class="photo-album">Album: {{ . }}</span>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="photo-container">
+    {{ $imgUrl := .Params.image.original.url }}
+    <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="photo-large">
+
+  </div>
+
+  {{ if .Params.exif }}
+    {{ $exif := .Params.exif }}
+    {{ if or $exif.model $exif.fstop $exif.shutter $exif.iso }}
+    <section class="exif-section">
+      <h2 class="exif-title">Shot Details</h2>
+      <div class="exif-grid">
+        {{ if $exif.model }}
+        <div class="exif-item">
+          <span class="exif-label">Camera</span>
+          <span class="exif-value">{{ $exif.model }}</span>
+        </div>
+        {{ end }}
+        {{ if $exif.fstop }}
+        <div class="exif-item">
+          <span class="exif-label">Aperture</span>
+          <span class="exif-value">ƒ/{{ $exif.fstop }}</span>
+        </div>
+        {{ end }}
+        {{ if $exif.shutter }}
+        <div class="exif-item">
+          <span class="exif-label">Shutter Speed</span>
+          <span class="exif-value">{{ $exif.shutter }}s</span>
+        </div>
+        {{ end }}
+        {{ if $exif.iso }}
+        <div class="exif-item">
+          <span class="exif-label">ISO</span>
+          <span class="exif-value">{{ $exif.iso }}</span>
+        </div>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  {{ end }}
+
+  <div class="page-content prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

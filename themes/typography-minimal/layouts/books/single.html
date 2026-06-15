@@ -1,0 +1,80 @@
+{{ define "main" }}
+<article class="book-single-page">
+  <header class="page-header">
+    <div class="book-status">
+      <span class="shelf-badge">{{ if eq .Params.shelf "currentlyReading" }}Currently Reading{{ else }}{{ .Params.shelf | humanize }}{{ end }}</span>
+    </div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Params.authors }}
+    <p class="book-author-large">by {{ delimit . ", " }}</p>
+    {{ end }}
+  </header>
+
+  <div class="book-meta-grid">
+    {{ with .Params.cover }}
+    <div class="book-cover-container">
+      <img src="{{ . }}" alt="{{ $.Title }}" class="book-cover-large">
+    </div>
+    {{ end }}
+
+    <div class="book-info-list">
+      {{ with .Params.pageCount }}
+      <div class="info-item">
+        <span class="info-label">Length</span>
+        <span class="info-value">{{ . }} pages</span>
+      </div>
+      {{ end }}
+
+      {{ with .Params.readingMedium }}
+      <div class="info-item">
+        <span class="info-label">Medium</span>
+        <span class="info-value">{{ . }}</span>
+      </div>
+      {{ end }}
+
+      {{ with .Params.startedOn }}
+      <div class="info-item">
+        <span class="info-label">Started</span>
+        <span class="info-value">{{ . }}</span>
+      </div>
+      {{ end }}
+
+      {{ with .Params.finishedOn }}
+      <div class="info-item">
+        <span class="info-label">Finished</span>
+        <span class="info-value">{{ . }}</span>
+      </div>
+      {{ end }}
+
+      {{ with .Params.readingProgress }}
+      {{ if lt . 100 }}
+      <div class="info-item">
+        <span class="info-label">Progress</span>
+        <span class="info-value">{{ . }}%</span>
+        <div class="progress-bar"><div class="progress-fill" style="width: {{ . }}%"></div></div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="page-content prose">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.highlights }}
+  {{ if gt (len .) 0 }}
+  <section class="book-highlights">
+    <h2 class="section-title">Highlights</h2>
+    <div class="highlights-list">
+      {{ range . }}
+      <blockquote class="highlight-quote">
+        <p>{{ . }}</p>
+      </blockquote>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+</article>
+{{ end }}

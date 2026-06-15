@@ -1,0 +1,168 @@
+{{ define "main" }}
+{{ $tmdbId := .Params.tmdb_id }}
+{{ $type := cond (eq .Params.type "show") "tv" "movie" }}
+{{ $posterUrl := "" }}
+{{ $backdropUrl := "" }}
+
+{{ $apiKey := site.Params.tmdb_api_key | default "61c9bbbefe48beed3b4f02f0cc4794e7" }}
+{{ if $tmdbId }}
+  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/%s/%v?api_key=%s" $type $tmdbId $apiKey }}
+  {{ $res := try (resources.GetRemote $tmdbApiUrl) }}
+  {{ if not $res.Err }}
+    {{ with $res.Value }}
+      {{ $data := . | transform.Unmarshal }}
+      {{ with $data.poster_path }}
+        {{ $posterUrl = printf "https://image.tmdb.org/t/p/w500%s" . }}
+      {{ end }}
+      {{ with $data.backdrop_path }}
+        {{ $backdropUrl = printf "https://image.tmdb.org/t/p/original%s" . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+<article class="cinema-single-page">
+  <div id="hero-backdrop" class="cinema-backdrop" {{ if $backdropUrl }}style="background-image: url('{{ $backdropUrl }}');"{{ end }}></div>
+
+  <header class="page-header">
+    <div class="cinema-type">
+      <span class="type-badge">TV Show</span>
+      <span class="year-badge">{{ .Params.year }}</span>
+    </div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Params.tagline }}
+    <p class="cinema-tagline">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="cinema-main-grid">
+    <div class="cinema-sidebar">
+      <div id="poster-container" class="cinema-poster-wrapper {{ if not $posterUrl }}animate-pulse poster-placeholder{{ end }}">
+        {{ if $posterUrl }}
+          <img src="{{ $posterUrl }}" alt="{{ .Title }}" class="cinema-poster">
+        {{ else }}
+          <span class="placeholder-icon">🎬</span>
+        {{ end }}
+      </div>
+
+      <div class="cinema-meta-info">
+        <div class="info-item">
+          <span class="info-label">Watch Status</span>
+          <span class="info-value">
+            {{ .Params.seasons_watched }} Seasons ({{ .Params.episodes_watched }} eps)
+            {{ if .Params.is_completed }}<span class="status-done">(Completed)</span>{{ end }}
+          </span>
+        </div>
+
+        {{ if .Params.user_rating }}
+        <div class="info-item rating-item my-rating">
+          <span class="info-label">My Rating</span>
+          <span class="info-value rating-stars">{{ printf "%.1f" (float .Params.user_rating) }} / 10</span>
+        </div>
+        {{ else if .Params.rating }}
+        <div class="info-item rating-item site-rating">
+          <span class="info-label">Trakt Rating</span>
+          <span class="info-value rating-stars">{{ printf "%.1f" .Params.rating }} / 10</span>
+        </div>
+        {{ end }}
+
+        {{ with .Params.runtime }}
+        <div class="info-item">
+          <span class="info-label">Watched Runtime</span>
+          <span class="info-value">
+            {{ $h := div (int .) 60 }}
+            {{ $m := mod (int .) 60 }}
+            {{ if gt $h 0 }}{{ $h }}h {{ end }}{{ $m }}m
+          </span>
+        </div>
+        {{ end }}
+
+        <div class="info-item">
+          <span class="info-label">Last Watched</span>
+          <span class="info-value">
+            {{ if .Params.last_watched }}
+              {{ (time.AsTime .Params.last_watched).Format "January 2, 2006" }}
+            {{ else }}
+              Recently
+            {{ end }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cinema-body">
+      {{ with .Params.user_review }}
+      <blockquote class="user-review-quote">
+        <h3 class="review-header">My Review</h3>
+        <p class="review-text">"{{ . }}"</p>
+      </blockquote>
+      {{ end }}
+
+      <div class="page-content prose">
+        <h2 class="overview-title">Overview</h2>
+        {{ .Content }}
+      </div>
+
+      {{ with .Params.genres }}
+      <div class="cinema-genres">
+        {{ range . }}
+        <span class="genre-tag">{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <div class="cinema-external-links">
+        <a href="https://trakt.tv/search/trakt/{{ .Params.trakt_id }}?id_type=trakt_{{ .Params.type }}" target="_blank" class="btn btn-trakt">Trakt.tv</a>
+        {{ with .Params.imdb_id }}
+        <a href="https://www.imdb.com/title/{{ . }}" target="_blank" class="btn btn-imdb">IMDb</a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+(function() {
+  const TMDB_API_KEY = "{{ site.Params.tmdb_api_key }}";
+  const tmdbId = "{{ .Params.tmdb_id }}";
+  const type = "tv";
+  
+  const container = document.getElementById('poster-container');
+  const backdrop = document.getElementById('hero-backdrop');
+  const needsPoster = container && container.classList.contains('poster-placeholder');
+  const needsBackdrop = backdrop && !backdrop.style.backgroundImage;
+
+  if ((needsPoster || needsBackdrop) && tmdbId && tmdbId !== "0") {
+    fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}?api_key=${TMDB_API_KEY}`)
+      .then(res => {
+        if(!res.ok) throw new Error("API failure");
+        return res.json();
+      })
+      .then(data => {
+        if (needsPoster && data.poster_path) {
+          const img = new Image();
+          img.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+          img.className = "cinema-poster";
+          img.onload = () => {
+            container.innerHTML = '';
+            container.classList.remove('poster-placeholder');
+            container.classList.remove('animate-pulse');
+            container.appendChild(img);
+          };
+        }
+        if (needsBackdrop && data.backdrop_path) {
+          backdrop.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${data.backdrop_path})`;
+        }
+      })
+      .catch(e => {
+        console.error("Poster fetch failed", e);
+        if (needsPoster) {
+          container.classList.remove('animate-pulse');
+          container.innerHTML = '<span class="no-poster-text">No Poster</span>';
+        }
+      });
+  }
+})();
+</script>
+{{ end }}

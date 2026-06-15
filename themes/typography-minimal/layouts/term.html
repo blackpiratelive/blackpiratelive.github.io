@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="term-container">
+  <header class="term-header">
+    <h1 class="term-title">#{{ .Title }}</h1>
+    <p class="term-meta">{{ len .Pages }} entries tagged</p>
+  </header>
+
+  <div class="term-feed">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="feed-entry">
+      <time class="entry-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      <h2 class="entry-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      {{ if .Summary }}
+      <p class="entry-summary">{{ .Summary | plainify | truncate 160 }}</p>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

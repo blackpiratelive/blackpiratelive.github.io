@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <span class="copyright">&copy; {{ now.Format "2006" }} {{ site.Params.author | default "Sudip" }}</span>
+      <span class="divider">&middot;</span>
+      <span class="made-with">Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+    </div>
+    <div class="footer-right social-links">
+      {{ with site.Params.instagram | default "https://instagram.com" }}
+      <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+        <i data-lucide="instagram"></i>
+      </a>
+      {{ end }}
+      {{ with site.Params.threads | default "https://threads.net" }}
+      <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Threads" class="social-link">
+        <i data-lucide="at-sign"></i>
+      </a>
+      {{ end }}
+      {{ with site.Params.email | default "mailto:sudip@example.com" }}
+      <a href="{{ . | safeURL }}" aria-label="Email" class="social-link">
+        <i data-lucide="mail"></i>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</footer>

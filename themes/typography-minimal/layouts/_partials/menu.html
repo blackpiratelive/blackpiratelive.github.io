@@ -1,0 +1,25 @@
+{{- $page := . -}}
+{{- $menuID := "main" -}}
+{{- if reflect.IsMap . -}}
+  {{- $page = .page -}}
+  {{- $menuID = .menuID | default "main" -}}
+{{- end -}}
+
+{{- with index site.Menus $menuID -}}
+  <ul class="menu-list">
+    {{- range . -}}
+      {{- $active := false -}}
+      {{- if $page -}}
+        {{- $active = or ($page.IsMenuCurrent $menuID .) ($page.HasMenuCurrent $menuID .) -}}
+        {{- if not $active -}}
+          {{- $active = eq ($page.RelPermalink | relURL) (.URL | relURL) -}}
+        {{- end -}}
+      {{- end -}}
+      <li class="menu-item">
+        <a href="{{ .URL | relURL }}" class="menu-link{{ if $active }} active{{ end }}"{{ if $active }} aria-current="page"{{ end }}>
+          {{- .Name -}}
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+{{- end -}}

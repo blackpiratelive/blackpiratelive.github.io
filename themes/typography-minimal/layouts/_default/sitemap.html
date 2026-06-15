@@ -1,0 +1,45 @@
+{{ define "main" }}
+<section class="sitemap-container">
+  <header class="sitemap-header">
+    <h1 class="sitemap-title">{{ .Title }}</h1>
+  </header>
+
+  {{ $allPages := where site.RegularPages "RelPermalink" "ne" .RelPermalink }}
+
+  <div class="sitemap-sections">
+    {{ range ($allPages.GroupBy "Section") }}
+    {{ $section := .Key }}
+    {{ $label := cond (eq $section "") "Pages" ($section | humanize) }}
+    <section class="sitemap-section">
+      <h2 class="sitemap-section-title">{{ $label }}</h2>
+
+      {{ if eq $section "thoughts" }}
+      <div class="sitemap-thoughts">
+        {{ range .Pages.ByDate.Reverse }}
+        <div class="sitemap-thought-item">
+          <div class="sitemap-thought-meta">
+            <time>{{ .Date.Format "Jan 02, 2006" }} at {{ .Date.Format "15:04" }}</time>
+            <span class="separator">·</span>
+            <a href="{{ .RelPermalink }}">Permalink</a>
+          </div>
+          <div class="sitemap-thought-content">
+            {{ .Content }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      {{ else }}
+      <ul class="sitemap-list">
+        {{ range .Pages.ByDate.Reverse }}
+        <li class="sitemap-list-item">
+          <time class="sitemap-item-date">{{ .Date.Format "2006-01-02" }}</time>
+          <a class="sitemap-item-link" href="{{ .RelPermalink }}">{{ or .Title .LinkTitle }}</a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </section>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,73 @@
+{{ define "main" }}
+<section class="home-intro">
+  <div class="home-avatar">
+    {{ $me := resources.Get "img/selfie/me1.jpg" }}
+    {{ if $me }}
+      {{ $me = $me.Resize "200x q85" }}
+      <img src="{{ $me.RelPermalink }}" alt="{{ site.Params.author | default "Sudip" }}" class="avatar-img">
+    {{ end }}
+  </div>
+  
+  <h1 class="home-title">{{ site.Title }}</h1>
+  
+  <div class="home-bio">
+    {{ with site.Params.about }}
+      {{ . | markdownify }}
+    {{ else }}
+      {{ with site.Params.tagline }}
+        <p class="tagline">{{ . }}</p>
+      {{ else }}
+        <p>Welcome to my website. I write about technology, thoughts, and share my books and cinema reviews.</p>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+<section class="home-feed">
+  <h2 class="feed-heading">Recent Feed</h2>
+  <div class="unified-feed">
+    {{ $feed := where site.RegularPages "Section" "in" (slice "blog" "thoughts") }}
+    {{ $feed = sort $feed "Date" "desc" }}
+    
+    {{ range $feed }}
+      {{ if eq .Section "blog" }}
+        <article class="feed-entry entry-blog">
+          <div class="entry-meta">
+            <span class="entry-type label-blog">Writing</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+        </article>
+      {{ else if eq .Section "thoughts" }}
+        <article class="feed-entry entry-thought">
+          <div class="entry-meta">
+            <span class="entry-type label-thought">Thought</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <div class="entry-content thought-content">
+            {{ .Content }}
+          </div>
+          <div class="entry-footer">
+            {{ with .Params.tags }}
+              <div class="entry-tags">
+                {{ range . }}
+                  <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag-link">#{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            <a href="{{ .RelPermalink }}" class="entry-permalink" title="Permalink">
+              <i data-lucide="link"></i>
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    {{ else }}
+      <p class="feed-empty">No updates found.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

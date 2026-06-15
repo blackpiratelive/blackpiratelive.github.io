@@ -1,0 +1,37 @@
+{{ define "main" }}
+<section class="list-default">
+  <header class="list-header">
+    <h1 class="list-title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="list-description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="list-feed">
+    {{ $paginator := .Paginate .Pages }}
+    {{ range $paginator.Pages }}
+    <article class="feed-entry">
+      <time class="entry-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      <h2 class="entry-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      {{ if .Summary }}
+      <p class="entry-summary">{{ .Summary | plainify | truncate 160 }}</p>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination">
+    {{ if $paginator.HasPrev }}
+    <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
+    {{ end }}
+    <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+    <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

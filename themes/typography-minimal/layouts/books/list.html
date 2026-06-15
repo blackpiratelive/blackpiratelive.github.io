@@ -1,0 +1,66 @@
+{{ define "main" }}
+<div class="books-list-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title | default "My Library" }}</h1>
+    <div class="page-metadata">
+      <span class="stat-badge">{{ len .Pages }} titles</span>
+      <span class="stat-separator">•</span>
+      <span class="stat-badge">{{ len (where .Pages "Params.shelf" "currentlyReading") }} reading</span>
+      <span class="stat-separator">•</span>
+      <span class="stat-badge">{{ len (where .Pages "Params.shelf" "read") }} read</span>
+      <span class="stat-separator">•</span>
+      <span class="stat-badge">{{ len (where .Pages "Params.shelf" "watchlist") }} to-read</span>
+    </div>
+  </header>
+
+  <div class="page-content prose">
+    {{ .Content }}
+  </div>
+
+  {{ $shelves := slice 
+    (dict "id" "currentlyReading" "title" "Currently Reading" "icon" "book-open") 
+    (dict "id" "read" "title" "Read" "icon" "check-circle") 
+    (dict "id" "watchlist" "title" "Wishlist" "icon" "bookmark") 
+  }}
+
+  <div class="shelves-container">
+    {{ range $shelves }}
+      {{ $shelfPages := where $.Pages "Params.shelf" .id }}
+      {{ if gt (len $shelfPages) 0 }}
+      <section class="shelf-section">
+        <h2 class="shelf-title">
+          <span class="shelf-title-text">{{ .title }}</span>
+          <span class="shelf-count">({{ len $shelfPages }})</span>
+        </h2>
+        <div class="books-grid">
+          {{ range $shelfPages }}
+          <a href="{{ .RelPermalink }}" class="book-card">
+            <div class="book-cover-wrapper">
+              {{ with .Params.cover }}
+              <img src="{{ . }}" alt="{{ $.Title }}" class="book-cover" loading="lazy">
+              {{ else }}
+              <div class="book-placeholder">
+                <span class="book-placeholder-title">{{ .Title }}</span>
+              </div>
+              {{ end }}
+            </div>
+            <div class="book-details">
+              <h3 class="book-title">{{ .Title }}</h3>
+              {{ with .Params.authors }}
+              <p class="book-author">{{ index . 0 }}</p>
+              {{ end }}
+              {{ if and (eq .Params.shelf "currentlyReading") .Params.readingProgress }}
+              <div class="book-progress-bar">
+                <div class="book-progress-fill" style="width: {{ .Params.readingProgress }}%"></div>
+              </div>
+              {{ end }}
+            </div>
+          </a>
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}
