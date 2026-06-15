@@ -7,7 +7,7 @@
   {{ range resources.Match $match }}
     
     {{/* Process the image: combine the size with the webp instruction */}}
-    {{ $processString := printf "%s webp" $size }}
+    {{ $processString := printf "%s" $size }}
     {{ $processedImg := .Resize $processString }}
 
     <div class="gallery-item">

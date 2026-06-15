@@ -47,22 +47,21 @@
             <span class="entry-type label-thought">Thought</span>
             <span class="entry-separator">&middot;</span>
             <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <span class="entry-separator">&middot;</span>
+            <a href="{{ .RelPermalink }}" class="entry-permalink-text">Permalink</a>
           </div>
           <div class="entry-content thought-content">
             {{ .Content }}
           </div>
-          <div class="entry-footer">
-            {{ with .Params.tags }}
+          {{ with .Params.tags }}
+            <div class="entry-footer">
               <div class="entry-tags">
                 {{ range . }}
                   <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag-link">#{{ . }}</a>
                 {{ end }}
               </div>
-            {{ end }}
-            <a href="{{ .RelPermalink }}" class="entry-permalink" title="Permalink">
-              <i data-lucide="link"></i>
-            </a>
-          </div>
+            </div>
+          {{ end }}
         </article>
       {{ end }}
     {{ else }}

@@ -974,3 +974,207 @@ article img,
     margin: 0 auto;
   }
 }
+
+/* ==========================================================================
+   Thoughts Feed & Microblog Layout (Polished & De-congested)
+   ========================================================================== */
+.thoughts-list-container {
+  margin-top: var(--spacing-md);
+}
+
+.thoughts-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+.thought-entry {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-lg);
+}
+
+.thought-entry:last-child {
+  border-bottom: none;
+}
+
+.thought-meta {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.thought-date {
+  color: var(--text-muted);
+}
+
+.thought-separator {
+  color: var(--border-color);
+}
+
+.thought-permalink,
+.entry-permalink-text {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.thought-permalink:hover,
+.entry-permalink-text:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.thought-content {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.thought-content p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.thought-content p:last-child {
+  margin-bottom: 0;
+}
+
+.thought-tags {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-sm);
+}
+
+.thought-tag {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background-color: var(--code-bg);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.thought-tag:hover {
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Thoughts Images (Thumbnails & Gallery)
+   ========================================================================== */
+.thought-content img,
+.entry-thought .thought-content img {
+  display: block;
+  max-width: 180px;
+  max-height: 180px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: var(--spacing-sm) 0;
+  border: 1px solid var(--border-color);
+}
+
+.thought-content img:hover,
+.entry-thought .thought-content img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: var(--accent-color);
+}
+
+.thought-content figure,
+.entry-thought .thought-content figure {
+  margin: var(--spacing-sm) 0;
+}
+
+.thought-content figcaption,
+.entry-thought .thought-content figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+/* ==========================================================================
+   Global Lightbox Modal
+   ========================================================================== */
+.global-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(250, 249, 246, 0.95);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.global-lightbox.active {
+  display: flex;
+}
+
+.global-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: var(--text-color);
+  font-size: 40px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+
+.global-lightbox-close:hover {
+  opacity: 0.6;
+}
+
+.global-lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  max-height: 85%;
+}
+
+.global-lightbox-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.global-lightbox-caption {
+  margin-top: var(--spacing-md);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.body-lightbox-open {
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .global-lightbox {
+    background-color: rgba(26, 26, 26, 0.96);
+  }
+}

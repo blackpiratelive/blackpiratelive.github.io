@@ -7,8 +7,8 @@
 {{ $processed = .Process "q30" }}
 {{ end }}
 <figure class="post-image">
-    <img src="{{ $processed.RelPermalink }}" {{ with $processed.Width }}width="{{ . }}" {{ end }} {{ with
-        $processed.Height }}height="{{ . }}" {{ end }} alt="{{ $.Get " alt" | default .Name }}" loading="lazy">
+    <img src="{{ $processed.RelPermalink }}" data-full-src="{{ .RelPermalink }}" {{ with $processed.Width }}width="{{ . }}" {{ end }} {{ with
+        $processed.Height }}height="{{ . }}" {{ end }} alt="{{ $.Get "alt" | default .Name }}" loading="lazy" class="thought-image-thumbnail">
     {{ with $.Get "caption" }}
     <figcaption>{{ . }}</figcaption>
     {{ end }}
