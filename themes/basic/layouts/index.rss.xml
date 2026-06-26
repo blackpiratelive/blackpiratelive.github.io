@@ -1,1 +1,0 @@
-{{ partial "feeds/rss.xml" . }}

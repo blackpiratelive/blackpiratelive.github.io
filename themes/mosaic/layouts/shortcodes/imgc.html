@@ -1,3 +1,0 @@
-{{ $image := resources.GetMatch (.Get "src")  }}
-{{ $img := $image.Resize "500x webp q70"  }}
-<img src="{{ $image.RelPermalink }}" alt="">

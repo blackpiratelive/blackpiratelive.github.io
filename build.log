@@ -1,0 +1,1208 @@
+Start building sites … 
+hugo v0.159.0+extended linux/amd64 BuildDate=2026-03-24T00:00:00+00:00 VendorInfo=Fedora:0.159.0-1.fc44
+
+WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.
+unexpected fault address 0x7f1f7c4ec000
+fatal error: fault
+[signal SIGSEGV: segmentation violation code=0x2 addr=0x7f1f7c4ec000 pc=0x5573d730a006]
+
+goroutine 359 gp=0x238b361f1860 m=3 mp=0x238b341fd008 [running]:
+runtime.throw({0x5573d879f1dc?, 0x238b3af80ed0?})
+	/usr/lib/golang/src/runtime/panic.go:1229 +0x4a fp=0x238b37b653f0 sp=0x238b37b653c0 pc=0x5573d73d83ea
+runtime.sigpanic()
+	/usr/lib/golang/src/runtime/signal_unix.go:945 +0x285 fp=0x238b37b65450 sp=0x238b37b653f0 pc=0x5573d73da6e5
+github.com/gohugoio/hugo/vendor/github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).callWithStack(0x238b39b6c008, {0x5573d9fb1098, 0x238b3af80e10}, {0x5573da7c9fe0, 0x0, 0x238b39b6c008?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/tetratelabs/wazero/internal/engine/wazevo/call_engine.go:281 +0x267 fp=0x238b37b65820 sp=0x238b37b65450 pc=0x5573d7e91787
+github.com/gohugoio/hugo/vendor/github.com/tetratelabs/wazero/internal/engine/wazevo.(*callEngine).Call(0x238b39b6c008, {0x5573d9fb1098, 0x238b3af80e10}, {0x0?, 0x238b3676e040?, 0x5573d9fc7800?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/tetratelabs/wazero/internal/engine/wazevo/call_engine.go:141 +0x134 fp=0x238b37b65890 sp=0x238b37b65820 pc=0x5573d7e91074
+github.com/gohugoio/hugo/internal/warpc.newDispatcher[...].func4.1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:688 +0xed2 fp=0x238b37b65f78 sp=0x238b37b65890 pc=0x5573d7ec4592
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:93 +0x50 fp=0x238b37b65fe0 sp=0x238b37b65f78 pc=0x5573d7d881b0
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37b65fe8 sp=0x238b37b65fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 315
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 1 gp=0x238b341701e0 m=nil [sync.WaitGroup.Wait]:
+runtime.gopark(0x238b34a3f748?, 0x5573d73704a5?, 0x70?, 0x0?, 0x6?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b35b1b6e8 sp=0x238b35b1b6c8 pc=0x5573d73d850e
+runtime.goparkunlock(...)
+	/usr/lib/golang/src/runtime/proc.go:468
+runtime.semacquire1(0x238b341d2d10, 0x0, 0x1, 0x0, 0x19)
+	/usr/lib/golang/src/runtime/sema.go:192 +0x236 fp=0x238b35b1b750 sp=0x238b35b1b6e8 pc=0x5573d73b55f6
+sync.runtime_SemacquireWaitGroup(0x238b3417e6c0?, 0xe0?)
+	/usr/lib/golang/src/runtime/sema.go:114 +0x2e fp=0x238b35b1b788 sp=0x238b35b1b750 pc=0x5573d73d9cce
+sync.(*WaitGroup).Wait(0x238b341d2d08)
+	/usr/lib/golang/src/sync/waitgroup.go:206 +0x85 fp=0x238b35b1b7b0 sp=0x238b35b1b788 pc=0x5573d73eee85
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Wait(0x238b341d2d00)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:56 +0x1e fp=0x238b35b1b7d0 sp=0x238b35b1b7b0 pc=0x5573d7d8805e
+github.com/gohugoio/hugo/commands.(*hugoBuilder).fullBuild(0x238b3492a380, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/hugobuilder.go:605 +0x452 fp=0x238b35b1b8b0 sp=0x238b35b1b7d0 pc=0x5573d85a1b52
+github.com/gohugoio/hugo/commands.(*hugoBuilder).build(0x238b3492a380)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/hugobuilder.go:422 +0x65 fp=0x238b35b1b908 sp=0x238b35b1b8b0 pc=0x5573d85a0be5
+github.com/gohugoio/hugo/commands.(*rootCommand).Run.func1(0x238b3492a380?, 0x238b342b6a80?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/commandeer.go:389 +0x86 fp=0x238b35b1b968 sp=0x238b35b1b908 pc=0x5573d85959a6
+github.com/gohugoio/hugo/commands.(*rootCommand).Run(0x238b3437bce0, {0x0?, 0x0?}, 0x238b342b6a80, {0x24819629790ba5b?, 0x238b349019b8?, 0x0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/commandeer.go:394 +0x125 fp=0x238b35b1ba68 sp=0x238b35b1b968 pc=0x5573d8595545
+github.com/gohugoio/hugo/vendor/github.com/bep/simplecobra.(*Commandeer).compile.func1(0x238b347dad00?, {0x5573da7c9fe0?, 0x4?, 0x5573d879b25f?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/simplecobra/simplecobra.go:113 +0x4c fp=0x238b35b1bac0 sp=0x238b35b1ba68 pc=0x5573d78abcac
+github.com/gohugoio/hugo/vendor/github.com/spf13/cobra.(*Command).execute(0x238b34922008, {0x238b341ac280, 0x0, 0x0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/spf13/cobra/command.go:1015 +0xb14 fp=0x238b35b1bc68 sp=0x238b35b1bac0 pc=0x5573d789c294
+github.com/gohugoio/hugo/vendor/github.com/spf13/cobra.(*Command).ExecuteC(0x238b34922008)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/spf13/cobra/command.go:1148 +0x465 fp=0x238b35b1bd58 sp=0x238b35b1bc68 pc=0x5573d789cbc5
+github.com/gohugoio/hugo/vendor/github.com/spf13/cobra.(*Command).ExecuteContextC(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/spf13/cobra/command.go:1080
+github.com/gohugoio/hugo/vendor/github.com/bep/simplecobra.(*Exec).Execute(0x238b34283238, {0x5573d9fb1060?, 0x5573da7c9fe0?}, {0x238b341ac280?, 0x0?, 0x0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/simplecobra/simplecobra.go:155 +0xd5 fp=0x238b35b1bde0 sp=0x238b35b1bd58 pc=0x5573d78abe15
+github.com/gohugoio/hugo/commands.Execute({0x238b341ac280, 0x0, 0x0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/commandeer.go:68 +0x2f4 fp=0x238b35b1bed8 sp=0x238b35b1bde0 pc=0x5573d8593b54
+main.main()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/main.go:28 +0x5b fp=0x238b35b1bf48 sp=0x238b35b1bed8 pc=0x5573d85c12bb
+runtime.main()
+	/usr/lib/golang/src/runtime/proc.go:290 +0x2d5 fp=0x238b35b1bfe0 sp=0x238b35b1bf48 pc=0x5573d73a0f15
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b35b1bfe8 sp=0x238b35b1bfe0 pc=0x5573d73e0001
+
+goroutine 2 gp=0x238b34170d20 m=nil [force gc (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f8fa8 sp=0x238b341f8f88 pc=0x5573d73d850e
+runtime.goparkunlock(...)
+	/usr/lib/golang/src/runtime/proc.go:468
+runtime.forcegchelper()
+	/usr/lib/golang/src/runtime/proc.go:375 +0xb8 fp=0x238b341f8fe0 sp=0x238b341f8fa8 pc=0x5573d73a1238
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f8fe8 sp=0x238b341f8fe0 pc=0x5573d73e0001
+created by runtime.init.8 in goroutine 1
+	/usr/lib/golang/src/runtime/proc.go:363 +0x1a
+
+goroutine 3 gp=0x238b341712c0 m=nil [GC sweep wait]:
+runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f9788 sp=0x238b341f9768 pc=0x5573d73d850e
+runtime.goparkunlock(...)
+	/usr/lib/golang/src/runtime/proc.go:468
+runtime.bgsweep(0x238b341c6080)
+	/usr/lib/golang/src/runtime/mgcsweep.go:324 +0x151 fp=0x238b341f97c8 sp=0x238b341f9788 pc=0x5573d73887b1
+runtime.gcenable.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:214 +0x17 fp=0x238b341f97e0 sp=0x238b341f97c8 pc=0x5573d7379af7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f97e8 sp=0x238b341f97e0 pc=0x5573d73e0001
+created by runtime.gcenable in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:214 +0x66
+
+goroutine 4 gp=0x238b341714a0 m=nil [GC scavenge wait]:
+runtime.gopark(0x10000?, 0x5573d8be1e88?, 0x0?, 0x0?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f9f78 sp=0x238b341f9f58 pc=0x5573d73d850e
+runtime.goparkunlock(...)
+	/usr/lib/golang/src/runtime/proc.go:468
+runtime.(*scavengerState).park(0x5573da793e00)
+	/usr/lib/golang/src/runtime/mgcscavenge.go:425 +0x49 fp=0x238b341f9fa8 sp=0x238b341f9f78 pc=0x5573d7386229
+runtime.bgscavenge(0x238b341c6080)
+	/usr/lib/golang/src/runtime/mgcscavenge.go:658 +0x59 fp=0x238b341f9fc8 sp=0x238b341f9fa8 pc=0x5573d73867b9
+runtime.gcenable.gowrap2()
+	/usr/lib/golang/src/runtime/mgc.go:215 +0x17 fp=0x238b341f9fe0 sp=0x238b341f9fc8 pc=0x5573d7379ab7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f9fe8 sp=0x238b341f9fe0 pc=0x5573d73e0001
+created by runtime.gcenable in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:215 +0xa5
+
+goroutine 5 gp=0x238b34250000 m=nil [finalizer wait]:
+runtime.gopark(0x5573d73b0977?, 0x1c8?, 0x0?, 0xfb?, 0x238b341f8601?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f8620 sp=0x238b341f8600 pc=0x5573d73d850e
+runtime.runFinalizers()
+	/usr/lib/golang/src/runtime/mfinal.go:210 +0x107 fp=0x238b341f87e0 sp=0x238b341f8620 pc=0x5573d7378a47
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f87e8 sp=0x238b341f87e0 pc=0x5573d73e0001
+created by runtime.createfing in goroutine 1
+	/usr/lib/golang/src/runtime/mfinal.go:172 +0x3d
+
+goroutine 6 gp=0x238b34250b40 m=nil [GC worker (idle)]:
+runtime.gopark(0x7c63ab35eda?, 0x1?, 0xd0?, 0x46?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341fa740 sp=0x238b341fa720 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b341fa7c8 sp=0x238b341fa740 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b341fa7e0 sp=0x238b341fa7c8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341fa7e8 sp=0x238b341fa7e0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 18 gp=0x238b342843c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x5573da7cc160?, 0x1?, 0x90?, 0xd1?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f4740 sp=0x238b341f4720 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b341f47c8 sp=0x238b341f4740 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b341f47e0 sp=0x238b341f47c8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f47e8 sp=0x238b341f47e0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 34 gp=0x238b34604000 m=nil [GC worker (idle)]:
+runtime.gopark(0x7c6274055e3?, 0x1?, 0xbb?, 0xab?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b3460a740 sp=0x238b3460a720 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b3460a7c8 sp=0x238b3460a740 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b3460a7e0 sp=0x238b3460a7c8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3460a7e8 sp=0x238b3460a7e0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 7 gp=0x238b34250d20 m=nil [GC worker (idle)]:
+runtime.gopark(0x7c627422798?, 0x1?, 0x5a?, 0x86?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341faf40 sp=0x238b341faf20 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b341fafc8 sp=0x238b341faf40 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b341fafe0 sp=0x238b341fafc8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341fafe8 sp=0x238b341fafe0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 19 gp=0x238b342845a0 m=nil [GC worker (idle)]:
+runtime.gopark(0x7c62740a414?, 0x3?, 0xe6?, 0x25?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f4f40 sp=0x238b341f4f20 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b341f4fc8 sp=0x238b341f4f40 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b341f4fe0 sp=0x238b341f4fc8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f4fe8 sp=0x238b341f4fe0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 35 gp=0x238b346041e0 m=nil [GC worker (idle)]:
+runtime.gopark(0x7c63ab35e3a?, 0x1?, 0xbd?, 0x69?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b3460af40 sp=0x238b3460af20 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b3460afc8 sp=0x238b3460af40 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b3460afe0 sp=0x238b3460afc8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3460afe8 sp=0x238b3460afe0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 8 gp=0x238b34250f00 m=nil [GC worker (idle)]:
+runtime.gopark(0x7c62740f824?, 0x3?, 0x53?, 0x52?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341fb740 sp=0x238b341fb720 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b341fb7c8 sp=0x238b341fb740 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b341fb7e0 sp=0x238b341fb7c8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341fb7e8 sp=0x238b341fb7e0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 20 gp=0x238b34284780 m=nil [GC worker (idle)]:
+runtime.gopark(0x5573da7cc160?, 0x1?, 0x84?, 0xb9?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b341f5740 sp=0x238b341f5720 pc=0x5573d73d850e
+runtime.gcBgMarkWorker(0x238b341ba150)
+	/usr/lib/golang/src/runtime/mgc.go:1791 +0xeb fp=0x238b341f57c8 sp=0x238b341f5740 pc=0x5573d737c60b
+runtime.gcBgMarkStartWorkers.gowrap1()
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x17 fp=0x238b341f57e0 sp=0x238b341f57c8 pc=0x5573d737c4f7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b341f57e8 sp=0x238b341f57e0 pc=0x5573d73e0001
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	/usr/lib/golang/src/runtime/mgc.go:1695 +0x105
+
+goroutine 9 gp=0x238b34284d20 m=nil [cleanup wait]:
+runtime.gopark(0x7f1f8c25e600?, 0x238b3460d790?, 0xf5?, 0xd9?, 0x7f1f8c25e600?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b3460d768 sp=0x238b3460d748 pc=0x5573d73d850e
+runtime.goparkunlock(...)
+	/usr/lib/golang/src/runtime/proc.go:468
+runtime.(*cleanupQueue).dequeue(0x5573da794240)
+	/usr/lib/golang/src/runtime/mcleanup.go:522 +0xd4 fp=0x238b3460d7a0 sp=0x238b3460d768 pc=0x5573d7375854
+runtime.runCleanups()
+	/usr/lib/golang/src/runtime/mcleanup.go:718 +0x45 fp=0x238b3460d7e0 sp=0x238b3460d7a0 pc=0x5573d7375ec5
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3460d7e8 sp=0x238b3460d7e0 pc=0x5573d73e0001
+created by runtime.(*cleanupQueue).createGs in goroutine 1
+	/usr/lib/golang/src/runtime/mcleanup.go:672 +0xa5
+
+goroutine 51 gp=0x238b34784960 m=nil [runnable]:
+runtime.gopark(0x238b3450e1c0?, 0x238b3501ef50?, 0x3f?, 0x65?, 0x238b34610008?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b3501ef18 sp=0x238b3501eef8 pc=0x5573d73d850e
+runtime.chansend(0x238b363fe380, 0x238b3501eff0, 0x1, 0x5573d8499300?)
+	/usr/lib/golang/src/runtime/chan.go:283 +0x3fc fp=0x238b3501ef88 sp=0x238b3501ef18 pc=0x5573d7366b3c
+runtime.chansend1(0x238b34d58b40?, 0x5573d9fba310?)
+	/usr/lib/golang/src/runtime/chan.go:161 +0x17 fp=0x238b3501efb8 sp=0x238b3501ef88 pc=0x5573d7366737
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.func1({0x5573d9fba310?, 0x238b342be360?}, {0x5573d9fa6e30?, 0x238b344615e0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:98 +0xa9 fp=0x238b3501f008 sp=0x238b3501efb8 pc=0x5573d847f149
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.(*NodeShiftTreeWalker[...]).Walk.func2.1({0x5573d9fa6e30, 0x238b344615e0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/doctree/nodeshifttree.go:594 +0x24c fp=0x238b3501f0c0 sp=0x238b3501f008 pc=0x5573d847ecec
+github.com/gohugoio/hugo/hugolib/doctree.(*walkHandler[...]).Handle(0x5573d84a0f25?, {0x238b35168dc0?, 0x238b342c9900?}, {0x5573d9fa6e30?, 0x238b344615e0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/doctree/nodeshifttree.go:501 +0x38 fp=0x238b3501f0f0 sp=0x238b3501f0c0 pc=0x5573d8499498
+github.com/gohugoio/hugo/hugolib/doctree.(*walkHandler[...]).Handle({0x238b35168dc0?, 0x5573d84a0f25?}, {0x5573d9fa6e30?, 0x238b344615e0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/doctree/nodeshifttree.go:497 +0x35 fp=0x238b3501f130 sp=0x238b3501f0f0 pc=0x5573d84a0eb5
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b351d5c20, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:604 +0x89 fp=0x238b3501f178 sp=0x238b3501f130 pc=0x5573d849c829
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b351c4810, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f1c0 sp=0x238b3501f178 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b351b7410, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f208 sp=0x238b3501f1c0 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b35d08930, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f250 sp=0x238b3501f208 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b3587cdb0, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f298 sp=0x238b3501f250 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b34b5e3f0, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f2e0 sp=0x238b3501f298 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b3507fcb0, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f328 sp=0x238b3501f2e0 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b3562b590, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f370 sp=0x238b3501f328 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b34e822d0, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f3b8 sp=0x238b3501f370 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b34d5ad50, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f400 sp=0x238b3501f3b8 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b34d5a9f0, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f448 sp=0x238b3501f400 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.recursiveWalk[...](0x238b34298cf0, {0x5573d9fa6e58, 0x238b36913af0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:622 +0x15c fp=0x238b3501f490 sp=0x238b3501f448 pc=0x5573d849c8fc
+github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix.(*Tree[...]).Walk(0x7f1f8c278a30?, {0x5573d9fa6e58?, 0x238b36913af0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/gohugoio/go-radix/radix.go:504 +0x27 fp=0x238b3501f4c0 sp=0x238b3501f490 pc=0x5573d849c9c7
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.(*NodeShiftTreeWalker[...]).Walk.func2({0x5573d9fb1060, 0x5573da7c9fe0}, 0x238b3684ae28, 0x5573d9fce1e0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/doctree/nodeshifttree.go:621 +0x225 fp=0x238b3501f558 sp=0x238b3501f4c0 pc=0x5573d847e985
+github.com/gohugoio/hugo/hugolib/doctree.(*NodeShiftTreeWalker[...]).Walk(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/doctree/nodeshifttree.go:632
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages(0x238b34a42a00, 0x238b36646000)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:106 +0x2db fp=0x238b3501f650 sp=0x238b3501f558 pc=0x5573d847e5bb
+github.com/gohugoio/hugo/hugolib.(*Site).render(0x238b34a42a00, 0x238b36646000)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1769 +0x37 fp=0x238b3501f6a8 sp=0x238b3501f650 pc=0x5573d847e117
+github.com/gohugoio/hugo/hugolib.(*HugoSites).render.(*HugoSites).render.(*HugoSites).allSites.func5.(*HugoSites).render-range1.func6(0x238b34a42a00, 0x0, 0x238b3419b208, 0x238b36646000, 0x238b3501f838, 0x238b34d58b40, {0x5573d9fba310, 0x238b342be360}, 0x238b3501f880, 0x5573d9f92e30)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:468 +0x42c fp=0x238b3501f7b8 sp=0x238b3501f6a8 pc=0x5573d843a6ac
+github.com/gohugoio/hugo/hugolib.(*HugoSites).render-range1(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:476
+github.com/gohugoio/hugo/hugolib.(*HugoSites).render.(*HugoSites).allSites.func5(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites.go:173
+github.com/gohugoio/hugo/hugolib.(*HugoSites).render(0x238b3419b208, {0x5573d9fba310?, 0x238b342be360?}, 0x238b34d58b40)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:425 +0x825 fp=0x238b3501fb08 sp=0x238b3501f7b8 pc=0x5573d843a1e5
+github.com/gohugoio/hugo/hugolib.(*HugoSites).Build(0x238b3419b208, {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, {0x0, ...})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:196 +0xae5 fp=0x238b3501fe58 sp=0x238b3501fb08 pc=0x5573d84379c5
+github.com/gohugoio/hugo/commands.(*hugoBuilder).buildSites(0x0?, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/hugobuilder.go:450 +0x105 fp=0x238b3501ff30 sp=0x238b3501fe58 pc=0x5573d85a0e65
+github.com/gohugoio/hugo/commands.(*hugoBuilder).fullBuild.func3()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/commands/hugobuilder.go:583 +0x1f fp=0x238b3501ff78 sp=0x238b3501ff30 pc=0x5573d85a1d9f
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:93 +0x50 fp=0x238b3501ffe0 sp=0x238b3501ff78 pc=0x5573d7d881b0
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3501ffe8 sp=0x238b3501ffe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 1
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 52 gp=0x238b34784b40 m=nil [select]:
+runtime.gopark(0x238b34608fb0?, 0x2?, 0x0?, 0x0?, 0x238b34608f94?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b34608e30 sp=0x238b34608e10 pc=0x5573d73d850e
+runtime.selectgo(0x238b34608fb0, 0x238b34608f90, 0x5573d7d881b0?, 0x0, 0x0?, 0x1)
+	/usr/lib/golang/src/runtime/select.go:351 +0xaa5 fp=0x238b34608f60 sp=0x238b34608e30 pc=0x5573d73b4745
+github.com/gohugoio/hugo/cache/dynacache.(*Cache).start.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:315 +0x8f fp=0x238b34608fe0 sp=0x238b34608f60 pc=0x5573d7f68a4f
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b34608fe8 sp=0x238b34608fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/cache/dynacache.(*Cache).start in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:313 +0x9d
+
+goroutine 66 gp=0x238b342503c0 m=nil [chan receive]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b3460ce48 sp=0x238b3460ce28 pc=0x5573d73d850e
+runtime.chanrecv(0x238b34a60380, 0x238b3460cf70, 0x1)
+	/usr/lib/golang/src/runtime/chan.go:667 +0x4ae fp=0x238b3460cec0 sp=0x238b3460ce48 pc=0x5573d7367b2e
+runtime.chanrecv2(0x0?, 0x0?)
+	/usr/lib/golang/src/runtime/chan.go:514 +0x12 fp=0x238b3460cee8 sp=0x238b3460cec0 pc=0x5573d7367672
+github.com/gohugoio/hugo/hugolib.(*HugoSites).Build.func5(0x238b34a60380, 0x238b341bad20)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:113 +0x8a fp=0x238b3460cfc0 sp=0x238b3460cee8 pc=0x5573d84383ea
+github.com/gohugoio/hugo/hugolib.(*HugoSites).Build.gowrap3()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:123 +0x1f fp=0x238b3460cfe0 sp=0x238b3460cfc0 pc=0x5573d843833f
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3460cfe8 sp=0x238b3460cfe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*HugoSites).Build in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/hugo_sites_build.go:110 +0x570
+
+goroutine 75 gp=0x238b34250960 m=nil [sleep]:
+runtime.gopark(0x7c641a67566?, 0x5573d7d882bf?, 0x48?, 0xe8?, 0xffffffffffffffff?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b37485f40 sp=0x238b37485f20 pc=0x5573d73d850e
+time.Sleep(0x5f5e100)
+	/usr/lib/golang/src/runtime/time.go:363 +0x165 fp=0x238b37485f98 sp=0x238b37485f40 pc=0x5573d73dc725
+github.com/gohugoio/hugo/vendor/github.com/dlclark/regexp2.runClock()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/dlclark/regexp2/fastclock.go:129 +0xe5 fp=0x238b37485fe0 sp=0x238b37485f98 pc=0x5573d7a03485
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37485fe8 sp=0x238b37485fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/github.com/dlclark/regexp2.extendClock in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/dlclark/regexp2/fastclock.go:87 +0x105
+
+goroutine 55 gp=0x238b34284f00 m=nil [chan receive]:
+runtime.gopark(0x238b35050480?, 0x5573d9fce1e0?, 0xd8?, 0xde?, 0x5573d9fb1060?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b34209e60 sp=0x238b34209e40 pc=0x5573d73d850e
+runtime.chanrecv(0x238b363675e0, 0x238b34209f70, 0x1)
+	/usr/lib/golang/src/runtime/chan.go:667 +0x4ae fp=0x238b34209ed8 sp=0x238b34209e60 pc=0x5573d7367b2e
+runtime.chanrecv2(0x238b347c6c40?, 0x238b349c40e0?)
+	/usr/lib/golang/src/runtime/chan.go:514 +0x12 fp=0x238b34209f00 sp=0x238b34209ed8 pc=0x5573d7367672
+github.com/gohugoio/hugo/hugolib.(*Site).errorCollator(0x238b34a42a00, 0x238b363675e0, 0x238b34209f98?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1574 +0xa6 fp=0x238b34209fb8 sp=0x238b34209f00 pc=0x5573d847c586
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:78 +0x1f fp=0x238b34209fe0 sp=0x238b34209fb8 pc=0x5573d847f1ff
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b34209fe8 sp=0x238b34209fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:78 +0xd9
+
+goroutine 56 gp=0x238b347850e0 m=nil [runnable]:
+bytes.Index({0x238b34d22780, 0x2a, 0x2a}, {0x238b34498240, 0x9, 0x9})
+	/usr/lib/golang/src/bytes/bytes.go:1281 +0x6c9 fp=0x238b37e75260 sp=0x238b37e75258 pc=0x5573d748f8e9
+bytes.Contains(...)
+	/usr/lib/golang/src/bytes/bytes.go:78
+github.com/gohugoio/hugo/common/hugio.(*HasBytesWriter).Write(0x238b3845f500, {0x238b3bed0000, 0x29a8, 0x238b37e75320?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/common/hugio/hasBytesWriter.go:61 +0x177 fp=0x238b37e752c8 sp=0x238b37e75260 pc=0x5573d780a237
+github.com/gohugoio/hugo/hugofs.(*hasBytesFile).Write(0x238b399d4c00, {0x238b3bed0000, 0x29a8, 0x18000})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugofs/hasbytes_fs.go:92 +0x58 fp=0x238b37e752f8 sp=0x238b37e752c8 pc=0x5573d79a9778
+bytes.(*Buffer).WriteTo(0x238b35e59d40, {0x7f1f8c192878?, 0x238b399d4c00?})
+	/usr/lib/golang/src/bytes/buffer.go:279 +0x7b fp=0x238b37e75330 sp=0x238b37e752f8 pc=0x5573d748b23b
+io.copyBuffer({0x7f1f8c192878, 0x238b399d4c00}, {0x5573d9f9fa20, 0x238b35e59d40}, {0x0, 0x0, 0x0})
+	/usr/lib/golang/src/io/io.go:411 +0x9d fp=0x238b37e753a8 sp=0x238b37e75330 pc=0x5573d7422f5d
+io.Copy(...)
+	/usr/lib/golang/src/io/io.go:388
+github.com/gohugoio/hugo/publisher.DestinationPublisher.Publish({{_, _}, {_, _}, _}, {{0x5573d9f9fa20, 0x238b35e59d40}, {{0x5573d879b2b7, 0x4}, {{0x238b342b3440, ...}, ...}, ...}, ...})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/publisher/publisher.go:127 +0x5ca fp=0x238b37e75650 sp=0x238b37e753a8 pc=0x5573d7fd59ea
+github.com/gohugoio/hugo/publisher.(*DestinationPublisher).Publish(_, {{0x5573d9f9fa20, 0x238b35e59d40}, {{0x5573d879b2b7, 0x4}, {{0x238b342b3440, 0x9}, {0x5573d87b8680, 0x4}, {0x5573d87b8685, ...}, ...}, ...}, ...})
+	<autogenerated>:1 +0xda fp=0x238b37e757e0 sp=0x238b37e75650 pc=0x5573d7fd70da
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e0, {0x238b36e2d5e0, 0x47}, 0x238b344408c0, {0x5573d9f89920, 0x238b344408c0}, 0x238b3484e500)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1672 +0x78a fp=0x238b37e75be8 sp=0x238b37e757e0 pc=0x5573d847d0aa
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x0?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:212 +0x6d2 fp=0x238b37e75fa8 sp=0x238b37e75be8 pc=0x5573d847f8f2
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b37e75fe0 sp=0x238b37e75fa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37e75fe8 sp=0x238b37e75fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 57 gp=0x238b355105a0 m=nil [runnable]:
+bytes.Index({0x238b34d1e3f0, 0x2a, 0x2a}, {0x238b34498240, 0x9, 0x9})
+	/usr/lib/golang/src/bytes/bytes.go:1281 +0x6c9 fp=0x238b3741cd10 sp=0x238b3741cd08 pc=0x5573d748f8e9
+bytes.Contains(...)
+	/usr/lib/golang/src/bytes/bytes.go:78
+github.com/gohugoio/hugo/common/hugio.(*HasBytesWriter).Write(0x238b35582680, {0x238b38116000, 0xc9c7, 0x238b3741cdd0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/common/hugio/hasBytesWriter.go:61 +0x177 fp=0x238b3741cd78 sp=0x238b3741cd10 pc=0x5573d780a237
+github.com/gohugoio/hugo/hugofs.(*hasBytesFile).Write(0x238b39c954e0, {0x238b38116000, 0xc9c7, 0x10000})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugofs/hasbytes_fs.go:92 +0x58 fp=0x238b3741cda8 sp=0x238b3741cd78 pc=0x5573d79a9778
+bytes.(*Buffer).WriteTo(0x238b35e58960, {0x7f1f8c192878?, 0x238b39c954e0?})
+	/usr/lib/golang/src/bytes/buffer.go:279 +0x7b fp=0x238b3741cde0 sp=0x238b3741cda8 pc=0x5573d748b23b
+io.copyBuffer({0x7f1f8c192878, 0x238b39c954e0}, {0x5573d9f9fa20, 0x238b35e58960}, {0x0, 0x0, 0x0})
+	/usr/lib/golang/src/io/io.go:411 +0x9d fp=0x238b3741ce58 sp=0x238b3741cde0 pc=0x5573d7422f5d
+io.Copy(...)
+	/usr/lib/golang/src/io/io.go:388
+github.com/gohugoio/hugo/publisher.DestinationPublisher.Publish({{_, _}, {_, _}, _}, {{0x5573d9f9fa20, 0x238b35e58960}, {{0x5573d879b2b7, 0x4}, {{0x238b342b3440, ...}, ...}, ...}, ...})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/publisher/publisher.go:127 +0x5ca fp=0x238b3741d100 sp=0x238b3741ce58 pc=0x5573d7fd59ea
+github.com/gohugoio/hugo/publisher.(*DestinationPublisher).Publish(_, {{0x5573d9f9fa20, 0x238b35e58960}, {{0x5573d879b2b7, 0x4}, {{0x238b342b3440, 0x9}, {0x5573d87b8680, 0x4}, {0x5573d87b8685, ...}, ...}, ...}, ...})
+	<autogenerated>:1 +0xda fp=0x238b3741d290 sp=0x238b3741d100 pc=0x5573d7fd70da
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e8, {0x238b359a3428, 0x18}, 0x238b34442850, {0x5573d9f89920, 0x238b34442850}, 0x238b3484e3c0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1672 +0x78a fp=0x238b3741d698 sp=0x238b3741d290 pc=0x5573d847d0aa
+github.com/gohugoio/hugo/hugolib.(*Site).renderPaginator(0x238b34a42a00, 0x238b34442850, 0x238b3484e3c0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:306 +0x745 fp=0x238b3741dbe8 sp=0x238b3741d698 pc=0x5573d8481085
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x238b341f7f98?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:231 +0x9d3 fp=0x238b3741dfa8 sp=0x238b3741dbe8 pc=0x5573d847fbf3
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b3741dfe0 sp=0x238b3741dfa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3741dfe8 sp=0x238b3741dfe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 58 gp=0x238b35510780 m=nil [select]:
+runtime.gopark(0x238b3c12f1d0?, 0x2?, 0x2?, 0x0?, 0x238b3c12f194?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b3c12f028 sp=0x238b3c12f008 pc=0x5573d73d850e
+runtime.selectgo(0x238b3c12f1d0, 0x238b3c12f190, 0x5573d9e1a800?, 0x1, 0x7f1fd4ebb2f8?, 0x1)
+	/usr/lib/golang/src/runtime/select.go:351 +0xaa5 fp=0x238b3c12f158 sp=0x238b3c12f028 pc=0x5573d73b4745
+io.(*pipe).write(0x238b35c0c9c0, {0x238b3875a200, 0x9f, 0x100})
+	/usr/lib/golang/src/io/pipe.go:86 +0x1e5 fp=0x238b3c12f230 sp=0x238b3c12f158 pc=0x5573d7424f65
+io.(*PipeWriter).Write(...)
+	/usr/lib/golang/src/io/pipe.go:161
+github.com/gohugoio/hugo/common/hugio.(*PipeReadWriteCloser).Write(0x5573d73d5f1e?, {0x238b3875a200?, 0x238b3aaa48c0?, 0x7f1fd4ebb2f8?})
+	<autogenerated>:1 +0x1e fp=0x238b3c12f260 sp=0x238b3c12f230 pc=0x5573d780b2be
+encoding/json.(*Encoder).Encode(0x238b35c0cae0, {0x5573d9e1a800, 0x238b3aaa48c0})
+	/usr/lib/golang/src/encoding/json/stream.go:233 +0x1f0 fp=0x238b3c12f308 sp=0x238b3c12f260 pc=0x5573d74df150
+github.com/gohugoio/hugo/internal/warpc.(*dispatcher[...]).send(0x5573d9fd1d00, 0x238b3684d980)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:289 +0x1d7 fp=0x238b3c12f458 sp=0x238b3c12f308 pc=0x5573d7ec67d7
+github.com/gohugoio/hugo/internal/warpc.(*dispatcherPool[...]).Execute(_, {_, _}, {{0x1, 0x0, {0x5573d87a533f, 0x6}, {0x238b39c04660, 0x2, 0x2}, ...}, ...})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:219 +0x1c5 fp=0x238b3c12f698 sp=0x238b3c12f458 pc=0x5573d7ec4c85
+github.com/gohugoio/hugo/internal/warpc.(*dispatcherPool[...]).Execute({_, _}, {{0x1, 0x0, {0x5573d87a533f, 0x6}, {0x238b39c04660, 0x2, 0x2}, {0x238b39c04680, ...}, ...}, ...})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:211 +0x146 fp=0x238b3c12f978 sp=0x238b3c12f698 pc=0x5573d7ec7506
+github.com/gohugoio/hugo/internal/warpc.(*WebpCodec).Decode(0x0?, {0x7f1f8c309200, 0x238b3c100e70})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/webp.go:125 +0x2ce fp=0x238b3c12fd70 sp=0x238b3c12f978 pc=0x5573d7eb976e
+github.com/gohugoio/hugo/resources/images.(*Codec).DecodeFormat(0x238b34651400, 0x6, {0x7f1f8c309200, 0x238b3c100e70})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/images/codec.go:189 +0xb9 fp=0x238b3c12fdd8 sp=0x238b3c12fd70 pc=0x5573d7ef4919
+github.com/gohugoio/hugo/resources.(*imageResource).DecodeImage(0x238b366bb400)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:479 +0x185 fp=0x238b3c12fe80 sp=0x238b3c12fdd8 pc=0x5573d7fa3a05
+github.com/gohugoio/hugo/resources.(*imageResource).doWithImageConfig.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:415 +0xa9 fp=0x238b3c130128 sp=0x238b3c12fe80 pc=0x5573d7fa2be9
+github.com/gohugoio/hugo/resources.(*ImageCache).getOrCreate.func1.2({{0x238b3bd45c01?, 0x5573d9eed220?}}, {0x7f1f8c3684a0, 0x238b3be6b780})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image_cache.go:83 +0xd1 fp=0x238b3c130378 sp=0x238b3c130128 pc=0x5573d7fa54b1
+github.com/gohugoio/hugo/cache/filecache.(*Cache).ReadOrCreate(0x238b349c0700, {0x238b3bd45c00, 0x3e}, 0x238b39f40520, 0x238b39f404a0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/filecache/filecache.go:187 +0x24a fp=0x238b3c130440 sp=0x238b3c130378 pc=0x5573d7c7328a
+github.com/gohugoio/hugo/resources.(*ImageCache).getOrCreate.func1({0x238b3bd45c40?, 0x3e?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image_cache.go:103 +0x19f fp=0x238b3c1305b0 sp=0x238b3c130440 pc=0x5573d7fa51df
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate.func1(0x238b3c13067f?, 0x238b3bd45c40, {0x238b3bd45c40?, 0x238b3c109530?}, 0x1?, 0x3d?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:146 +0x9d fp=0x238b3c130640 sp=0x238b3c1305b0 pc=0x5573d7fbac1d
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate(0x5573d9fdb7e0, {0x238b3bd45c40, 0x3e}, 0x238b39f408d0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:150 +0x16e fp=0x238b3c1306b0 sp=0x238b3c130640 pc=0x5573d7fbab2e
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).doGetOrCreate(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:411
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).GetOrCreate(0x5573d9fe1620, {0x238b3bd45c40, 0x3e}, 0x238b3c1308d0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:399 +0x3a fp=0x238b3c130700 sp=0x238b3c1306b0 pc=0x5573d7fba43a
+github.com/gohugoio/hugo/resources.(*ImageCache).getOrCreate(0x238b3417f338, 0x238b366bb400, {0x6, {0x0, 0x0}, {0x238b3c10e230, 0x10}, 0x1e, 0x0, {0x0, ...}, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image_cache.go:53 +0x3b1 fp=0x238b3c1309a0 sp=0x238b3c130700 pc=0x5573d7fa4ff1
+github.com/gohugoio/hugo/resources.(*imageResource).doWithImageConfig(0x238b366bb400, {0x6, {0x0, 0x0}, {0x238b3c10e230, 0x10}, 0x1e, 0x0, {0x0, 0x0}, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:409 +0xfc fp=0x238b3c130a88 sp=0x238b3c1309a0 pc=0x5573d7fa2adc
+github.com/gohugoio/hugo/resources.(*imageResource).processOptions(0x238b366bb400, {0x238b3be6b6a0?, 0x4?, 0x238b366bb400?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:376 +0x22b fp=0x238b3c130cf8 sp=0x238b3c130a88 pc=0x5573d7fa244b
+github.com/gohugoio/hugo/resources.(*imageResource).processActionSpec(0x238b366bb400, {0x0, 0x0}, {0x238b343a68ef?, 0x5573d7416ed5?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:360 +0x12b fp=0x238b3c130da8 sp=0x238b3c130cf8 pc=0x5573d7fa208b
+github.com/gohugoio/hugo/resources.(*imageResource).Process(0x238b3be6b680?, {0x238b343a68ef?, 0x238b34abc460?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:272 +0x25 fp=0x238b3c130de0 sp=0x238b3c130da8 pc=0x5573d7fa0d85
+github.com/gohugoio/hugo/resources.(*resourceAdapter).Process(0x0?, {0x238b343a68ef, 0x3})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/transform.go:246 +0x33 fp=0x238b3c130e08 sp=0x238b3c130de0 pc=0x5573d7fae073
+runtime.call32(0x238b35e73800, 0x238b3c11a030, 0x0, 0x0, 0x0, 0x18, 0x238b3c131068)
+	/usr/lib/golang/src/runtime/asm_amd64.s:836 +0x3c fp=0x238b3c130e38 sp=0x238b3c130e08 pc=0x5573d73de93c
+runtime.reflectcall(0x5573d9c55080?, 0x238b3c11c170?, 0x4?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9c55080?)
+	<autogenerated>:1 +0x2d fp=0x238b3c130e78 sp=0x238b3c130e38 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9f6b0a0?, 0x238b3be6b680?, 0x5573d9fd8200?}, {0x5573d879b60f, 0x4}, {0x238b3c100d98, 0x1, 0x238b39f41460?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b3c1313d0 sp=0x238b3c130e78 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9f6b0a0?, 0x238b3be6b680?, 0x7f1f7c7825e8?}, {0x238b3c100d98?, 0x94?, 0x5573d9e17240?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b3c131448 sp=0x238b3c1313d0 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9f6b0a0?, 0x238b3be6b680?, 0x238b3c11c130?}, {0x238b3c100d98?, 0x5573d9fd8200?, 0x5573d9c55080?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b3c1314e8 sp=0x238b3c131448 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x238b3c10e1ed?}, {0x5573d9f6b0a0?, 0x238b3be6b680?, 0x1?}, 0x0, {0x5573d9fb7b90, 0x238b34c51440}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b3c131728 sp=0x238b3c1314e8 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalField(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x3?}, {0x238b343a68e6, 0x7}, {0x5573d9fb7b90, 0x238b34c51440}, {0x238b34418700, 0x2, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:193 +0x3db fp=0x238b3c1319b0 sp=0x238b3c131728 pc=0x5573d7b1209b
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldChain(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x5573d9c87440?}, {0x5573d9e17240?, 0x238b3c11c130?, 0x238b34198d00?}, {0x5573d9fb7b90, 0x238b34c51440}, {0x238b34c52080, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:668 +0x1d5 fp=0x238b3c131a68 sp=0x238b3c1319b0 pc=0x5573d7b090f5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldNode(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:632
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x5573d9e17240?}, 0x238b34c51410, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x238b39f41c88?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:560 +0x17f fp=0x238b3c131b40 sp=0x238b3c131a68 pc=0x5573d7b083df
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x1?}, 0x238b34c4cc60)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b3c131c28 sp=0x238b3c131b40 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x5573d9c55480?}, {0x5573d9fb7cb0?, 0x238b34c51470})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b3c131cc0 sp=0x238b3c131c28 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x5573d9e17240?}, {0x5573d9fb7d40?, 0x238b34c51380?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c131d58 sp=0x238b3c131cc0 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b3c112100, 0xa, {0x5573d9e17240?, 0x238b3c11c130?, 0x238b34c4cba0?}, 0x5573d9e902a0?, 0x238b34c51380, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:311 +0x12a fp=0x238b3c131df0 sp=0x238b3c131d58 pc=0x5573d7b065ea
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x16?}, {0x5573d9fb7cf8?, 0x238b34c4b740?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:278 +0x21b fp=0x238b3c131e88 sp=0x238b3c131df0 pc=0x5573d7b0633b
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3c112100, {0x5573d9e17240?, 0x238b3c11c130?, 0x5573d9c55080?}, {0x5573d9fb7d40?, 0x238b34c511d0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c131f20 sp=0x238b3c131e88 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b3c112100, 0x13, {0x5573d9e902a0?, 0x238b3c114270?, 0x238b34c4cae0?}, 0x0?, 0x238b34c511d0, 0x238b34c51d40)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:309 +0xfd fp=0x238b3c131fb8 sp=0x238b3c131f20 pc=0x5573d7b065bd
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3c112100, {0x5573d9e902a0?, 0x238b3c114270?, 0x0?}, {0x5573d9fb7dd0?, 0x238b34c4bb00?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:292 +0x153 fp=0x238b3c132050 sp=0x238b3c131fb8 pc=0x5573d7b06273
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3c112100, {0x5573d9e902a0?, 0x238b3c114270?, 0x30?}, {0x5573d9fb7d40?, 0x238b34c50f00?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c1320e8 sp=0x238b3c132050 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b3c109230?, 0x238b3c112100, {0x5573d9e902a0?, 0x238b3c114270?, 0x238b347008c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b3c132180 sp=0x238b3c1320e8 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b3c109260}, {0x5573d9fa1f40, 0x238b347008c0}, {0x5573d9f9f960, 0x238b35e58180}, {0x5573d9e902a0, 0x238b3c114270})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b3c1321f0 sp=0x238b3c132180 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b3c108ed0}, {0x0, 0x0}, 0x238b347008c0, {0x5573d9f9f960, 0x238b35e58180}, {0x5573d9e902a0, 0x238b3c114270})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b3c132310 sp=0x238b3c1321f0 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.renderShortcodeWithPage({0x5573d9fb12f0, 0x238b3c108ed0}, 0x238b349c7008, 0x238b347008c0, 0x238b3c114270)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/shortcode.go:781 +0xf7 fp=0x238b3c1323c8 sp=0x238b3c132310 pc=0x5573d846f0f7
+...5 frames elided...
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered.func1.2(0x238b3be6b560, 0x238b361ed7a0, 0x0, {{0x5573d9f5bd00, 0x238b3c106fa0}, 0x5573da099e60, {0x238b3b9bb400, 0x20}, 0x238b3c108fc0, {0x238b3ae93b80, ...}}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:527 +0x2ed fp=0x238b3c132ed0 sp=0x238b3c132c30 pc=0x5573d844eb0d
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered.func1({0x238b3c10e140?, 0x8?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:564 +0x258 fp=0x238b3c133078 sp=0x238b3c132ed0 pc=0x5573d844e558
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate.func1(0x238b3c133147?, 0x238b3c10e140, {0x238b3c10e140?, 0x238b3c108f00?}, 0x5573d879b2b7?, 0x4?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:146 +0x9d fp=0x238b3c133108 sp=0x238b3c133078 pc=0x5573d7fbac1d
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate(0x5573d9fd9aa0, {0x238b3c10e140, 0x8}, 0x238b39f43260)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:150 +0x16e fp=0x238b3c133178 sp=0x238b3c133108 pc=0x5573d7fbab2e
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).doGetOrCreate(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:411
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).GetOrCreate(0x5573d9fe0a20, {0x238b3c10e140, 0x8}, 0x238b3c133260)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:399 +0x3a fp=0x238b3c1331c8 sp=0x238b3c133178 pc=0x5573d7fba43a
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered(0x238b3be6b560, {0x5573d9fb12f0?, 0x238b3c108ea0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:461 +0x15e fp=0x238b3c1332b0 sp=0x238b3c1331c8 pc=0x5573d844e19e
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).Content(0x238b3be6b560, {0x5573d9fb12f0?, 0x238b3b2ffa10?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:815 +0x4a fp=0x238b3c133378 sp=0x238b3c1332b0 pc=0x5573d8450f6a
+github.com/gohugoio/hugo/hugolib.(*pageContentOutput).Content(0x238b3b2ffa10?, {0x5573d9fb12f0, 0x238b3b2ffa10})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__per_output.go:157 +0x48 fp=0x238b3c1333b8 sp=0x238b3c133378 pc=0x5573d8460528
+github.com/gohugoio/hugo/hugolib.(*pageState).Content(0x0?, {0x5573d9fb12f0?, 0x238b3b2ffa10?})
+	<autogenerated>:1 +0x30 fp=0x238b3c1333e0 sp=0x238b3c1333b8 pc=0x5573d84b54b0
+runtime.call32(0x238b37639d40, 0x238b3b995f60, 0x0, 0x0, 0x0, 0x18, 0x238b3c133640)
+	/usr/lib/golang/src/runtime/asm_amd64.s:836 +0x3c fp=0x238b3c133410 sp=0x238b3c1333e0 pc=0x5573d73de93c
+runtime.reflectcall(0x5573d9e007c0?, 0x238b3b2ffa10?, 0x4?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9d83960?)
+	<autogenerated>:1 +0x2d fp=0x238b3c133450 sp=0x238b3c133410 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9f89920?, 0x238b3485e5b0?, 0x238b39f43a20?}, {0x5573d879b60f, 0x4}, {0x238b3c100b58, 0x1, 0x238b39f43a38?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b3c1339a8 sp=0x238b3c133450 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9f89920?, 0x238b3485e5b0?, 0x5573d9e007c0?}, {0x238b3c100b58?, 0x238b39f43ab0?, 0x5573d7b148b1?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b3c133a20 sp=0x238b3c1339a8 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9f89920?, 0x238b3485e5b0?, 0x238b3b2ffa10?}, {0x238b3c100b58?, 0x5573d9fd8200?, 0x5573d9d83960?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b3c133ac0 sp=0x238b3c133a20 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9d44ba0?}, {0x5573d9f89920?, 0x238b3485e5b0?, 0x238b39f43e30?}, 0x0, {0x5573d9fb7b90, 0x238b34bb57a0}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b3c133d00 sp=0x238b3c133ac0 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalField(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9c2e9c0?}, {0x238b34886d28, 0x7}, {0x5573d9fb7b90, 0x238b34bb57a0}, {0x238b39f440e8, 0x1, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:190 +0x4cd fp=0x238b3c133f88 sp=0x238b3c133d00 pc=0x5573d7b1218d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldChain(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x238b357ae480?}, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0xb001f8c12f7e0?}, {0x5573d9fb7b90, 0x238b34bb57a0}, {0x238b34b930d0, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:668 +0x1d5 fp=0x238b3c134040 sp=0x238b3c133f88 pc=0x5573d7b090f5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldNode(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:632
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalArg(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9cd6220?}, {0x5573d9fd8200, 0x5573d9cc8ce0}, {0x5573d9fb7b90, 0x238b34bb57a0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:947 +0x210 fp=0x238b3c134150 sp=0x238b3c134040 pc=0x5573d7b093b0
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x0?}, {0x5573d9cd6220?, 0x238b34a41140?, 0x0?}, 0x0, {0x5573d9fb7ef0, 0x238b34bb5680}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:373 +0x7c6 fp=0x238b3c134390 sp=0x238b3c134150 pc=0x5573d7b13566
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x238b350acba0?}, 0x7f1f8c123c00?, {0x5573d9fb7ef0, 0x238b34bb5680}, {0x238b344c3b00, 0x7, 0x8}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:150 +0x438 fp=0x238b3c1344e8 sp=0x238b3c134390 pc=0x5573d7b11b98
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x238b3579f300?}, 0x238b34bb5680, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x4?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b3c1345c0 sp=0x238b3c1344e8 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x4?}, 0x238b34bb6660)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b3c1346a8 sp=0x238b3c1345c0 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalArg(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9cd61c0?}, {0x5573d9fd8200, 0x5573d9cc8ce0}, {0x5573d9fb7c68, 0x238b34bb6660})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:951 +0x257 fp=0x238b3c1347b8 sp=0x238b3c1346a8 pc=0x5573d7b093f7
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9fd8200?}, {0x5573d9cd61c0?, 0x238b34a410b0?, 0x5573d7b08e85?}, 0x0, {0x5573d9fb7ef0, 0x238b34bb5620}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:373 +0x7c6 fp=0x238b3c1349f8 sp=0x238b3c1347b8 pc=0x5573d7b13566
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x1?}, 0x1?, {0x5573d9fb7ef0, 0x238b34bb5620}, {0x238b341a1ec0, 0x2, 0x2}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:150 +0x438 fp=0x238b3c134b50 sp=0x238b3c1349f8 pc=0x5573d7b11b98
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9c2e9c0?}, 0x238b34bb5620, {0x5573d9c2e9c0?, 0x238b3c100ac8?, 0x5573d9f89920?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b3c134c28 sp=0x238b3c134b50 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x238b39f44e00?}, 0x238b34bb6600)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b3c134d10 sp=0x238b3c134c28 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x238b34bb5530?}, {0x5573d9fb7cb0?, 0x238b34bb57d0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b3c134da8 sp=0x238b3c134d10 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x5573d9f89920?}, {0x5573d9fb7d40?, 0x238b34bb5560?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c134e40 sp=0x238b3c134da8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkRange.func2({0x5573d9c552c0?, 0x5573d8bf4eb8?, 0x238b3b9f75c0?}, {0x5573d9f6c1a0?, 0x238b3bd36438?, 0x238b39f44fe8?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:397 +0x2b2 fp=0x238b3c134ef8 sp=0x238b3c134e40 pc=0x5573d7b078d2
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkRange(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3b9f75c0?, 0x1?}, 0x238b344b4900)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:421 +0xc06 fp=0x238b3c135088 sp=0x238b3c134ef8 pc=0x5573d7b072e6
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3b9f75c0?, 0x16?}, {0x5573d9fb7d88?, 0x238b344b4900?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:284 +0x24f fp=0x238b3c135120 sp=0x238b3c135088 pc=0x5573d7b0636f
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7a80, {0x5573d9f6c1a0?, 0x238b3b9f75c0?, 0x5573d9c2af20?}, {0x5573d9fb7d40?, 0x238b34bb54a0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c1351b8 sp=0x238b3c135120 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b3afc7a80, 0x13, {0x5573d9f89920?, 0x238b34442150?, 0x238b34bb64e0?}, 0x5573d9f89920?, 0x238b34bb54a0, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:309 +0xfd fp=0x238b3c135250 sp=0x238b3c1351b8 pc=0x5573d7b065bd
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7a80, {0x5573d9f89920?, 0x238b34442150?, 0x30?}, {0x5573d9fb7dd0?, 0x238b344b4940?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:292 +0x153 fp=0x238b3c1352e8 sp=0x238b3c135250 pc=0x5573d7b06273
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7a80, {0x5573d9f89920?, 0x238b34442150?, 0x5573d9c55080?}, {0x5573d9fb7d40?, 0x238b34bb29c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c135380 sp=0x238b3c1352e8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkTemplate(0x238b3afc7700, {0x5573d9f89920?, 0x238b34442150?, 0x5573d9c55080?}, 0x238b344ac380)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:516 +0x2ca fp=0x238b3c1353f8 sp=0x238b3c135380 pc=0x5573d7b07cca
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7700, {0x5573d9f89920?, 0x238b34442150?, 0x1?}, {0x5573d9fb7ea8?, 0x238b344ac380?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:286 +0x179 fp=0x238b3c135490 sp=0x238b3c1353f8 pc=0x5573d7b06299
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b3afc7700, {0x5573d9f89920?, 0x238b34442150?, 0x30?}, {0x5573d9fb7d40?, 0x238b34b94e10?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3c135528 sp=0x238b3c135490 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b3b2ff9e0?, 0x238b3afc7700, {0x5573d9f89920?, 0x238b34442150?, 0x238b3484e140?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b3c1355c0 sp=0x238b3c135528 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b3b2ffa10}, {0x5573d9fa1f40, 0x238b3484e140}, {0x5573d9f9f960, 0x238b35e72420}, {0x5573d9f89920, 0x238b34442150})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b3c135630 sp=0x238b3c1355c0 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b3b2ff9b0}, {0x0, 0x0}, 0x238b3484e140, {0x5573d9f9f960, 0x238b35e72420}, {0x5573d9f89920, 0x238b34442150})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b3c135750 sp=0x238b3c135630 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.(*Site).renderForTemplate(0x5573d9fa7060?, {0x5573d9fb12f0?, 0x238b3b2ff9b0?}, {0x5573d879b257, 0x4}, {0x5573d879b2b7?, 0x5573d9fa6658?}, {0x5573d9f89920, 0x238b34442150}, {0x5573d9f9f960, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1730 +0xb7 fp=0x238b3c1357e0 sp=0x238b3c135750 pc=0x5573d847dc37
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e0, {0x238b352706f0, 0xe}, 0x238b34442150, {0x5573d9f89920, 0x238b34442150}, 0x238b3484e140)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1635 +0x2e5 fp=0x238b3c135be8 sp=0x238b3c1357e0 pc=0x5573d847cc05
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x0?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:212 +0x6d2 fp=0x238b3c135fa8 sp=0x238b3c135be8 pc=0x5573d847f8f2
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b3c135fe0 sp=0x238b3c135fa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3c135fe8 sp=0x238b3c135fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 59 gp=0x238b35510960 m=nil [runnable]:
+runtime.makeslice(0x5573d9f860e0?, 0x1?, 0x1?)
+	/usr/lib/golang/src/runtime/slice.go:102 +0xb3 fp=0x238b380b5398 sp=0x238b380b5390 pc=0x5573d73daa93
+reflect.Value.call({0x238b36834640?, 0x238b382790a8?, 0x0?}, {0x5573d879b60f, 0x4}, {0x238b380b5cb8, 0x1, 0x5573d9b5fa72?})
+	/usr/lib/golang/src/reflect/value.go:608 +0xf65 fp=0x238b380b58f0 sp=0x238b380b5398 pc=0x5573d740cf45
+reflect.Value.Call({0x238b36834640?, 0x238b382790a8?, 0x5573d9d1c1a0?}, {0x238b380b5cb8?, 0x5573d9fd8200?, 0x238b36834640?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b380b5968 sp=0x238b380b58f0 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/collections.evaluateSubElem({0x5573d9e007c0?, 0x238b39c41cb0?, 0x238b3535fda0?}, {0x5573d9f6c1a0?, 0x238b3a2335f0?, 0x238b3b0a4420?}, {0x238b347d05d3, 0x6})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/collections/where.go:342 +0xf71 fp=0x238b380b5d48 sp=0x238b380b5968 pc=0x5573d82b9a71
+github.com/gohugoio/hugo/tpl/collections.(*Namespace).checkWhereArray(0x238b34651e60, {0x5573d9e007c0?, 0x238b39c41cb0?, 0x0?}, {0x5573d9f5a100?, 0x238b37c40828?, 0x0?}, {0x5573d9c55080, 0x238b3b0a4410, 0x98}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/collections/where.go:615 +0x6a5 fp=0x238b380b5ea0 sp=0x238b380b5d48 pc=0x5573d82bc625
+github.com/gohugoio/hugo/tpl/collections.(*Namespace).Where(0x238b34651e60, {0x5573d9fb12f0, 0x238b39c41cb0}, {0x5573d9f5a100, 0x238b37c40828}, {0x5573d9c55080, 0x238b3b0a4410}, {0x238b3b0a4430, 0x1, 0x1})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/collections/where.go:50 +0x47d fp=0x238b380b6008 sp=0x238b380b5ea0 pc=0x5573d82b6b3d
+github.com/gohugoio/hugo/tpl/collections.(*Namespace).Where-fm({0x5573d9fb12f0?, 0x238b39c41cb0?}, {0x5573d9f5a100?, 0x238b37c40828?}, {0x5573d9c55080?, 0x238b3b0a4410?}, {0x238b3b0a4430?, 0x238b39c41cb0?, 0x238b3b0a4440?})
+	<autogenerated>:1 +0x66 fp=0x238b380b6068 sp=0x238b380b6008 pc=0x5573d82c0da6
+runtime.call128(0x238b35e68570, 0x238b34a413a0, 0x0, 0x0, 0x0, 0x48, 0x238b380b6328)
+	/usr/lib/golang/src/runtime/asm_amd64.s:838 +0x4d fp=0x238b380b60f8 sp=0x238b380b6068 pc=0x5573d73dea4d
+runtime.reflectcall(0x5573d9c2af20?, 0x238b37c40840?, 0x10?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9c2af20?)
+	<autogenerated>:1 +0x2d fp=0x238b380b6138 sp=0x238b380b60f8 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9d3a3c0?, 0x238b34a413a0?, 0x5573d9f89920?}, {0x5573d879b60f, 0x4}, {0x238b35248fc0, 0x4, 0x5573d9fa1f40?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b380b6690 sp=0x238b380b6138 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9d3a3c0?, 0x238b34a413a0?, 0x5573d9e007c0?}, {0x238b35248fc0?, 0x238b380b6798?, 0x5573d7b148b1?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b380b6708 sp=0x238b380b6690 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9d3a3c0?, 0x238b34a413a0?, 0x238b39c41cb0?}, {0x238b35248fc0?, 0x5573d9fd8200?, 0x5573d9d83960?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b380b67a8 sp=0x238b380b6708 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b34d57a00, {0x5573d9f89920?, 0x238b3449e1c0?, 0x238b344ef900?}, {0x5573d9d3a3c0?, 0x238b34a413a0?, 0x5573d9f89920?}, 0x0, {0x5573d9fb7ef0, 0x238b34bcf7d0}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b380b69e8 sp=0x238b380b67a8 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b34d57a00, {0x5573d9f89920?, 0x238b3449e1c0?, 0x238b3b0a4390?}, 0x238b3449e1c0?, {0x5573d9fb7ef0, 0x238b34bcf7d0}, {0x238b34bd0740, 0x4, 0x4}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:148 +0x4f4 fp=0x238b380b6b40 sp=0x238b380b69e8 pc=0x5573d7b11c54
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b34d57a00, {0x5573d9f89920?, 0x238b3449e1c0?, 0x15?}, 0x238b34bcf7d0, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x238b3b62fec0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b380b6c18 sp=0x238b380b6b40 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b34d57a00, {0x5573d9f89920?, 0x238b3449e1c0?, 0x238b3449e1c0?}, 0x238b34bd2360)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b380b6d00 sp=0x238b380b6c18 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b34d57a00, {0x5573d9f89920?, 0x238b3449e1c0?, 0x30?}, {0x5573d9fb7cb0?, 0x238b34bcf860})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b380b6d98 sp=0x238b380b6d00 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b34d57a00, {0x5573d9f89920?, 0x238b3449e1c0?, 0x5573d9c55080?}, {0x5573d9fb7d40?, 0x238b34bcb830?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b380b6e30 sp=0x238b380b6d98 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkTemplate(0x238b34d57100, {0x5573d9f89920?, 0x238b3449e1c0?, 0x5573d9c55080?}, 0x238b344ee780)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:516 +0x2ca fp=0x238b380b6ea8 sp=0x238b380b6e30 pc=0x5573d7b07cca
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b34d57100, {0x5573d9f89920?, 0x238b3449e1c0?, 0x238b34a442e8?}, {0x5573d9fb7ea8?, 0x238b344ee780?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:286 +0x179 fp=0x238b380b6f40 sp=0x238b380b6ea8 pc=0x5573d7b06299
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b34d57100, {0x5573d9f89920?, 0x238b3449e1c0?, 0x30?}, {0x5573d9fb7d40?, 0x238b34bc3c80?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b380b6fd8 sp=0x238b380b6f40 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b39c41c80?, 0x238b34d57100, {0x5573d9f89920?, 0x238b3449e1c0?, 0x238b3484e3c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b380b7070 sp=0x238b380b6fd8 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b39c41cb0}, {0x5573d9fa1f40, 0x238b3484e3c0}, {0x5573d9f9f960, 0x238b35e72930}, {0x5573d9f89920, 0x238b3449e1c0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b380b70e0 sp=0x238b380b7070 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b39c41c50}, {0x0, 0x0}, 0x238b3484e3c0, {0x5573d9f9f960, 0x238b35e72930}, {0x5573d9f89920, 0x238b3449e1c0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b380b7200 sp=0x238b380b70e0 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.(*Site).renderForTemplate(0x5573d9fa7060?, {0x5573d9fb12f0?, 0x238b39c41c50?}, {0x5573d87a8eb7, 0x7}, {0x5573d879b2b7?, 0x4?}, {0x5573d9f89920, 0x238b3449e1c0}, {0x5573d9f9f960, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1730 +0xb7 fp=0x238b380b7290 sp=0x238b380b7200 pc=0x5573d847dc37
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e8, {0x238b35fdb580, 0x1d}, 0x238b3449e1c0, {0x5573d9f89920, 0x238b3449e1c0}, 0x238b3484e3c0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1635 +0x2e5 fp=0x238b380b7698 sp=0x238b380b7290 pc=0x5573d847cc05
+github.com/gohugoio/hugo/hugolib.(*Site).renderPaginator(0x238b34a42a00, 0x238b3449e1c0, 0x238b3484e3c0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:306 +0x745 fp=0x238b380b7be8 sp=0x238b380b7698 pc=0x5573d8481085
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x238b3460df98?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:231 +0x9d3 fp=0x238b380b7fa8 sp=0x238b380b7be8 pc=0x5573d847fbf3
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b380b7fe0 sp=0x238b380b7fa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b380b7fe8 sp=0x238b380b7fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 60 gp=0x238b35510b40 m=nil [runnable]:
+syscall.Syscall(0x3, 0xe, 0x0, 0x0)
+	/usr/lib/golang/src/syscall/syscall_linux.go:74 +0x25 fp=0x238b3c497208 sp=0x238b3c4971a8 pc=0x5573d7434145
+syscall.Close(0x2a?)
+	/usr/lib/golang/src/syscall/zsyscall_linux_amd64.go:335 +0x25 fp=0x238b3c497238 sp=0x238b3c497208 pc=0x5573d7431705
+internal/poll.(*SysFile).destroy(...)
+	/usr/lib/golang/src/internal/poll/fd_unixjs.go:24
+internal/poll.(*FD).destroy(0x238b35d2d560)
+	/usr/lib/golang/src/internal/poll/fd_unix.go:82 +0x51 fp=0x238b3c497268 sp=0x238b3c497238 pc=0x5573d7453851
+internal/poll.(*FD).decref(0x9?)
+	/usr/lib/golang/src/internal/poll/fd_mutex.go:213 +0x53 fp=0x238b3c497288 sp=0x238b3c497268 pc=0x5573d7452853
+internal/poll.(*FD).Close(0x238b35d2d560)
+	/usr/lib/golang/src/internal/poll/fd_unix.go:105 +0x45 fp=0x238b3c4972b0 sp=0x238b3c497288 pc=0x5573d74538e5
+os.(*file).close(0x238b35d2d560)
+	/usr/lib/golang/src/os/file_unix.go:315 +0x85 fp=0x238b3c497308 sp=0x238b3c4972b0 pc=0x5573d74623e5
+os.(*File).Close(0x238b3c497398?)
+	/usr/lib/golang/src/os/file_posix.go:23 +0x1b fp=0x238b3c497320 sp=0x238b3c497308 pc=0x5573d746101b
+github.com/gohugoio/hugo/vendor/github.com/spf13/afero.(*BasePathFile).Close(0x7f1f8c192878?)
+	<autogenerated>:1 +0x1b fp=0x238b3c497338 sp=0x238b3c497320 pc=0x5573d7807c7b
+github.com/gohugoio/hugo/hugofs.(*hasBytesFile).Close(0x238b39a4af80)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugofs/hasbytes_fs.go:101 +0xa7 fp=0x238b3c497390 sp=0x238b3c497338 pc=0x5573d79a9867
+github.com/gohugoio/hugo/publisher.DestinationPublisher.Publish.deferwrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/publisher/publisher.go:119 +0x1c fp=0x238b3c4973a8 sp=0x238b3c497390 pc=0x5573d7fd625c
+github.com/gohugoio/hugo/publisher.DestinationPublisher.Publish({{_, _}, {_, _}, _}, {{0x5573d9f9fa20, 0x238b35f08e40}, {{0x5573d879b2b7, 0x4}, {{0x238b342b3440, ...}, ...}, ...}, ...})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/publisher/publisher.go:132 +0x623 fp=0x238b3c497650 sp=0x238b3c4973a8 pc=0x5573d7fd5a43
+github.com/gohugoio/hugo/publisher.(*DestinationPublisher).Publish(_, {{0x5573d9f9fa20, 0x238b35f08e40}, {{0x5573d879b2b7, 0x4}, {{0x238b342b3440, 0x9}, {0x5573d87b8680, 0x4}, {0x5573d87b8685, ...}, ...}, ...}, ...})
+	<autogenerated>:1 +0xda fp=0x238b3c4977e0 sp=0x238b3c497650 pc=0x5573d7fd70da
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e0, {0x238b36e2d720, 0x47}, 0x238b34440c40, {0x5573d9f89920, 0x238b34440c40}, 0x238b3484e500)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1672 +0x78a fp=0x238b3c497be8 sp=0x238b3c4977e0 pc=0x5573d847d0aa
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x238b3460c798?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:212 +0x6d2 fp=0x238b3c497fa8 sp=0x238b3c497be8 pc=0x5573d847f8f2
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b3c497fe0 sp=0x238b3c497fa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3c497fe8 sp=0x238b3c497fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 61 gp=0x238b35510d20 m=nil [runnable]:
+github.com/gohugoio/hugo/tpl/tplimpl.(*templateExecHelper).GetFunc(0x238b34492980?, {0x5573d9fb12f0, 0x238b39cf57d0}, {0x5573d9fa1f40?, 0x238b343be8c0?}, {0x5573d8850891?, 0x1a?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/template_funcs.go:43 +0x1c5 fp=0x238b37f39908 sp=0x238b37f39900 pc=0x5573d7f706e5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b39e86000, {0x5573d9e58660?, 0x238b35524b30?, 0x238b39e86000?}, 0x5573d9e58660?, {0x5573d9fb7ef0, 0x238b34a32630}, {0x238b34c37ef0, 0x1, 0x1}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:137 +0x122 fp=0x238b37f39a60 sp=0x238b37f39908 pc=0x5573d7b11882
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b39e86000, {0x5573d9e58660?, 0x238b35524b30?, 0x238b35524b30?}, 0x238b34a32630, {0x5573d9c55080?, 0x238b3b12d580?, 0x238b34441030?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b37f39b38 sp=0x238b37f39a60 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b39e86000, {0x5573d9e58660?, 0x238b35524b30?, 0x238b35524b30?}, 0x238b348be300)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b37f39c20 sp=0x238b37f39b38 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b39e86000, {0x5573d9e58660?, 0x238b35524b30?, 0x5573d9cc8ce0?}, {0x5573d9fb7cb0?, 0x238b348bdc80})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b37f39cb8 sp=0x238b37f39c20 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b39e86000, {0x5573d9e58660?, 0x238b35524b30?, 0x5573d9fd8200?}, {0x5573d9fb7d40?, 0x238b348bd4d0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37f39d50 sp=0x238b37f39cb8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkRange.func2({0x5573d9c552c0?, 0x5573d8bf4cd0?, 0x238b37aafc98?}, {0x5573d9e58660?, 0x238b35524b30?, 0x238b37f39ef8?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:397 +0x2b2 fp=0x238b37f39e08 sp=0x238b37f39d50 pc=0x5573d7b078d2
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkRange(0x238b39e86000, {0x5573d9e585a0?, 0x238b37aafc98?, 0x5573d9e585a0?}, 0x238b342f0800)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:421 +0xc06 fp=0x238b37f39f98 sp=0x238b37f39e08 pc=0x5573d7b072e6
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b39e86000, {0x5573d9e585a0?, 0x238b37aafc98?, 0x5573d9e585a0?}, {0x5573d9fb7d88?, 0x238b342f0800?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:284 +0x24f fp=0x238b37f3a030 sp=0x238b37f39f98 pc=0x5573d7b0636f
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b39e86000, {0x5573d9e585a0?, 0x238b37aafc98?, 0x5573d9c55080?}, {0x5573d9fb7d40?, 0x238b348bd440?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37f3a0c8 sp=0x238b37f3a030 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b39e86000, 0x13, {0x5573d9f89920?, 0x238b34441030?, 0x238b348b5c20?}, 0x0?, 0x238b348bd440, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:309 +0xfd fp=0x238b37f3a160 sp=0x238b37f3a0c8 pc=0x5573d7b065bd
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b39e86000, {0x5573d9f89920?, 0x238b34441030?, 0x5573d738573c?}, {0x5573d9fb7dd0?, 0x238b342f0880?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:292 +0x153 fp=0x238b37f3a1f8 sp=0x238b37f3a160 pc=0x5573d7b06273
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b39e86000, {0x5573d9f89920?, 0x238b34441030?, 0x30?}, {0x5573d9fb7d40?, 0x238b348bcfc0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37f3a290 sp=0x238b37f3a1f8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b39cf57a0?, 0x238b39e86000, {0x5573d9f89920?, 0x238b34441030?, 0x238b343be8c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b37f3a328 sp=0x238b37f3a290 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b39cf57d0}, {0x5573d9fa1f40, 0x238b343be8c0}, {0x5573d9f9f960, 0x238b35e58420}, {0x5573d9f89920, 0x238b34441030})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b37f3a398 sp=0x238b37f3a328 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b39cf4960}, {0x0, 0x0}, 0x238b343be8c0, {0x5573d9f9f960, 0x238b35e58420}, {0x5573d9f89920, 0x238b34441030})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b37f3a4b8 sp=0x238b37f3a398 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).doInclude(0x238b34a41ca0, {0x5573d9fb12f0, 0x238b39cf4960}, {0x0, 0x0}, 0x238b343be8c0, {0x238b3b12ca00?, 0x7f1fd4ebc4e8?, 0x10?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/partials/partials.go:183 +0x26b fp=0x238b37f3a5a8 sp=0x238b37f3a4b8 pc=0x5573d83ca4ab
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).include(0x238b34a41ca0, {0x5573d9fb12f0, 0x238b39cf4960}, {0x238b3426589a?, 0x5573d73d98b3?}, {0x238b3b12ca00, 0x1, 0x1})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/partials/partials.go:129 +0x105 fp=0x238b37f3a680 sp=0x238b37f3a5a8 pc=0x5573d83c9f65
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).Include(0x238b34a41ca0, {0x5573d9fb12f0?, 0x238b39cf4960?}, {0x238b3426589a?, 0x238b39cf4960?}, {0x238b3b12ca00?, 0x5573d7416ed5?, 0x5573d9e007c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/partials/partials.go:112 +0x47 fp=0x238b37f3a750 sp=0x238b37f3a680 pc=0x5573d83c9d07
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).Include-fm({0x5573d9fb12f0?, 0x238b39cf4960?}, {0x238b3426589a?, 0x2?}, {0x238b3b12ca00?, 0x4?, 0x0?})
+	<autogenerated>:1 +0x45 fp=0x238b37f3a7a0 sp=0x238b37f3a750 pc=0x5573d83ce245
+runtime.call64(0x238b35e48a50, 0x238b34a41cc0, 0x0, 0x0, 0x0, 0x38, 0x238b37f3aa20)
+	/usr/lib/golang/src/runtime/asm_amd64.s:837 +0x3c fp=0x238b37f3a7f0 sp=0x238b37f3a7a0 pc=0x5573d73de9bc
+runtime.reflectcall(0x5573d9c2af20?, 0x238b37aafbc0?, 0x8?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9c2af20?)
+	<autogenerated>:1 +0x2d fp=0x238b37f3a830 sp=0x238b37f3a7f0 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9d16860?, 0x238b34a41cc0?, 0x5573d9f89920?}, {0x5573d879b60f, 0x4}, {0x238b3a7a1db0, 0x3, 0x0?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b37f3ad88 sp=0x238b37f3a830 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9d16860?, 0x238b34a41cc0?, 0x5573d9e007c0?}, {0x238b3a7a1db0?, 0x238b37f3ae90?, 0x5573d7b148b1?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b37f3ae00 sp=0x238b37f3ad88 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9d16860?, 0x238b34a41cc0?, 0x238b39cf4960?}, {0x238b3a7a1db0?, 0x5573d9fd8200?, 0x5573d9d83960?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b37f3aea0 sp=0x238b37f3ae00 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x15?}, {0x5573d9d16860?, 0x238b34a41cc0?, 0x238b37f3b220?}, 0x0, {0x5573d9fb7ef0, 0x238b34bd6f90}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b37f3b0e0 sp=0x238b37f3aea0 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x5573d9f89920?}, 0x238b34441030?, {0x5573d9fb7ef0, 0x238b34bd6f90}, {0x238b34bdc040, 0x3, 0x4}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:148 +0x4f4 fp=0x238b37f3b238 sp=0x238b37f3b0e0 pc=0x5573d7b11c54
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x238b34968160?}, 0x238b34bd6f90, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x238b34968160?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b37f3b310 sp=0x238b37f3b238 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x238b34441030?}, 0x238b34bd2c00)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b37f3b3f8 sp=0x238b37f3b310 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x2?}, {0x5573d9fb7cb0?, 0x238b34bd6ff0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b37f3b490 sp=0x238b37f3b3f8 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x30?}, {0x5573d9fb7d40?, 0x238b34bd68d0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37f3b528 sp=0x238b37f3b490 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b39cf4930?, 0x238b34841580, {0x5573d9f89920?, 0x238b34441030?, 0x238b3484e500?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b37f3b5c0 sp=0x238b37f3b528 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b39cf4960}, {0x5573d9fa1f40, 0x238b3484e500}, {0x5573d9f9f960, 0x238b35e82420}, {0x5573d9f89920, 0x238b34441030})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b37f3b630 sp=0x238b37f3b5c0 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b39cf4900}, {0x0, 0x0}, 0x238b3484e500, {0x5573d9f9f960, 0x238b35e82420}, {0x5573d9f89920, 0x238b34441030})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b37f3b750 sp=0x238b37f3b630 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.(*Site).renderForTemplate(0x5573d9fa7060?, {0x5573d9fb12f0?, 0x238b39cf4900?}, {0x238b3500ef35, 0x4}, {0x5573d879b2b7?, 0x5573d9fa6658?}, {0x5573d9f89920, 0x238b34441030}, {0x5573d9f9f960, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1730 +0xb7 fp=0x238b37f3b7e0 sp=0x238b37f3b750 pc=0x5573d847dc37
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e0, {0x238b36e2d860, 0x47}, 0x238b34441030, {0x5573d9f89920, 0x238b34441030}, 0x238b3484e500)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1635 +0x2e5 fp=0x238b37f3bbe8 sp=0x238b37f3b7e0 pc=0x5573d847cc05
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x238b341f7798?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:212 +0x6d2 fp=0x238b37f3bfa8 sp=0x238b37f3bbe8 pc=0x5573d847f8f2
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b37f3bfe0 sp=0x238b37f3bfa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37f3bfe8 sp=0x238b37f3bfe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 62 gp=0x238b35510f00 m=nil [runnable]:
+reflect.valueInterface({0x5573d9f89920?, 0x238b344413b0?, 0x16?}, 0x0?)
+	/usr/lib/golang/src/reflect/value.go:1493 +0x134 fp=0x238b37619478 sp=0x238b37619470 pc=0x5573d741ca34
+reflect.Value.assignTo({0x5573d9f89920?, 0x238b344413b0?, 0x238b37619501?}, {0x5573d87c28d8, 0xb}, 0x5573d9cc8ce0, 0x238b3aee9920)
+	/usr/lib/golang/src/reflect/value.go:3202 +0x109 fp=0x238b37619520 sp=0x238b37619478 pc=0x5573d7416f49
+reflect.Value.Set({0x5573d9cc8ce0?, 0x238b3aee9920?, 0x5573d9cc8ce0?}, {0x5573d9f89920?, 0x238b344413b0?, 0x5573d9c2af20?})
+	/usr/lib/golang/src/reflect/value.go:2158 +0xe6 fp=0x238b37619598 sp=0x238b37619520 pc=0x5573d7413806
+reflect.Value.call({0x5573d9d16860?, 0x238b34a41cc0?, 0x5573d9f89920?}, {0x5573d879b60f, 0x4}, {0x238b3a883720, 0x3, 0x94?})
+	/usr/lib/golang/src/reflect/value.go:455 +0x16e9 fp=0x238b37619af0 sp=0x238b37619598 pc=0x5573d740d6c9
+reflect.Value.Call({0x5573d9d16860?, 0x238b34a41cc0?, 0x5573d9e007c0?}, {0x238b3a883720?, 0x238b37619bf8?, 0x5573d7b148b1?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b37619b68 sp=0x238b37619af0 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9d16860?, 0x238b34a41cc0?, 0x238b3a668fc0?}, {0x238b3a883720?, 0x5573d9fd8200?, 0x5573d9d83960?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b37619c08 sp=0x238b37619b68 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0x238b37619f90?}, {0x5573d9d16860?, 0x238b34a41cc0?, 0x1?}, 0x0, {0x5573d9fb7ef0, 0x238b348bce70}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b37619e48 sp=0x238b37619c08 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0x5573d9c55080?}, 0x5573d73eddbd?, {0x5573d9fb7ef0, 0x238b348bce70}, {0x238b342f0280, 0x3, 0x4}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:148 +0x4f4 fp=0x238b37619fa0 sp=0x238b37619e48 pc=0x5573d7b11c54
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0xc?}, 0x238b348bce70, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x5573d7b0a97c?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b3761a078 sp=0x238b37619fa0 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0x5573d9c55080?}, 0x238b348b5b60)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b3761a160 sp=0x238b3761a078 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0x5573d7b055fc?}, {0x5573d9fb7cb0?, 0x238b348bced0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b3761a1f8 sp=0x238b3761a160 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0x30?}, {0x5573d9fb7d40?, 0x238b348bcc60?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3761a290 sp=0x238b3761a1f8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b3a668f90?, 0x238b347c5780, {0x5573d9f89920?, 0x238b344413b0?, 0x238b343be640?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b3761a328 sp=0x238b3761a290 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b3a668fc0}, {0x5573d9fa1f40, 0x238b343be640}, {0x5573d9f9f960, 0x238b35e681b0}, {0x5573d9f89920, 0x238b344413b0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b3761a398 sp=0x238b3761a328 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b3a648c90}, {0x0, 0x0}, 0x238b343be640, {0x5573d9f9f960, 0x238b35e681b0}, {0x5573d9f89920, 0x238b344413b0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b3761a4b8 sp=0x238b3761a398 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).doInclude(0x238b34a41ca0, {0x5573d9fb12f0, 0x238b3a648c90}, {0x0, 0x0}, 0x238b343be640, {0x238b3aee97f0?, 0x7f1fd4eba108?, 0x10?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/partials/partials.go:183 +0x26b fp=0x238b3761a5a8 sp=0x238b3761a4b8 pc=0x5573d83ca4ab
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).include(0x238b34a41ca0, {0x5573d9fb12f0, 0x238b3a648c90}, {0x238b34265c8c?, 0x5573d73d98b3?}, {0x238b3aee97f0, 0x1, 0x1})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/partials/partials.go:129 +0x105 fp=0x238b3761a680 sp=0x238b3761a5a8 pc=0x5573d83c9f65
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).Include(0x238b34a41ca0, {0x5573d9fb12f0?, 0x238b3a648c90?}, {0x238b34265c8c?, 0x238b3a648c90?}, {0x238b3aee97f0?, 0x5573d7416ed5?, 0x5573d9e007c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/partials/partials.go:112 +0x47 fp=0x238b3761a750 sp=0x238b3761a680 pc=0x5573d83c9d07
+github.com/gohugoio/hugo/tpl/partials.(*Namespace).Include-fm({0x5573d9fb12f0?, 0x238b3a648c90?}, {0x238b34265c8c?, 0x2?}, {0x238b3aee97f0?, 0x4?, 0x0?})
+	<autogenerated>:1 +0x45 fp=0x238b3761a7a0 sp=0x238b3761a750 pc=0x5573d83ce245
+runtime.call64(0x238b35e48a50, 0x238b34a41cc0, 0x0, 0x0, 0x0, 0x38, 0x238b3761aa20)
+	/usr/lib/golang/src/runtime/asm_amd64.s:837 +0x3c fp=0x238b3761a7f0 sp=0x238b3761a7a0 pc=0x5573d73de9bc
+runtime.reflectcall(0x5573d9c2af20?, 0x238b37d09290?, 0x8?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9c2af20?)
+	<autogenerated>:1 +0x2d fp=0x238b3761a830 sp=0x238b3761a7f0 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9d16860?, 0x238b34a41cc0?, 0x5573d9f89920?}, {0x5573d879b60f, 0x4}, {0x238b3a883680, 0x3, 0x0?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b3761ad88 sp=0x238b3761a830 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9d16860?, 0x238b34a41cc0?, 0x5573d9e007c0?}, {0x238b3a883680?, 0x238b3761ae90?, 0x5573d7b148b1?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b3761ae00 sp=0x238b3761ad88 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9d16860?, 0x238b34a41cc0?, 0x238b3a648c90?}, {0x238b3a883680?, 0x5573d9fd8200?, 0x5573d9d83960?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b3761aea0 sp=0x238b3761ae00 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x18?}, {0x5573d9d16860?, 0x238b34a41cc0?, 0x238b3761b220?}, 0x0, {0x5573d9fb7ef0, 0x238b34bd7650}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b3761b0e0 sp=0x238b3761aea0 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFunction(0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x238b3aee9730?}, 0x238b344413b0?, {0x5573d9fb7ef0, 0x238b34bd7650}, {0x238b34bdc3c0, 0x3, 0x4}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:148 +0x4f4 fp=0x238b3761b238 sp=0x238b3761b0e0 pc=0x5573d7b11c54
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x238b3aee9700?}, 0x238b34bd7650, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x238b3aee9700?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:565 +0x1d4 fp=0x238b3761b310 sp=0x238b3761b238 pc=0x5573d7b08434
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x238b344413b0?}, 0x238b34bd2ea0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b3761b3f8 sp=0x238b3761b310 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x2?}, {0x5573d9fb7cb0?, 0x238b34bd76b0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b3761b490 sp=0x238b3761b3f8 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x30?}, {0x5573d9fb7d40?, 0x238b34bd68d0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3761b528 sp=0x238b3761b490 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b3a648c60?, 0x238b347c5400, {0x5573d9f89920?, 0x238b344413b0?, 0x238b3484e500?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b3761b5c0 sp=0x238b3761b528 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b3a648c90}, {0x5573d9fa1f40, 0x238b3484e500}, {0x5573d9f9f960, 0x238b35e58840}, {0x5573d9f89920, 0x238b344413b0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b3761b630 sp=0x238b3761b5c0 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b3a648c30}, {0x0, 0x0}, 0x238b3484e500, {0x5573d9f9f960, 0x238b35e58840}, {0x5573d9f89920, 0x238b344413b0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b3761b750 sp=0x238b3761b630 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.(*Site).renderForTemplate(0x5573d9fa7060?, {0x5573d9fb12f0?, 0x238b3a648c30?}, {0x238b3500ef35, 0x4}, {0x5573d879b2b7?, 0x5573d9fa6658?}, {0x5573d9f89920, 0x238b344413b0}, {0x5573d9f9f960, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1730 +0xb7 fp=0x238b3761b7e0 sp=0x238b3761b750 pc=0x5573d847dc37
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e0, {0x238b36e2d9a0, 0x48}, 0x238b344413b0, {0x5573d9f89920, 0x238b344413b0}, 0x238b3484e500)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1635 +0x2e5 fp=0x238b3761bbe8 sp=0x238b3761b7e0 pc=0x5573d847cc05
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x238b341f6f98?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:212 +0x6d2 fp=0x238b3761bfa8 sp=0x238b3761bbe8 pc=0x5573d847f8f2
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b3761bfe0 sp=0x238b3761bfa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3761bfe8 sp=0x238b3761bfe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 63 gp=0x238b355110e0 m=nil [runnable]:
+image/jpeg.(*encoder).writeBlock(0x238b3762acc0, 0x238b3702c6bc, 0x0, 0xc)
+	/usr/lib/golang/src/image/jpeg/writer.go:362 +0x2c8 fp=0x238b3702be78 sp=0x238b3702be70 pc=0x5573d7d4c068
+image/jpeg.(*encoder).writeSOS(0x238b3762acc0, {0x5573d9fadd90, 0x238b35b22600})
+	/usr/lib/golang/src/image/jpeg/writer.go:551 +0x37d fp=0x238b3702c820 sp=0x238b3702be78 pc=0x5573d7d4cb5d
+image/jpeg.Encode({0x7f1f8c3684c8, 0x238b35e1dd00}, {0x5573d9fadd90, 0x238b35b22600}, 0x238b3702c928)
+	/usr/lib/golang/src/image/jpeg/writer.go:634 +0x3a8 fp=0x238b3702c880 sp=0x238b3702c820 pc=0x5573d7d4d148
+github.com/gohugoio/hugo/resources/images.(*Codec).EncodeTo(0x238b34651400, {0x1, {0x0, 0x0}, {0x238b357ce430, 0x10}, 0x1e, 0x0, {0x0, 0x0}, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/images/codec.go:96 +0x31b fp=0x238b3702ca70 sp=0x238b3702c880 pc=0x5573d7ef3f9b
+github.com/gohugoio/hugo/resources/images.(*Image).EncodeTo(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/images/image.go:62
+github.com/gohugoio/hugo/resources.(*ImageCache).getOrCreate.func1.2({{0x238b37815bd1?, 0x5573d9eed220?}}, {0x7f1f8c3684a0, 0x238b35e1dd00})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image_cache.go:93 +0x3f4 fp=0x238b3702ccc0 sp=0x238b3702ca70 pc=0x5573d7fa57d4
+github.com/gohugoio/hugo/cache/filecache.(*Cache).ReadOrCreate(0x238b349c0700, {0x238b37815bd0, 0x4f}, 0x238b3702ce68, 0x238b3702cde8)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/filecache/filecache.go:187 +0x24a fp=0x238b3702cd88 sp=0x238b3702ccc0 pc=0x5573d7c7328a
+github.com/gohugoio/hugo/resources.(*ImageCache).getOrCreate.func1({0x238b37815c20?, 0x4f?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image_cache.go:103 +0x19f fp=0x238b3702cef8 sp=0x238b3702cd88 pc=0x5573d7fa51df
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate.func1(0x238b3702cfc7?, 0x238b37815c20, {0x238b37815c20?, 0x238b36b574a0?}, 0x1?, 0x4e?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:146 +0x9d fp=0x238b3702cf88 sp=0x238b3702cef8 pc=0x5573d7fbac1d
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate(0x5573d9fdb7e0, {0x238b37815c20, 0x4f}, 0x238b3702d218)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:150 +0x16e fp=0x238b3702cff8 sp=0x238b3702cf88 pc=0x5573d7fbab2e
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).doGetOrCreate(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:411
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).GetOrCreate(0x5573d9fe1620, {0x238b37815c20, 0x4f}, 0x238b3702d218)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:399 +0x3a fp=0x238b3702d048 sp=0x238b3702cff8 pc=0x5573d7fba43a
+github.com/gohugoio/hugo/resources.(*ImageCache).getOrCreate(0x238b3417f338, 0x238b34d3cc80, {0x1, {0x0, 0x0}, {0x238b357ce430, 0x10}, 0x1e, 0x0, {0x0, ...}, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image_cache.go:53 +0x3b1 fp=0x238b3702d2e8 sp=0x238b3702d048 pc=0x5573d7fa4ff1
+github.com/gohugoio/hugo/resources.(*imageResource).doWithImageConfig(0x238b34d3cc80, {0x1, {0x0, 0x0}, {0x238b357ce430, 0x10}, 0x1e, 0x0, {0x0, 0x0}, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:409 +0xfc fp=0x238b3702d3d0 sp=0x238b3702d2e8 pc=0x5573d7fa2adc
+github.com/gohugoio/hugo/resources.(*imageResource).processOptions(0x238b34d3cc80, {0x238b35e1dbc0?, 0x4?, 0x238b34d3cc80?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:376 +0x22b fp=0x238b3702d640 sp=0x238b3702d3d0 pc=0x5573d7fa244b
+github.com/gohugoio/hugo/resources.(*imageResource).processActionSpec(0x238b34d3cc80, {0x0, 0x0}, {0x238b343a68ef?, 0x5573d7416ed5?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:360 +0x12b fp=0x238b3702d6f0 sp=0x238b3702d640 pc=0x5573d7fa208b
+github.com/gohugoio/hugo/resources.(*imageResource).Process(0x238b35e1dba0?, {0x238b343a68ef?, 0x238b34abc460?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/image.go:272 +0x25 fp=0x238b3702d728 sp=0x238b3702d6f0 pc=0x5573d7fa0d85
+github.com/gohugoio/hugo/resources.(*resourceAdapter).Process(0x0?, {0x238b343a68ef, 0x3})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/resources/transform.go:246 +0x33 fp=0x238b3702d750 sp=0x238b3702d728 pc=0x5573d7fae073
+runtime.call32(0x238b35e73800, 0x238b35246458, 0x0, 0x0, 0x0, 0x18, 0x238b3702d9b0)
+	/usr/lib/golang/src/runtime/asm_amd64.s:836 +0x3c fp=0x238b3702d780 sp=0x238b3702d750 pc=0x5573d73de93c
+runtime.reflectcall(0x5573d9c55080?, 0x238b35b0b5a0?, 0x4?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9c55080?)
+	<autogenerated>:1 +0x2d fp=0x238b3702d7c0 sp=0x238b3702d780 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9f6b0a0?, 0x238b35e1dba0?, 0x5573d9fd8200?}, {0x5573d879b60f, 0x4}, {0x238b378c7c98, 0x1, 0x238b3702dda8?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b3702dd18 sp=0x238b3702d7c0 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9f6b0a0?, 0x238b35e1dba0?, 0x7f1f8c3f0530?}, {0x238b378c7c98?, 0x94?, 0x5573d9e17240?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b3702dd90 sp=0x238b3702dd18 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9f6b0a0?, 0x238b35e1dba0?, 0x238b35b0b560?}, {0x238b378c7c98?, 0x5573d9fd8200?, 0x5573d9c55080?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b3702de30 sp=0x238b3702dd90 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x238b357ce401?}, {0x5573d9f6b0a0?, 0x238b35e1dba0?, 0x1?}, 0x0, {0x5573d9fb7b90, 0x238b34c51440}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b3702e070 sp=0x238b3702de30 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalField(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x3?}, {0x238b343a68e6, 0x7}, {0x5573d9fb7b90, 0x238b34c51440}, {0x238b34418700, 0x2, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:193 +0x3db fp=0x238b3702e2f8 sp=0x238b3702e070 pc=0x5573d7b1209b
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldChain(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x5573d9c87440?}, {0x5573d9e17240?, 0x238b35b0b560?, 0x238b34198d00?}, {0x5573d9fb7b90, 0x238b34c51440}, {0x238b34c52080, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:668 +0x1d5 fp=0x238b3702e3b0 sp=0x238b3702e2f8 pc=0x5573d7b090f5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldNode(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:632
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x5573d9e17240?}, 0x238b34c51410, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x238b3702e5d0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:560 +0x17f fp=0x238b3702e488 sp=0x238b3702e3b0 pc=0x5573d7b083df
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x1?}, 0x238b34c4cc60)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b3702e570 sp=0x238b3702e488 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x5573d9c55480?}, {0x5573d9fb7cb0?, 0x238b34c51470})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b3702e608 sp=0x238b3702e570 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x5573d9e17240?}, {0x5573d9fb7d40?, 0x238b34c51380?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3702e6a0 sp=0x238b3702e608 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b35b22500, 0xa, {0x5573d9e17240?, 0x238b35b0b560?, 0x238b34c4cba0?}, 0x5573d9e902a0?, 0x238b34c51380, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:311 +0x12a fp=0x238b3702e738 sp=0x238b3702e6a0 pc=0x5573d7b065ea
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x16?}, {0x5573d9fb7cf8?, 0x238b34c4b740?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:278 +0x21b fp=0x238b3702e7d0 sp=0x238b3702e738 pc=0x5573d7b0633b
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35b22500, {0x5573d9e17240?, 0x238b35b0b560?, 0x5573d9c55080?}, {0x5573d9fb7d40?, 0x238b34c511d0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3702e868 sp=0x238b3702e7d0 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b35b22500, 0x13, {0x5573d9e902a0?, 0x238b378d61a0?, 0x238b34c4cae0?}, 0x0?, 0x238b34c511d0, 0x238b34c51d40)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:309 +0xfd fp=0x238b3702e900 sp=0x238b3702e868 pc=0x5573d7b065bd
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35b22500, {0x5573d9e902a0?, 0x238b378d61a0?, 0x0?}, {0x5573d9fb7dd0?, 0x238b34c4bb00?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:292 +0x153 fp=0x238b3702e998 sp=0x238b3702e900 pc=0x5573d7b06273
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35b22500, {0x5573d9e902a0?, 0x238b378d61a0?, 0x30?}, {0x5573d9fb7d40?, 0x238b34c50f00?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b3702ea30 sp=0x238b3702e998 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b36b56420?, 0x238b35b22500, {0x5573d9e902a0?, 0x238b378d61a0?, 0x238b347008c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b3702eac8 sp=0x238b3702ea30 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b36b56600}, {0x5573d9fa1f40, 0x238b347008c0}, {0x5573d9f9f960, 0x238b35e49050}, {0x5573d9e902a0, 0x238b378d61a0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b3702eb38 sp=0x238b3702eac8 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b368ed320}, {0x0, 0x0}, 0x238b347008c0, {0x5573d9f9f960, 0x238b35e49050}, {0x5573d9e902a0, 0x238b378d61a0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b3702ec58 sp=0x238b3702eb38 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.renderShortcodeWithPage({0x5573d9fb12f0, 0x238b368ed320}, 0x238b349c7008, 0x238b347008c0, 0x238b378d61a0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/shortcode.go:781 +0xf7 fp=0x238b3702ed10 sp=0x238b3702ec58 pc=0x5573d846f0f7
+github.com/gohugoio/hugo/hugolib.doRenderShortcode({0x5573d9fb12f0, 0x238b368ed320}, 0x0, 0x238b349c7008, 0x238b355b5950, 0x0, 0x238b37375d40, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/shortcode.go:512 +0x970 fp=0x238b3702f2d0 sp=0x238b3702ed10 pc=0x5573d846aab0
+github.com/gohugoio/hugo/hugolib.(*shortcodeParseInfo).prepareShortcodesForPage.prepareShortcode.func2({0x5573d9fb12f0, 0x238b368ed320})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/shortcode.go:347 +0x1ec fp=0x238b3702f420 sp=0x238b3702f2d0 pc=0x5573d846c72c
+github.com/gohugoio/hugo/hugolib.shortcodeRenderFunc.renderShortcode(0x238b3702f470?, {0x5573d9fb12f0?, 0x238b368ed320?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/shortcode_page.go:37 +0x26 fp=0x238b3702f440 sp=0x238b3702f420 pc=0x5573d846f346
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered.func1.2.2({0x5573d9fb12f0, 0x238b368ed320}, {0x238b353f36e0, 0x1b})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:516 +0xa2 fp=0x238b3702f4b0 sp=0x238b3702f440 pc=0x5573d844f3a2
+github.com/gohugoio/hugo/hugolib.expandShortcodeTokens({0x5573d9fb12f0, 0x238b368ed320}, {0x238b34ec1b80, 0x5f, 0x80}, 0x238b3702f7b0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/shortcode.go:754 +0x1fc fp=0x238b3702f578 sp=0x238b3702f4b0 pc=0x5573d846ec7c
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered.func1.2(0x238b35e1d940, 0x238b35c08b80, 0x0, {{0x5573d9f5bd00, 0x238b378d8000}, 0x5573da099e60, {0x238b353f3380, 0x20}, 0x238b368ed770, {0x238b351a10e0, ...}}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:527 +0x2ed fp=0x238b3702f818 sp=0x238b3702f578 pc=0x5573d844eb0d
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered.func1({0x238b357ce310?, 0x9?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:564 +0x258 fp=0x238b3702f9c0 sp=0x238b3702f818 pc=0x5573d844e558
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate.func1(0x238b3702fa8f?, 0x238b357ce310, {0x238b357ce310?, 0x238b368ed350?}, 0x5573d879b2b7?, 0x4?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:146 +0x9d fp=0x238b3702fa50 sp=0x238b3702f9c0 pc=0x5573d7fbac1d
+github.com/gohugoio/hugo/vendor/github.com/bep/lazycache.(*Cache[...]).GetOrCreate(0x5573d9fd9aa0, {0x238b357ce310, 0x9}, 0x238b3702fba8)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/lazycache/lazycache.go:150 +0x16e fp=0x238b3702fac0 sp=0x238b3702fa50 pc=0x5573d7fbab2e
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).doGetOrCreate(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:411
+github.com/gohugoio/hugo/cache/dynacache.(*Partition[...]).GetOrCreate(0x5573d9fe0a20, {0x238b357ce310, 0x9}, 0x238b3702fba8)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/cache/dynacache/dynacache.go:399 +0x3a fp=0x238b3702fb10 sp=0x238b3702fac0 pc=0x5573d7fba43a
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).contentRendered(0x238b35e1d940, {0x5573d9fb12f0?, 0x238b368ed140?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:461 +0x15e fp=0x238b3702fbf8 sp=0x238b3702fb10 pc=0x5573d844e19e
+github.com/gohugoio/hugo/hugolib.(*cachedContentScope).Content(0x238b35e1d940, {0x5573d9fb12f0?, 0x238b35e48690?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__content.go:815 +0x4a fp=0x238b3702fcc0 sp=0x238b3702fbf8 pc=0x5573d8450f6a
+github.com/gohugoio/hugo/hugolib.(*pageContentOutput).Content(0x238b35e48690?, {0x5573d9fb12f0, 0x238b35e48690})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/page__per_output.go:157 +0x48 fp=0x238b3702fd00 sp=0x238b3702fcc0 pc=0x5573d8460528
+github.com/gohugoio/hugo/hugolib.(*pageState).Content(0x0?, {0x5573d9fb12f0?, 0x238b35e48690?})
+	<autogenerated>:1 +0x30 fp=0x238b3702fd28 sp=0x238b3702fd00 pc=0x5573d84b54b0
+runtime.call32(0x238b37639d40, 0x238b352463f8, 0x0, 0x0, 0x0, 0x18, 0x238b3702ff88)
+	/usr/lib/golang/src/runtime/asm_amd64.s:836 +0x3c fp=0x238b3702fd58 sp=0x238b3702fd28 pc=0x5573d73de93c
+runtime.reflectcall(0x5573d9e007c0?, 0x238b35e48690?, 0x4?, 0xd87f47da?, 0x5573?, 0x12?, 0x5573d9d83960?)
+	<autogenerated>:1 +0x2d fp=0x238b3702fd98 sp=0x238b3702fd58 pc=0x5573d73e27cd
+reflect.Value.call({0x5573d9f89920?, 0x238b36094700?, 0x238b37030368?}, {0x5573d879b60f, 0x4}, {0x238b378c7a58, 0x1, 0x238b37030380?})
+	/usr/lib/golang/src/reflect/value.go:586 +0xf06 fp=0x238b370302f0 sp=0x238b3702fd98 pc=0x5573d740cee6
+reflect.Value.Call({0x5573d9f89920?, 0x238b36094700?, 0x5573d9e007c0?}, {0x238b378c7a58?, 0x238b370303f8?, 0x5573d7b148b1?})
+	/usr/lib/golang/src/reflect/value.go:369 +0xb9 fp=0x238b37030368 sp=0x238b370302f0 pc=0x5573d740bd99
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.safeCall({0x5573d9f89920?, 0x238b36094700?, 0x238b35e48690?}, {0x238b378c7a58?, 0x5573d9fd8200?, 0x5573d9d83960?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/funcs.go:366 +0x86 fp=0x238b37030408 sp=0x238b37030368 pc=0x5573d7b0d186
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCall(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x238b357ce2e1?}, {0x5573d9f89920?, 0x238b36094700?, 0x13?}, 0x0, {0x5573d9fb7b90, 0x238b34932360}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:412 +0xdc7 fp=0x238b37030648 sp=0x238b37030408 pc=0x5573d7b13b67
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalField(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d74704c7?}, {0x238b345c5c9c, 0x7}, {0x5573d9fb7b90, 0x238b34932360}, {0x238b349a4740, 0x1, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:190 +0x4cd fp=0x238b370308d0 sp=0x238b37030648 pc=0x5573d7b1218d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldChain(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d73edbc5?}, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573da08f1e0?}, {0x5573d9fb7b90, 0x238b34932360}, {0x238b349a4730, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:668 +0x1d5 fp=0x238b37030988 sp=0x238b370308d0 pc=0x5573d7b090f5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalFieldNode(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:632
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalCommand(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0xc?}, 0x238b34932330, {0x5573d9d0ec40?, 0x5573da7c9fe0?, 0x5573d7b0a97c?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:560 +0x17f fp=0x238b37030a60 sp=0x238b37030988 pc=0x5573d7b083df
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).evalPipeline(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d9c55080?}, 0x238b348f3e00)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:534 +0x125 fp=0x238b37030b48 sp=0x238b37030a60 pc=0x5573d7b07e45
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d9c55480?}, {0x5573d9fb7cb0?, 0x238b34932390})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:268 +0x1a5 fp=0x238b37030be0 sp=0x238b37030b48 pc=0x5573d7b062c5
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x4?}, {0x5573d9fb7d40?, 0x238b349320f0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37030c78 sp=0x238b37030be0 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b35a34680, 0xa, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x238b35a6d530?}, 0x5573d9f6c1a0?, 0x238b349320f0, 0x0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:311 +0x12a fp=0x238b37030d10 sp=0x238b37030c78 pc=0x5573d7b065ea
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d9c55480?}, {0x5573d9fb7cf8?, 0x238b343402c0?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:278 +0x21b fp=0x238b37030da8 sp=0x238b37030d10 pc=0x5573d7b0633b
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x1?}, {0x5573d9fb7d40?, 0x238b34932030?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37030e40 sp=0x238b37030da8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkIfOrWith(0x238b35a34680, 0xa, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d7b08345?}, 0x5573d9d0ec40?, 0x238b34927b60, 0x238b34932030)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:314 +0x15c fp=0x238b37030ed8 sp=0x238b37030e40 pc=0x5573d7b0661c
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x238b37415058?}, {0x5573d9fb7cf8?, 0x238b34340300?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:278 +0x21b fp=0x238b37030f70 sp=0x238b37030ed8 pc=0x5573d7b0633b
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x238b34a41320?}, {0x5573d9fb7d40?, 0x238b34927a70?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37031008 sp=0x238b37030f70 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkRange.func2({0x5573d9c552c0?, 0x5573d8bf4fe0?, 0x238b349c4ee0?}, {0x5573d9f6c1a0?, 0x238b37e48688?, 0x5573d7b04e94?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:397 +0x2b2 fp=0x238b370310c0 sp=0x238b37031008 pc=0x5573d7b078d2
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkRange(0x238b35a34680, {0x5573d9f89920?, 0x238b349c4ee0?, 0x238b349c4ee0?}, 0x238b34340380)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:421 +0xc06 fp=0x238b37031250 sp=0x238b370310c0 pc=0x5573d7b072e6
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f89920?, 0x238b349c4ee0?, 0x30?}, {0x5573d9fb7d88?, 0x238b34340380?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:284 +0x24f fp=0x238b370312e8 sp=0x238b37031250 pc=0x5573d7b0636f
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34680, {0x5573d9f89920?, 0x238b349c4ee0?, 0x5573d9c55080?}, {0x5573d9fb7d40?, 0x238b34926d20?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37031380 sp=0x238b370312e8 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walkTemplate(0x238b35a34000, {0x5573d9f89920?, 0x238b349c4ee0?, 0x5573d9c55080?}, 0x238b342ac600)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:516 +0x2ca fp=0x238b370313f8 sp=0x238b37031380 pc=0x5573d7b07cca
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34000, {0x5573d9f89920?, 0x238b349c4ee0?, 0x5573d738573c?}, {0x5573d9fb7ea8?, 0x238b342ac600?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:286 +0x179 fp=0x238b37031490 sp=0x238b370313f8 pc=0x5573d7b06299
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*state).walk(0x238b35a34000, {0x5573d9f89920?, 0x238b349c4ee0?, 0x30?}, {0x5573d9fb7d40?, 0x238b34901170?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/exec.go:281 +0x31d fp=0x238b37031528 sp=0x238b37031490 pc=0x5573d7b0643d
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*Template).executeWithState(0x238b35e48660?, 0x238b35a34000, {0x5573d9f89920?, 0x238b349c4ee0?, 0x238b346fe640?})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:106 +0x11e fp=0x238b370315c0 sp=0x238b37031528 pc=0x5573d7b1169e
+github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate.(*executer).ExecuteWithContext(0x238b349c2ee0, {0x5573d9fb12f0, 0x238b35e48690}, {0x5573d9fa1f40, 0x238b346fe640}, {0x5573d9f9f960, 0x238b35e485a0}, {0x5573d9f89920, 0x238b349c4ee0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/hugo_template.go:93 +0x2ec fp=0x238b37031630 sp=0x238b370315c0 pc=0x5573d7b114cc
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContextAndKey(0x238b349c7008, {0x5573d9fb12f0, 0x238b35e48630}, {0x0, 0x0}, 0x238b346fe640, {0x5573d9f9f960, 0x238b35e485a0}, {0x5573d9f89920, 0x238b349c4ee0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:540 +0x3ad fp=0x238b37031750 sp=0x238b37031630 pc=0x5573d7f775cd
+github.com/gohugoio/hugo/tpl/tplimpl.(*TemplateStore).ExecuteWithContext(...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/tpl/tplimpl/templatestore.go:504
+github.com/gohugoio/hugo/hugolib.(*Site).renderForTemplate(0x5573d9fa7060?, {0x5573d9fb12f0?, 0x238b35e48630?}, {0x5573d879b3cb, 0x4}, {0x5573d879b2b7?, 0x5573d9fa6658?}, {0x5573d9f89920, 0x238b349c4ee0}, {0x5573d9f9f960, ...}, ...)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1730 +0xb7 fp=0x238b370317e0 sp=0x238b37031750 pc=0x5573d847dc37
+github.com/gohugoio/hugo/hugolib.(*Site).renderAndWritePage(0x238b34a42a00, 0x238b34a442e0, {0x238b354ecd20, 0xb}, 0x238b349c4ee0, {0x5573d9f89920, 0x238b349c4ee0}, 0x238b346fe640)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site.go:1635 +0x2e5 fp=0x238b37031be8 sp=0x238b370317e0 pc=0x5573d847cc05
+github.com/gohugoio/hugo/hugolib.pageRenderer(0x238b36646000, 0x238b34a42a00, 0x238b363fe380, 0x238b363675e0, 0x238b341f6798?)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:212 +0x6d2 fp=0x238b37031fa8 sp=0x238b37031be8 pc=0x5573d847f8f2
+github.com/gohugoio/hugo/hugolib.(*Site).renderPages.gowrap2()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x27 fp=0x238b37031fe0 sp=0x238b37031fa8 pc=0x5573d847f1c7
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37031fe8 sp=0x238b37031fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/hugolib.(*Site).renderPages in goroutine 51
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/hugolib/site_render.go:84 +0x10a
+
+goroutine 318 gp=0x238b34785a40 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b39995fe0 sp=0x238b39995fd8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b39995fe8 sp=0x238b39995fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 317 gp=0x238b34804b40 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b38687fe0 sp=0x238b38687fd8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b38687fe8 sp=0x238b38687fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 319 gp=0x238b348050e0 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b37717fe0 sp=0x238b37717fd8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37717fe8 sp=0x238b37717fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 316 gp=0x238b34604960 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b35b1ffe0 sp=0x238b35b1ffd8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b35b1ffe8 sp=0x238b35b1ffe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 315 gp=0x238b3a4ba3c0 m=nil [sync.WaitGroup.Wait]:
+runtime.gopark(0x238b378d1e70?, 0x5573d7370474?, 0xc0?, 0xfd?, 0x12?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b378d1e10 sp=0x238b378d1df0 pc=0x5573d73d850e
+runtime.goparkunlock(...)
+	/usr/lib/golang/src/runtime/proc.go:468
+runtime.semacquire1(0x238b369ab0d0, 0x0, 0x1, 0x0, 0x19)
+	/usr/lib/golang/src/runtime/sema.go:192 +0x236 fp=0x238b378d1e78 sp=0x238b378d1e10 pc=0x5573d73b55f6
+sync.runtime_SemacquireWaitGroup(0x238b37c98240?, 0xc0?)
+	/usr/lib/golang/src/runtime/sema.go:114 +0x2e fp=0x238b378d1eb0 sp=0x238b378d1e78 pc=0x5573d73d9cce
+sync.(*WaitGroup).Wait(0x238b369ab0c8)
+	/usr/lib/golang/src/sync/waitgroup.go:206 +0x85 fp=0x238b378d1ed8 sp=0x238b378d1eb0 pc=0x5573d73eee85
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Wait(0x238b369ab0c0)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:56 +0x1e fp=0x238b378d1ef8 sp=0x238b378d1ed8 pc=0x5573d7d8805e
+github.com/gohugoio/hugo/internal/warpc.newDispatcher[...].func4()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:701 +0x21f fp=0x238b378d1fa0 sp=0x238b378d1ef8 pc=0x5573d7ec369f
+github.com/gohugoio/hugo/internal/warpc.newDispatcher[...].func5()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:714 +0x2c fp=0x238b378d1fe0 sp=0x238b378d1fa0 pc=0x5573d7ec342c
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b378d1fe8 sp=0x238b378d1fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/internal/warpc.newDispatcher[...] in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:712 +0xdcb
+
+goroutine 320 gp=0x238b361f0b40 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b3460b7e0 sp=0x238b3460b7d8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b3460b7e8 sp=0x238b3460b7e0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 321 gp=0x238b361f0d20 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b346067e0 sp=0x238b346067d8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b346067e8 sp=0x238b346067e0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 354 gp=0x238b361f0f00 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b346087e0 sp=0x238b346087d8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b346087e8 sp=0x238b346087e0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 355 gp=0x238b361f10e0 m=nil [select]:
+runtime.gopark(0x238b34607dc8?, 0x2?, 0x0?, 0x0?, 0x238b34607d9c?)
+	/usr/lib/golang/src/runtime/proc.go:462 +0xce fp=0x238b37486c38 sp=0x238b37486c18 pc=0x5573d73d850e
+runtime.selectgo(0x238b37486dc8, 0x238b34607d98, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/lib/golang/src/runtime/select.go:351 +0xaa5 fp=0x238b37486d68 sp=0x238b37486c38 pc=0x5573d73b4745
+io.(*pipe).read(0x238b35c0cde0, {0x238b39c59da0, 0x8, 0x5573d73d5d45?})
+	/usr/lib/golang/src/io/pipe.go:57 +0xa7 fp=0x238b37486df8 sp=0x238b37486d68 pc=0x5573d7424bc7
+io.(*PipeReader).Read(...)
+	/usr/lib/golang/src/io/pipe.go:134
+github.com/gohugoio/hugo/common/hugio.(*PipeReadWriteCloser).Read(0x5573d73d561a?, {0x238b39c59da0?, 0x238b34607e60?, 0x5573d7370ec5?})
+	<autogenerated>:1 +0x1d fp=0x238b37486e28 sp=0x238b37486df8 pc=0x5573d780b1dd
+io.ReadAtLeast({0x5573d9f9f940, 0x238b3c11c4d0}, {0x238b39c59da0, 0x8, 0x8}, 0x8)
+	/usr/lib/golang/src/io/io.go:335 +0x8e fp=0x238b37486e70 sp=0x238b37486e28 pc=0x5573d7422b6e
+io.ReadFull(...)
+	/usr/lib/golang/src/io/io.go:354
+github.com/gohugoio/hugo/vendor/github.com/bep/textandbinarywriter.ReadBlobHeader({0x5573d9f9f940, 0x238b3c11c4d0})
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/github.com/bep/textandbinarywriter/writer.go:166 +0x4a fp=0x238b37486eb8 sp=0x238b37486e70 pc=0x5573d7d87cea
+github.com/gohugoio/hugo/internal/warpc.(*dispatcher[...]).inputBlobs(0x5573d9fd1d00)
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:313 +0x71 fp=0x238b37486f58 sp=0x238b37486eb8 pc=0x5573d7ec6131
+github.com/gohugoio/hugo/internal/warpc.newDispatcher[...].func7()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/internal/warpc/warpc.go:732 +0x1f fp=0x238b37486f78 sp=0x238b37486f58 pc=0x5573d7ec339f
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:93 +0x50 fp=0x238b37486fe0 sp=0x238b37486f78 pc=0x5573d7d881b0
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b37486fe8 sp=0x238b37486fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 58
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 356 gp=0x238b361f12c0 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b34607fe0 sp=0x238b34607fd8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b34607fe8 sp=0x238b34607fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 315
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 357 gp=0x238b361f14a0 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b346077e0 sp=0x238b346077d8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b346077e8 sp=0x238b346077e0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 315
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95
+
+goroutine 358 gp=0x238b361f1680 m=nil [runnable]:
+github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go.func1()
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 fp=0x238b34606fe0 sp=0x238b34606fd8 pc=0x5573d7d88160
+runtime.goexit({})
+	/usr/lib/golang/src/runtime/asm_amd64.s:1771 +0x1 fp=0x238b34606fe8 sp=0x238b34606fe0 pc=0x5573d73e0001
+created by github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup.(*Group).Go in goroutine 315
+	/builddir/build/BUILD/hugo-0.159.0-build/hugo-0.159.0/_build/src/github.com/gohugoio/hugo/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x95

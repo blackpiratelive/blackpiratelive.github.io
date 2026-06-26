@@ -1,1 +1,0 @@
-{{ partial "feeds/atom.xml" . }}
