@@ -1,0 +1,276 @@
+{{ define "main" }}
+<article class="page uses-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-description">The hardware, software, services, and gear I use on a daily basis.</p>
+  </header>
+
+  <div class="page-content">
+    <div class="uses-grid">
+      
+      <!-- Category: Laptop -->
+      <div class="uses-card">
+        <h2 class="card-section-title"><i data-lucide="laptop"></i> Laptop Setup</h2>
+        <ul class="uses-list">
+          <li>
+            <div class="item-icon"><i data-lucide="cpu"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Operating System</span>
+              <strong class="item-value">Linux (Cachy OS)</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="layout"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Window Manager</span>
+              <strong class="item-value">Hyprland</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="grid"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Application Menu</span>
+              <strong class="item-value">Rofi</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="minus"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Status Bar</span>
+              <strong class="item-value">Waybar</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="image"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Wallpaper Picker</span>
+              <strong class="item-value">Hyprpaper</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="folder"></i></div>
+            <div class="item-detail">
+              <span class="item-label">File Manager</span>
+              <strong class="item-value">Thunar</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="code"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Text Editor</span>
+              <strong class="item-value">Neovim</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="globe"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Web Browser</span>
+              <strong class="item-value">Qute Browser, Zen Browser</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="key"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Password Manager</span>
+              <strong class="item-value">Keepmenu with Rofi</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Category: Mobile -->
+      <div class="uses-card">
+        <h2 class="card-section-title"><i data-lucide="smartphone"></i> Mobile Device</h2>
+        <ul class="uses-list">
+          <li>
+            <div class="item-icon"><i data-lucide="info"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Model Name</span>
+              <strong class="item-value">Redmi K20 Pro</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="cpu"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Operating System</span>
+              <strong class="item-value">Voltage OS (GrapheneOS fork)</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="globe"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Browser</span>
+              <strong class="item-value">Firefox</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="file-text"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Text Editor</span>
+              <strong class="item-value">Plasma File Manager</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="folder"></i></div>
+            <div class="item-detail">
+              <span class="item-label">File Manager</span>
+              <strong class="item-value">Plasma File Manager</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Category: Services -->
+      <div class="uses-card">
+        <h2 class="card-section-title"><i data-lucide="cloud"></i> Web Services</h2>
+        <ul class="uses-list">
+          <li>
+            <div class="item-icon"><i data-lucide="key"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Password Manager</span>
+              <strong class="item-value">KeePass (Google Drive Sync)</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="image"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Photo Backup</span>
+              <strong class="item-value">Google Photos</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="music"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Music Stream</span>
+              <strong class="item-value">Self-hosted (Google Drive)</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="message-square"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Chatting/Texting</span>
+              <strong class="item-value">WhatsApp</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Category: Other Software -->
+      <div class="uses-card">
+        <h2 class="card-section-title"><i data-lucide="package"></i> Other Apps</h2>
+        <ul class="uses-list">
+          <li>
+            <div class="item-icon"><i data-lucide="check-square"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Flashcards</span>
+              <strong class="item-value">Anki (Desktop) & AnkiDroid (Mobile)</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="refresh-cw"></i></div>
+            <div class="item-detail">
+              <span class="item-label">Sync Tool</span>
+              <strong class="item-value">DavX5 (Mobile CalDAV/CardDAV)</strong>
+            </div>
+          </li>
+          <li>
+            <div class="item-icon"><i data-lucide="sparkles"></i></div>
+            <div class="item-detail">
+              <span class="item-label">AI Coding Assistant</span>
+              <strong class="item-value">Antigravity</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<style>
+.uses-page {
+  max-width: 100%;
+}
+.uses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+.uses-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.015);
+  transition: all 0.2s ease;
+}
+.uses-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 16px rgba(0, 64, 221, 0.04);
+}
+.card-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0 0 var(--spacing-md);
+  font-size: 1.15rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+}
+.card-section-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-color);
+}
+.uses-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.uses-list li {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+.item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+.item-icon svg {
+  width: 15px;
+  height: 15px;
+}
+.item-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.item-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-sans);
+}
+.item-value {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+</style>
+{{ end }}

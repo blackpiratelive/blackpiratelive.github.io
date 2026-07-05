@@ -1,0 +1,308 @@
+{{ define "main" }}
+{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}
+{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $watchedShows = . | transform.Unmarshal }}{{ end }}
+
+{{ $moviesCount := len $watchedMovies }}
+{{ $showsCount := len $watchedShows }}
+
+{{ $episodesCount := 0 }}
+{{ $showsWatchTime := 0 }}
+{{ range $watchedShows }}
+    {{ $show := .show }}
+    {{ if .seasons }}
+        {{ range .seasons }}
+            {{ if .episodes }}
+                {{ $epCount := len .episodes }}
+                {{ $episodesCount = add $episodesCount $epCount }}
+                {{ $showsWatchTime = add $showsWatchTime (mul $epCount (int ($show.runtime | default 0))) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ $moviesWatchTime := 0 }}
+{{ range $watchedMovies }}
+    {{ $moviesWatchTime = add $moviesWatchTime (int (.movie.runtime | default 0)) }}
+{{ end }}
+
+{{ $totalWatchTimeMinutes := add $moviesWatchTime $showsWatchTime }}
+{{ $totalWatchTimeDays := div $totalWatchTimeMinutes 1440 }}
+{{ $totalWatchTimeHours := div (mod $totalWatchTimeMinutes 1440) 60 }}
+
+{{ $blogCount := len (where site.RegularPages "Section" "blog") }}
+{{ $thoughtsCount := len (where site.RegularPages "Section" "thoughts") }}
+{{ $booksCount := len (where site.RegularPages "Section" "books") }}
+{{ $galleryCount := 0 }}{{/* Count files in gallery */}}
+
+<article class="page stats-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-description">Automated build-time statistics for writing, reading, and cinema logging.</p>
+  </header>
+
+  <div class="page-content">
+    <div class="stats-dashboard">
+      
+      <!-- Card Group: Site Stats -->
+      <section class="stats-group">
+        <h2 class="stats-group-title"><i data-lucide="database" class="group-icon"></i> Site Content Stats</h2>
+        <div class="stats-grid">
+          
+          <div class="stat-card">
+            <div class="stat-icon icon-blog"><i data-lucide="pen-tool"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">{{ $blogCount }}</span>
+              <span class="stat-label">Blog Posts</span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon icon-thoughts"><i data-lucide="message-square"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">{{ $thoughtsCount }}</span>
+              <span class="stat-label">Thoughts & Notes</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-books"><i data-lucide="book-open"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">{{ $booksCount }}</span>
+              <span class="stat-label">Book Reviews</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Card Group: Cinema Stats -->
+      <section class="stats-group">
+        <h2 class="stats-group-title"><i data-lucide="film" class="group-icon"></i> Cinema & TV Logs</h2>
+        <div class="stats-grid">
+          
+          <div class="stat-card">
+            <div class="stat-icon icon-movies"><i data-lucide="film"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">{{ $moviesCount }}</span>
+              <span class="stat-label">Movies Logged</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-shows"><i data-lucide="tv"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">{{ $showsCount }}</span>
+              <span class="stat-label">TV Shows Tracked</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-episodes"><i data-lucide="play"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">{{ $episodesCount }}</span>
+              <span class="stat-label">Episodes Watched</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Watch Time Highlight Box -->
+        <div class="watch-time-box">
+          <div class="watch-time-header">
+            <div class="watch-time-icon"><i data-lucide="activity"></i></div>
+            <div>
+              <h3 class="watch-time-title">Total Watch Time</h3>
+              <p class="watch-time-subtitle">Cumulative time spent watching cinema and television series.</p>
+            </div>
+          </div>
+          <div class="watch-time-display">
+            <div class="watch-time-segment">
+              <span class="time-value">{{ $totalWatchTimeDays }}</span>
+              <span class="time-label">Days</span>
+            </div>
+            <div class="watch-time-separator">:</div>
+            <div class="watch-time-segment">
+              <span class="time-value">{{ $totalWatchTimeHours }}</span>
+              <span class="time-label">Hours</span>
+            </div>
+          </div>
+          <div class="watch-time-footer">
+            <span>Equivalent to approx. <strong>{{ div $totalWatchTimeMinutes 60 }} hours</strong> ({{ $totalWatchTimeMinutes }} minutes) of playback.</span>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</article>
+
+<style>
+.stats-page {
+  max-width: 100%;
+}
+.stats-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+.stats-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.stats-group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0 0 var(--spacing-sm);
+  font-size: 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+}
+.stats-group-title .group-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-color);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--spacing-md);
+}
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.015);
+  transition: all 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 16px rgba(0, 64, 221, 0.04);
+}
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.stat-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.icon-blog { background-color: rgba(0, 64, 221, 0.08); color: var(--accent-color); }
+.icon-thoughts { background-color: rgba(194, 24, 91, 0.08); color: #c2185b; }
+.icon-books { background-color: rgba(138, 90, 0, 0.08); color: #8a5a00; }
+.icon-movies { background-color: rgba(0, 122, 90, 0.08); color: #007a5a; }
+.icon-shows { background-color: rgba(122, 61, 184, 0.08); color: #7a3db8; }
+.icon-episodes { background-color: rgba(225, 29, 72, 0.08); color: #e11d48; }
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+.stat-value {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.watch-time-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-sm);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+}
+.watch-time-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+.watch-time-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+}
+.watch-time-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.watch-time-subtitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.watch-time-display {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+.watch-time-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+.watch-time-separator {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--border-color);
+  line-height: 1;
+}
+.time-value {
+  font-family: var(--font-sans);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  line-height: 1;
+}
+.time-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
+}
+.watch-time-footer {
+  border-top: 1px dashed var(--border-color);
+  padding-top: var(--spacing-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+</style>
+{{ end }}

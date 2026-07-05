@@ -15,7 +15,11 @@
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+{{- with resources.Get "js/fuse.min.js" -}}
+  {{- with . | fingerprint -}}
+    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+  {{- end -}}
+{{- end -}}
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
   const searchInput = document.getElementById('search-input');
