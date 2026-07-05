@@ -7,31 +7,74 @@
     {{ end }}
   </header>
 
-  <div class="post-feed">
-    {{ $paginator := .Paginate .Pages }}
-    {{ range $paginator.Pages }}
-    <article class="post-entry">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
-      <h2 class="post-title">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </h2>
-      {{ if .Summary }}
-      <p class="post-summary">{{ .Summary | plainify | truncate 160 }}</p>
-      {{ end }}
-    </article>
+  <div class="bear-post-list">
+    {{ range .Pages.GroupByPublishDate "2006" }}
+      <div class="year-group">
+        <h2 class="year-heading">{{ .Key }}</h2>
+        <ul class="post-list">
+          {{ range .Pages }}
+            <li class="post-item">
+              <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ .Date.Format "Jan 02" }}
+              </time>
+              <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
     {{ end }}
   </div>
-
-  {{ if gt $paginator.TotalPages 1 }}
-  <nav class="pagination">
-    {{ if $paginator.HasPrev }}
-    <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
-    {{ end }}
-    <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-    {{ if $paginator.HasNext }}
-    <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
-    {{ end }}
-  </nav>
-  {{ end }}
 </section>
+
+<style>
+.bear-post-list {
+  margin-top: var(--spacing-lg);
+  font-family: var(--font-sans);
+}
+.year-group {
+  margin-bottom: var(--spacing-lg);
+}
+.year-heading {
+  font-size: 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+}
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+.post-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  line-height: 1.4;
+}
+.post-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  min-width: 55px;
+  flex-shrink: 0;
+}
+.post-link {
+  color: var(--text-color);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.post-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+</style>
 {{ end }}
