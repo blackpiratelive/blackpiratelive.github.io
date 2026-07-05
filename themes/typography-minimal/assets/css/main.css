@@ -26,8 +26,20 @@
   --spacing-xxl: 4rem;
 }
 
-/* Dark Theme Color Variables Override */
-html[data-theme="dark"],
+/* Dark Theme Color Variables Override (Explicit Switch) */
+html[data-theme="dark"] {
+  --bg-color: #121212;
+  --bg-card: #1e1e1e;
+  --text-color: #e3e3e3;
+  --text-muted: #a1a1aa;
+  --accent-color: #58a6ff;
+  --accent-light: rgba(88, 166, 255, 0.15);
+  --border-color: #2d2d2d;
+  --code-bg: #1c1c1c;
+  --code-text: #f43f5e;
+}
+
+/* Dark Theme Color Variables Override (System Preference Fallback) */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) {
     --bg-color: #121212;
