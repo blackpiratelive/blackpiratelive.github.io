@@ -1137,13 +1137,13 @@ article img,
 .thoughts-feed {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-md);
   margin-top: var(--spacing-lg);
 }
 
 .thought-entry {
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
 }
 
 .thought-entry:last-child {
