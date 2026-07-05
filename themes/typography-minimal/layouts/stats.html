@@ -231,15 +231,6 @@
   </div>
 </article>
 
-<!-- JSON Data scripts -->
-<script id="post-data" type="application/json">
-{{ $postDates | jsonify }}
-</script>
-
-<script id="shows-data" type="application/json">
-{{ $showsDataSorted | jsonify }}
-</script>
-
 <!-- Load Local Chart.js asset -->
 {{- with resources.Get "js/chart.min.js" -}}
   {{- with . | fingerprint -}}
@@ -248,6 +239,9 @@
 {{- end -}}
 
 <script>
+const postData = {{ $postDates | jsonify | safeJS }};
+const tvData = {{ $showsDataSorted | jsonify | safeJS }};
+
 document.addEventListener('DOMContentLoaded', () => {
   
   // 1. RENDER HEATMAP CALENDAR
@@ -255,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('heatmap-container');
     if (!container) return;
 
-    const data = JSON.parse(document.getElementById('post-data').textContent);
+    const data = postData;
     
     // Create map of date -> counts
     const statsMap = {};
@@ -387,7 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Chart 2: Top TV Shows Watched (Horizontal Bar)
-    const tvData = JSON.parse(document.getElementById('shows-data').textContent);
     const topShows = tvData.slice(0, 7); // Show top 7
     
     const showLabels = topShows.map(s => s.title);
