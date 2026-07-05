@@ -291,12 +291,12 @@ pre code {
 .unified-feed {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-md);
 }
 
 .feed-entry {
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
 }
 
 .feed-entry:last-child {
