@@ -2,8 +2,22 @@
 
 <div class="justified-gallery" data-row-height="180" data-margins="5">
   {{ range $images }}
-    <a href="{{ .src }}" {{ with .caption }}title="{{ . }}"{{ end }}>
-      <img src="{{ .thumb | default .src }}" loading="lazy" alt="{{ .alt | default "Image" }}">
+    {{ $src := .src }}
+    {{ $path := strings.TrimPrefix "/" $src }}
+    {{ $url := $src }}
+    {{ $thumbUrl := .thumb | default $src }}
+    
+    {{ with resources.Get $path }}
+      {{ $url = .RelPermalink }}
+      {{ $thumb := . }}
+      {{ if not hugo.IsServer }}
+        {{ $thumb = .Process "q30" }}
+      {{ end }}
+      {{ $thumbUrl = $thumb.RelPermalink }}
+    {{ end }}
+    
+    <a href="{{ $url }}" {{ with .caption }}title="{{ . }}"{{ end }}>
+      <img src="{{ $thumbUrl }}" loading="lazy" alt="{{ .alt | default "Image" }}">
     </a>
   {{ end }}
 </div>
