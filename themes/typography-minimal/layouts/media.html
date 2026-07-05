@@ -1,0 +1,397 @@
+{{ define "main" }}
+{{ $mediaList := slice }}
+
+{{/* 1. Extract media from Gallery section */}}
+{{ range where site.RegularPages "Section" "gallery" }}
+  {{ $imgUrl := .Params.image.original.url | default .Params.image.thumbnail.url }}
+  {{ if $imgUrl }}
+    {{ $mediaList = $mediaList | append (dict 
+      "url" $imgUrl
+      "thumb" (.Params.image.thumbnail.url | default $imgUrl)
+      "type" "image"
+      "title" .Title
+      "post_url" .RelPermalink
+      "date" .Date
+      "year" (.Date.Format "2006")
+    ) }}
+  {{ end }}
+{{ end }}
+
+{{/* 2. Extract media from Blogs and Thoughts */}}
+{{ range where site.RegularPages "Section" "in" (slice "blog" "thoughts") }}
+  {{ $page := . }}
+  {{ $content := .Content }}
+  
+  {{/* Extract HTML images */}}
+  {{ $foundImgs := findRE `src="[^"]+?\.(?:jpg|jpeg|png|gif|webp|svg)"` $content }}
+  {{ range $foundImgs }}
+    {{ $cleanUrl := replaceRE `src="([^"]+)"` "$1" . }}
+    {{ $mediaList = $mediaList | append (dict 
+      "url" $cleanUrl
+      "thumb" $cleanUrl
+      "type" "image"
+      "title" $page.Title
+      "post_url" $page.RelPermalink
+      "date" $page.Date
+      "year" ($page.Date.Format "2006")
+    ) }}
+  {{ end }}
+
+  {{/* Extract HTML videos */}}
+  {{ $foundVids := findRE `src="[^"]+?\.(?:mp4|webm|mov|ogg)"` $content }}
+  {{ range $foundVids }}
+    {{ $cleanUrl := replaceRE `src="([^"]+)"` "$1" . }}
+    {{ $mediaList = $mediaList | append (dict 
+      "url" $cleanUrl
+      "thumb" $cleanUrl
+      "type" "video"
+      "title" $page.Title
+      "post_url" $page.RelPermalink
+      "date" $page.Date
+      "year" ($page.Date.Format "2006")
+    ) }}
+  {{ end }}
+{{ end }}
+
+{{/* 3. Extract unique years and sort descending */}}
+{{ $years := slice }}
+{{ range $mediaList }}
+  {{ $years = $years | append .year }}
+{{ end }}
+{{ $years = uniq $years | sort }}
+
+{{ $yearsDesc := slice }}
+{{ range $years }}
+  {{ $yearsDesc = slice . | append $yearsDesc }}
+{{ end }}
+
+<div class="media-gallery-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="page-metadata">
+      <span class="stat-badge">{{ len $mediaList }} items unified</span>
+    </div>
+  </header>
+
+  <div class="media-sections">
+    {{ range $year := $yearsDesc }}
+      <section class="media-year-section">
+        <h2 class="media-year-heading">{{ $year }}</h2>
+        <div class="media-grid">
+          {{ range $mediaList }}
+            {{ if eq .year $year }}
+              <div class="media-card-item" data-url="{{ .url }}" data-type="{{ .type }}" data-title="{{ .title }}" data-post="{{ .post_url }}">
+                <div class="media-thumbnail-wrapper">
+                  {{ if eq .type "video" }}
+                    <video class="gallery-video-preview" muted loop playsinline>
+                      <source src="{{ .url }}" type="video/mp4">
+                    </video>
+                    <div class="media-type-indicator"><i data-lucide="play"></i></div>
+                  {{ else }}
+                    <img src="{{ .thumb }}" alt="{{ .title }}" class="gallery-img-preview" loading="lazy">
+                    <div class="media-type-indicator"><i data-lucide="image"></i></div>
+                  {{ end }}
+                </div>
+                <div class="media-item-details">
+                  <span class="media-item-origin-title">{{ .title }}</span>
+                  <span class="media-item-date">{{ .date.Format "Jan 02, 2006" }}</span>
+                </div>
+              </div>
+            {{ end }}
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </div>
+</div>
+
+<!-- Full Screen Media Lightbox Popup -->
+<div id="media-lightbox" class="media-lightbox" style="display: none;">
+  <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close lightbox">&times;</button>
+  <div class="lightbox-content-container">
+    <div id="lightbox-media-box" class="lightbox-media-box">
+      <img id="lightbox-img" class="lightbox-main-img" src="" alt="" style="display: none;">
+      <video id="lightbox-video" class="lightbox-main-video" controls autoplay loop style="display: none;"></video>
+    </div>
+    <div class="lightbox-info-panel">
+      <h3 id="lightbox-title" class="lightbox-media-title">Media Title</h3>
+      <a id="lightbox-post-link" href="" class="lightbox-origin-link">
+        View Respective Post <i data-lucide="arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('media-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxVid = document.getElementById('lightbox-video');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxPostLink = document.getElementById('lightbox-post-link');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  // Add click events to media cards
+  document.querySelectorAll('.media-card-item').forEach(card => {
+    card.addEventListener('click', () => {
+      const url = card.dataset.url;
+      const type = card.dataset.type;
+      const title = card.dataset.title;
+      const postUrl = card.dataset.post;
+
+      if (type === 'video') {
+        lightboxImg.style.display = 'none';
+        lightboxImg.src = '';
+        lightboxVid.style.display = 'block';
+        lightboxVid.src = url;
+      } else {
+        lightboxVid.style.display = 'none';
+        lightboxVid.src = '';
+        lightboxImg.style.display = 'block';
+        lightboxImg.src = url;
+      }
+
+      lightboxTitle.textContent = title || 'Untitled Media';
+      lightboxPostLink.href = postUrl || '#';
+
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Stop background scrolling
+    });
+
+    // Optional hover play for video previews
+    const video = card.querySelector('video');
+    if (video) {
+      card.addEventListener('mouseenter', () => {
+        video.play().catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+  });
+
+  const closeLightbox = () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    lightboxVid.src = '';
+    document.body.style.overflow = '';
+  };
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close when clicking empty space
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content-container')) {
+      closeLightbox();
+    }
+  });
+
+  // Escape key support
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+});
+</script>
+
+<style>
+.media-gallery-page {
+  max-width: 100%;
+}
+.media-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+.media-year-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.media-year-heading {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+  margin: 0;
+}
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+.media-card-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+.media-card-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 16px rgba(0, 64, 221, 0.04);
+}
+.media-thumbnail-wrapper {
+  position: relative;
+  aspect-ratio: 4/3;
+  width: 100%;
+  background-color: #000000;
+  overflow: hidden;
+}
+.gallery-img-preview,
+.gallery-video-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-type-indicator {
+  position: absolute;
+  bottom: var(--spacing-xs);
+  right: var(--spacing-xs);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.media-type-indicator svg {
+  width: 12px;
+  height: 12px;
+}
+.media-item-details {
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-sans);
+}
+.media-item-origin-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.media-item-date {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Lightbox Styling */
+.media-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+.lightbox-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10001;
+}
+.lightbox-close-btn:hover {
+  color: var(--accent-color);
+}
+.lightbox-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  max-height: 85%;
+  gap: var(--spacing-md);
+}
+.lightbox-media-box {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.lightbox-main-img,
+.lightbox-main-video {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+.lightbox-info-panel {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: #ffffff;
+  font-family: var(--font-sans);
+}
+.lightbox-media-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+.lightbox-origin-link {
+  color: #a1a1aa;
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+  border-bottom: 1px dashed #52525b;
+  padding-bottom: 2px;
+}
+.lightbox-origin-link:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: var(--spacing-sm);
+  }
+  .lightbox-main-img,
+  .lightbox-main-video {
+    max-height: 60vh;
+  }
+}
+</style>
+{{ end }}
