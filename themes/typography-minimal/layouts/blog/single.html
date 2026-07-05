@@ -1,4 +1,59 @@
 {{ define "main" }}
+{{ $currentPost := . }}
+{{ $relatedPosts := slice }}
+
+{{/* 1. Find blog posts sharing at least one tag */}}
+{{ if .Params.tags }}
+  {{ range where site.RegularPages "Section" "blog" }}
+    {{ if ne .File.Path $currentPost.File.Path }}
+      {{ $sharedTags := intersect $currentPost.Params.tags .Params.tags }}
+      {{ if gt (len $sharedTags) 0 }}
+        {{ $relatedPosts = $relatedPosts | append (dict "page" . "score" (len $sharedTags)) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* 2. Find blog posts matching keywords in Plain text */}}
+{{ if lt (len $relatedPosts) 3 }}
+  {{ $currentWords := findRE `\b[a-zA-Z]{4,15}\b` (lower $currentPost.Plain) }}
+  {{ $stopWords := slice "that" "this" "with" "have" "they" "from" "were" "been" "about" "would" "there" "their" "what" "about" "which" }}
+  {{ $filteredWords := slice }}
+  {{ range $currentWords }}
+    {{ if not (in $stopWords .) }}
+      {{ $filteredWords = $filteredWords | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $filteredWords = uniq $filteredWords }}
+
+  {{ range where site.RegularPages "Section" "blog" }}
+    {{ if ne .File.Path $currentPost.File.Path }}
+      {{ $alreadyAdded := false }}
+      {{ $otherPage := . }}
+      {{ range $relatedPosts }}
+        {{ if eq .page.File.Path $otherPage.File.Path }}
+          {{ $alreadyAdded = true }}
+        {{ end }}
+      {{ end }}
+
+      {{ if not $alreadyAdded }}
+        {{ $matchCount := 0 }}
+        {{ $otherWords := lower $otherPage.Plain }}
+        {{ range $filteredWords }}
+          {{ if in $otherWords . }}
+            {{ $matchCount = add $matchCount 1 }}
+          {{ end }}
+        {{ end }}
+        {{ if gt $matchCount 1 }}
+          {{ $relatedPosts = $relatedPosts | append (dict "page" $otherPage "score" $matchCount) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $relatedPosts = sort $relatedPosts "score" "desc" }}
+
 <article class="post-single">
   <header class="post-header">
     <div class="post-meta-top">
@@ -86,6 +141,23 @@
         <button type="submit" class="btn-submit">Post Comment</button>
       </form>
     </div>
+
+    <!-- Related Posts Section -->
+    {{ if gt (len $relatedPosts) 0 }}
+    <div class="related-posts-section">
+      <h3 class="related-title"><i data-lucide="sparkles"></i> Related Posts</h3>
+      <div class="related-posts-grid">
+        {{ range first 3 $relatedPosts }}
+          <a href="{{ .page.RelPermalink }}" class="related-post-card">
+            <span class="related-post-date">{{ .page.Date.Format "Jan 02, 2006" }}</span>
+            <h4 class="related-post-title">{{ .page.Title }}</h4>
+            <p class="related-post-preview">{{ .page.Summary | plainify | truncate 120 }}</p>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
   </footer>
 </article>
 
