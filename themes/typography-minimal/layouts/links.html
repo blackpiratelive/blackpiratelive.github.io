@@ -1,0 +1,243 @@
+{{ define "main" }}
+<article class="page links-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-description">A directory of other sections, projects, logs, and pages on this site.</p>
+  </header>
+
+  <div class="page-content">
+    <div class="links-sections">
+      
+      <!-- Section: Interactive & Curations -->
+      <section class="links-group">
+        <h2 class="group-title"><i data-lucide="compass" class="group-icon"></i> Curations & Connect</h2>
+        <div class="links-grid">
+          <a href="{{ "/guestbook/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="message-square"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Guestbook</h3>
+              <p class="card-desc">Sign my guestbook, say hello, or leave a message.</p>
+            </div>
+          </a>
+          <a href="{{ "/contact/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="mail"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Contact</h3>
+              <p class="card-desc">Get in touch with me directly via email or form.</p>
+            </div>
+          </a>
+          <a href="{{ "/bookmarks/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="bookmark"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Bookmarks</h3>
+              <p class="card-desc">A curated list of articles, websites, and tools I like.</p>
+            </div>
+          </a>
+          <a href="{{ "/projects/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="folder-open"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Projects</h3>
+              <p class="card-desc">My web development creations and academic projects.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: Media & Logs -->
+      <section class="links-group">
+        <h2 class="group-title"><i data-lucide="film" class="group-icon"></i> Media & Logs</h2>
+        <div class="links-grid">
+          <a href="{{ "/movies/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="play-circle"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Cinema</h3>
+              <p class="card-desc">Reviews and list of movies and TV shows I have watched.</p>
+            </div>
+          </a>
+          <a href="{{ "/books/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="book-open"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Book Notes</h3>
+              <p class="card-desc">Notes, ratings, and thoughts on books I read.</p>
+            </div>
+          </a>
+          <a href="{{ "/gallery/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="image"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Gallery</h3>
+              <p class="card-desc">A collection of photos, gifs, and captured moments.</p>
+            </div>
+          </a>
+          <a href="{{ "/music/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="music"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Music</h3>
+              <p class="card-desc">Favorite records, artists, and listening history.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: About Me -->
+      <section class="links-group">
+        <h2 class="group-title"><i data-lucide="user" class="group-icon"></i> About Me</h2>
+        <div class="links-grid">
+          <a href="{{ "/now/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="clock"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Now</h3>
+              <p class="card-desc">A log of what I am currently working on and focused on.</p>
+            </div>
+          </a>
+          <a href="{{ "/uses/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="wrench"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Uses</h3>
+              <p class="card-desc">The hardware, software, and tools I use daily.</p>
+            </div>
+          </a>
+          <a href="{{ "/os/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="monitor"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">OS</h3>
+              <p class="card-desc">My operating system configurations and desktop environment.</p>
+            </div>
+          </a>
+          <a href="{{ "/hobbies/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="heart"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Hobbies</h3>
+              <p class="card-desc">Interests and activities I enjoy in my free time.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: Info & Tools -->
+      <section class="links-group">
+        <h2 class="group-title"><i data-lucide="info" class="group-icon"></i> Info & Tools</h2>
+        <div class="links-grid">
+          <a href="{{ "/credits/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="award"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Credits</h3>
+              <p class="card-desc">Acknowledgements and appreciation to resources and people.</p>
+            </div>
+          </a>
+          <a href="{{ "/search/" | relURL }}" class="link-card">
+            <div class="card-icon"><i data-lucide="search"></i></div>
+            <div class="card-details">
+              <h3 class="card-title">Search</h3>
+              <p class="card-desc">Search posts, thoughts, and book notes on the site.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</article>
+
+<style>
+.links-page {
+  max-width: 100%;
+}
+.links-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+.links-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0 0 var(--spacing-sm);
+  font-size: 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+}
+.group-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-color);
+}
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: var(--spacing-md);
+}
+.link-card {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.015);
+}
+.link-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 64, 221, 0.06);
+}
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--accent-light);
+  color: var(--accent-color);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.link-card:hover .card-icon {
+  transform: scale(1.08);
+}
+.card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.card-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+}
+.link-card:hover .card-title {
+  color: var(--accent-color);
+}
+.card-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{{ end }}
