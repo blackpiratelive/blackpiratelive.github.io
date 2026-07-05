@@ -6,7 +6,7 @@ theme = 'typography-minimal'
 
 [params]
   author = "Sudip"
-  tagline = "Welcome to my website"
+  tagline = "Homepage of Sudip Mandal"
   github = "https://github.com/blackpiratelive"
   trakt_username = "bpx"
   trakt_client_id = "a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0"
