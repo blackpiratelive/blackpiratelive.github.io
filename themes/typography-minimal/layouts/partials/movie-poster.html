@@ -1,17 +1,43 @@
-{{ $tmdbId := .Params.tmdb_id }}
-{{ $type := .Params.type }} {{/* movie or show */}}
-{{ $typeKey := cond (eq $type "show") "tv" "movie" }}
-{{ $apiKey := site.Params.tmdb_api_key | default "61c9bbbefe48beed3b4f02f0cc4794e7" }}
+{{ $tmdbId := "" }}
+{{ $type := "" }}
+{{ $title := "" }}
+
+{{ if and (not (reflect.IsMap .)) (not (reflect.IsSlice .)) }}
+  {{/* It's a Page */}}
+  {{ $tmdbId = .Params.tmdb_id }}
+  {{ $type = .Params.type }}
+  {{ $title = .Title }}
+{{ else }}
+  {{/* It's a map */}}
+  {{ $params := index . "Params" | default dict }}
+  {{ $tmdbId = index . "tmdb_id" | default (index $params "tmdb_id") }}
+  {{ $type = index . "type" | default (index $params "type") }}
+  {{ $title = index . "title" | default (index . "show_title" | default (index . "Title")) }}
+{{ end }}
+
+{{ $typeKey := "movie" }}
+{{ if or (eq $type "show") (eq $type "tv") (eq $type "episode") (eq $type "episodes") }}
+  {{ $typeKey = "tv" }}
+{{ end }}
 
 {{ $posterUrl := "" }}
 {{ if $tmdbId }}
-  {{ $apiUrl := printf "https://api.themoviedb.org/3/%s/%v?api_key=%s" $typeKey $tmdbId $apiKey }}
-  {{ $res := try (resources.GetRemote $apiUrl) }}
-  {{ if not $res.Err }}
-    {{ with $res.Value }}
-      {{ $data := . | transform.Unmarshal }}
-      {{ with $data.poster_path }}
-        {{ $posterUrl = printf "https://image.tmdb.org/t/p/w500%s" . }}
+  {{/* 1. Check local assets folder first */}}
+  {{ $localPath := printf "cinema/posters/%s_%v.jpg" $typeKey $tmdbId }}
+  {{ $localPoster := resources.Get $localPath }}
+  {{ if $localPoster }}
+    {{ $posterUrl = $localPoster.RelPermalink }}
+  {{ else }}
+    {{/* 2. Fall back to TMDB API if not in local cache */}}
+    {{ $apiKey := site.Params.tmdb_api_key | default "61c9bbbefe48beed3b4f02f0cc4794e7" }}
+    {{ $apiUrl := printf "https://api.themoviedb.org/3/%s/%v?api_key=%s" $typeKey $tmdbId $apiKey }}
+    {{ $res := try (resources.GetRemote $apiUrl) }}
+    {{ if not $res.Err }}
+      {{ with $res.Value }}
+        {{ $data := . | transform.Unmarshal }}
+        {{ with $data.poster_path }}
+          {{ $posterUrl = printf "https://image.tmdb.org/t/p/w500%s" . }}
+        {{ end }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -19,7 +45,7 @@
 
 <div class="poster-container h-full w-full">
   {{ if $posterUrl }}
-    <img src="{{ $posterUrl }}" alt="{{ .Title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+    <img src="{{ $posterUrl }}" alt="{{ $title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
   {{ else }}
     <div class="h-full w-full flex items-center justify-center p-4 text-center bg-zinc-800 poster-placeholder">
       <i data-lucide="image" class="w-8 h-8 text-zinc-700"></i>

@@ -376,6 +376,98 @@ pre code {
   color: var(--text-muted);
 }
 
+/* Feed items with posters */
+.feed-has-poster {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+
+.feed-poster {
+  width: 70px;
+  flex-shrink: 0;
+  aspect-ratio: 2/3;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.feed-details {
+  flex-grow: 1;
+}
+
+.feed-posters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+.feed-row-item {
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+}
+
+.feed-row-poster {
+  width: 70px;
+  aspect-ratio: 2/3;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.feed-row-item:hover .feed-row-poster {
+  transform: translateY(-2px);
+}
+
+.feed-row-info {
+  margin-top: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.feed-row-title {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.feed-row-title:hover {
+  color: var(--accent-color);
+}
+
+.feed-row-meta {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.placeholder-remaining {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--code-bg);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+
 /* Thoughts formatting */
 .entry-content {
   font-family: var(--font-serif);

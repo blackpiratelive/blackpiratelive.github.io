@@ -104,10 +104,12 @@ log "Posters: $TOTAL_COUNT total, $MISSING_COUNT missing."
 
 # 4. Hugo build
 log "Running Hugo build..."
+hugo version
 ROOT_BUILD_DIR="/tmp/hugo-build-root"
 rm -rf "$ROOT_BUILD_DIR" || true
 mkdir -p "$ROOT_BUILD_DIR"
-hugo -d "$ROOT_BUILD_DIR" --quiet
+hugo -d "$ROOT_BUILD_DIR"
+
 
 # 5. Finalize
 mkdir -p public
