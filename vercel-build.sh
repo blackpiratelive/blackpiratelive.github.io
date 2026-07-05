@@ -42,7 +42,7 @@ fetch_trakt() {
 }
 
 fetch_trakt "users/$TRAKT_USERNAME/watched/movies?extended=full" "$DATA_DIR/watched_movies.json"
-fetch_trakt "users/$TRAKT_USERNAME/watched/shows?extended=full" "$DATA_DIR/watched_shows.json"
+fetch_trakt "users/$TRAKT_USERNAME/watched/shows?extended=progress" "$DATA_DIR/watched_shows.json"
 fetch_trakt "users/$TRAKT_USERNAME/ratings/movies" "$DATA_DIR/movie_ratings.json"
 fetch_trakt "users/$TRAKT_USERNAME/ratings/shows" "$DATA_DIR/show_ratings.json"
 fetch_trakt "users/$TRAKT_USERNAME/comments/all/all?extended=full" "$DATA_DIR/comments.json"
