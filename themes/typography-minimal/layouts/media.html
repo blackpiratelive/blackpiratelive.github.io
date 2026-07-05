@@ -22,25 +22,37 @@
   {{ $page := . }}
   {{ $content := .Content }}
   
-  {{/* Extract HTML images */}}
-  {{ $foundImgs := findRE `src="[^"]+?\.(?:jpg|jpeg|png|gif|webp|svg)"` $content }}
-  {{ range $foundImgs }}
-    {{ $cleanUrl := replaceRE `src="([^"]+)"` "$1" . }}
-    {{ $mediaList = $mediaList | append (dict 
-      "url" $cleanUrl
-      "thumb" $cleanUrl
-      "type" "image"
-      "title" $page.Title
-      "post_url" $page.RelPermalink
-      "date" $page.Date
-      "year" ($page.Date.Format "2006")
-    ) }}
+  {{/* Extract HTML images (checking data-full-src first to get original size, falling back to src) */}}
+  {{ $imgTags := findRE `<img[^>]+>` $content }}
+  {{ range $imgTags }}
+    {{ $url := "" }}
+    {{ $dataFull := findRE `data-full-src="[^"]+"` . }}
+    {{ if gt (len $dataFull) 0 }}
+      {{ $url = index $dataFull 0 | replaceRE `data-full-src="([^"]+)"` `$1` }}
+    {{ else }}
+      {{ $srcAttr := findRE `\ssrc="[^"]+"` . }}
+      {{ if gt (len $srcAttr) 0 }}
+        {{ $url = index $srcAttr 0 | replaceRE `\ssrc="([^"]+)"` `$1` }}
+      {{ end }}
+    {{ end }}
+    
+    {{ if and $url (ne $url "") }}
+      {{ $mediaList = $mediaList | append (dict 
+        "url" $url
+        "thumb" $url
+        "type" "image"
+        "title" $page.Title
+        "post_url" $page.RelPermalink
+        "date" $page.Date
+        "year" ($page.Date.Format "2006")
+      ) }}
+    {{ end }}
   {{ end }}
 
-  {{/* Extract HTML videos */}}
-  {{ $foundVids := findRE `src="[^"]+?\.(?:mp4|webm|mov|ogg)"` $content }}
+  {{/* Extract Videos (matches raw shortcode sources, HTML videos, and JavaScript player source URLs) */}}
+  {{ $foundVids := findRE `"[^"]+?\.(?:mp4|webm|mov|ogg)"` $content }}
   {{ range $foundVids }}
-    {{ $cleanUrl := replaceRE `src="([^"]+)"` "$1" . }}
+    {{ $cleanUrl := replaceRE `^"|"$` `` . }}
     {{ $mediaList = $mediaList | append (dict 
       "url" $cleanUrl
       "thumb" $cleanUrl
@@ -53,7 +65,23 @@
   {{ end }}
 {{ end }}
 
-{{/* 3. Extract unique years and sort descending */}}
+{{/* 3. Deduplicate mediaList by URL */}}
+{{ $uniqueMedia := slice }}
+{{ range $mediaList }}
+  {{ $current := . }}
+  {{ $isDuplicate := false }}
+  {{ range $uniqueMedia }}
+    {{ if eq .url $current.url }}
+      {{ $isDuplicate = true }}
+    {{ end }}
+  {{ end }}
+  {{ if not $isDuplicate }}
+    {{ $uniqueMedia = $uniqueMedia | append $current }}
+  {{ end }}
+{{ end }}
+{{ $mediaList = $uniqueMedia }}
+
+{{/* 4. Extract unique years and sort descending */}}
 {{ $years := slice }}
 {{ range $mediaList }}
   {{ $years = $years | append .year }}
