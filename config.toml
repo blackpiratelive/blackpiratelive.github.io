@@ -34,6 +34,11 @@ theme = 'typography-minimal'
     weight = 40
 
   [[menus.main]]
+    name = 'Media'
+    pageRef = '/media'
+    weight = 45
+
+  [[menus.main]]
     name = 'Links'
     pageRef = '/links'
     weight = 50

@@ -65,13 +65,18 @@
   {{ end }}
 {{ end }}
 
-{{/* 3. Deduplicate mediaList by URL */}}
+{{/* 3. Deduplicate mediaList by normalized filename to prevent cross-post duplicate matches */}}
 {{ $uniqueMedia := slice }}
 {{ range $mediaList }}
   {{ $current := . }}
+  {{ $filename := path.Base $current.url }}
+  {{ $currentNorm := replaceRE `_hu_[a-f0-9]+` "" $filename }}
+  
   {{ $isDuplicate := false }}
   {{ range $uniqueMedia }}
-    {{ if eq .url $current.url }}
+    {{ $otherFilename := path.Base .url }}
+    {{ $otherNorm := replaceRE `_hu_[a-f0-9]+` "" $otherFilename }}
+    {{ if eq $otherNorm $currentNorm }}
       {{ $isDuplicate = true }}
     {{ end }}
   {{ end }}
@@ -103,7 +108,7 @@
 
   <div class="media-sections">
     {{ range $year := $yearsDesc }}
-      <section class="media-year-section">
+      <section class="media-year-section" data-year="{{ $year }}">
         <h2 class="media-year-heading">{{ $year }}</h2>
         <div class="media-grid">
           {{ range $mediaList }}
@@ -131,6 +136,11 @@
       </section>
     {{ end }}
   </div>
+
+  <!-- Pagination Nav bar -->
+  <nav id="media-pagination" class="media-pagination">
+    <!-- Managed dynamically via JavaScript -->
+  </nav>
 </div>
 
 <!-- Full Screen Media Lightbox Popup -->
@@ -159,8 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxPostLink = document.getElementById('lightbox-post-link');
   const closeBtn = document.getElementById('lightbox-close');
 
-  // Add click events to media cards
-  document.querySelectorAll('.media-card-item').forEach(card => {
+  const mediaItems = Array.from(document.querySelectorAll('.media-card-item'));
+  const itemsPerPage = 24;
+  let currentPage = 1;
+  const totalPages = Math.ceil(mediaItems.length / itemsPerPage);
+
+  // 1. Lightbox functionality
+  mediaItems.forEach(card => {
     card.addEventListener('click', () => {
       const url = card.dataset.url;
       const type = card.dataset.type;
@@ -183,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxPostLink.href = postUrl || '#';
 
       lightbox.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Stop background scrolling
+      document.body.style.overflow = 'hidden';
     });
 
-    // Optional hover play for video previews
+    // Hover video preview play
     const video = card.querySelector('video');
     if (video) {
       card.addEventListener('mouseenter', () => {
@@ -207,20 +222,101 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   closeBtn.addEventListener('click', closeLightbox);
-
-  // Close when clicking empty space
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox || e.target.classList.contains('lightbox-content-container')) {
       closeLightbox();
     }
   });
-
-  // Escape key support
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeLightbox();
     }
   });
+
+  // 2. Pagination Logic
+  const showPage = (page) => {
+    currentPage = page;
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    mediaItems.forEach((item, idx) => {
+      if (idx >= start && idx < end) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Dynamic visibility of year sections (hide heading if all items under it are hidden)
+    document.querySelectorAll('.media-year-section').forEach(section => {
+      const visibleInYear = Array.from(section.querySelectorAll('.media-card-item'))
+        .filter(item => item.style.display !== 'none');
+      
+      if (visibleInYear.length > 0) {
+        section.style.display = 'block';
+      } else {
+        section.style.display = 'none';
+      }
+    });
+
+    renderPaginationControls();
+    
+    // Smooth scroll back to top of container on page change
+    const container = document.querySelector('.media-gallery-page');
+    if (container) {
+      container.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const renderPaginationControls = () => {
+    const nav = document.getElementById('media-pagination');
+    if (!nav) return;
+
+    if (totalPages <= 1) {
+      nav.style.display = 'none';
+      return;
+    }
+    nav.style.display = 'flex';
+
+    let html = '';
+    // Prev
+    if (currentPage > 1) {
+      html += `<button class="page-btn prev-btn" data-page="${currentPage - 1}">&larr; Prev</button>`;
+    } else {
+      html += `<button class="page-btn prev-btn" disabled>&larr; Prev</button>`;
+    }
+
+    // Page Numbers
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === currentPage) {
+        html += `<button class="page-btn active" data-page="${i}">${i}</button>`;
+      } else {
+        html += `<button class="page-btn" data-page="${i}">${i}</button>`;
+      }
+    }
+
+    // Next
+    if (currentPage < totalPages) {
+      html += `<button class="page-btn next-btn" data-page="${currentPage + 1}">Next &rarr;</button>`;
+    } else {
+      html += `<button class="page-btn next-btn" disabled>Next &rarr;</button>`;
+    }
+
+    nav.innerHTML = html;
+
+    // Attach click triggers
+    nav.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = parseInt(btn.dataset.page);
+        if (page && page !== currentPage) {
+          showPage(page);
+        }
+      });
+    });
+  };
+
+  // Initialize page 1
+  showPage(1);
 });
 </script>
 
@@ -404,6 +500,41 @@ document.addEventListener('DOMContentLoaded', () => {
 .lightbox-origin-link:hover {
   color: #ffffff;
   border-color: #ffffff;
+}
+
+/* Pagination Bar CSS */
+.media-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+  font-family: var(--font-sans);
+}
+.media-pagination .page-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+.media-pagination .page-btn:hover:not([disabled]) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+.media-pagination .page-btn.active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+}
+.media-pagination .page-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--text-muted);
 }
 
 @keyframes fadeIn {
