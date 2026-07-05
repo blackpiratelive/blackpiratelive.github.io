@@ -51,4 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('active');
     document.body.classList.add('body-lightbox-open');
   });
+
+  // Theme Toggle Event Listener
+  const toggles = document.querySelectorAll('.theme-toggle-btn');
+  if (toggles.length > 0) {
+    toggles.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', next);
+        
+        // Write theme cookie (expires in 1 year)
+        const date = new Date();
+        date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+        document.cookie = "theme=" + next + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
+      });
+    });
+  }
 });

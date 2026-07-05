@@ -26,6 +26,22 @@
   --spacing-xxl: 4rem;
 }
 
+/* Dark Theme Color Variables Override */
+html[data-theme="dark"],
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --bg-color: #121212;
+    --bg-card: #1e1e1e;
+    --text-color: #e3e3e3;
+    --text-muted: #a1a1aa;
+    --accent-color: #58a6ff;
+    --accent-light: rgba(88, 166, 255, 0.15);
+    --border-color: #2d2d2d;
+    --code-bg: #1c1c1c;
+    --code-text: #f43f5e;
+  }
+}
+
 /* ==========================================================================
    Base Styles
    ========================================================================== */
@@ -1623,5 +1639,68 @@ article img,
   font-size: 0.85rem;
   line-height: 1.4;
   color: var(--text-muted);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-item {
+  display: flex;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  padding: 0 var(--spacing-sm);
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+}
+
+.theme-toggle-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.theme-toggle-btn .toggle-text {
+  font-size: 0.85rem;
+}
+
+.theme-toggle-btn .sun-icon {
+  display: none;
+}
+.theme-toggle-btn .moon-icon {
+  display: inline-block;
+}
+
+html[data-theme="dark"] .theme-toggle-btn .sun-icon {
+  display: inline-block;
+}
+html[data-theme="dark"] .theme-toggle-btn .moon-icon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+    display: inline-block;
+  }
+  html:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+    display: none;
+  }
 }
 
