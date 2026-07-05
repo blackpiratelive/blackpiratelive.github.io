@@ -1,0 +1,212 @@
+{{ define "main" }}
+<article class="rss-feeds-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="subtitle">Subscribe to stay updated with new content using your favorite feed reader.</p>
+  </header>
+
+  <section class="rss-guide">
+    <h2>How to use RSS feeds?</h2>
+    <p>
+      RSS (Really Simple Syndication) allows you to aggregate updates from your favorite blogs and sites in a single interface, without algorithms or email newsletters tracking your views.
+    </p>
+    <p>
+      To subscribe:
+    </p>
+    <ol>
+      <li>Get a feed reader application (e.g., NetNewsWire, Feedly, Feedbin, Inoreader, or NewsBlur).</li>
+      <li>Copy one of the feed links below.</li>
+      <li>Paste the link into your reader's "Add Feed" or "Subscribe" dialog.</li>
+    </ol>
+  </section>
+
+  <section class="feeds-list">
+    <h2>Available Feeds</h2>
+    <div class="feed-cards-grid">
+      
+      <!-- Feed 1: Blog posts only -->
+      <div class="feed-card">
+        <div class="feed-card-header">
+          <i data-lucide="book-open" class="feed-icon"></i>
+          <h3 class="feed-title">Blog Feed</h3>
+        </div>
+        <p class="feed-description">Contains only complete blog posts with full HTML content embedded directly in the feed.</p>
+        <div class="feed-url-block">
+          <input type="text" class="feed-url-input" value="{{ "/index.xml" | absURL }}" readonly>
+          <button class="feed-copy-btn" onclick="copyFeedUrl(this)" aria-label="Copy URL">
+            <i data-lucide="copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed 2: Thoughts only -->
+      <div class="feed-card">
+        <div class="feed-card-header">
+          <i data-lucide="message-square" class="feed-icon"></i>
+          <h3 class="feed-title">Thoughts Feed</h3>
+        </div>
+        <p class="feed-description">Contains microblog thoughts and updates where the feed item's title is the thought content.</p>
+        <div class="feed-url-block">
+          <input type="text" class="feed-url-input" value="{{ "/thoughts/index.xml" | absURL }}" readonly>
+          <button class="feed-copy-btn" onclick="copyFeedUrl(this)" aria-label="Copy URL">
+            <i data-lucide="copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed 3: Unified Feed -->
+      <div class="feed-card">
+        <div class="feed-card-header">
+          <i data-lucide="rss" class="feed-icon"></i>
+          <h3 class="feed-title">Unified Feed</h3>
+        </div>
+        <p class="feed-description">Combines both blog posts and microblog thoughts into a single aggregated timeline.</p>
+        <div class="feed-url-block">
+          <input type="text" class="feed-url-input" value="{{ "/all/index.xml" | absURL }}" readonly>
+          <button class="feed-copy-btn" onclick="copyFeedUrl(this)" aria-label="Copy URL">
+            <i data-lucide="copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</article>
+
+<script>
+function copyFeedUrl(btn) {
+  const container = btn.closest('.feed-url-block');
+  const input = container.querySelector('.feed-url-input');
+  
+  // Select and copy
+  input.select();
+  input.setSelectionRange(0, 99999); // For mobile devices
+  navigator.clipboard.writeText(input.value).then(() => {
+    // Visual feedback
+    const textSpan = btn.querySelector('.copy-text');
+    const origText = textSpan.textContent;
+    textSpan.textContent = 'Copied!';
+    btn.classList.add('copied');
+    
+    setTimeout(() => {
+      textSpan.textContent = origText;
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
+}
+</script>
+
+<style>
+.rss-feeds-page {
+  max-width: var(--content-max-width);
+}
+.rss-guide {
+  margin: var(--spacing-lg) 0 var(--spacing-xl);
+  font-family: var(--font-serif);
+  line-height: 1.8;
+}
+.rss-guide h2, .feeds-list h2 {
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+.rss-guide ol {
+  margin-left: var(--spacing-lg);
+  margin-top: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.feed-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+.feed-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: border-color 0.2s ease;
+}
+.feed-card:hover {
+  border-color: var(--accent-color);
+}
+.feed-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.feed-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-color);
+}
+.feed-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+.feed-description {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-family: var(--font-serif);
+  line-height: 1.5;
+}
+.feed-url-block {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+}
+.feed-url-input {
+  flex-grow: 1;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  outline: none;
+}
+.feed-copy-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.feed-copy-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+.feed-copy-btn.copied {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+}
+.feed-copy-btn svg {
+  width: 14px;
+  height: 14px;
+}
+</style>
+{{ end }}

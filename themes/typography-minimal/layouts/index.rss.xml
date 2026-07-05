@@ -1,0 +1,21 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.Title }} - Blog Feed</title>
+    <link>{{ site.BaseURL }}</link>
+    <description>Full content feed of all blog posts on {{ site.Title }}</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>{{ site.LanguageCode | default "en-us" }}</language>
+    {{- with .OutputFormats.Get "RSS" -}}
+      {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end -}}
+    {{- range where site.RegularPages "Section" "blog" -}}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ .Content | html }}</description>
+    </item>
+    {{- end -}}
+  </channel>
+</rss>

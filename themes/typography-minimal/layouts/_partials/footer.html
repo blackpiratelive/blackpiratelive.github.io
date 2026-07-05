@@ -4,6 +4,10 @@
       <span class="copyright">&copy; {{ now.Format "2006" }} {{ site.Params.author | default "Sudip" }}</span>
       <span class="divider">&middot;</span>
       <span class="made-with">Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+      <span class="divider">&middot;</span>
+      <span><a href="{{ "/guestbook/" | relURL }}">Guestbook</a></span>
+      <span class="divider">&middot;</span>
+      <span><a href="{{ "/rss/" | relURL }}">RSS</a></span>
     </div>
     <div class="footer-right social-links">
       {{ with site.Params.instagram | default "https://instagram.com" }}
