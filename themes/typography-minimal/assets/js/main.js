@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Global Lightbox logic for thought images
   document.body.addEventListener('click', (e) => {
-    // Only target image elements within thoughts (.thought-content img)
-    const img = e.target.closest('.thought-content img');
+    // Target image elements within thoughts, about profile gallery, and avatar wrapper
+    const img = e.target.closest('.thought-content img, .about-profile-gallery img, .profile-avatar-wrapper img');
     if (!img) return;
 
     // Get original source and alt details

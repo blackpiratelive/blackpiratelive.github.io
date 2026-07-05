@@ -1,0 +1,323 @@
+{{ define "main" }}
+<article class="profile-layout-page">
+  
+  <!-- Profile Banner and Avatar Header -->
+  <div class="profile-header-container">
+    <div class="profile-banner">
+      {{ $banner := resources.Get "img/selfie/matrix-sudip.jpg" }}
+      {{ if $banner }}
+        <img src="{{ $banner.RelPermalink }}" alt="Banner Background" class="profile-banner-img">
+      {{ else }}
+        <div class="profile-banner-fallback"></div>
+      {{ end }}
+      
+      <div class="profile-avatar-wrapper">
+        {{ $avatar := resources.Get "img/selfie/me1.jpg" }}
+        {{ if $avatar }}
+          <img src="{{ $avatar.RelPermalink }}" alt="Sudip Mandal" class="profile-avatar" data-full-src="{{ $avatar.RelPermalink }}">
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Details Info Block -->
+  <div class="profile-info-block">
+    <div class="profile-meta-header">
+      <div class="profile-names">
+        <h1 class="profile-display-name">Sudip Mandal</h1>
+        <span class="profile-handle">@blackpiratex</span>
+      </div>
+      
+      <div class="profile-actions-row">
+        <a href="{{ "/guestbook/" | relURL }}" class="profile-action-btn primary">
+          <i data-lucide="message-square"></i> Guestbook
+        </a>
+        <a href="{{ "/rss/" | relURL }}" class="profile-action-btn">
+          <i data-lucide="rss"></i> RSS
+        </a>
+      </div>
+    </div>
+
+    <!-- Social Shortlinks Badges Grid -->
+    <div class="profile-social-grid">
+      <a href="https://go.blackpiratex.com/github" target="_blank" rel="noopener" class="social-badge github" title="GitHub">
+        <i data-lucide="github"></i> GitHub
+      </a>
+      <a href="https://go.blackpiratex.com/pixelfed" target="_blank" rel="noopener" class="social-badge pixelfed" title="Pixelfed">
+        <i data-lucide="aperture"></i> Pixelfed
+      </a>
+      <a href="https://go.blackpiratex.com/mastodon" target="_blank" rel="noopener" class="social-badge mastodon" title="Mastodon">
+        <i data-lucide="message-square"></i> Mastodon
+      </a>
+      <a href="https://go.blackpiratex.com/wa" target="_blank" rel="noopener" class="social-badge whatsapp" title="WhatsApp">
+        <i data-lucide="message-circle"></i> WhatsApp
+      </a>
+      <a href="https://go.blackpiratex.com/signal" target="_blank" rel="noopener" class="social-badge signal" title="Signal">
+        <i data-lucide="shield"></i> Signal
+      </a>
+      <a href="https://go.blackpiratex.com/unsplash" target="_blank" rel="noopener" class="social-badge unsplash" title="Unsplash">
+        <i data-lucide="camera"></i> Unsplash
+      </a>
+      <a href="https://go.blackpiratex.com/last.fm" target="_blank" rel="noopener" class="social-badge lastfm" title="Last.fm">
+        <i data-lucide="music"></i> Last.fm
+      </a>
+      <a href="https://go.blackpiratex.com/yt" target="_blank" rel="noopener" class="social-badge youtube" title="YouTube">
+        <i data-lucide="youtube"></i> YouTube
+      </a>
+    </div>
+
+    <!-- Main About Biography Content -->
+    <div class="profile-main-bio-text">
+      {{ .Content }}
+    </div>
+
+    <!-- Selfie Gallery Feed (Uncropped Aspect Ratios) -->
+    <section class="profile-gallery-section">
+      <h2 class="profile-section-title"><i data-lucide="image"></i> Captured Moments</h2>
+      <div class="about-profile-gallery">
+        {{ range resources.Match "img/selfie/*" }}
+          {{ $orig := . }}
+          {{ $processed := . }}
+          {{ if not hugo.IsServer }}
+            {{ $processed = .Resize "800x" }}
+          {{ end }}
+          <div class="about-gallery-item">
+            <img src="{{ $processed.RelPermalink }}" alt="{{ .Name }}" class="about-gallery-img" data-full-src="{{ $orig.RelPermalink }}" loading="lazy">
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+  </div>
+</article>
+
+<style>
+.profile-layout-page {
+  max-width: var(--content-max-width);
+}
+.profile-header-container {
+  margin-bottom: 60px;
+}
+.profile-banner {
+  position: relative;
+  height: 180px;
+  background-color: var(--bg-card);
+  border-radius: 12px 12px 0 0;
+  overflow: visible;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+}
+.profile-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 11px 11px 0 0;
+  filter: brightness(0.85);
+  display: block;
+}
+.profile-banner-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-card) 100%);
+  border-radius: 11px 11px 0 0;
+}
+.profile-avatar-wrapper {
+  position: absolute;
+  bottom: -45px;
+  left: 24px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid var(--bg-card);
+  background-color: var(--bg-card);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+.profile-avatar-wrapper:hover {
+  transform: scale(1.03);
+}
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-info-block {
+  padding: 0 var(--spacing-sm) var(--spacing-xl);
+}
+.profile-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+.profile-names {
+  display: flex;
+  flex-direction: column;
+}
+.profile-display-name {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+.profile-handle {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.profile-actions-row {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+.profile-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  background-color: var(--bg-card);
+  transition: all 0.2s ease;
+}
+.profile-action-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+}
+.profile-action-btn.primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+}
+.profile-action-btn.primary:hover {
+  opacity: 0.9;
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+.profile-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+.profile-social-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-md);
+}
+.social-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  background-color: var(--bg-card);
+  transition: all 0.2s ease;
+}
+.social-badge:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+  transform: translateY(-1px);
+}
+.social-badge svg {
+  width: 13px;
+  height: 13px;
+}
+.profile-main-bio-text {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-xl);
+}
+.profile-section-title {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.profile-section-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-color);
+}
+.about-profile-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+.about-gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+.about-gallery-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 16px rgba(0, 64, 221, 0.04);
+}
+.about-gallery-img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  display: block;
+  background-color: var(--bg-card);
+}
+
+@media (max-width: 580px) {
+  .profile-banner {
+    height: 120px;
+  }
+  .profile-avatar-wrapper {
+    width: 75px;
+    height: 75px;
+    bottom: -35px;
+    left: 16px;
+  }
+  .profile-header-container {
+    margin-bottom: 45px;
+  }
+  .profile-names {
+    width: 100%;
+  }
+  .profile-display-name {
+    font-size: 1.35rem;
+  }
+  .about-profile-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: var(--spacing-sm);
+  }
+}
+</style>
+{{ end }}
