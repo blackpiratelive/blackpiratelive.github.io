@@ -1,0 +1,10 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $caption := .Get "caption" }}
+
+<figure class="post-image">
+    <img src="{{ $src }}" data-full-src="{{ $src }}" alt="{{ $alt }}" loading="lazy" class="thought-image-thumbnail">
+    {{ with $caption }}
+    <figcaption>{{ . }}</figcaption>
+    {{ end }}
+</figure>

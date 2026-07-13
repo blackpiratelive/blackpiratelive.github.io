@@ -278,21 +278,16 @@
         {{ $slug := .slug }}
         {{ $markdown := .contentMarkdown }}
         {{ $publishedAt := .publishedAt }}
-        {{ $tagsRaw := .tags }}
+        {{ $tags := .tags }}
         {{ $coverImageUrl := .coverImageUrl }}
-
-        {{/* Parse tags JSON string */}}
-        {{ $tags := slice }}
-        {{ with $tagsRaw }}
-          {{ $tags = . | transform.Unmarshal (dict "format" "json") }}
-        {{ end }}
+        {{ $images := .images }}
 
         {{ $pageData := dict
             "kind" "page"
             "path" (printf "thoughts/%s" $slug)
             "title" ""
             "dates" (dict "date" (time.AsTime $publishedAt))
-            "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "is_microblog" true)
+            "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "images" $images "is_microblog" true)
             "content" (dict "mediaType" "text/markdown" "value" $markdown)
         }}
 

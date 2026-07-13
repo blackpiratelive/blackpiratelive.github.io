@@ -1,0 +1,270 @@
+{{ define "main" }}
+{{ $currentThought := . }}
+{{ $relatedThoughts := slice }}
+
+{{/* 1. Find thoughts sharing at least one tag */}}
+{{ if .Params.tags }}
+  {{ range where site.RegularPages "Section" "thoughts" }}
+    {{ if ne .File.Path $currentThought.File.Path }}
+      {{ $sharedTags := intersect $currentThought.Params.tags .Params.tags }}
+      {{ if gt (len $sharedTags) 0 }}
+        {{ $relatedThoughts = $relatedThoughts | append (dict "page" . "score" (len $sharedTags)) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* 2. Find thoughts matching keywords in Plain text */}}
+{{ if lt (len $relatedThoughts) 3 }}
+  {{ $currentWords := findRE `\b[a-zA-Z]{4,15}\b` (lower $currentThought.Plain) }}
+  {{ $stopWords := slice "that" "this" "with" "have" "they" "from" "were" "been" "about" "would" "there" "their" "what" "about" "which" }}
+  {{ $filteredWords := slice }}
+  {{ range $currentWords }}
+    {{ if not (in $stopWords .) }}
+      {{ $filteredWords = $filteredWords | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $filteredWords = uniq $filteredWords }}
+
+  {{ range where site.RegularPages "Section" "thoughts" }}
+    {{ if ne .File.Path $currentThought.File.Path }}
+      {{ $alreadyAdded := false }}
+      {{ $otherPage := . }}
+      {{ range $relatedThoughts }}
+        {{ if eq .page.File.Path $otherPage.File.Path }}
+          {{ $alreadyAdded = true }}
+        {{ end }}
+      {{ end }}
+
+      {{ if not $alreadyAdded }}
+        {{ $matchCount := 0 }}
+        {{ $otherWords := lower $otherPage.Plain }}
+        {{ range $filteredWords }}
+          {{ if in $otherWords . }}
+            {{ $matchCount = add $matchCount 1 }}
+          {{ end }}
+        {{ end }}
+        {{ if gt $matchCount 1 }}
+          {{ $relatedThoughts = $relatedThoughts | append (dict "page" $otherPage "score" $matchCount) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $relatedThoughts = sort $relatedThoughts "score" "desc" }}
+
+<article class="thought-single-card">
+  <header class="thought-single-header">
+    <div class="thought-meta">
+      <i data-lucide="clock" class="w-4 h-4 text-zinc-500"></i>
+      <time class="thought-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+        {{ .Date.Format "Monday, Jan 02, 2006" }} at {{ .Date.Format "15:04" }}
+      </time>
+    </div>
+  </header>
+
+  <div class="thought-single-content serif-content">
+    {{ .Content }}
+    {{ with .Params.images }}
+    <div class="microblog-gallery" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+      {{ range . }}
+        <a href="{{ . }}" target="_blank">
+          <img src="{{ . }}" alt="Post Image" class="gallery-thumbnail" style="max-width: 150px; max-height: 150px; border-radius: 4px; object-fit: cover;" />
+        </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  {{ with .Params.tags }}
+  <footer class="thought-single-footer">
+    <div class="thought-tags">
+      {{ range . }}
+      <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="thought-tag">#{{ . }}</a>
+      {{ end }}
+    </div>
+  </footer>
+  {{ end }}
+
+  <!-- Related Thoughts Section -->
+  {{ if gt (len $relatedThoughts) 0 }}
+  <div class="related-thoughts-section">
+    <h4 class="related-title"><i data-lucide="sparkles"></i> Related Thoughts</h4>
+    <div class="related-thoughts-grid">
+      {{ range first 3 $relatedThoughts }}
+        <a href="{{ .page.RelPermalink }}" class="related-thought-card">
+          <span class="related-thought-date">{{ .page.Date.Format "Jan 02, 2006" }}</span>
+          <p class="related-thought-preview">{{ .page.Content | plainify | truncate 90 }}</p>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Prev/Next Thought Navigation -->
+  <nav class="thought-navigation">
+    <div class="nav-prev">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" title="Previous Thought: {{ .Content | plainify | truncate 40 }}">
+          <i data-lucide="arrow-left"></i> Previous
+        </a>
+      {{ end }}
+    </div>
+    <div class="nav-home">
+      <a href="{{ "/thoughts/" | relURL }}" title="All Thoughts">
+        <i data-lucide="grid"></i> All Thoughts
+      </a>
+    </div>
+    <div class="nav-next">
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" title="Next Thought: {{ .Content | plainify | truncate 40 }}">
+          Next <i data-lucide="arrow-right"></i>
+        </a>
+      {{ end }}
+    </div>
+  </nav>
+</article>
+
+<!-- Comments section for thoughts -->
+{{ partial "blog/post-comments.html" . }}
+
+<style>
+.thought-single-card {
+  max-width: var(--content-max-width);
+  margin: var(--spacing-lg) auto;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.thought-single-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.thought-single-content {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.thought-single-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Related Thoughts styling */
+.related-thoughts-section {
+  border-top: 1px dashed var(--border-color);
+  padding-top: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.related-title {
+  margin: 0 0 var(--spacing-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.related-title svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-color);
+}
+
+.related-thoughts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.related-thought-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.related-thought-card:hover {
+  border-color: var(--accent-color);
+  background-color: var(--bg-card);
+  transform: translateY(-1px);
+}
+
+.related-thought-date {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.related-thought-preview {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+/* Navigation */
+.thought-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-md);
+}
+
+.thought-navigation a {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.thought-navigation a:hover {
+  color: var(--accent-color);
+}
+
+.thought-navigation svg {
+  width: 14px;
+  height: 14px;
+}
+
+.nav-prev, .nav-next {
+  width: 40%;
+}
+.nav-next {
+  text-align: right;
+  justify-content: flex-end;
+  display: flex;
+}
+.nav-home {
+  width: 20%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+</style>
+{{ end }}
