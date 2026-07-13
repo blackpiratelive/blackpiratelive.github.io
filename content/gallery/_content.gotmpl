@@ -17,13 +17,17 @@
         {{ $slug = printf "photo-%d" $i }}
       {{ end }}
 
-      {{ $dateObj := time.AsTime ($photo.createdAt | default $photo.takenAt) }}
+      {{ $dateStr := $photo.takenAt | default $photo.createdAt }}
+      {{ $dateObj := time.AsTime $dateStr }}
 
       {{ $pageData := dict
           "path" $slug
           "title" ($photo.title | default (printf "Gallery Photo %d" $i))
           "description" ($photo.description | default "")
-          "date" $dateObj
+          "dates" (dict
+              "date" $dateObj
+              "publishDate" $dateObj
+          )
           "params" (dict
               "slug" $slug
               "original_url" $photo.originalUrl
@@ -39,6 +43,7 @@
               "shutter_speed" $photo.shutterSpeed
               "iso" $photo.iso
               "taken_at" $photo.takenAt
+              "created_at" $photo.createdAt
               "tags" $photo.tags
               "album" $photo.album
               "featured" $photo.featured
