@@ -1,0 +1,186 @@
+<section class="home-feed">
+  <h2 class="feed-heading">Recent Feed</h2>
+  <div class="unified-feed">
+    {{ $regularPages := where site.RegularPages "Section" "in" (slice "blog" "thoughts" "books") }}
+    {{ $moviePages := where (where site.RegularPages "Params.type" "movie") "Params.feed_exclude" "ne" true }}
+    {{ $activityPages := where site.RegularPages "Params.feed_type" "in" (slice "movies" "episode" "episodes") }}
+    {{ $feed := $regularPages | union $moviePages | union $activityPages }}
+    {{ $feed = sort $feed "Date" "desc" }}
+    {{ $paginator := .Paginate $feed 50 }}
+
+    {{ range $paginator.Pages }}
+      {{ if eq .Params.feed_type "movies" }}
+        <article class="feed-entry entry-movies">
+          <div class="entry-meta">
+            <span class="entry-type label-movie">Movies</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">{{ .Title }}</h3>
+          <div class="feed-posters-row">
+            {{ range .Params.feed_items }}
+              <div class="feed-row-item">
+                <div class="feed-row-poster">
+                  {{ partial "movie-poster.html" (dict "tmdb_id" .tmdb_id "type" "movie" "title" .title) }}
+                </div>
+                <div class="feed-row-info">
+                  <a href="{{ .url }}" class="feed-row-title">{{ .title }}</a>
+                  {{ with .year }}<span class="feed-row-meta">({{ . }})</span>{{ end }}
+                </div>
+              </div>
+            {{ end }}
+            {{ if gt .Params.remaining 0 }}
+              <div class="feed-row-item feed-row-remaining">
+                <div class="feed-row-poster placeholder-remaining">
+                  <span>+{{ .Params.remaining }}</span>
+                </div>
+                <div class="feed-row-info">
+                  <span class="feed-row-meta">and {{ .Params.remaining }} more</span>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </article>
+      {{ else if eq .Params.feed_type "episode" }}
+        <article class="feed-entry entry-episode feed-has-poster">
+          <div class="feed-poster">
+            {{ partial "movie-poster.html" (dict "tmdb_id" .Params.tmdb_id "type" "show" "title" .Params.show_title) }}
+          </div>
+          <div class="feed-details">
+            <div class="entry-meta">
+              <span class="entry-type label-show">Episode</span>
+              <span class="entry-separator">&middot;</span>
+              <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            </div>
+            <h3 class="entry-title">
+              <a href="{{ .Params.show_url }}">{{ .Params.show_title }}</a>
+            </h3>
+            <p class="entry-summary">S{{ printf "%02d" (int .Params.season) }}E{{ printf "%02d" (int .Params.episode_number) }}</p>
+          </div>
+        </article>
+      {{ else if eq .Params.feed_type "episodes" }}
+        <article class="feed-entry entry-episodes">
+          <div class="entry-meta">
+            <span class="entry-type label-show">Episodes</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">{{ .Title }}</h3>
+          <div class="feed-posters-row">
+            {{ range .Params.feed_items }}
+              <div class="feed-row-item">
+                <div class="feed-row-poster">
+                  {{ partial "movie-poster.html" (dict "tmdb_id" .tmdb_id "type" "show" "title" .show_title) }}
+                </div>
+                <div class="feed-row-info">
+                  <a href="{{ .show_url }}" class="feed-row-title">{{ .show_title }}</a>
+                  <span class="feed-row-meta">S{{ printf "%02d" (int .season) }}E{{ printf "%02d" (int .episode_number) }}</span>
+                </div>
+              </div>
+            {{ end }}
+            {{ if gt .Params.remaining 0 }}
+              <div class="feed-row-item feed-row-remaining">
+                <div class="feed-row-poster placeholder-remaining">
+                  <span>+{{ .Params.remaining }}</span>
+                </div>
+                <div class="feed-row-info">
+                  <span class="feed-row-meta">and {{ .Params.remaining }} more</span>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </article>
+      {{ else if eq .Params.type "movie" }}
+        <article class="feed-entry entry-movie feed-has-poster">
+          <div class="feed-poster">
+            {{ partial "movie-poster.html" . }}
+          </div>
+          <div class="feed-details">
+            <div class="entry-meta">
+              <span class="entry-type label-movie">Movie</span>
+              <span class="entry-separator">&middot;</span>
+              <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            </div>
+            <h3 class="entry-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h3>
+            {{ with .Params.year }}
+              <p class="entry-summary">{{ . }}</p>
+            {{ end }}
+          </div>
+        </article>
+      {{ else if eq .Section "blog" }}
+        <article class="feed-entry entry-blog">
+          <div class="entry-meta">
+            <span class="entry-type label-blog">Writing</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+        </article>
+      {{ else if eq .Section "thoughts" }}
+        <article class="feed-entry entry-thought">
+          <div class="entry-meta">
+            <span class="entry-type label-thought">Thought</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <div class="entry-content thought-content">
+            {{ .Content }}
+            {{ with .Params.images }}
+            <div class="microblog-gallery" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+              {{ range . }}
+                <a href="{{ . }}" target="_blank">
+                  <img src="{{ . }}" alt="Post Image" class="gallery-thumbnail" style="max-width: 150px; max-height: 150px; border-radius: 4px; object-fit: cover;" />
+                </a>
+              {{ end }}
+            </div>
+            {{ end }}
+          </div>
+          <div class="entry-footer">
+            {{ with .Params.tags }}
+              <div class="entry-tags">
+                {{ range . }}
+                  <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag-link">#{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            <a href="{{ .RelPermalink }}" class="entry-permalink" title="Permalink">
+              <i data-lucide="link"></i>
+            </a>
+          </div>
+        </article>
+      {{ else if eq .Section "books" }}
+        <article class="feed-entry entry-book">
+          <div class="entry-meta">
+            <span class="entry-type label-book">Book note</span>
+            <span class="entry-separator">&middot;</span>
+            <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </div>
+          <h3 class="entry-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          {{ with .Params.authors }}
+            <p class="entry-summary">{{ delimit . ", " }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    {{ else }}
+      <p class="feed-empty">No updates found.</p>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Recent feed pagination">
+      {{ if $paginator.HasPrev }}
+        <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← Newer</a>
+      {{ end }}
+      <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+      {{ if $paginator.HasNext }}
+        <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
+      {{ end }}
+    </nav>
+  {{ end }}
+</section>

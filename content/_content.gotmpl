@@ -281,13 +281,14 @@
         {{ $tags := .tags }}
         {{ $coverImageUrl := .coverImageUrl }}
         {{ $images := .images }}
+        {{ $relatedPosts := .relatedPosts }}
 
         {{ $pageData := dict
             "kind" "page"
             "path" (printf "thoughts/%s" $slug)
             "title" ""
             "dates" (dict "date" (time.AsTime $publishedAt))
-            "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "images" $images "is_microblog" true)
+            "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "images" $images "related_posts" $relatedPosts "is_microblog" true)
             "content" (dict "mediaType" "text/markdown" "value" $markdown)
         }}
 
