@@ -1,68 +1,169 @@
 {{ define "main" }}
 <article class="gallery-single-page">
-  <header class="page-header">
-    <h1 class="page-title">{{ .Title }}</h1>
-    <div class="page-metadata">
-      <span class="photo-date">{{ .Date.Format "January 2, 2006" }}</span>
+  <header class="photo-header">
+    <div class="photo-header-top">
+      <h1 class="photo-title">{{ .Title }}</h1>
       {{ with .Params.album }}
-      <span class="metadata-separator">•</span>
-      <span class="photo-album">Album: {{ . }}</span>
+      <a href="{{ (printf "/albums/%s/" (. | urlize)) | relURL }}" class="photo-album-badge">
+        <i data-lucide="folder"></i>
+        <span>{{ . }}</span>
+      </a>
+      {{ end }}
+    </div>
+
+    <div class="photo-meta-bar">
+      <span class="meta-item photo-date">
+        <i data-lucide="calendar"></i>
+        <span>{{ .Date.Format "January 2, 2006" }}</span>
+      </span>
+      {{ with .Params.location_name }}
+      <span class="meta-separator">•</span>
+      <span class="meta-item photo-location">
+        <i data-lucide="map-pin"></i>
+        <span>{{ . }}</span>
+      </span>
+      {{ end }}
+      {{ $originalUrl := .Params.original_url | default .Params.large_url | default .Params.image.original.url }}
+      {{ with $originalUrl }}
+      <span class="meta-separator">•</span>
+      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="meta-item photo-fullres-link">
+        <i data-lucide="external-link"></i>
+        <span>Original Resolution</span>
+      </a>
       {{ end }}
     </div>
   </header>
 
-  <div class="photo-container">
+  <div class="photo-stage">
     {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url | default .Params.image.thumbnail.url }}
-    <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="photo-large">
-
+    <div class="photo-frame">
+      <a href="{{ $originalUrl | default $imgUrl }}" target="_blank" rel="noopener noreferrer" title="View full size image">
+        <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="photo-image">
+      </a>
+    </div>
+    {{ if or .Params.width .Params.height .Params.camera }}
+    <div class="photo-info-bar">
+      {{ if and .Params.width .Params.height }}
+      <span class="info-tag"><i data-lucide="maximize-2"></i> {{ .Params.width }} × {{ .Params.height }} px</span>
+      {{ end }}
+      {{ with .Params.camera }}
+      <span class="info-tag"><i data-lucide="camera"></i> {{ . }}</span>
+      {{ end }}
+    </div>
+    {{ end }}
   </div>
+
+  {{ with .Params.tags }}
+    {{ if gt (len .) 0 }}
+    <div class="photo-tags-section">
+      <span class="tags-label"><i data-lucide="tag"></i> Tags:</span>
+      <div class="photo-tags-list">
+        {{ range . }}
+        <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}" class="photo-tag-pill">#{{ . }}</a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  {{ end }}
 
   {{ $camera := .Params.camera | default .Params.exif.model }}
   {{ $lens := .Params.lens | default .Params.exif.lens }}
   {{ $aperture := .Params.aperture | default .Params.exif.fstop }}
   {{ $shutter := .Params.shutter_speed | default .Params.exif.shutter }}
   {{ $iso := .Params.iso | default .Params.exif.iso }}
+  {{ $focalLength := .Params.focal_length | default .Params.exif.focal_length }}
+  {{ $location := .Params.location_name }}
 
-  {{ if or $camera $lens $aperture $shutter $iso }}
+  {{ if or $camera $lens $aperture $shutter $iso $focalLength $location }}
     <section class="exif-section">
-      <h2 class="exif-title">Shot Details</h2>
+      <h2 class="exif-title"><i data-lucide="sliders"></i> Shot Details</h2>
       <div class="exif-grid">
         {{ if $camera }}
-        <div class="exif-item">
-          <span class="exif-label">Camera</span>
-          <span class="exif-value">{{ $camera }}</span>
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="camera"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">Camera</span>
+            <span class="exif-value">{{ $camera }}</span>
+          </div>
         </div>
         {{ end }}
         {{ if $lens }}
-        <div class="exif-item">
-          <span class="exif-label">Lens</span>
-          <span class="exif-value">{{ $lens }}</span>
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="aperture"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">Lens</span>
+            <span class="exif-value">{{ $lens }}</span>
+          </div>
         </div>
         {{ end }}
         {{ if $aperture }}
-        <div class="exif-item">
-          <span class="exif-label">Aperture</span>
-          <span class="exif-value">{{ if (hasPrefix (printf "%v" $aperture) "f/") }}{{ $aperture }}{{ else }}ƒ/{{ $aperture }}{{ end }}</span>
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="circle"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">Aperture</span>
+            <span class="exif-value">{{ if (hasPrefix (printf "%v" $aperture) "f/") }}{{ $aperture }}{{ else }}ƒ/{{ $aperture }}{{ end }}</span>
+          </div>
         </div>
         {{ end }}
         {{ if $shutter }}
-        <div class="exif-item">
-          <span class="exif-label">Shutter Speed</span>
-          <span class="exif-value">{{ $shutter }}{{ if not (hasSuffix (printf "%v" $shutter) "s") }}s{{ end }}</span>
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="clock"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">Shutter Speed</span>
+            <span class="exif-value">{{ $shutter }}{{ if not (hasSuffix (printf "%v" $shutter) "s") }}s{{ end }}</span>
+          </div>
         </div>
         {{ end }}
         {{ if $iso }}
-        <div class="exif-item">
-          <span class="exif-label">ISO</span>
-          <span class="exif-value">{{ $iso }}</span>
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="sun"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">ISO</span>
+            <span class="exif-value">{{ $iso }}</span>
+          </div>
+        </div>
+        {{ end }}
+        {{ if $focalLength }}
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="zoom-in"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">Focal Length</span>
+            <span class="exif-value">{{ $focalLength }}</span>
+          </div>
+        </div>
+        {{ end }}
+        {{ if $location }}
+        <div class="exif-card">
+          <div class="exif-icon"><i data-lucide="map-pin"></i></div>
+          <div class="exif-details">
+            <span class="exif-label">Location</span>
+            <span class="exif-value">{{ $location }}</span>
+          </div>
         </div>
         {{ end }}
       </div>
     </section>
   {{ end }}
 
-  <div class="page-content prose">
-    {{ .Content }}
+  {{ with .Content }}
+  <div class="photo-description prose">
+    {{ . }}
   </div>
+  {{ end }}
+
+  <nav class="photo-navigation">
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="photo-nav-link nav-prev">
+      <span class="nav-direction">← Previous</span>
+      <span class="nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="photo-nav-link nav-next">
+      <span class="nav-direction">Next →</span>
+      <span class="nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+  </nav>
 </article>
 {{ end }}

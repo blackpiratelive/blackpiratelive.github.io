@@ -1,10 +1,26 @@
 {{ define "main" }}
 <div class="gallery-list-page">
-  <header class="page-header">
-    <h1 class="page-title">{{ .Title | default "Gallery" }}</h1>
-    <div class="page-metadata">
-      <span class="stat-badge">{{ len .Pages }} moments</span>
+  <header class="gallery-header">
+    <div class="gallery-header-main">
+      <h1 class="gallery-title">{{ .Title | default "Gallery" }}</h1>
+      <span class="gallery-badge"><i data-lucide="camera"></i> {{ len .Pages }} moments</span>
     </div>
+    <p class="gallery-subtitle">A collection of captured moments, places, and memories.</p>
+
+    {{ $albums := site.Taxonomies.albums }}
+    {{ if gt (len $albums) 0 }}
+    <div class="gallery-filter-bar">
+      <span class="filter-label"><i data-lucide="folder"></i> Albums:</span>
+      <div class="filter-pills">
+        {{ range $name, $taxonomy := $albums }}
+        <a href="{{ (printf "/albums/%s/" ($name | urlize)) | relURL }}" class="filter-pill">
+          <span>{{ $name }}</span>
+          <span class="pill-count">{{ len $taxonomy.Pages }}</span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
   </header>
 
   <div class="page-content prose">
@@ -16,17 +32,23 @@
   {{ $regular := where .Pages "Params.featured" "ne" true }}
 
   {{ if gt (len $featuredSorted) 0 }}
-  <section class="gallery-section featured-gallery">
-    <h2 class="gallery-section-title">Featured Highlights</h2>
+  <section class="gallery-section featured-section">
+    <h2 class="section-heading"><i data-lucide="sparkles"></i> Featured Highlights</h2>
     <div class="gallery-grid featured-grid">
       {{ range $featuredSorted }}
-        {{ $imgUrl := .Params.thumbnail_url | default .Params.medium_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url | default .Params.image.original.url }}
-        <a href="{{ .RelPermalink }}" class="gallery-item featured-item">
-          <div class="image-wrapper">
-            <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="gallery-img" loading="lazy">
-          </div>
-          <div class="item-overlay">
-            <span class="item-title">{{ .Title }}</span>
+        {{ $thumbUrl := .Params.medium_url | default .Params.thumbnail_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url }}
+        <a href="{{ .RelPermalink }}" class="gallery-card featured-card">
+          <div class="card-image-box">
+            <img src="{{ $thumbUrl }}" alt="{{ .Title }}" class="card-img" loading="lazy">
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <h3 class="card-title">{{ .Title }}</h3>
+                <div class="card-meta">
+                  <span class="card-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+                  {{ with .Params.album }}<span class="card-album">• {{ . }}</span>{{ end }}
+                </div>
+              </div>
+            </div>
           </div>
         </a>
       {{ end }}
@@ -37,13 +59,25 @@
   <div class="timeline-gallery">
     {{ range $regular.GroupByDate "2006" }}
     <section class="gallery-section year-section">
-      <h2 class="gallery-section-title">{{ .Key }}</h2>
+      <div class="year-header">
+        <h2 class="year-title">{{ .Key }}</h2>
+        <span class="year-count">{{ len .Pages }} photos</span>
+      </div>
       <div class="gallery-grid regular-grid">
         {{ range .Pages }}
-          {{ $imgUrl := .Params.thumbnail_url | default .Params.medium_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url | default .Params.image.original.url }}
-          <a href="{{ .RelPermalink }}" class="gallery-item">
-            <div class="image-wrapper">
-              <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="gallery-img" loading="lazy">
+          {{ $thumbUrl := .Params.medium_url | default .Params.thumbnail_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url }}
+          <a href="{{ .RelPermalink }}" class="gallery-card">
+            <div class="card-image-box">
+              <img src="{{ $thumbUrl }}" alt="{{ .Title }}" class="card-img" loading="lazy">
+              <div class="card-overlay">
+                <div class="overlay-content">
+                  <h3 class="card-title">{{ .Title }}</h3>
+                  <div class="card-meta">
+                    <span class="card-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+                    {{ with .Params.album }}<span class="card-album">• {{ . }}</span>{{ end }}
+                  </div>
+                </div>
+              </div>
             </div>
           </a>
         {{ end }}

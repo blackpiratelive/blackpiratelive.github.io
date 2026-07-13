@@ -20,6 +20,14 @@
       {{ $dateStr := $photo.takenAt | default $photo.createdAt }}
       {{ $dateObj := time.AsTime $dateStr }}
 
+      {{ $tags := $photo.tags | default (slice) }}
+      {{ $albums := slice }}
+      {{ with $photo.album }}
+        {{ if ne . "" }}
+          {{ $albums = slice . }}
+        {{ end }}
+      {{ end }}
+
       {{ $pageData := dict
           "path" $slug
           "title" ($photo.title | default (printf "Gallery Photo %d" $i))
@@ -44,7 +52,11 @@
               "iso" $photo.iso
               "taken_at" $photo.takenAt
               "created_at" $photo.createdAt
-              "tags" $photo.tags
+              "location_name" $photo.locationName
+              "latitude" $photo.latitude
+              "longitude" $photo.longitude
+              "tags" $tags
+              "albums" $albums
               "album" $photo.album
               "featured" $photo.featured
               "image" (dict
