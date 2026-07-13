@@ -239,7 +239,7 @@ Edit `config.toml` under `[menus]` section
 - **Calendar**: Month view with date selection; shows `thoughts` content by date (build-time JSON embed).
 - **Weather/Clock**: Open-Meteo (Kolkata) + 24h time with seconds/date; shown on desktop and taskbar.
 - **Guestbook**: Uses shortcode `{{< guestbook >}}` in the OS window; OS-scoped styling in `assets/css/os.css`.
-- **Photos**: Split view (thumb list + preview) fed from `https://gallery.blackpiratex.com/index.json`, with fullscreen overlay.
+- **Photos**: Split view (thumb list + preview) fed from Next.js CMS REST API (`/api/gallery`), with fullscreen overlay.
 - **Animations**: anime.js-driven transitions for boot, windows, start menu, calendar, taskbar hover, widgets (skips Photos app).
 
 ---

@@ -57,49 +57,41 @@
     <!-- Right Column: Photos Explorer -->
     <section class="dashboard-section photos-section">
       <h2 class="section-title">Moments Gallery</h2>
-      {{- $galleryUrl := "https://gallery.blackpiratex.com/index.json" -}}
-      {{- $gallery := slice -}}
-      {{- $result := try (resources.GetRemote $galleryUrl) -}}
-      {{- if $result.Err -}}
-        <p>Could not load gallery images.</p>
-      {{- else -}}
-        {{- with $result.Value -}}
-          {{- $gallery = . | transform.Unmarshal -}}
-        {{- end -}}
-        {{- if gt (len $gallery) 0 -}}
-          {{- $first := index $gallery 0 -}}
-          <div class="photo-explorer-widget">
-            <div class="photo-preview-pane">
-              <div class="photo-preview-frame">
-                <img data-photo-preview src="{{ $first.image.original.url | default $first.image.thumbnail.url }}" alt="{{ $first.title | default "Photo" }}" class="photo-preview-img">
-                <button class="btn btn-fullscreen" type="button" data-photo-fullscreen>Fullscreen View</button>
-              </div>
-              <div class="photo-preview-meta">
-                <h3 class="preview-title" data-photo-title>{{ $first.title | default "Photo" }}</h3>
-                <p class="preview-date" data-photo-date>{{ (time.AsTime $first.date).Format "2006-01-02" }}</p>
-              </div>
+      {{- $galleryPages := where site.RegularPages "Section" "gallery" -}}
+      {{- if gt (len $galleryPages) 0 -}}
+        {{- $first := index $galleryPages 0 -}}
+        {{- $firstFull := $first.Params.large_url | default $first.Params.original_url | default $first.Params.image.original.url | default $first.Params.thumbnail_url -}}
+        <div class="photo-explorer-widget">
+          <div class="photo-preview-pane">
+            <div class="photo-preview-frame">
+              <img data-photo-preview src="{{ $firstFull }}" alt="{{ $first.Title | default "Photo" }}" class="photo-preview-img">
+              <button class="btn btn-fullscreen" type="button" data-photo-fullscreen>Fullscreen View</button>
             </div>
-            
-            <div class="photo-thumbnails-list" data-photo-list>
-              {{- range $gallery -}}
-                {{- $thumb := .image.thumbnail.url | default .image.original.url -}}
-                {{- $full := .image.original.url | default $thumb -}}
-                <button class="photo-thumb-btn" type="button" data-photo-button data-photo-full="{{ $full }}" data-photo-title="{{ .title | default "Photo" }}" data-photo-date="{{ (time.AsTime .date).Format "2006-01-02" }}">
-                  <img src="{{ $thumb }}" alt="{{ .title | default "Photo" }}" loading="lazy">
-                </button>
-              {{- end -}}
-            </div>
-
-            <!-- Fullscreen Overlay -->
-            <div class="photo-overlay" data-photo-overlay hidden>
-              <button class="photo-overlay-close-btn" type="button" data-photo-close>Close</button>
-              <img data-photo-overlay-img src="" alt="Full photo view" class="photo-overlay-img">
+            <div class="photo-preview-meta">
+              <h3 class="preview-title" data-photo-title>{{ $first.Title | default "Photo" }}</h3>
+              <p class="preview-date" data-photo-date>{{ $first.Date.Format "2006-01-02" }}</p>
             </div>
           </div>
-        {{- else -}}
-          <p>No gallery images found.</p>
-        {{- end -}}
-      {{- end }}
+          
+          <div class="photo-thumbnails-list" data-photo-list>
+            {{- range $galleryPages -}}
+              {{- $thumb := .Params.thumbnail_url | default .Params.medium_url | default .Params.image.thumbnail.url | default .Params.original_url -}}
+              {{- $full := .Params.large_url | default .Params.original_url | default .Params.image.original.url | default $thumb -}}
+              <button class="photo-thumb-btn" type="button" data-photo-button data-photo-full="{{ $full }}" data-photo-title="{{ .Title | default "Photo" }}" data-photo-date="{{ .Date.Format "2006-01-02" }}">
+                <img src="{{ $thumb }}" alt="{{ .Title | default "Photo" }}" loading="lazy">
+              </button>
+            {{- end -}}
+          </div>
+
+          <!-- Fullscreen Overlay -->
+          <div class="photo-overlay" data-photo-overlay hidden>
+            <button class="photo-overlay-close-btn" type="button" data-photo-close>Close</button>
+            <img data-photo-overlay-img src="" alt="Full photo view" class="photo-overlay-img">
+          </div>
+        </div>
+      {{- else -}}
+        <p>No gallery images found.</p>
+      {{- end -}}
     </section>
   </div>
 

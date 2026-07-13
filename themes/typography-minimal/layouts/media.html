@@ -3,11 +3,11 @@
 
 {{/* 1. Extract media from Gallery section */}}
 {{ range where site.RegularPages "Section" "gallery" }}
-  {{ $imgUrl := .Params.image.original.url | default .Params.image.thumbnail.url }}
+  {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url | default .Params.image.thumbnail.url }}
   {{ if $imgUrl }}
     {{ $mediaList = $mediaList | append (dict 
       "url" $imgUrl
-      "thumb" (.Params.image.thumbnail.url | default $imgUrl)
+      "thumb" (.Params.thumbnail_url | default .Params.medium_url | default .Params.image.thumbnail.url | default $imgUrl)
       "type" "image"
       "title" .Title
       "post_url" .RelPermalink

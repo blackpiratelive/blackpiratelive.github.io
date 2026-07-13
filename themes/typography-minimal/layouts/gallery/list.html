@@ -20,7 +20,7 @@
     <h2 class="gallery-section-title">Featured Highlights</h2>
     <div class="gallery-grid featured-grid">
       {{ range $featuredSorted }}
-        {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+        {{ $imgUrl := .Params.thumbnail_url | default .Params.medium_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url | default .Params.image.original.url }}
         <a href="{{ .RelPermalink }}" class="gallery-item featured-item">
           <div class="image-wrapper">
             <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="gallery-img" loading="lazy">
@@ -40,7 +40,7 @@
       <h2 class="gallery-section-title">{{ .Key }}</h2>
       <div class="gallery-grid regular-grid">
         {{ range .Pages }}
-          {{ $imgUrl := .Params.image.thumbnail.url | default .Params.image.original.url }}
+          {{ $imgUrl := .Params.thumbnail_url | default .Params.medium_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url | default .Params.image.original.url }}
           <a href="{{ .RelPermalink }}" class="gallery-item">
             <div class="image-wrapper">
               <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="gallery-img" loading="lazy">

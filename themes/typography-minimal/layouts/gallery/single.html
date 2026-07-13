@@ -12,44 +12,53 @@
   </header>
 
   <div class="photo-container">
-    {{ $imgUrl := .Params.image.original.url }}
+    {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url | default .Params.image.thumbnail.url }}
     <img src="{{ $imgUrl }}" alt="{{ .Title }}" class="photo-large">
 
   </div>
 
-  {{ if .Params.exif }}
-    {{ $exif := .Params.exif }}
-    {{ if or $exif.model $exif.fstop $exif.shutter $exif.iso }}
+  {{ $camera := .Params.camera | default .Params.exif.model }}
+  {{ $lens := .Params.lens | default .Params.exif.lens }}
+  {{ $aperture := .Params.aperture | default .Params.exif.fstop }}
+  {{ $shutter := .Params.shutter_speed | default .Params.exif.shutter }}
+  {{ $iso := .Params.iso | default .Params.exif.iso }}
+
+  {{ if or $camera $lens $aperture $shutter $iso }}
     <section class="exif-section">
       <h2 class="exif-title">Shot Details</h2>
       <div class="exif-grid">
-        {{ if $exif.model }}
+        {{ if $camera }}
         <div class="exif-item">
           <span class="exif-label">Camera</span>
-          <span class="exif-value">{{ $exif.model }}</span>
+          <span class="exif-value">{{ $camera }}</span>
         </div>
         {{ end }}
-        {{ if $exif.fstop }}
+        {{ if $lens }}
+        <div class="exif-item">
+          <span class="exif-label">Lens</span>
+          <span class="exif-value">{{ $lens }}</span>
+        </div>
+        {{ end }}
+        {{ if $aperture }}
         <div class="exif-item">
           <span class="exif-label">Aperture</span>
-          <span class="exif-value">ƒ/{{ $exif.fstop }}</span>
+          <span class="exif-value">{{ if (hasPrefix (printf "%v" $aperture) "f/") }}{{ $aperture }}{{ else }}ƒ/{{ $aperture }}{{ end }}</span>
         </div>
         {{ end }}
-        {{ if $exif.shutter }}
+        {{ if $shutter }}
         <div class="exif-item">
           <span class="exif-label">Shutter Speed</span>
-          <span class="exif-value">{{ $exif.shutter }}s</span>
+          <span class="exif-value">{{ $shutter }}{{ if not (hasSuffix (printf "%v" $shutter) "s") }}s{{ end }}</span>
         </div>
         {{ end }}
-        {{ if $exif.iso }}
+        {{ if $iso }}
         <div class="exif-item">
           <span class="exif-label">ISO</span>
-          <span class="exif-value">{{ $exif.iso }}</span>
+          <span class="exif-value">{{ $iso }}</span>
         </div>
         {{ end }}
       </div>
     </section>
-    {{ end }}
   {{ end }}
 
   <div class="page-content prose">
