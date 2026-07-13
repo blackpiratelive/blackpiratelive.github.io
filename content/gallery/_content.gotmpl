@@ -1,150 +1,69 @@
-{{/* Fetch public gallery photos from Next.js CMS API with legacy fallback */}}
+{{/* Fetch public gallery photos directly from Next.js CMS API */}}
 {{ $apiUrl := getenv "CMS_API_URL" | default site.Params.cms_api_url }}
 {{ $endpoint := printf "%s/api/gallery" (strings.TrimSuffix "/" $apiUrl) }}
 
-{{ $photos := slice }}
-{{ $isCmsApi := false }}
-
 {{ $result := try (resources.GetRemote $endpoint) }}
-{{ if not $result.Err }}
+
+{{ if $result.Err }}
+  {{ errorf "Failed to fetch gallery photos from CMS API: %s" $result.Err }}
+{{ else }}
   {{ with $result.Value }}
-    {{ $unmarshalResult := try (transform.Unmarshal .Content) }}
-    {{ if not $unmarshalResult.Err }}
-      {{ $json := $unmarshalResult.Value }}
-      {{ if reflect.IsMap $json }}
-        {{ with index $json "photos" }}
-          {{ $photos = . }}
-          {{ $isCmsApi = true }}
-        {{ end }}
+    {{ $json := .Content | transform.Unmarshal }}
+    {{ $photos := $json.photos }}
+
+    {{ range $i, $photo := $photos }}
+      {{ $slug := $photo.slug }}
+      {{ if or (not $slug) (eq $slug "") }}
+        {{ $slug = printf "photo-%d" $i }}
       {{ end }}
-    {{ end }}
-  {{ end }}
-{{ end }}
 
-{{/* Fallback to legacy gallery JSON if CMS API endpoint returns no photos or authentication redirect */}}
-{{ if eq (len $photos) 0 }}
-  {{ $legacyUrl := "https://gallery.blackpiratex.com/index.json" }}
-  {{ $legacyResult := try (resources.GetRemote $legacyUrl) }}
-  {{ if not $legacyResult.Err }}
-    {{ with $legacyResult.Value }}
-      {{ $legacyUnmarshal := try (transform.Unmarshal .Content) }}
-      {{ if not $legacyUnmarshal.Err }}
-        {{ $photos = $legacyUnmarshal.Value }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
-{{ end }}
+      {{ $dateObj := time.AsTime ($photo.createdAt | default $photo.takenAt) }}
 
-{{ range $i, $photo := $photos }}
-  {{ $slug := "" }}
-  {{ $title := "" }}
-  {{ $description := "" }}
-  {{ $dateObj := time.AsTime "2006-01-01" }}
-
-  {{ $originalUrl := "" }}
-  {{ $largeUrl := "" }}
-  {{ $mediumUrl := "" }}
-  {{ $thumbnailUrl := "" }}
-  {{ $camera := "" }}
-  {{ $lens := "" }}
-  {{ $focalLength := "" }}
-  {{ $aperture := "" }}
-  {{ $shutterSpeed := "" }}
-  {{ $iso := "" }}
-  {{ $album := "" }}
-  {{ $tags := slice }}
-  {{ $featured := false }}
-
-  {{ if $isCmsApi }}
-    {{ $slug = $photo.slug }}
-    {{ $title = $photo.title | default (printf "Gallery Photo %d" $i) }}
-    {{ $description = $photo.description | default "" }}
-    {{ $dateObj = time.AsTime ($photo.createdAt | default $photo.takenAt) }}
-
-    {{ $originalUrl = $photo.originalUrl }}
-    {{ $largeUrl = $photo.largeUrl }}
-    {{ $mediumUrl = $photo.mediumUrl }}
-    {{ $thumbnailUrl = $photo.thumbnailUrl }}
-
-    {{ $camera = $photo.camera }}
-    {{ $lens = $photo.lens }}
-    {{ $focalLength = $photo.focalLength }}
-    {{ $aperture = $photo.aperture }}
-    {{ $shutterSpeed = $photo.shutterSpeed }}
-    {{ $iso = $photo.iso }}
-    {{ $album = $photo.album }}
-    {{ $tags = $photo.tags }}
-    {{ $featured = $photo.featured }}
-  {{ else }}
-    {{/* Legacy structure */}}
-    {{ $title = $photo.title | default (printf "Gallery Photo %d" $i) }}
-    {{ $slug = $title | urlize }}
-    {{ $description = $photo.description | default "" }}
-    {{ if $photo.date }}
-      {{ $dateObj = time.AsTime $photo.date }}
-    {{ end }}
-
-    {{ if $photo.image }}
-      {{ with $photo.image.original }}{{ $originalUrl = .url }}{{ end }}
-      {{ with $photo.image.thumbnail }}{{ $thumbnailUrl = .url }}{{ end }}
-    {{ end }}
-
-    {{ if $photo.exif }}
-      {{ $camera = $photo.exif.model }}
-      {{ $focalLength = $photo.exif.focalLength }}
-      {{ $aperture = $photo.exif.fstop }}
-      {{ $shutterSpeed = $photo.exif.shutter }}
-      {{ $iso = $photo.exif.iso }}
-    {{ end }}
-    {{ $album = $photo.album }}
-    {{ $tags = $photo.tags }}
-    {{ $featured = $photo.featured }}
-  {{ end }}
-
-  {{ if or (not $slug) (eq $slug "") }}
-    {{ $slug = printf "photo-%d" $i }}
-  {{ end }}
-
-  {{ $pageData := dict
-      "path" $slug
-      "title" $title
-      "description" $description
-      "date" $dateObj
-      "params" (dict
-          "slug" $slug
-          "original_url" $originalUrl
-          "large_url" $largeUrl
-          "medium_url" $mediumUrl
-          "thumbnail_url" $thumbnailUrl
-          "camera" $camera
-          "lens" $lens
-          "focal_length" $focalLength
-          "aperture" $aperture
-          "shutter_speed" $shutterSpeed
-          "iso" $iso
-          "tags" $tags
-          "album" $album
-          "featured" $featured
-          "image" (dict
-              "original" (dict "url" $originalUrl)
-              "large" (dict "url" $largeUrl)
-              "medium" (dict "url" $mediumUrl)
-              "thumbnail" (dict "url" $thumbnailUrl)
+      {{ $pageData := dict
+          "path" $slug
+          "title" ($photo.title | default (printf "Gallery Photo %d" $i))
+          "description" ($photo.description | default "")
+          "date" $dateObj
+          "params" (dict
+              "slug" $slug
+              "original_url" $photo.originalUrl
+              "large_url" $photo.largeUrl
+              "medium_url" $photo.mediumUrl
+              "thumbnail_url" $photo.thumbnailUrl
+              "width" $photo.width
+              "height" $photo.height
+              "camera" $photo.camera
+              "lens" $photo.lens
+              "focal_length" $photo.focalLength
+              "aperture" $photo.aperture
+              "shutter_speed" $photo.shutterSpeed
+              "iso" $photo.iso
+              "taken_at" $photo.takenAt
+              "tags" $photo.tags
+              "album" $photo.album
+              "featured" $photo.featured
+              "image" (dict
+                  "original" (dict "url" $photo.originalUrl)
+                  "large" (dict "url" $photo.largeUrl)
+                  "medium" (dict "url" $photo.mediumUrl)
+                  "thumbnail" (dict "url" $photo.thumbnailUrl)
+              )
+              "exif" (dict
+                  "model" $photo.camera
+                  "lens" $photo.lens
+                  "focal_length" $photo.focalLength
+                  "fstop" $photo.aperture
+                  "shutter" $photo.shutterSpeed
+                  "iso" $photo.iso
+              )
           )
-          "exif" (dict
-              "model" $camera
-              "lens" $lens
-              "focal_length" $focalLength
-              "fstop" $aperture
-              "shutter" $shutterSpeed
-              "iso" $iso
+          "content" (dict
+              "mediaType" "text/html"
+              "value" ($photo.description | default "")
           )
-      )
-      "content" (dict
-          "mediaType" "text/html"
-          "value" $description
-      )
-  }}
+      }}
 
-  {{ $.AddPage $pageData }}
+      {{ $.AddPage $pageData }}
+    {{ end }}
+  {{ end }}
 {{ end }}
