@@ -257,3 +257,43 @@
         {{ end }}
     {{ end }}
 {{ end }}
+
+{{/* Fetch published microblog posts directly from CMS site API */}}
+{{ $cmsUrl := getenv "CMS_API_URL" | default "https://admin-cms-sigma.vercel.app" }}
+{{ $endpoint := printf "%s/api/microblogs" (strings.TrimSuffix "/" $cmsUrl) }}
+
+{{ $result := try (resources.GetRemote $endpoint) }}
+
+{{ if $result.Err }}
+  {{ warnf "Failed to fetch content from CMS: %s" $result.Err }}
+{{ else }}
+  {{ with $result.Value }}
+    {{ $json := . | transform.Unmarshal }}
+    {{ range $json.posts }}
+      {{ $id := .id }}
+      {{ $slug := .slug }}
+      {{ $markdown := .contentMarkdown }}
+      {{ $publishedAt := .publishedAt }}
+      {{ $tagsRaw := .tags }}
+      {{ $coverImageUrl := .coverImageUrl }}
+
+      {{/* Parse tags JSON string */}}
+      {{ $tags := slice }}
+      {{ with $tagsRaw }}
+        {{ $tags = . | transform.Unmarshal (dict "format" "json") }}
+      {{ end }}
+
+      {{ $pageData := dict
+          "kind" "page"
+          "path" (printf "thoughts/%s" $slug)
+          "title" ""
+          "dates" (dict "date" (time.AsTime $publishedAt))
+          "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "is_microblog" true)
+          "content" (dict "mediaType" "text/markdown" "value" $markdown)
+      }}
+
+      {{/* Construct Hugo Page under /thoughts/<slug>/ */}}
+      {{ $.AddPage $pageData }}
+    {{ end }}
+  {{ end }}
+{{ end }}

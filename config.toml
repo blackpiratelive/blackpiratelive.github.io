@@ -70,4 +70,7 @@ theme = 'typography-minimal'
   enableInlineShortcodes = false
   allowContent = ['^text/html$', '^text/markdown$']
   [security.funcs]
-    getenv = ['^HUGO_', '^CI$', '^VERCEL$']
+    getenv = ['^HUGO_', '^CI$', '^VERCEL$', '^TURSO_', '^CMS_']
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['(?i)^https?://[a-z0-9]', '(?i)localhost']
