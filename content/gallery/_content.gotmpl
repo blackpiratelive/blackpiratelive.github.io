@@ -5,11 +5,15 @@
 {{ $result := try (resources.GetRemote $endpoint) }}
 
 {{ if $result.Err }}
-  {{ errorf "Failed to fetch gallery photos from CMS API: %s" $result.Err }}
+  {{ warnf "Failed to fetch gallery photos from CMS API: %s" $result.Err }}
 {{ else }}
   {{ with $result.Value }}
-    {{ $json := .Content | transform.Unmarshal }}
-    {{ $photos := $json.photos }}
+    {{ $parsed := try (. | transform.Unmarshal (dict "format" "json")) }}
+    {{ if $parsed.Err }}
+      {{ warnf "Gallery Adapter Parse Error: %s" $parsed.Err }}
+    {{ else }}
+      {{ $json := $parsed.Value }}
+      {{ $photos := $json.photos }}
 
     {{ range $i, $photo := $photos }}
       {{ $slug := $photo.slug }}
@@ -82,5 +86,6 @@
 
       {{ $.AddPage $pageData }}
     {{ end }}
+  {{ end }}
   {{ end }}
 {{ end }}
