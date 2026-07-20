@@ -293,17 +293,31 @@
 }
 </style>
 
-<link rel="stylesheet" href="{{ "/vendor/sakana/sakana.min.css" | relURL }}" />
-<div id="sakana-widget" style="position: fixed; left: 20px; bottom: 20px; z-index: 1000;"></div>
-<script defer src="{{ "/vendor/sakana/sakana.min.js" | relURL }}"></script>
+<script defer src="{{ "/vendor/l2d-widget/L2Dwidget.min.js" | relURL }}"></script>
 <script>
   window.addEventListener('load', function() {
-    if (window.SakanaWidget) {
-      new SakanaWidget({
-        character: 'chisato',
-        size: 180,
-        controls: false,
-      }).mount('#sakana-widget');
+    if (window.L2Dwidget) {
+      L2Dwidget.init({
+        model: {
+          jsonPath: "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+          scale: 1
+        },
+        display: {
+          position: "left",
+          width: 220,
+          height: 340,
+          hOffset: 20,
+          vOffset: 0
+        },
+        mobile: {
+          show: true,
+          scale: 0.85
+        },
+        react: {
+          opacityDefault: 0.9,
+          opacityOnHover: 1
+        }
+      });
     }
   });
 </script>
