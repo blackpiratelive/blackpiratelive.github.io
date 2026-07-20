@@ -293,33 +293,6 @@
 }
 </style>
 
-<script defer src="{{ "/vendor/l2d-widget/L2Dwidget.min.js" | relURL }}"></script>
-<script>
-  window.addEventListener('load', function() {
-    if (window.L2Dwidget) {
-      L2Dwidget.init({
-        model: {
-          jsonPath: "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
-          scale: 1
-        },
-        display: {
-          position: "left",
-          width: 220,
-          height: 340,
-          hOffset: 20,
-          vOffset: 0
-        },
-        mobile: {
-          show: true,
-          scale: 0.85
-        },
-        react: {
-          opacityDefault: 0.9,
-          opacityOnHover: 1
-        }
-      });
-    }
-  });
-</script>
+<script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.1/dist/autoload.js"></script>
 <script defer src="{{ "/oneko.js" | relURL }}" data-cat="{{ "/oneko.gif" | relURL }}"></script>
 {{ end }}
