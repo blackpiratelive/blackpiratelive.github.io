@@ -21,10 +21,10 @@
   <div class="thought-single-content serif-content">
     {{ .Content }}
     {{ with .Params.images }}
-    <div class="microblog-gallery" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+    <div class="microblog-gallery-single">
       {{ range . }}
-        <a href="{{ . }}" target="_blank">
-          <img src="{{ . }}" alt="Post Image" class="gallery-thumbnail" style="max-width: 150px; max-height: 150px; border-radius: 4px; object-fit: cover;" />
+        <a href="{{ . }}" target="_blank" class="single-image-link">
+          <img src="{{ . }}" alt="Post Image" class="thought-full-image" />
         </a>
       {{ end }}
     </div>
@@ -105,6 +105,31 @@
   line-height: 1.6;
   color: var(--text-color);
   margin-bottom: var(--spacing-md);
+}
+
+.thought-single-content img,
+.microblog-gallery-single img,
+.microblog-gallery img {
+  width: 100%;
+  max-width: 100% !important;
+  max-height: none !important;
+  height: auto !important;
+  border-radius: 8px;
+  display: block;
+  margin: var(--spacing-sm) 0;
+  object-fit: contain;
+}
+
+.microblog-gallery-single {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.single-image-link {
+  display: block;
+  width: 100%;
 }
 
 .thought-single-footer {
