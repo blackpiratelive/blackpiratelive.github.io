@@ -66,11 +66,8 @@
         {{ else if eq $ext ".mov" }}
           {{ $mimeType = "video/quicktime" }}
         {{ end }}
-        {{ $videoSources := printf `{"source": [{"src": "%s", "type": "%s"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}` $url $mimeType }}
-        <a href="javascript:void(0)"
-           data-video='{{ $videoSources | safeHTML }}'
-           {{ with .thumb }}data-poster="{{ . }}"{{ end }}
-           {{ with $caption }}title="{{ . }}" data-sub-html="<h4>{{ . }}</h4>"{{ end }}>
+        
+        <a href="{{ $url }}" class="gallery-item video-item" {{ with $caption }}data-caption="{{ . }}"{{ end }} data-type="video" data-mime="{{ $mimeType }}">
           <img src="{{ $thumbUrl }}" loading="lazy" alt="{{ $alt }}">
           <div class="video-play-overlay">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +77,7 @@
           </div>
         </a>
       {{ else }}
-        <a href="{{ $url }}" {{ with $caption }}title="{{ . }}"{{ end }}>
+        <a href="{{ $url }}" class="gallery-item image-item" {{ with $caption }}data-caption="{{ . }}"{{ end }}>
           <img src="{{ $thumbUrl }}" loading="lazy" alt="{{ $alt }}">
         </a>
       {{ end }}
@@ -88,16 +85,103 @@
   {{ end }}
 </div>
 
+<div id="custom-lightbox" class="custom-lightbox" style="display: none;">
+  <span class="custom-lightbox-close">&times;</span>
+  <span class="custom-lightbox-prev">&#10094;</span>
+  <span class="custom-lightbox-next">&#10095;</span>
+  <div class="custom-lightbox-content"></div>
+  <div class="custom-lightbox-caption"></div>
+</div>
+
 {{ if not (.Page.Scratch.Get "gal-loaded") }}
   {{ .Page.Scratch.Set "gal-loaded" true }}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lg-video.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/video/lg-video.min.js"></script>
   <style>
+    .custom-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.93);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .custom-lightbox.active {
+      opacity: 1;
+    }
+    .custom-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: 200;
+      cursor: pointer;
+      z-index: 100000;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+    .custom-lightbox-close:hover {
+      color: #ccc;
+    }
+    .custom-lightbox-prev,
+    .custom-lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 36px;
+      font-weight: 300;
+      cursor: pointer;
+      z-index: 100000;
+      user-select: none;
+      padding: 16px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    .custom-lightbox-prev {
+      left: 20px;
+    }
+    .custom-lightbox-next {
+      right: 20px;
+    }
+    .custom-lightbox-prev:hover,
+    .custom-lightbox-next:hover {
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .custom-lightbox-content {
+      max-width: 90vw;
+      max-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .custom-lightbox-content img,
+    .custom-lightbox-content video {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+    .custom-lightbox-caption {
+      color: #ccc;
+      margin-top: 15px;
+      font-size: 15px;
+      text-align: center;
+      font-family: inherit;
+      max-width: 80%;
+    }
     .video-play-overlay {
       position: absolute;
       top: 50%;
@@ -117,6 +201,9 @@
       width: 100%;
       height: 100%;
     }
+    .justified-gallery a {
+      cursor: pointer;
+    }
     .justified-gallery a:hover .video-play-overlay {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.15);
@@ -124,29 +211,110 @@
   </style>
   <script>
     (function () {
+      var currentGalleryItems = [];
+      var currentIndex = -1;
+
       function initGallery() {
         $('.justified-gallery').each(function () {
-          var gallery = this;
-          $(gallery).justifiedGallery({
+          $(this).justifiedGallery({
             rowHeight: 180,
             margins: 5,
             captions: true
-          }).on('jg.complete', function () {
-            var lgPlugins = [];
-            if (typeof lgVideo !== 'undefined') {
-              lgPlugins.push(lgVideo);
-            }
-            if (!gallery.lgInitialized) {
-              gallery.lgInitialized = true;
-              gallery.lgInstance = lightGallery(gallery, {
-                selector: 'a',
-                download: false,
-                plugins: lgPlugins
-              });
-            }
           });
         });
+
+        var $lightbox = $('#custom-lightbox');
+        var $content = $lightbox.find('.custom-lightbox-content');
+        var $caption = $lightbox.find('.custom-lightbox-caption');
+
+        function showSlide(index) {
+          if (index < 0) {
+            index = currentGalleryItems.length - 1;
+          } else if (index >= currentGalleryItems.length) {
+            index = 0;
+          }
+          currentIndex = index;
+
+          var $item = $(currentGalleryItems[currentIndex]);
+          var src = $item.attr('href');
+          var isVideo = $item.data('type') === 'video';
+          var mime = $item.data('mime') || 'video/mp4';
+          var text = $item.data('caption') || '';
+
+          $content.empty();
+          if (isVideo) {
+            var $video = $('<video controls autoplay playsinline></video>');
+            var $source = $('<source>').attr('src', src).attr('type', mime);
+            $video.append($source);
+            $content.append($video);
+          } else {
+            var $img = $('<img>').attr('src', src);
+            $content.append($img);
+          }
+
+          $caption.text(text);
+        }
+
+        $(document).on('click', '.gallery-item', function (e) {
+          e.preventDefault();
+          var $this = $(this);
+          var $gallery = $this.closest('.justified-gallery');
+          currentGalleryItems = $gallery.find('.gallery-item').toArray();
+          currentIndex = currentGalleryItems.indexOf(this);
+
+          if (currentGalleryItems.length <= 1) {
+            $lightbox.find('.custom-lightbox-prev, .custom-lightbox-next').hide();
+          } else {
+            $lightbox.find('.custom-lightbox-prev, .custom-lightbox-next').show();
+          }
+
+          showSlide(currentIndex);
+
+          $lightbox.css('display', 'flex');
+          $lightbox[0].offsetHeight; // Reflow
+          $lightbox.addClass('active');
+        });
+
+        function closeLightbox() {
+          $lightbox.removeClass('active');
+          setTimeout(function () {
+            $lightbox.css('display', 'none');
+            $content.empty();
+          }, 250);
+        }
+
+        $lightbox.on('click', function (e) {
+          var $target = $(e.target);
+          if ($target.hasClass('custom-lightbox-close') || 
+              (!$target.closest('.custom-lightbox-content').length && 
+               !$target.hasClass('custom-lightbox-prev') && 
+               !$target.hasClass('custom-lightbox-next'))) {
+            closeLightbox();
+          }
+        });
+
+        $lightbox.on('click', '.custom-lightbox-prev', function (e) {
+          e.stopPropagation();
+          showSlide(currentIndex - 1);
+        });
+
+        $lightbox.on('click', '.custom-lightbox-next', function (e) {
+          e.stopPropagation();
+          showSlide(currentIndex + 1);
+        });
+
+        $(document).on('keydown', function (e) {
+          if (!$lightbox.hasClass('active')) return;
+          if (e.key === 'Escape') {
+            closeLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            showSlide(currentIndex - 1);
+          } else if (e.key === 'ArrowRight') {
+            showSlide(currentIndex + 1);
+          }
+        });
       }
+
       if (document.readyState === 'loading') {
         document.addEventListener("DOMContentLoaded", initGallery);
       } else {
