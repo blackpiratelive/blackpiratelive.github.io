@@ -2,6 +2,7 @@
 title: "Funny Student Protest Posters"
 date: 2026-07-25T22:18:49+05:30
 tags: [politics]
+cover: "/protest/18.jpg"
 ---
 During 2026 July there is a hugo nationwide protest for NEET paper leak and the broken education system of India. It all started when CJI called GenZ youth cockroaches. Thus Cockroach Janata Party was born. 
 
