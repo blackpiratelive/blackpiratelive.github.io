@@ -31,9 +31,13 @@
       {{- $image = (resources.Get "img/me-collage.jpg").Permalink -}}
     {{- end -}}
 {{- else if eq .Section "blog" -}}
-  {{- with .Params.image -}}
-    {{- if (fileExists (printf "static/%s" .)) -}}
-      {{- $image = (resources.Get .).Permalink -}}
+  {{- $blogCover := .Params.cover | default .Params.image -}}
+  {{- with $blogCover -}}
+    {{- $coverPath := strings.TrimPrefix "/" . -}}
+    {{- with resources.Get $coverPath -}}
+      {{- $image = .Permalink -}}
+    {{- else -}}
+      {{- $image = $blogCover | absURL -}}
     {{- end -}}
   {{- end -}}
 {{- else if eq .Section "books" -}}
