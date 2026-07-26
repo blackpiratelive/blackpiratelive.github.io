@@ -88,6 +88,20 @@
             {{ end }}
           </span>
         </div>
+
+        {{ with .Params.location }}
+        <div class="info-item">
+          <span class="info-label">Location</span>
+          <span class="info-value">📍 {{ .name }}{{ if .city }}, {{ .city }}{{ end }}{{ if .country }}, {{ .country }}{{ end }}</span>
+        </div>
+        {{ end }}
+
+        {{ with .Params.trip }}
+        <div class="info-item">
+          <span class="info-label">Trip</span>
+          <span class="info-value">✈️ {{ .title }}</span>
+        </div>
+        {{ end }}
       </div>
     </div>
 

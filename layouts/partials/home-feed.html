@@ -126,6 +126,14 @@
             <span class="entry-type label-thought">Thought</span>
             <span class="entry-separator">&middot;</span>
             <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            {{ with .Params.location }}
+            <span class="entry-separator">&middot;</span>
+            <span class="entry-location" title="Location">📍 {{ .name }}</span>
+            {{ end }}
+            {{ with .Params.trip }}
+            <span class="entry-separator">&middot;</span>
+            <span class="entry-trip" title="Trip">✈️ {{ .title }}</span>
+            {{ end }}
           </div>
           <div class="entry-content thought-content">
             {{ .Content }}

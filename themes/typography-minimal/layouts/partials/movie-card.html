@@ -19,7 +19,19 @@
   </div>
   <div class="movie-card-info">
     <h3 class="movie-title">{{ .Title }}</h3>
-    <p class="movie-meta">Watched {{ .Date.Format "Jan 2006" }}</p>
+    <p class="movie-meta">
+      Watched {{ .Date.Format "Jan 2006" }}
+      {{ with .Params.location }}
+      · 📍 {{ .name }}
+      {{ else }}
+        {{ with $.Params.watch_location }}
+        · 📍 {{ . }}
+        {{ end }}
+      {{ end }}
+      {{ with .Params.trip }}
+      · ✈️ {{ .title }}
+      {{ end }}
+    </p>
   </div>
 </a>
 

@@ -6,6 +6,37 @@
 {{ $comments := slice }}{{ with resources.Get "trakt/comments.json" }}{{ $comments = . | transform.Unmarshal }}{{ end }}
 {{ $favorites := slice }}{{ with resources.Get "trakt/favorites.json" }}{{ $favorites = . | transform.Unmarshal }}{{ end }}
 
+{{/* Fetch CMS Movies & TV Shows data for Location & Trip resolution */}}
+{{ $cmsUrl := getenv "CMS_API_URL" | default "https://admin-cms-sigma.vercel.app" }}
+
+{{ $cmsMoviesMap := dict }}
+{{ $moviesEndpoint := printf "%s/api/movies" (strings.TrimSuffix "/" $cmsUrl) }}
+{{ $moviesResult := try (resources.GetRemote $moviesEndpoint) }}
+{{ if not $moviesResult.Err }}
+  {{ with $moviesResult.Value }}
+    {{ $parsedMovies := try (. | transform.Unmarshal (dict "format" "json")) }}
+    {{ if not $parsedMovies.Err }}
+      {{ range $parsedMovies.Value.movies }}
+        {{ $cmsMoviesMap = merge $cmsMoviesMap (dict (string .traktId) .) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $cmsShowsMap := dict }}
+{{ $showsEndpoint := printf "%s/api/shows" (strings.TrimSuffix "/" $cmsUrl) }}
+{{ $showsResult := try (resources.GetRemote $showsEndpoint) }}
+{{ if not $showsResult.Err }}
+  {{ with $showsResult.Value }}
+    {{ $parsedShows := try (. | transform.Unmarshal (dict "format" "json")) }}
+    {{ if not $parsedShows.Err }}
+      {{ range $parsedShows.Value.shows }}
+        {{ $cmsShowsMap = merge $cmsShowsMap (dict (string .traktId) .) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{/* Create Lookup Maps */}}
 {{ $movieRatingsMap := dict }}
 {{ range $movieRatings }}{{ $movieRatingsMap = merge $movieRatingsMap (dict (string .movie.ids.trakt) .rating) }}{{ end }}
@@ -52,6 +83,18 @@
     {{ $userReview := index $commentsMap $traktId }}
     {{ $isFavorite := index $favoritesMap $traktId | default false }}
     
+    {{ $cmsMovie := index $cmsMoviesMap $traktId }}
+    {{ $movieLocation := false }}
+    {{ $movieTrip := false }}
+    {{ $watchLocation := "" }}
+    {{ if $cmsMovie }}
+      {{ if $cmsMovie.location }}{{ $movieLocation = $cmsMovie.location }}{{ end }}
+      {{ if $cmsMovie.trip }}{{ $movieTrip = $cmsMovie.trip }}{{ end }}
+      {{ if $cmsMovie.watchLocation }}{{ $watchLocation = $cmsMovie.watchLocation }}{{ end }}
+      {{ if and $cmsMovie.personalRating (not $userRating) }}{{ $userRating = $cmsMovie.personalRating }}{{ end }}
+      {{ if and $cmsMovie.review (not $userReview) }}{{ $userReview = $cmsMovie.review }}{{ end }}
+    {{ end }}
+
     {{ $date := time.AsTime $item.last_watched_at }}
     {{ $dayKey := $date.Format "2006-01-02" }}
     {{ $dayMovies := index $moviesByDay $dayKey | default (slice) }}
@@ -79,6 +122,9 @@
             "last_watched" $item.last_watched_at
             "plays" $item.plays
             "feed_exclude" $feedExclude
+            "location" $movieLocation
+            "trip" $movieTrip
+            "watch_location" $watchLocation
         )
         "content" (dict "mediaType" "text/markdown" "value" ($movie.overview | default ""))
     }}
@@ -125,6 +171,16 @@
     {{ $userReview := index $commentsMap $traktId }}
     {{ $isFavorite := index $favoritesMap $traktId | default false }}
     
+    {{ $cmsShow := index $cmsShowsMap $traktId }}
+    {{ $showLocation := false }}
+    {{ $showTrip := false }}
+    {{ if $cmsShow }}
+      {{ if $cmsShow.location }}{{ $showLocation = $cmsShow.location }}{{ end }}
+      {{ if $cmsShow.trip }}{{ $showTrip = $cmsShow.trip }}{{ end }}
+      {{ if and $cmsShow.personalRating (not $userRating) }}{{ $userRating = $cmsShow.personalRating }}{{ end }}
+      {{ if and $cmsShow.review (not $userReview) }}{{ $userReview = $cmsShow.review }}{{ end }}
+    {{ end }}
+
     {{ $date := time.AsTime $item.last_watched_at }}
 
     {{/* Calculate Season Stats */}}
@@ -175,6 +231,8 @@
             "plays" $item.plays
             "seasons_watched" $seasonsWatched
             "episodes_watched" $totalEpisodes
+            "location" $showLocation
+            "trip" $showTrip
         )
         "content" (dict "mediaType" "text/markdown" "value" ($show.overview | default ""))
     }}
@@ -259,7 +317,6 @@
 {{ end }}
 
 {{/* Fetch published microblog posts directly from CMS site API */}}
-{{ $cmsUrl := getenv "CMS_API_URL" | default "https://admin-cms-sigma.vercel.app" }}
 {{ $endpoint := printf "%s/api/microblogs" (strings.TrimSuffix "/" $cmsUrl) }}
 
 {{ $result := try (resources.GetRemote $endpoint) }}
@@ -282,13 +339,15 @@
         {{ $coverImageUrl := .coverImageUrl }}
         {{ $images := .images }}
         {{ $relatedPosts := .relatedPosts }}
+        {{ $location := .location }}
+        {{ $trip := .trip }}
 
         {{ $pageData := dict
             "kind" "page"
             "path" (printf "thoughts/%s" $slug)
             "title" ""
             "dates" (dict "date" (time.AsTime $publishedAt))
-            "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "images" $images "related_posts" $relatedPosts "is_microblog" true)
+            "params" (dict "slug" $slug "tags" $tags "cover_image_url" $coverImageUrl "images" $images "related_posts" $relatedPosts "location" $location "trip" $trip "is_microblog" true)
             "content" (dict "mediaType" "text/markdown" "value" $markdown)
         }}
 
@@ -298,3 +357,4 @@
     {{ end }}
   {{ end }}
 {{ end }}
+
