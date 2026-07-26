@@ -1,6 +1,13 @@
 <br>
 <section class="comments-section">
-  <button type="button" class="btn" id="comments-toggle">Show comments</button>
+  <div class="comments-action-bar" style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+    <button type="button" class="btn btn-comment-toggle" id="comments-toggle" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; font-family: var(--font-sans, sans-serif); font-size: 0.9rem; font-weight: 600; background-color: var(--bg-card, #ffffff); border: 1px solid var(--border-color, #ccc); border-radius: 8px; color: var(--text-color, #000); cursor: pointer; transition: all 0.2s ease;">
+      <i data-lucide="message-square" style="width: 16px; height: 16px;"></i> Comment here
+    </button>
+    <a href="{{ "/guestbook/" | relURL }}" class="btn btn-guestbook-link" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; font-family: var(--font-sans, sans-serif); font-size: 0.9rem; font-weight: 600; background-color: var(--bg-card, #ffffff); border: 1px solid var(--border-color, #ccc); border-radius: 8px; color: var(--text-color, #000); text-decoration: none; transition: all 0.2s ease;">
+      <i data-lucide="book-open" style="width: 16px; height: 16px;"></i> Write on guestbook
+    </a>
+  </div>
   <div id="comments-wrap" style="display:none;">
     <div id="comments-section-cvofw6q4" class="comments-container">
       <div id="comments-list-cvofw6q4">
@@ -32,7 +39,7 @@
         </div>
         <div class="form-group">
           <label for="comment">Comment *</label>
-          <textarea id="comment" name="comment_text" required rows="4"></textarea>
+          <textarea id="comment" name="comment_text" required rows="4" placeholder="Share your thoughts..."></textarea>
         </div>
         <input type="hidden" name="parent_id" id="parent-id-cvofw6q4">
         <div id="replying-to-info-cvofw6q4" class="reply-context" style="display:none;">
@@ -55,12 +62,16 @@
       loaded = true;
       wrap.style.display = "block";
       initComments();
-      toggle.textContent = "Hide comments";
+      toggle.innerHTML = '<i data-lucide="message-square" style="width: 16px; height: 16px;"></i> Hide comments';
+      if (window.lucide) window.lucide.createIcons();
       return;
     }
     const isHidden = wrap.style.display === "none";
     wrap.style.display = isHidden ? "block" : "none";
-    toggle.textContent = isHidden ? "Hide comments" : "Show comments";
+    toggle.innerHTML = isHidden 
+      ? '<i data-lucide="message-square" style="width: 16px; height: 16px;"></i> Hide comments' 
+      : '<i data-lucide="message-square" style="width: 16px; height: 16px;"></i> Comment here';
+    if (window.lucide) window.lucide.createIcons();
   });
 
   function initComments() {

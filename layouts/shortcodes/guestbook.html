@@ -1,3 +1,35 @@
+{{ $gbEntries := slice }}
+{{ $gbResult := try (resources.GetRemote "https://sudip-gb.blackpiratex.com/api/entries?user=sudip") }}
+{{ if $gbResult.Err }}
+  {{ warnf "Failed to fetch guestbook entries: %s" $gbResult.Err }}
+{{ else }}
+  {{ with $gbResult.Value }}
+    {{ $parsedGB := try (.Content | transform.Unmarshal) }}
+    {{ if $parsedGB.Err }}
+      {{ warnf "Guestbook Unmarshal Error: %s" $parsedGB.Err }}
+    {{ else }}
+      {{ $gbEntries = $parsedGB.Value }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $topEntries := slice }}
+{{ $repliesMap := dict }}
+
+{{ range $gbEntries }}
+  {{ $entryId := string .id }}
+  {{ $parentId := "" }}
+  {{ with .parent_id }}{{ $parentId = string . }}{{ end }}
+  
+  {{ if or (eq $parentId "") (eq $parentId "<nil>") }}
+    {{ $topEntries = $topEntries | append . }}
+  {{ else }}
+    {{ $existingReplies := index $repliesMap $parentId | default (slice) }}
+    {{ $existingReplies = $existingReplies | append . }}
+    {{ $repliesMap = merge $repliesMap (dict $parentId $existingReplies) }}
+  {{ end }}
+{{ end }}
+
 <div class="gb-form-container">
   <h2>Sign the Guestbook</h2>
   <form id="guestbook-form" class="space-y-4">
@@ -14,7 +46,7 @@
       <textarea id="message" name="message" class="gb-textarea" rows="4" placeholder="Leave a nice note..." required></textarea>
     </div>
     
-    <div id="guestbook-reply-context" class="bg-blue-900/30 border border-blue-800 rounded-xl p-4 mb-4 items-center justify-between">
+    <div id="guestbook-reply-context" class="bg-blue-900/30 border border-blue-800 rounded-xl p-4 mb-4 items-center justify-between" style="display:none;">
       <div class="text-sm text-blue-200">
         <i data-lucide="reply" class="w-4 h-4 inline-block mr-1"></i>
         Replying to <strong id="guestbook-reply-name" class="text-white"></strong>
@@ -36,13 +68,86 @@
     </div>
   </div>
   <div id="guestbook-entries" class="space-y-6">
-    <div class="flex justify-center py-12">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-    </div>
+    {{ if gt (len $topEntries) 0 }}
+      {{ range $topEntries }}
+        {{ $entryId := string .id }}
+        {{ $senderName := .sender_name | default "Anonymous" }}
+        {{ $isOwner := or .is_owner (eq (lower $senderName) "sudip") }}
+        {{ $website := strings.TrimSpace (.sender_website | default "") }}
+        {{ $replies := index $repliesMap $entryId }}
+
+        <article class="gb-entry" id="entry-{{ $entryId }}">
+          <header class="gb-entry-header">
+            <div class="flex items-center gap-2">
+              <i data-lucide="user" class="w-4 h-4 text-zinc-500"></i>
+              {{ if ne $website "" }}
+                <a class="gb-author" href="{{ $website }}" target="_blank" rel="noopener noreferrer">{{ $senderName }}</a>
+              {{ else }}
+                <span class="gb-author">{{ $senderName }}</span>
+              {{ end }}
+              {{ if $isOwner }}<span class="gb-owner-tag">OWNER</span>{{ end }}
+              {{ with .created_at }}
+                <span class="gb-date">· {{ (time.AsTime .).Format "Jan 02, 2006, 15:04" }}</span>
+              {{ end }}
+            </div>
+          </header>
+          <div class="gb-content">{{ .message }}</div>
+          <div class="gb-actions">
+            <button type="button" class="gb-action-btn group" data-action="like" data-entry-id="{{ $entryId }}">
+              <i data-lucide="heart" class="w-3.5 h-3.5 group-hover:text-rose-500 transition-colors"></i>
+              <span class="gb-like-count">{{ .likes | default 0 }}</span>
+            </button>
+            <button type="button" class="gb-action-btn group" data-action="reply" data-entry-id="{{ $entryId }}" data-entry-name="{{ $senderName }}">
+              <i data-lucide="reply" class="w-3.5 h-3.5 group-hover:text-blue-400 transition-colors"></i>
+              <span>Reply</span>
+            </button>
+          </div>
+        </article>
+
+        {{ if $replies }}
+          <div class="gb-replies space-y-4 ml-6 border-l-2 border-zinc-800 pl-4 mt-2">
+            {{ range $replies }}
+              {{ $replyId := string .id }}
+              {{ $replySenderName := .sender_name | default "Anonymous" }}
+              {{ $replyIsOwner := or .is_owner (eq (lower $replySenderName) "sudip") }}
+              {{ $replyWebsite := strings.TrimSpace (.sender_website | default "") }}
+              <article class="gb-entry ml-0" id="entry-{{ $replyId }}">
+                <header class="gb-entry-header">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="user" class="w-4 h-4 text-zinc-500"></i>
+                    {{ if ne $replyWebsite "" }}
+                      <a class="gb-author" href="{{ $replyWebsite }}" target="_blank" rel="noopener noreferrer">{{ $replySenderName }}</a>
+                    {{ else }}
+                      <span class="gb-author">{{ $replySenderName }}</span>
+                    {{ end }}
+                    {{ if $replyIsOwner }}<span class="gb-owner-tag">OWNER</span>{{ end }}
+                    {{ with .created_at }}
+                      <span class="gb-date">· {{ (time.AsTime .).Format "Jan 02, 2006, 15:04" }}</span>
+                    {{ end }}
+                  </div>
+                </header>
+                <div class="gb-content">{{ .message }}</div>
+                <div class="gb-actions">
+                  <button type="button" class="gb-action-btn group" data-action="like" data-entry-id="{{ $replyId }}">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 group-hover:text-rose-500 transition-colors"></i>
+                    <span class="gb-like-count">{{ .likes | default 0 }}</span>
+                  </button>
+                  <button type="button" class="gb-action-btn group" data-action="reply" data-entry-id="{{ $replyId }}" data-entry-name="{{ $replySenderName }}">
+                    <i data-lucide="reply" class="w-3.5 h-3.5 group-hover:text-blue-400 transition-colors"></i>
+                    <span>Reply</span>
+                  </button>
+                </div>
+              </article>
+            {{ end }}
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      <p class="text-center py-12 text-zinc-500">No messages yet. Be the first to sign!</p>
+    {{ end }}
   </div>
 </div>
 
-<script src="https://sudip-gb.blackpiratex.com/guestbook-widget.js"></script>
 <script>
   (function() {
     const baseUrl = "https://sudip-gb.blackpiratex.com";
@@ -57,6 +162,7 @@
 
     const clearReplyTarget = () => {
       replyParentId = null;
+      replyContextEl.style.display = "none";
       replyContextEl.classList.remove("flex");
       replyNameEl.textContent = "";
     };
@@ -64,6 +170,7 @@
     const setReplyTarget = (entryId, senderName) => {
       replyParentId = entryId;
       replyNameEl.textContent = senderName || "this entry";
+      replyContextEl.style.display = "flex";
       replyContextEl.classList.add("flex");
       formEl.querySelector("textarea[name='message']")?.focus();
       formEl.scrollIntoView({ behavior: 'smooth' });
@@ -78,7 +185,7 @@
       
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Sending...';
-      lucide.createIcons();
+      if (window.lucide) lucide.createIcons();
 
       try {
         const fd = new FormData(e.target);
@@ -87,7 +194,7 @@
           sender_name: fd.get("name"),
           sender_website: fd.get("website"),
           message: fd.get("message"),
-          parent_id: replyParentId,
+          parent_id: replyParentId ? Number(replyParentId) : null,
           is_private: false,
           bot_field: ""
         };
@@ -97,113 +204,22 @@
           body: JSON.stringify(payload)
         });
         
-        if (!res.ok) throw new Error("Failed to submit");
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || "Failed to submit");
+        }
 
         e.target.reset();
         clearReplyTarget();
-        await mountGuestbook();
-        alert("Entry posted successfully!");
+        alert("Entry posted successfully! It will be published on the site shortly.");
       } catch (err) {
         alert("Error: " + err.message);
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHtml;
-        lucide.createIcons();
+        if (window.lucide) lucide.createIcons();
       }
     });
-
-    const escapeHtml = (text) => String(text)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/\"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-    const normalizeId = (value) => {
-      if (value === null || value === undefined || value === "") return null;
-      return String(value);
-    };
-
-    const renderEntry = (entry, isReply = false) => {
-      const senderName = (entry.sender_name || "Anonymous").trim();
-      const isOwner = Boolean(entry.is_owner) || senderName.toLowerCase() === owner.toLowerCase();
-      const name = escapeHtml(senderName);
-      const entryId = normalizeId(entry.id) || "";
-      const date = entry.created_at ? new Date(entry.created_at).toLocaleDateString(undefined, {
-        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-      }) : "";
-      const message = escapeHtml(entry.message || "");
-      const website = (entry.sender_website || "").trim();
-      const likes = Number(entry.likes || 0);
-
-      const nameHtml = website
-        ? `<a class="gb-author" href="${escapeHtml(website)}" target="_blank" rel="noopener noreferrer">${name}</a>`
-        : `<span class="gb-author">${name}</span>`;
-
-      return `
-        <article class="gb-entry ${isReply ? 'ml-0' : ''}" id="entry-${entryId}">
-          <header class="gb-entry-header">
-            <div class="flex items-center gap-2">
-              <i data-lucide="user" class="w-4 h-4 text-zinc-500"></i>
-              ${nameHtml}
-              ${isOwner ? '<span class="gb-owner-tag">OWNER</span>' : ""}
-              <span class="gb-date">· ${escapeHtml(date)}</span>
-            </div>
-          </header>
-          <div class="gb-content">${message}</div>
-          <div class="gb-actions">
-            <button type="button" class="gb-action-btn group" data-action="like" data-entry-id="${escapeHtml(entryId)}">
-              <i data-lucide="heart" class="w-3.5 h-3.5 group-hover:text-rose-500 transition-colors"></i>
-              <span class="gb-like-count">${likes}</span>
-            </button>
-            <button type="button" class="gb-action-btn group" data-action="reply" data-entry-id="${escapeHtml(entryId)}" data-entry-name="${name}">
-              <i data-lucide="reply" class="w-3.5 h-3.5 group-hover:text-blue-400 transition-colors"></i>
-              <span>Reply</span>
-            </button>
-          </div>
-        </article>
-      `;
-    };
-
-    const mountGuestbook = async () => {
-      try {
-        const entries = await GuestbookWidget.fetchEntries({
-          baseUrl: baseUrl,
-          username: owner
-        });
-
-        const topLevel = [];
-        const repliesByParent = new Map();
-
-        entries.forEach((entry) => {
-          const parentId = normalizeId(entry.parent_id);
-          if (parentId !== null) {
-            const list = repliesByParent.get(parentId) || [];
-            list.push(entry);
-            repliesByParent.set(parentId, list);
-          } else {
-            topLevel.push(entry);
-          }
-        });
-
-        const renderThread = (entry, depth = 0) => {
-          const entryId = normalizeId(entry.id);
-          const currentHtml = renderEntry(entry, depth > 0);
-          const replies = entryId ? (repliesByParent.get(entryId) || []) : [];
-          
-          let threadHtml = currentHtml;
-          if (replies.length > 0) {
-            threadHtml += `<div class="gb-replies">${replies.map(r => renderThread(r, depth + 1)).join("")}</div>`;
-          }
-          return threadHtml;
-        };
-
-        entriesContainer.innerHTML = topLevel.map(entry => renderThread(entry, 0)).join("") || "<p class='text-center py-12 text-zinc-500'>No messages yet. Be the first to sign!</p>";
-        lucide.createIcons();
-      } catch (err) {
-        entriesContainer.innerHTML = "<p class='text-center py-12 text-rose-400'>Could not load guestbook entries.</p>";
-      }
-    };
 
     entriesContainer.addEventListener("click", async (event) => {
       const button = event.target.closest("button[data-action]");
@@ -238,7 +254,5 @@
         }
       }
     });
-
-    mountGuestbook();
   })();
 </script>
