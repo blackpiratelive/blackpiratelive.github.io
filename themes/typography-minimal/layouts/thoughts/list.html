@@ -7,10 +7,10 @@
     {{ end }}
   </header>
 
-  <div class="thoughts-feed">
+  <div class="thoughts-feed" id="microblog-feed">
     {{ $paginator := .Paginate .Pages 50 }}
     {{ range $paginator.Pages }}
-    <article class="thought-entry" id="thought-{{ .Date.Format "20060102150405" }}">
+    <article class="thought-entry post" id="thought-{{ .Date.Format "20060102150405" }}">
       <div class="thought-meta">
         <time class="thought-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
           {{ .Date.Format "Jan 02, 2006" }} at {{ .Date.Format "15:04" }}
@@ -49,9 +49,69 @@
     {{ end }}
     <span class="pagination-info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
     {{ if $paginator.HasNext }}
-    <a class="pagination-next" href="{{ $paginator.Next.URL }}">Older →</a>
+    <a id="next-page-link" class="pagination-next" href="{{ $paginator.Next.URL }}">Older Posts →</a>
     {{ end }}
   </nav>
   {{ end }}
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const feed = document.getElementById("microblog-feed");
+    const nextLink = document.getElementById("next-page-link");
+
+    if (!feed || !nextLink) return;
+
+    // Set up the observer to watch the Next link
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        fetchNextPage();
+      }
+    }, { rootMargin: "200px" }); // Triggers 200px before they hit the bottom
+
+    observer.observe(nextLink);
+
+    async function fetchNextPage() {
+      const url = nextLink.getAttribute("href");
+      if (!url) return;
+
+      // Temporarily disable the link to prevent duplicate fetches
+      nextLink.removeAttribute("href");
+      nextLink.innerText = "Loading...";
+
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        
+        // Parse the fetched HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        
+        // Grab the new posts from the fetched page
+        const newPosts = doc.querySelectorAll(".post");
+        newPosts.forEach(post => feed.appendChild(post));
+
+        // Grab the NEW Next link from the fetched page
+        const newNextLink = doc.getElementById("next-page-link");
+        
+        if (newNextLink && newNextLink.getAttribute("href")) {
+          // Update our current Next link with the new URL
+          nextLink.setAttribute("href", newNextLink.getAttribute("href"));
+          nextLink.innerText = "Older Posts →";
+        } else {
+          // No more pages left
+          nextLink.remove();
+          observer.disconnect();
+        }
+
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+          window.lucide.createIcons();
+        }
+      } catch (error) {
+        console.error("Failed to fetch older posts:", error);
+        nextLink.innerText = "Error loading posts";
+      }
+    }
+  });
+</script>
 {{ end }}
