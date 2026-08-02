@@ -2,9 +2,9 @@
 set -euo pipefail
 
 # Config
-TRAKT_USERNAME="bpx"
-TRAKT_CLIENT_ID="a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0"
-TMDB_API_KEY="61c9bbbefe48beed3b4f02f0cc4794e7"
+TRAKT_USERNAME="${TRAKT_USERNAME:-bpx}"
+TRAKT_CLIENT_ID="${TRAKT_CLIENT_ID:-a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0}"
+TMDB_API_KEY="${TMDB_API_KEY:-61c9bbbefe48beed3b4f02f0cc4794e7}"
 DATA_DIR="assets/trakt"
 IMG_DIR="assets/cinema/posters"
 CACHE_DIR="node_modules/.cache/cinema_assets"
@@ -35,10 +35,23 @@ log "Fetching fresh data from Trakt..."
 fetch_trakt() {
   local endpoint=$1
   local output=$2
-  curl -s -L -H "Content-Type: application/json" \
+  local tmp_file="${output}.tmp"
+
+  if curl -s -f -L -H "Content-Type: application/json" \
        -H "trakt-api-version: 2" \
        -H "trakt-api-key: $TRAKT_CLIENT_ID" \
-       "https://api.trakt.tv/$endpoint" > "$output"
+       "https://api.trakt.tv/$endpoint" > "$tmp_file" 2>/dev/null; then
+    if node -e "JSON.parse(require('fs').readFileSync(process.argv[1]))" "$tmp_file" 2>/dev/null; then
+      mv "$tmp_file" "$output"
+      return 0
+    fi
+  fi
+
+  rm -f "$tmp_file"
+  log "Warning: Failed to fetch valid JSON for '$endpoint'. Preserving existing data."
+  if [ ! -f "$output" ] || [ ! -s "$output" ]; then
+    echo "[]" > "$output"
+  fi
 }
 
 fetch_trakt "users/$TRAKT_USERNAME/watched/movies?extended=full" "$DATA_DIR/watched_movies.json"

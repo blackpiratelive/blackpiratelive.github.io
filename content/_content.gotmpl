@@ -1,10 +1,10 @@
 {{/* Load data from locally fetched JSON files in assets/trakt/ */}}
-{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}
-{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $watchedShows = . | transform.Unmarshal }}{{ end }}
-{{ $movieRatings := slice }}{{ with resources.Get "trakt/movie_ratings.json" }}{{ $movieRatings = . | transform.Unmarshal }}{{ end }}
-{{ $showRatings := slice }}{{ with resources.Get "trakt/show_ratings.json" }}{{ $showRatings = . | transform.Unmarshal }}{{ end }}
-{{ $comments := slice }}{{ with resources.Get "trakt/comments.json" }}{{ $comments = . | transform.Unmarshal }}{{ end }}
-{{ $favorites := slice }}{{ with resources.Get "trakt/favorites.json" }}{{ $favorites = . | transform.Unmarshal }}{{ end }}
+{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedMovies = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/watched_movies.json: %s" $p.Err }}{{ end }}{{ end }}
+{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedShows = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/watched_shows.json: %s" $p.Err }}{{ end }}{{ end }}
+{{ $movieRatings := slice }}{{ with resources.Get "trakt/movie_ratings.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $movieRatings = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/movie_ratings.json: %s" $p.Err }}{{ end }}{{ end }}
+{{ $showRatings := slice }}{{ with resources.Get "trakt/show_ratings.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $showRatings = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/show_ratings.json: %s" $p.Err }}{{ end }}{{ end }}
+{{ $comments := slice }}{{ with resources.Get "trakt/comments.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $comments = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/comments.json: %s" $p.Err }}{{ end }}{{ end }}
+{{ $favorites := slice }}{{ with resources.Get "trakt/favorites.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $favorites = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/favorites.json: %s" $p.Err }}{{ end }}{{ end }}
 
 {{/* Fetch CMS Movies & TV Shows data for Location & Trip resolution */}}
 {{ $cmsUrl := getenv "CMS_API_URL" | default "https://admin-cms-sigma.vercel.app" }}

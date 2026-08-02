@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{/* 1. Retrieve Trakt Data */}}
-{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $watchedMovies = . | transform.Unmarshal }}{{ end }}
-{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $watchedShows = . | transform.Unmarshal }}{{ end }}
+{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedMovies = $p.Value }}{{ end }}{{ end }}
+{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedShows = $p.Value }}{{ end }}{{ end }}
 
 {{/* 2. Process Movie Metrics */}}
 {{ $moviesCount := len $watchedMovies }}
