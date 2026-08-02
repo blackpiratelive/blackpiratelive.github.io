@@ -54,8 +54,7 @@
 
 {{ $relatedThoughts = sort $relatedThoughts "score" "desc" }}
 
-<div id="microblog-feed">
-<article class="thought-single-card post">
+<article class="thought-single-card">
   <header class="thought-single-header">
     <div class="thought-meta">
       <i data-lucide="clock" class="w-4 h-4 text-zinc-500"></i>
@@ -115,7 +114,7 @@
   <nav class="thought-navigation">
     <div class="nav-prev">
       {{ with .PrevInSection }}
-        <a id="next-page-link" href="{{ .RelPermalink }}" title="Previous Thought: {{ .Content | plainify | truncate 40 }}">
+        <a href="{{ .RelPermalink }}" title="Previous Thought: {{ .Content | plainify | truncate 40 }}">
           <i data-lucide="arrow-left"></i> Previous
         </a>
       {{ end }}
@@ -134,7 +133,6 @@
     </div>
   </nav>
 </article>
-</div>
 
 <!-- Comments section for thoughts -->
 {{ partial "blog/post-comments.html" . }}
@@ -302,64 +300,4 @@
   display: flex;
 }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const feed = document.getElementById("microblog-feed");
-    const nextLink = document.getElementById("next-page-link");
-
-    if (!feed || !nextLink) return;
-
-    // Set up the observer to watch the Next link
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        fetchNextPage();
-      }
-    }, { rootMargin: "200px" }); // Triggers 200px before they hit the bottom
-
-    observer.observe(nextLink);
-
-    async function fetchNextPage() {
-      const url = nextLink.getAttribute("href");
-      if (!url) return;
-
-      // Temporarily disable the link to prevent duplicate fetches
-      nextLink.removeAttribute("href");
-      nextLink.innerText = "Loading...";
-
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        
-        // Parse the fetched HTML
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        
-        // Grab the new posts from the fetched page
-        const newPosts = doc.querySelectorAll(".post");
-        newPosts.forEach(post => feed.appendChild(post));
-
-        // Grab the NEW Next link from the fetched page
-        const newNextLink = doc.getElementById("next-page-link");
-        
-        if (newNextLink && newNextLink.getAttribute("href")) {
-          // Update our current Next link with the new URL
-          nextLink.setAttribute("href", newNextLink.getAttribute("href"));
-          nextLink.innerText = "Previous";
-        } else {
-          // No more pages left
-          nextLink.remove();
-          observer.disconnect();
-        }
-
-        if (window.lucide && typeof window.lucide.createIcons === "function") {
-          window.lucide.createIcons();
-        }
-      } catch (error) {
-        console.error("Failed to fetch older posts:", error);
-        nextLink.innerText = "Error loading posts";
-      }
-    }
-  });
-</script>
 {{ end }}
