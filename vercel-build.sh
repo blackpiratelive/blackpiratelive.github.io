@@ -4,6 +4,7 @@ set -euo pipefail
 # Config
 TRAKT_USERNAME="${TRAKT_USERNAME:-bpx}"
 TRAKT_CLIENT_ID="${TRAKT_CLIENT_ID:-a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0}"
+TRAKT_ACCESS_TOKEN="${TRAKT_ACCESS_TOKEN:-${TRAKT_TOKEN:-}}"
 TMDB_API_KEY="${TMDB_API_KEY:-61c9bbbefe48beed3b4f02f0cc4794e7}"
 DATA_DIR="assets/trakt"
 IMG_DIR="assets/cinema/posters"
@@ -37,9 +38,16 @@ fetch_trakt() {
   local output=$2
   local tmp_file="${output}.tmp"
 
+  local auth_args=()
+  if [ -n "$TRAKT_ACCESS_TOKEN" ]; then
+    auth_args=(-H "Authorization: Bearer $TRAKT_ACCESS_TOKEN")
+  fi
+
   if curl -s -f -L -H "Content-Type: application/json" \
        -H "trakt-api-version: 2" \
        -H "trakt-api-key: $TRAKT_CLIENT_ID" \
+       -H "User-Agent: blackpirate-hugo-site/1.0" \
+       "${auth_args[@]}" \
        "https://api.trakt.tv/$endpoint" > "$tmp_file" 2>/dev/null; then
     if node -e "JSON.parse(require('fs').readFileSync(process.argv[1]))" "$tmp_file" 2>/dev/null; then
       mv "$tmp_file" "$output"
@@ -48,7 +56,7 @@ fetch_trakt() {
   fi
 
   rm -f "$tmp_file"
-  log "Warning: Failed to fetch valid JSON for '$endpoint'. Preserving existing data."
+  log "Notice: Could not fetch live Trakt data for '$endpoint' (HTTP 403 or network issue). Preserving existing cache."
   if [ ! -f "$output" ] || [ ! -s "$output" ]; then
     echo "[]" > "$output"
   fi
