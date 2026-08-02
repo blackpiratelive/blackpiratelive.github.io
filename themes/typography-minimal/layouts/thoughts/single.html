@@ -97,37 +97,39 @@
 
   <!-- Related Thoughts Section -->
   {{ if gt (len $relatedThoughts) 0 }}
+  <hr class="thought-divider" />
   <div class="related-thoughts-section">
-    <h4 class="related-title"><i data-lucide="sparkles"></i> Related Thoughts</h4>
-    <div class="related-thoughts-grid">
+    <h4 class="related-title">Related Thoughts</h4>
+    <ul class="related-thoughts-list">
       {{ range first 3 $relatedThoughts }}
-        <a href="{{ .page.RelPermalink }}" class="related-thought-card">
-          <span class="related-thought-date">{{ .page.Date.Format "Jan 02, 2006" }}</span>
-          <p class="related-thought-preview">{{ .page.Content | plainify | truncate 90 }}</p>
-        </a>
+        <li>
+          <span class="related-thought-date">{{ .page.Date.Format "Jan 02, 2006" }}</span> — 
+          <a href="{{ .page.RelPermalink }}" class="related-thought-link">{{ .page.Title | default (.page.Content | plainify | truncate 90) }}</a>
+        </li>
       {{ end }}
-    </div>
+    </ul>
   </div>
   {{ end }}
 
+  <hr class="thought-divider" />
   <!-- Prev/Next Thought Navigation -->
   <nav class="thought-navigation">
     <div class="nav-prev">
       {{ with .PrevInSection }}
-        <a href="{{ .RelPermalink }}" title="Previous Thought: {{ .Content | plainify | truncate 40 }}">
-          <i data-lucide="arrow-left"></i> Previous
+        <a href="{{ .RelPermalink }}">
+          ← {{ .Title | default (.Content | plainify | truncate 40) }}
         </a>
       {{ end }}
     </div>
     <div class="nav-home">
-      <a href="{{ "/thoughts/" | relURL }}" title="All Thoughts">
-        <i data-lucide="grid"></i> All Thoughts
+      <a href="{{ "/thoughts/" | relURL }}">
+        All Thoughts
       </a>
     </div>
     <div class="nav-next">
       {{ with .NextInSection }}
-        <a href="{{ .RelPermalink }}" title="Next Thought: {{ .Content | plainify | truncate 40 }}">
-          Next <i data-lucide="arrow-right"></i>
+        <a href="{{ .RelPermalink }}">
+          {{ .Title | default (.Content | plainify | truncate 40) }} →
         </a>
       {{ end }}
     </div>
@@ -187,72 +189,58 @@
 }
 
 .thought-single-footer {
-  border-top: 1px solid var(--border-color);
   padding-top: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.thought-divider {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: var(--spacing-md) 0;
 }
 
 /* Related Thoughts styling */
 .related-thoughts-section {
-  border-top: 1px dashed var(--border-color);
-  padding-top: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
+  margin: var(--spacing-sm) 0;
 }
 
 .related-title {
-  margin: 0 0 var(--spacing-sm);
+  margin: 0 0 var(--spacing-xs);
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-color);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
 }
 
-.related-title svg {
-  width: 14px;
-  height: 14px;
-  color: var(--accent-color);
-}
-
-.related-thoughts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-sm);
-}
-
-.related-thought-card {
+.related-thoughts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm);
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.2s ease;
+  gap: 6px;
 }
 
-.related-thought-card:hover {
-  border-color: var(--accent-color);
-  background-color: var(--bg-card);
-  transform: translateY(-1px);
-}
-
-.related-thought-date {
+.related-thoughts-list li {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
-.related-thought-preview {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 0.85rem;
-  line-height: 1.4;
+.related-thought-date {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.related-thought-link {
   color: var(--text-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.related-thought-link:hover {
+  color: var(--accent-color);
 }
 
 /* Navigation */
@@ -263,16 +251,13 @@
   font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 600;
-  border-top: 1px solid var(--border-color);
-  padding-top: var(--spacing-md);
+  padding-top: var(--spacing-xs);
 }
 
 .thought-navigation a {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
   color: var(--text-muted);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   transition: color 0.2s ease;
 }
 
@@ -280,24 +265,15 @@
   color: var(--accent-color);
 }
 
-.thought-navigation svg {
-  width: 14px;
-  height: 14px;
-}
-
 .nav-prev, .nav-next {
   width: 40%;
 }
 .nav-next {
   text-align: right;
-  justify-content: flex-end;
-  display: flex;
 }
 .nav-home {
   width: 20%;
   text-align: center;
-  justify-content: center;
-  display: flex;
 }
 </style>
 {{ end }}
