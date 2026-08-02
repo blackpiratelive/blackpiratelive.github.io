@@ -56,19 +56,15 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="post-meta-top">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
-      {{ with .NextInSection }}
-      <a href="{{ .RelPermalink }}" class="read-next-link" title="Read Next: {{ .Title }}">Read Next »</a>
-      {{ end }}
-    </div>
-    
     <h1 class="post-title">{{ .Title }}</h1>
     
-    <div class="post-meta-bottom">
+    <div class="post-meta-grouped">
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      <span class="meta-dot">·</span>
       {{ $readingTime := math.Round (div (countwords .Content) 200.0) }}
       <span class="post-reading-time">{{ $readingTime }} min read</span>
       {{ with .Params.tags }}
+      <span class="meta-dot">·</span>
       <span class="post-tags">
         {{ range . }}
         <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="post-tag">#{{ . }}</a>
@@ -76,6 +72,30 @@
       </span>
       {{ end }}
     </div>
+
+    <!-- Cover Image (inserted directly between grouped metadata and first paragraph) -->
+    {{ $coverImg := "" }}
+    {{ with .Params.cover }}
+      {{ if reflect.IsMap . }}
+        {{ $coverImg = .image }}
+      {{ else }}
+        {{ $coverImg = . }}
+      {{ end }}
+    {{ else }}
+      {{ with .Params.cover_image_url }}
+        {{ $coverImg = . }}
+      {{ else }}
+        {{ with .Params.image }}
+          {{ $coverImg = . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    {{ with $coverImg }}
+    <div class="post-cover-wrapper">
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="post-cover-image" loading="eager" />
+    </div>
+    {{ end }}
   </header>
 
   <div class="post-content serif-content">
@@ -110,6 +130,13 @@
         {{ end }}
       </div>
     </div>
+    {{ end }}
+
+    <!-- Read Next (Moved to the absolute bottom of the article) -->
+    {{ with .NextInSection }}
+    <nav class="read-next-bottom">
+      <a href="{{ .RelPermalink }}" class="read-next-link">Read Next: <strong>{{ .Title }}</strong> »</a>
+    </nav>
     {{ end }}
 
   </footer>
