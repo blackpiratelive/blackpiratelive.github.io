@@ -1,23 +1,25 @@
 <meta charset="utf-8">
+<script>
+  (function() {
+    function getTheme() {
+      try {
+        var local = localStorage.getItem('theme');
+        if (local === 'dark' || local === 'light') return local;
+      } catch(e) {}
+      var match = document.cookie.match(/(?:^|; )theme=([^;]*)/);
+      if (match && (match[1] === 'dark' || match[1] === 'light')) return match[1];
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    var theme = getTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Hugo {{ hugo.Version }}">
 {{ partial "seo.html" . }}
 
 <script defer src="https://u-one-livid.vercel.app/recorder.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc" data-sample-rate="0.15" data-mask-level="moderate" data-max-duration="300000"></script>
-<script>
-  (function() {
-    function getCookie(name) {
-      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? match[2] : null;
-    }
-    var theme = getCookie('theme');
-    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  })();
-</script>
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 
 <!-- Google Fonts -->

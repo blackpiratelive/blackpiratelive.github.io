@@ -57,11 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toggles.length > 0) {
     toggles.forEach(btn => {
       btn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const current = document.documentElement.getAttribute('data-theme') || 
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         const next = current === 'light' ? 'dark' : 'light';
         
         document.documentElement.setAttribute('data-theme', next);
+        document.documentElement.style.colorScheme = next;
         
+        // Write theme to localStorage
+        try { localStorage.setItem('theme', next); } catch(e) {}
+
         // Write theme cookie (expires in 1 year)
         const date = new Date();
         date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));

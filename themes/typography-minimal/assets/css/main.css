@@ -57,8 +57,9 @@ html[data-theme="dark"] {
 /* ==========================================================================
    Base Styles
    ========================================================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 body {
