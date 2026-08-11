@@ -17,6 +17,8 @@
   --code-text: #c2185b;
   
   --sidebar-width: 280px;
+  --sidebar-bg: linear-gradient(180deg, #f4f2eb 0%, #e8e5dc 100%);
+  --sidebar-border: #e0ded6;
   --content-max-width: 70ch;
   
   --spacing-xs: 0.25rem;
@@ -39,6 +41,9 @@ html[data-theme="dark"] {
   --toggle-bg: rgba(255, 255, 255, 0.05);
   --code-bg: #1c1c1c;
   --code-text: #f43f5e;
+
+  --sidebar-bg: linear-gradient(180deg, #18181c 0%, #0d0d10 100%);
+  --sidebar-border: #26262a;
 }
 
 /* Dark Theme Color Variables Override (System Preference Fallback) */
@@ -54,6 +59,9 @@ html[data-theme="dark"] {
     --toggle-bg: rgba(255, 255, 255, 0.05);
     --code-bg: #1c1c1c;
     --code-text: #f43f5e;
+
+    --sidebar-bg: linear-gradient(180deg, #18181c 0%, #0d0d10 100%);
+    --sidebar-border: #26262a;
   }
 }
 
@@ -159,9 +167,11 @@ pre code {
 /* Sidebar styling */
 .site-sidebar {
   width: var(--sidebar-width);
-  border-right: 1px solid var(--border-color);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border, var(--border-color));
   padding: var(--spacing-xl);
   flex-shrink: 0;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .sidebar-sticky {
