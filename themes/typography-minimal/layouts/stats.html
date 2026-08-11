@@ -1,36 +1,45 @@
 {{ define "main" }}
-{{/* 1. Retrieve Trakt Data */}}
-{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedMovies = $p.Value }}{{ end }}{{ end }}
-{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedShows = $p.Value }}{{ end }}{{ end }}
+{{/* 1. Retrieve CineTracker Data */}}
+{{ $export := dict }}
+{{ with resources.Get "cinetracker/export.json" }}
+  {{ $p := try (. | transform.Unmarshal) }}
+  {{ if not $p.Err }}{{ $export = $p.Value }}{{ end }}
+{{ end }}
+{{ $watchedMovies := index $export "movies" | default slice }}
+{{ $watchedShows := index $export "tv_shows" | default slice }}
+{{ $episodesList := index $export "episodes" | default slice }}
 
 {{/* 2. Process Movie Metrics */}}
 {{ $moviesCount := len $watchedMovies }}
 {{ $moviesWatchTime := 0 }}
 {{ range $watchedMovies }}
-    {{ $moviesWatchTime = add $moviesWatchTime (int (.movie.runtime | default 0)) }}
+    {{ $moviesWatchTime = add $moviesWatchTime (int (.runtime_minutes | default 0)) }}
 {{ end }}
 
 {{/* 3. Process TV Show Metrics */}}
 {{ $showsCount := len $watchedShows }}
-{{ $episodesCount := 0 }}
+{{ $episodesCount := len $episodesList }}
 {{ $showsWatchTime := 0 }}
 {{ $showsData := slice }}
 
 {{ range $watchedShows }}
-    {{ $show := .show }}
-    {{ $showEpCount := 0 }}
-    {{ if .seasons }}
-        {{ range .seasons }}
-            {{ if .episodes }}
-                {{ $showEpCount = add $showEpCount (len .episodes) }}
-            {{ end }}
+    {{ $showId := .tv_show_id }}
+    {{ $showTitle := .name }}
+    {{ $showEpCount := .number_of_episodes | default 0 }}
+    {{ $matchingEps := 0 }}
+    {{ range $episodesList }}
+        {{ if eq (int .tv_show_id) (int $showId) }}
+            {{ $matchingEps = add $matchingEps 1 }}
         {{ end }}
     {{ end }}
-    {{ $episodesCount = add $episodesCount $showEpCount }}
-    {{ $showRuntime := mul $showEpCount (int ($show.runtime | default 0)) }}
+    {{ if gt $matchingEps 0 }}
+        {{ $showEpCount = $matchingEps }}
+    {{ end }}
+    {{ $epRuntime := int (.runtime_minutes | default 30) }}
+    {{ $showRuntime := mul $showEpCount $epRuntime }}
     {{ $showsWatchTime = add $showsWatchTime $showRuntime }}
     
-    {{ $showsData = $showsData | append (dict "title" $show.title "episodes" $showEpCount "runtime" $showRuntime "tmdb_id" (int $show.ids.tmdb)) }}
+    {{ $showsData = $showsData | append (dict "title" $showTitle "episodes" $showEpCount "runtime" $showRuntime "tmdb_id" (int $showId)) }}
 {{ end }}
 
 {{/* Sort Shows by Episodes Watched descending */}}

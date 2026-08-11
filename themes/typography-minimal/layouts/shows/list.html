@@ -16,14 +16,14 @@
   <div class="cinema-content">
     {{/* RECENT EPISODES SECTION */}}
     <div id="shows-recent-episodes">
-      {{ if site.Data.trakt }}
+      {{ if site.Data.cinetracker }}
       <section class="cinema-section recently-watched-episodes">
         <h2 class="cinema-section-title">Recently Watched Episodes</h2>
         <div class="episodes-grid">
-          {{ range site.Data.trakt }}
+          {{ range site.Data.cinetracker }}
           <div class="episode-card">
             <div class="episode-image-wrapper">
-               {{ $tmdbId := .show.ids.tmdb }}
+               {{ $tmdbId := .tv_show_id }}
                {{ $posterUrl := "" }}
                {{ if eq (os.Getenv "VERCEL") "1" }}
                  {{ $tmdbApiUrl := printf "https://api.themoviedb.org/3/tv/%v?api_key=%s" $tmdbId site.Params.tmdb_api_key }}
@@ -41,18 +41,18 @@
                {{ end }}
                
                {{ if $posterUrl }}
-                 <img src="{{ $posterUrl }}" alt="{{ .show.title }}" class="episode-img" loading="lazy">
+                 <img src="{{ $posterUrl }}" alt="{{ .tv_show_name }}" class="episode-img" loading="lazy">
                {{ else }}
                  <div class="episode-placeholder">
                     <span class="placeholder-icon">📺</span>
                  </div>
                {{ end }}
-               <div class="episode-number-badge">S{{ printf "%02d" .episode.season }} E{{ printf "%02d" .episode.number }}</div>
+               <div class="episode-number-badge">S{{ printf "%02d" (int .season_number) }} E{{ printf "%02d" (int .episode_number) }}</div>
             </div>
             <div class="episode-details">
-              <h3 class="episode-title">{{ .episode.title }}</h3>
-              <p class="episode-show">{{ .show.title }}</p>
-              <p class="episode-date">{{ (time.AsTime .watched_at).Format "Jan 02, 2006" }}</p>
+              <h3 class="episode-title">{{ .episode_name }}</h3>
+              <p class="episode-show">{{ .tv_show_name }}</p>
+              <p class="episode-date">{{ (time.AsTime (.watched_date | default .created_at)).Format "Jan 02, 2006" }}</p>
             </div>
           </div>
           {{ end }}

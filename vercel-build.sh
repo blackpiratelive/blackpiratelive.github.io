@@ -2,11 +2,10 @@
 set -euo pipefail
 
 # Config
-TRAKT_USERNAME="${TRAKT_USERNAME:-bpx}"
-TRAKT_CLIENT_ID="${TRAKT_CLIENT_ID:-a52c9cdfbdddb8ba4ffe12a70c5591e05c985eddea6cd0fb53f998fee6c59dd0}"
-TRAKT_ACCESS_TOKEN="${TRAKT_ACCESS_TOKEN:-${TRAKT_TOKEN:-}}"
+CINETRACKER_API_URL="${CINETRACKER_API_URL:-https://movie-trackerh.vercel.app/api/v1/export}"
+CINETRACKER_API_KEY="${CINETRACKER_API_KEY:-${CINEMA_API_KEY:-}}"
 TMDB_API_KEY="${TMDB_API_KEY:-61c9bbbefe48beed3b4f02f0cc4794e7}"
-DATA_DIR="assets/trakt"
+DATA_DIR="assets/cinetracker"
 IMG_DIR="assets/cinema/posters"
 CACHE_DIR="node_modules/.cache/cinema_assets"
 
@@ -30,48 +29,49 @@ if [ -f "package.json" ]; then
   export PATH="$PWD/node_modules/.bin:$PATH"
 fi
 
-# 1. Fetch Trakt Data
-log "Fetching fresh data from Trakt..."
+# 1. Fetch CineTracker Data
+log "Fetching fresh data from CineTracker..."
 
-fetch_trakt() {
-  local endpoint=$1
-  local output=$2
+fetch_cinetracker() {
+  local output="$DATA_DIR/export.json"
   local tmp_file="${output}.tmp"
 
   local auth_args=()
-  if [ -n "$TRAKT_ACCESS_TOKEN" ]; then
-    auth_args=(-H "Authorization: Bearer $TRAKT_ACCESS_TOKEN")
+  if [ -n "$CINETRACKER_API_KEY" ]; then
+    auth_args=(-H "Authorization: Bearer $CINETRACKER_API_KEY")
   fi
 
   if curl -s -f -L -H "Content-Type: application/json" \
-       -H "trakt-api-version: 2" \
-       -H "trakt-api-key: $TRAKT_CLIENT_ID" \
-       -H "User-Agent: blackpirate-hugo-site/1.0" \
        "${auth_args[@]}" \
-       "https://api.trakt.tv/$endpoint" > "$tmp_file" 2>/dev/null; then
-    if node -e "JSON.parse(require('fs').readFileSync(process.argv[1]))" "$tmp_file" 2>/dev/null; then
+       "$CINETRACKER_API_URL?include=profile,stats,movies,tv,episodes,watchlist" > "$tmp_file" 2>/dev/null; then
+    if node -e "const d = JSON.parse(require('fs').readFileSync(process.argv[1])); if(!d.movies && !d.tv_shows) process.exit(1);" "$tmp_file" 2>/dev/null; then
       mv "$tmp_file" "$output"
+      log "Successfully updated $output"
       return 0
     fi
   fi
 
   rm -f "$tmp_file"
-  log "Notice: Could not fetch live Trakt data for '$endpoint' (HTTP 403 or network issue). Preserving existing cache."
+  log "Notice: Could not fetch live CineTracker data. Preserving existing cache."
   if [ ! -f "$output" ] || [ ! -s "$output" ]; then
-    echo "[]" > "$output"
+    echo '{"movies":[],"tv_shows":[],"episodes":[]}' > "$output"
   fi
 }
 
-fetch_trakt "users/$TRAKT_USERNAME/watched/movies?extended=full" "$DATA_DIR/watched_movies.json"
-fetch_trakt "users/$TRAKT_USERNAME/watched/shows?extended=progress" "$DATA_DIR/watched_shows.json"
-fetch_trakt "users/$TRAKT_USERNAME/ratings/movies" "$DATA_DIR/movie_ratings.json"
-fetch_trakt "users/$TRAKT_USERNAME/ratings/shows" "$DATA_DIR/show_ratings.json"
-fetch_trakt "users/$TRAKT_USERNAME/comments/all/all?extended=full" "$DATA_DIR/comments.json"
-fetch_trakt "users/$TRAKT_USERNAME/lists/favorites/items?extended=full" "$DATA_DIR/favorites.json"
+fetch_cinetracker
 
 mkdir -p data
-cp "$DATA_DIR/favorites.json" data/trakt_favorites.json
-fetch_trakt "users/$TRAKT_USERNAME/history/episodes?limit=3" "data/trakt.json"
+node -e "
+try {
+  const exportData = require('./$DATA_DIR/export.json');
+  const episodes = exportData.episodes || [];
+  episodes.sort((a, b) => new Date(b.watched_date || b.created_at || 0) - new Date(a.watched_date || a.created_at || 0));
+  const recent = episodes.slice(0, 10);
+  require('fs').writeFileSync('data/cinetracker.json', JSON.stringify(recent, null, 2));
+} catch (e) {
+  console.error('Failed to update data/cinetracker.json:', e);
+}
+"
 
 # 2. Download Posters from TMDB
 log "Syncing posters from TMDB..."
@@ -102,8 +102,8 @@ download_poster() {
 }
 
 # Extract IDs and Download
-MOVIE_IDS=$(node -e "try { const d = require('./$DATA_DIR/watched_movies.json'); console.log(d.map(m => m.movie.ids.tmdb).filter(id => id).join(' ')) } catch(e) { console.log('') }")
-SHOW_IDS=$(node -e "try { const d = require('./$DATA_DIR/watched_shows.json'); console.log(d.map(s => s.show.ids.tmdb).filter(id => id).join(' ')) } catch(e) { console.log('') }")
+MOVIE_IDS=$(node -e "try { const d = require('./$DATA_DIR/export.json'); console.log((d.movies || []).map(m => m.movie_id).filter(id => id).join(' ')) } catch(e) { console.log('') }")
+SHOW_IDS=$(node -e "try { const d = require('./$DATA_DIR/export.json'); console.log((d.tv_shows || []).map(s => s.tv_show_id).filter(id => id).join(' ')) } catch(e) { console.log('') }")
 
 for id in $MOVIE_IDS; do download_poster "movie" "$id" || true; done
 for id in $SHOW_IDS; do download_poster "tv" "$id" || true; done

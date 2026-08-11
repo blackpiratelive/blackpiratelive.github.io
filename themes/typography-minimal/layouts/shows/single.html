@@ -62,7 +62,7 @@
         </div>
         {{ else if .Params.rating }}
         <div class="info-item rating-item site-rating">
-          <span class="info-label">Trakt Rating</span>
+          <span class="info-label">Rating</span>
           <span class="info-value rating-stars">{{ printf "%.1f" .Params.rating }} / 10</span>
         </div>
         {{ end }}
@@ -127,7 +127,9 @@
       {{ end }}
 
       <div class="cinema-external-links">
-        <a href="https://trakt.tv/search/trakt/{{ .Params.trakt_id }}?id_type=trakt_{{ .Params.type }}" target="_blank" class="btn btn-trakt">Trakt.tv</a>
+        {{ with .Params.tmdb_id }}
+        <a href="https://www.themoviedb.org/tv/{{ . }}" target="_blank" class="btn btn-secondary">TMDB</a>
+        {{ end }}
         {{ with .Params.imdb_id }}
         <a href="https://www.imdb.com/title/{{ . }}" target="_blank" class="btn btn-imdb">IMDb</a>
         {{ end }}

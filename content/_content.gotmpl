@@ -1,10 +1,17 @@
-{{/* Load data from locally fetched JSON files in assets/trakt/ */}}
-{{ $watchedMovies := slice }}{{ with resources.Get "trakt/watched_movies.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedMovies = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/watched_movies.json: %s" $p.Err }}{{ end }}{{ end }}
-{{ $watchedShows := slice }}{{ with resources.Get "trakt/watched_shows.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $watchedShows = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/watched_shows.json: %s" $p.Err }}{{ end }}{{ end }}
-{{ $movieRatings := slice }}{{ with resources.Get "trakt/movie_ratings.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $movieRatings = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/movie_ratings.json: %s" $p.Err }}{{ end }}{{ end }}
-{{ $showRatings := slice }}{{ with resources.Get "trakt/show_ratings.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $showRatings = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/show_ratings.json: %s" $p.Err }}{{ end }}{{ end }}
-{{ $comments := slice }}{{ with resources.Get "trakt/comments.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $comments = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/comments.json: %s" $p.Err }}{{ end }}{{ end }}
-{{ $favorites := slice }}{{ with resources.Get "trakt/favorites.json" }}{{ $p := try (. | transform.Unmarshal) }}{{ if not $p.Err }}{{ $favorites = $p.Value }}{{ else }}{{ warnf "Failed to unmarshal trakt/favorites.json: %s" $p.Err }}{{ end }}{{ end }}
+{{/* Load data from locally fetched JSON file in assets/cinetracker/export.json */}}
+{{ $exportData := dict }}
+{{ with resources.Get "cinetracker/export.json" }}
+  {{ $p := try (. | transform.Unmarshal) }}
+  {{ if not $p.Err }}
+    {{ $exportData = $p.Value }}
+  {{ else }}
+    {{ warnf "Failed to unmarshal cinetracker/export.json: %s" $p.Err }}
+  {{ end }}
+{{ end }}
+
+{{ $watchedMovies := index $exportData "movies" | default (slice) }}
+{{ $watchedShows := index $exportData "tv_shows" | default (slice) }}
+{{ $episodesList := index $exportData "episodes" | default (slice) }}
 
 {{/* Fetch CMS Movies & TV Shows data for Location & Trip resolution */}}
 {{ $cmsUrl := getenv "CMS_API_URL" | default "https://admin-cms-sigma.vercel.app" }}
@@ -17,7 +24,9 @@
     {{ $parsedMovies := try (. | transform.Unmarshal (dict "format" "json")) }}
     {{ if not $parsedMovies.Err }}
       {{ range $parsedMovies.Value.movies }}
-        {{ $cmsMoviesMap = merge $cmsMoviesMap (dict (string .traktId) .) }}
+        {{ if .traktId }}{{ $cmsMoviesMap = merge $cmsMoviesMap (dict (string .traktId) .) }}{{ end }}
+        {{ if .tmdbId }}{{ $cmsMoviesMap = merge $cmsMoviesMap (dict (string .tmdbId) .) }}{{ end }}
+        {{ if .movieId }}{{ $cmsMoviesMap = merge $cmsMoviesMap (dict (string .movieId) .) }}{{ end }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -31,59 +40,37 @@
     {{ $parsedShows := try (. | transform.Unmarshal (dict "format" "json")) }}
     {{ if not $parsedShows.Err }}
       {{ range $parsedShows.Value.shows }}
-        {{ $cmsShowsMap = merge $cmsShowsMap (dict (string .traktId) .) }}
+        {{ if .traktId }}{{ $cmsShowsMap = merge $cmsShowsMap (dict (string .traktId) .) }}{{ end }}
+        {{ if .tmdbId }}{{ $cmsShowsMap = merge $cmsShowsMap (dict (string .tmdbId) .) }}{{ end }}
+        {{ if .showId }}{{ $cmsShowsMap = merge $cmsShowsMap (dict (string .showId) .) }}{{ end }}
       {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}
 
-{{/* Create Lookup Maps */}}
-{{ $movieRatingsMap := dict }}
-{{ range $movieRatings }}{{ $movieRatingsMap = merge $movieRatingsMap (dict (string .movie.ids.trakt) .rating) }}{{ end }}
-
-{{ $showRatingsMap := dict }}
-{{ range $showRatings }}{{ $showRatingsMap = merge $showRatingsMap (dict (string .show.ids.trakt) .rating) }}{{ end }}
-
-{{ $commentsMap := dict }}
-{{ range $comments }}
-    {{ $id := "" }}
-    {{ if .movie }}{{ $id = string .movie.ids.trakt }}
-    {{ else if .show }}{{ $id = string .show.ids.trakt }}{{ end }}
-    {{ if and $id .comment }}
-        {{ $commentsMap = merge $commentsMap (dict $id .comment.comment) }}
-    {{ end }}
-{{ end }}
-
-{{ $favoritesMap := dict }}
-{{ range $favorites }}
-    {{ $id := "" }}
-    {{ if .movie }}{{ $id = string .movie.ids.trakt }}
-    {{ else if .show }}{{ $id = string .show.ids.trakt }}{{ end }}
-    {{ if $id }}
-        {{ $favoritesMap = merge $favoritesMap (dict $id true) }}
-    {{ end }}
-{{ end }}
-
 {{ $moviesByDay := dict }}
 {{ range $watchedMovies }}
-    {{ $date := time.AsTime .last_watched_at }}
-    {{ $dayKey := $date.Format "2006-01-02" }}
-    {{ $dayMovies := index $moviesByDay $dayKey | default (slice) }}
-    {{ $dayMovies = $dayMovies | append . }}
-    {{ $moviesByDay = merge $moviesByDay (dict $dayKey $dayMovies) }}
+    {{ $dateStr := .watched_date | default .updated_at | default .created_at }}
+    {{ if $dateStr }}
+        {{ $date := time.AsTime $dateStr }}
+        {{ $dayKey := $date.Format "2006-01-02" }}
+        {{ $dayMovies := index $moviesByDay $dayKey | default (slice) }}
+        {{ $dayMovies = $dayMovies | append . }}
+        {{ $moviesByDay = merge $moviesByDay (dict $dayKey $dayMovies) }}
+    {{ end }}
 {{ end }}
 
 {{/* Process Movies */}}
 {{ range $i, $item := $watchedMovies }}
-    {{ $movie := $item.movie }}
-    {{ $title := $movie.title }}
-    {{ $slug := printf "movies/movie-%s" ($movie.ids.slug | default ($title | urlize)) }}
-    {{ $traktId := string $movie.ids.trakt }}
-    {{ $userRating := index $movieRatingsMap $traktId }}
-    {{ $userReview := index $commentsMap $traktId }}
-    {{ $isFavorite := index $favoritesMap $traktId | default false }}
+    {{ $title := $item.title }}
+    {{ $slug := printf "movies/movie-%s" ($title | urlize) }}
+    {{ $tmdbId := int $item.movie_id }}
+    {{ $tmdbIdStr := string $tmdbId }}
+    {{ $userRating := $item.user_rating }}
+    {{ $userReview := $item.user_review }}
+    {{ $isFavorite := $item.is_favorite | default false }}
     
-    {{ $cmsMovie := index $cmsMoviesMap $traktId }}
+    {{ $cmsMovie := index $cmsMoviesMap $tmdbIdStr }}
     {{ $movieLocation := false }}
     {{ $movieTrip := false }}
     {{ $watchLocation := "" }}
@@ -95,10 +82,16 @@
       {{ if and $cmsMovie.review (not $userReview) }}{{ $userReview = $cmsMovie.review }}{{ end }}
     {{ end }}
 
-    {{ $date := time.AsTime $item.last_watched_at }}
+    {{ $dateStr := $item.watched_date | default $item.updated_at | default $item.created_at }}
+    {{ $date := time.AsTime $dateStr }}
     {{ $dayKey := $date.Format "2006-01-02" }}
     {{ $dayMovies := index $moviesByDay $dayKey | default (slice) }}
     {{ $feedExclude := gt (len $dayMovies) 2 }}
+
+    {{ $year := 0 }}
+    {{ with $item.release_date }}
+        {{ $year = (time.AsTime .).Year }}
+    {{ end }}
 
     {{ $page := dict
         "kind" "page"
@@ -107,40 +100,43 @@
         "dates" (dict "date" $date)
         "params" (dict 
             "type" "movie"
-            "year" $movie.year
-            "trakt_id" $movie.ids.trakt
-            "tmdb_id" (int $movie.ids.tmdb)
-            "imdb_id" $movie.ids.imdb
-            "tagline" $movie.tagline
-            "overview" $movie.overview
-            "rating" $movie.rating
+            "year" $year
+            "cinetracker_id" $item.log_id
+            "tmdb_id" $tmdbId
+            "tagline" ($item.tagline | default "")
+            "overview" ($item.overview | default "")
+            "rating" ($item.tmdb_vote_average | default 0)
             "user_rating" $userRating
             "user_review" $userReview
             "is_favorite" $isFavorite
-            "runtime" $movie.runtime
-            "genres" $movie.genres
-            "last_watched" $item.last_watched_at
-            "plays" $item.plays
+            "runtime" ($item.runtime_minutes | default 0)
+            "genres" ($item.genres | default slice)
+            "last_watched" $dateStr
+            "plays" 1
             "feed_exclude" $feedExclude
             "location" $movieLocation
             "trip" $movieTrip
             "watch_location" $watchLocation
         )
-        "content" (dict "mediaType" "text/markdown" "value" ($movie.overview | default ""))
+        "content" (dict "mediaType" "text/markdown" "value" ($item.overview | default ""))
     }}
     {{ $.AddPage $page }}
 {{ end }}
 
 {{ range $dayKey, $movies := $moviesByDay }}
-    {{ $sortedMovies := sort $movies "last_watched_at" "desc" }}
+    {{ $sortedMovies := sort $movies "watched_date" "desc" }}
     {{ if gt (len $sortedMovies) 2 }}
         {{ $firstMovie := index $sortedMovies 0 }}
-        {{ $date := time.AsTime $firstMovie.last_watched_at }}
+        {{ $dateStr := $firstMovie.watched_date | default $firstMovie.updated_at | default $firstMovie.created_at }}
+        {{ $date := time.AsTime $dateStr }}
         {{ $feedItems := slice }}
         {{ range first 2 $sortedMovies }}
-            {{ $movie := .movie }}
-            {{ $movieURL := printf "/movies/movie-%s/" ($movie.ids.slug | default ($movie.title | urlize)) }}
-            {{ $feedItems = $feedItems | append (dict "title" $movie.title "url" $movieURL "year" $movie.year "tmdb_id" (int $movie.ids.tmdb) "type" "movie") }}
+            {{ $movieURL := printf "/movies/movie-%s/" (.title | urlize) }}
+            {{ $year := 0 }}
+            {{ with .release_date }}
+                {{ $year = (time.AsTime .).Year }}
+            {{ end }}
+            {{ $feedItems = $feedItems | append (dict "title" .title "url" $movieURL "year" $year "tmdb_id" (int .movie_id) "type" "movie") }}
         {{ end }}
 
         {{ $page := dict
@@ -163,15 +159,15 @@
 
 {{/* Process Shows */}}
 {{ range $i, $item := $watchedShows }}
-    {{ $show := $item.show }}
-    {{ $title := $show.title }}
-    {{ $slug := printf "shows/show-%s" ($show.ids.slug | default ($title | urlize)) }}
-    {{ $traktId := string $show.ids.trakt }}
-    {{ $userRating := index $showRatingsMap $traktId }}
-    {{ $userReview := index $commentsMap $traktId }}
-    {{ $isFavorite := index $favoritesMap $traktId | default false }}
+    {{ $title := $item.name }}
+    {{ $slug := printf "shows/show-%s" ($title | urlize) }}
+    {{ $tmdbId := int $item.tv_show_id }}
+    {{ $tmdbIdStr := string $tmdbId }}
+    {{ $userRating := $item.user_rating }}
+    {{ $userReview := $item.user_review }}
+    {{ $isFavorite := $item.is_favorite | default false }}
     
-    {{ $cmsShow := index $cmsShowsMap $traktId }}
+    {{ $cmsShow := index $cmsShowsMap $tmdbIdStr }}
     {{ $showLocation := false }}
     {{ $showTrip := false }}
     {{ if $cmsShow }}
@@ -181,29 +177,17 @@
       {{ if and $cmsShow.review (not $userReview) }}{{ $userReview = $cmsShow.review }}{{ end }}
     {{ end }}
 
-    {{ $date := time.AsTime $item.last_watched_at }}
+    {{ $dateStr := $item.updated_at | default $item.end_date | default $item.start_date | default $item.created_at }}
+    {{ $date := time.AsTime $dateStr }}
 
-    {{/* Calculate Season Stats */}}
-    {{ $seasonsWatched := 0 }}
-    {{ $totalEpisodes := 0 }}
-    {{ if $item.seasons }}
-        {{ $seasonsWatched = len $item.seasons }}
-        {{ range $item.seasons }}
-            {{ if .episodes }}
-                {{ $totalEpisodes = add $totalEpisodes (len .episodes) }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
+    {{ $seasonsWatched := $item.number_of_seasons | default 1 }}
+    {{ $totalEpisodes := $item.number_of_episodes | default 1 }}
+    {{ $epRuntime := int ($item.runtime_minutes | default 30) }}
+    {{ $totalRuntime := mul $totalEpisodes $epRuntime }}
 
-    {{/* Calculate Total Runtime */}}
-    {{ $totalRuntime := mul $totalEpisodes (int ($show.runtime | default 0)) }}
-
-    {{/* Determine if Completed */}}
-    {{ $isCompleted := false }}
-    {{ if or (eq $show.status "ended") (eq $show.status "canceled") }}
-        {{ if eq $show.aired_episodes $totalEpisodes }}
-            {{ $isCompleted = true }}
-        {{ end }}
+    {{ $year := 0 }}
+    {{ with $item.first_air_date }}
+        {{ $year = (time.AsTime .).Year }}
     {{ end }}
 
     {{ $page := dict
@@ -213,58 +197,50 @@
         "dates" (dict "date" $date)
         "params" (dict 
             "type" "show"
-            "year" $show.year
-            "trakt_id" $show.ids.trakt
-            "tmdb_id" (int $show.ids.tmdb)
-            "imdb_id" $show.ids.imdb
-            "overview" $show.overview
-            "status" $show.status
-            "is_completed" $isCompleted
-            "rating" $show.rating
+            "year" $year
+            "cinetracker_id" $item.log_id
+            "tmdb_id" $tmdbId
+            "overview" ($item.overview | default "")
+            "status" ($item.status | default "")
+            "is_completed" ($item.is_completed | default false)
+            "rating" ($item.tmdb_vote_average | default 0)
             "user_rating" $userRating
             "user_review" $userReview
             "is_favorite" $isFavorite
             "runtime" $totalRuntime
-            "ep_runtime" $show.runtime
-            "genres" $show.genres
-            "last_watched" $item.last_watched_at
-            "plays" $item.plays
+            "ep_runtime" $epRuntime
+            "genres" ($item.genres | default slice)
+            "last_watched" $dateStr
             "seasons_watched" $seasonsWatched
             "episodes_watched" $totalEpisodes
             "location" $showLocation
             "trip" $showTrip
         )
-        "content" (dict "mediaType" "text/markdown" "value" ($show.overview | default ""))
+        "content" (dict "mediaType" "text/markdown" "value" ($item.overview | default ""))
     }}
     {{ $.AddPage $page }}
 {{ end }}
 
+{{/* Process Episodes for Feed */}}
 {{ $episodesByDay := dict }}
-{{ range $watchedShows }}
-    {{ $show := .show }}
-    {{ $showURL := printf "/shows/show-%s/" ($show.ids.slug | default ($show.title | urlize)) }}
-    {{ if .seasons }}
-        {{ range .seasons }}
-            {{ $seasonNumber := int .number }}
-            {{ if .episodes }}
-                {{ range .episodes }}
-                    {{ $date := time.AsTime .last_watched_at }}
-                    {{ $dayKey := $date.Format "2006-01-02" }}
-                    {{ $dayEpisodes := index $episodesByDay $dayKey | default (slice) }}
-                    {{ $episode := dict
-                        "date" $date
-                        "show_title" $show.title
-                        "show_url" $showURL
-                        "season" $seasonNumber
-                        "episode_number" (int .number)
-                        "tmdb_id" (int $show.ids.tmdb)
-                        "type" "show"
-                    }}
-                    {{ $dayEpisodes = $dayEpisodes | append $episode }}
-                    {{ $episodesByDay = merge $episodesByDay (dict $dayKey $dayEpisodes) }}
-                {{ end }}
-            {{ end }}
-        {{ end }}
+{{ range $episodesList }}
+    {{ $dateStr := .watched_date | default .updated_at | default .created_at }}
+    {{ if $dateStr }}
+        {{ $date := time.AsTime $dateStr }}
+        {{ $dayKey := $date.Format "2006-01-02" }}
+        {{ $dayEpisodes := index $episodesByDay $dayKey | default (slice) }}
+        {{ $showURL := printf "/shows/show-%s/" (.tv_show_name | urlize) }}
+        {{ $episode := dict
+            "date" $date
+            "show_title" .tv_show_name
+            "show_url" $showURL
+            "season" (int .season_number)
+            "episode_number" (int .episode_number)
+            "tmdb_id" (int .tv_show_id)
+            "type" "show"
+        }}
+        {{ $dayEpisodes = $dayEpisodes | append $episode }}
+        {{ $episodesByDay = merge $episodesByDay (dict $dayKey $dayEpisodes) }}
     {{ end }}
 {{ end }}
 

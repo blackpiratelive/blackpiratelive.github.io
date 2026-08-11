@@ -1,0 +1,41 @@
+[
+  {
+    "log_id": 210,
+    "tv_show_id": 1421,
+    "tv_show_name": "Modern Family",
+    "season_number": 11,
+    "episode_number": 18,
+    "episode_name": "Finale (2)",
+    "overview": "",
+    "watched": true,
+    "watched_date": "2026-07-02T14:50:00.000Z",
+    "created_at": "2026-07-02T14:50:00.000Z",
+    "updated_at": "2026-07-02T14:50:00.000Z"
+  },
+  {
+    "log_id": 211,
+    "tv_show_id": 1421,
+    "tv_show_name": "Modern Family",
+    "season_number": 11,
+    "episode_number": 17,
+    "episode_name": "Finale (1)",
+    "overview": "",
+    "watched": true,
+    "watched_date": "2026-07-02T14:50:00.000Z",
+    "created_at": "2026-07-02T14:50:00.000Z",
+    "updated_at": "2026-07-02T14:50:00.000Z"
+  },
+  {
+    "log_id": 212,
+    "tv_show_id": 1421,
+    "tv_show_name": "Modern Family",
+    "season_number": 11,
+    "episode_number": 16,
+    "episode_name": "I'm Going to Miss This",
+    "overview": "",
+    "watched": true,
+    "watched_date": "2026-06-29T13:10:00.000Z",
+    "created_at": "2026-06-29T13:10:00.000Z",
+    "updated_at": "2026-06-29T13:10:00.000Z"
+  }
+]
