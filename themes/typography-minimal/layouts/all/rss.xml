@@ -4,7 +4,7 @@
     <link>{{ site.BaseURL }}</link>
     <description>Recent blog posts and thoughts on {{ site.Title }}</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>{{ site.LanguageCode | default "en-us" }}</language>
+    <language>{{ site.Language.Locale | default site.Language.Lang | default "en-us" }}</language>
     {{- with .OutputFormats.Get "RSS" -}}
       {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}

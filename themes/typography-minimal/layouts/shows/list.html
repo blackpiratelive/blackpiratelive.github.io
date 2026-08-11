@@ -16,11 +16,11 @@
   <div class="cinema-content">
     {{/* RECENT EPISODES SECTION */}}
     <div id="shows-recent-episodes">
-      {{ if site.Data.cinetracker }}
+      {{ if hugo.Data.cinetracker }}
       <section class="cinema-section recently-watched-episodes">
         <h2 class="cinema-section-title">Recently Watched Episodes</h2>
         <div class="episodes-grid">
-          {{ range site.Data.cinetracker }}
+          {{ range hugo.Data.cinetracker }}
           <div class="episode-card">
             <div class="episode-image-wrapper">
                {{ $tmdbId := .tv_show_id }}

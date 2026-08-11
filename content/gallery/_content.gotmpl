@@ -8,84 +8,86 @@
   {{ warnf "Failed to fetch gallery photos from CMS API: %s" $result.Err }}
 {{ else }}
   {{ with $result.Value }}
-    {{ $parsed := try (. | transform.Unmarshal (dict "format" "json")) }}
-    {{ if $parsed.Err }}
-      {{ warnf "Gallery Adapter Parse Error: %s" $parsed.Err }}
-    {{ else }}
-      {{ $json := $parsed.Value }}
-      {{ $photos := $json.photos }}
+    {{ if not (strings.HasPrefix (string .Content) "<") }}
+      {{ $parsed := try (. | transform.Unmarshal (dict "format" "json")) }}
+      {{ if $parsed.Err }}
+        {{ warnf "Gallery Adapter Parse Error: %s" $parsed.Err }}
+      {{ else }}
+        {{ $json := $parsed.Value }}
+        {{ $photos := $json.photos }}
 
-    {{ range $i, $photo := $photos }}
-      {{ $slug := $photo.slug }}
-      {{ if or (not $slug) (eq $slug "") }}
-        {{ $slug = printf "photo-%d" $i }}
-      {{ end }}
-
-      {{ $dateStr := $photo.takenAt | default $photo.createdAt }}
-      {{ $dateObj := time.AsTime $dateStr }}
-
-      {{ $tags := $photo.tags | default (slice) }}
-      {{ $albums := slice }}
-      {{ with $photo.album }}
-        {{ if ne . "" }}
-          {{ $albums = slice . }}
+      {{ range $i, $photo := $photos }}
+        {{ $slug := $photo.slug }}
+        {{ if or (not $slug) (eq $slug "") }}
+          {{ $slug = printf "photo-%d" $i }}
         {{ end }}
+
+        {{ $dateStr := $photo.takenAt | default $photo.createdAt }}
+        {{ $dateObj := time.AsTime $dateStr }}
+
+        {{ $tags := $photo.tags | default (slice) }}
+        {{ $albums := slice }}
+        {{ with $photo.album }}
+          {{ if ne . "" }}
+            {{ $albums = slice . }}
+          {{ end }}
+        {{ end }}
+
+        {{ $pageData := dict
+            "path" $slug
+            "title" ($photo.title | default (printf "Gallery Photo %d" $i))
+            "description" ($photo.description | default "")
+            "dates" (dict
+                "date" $dateObj
+                "publishDate" $dateObj
+            )
+            "params" (dict
+                "slug" $slug
+                "original_url" $photo.originalUrl
+                "large_url" $photo.largeUrl
+                "medium_url" $photo.mediumUrl
+                "thumbnail_url" $photo.thumbnailUrl
+                "width" $photo.width
+                "height" $photo.height
+                "camera" $photo.camera
+                "lens" $photo.lens
+                "focal_length" $photo.focalLength
+                "aperture" $photo.aperture
+                "shutter_speed" $photo.shutterSpeed
+                "iso" $photo.iso
+                "taken_at" $photo.takenAt
+                "created_at" $photo.createdAt
+                "location_name" $photo.locationName
+                "latitude" $photo.latitude
+                "longitude" $photo.longitude
+                "tags" $tags
+                "albums" $albums
+                "album" $photo.album
+                "featured" $photo.featured
+                "image" (dict
+                    "original" (dict "url" $photo.originalUrl)
+                    "large" (dict "url" $photo.largeUrl)
+                    "medium" (dict "url" $photo.mediumUrl)
+                    "thumbnail" (dict "url" $photo.thumbnailUrl)
+                )
+                "exif" (dict
+                    "model" $photo.camera
+                    "lens" $photo.lens
+                    "focal_length" $photo.focalLength
+                    "fstop" $photo.aperture
+                    "shutter" $photo.shutterSpeed
+                    "iso" $photo.iso
+                )
+            )
+            "content" (dict
+                "mediaType" "text/html"
+                "value" ($photo.description | default "")
+            )
+        }}
+
+        {{ $.AddPage $pageData }}
       {{ end }}
-
-      {{ $pageData := dict
-          "path" $slug
-          "title" ($photo.title | default (printf "Gallery Photo %d" $i))
-          "description" ($photo.description | default "")
-          "dates" (dict
-              "date" $dateObj
-              "publishDate" $dateObj
-          )
-          "params" (dict
-              "slug" $slug
-              "original_url" $photo.originalUrl
-              "large_url" $photo.largeUrl
-              "medium_url" $photo.mediumUrl
-              "thumbnail_url" $photo.thumbnailUrl
-              "width" $photo.width
-              "height" $photo.height
-              "camera" $photo.camera
-              "lens" $photo.lens
-              "focal_length" $photo.focalLength
-              "aperture" $photo.aperture
-              "shutter_speed" $photo.shutterSpeed
-              "iso" $photo.iso
-              "taken_at" $photo.takenAt
-              "created_at" $photo.createdAt
-              "location_name" $photo.locationName
-              "latitude" $photo.latitude
-              "longitude" $photo.longitude
-              "tags" $tags
-              "albums" $albums
-              "album" $photo.album
-              "featured" $photo.featured
-              "image" (dict
-                  "original" (dict "url" $photo.originalUrl)
-                  "large" (dict "url" $photo.largeUrl)
-                  "medium" (dict "url" $photo.mediumUrl)
-                  "thumbnail" (dict "url" $photo.thumbnailUrl)
-              )
-              "exif" (dict
-                  "model" $photo.camera
-                  "lens" $photo.lens
-                  "focal_length" $photo.focalLength
-                  "fstop" $photo.aperture
-                  "shutter" $photo.shutterSpeed
-                  "iso" $photo.iso
-              )
-          )
-          "content" (dict
-              "mediaType" "text/html"
-              "value" ($photo.description | default "")
-          )
-      }}
-
-      {{ $.AddPage $pageData }}
     {{ end }}
-  {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}
