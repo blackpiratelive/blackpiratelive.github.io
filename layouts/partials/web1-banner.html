@@ -42,19 +42,13 @@
         <marquee scrollamount="5" behavior="scroll" direction="left">
           <span class="web1-txt-saffron">★ HAPPY 80TH INDEPENDENCE DAY INDIA ★</span>
           <span class="web1-txt-white">CELEBRATING 80 YEARS OF FREEDOM &amp; PROGRESS 🇮🇳</span>
-          <span class="web1-txt-green">JAI HIND! 15 AUGUST 1947 &ndash; 2026</span>
-          <span class="web1-txt-yellow">★ CLICK BUTTON TO REPLAY SPLASH SCREEN ★</span>
+          <span class="web1-txt-green">JAI HIND! 15 AUGUST 1947 &ndash; 2026 ★</span>
         </marquee>
       </div>
       <div class="web1-banner-sub">
-        <span class="web1-blink">*** 🇮🇳 OFFICIAL 80TH INDEPENDENCE DAY CELEBRATION 🇮🇳 ***</span>
+        <span class="web1-blink">*** 🇮🇳 CELEBRATING 80TH INDEPENDENCE DAY 🇮🇳 ***</span>
       </div>
     </div>
-
-    <!-- 3D Bevel Button -->
-    <button id="web1-banner-btn" class="web1-btn-3d" type="button" aria-label="Replay Independence Day Splash Screen">
-      <span>[ REPLAY SPLASH ]</span>
-    </button>
   </div>
 </div>
 
@@ -75,11 +69,11 @@
     border-left: 4px outset #FF9933;
     border-right: 4px outset #138808;
     border-bottom: 4px solid #138808;
-    padding: 10px 14px;
+    padding: 10px 16px;
     box-shadow: 4px 4px 0px #000000, inset 0 0 12px rgba(255, 153, 51, 0.15);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     position: relative;
     font-family: "Impact", "Comic Sans MS", "Trebuchet MS", sans-serif;
     box-sizing: border-box;
@@ -158,7 +152,6 @@
   .web1-txt-saffron { color: #FF9933; text-shadow: 1px 1px 0px #000; }
   .web1-txt-white { color: #FFFFFF; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
   .web1-txt-green { color: #00FF66; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
-  .web1-txt-yellow { color: #FFFF00; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
 
   .web1-banner-sub {
     font-family: "Courier New", Courier, monospace;
@@ -176,35 +169,6 @@
     to { visibility: hidden; }
   }
 
-  /* Retro 3D Tricolor Button */
-  .web1-btn-3d {
-    flex-shrink: 0;
-    background: linear-gradient(180deg, #ffffff 0%, #dcdcdc 50%, #b8b8b8 100%);
-    border: 3px outset #FF9933;
-    color: #000080;
-    padding: 6px 12px;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    font-family: "Trebuchet MS", Arial, sans-serif;
-    box-shadow: 2px 2px 0px #000000;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s ease;
-  }
-
-  .web1-btn-3d:hover {
-    background: linear-gradient(180deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
-    color: #000000;
-    border-color: #FFFFFF;
-  }
-
-  .web1-btn-3d:active {
-    border-style: inset;
-    box-shadow: none;
-    transform: translate(1px, 1px);
-  }
-
   @media (max-width: 640px) {
     .web1-banner {
       flex-direction: column;
@@ -216,27 +180,3 @@
     }
   }
 </style>
-
-<script>
-  (function() {
-    var btn = document.getElementById('web1-banner-btn');
-    if (btn) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        try {
-          sessionStorage.removeItem('india_80th_splash_seen');
-        } catch(err) {}
-        var splash = document.getElementById('independence-splash');
-        if (splash) {
-          splash.classList.remove('id-splash-hiding');
-          splash.style.display = 'flex';
-          splash.removeAttribute('aria-hidden');
-          var fill = document.getElementById('id-progress-fill');
-          if (fill) fill.style.width = '0%';
-        } else {
-          window.location.reload();
-        }
-      });
-    }
-  })();
-</script>
