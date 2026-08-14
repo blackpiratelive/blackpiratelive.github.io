@@ -1,0 +1,467 @@
+<div id="independence-splash" class="id-splash-overlay" aria-hidden="true" style="display: none;">
+  <!-- Inline guard script to run as fast as possible -->
+  <script>
+    (function() {
+      try {
+        if (!sessionStorage.getItem('india_80th_splash_seen')) {
+          var splash = document.getElementById('independence-splash');
+          if (splash) {
+            splash.style.display = 'flex';
+            splash.removeAttribute('aria-hidden');
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <style>
+    .id-splash-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999999;
+      background: radial-gradient(circle at 50% 20%, rgba(255, 153, 51, 0.22) 0%, transparent 55%),
+                  radial-gradient(circle at 50% 80%, rgba(19, 136, 8, 0.22) 0%, transparent 55%),
+                  #070a12;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-sizing: border-box;
+      padding: 1.5rem;
+    }
+
+    .id-splash-overlay.id-splash-hiding {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Ambient background tricolor glows */
+    .id-splash-glow-top {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 650px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(255, 153, 51, 0.38) 0%, rgba(255, 153, 51, 0) 70%);
+      filter: blur(55px);
+      pointer-events: none;
+    }
+
+    .id-splash-glow-bottom {
+      position: absolute;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 650px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(19, 136, 8, 0.38) 0%, rgba(19, 136, 8, 0) 70%);
+      filter: blur(55px);
+      pointer-events: none;
+    }
+
+    /* Confetti Canvas */
+    #id-splash-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Content Wrapper */
+    .id-splash-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 620px;
+      width: 100%;
+      animation: idSplashPopIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes idSplashPopIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Top Emblem / Chakra Container */
+    .id-chakra-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .id-chakra-halo {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #FF9933, #FFFFFF, #138808, #FF9933);
+      filter: blur(12px);
+      opacity: 0.65;
+      animation: idHaloSpin 12s linear infinite;
+    }
+
+    @keyframes idHaloSpin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .id-chakra-svg {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      animation: idChakraSpin 20s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(0, 0, 128, 0.7));
+    }
+
+    @keyframes idChakraSpin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 80th Badge */
+    .id-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f1f5f9;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .id-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FF9933;
+      box-shadow: 0 0 8px #FF9933;
+    }
+
+    /* Main Headline */
+    .id-title-main {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin: 0 0 0.75rem 0;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .id-subtitle {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0 0 2rem 0;
+      line-height: 1.6;
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+    }
+
+    /* Progress bar and skip section */
+    .id-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .id-progress-track {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .id-progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #FF9933, #FFFFFF, #138808);
+      border-radius: 4px;
+      transition: width 0.05s linear;
+    }
+
+    .id-skip-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.6rem;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .id-skip-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .id-skip-btn:active {
+      transform: translateY(0);
+    }
+
+    .id-skip-btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s ease;
+    }
+
+    .id-skip-btn:hover svg {
+      transform: translateX(3px);
+    }
+  </style>
+
+  <div class="id-splash-glow-top"></div>
+  <div class="id-splash-glow-bottom"></div>
+
+  <canvas id="id-splash-canvas"></canvas>
+
+  <div class="id-splash-content">
+    <!-- Ashoka Chakra SVG -->
+    <div class="id-chakra-container">
+      <div class="id-chakra-halo"></div>
+      <svg class="id-chakra-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer Decorative & Main Ring -->
+        <circle cx="100" cy="100" r="94" fill="none" stroke="#5B86E5" stroke-width="2" opacity="0.4"/>
+        <circle cx="100" cy="100" r="88" fill="#000080" fill-opacity="0.25" stroke="#FFFFFF" stroke-width="4"/>
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#000080" stroke-width="3"/>
+        <circle cx="100" cy="100" r="18" fill="#000080" stroke="#FFFFFF" stroke-width="2"/>
+        <!-- 24 Spokes -->
+        <g stroke="#000080" stroke-width="3.5" stroke-linecap="round">
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(0 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(15 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(30 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(45 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(60 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(75 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(90 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(105 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(120 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(135 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(150 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(165 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(180 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(195 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(210 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(225 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(240 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(255 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(270 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(285 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(300 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(315 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(330 100 100)"/>
+          <line x1="100" y1="100" x2="100" y2="20" transform="rotate(345 100 100)"/>
+        </g>
+        <circle cx="100" cy="100" r="7" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <!-- Badge -->
+    <div class="id-badge">
+      <span class="id-badge-dot"></span>
+      <span>15 August 1947 &ndash; 2026</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="id-title-main">Happy 80<sup>th</sup><br>Independence Day</h1>
+
+    <!-- Subtitle -->
+    <p class="id-subtitle">Celebrating 80 Years of Freedom, Unity &amp; Progress 🇮🇳</p>
+
+    <!-- Progress & Skip Button -->
+    <div class="id-controls">
+      <div class="id-progress-track">
+        <div id="id-progress-fill" class="id-progress-fill"></div>
+      </div>
+      <button id="id-skip-btn" class="id-skip-btn" type="button" aria-label="Enter site">
+        <span>Enter Site</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Script for interactivity, auto-fade timer (3s), and confetti particle canvas -->
+  <script>
+    (function() {
+      var splashElem = document.getElementById('independence-splash');
+      if (!splashElem) return;
+
+      // Check if already displayed in this session
+      try {
+        if (sessionStorage.getItem('india_80th_splash_seen')) {
+          splashElem.style.display = 'none';
+          return;
+        }
+      } catch(e) {}
+
+      // Mark as seen in sessionStorage
+      try {
+        sessionStorage.setItem('india_80th_splash_seen', 'true');
+      } catch(e) {}
+
+      // Reveal splash
+      splashElem.style.display = 'flex';
+
+      var DURATION = 3000; // 3 seconds
+      var startTime = Date.now();
+      var progressFill = document.getElementById('id-progress-fill');
+      var skipBtn = document.getElementById('id-skip-btn');
+      var timerId = null;
+
+      function dismissSplash() {
+        if (timerId) clearInterval(timerId);
+        splashElem.classList.add('id-splash-hiding');
+        setTimeout(function() {
+          splashElem.style.display = 'none';
+        }, 650);
+      }
+
+      if (skipBtn) {
+        skipBtn.addEventListener('click', dismissSplash);
+      }
+
+      // Update progress bar smooth animation
+      timerId = setInterval(function() {
+        var elapsed = Date.now() - startTime;
+        var pct = Math.min(100, (elapsed / DURATION) * 100);
+        if (progressFill) {
+          progressFill.style.width = pct + '%';
+        }
+        if (elapsed >= DURATION) {
+          dismissSplash();
+        }
+      }, 30);
+
+      /* Tricolor Confetti / Floating Particles Canvas */
+      var canvas = document.getElementById('id-splash-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var width = canvas.width = window.innerWidth;
+      var height = canvas.height = window.innerHeight;
+
+      var handleResize = function() {
+        if (!canvas) return;
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      };
+      window.addEventListener('resize', handleResize);
+
+      var colors = ['#FF9933', '#FFFFFF', '#138808', '#FFD700'];
+      var particles = [];
+      var particleCount = Math.min(70, Math.floor(width / 18));
+
+      for (var i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 4 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: -Math.random() * 1.8 - 0.8,
+          alpha: Math.random() * 0.7 + 0.3,
+          rot: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.05
+        });
+      }
+
+      var animFrameId;
+      function renderParticles() {
+        if (splashElem.classList.contains('id-splash-hiding') || splashElem.style.display === 'none') {
+          if (animFrameId) cancelAnimationFrame(animFrameId);
+          return;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        for (var j = 0; j < particles.length; j++) {
+          var p = particles[j];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.rotSpeed;
+
+          // Wrap particles
+          if (p.y < -10) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+          if (p.x < -10) p.x = width + 10;
+          if (p.x > width + 10) p.x = -10;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = p.color;
+
+          // Alternate between circles and small confetti rectangles
+          if (j % 2 === 0) {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-p.r, -p.r * 1.5, p.r * 2, p.r * 3);
+          }
+
+          ctx.restore();
+        }
+
+        animFrameId = requestAnimationFrame(renderParticles);
+      }
+
+      renderParticles();
+    })();
+  </script>
+</div>
