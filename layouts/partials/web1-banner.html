@@ -1,0 +1,175 @@
+<div class="web1-banner-container">
+  <div class="web1-banner">
+    <!-- Starburst retro badge -->
+    <div class="web1-badge-starburst">
+      <span>80th!</span>
+    </div>
+
+    <!-- Main Content with Classic Marquee -->
+    <div class="web1-banner-content">
+      <div class="web1-marquee-wrapper">
+        <marquee scrollamount="5" behavior="scroll" direction="left">
+          <span class="web1-txt-saffron">★ HAPPY 80TH INDEPENDENCE DAY INDIA ★</span>
+          <span class="web1-txt-white">CELEBRATING 80 YEARS OF FREEDOM &amp; PROGRESS</span>
+          <span class="web1-txt-green">JAI HIND! 🇮🇳 15 AUG 1947 - 2026</span>
+          <span class="web1-txt-yellow">★ CLICK BUTTON TO REPLAY SPLASH SCREEN ★</span>
+        </marquee>
+      </div>
+      <div class="web1-banner-sub">
+        <span class="web1-blink">*** OFFICIAL 1997-STYLE CELEBRATION BANNER ***</span>
+      </div>
+    </div>
+
+    <!-- 3D Bevel Button -->
+    <button id="web1-banner-btn" class="web1-btn-3d" type="button">
+      <span>[ REPLAY SPLASH ]</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .web1-banner-container {
+    width: 100%;
+    margin: 1.5rem 0 2rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .web1-banner {
+    width: 100%;
+    max-width: 728px;
+    background: #000033;
+    background: linear-gradient(180deg, #050a25 0%, #000015 100%);
+    border: 4px outset #FF9933;
+    outline: 2px solid #138808;
+    padding: 10px 14px;
+    box-shadow: 4px 4px 0px #000000, inset 1px 1px 0px #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    font-family: "Impact", "Comic Sans MS", "Trebuchet MS", sans-serif;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .web1-badge-starburst {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    background: #FF9933;
+    clip-path: polygon(50% 0%, 65% 20%, 90% 10%, 80% 35%, 100% 50%, 80% 65%, 90% 90%, 65% 80%, 50% 100%, 35% 80%, 10% 90%, 20% 65%, 0% 50%, 20% 35%, 10% 10%, 35% 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000080;
+    font-size: 11px;
+    font-weight: 900;
+    transform: rotate(-8deg);
+    animation: web1Pulse 1.2s infinite alternate;
+  }
+
+  @keyframes web1Pulse {
+    0% { transform: rotate(-8deg) scale(0.95); }
+    100% { transform: rotate(-8deg) scale(1.12); }
+  }
+
+  .web1-banner-content {
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .web1-marquee-wrapper {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .web1-txt-saffron { color: #FF9933; text-shadow: 1px 1px 0px #000; }
+  .web1-txt-white { color: #FFFFFF; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
+  .web1-txt-green { color: #00FF66; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
+  .web1-txt-yellow { color: #FFFF00; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
+
+  .web1-banner-sub {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    color: #00FFFF;
+    margin-top: 4px;
+  }
+
+  .web1-blink {
+    animation: web1Blink 0.8s steps(2, start) infinite;
+  }
+
+  @keyframes web1Blink {
+    to { visibility: hidden; }
+  }
+
+  /* 3D Bevel Button */
+  .web1-btn-3d {
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #e6e6e6 0%, #a6a6a6 100%);
+    border: 3px outset #ffffff;
+    color: #000080;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    box-shadow: 2px 2px 0px #000000;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+
+  .web1-btn-3d:hover {
+    background: linear-gradient(180deg, #ffffb3 0%, #ff9933 100%);
+    color: #000000;
+  }
+
+  .web1-btn-3d:active {
+    border-style: inset;
+    box-shadow: none;
+    transform: translate(1px, 1px);
+  }
+
+  @media (max-width: 600px) {
+    .web1-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 10px;
+    }
+    .web1-badge-starburst {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var btn = document.getElementById('web1-banner-btn');
+    if (btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        try {
+          sessionStorage.removeItem('india_80th_splash_seen');
+        } catch(err) {}
+        var splash = document.getElementById('independence-splash');
+        if (splash) {
+          splash.classList.remove('id-splash-hiding');
+          splash.style.display = 'flex';
+          splash.removeAttribute('aria-hidden');
+          // Re-trigger script in splash if available
+          var fill = document.getElementById('id-progress-fill');
+          if (fill) fill.style.width = '0%';
+        } else {
+          window.location.reload();
+        }
+      });
+    }
+  })();
+</script>
