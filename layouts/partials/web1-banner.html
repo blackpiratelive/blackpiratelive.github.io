@@ -1,55 +1,7 @@
 <div class="web1-banner-container">
-  <div class="web1-banner">
-    <!-- Animated Indian Flag SVG -->
-    <div class="web1-flag-box" title="Tiranga - National Flag of India">
-      <svg class="web1-flag-svg" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
-        <!-- Flag pole -->
-        <rect x="2" y="2" width="3" height="36" rx="1.5" fill="#D1D5DB" stroke="#4B5563" stroke-width="0.5"/>
-        <circle cx="3.5" cy="2" r="2.5" fill="#FFD700"/>
-        <!-- Flag canvas -->
-        <g transform="translate(5, 4)">
-          <!-- Saffron -->
-          <rect x="0" y="0" width="48" height="10" fill="#FF9933"/>
-          <!-- White -->
-          <rect x="0" y="10" width="48" height="10" fill="#FFFFFF"/>
-          <!-- Green -->
-          <rect x="0" y="20" width="48" height="10" fill="#138808"/>
-          <!-- Ashoka Chakra -->
-          <g transform="translate(24, 15)">
-            <circle cx="0" cy="0" r="4.2" fill="none" stroke="#000080" stroke-width="0.7"/>
-            <circle cx="0" cy="0" r="0.9" fill="#000080"/>
-            <g stroke="#000080" stroke-width="0.4">
-              <line x1="0" y1="-4.2" x2="0" y2="4.2"/>
-              <line x1="-4.2" y1="0" x2="4.2" y2="0"/>
-              <line x1="-3" y1="-3" x2="3" y2="3"/>
-              <line x1="-3" y1="3" x2="3" y2="-3"/>
-            </g>
-          </g>
-          <!-- Border -->
-          <rect x="0" y="0" width="48" height="30" fill="none" stroke="#000000" stroke-width="0.6" opacity="0.3"/>
-        </g>
-      </svg>
-    </div>
-
-    <!-- Starburst retro badge -->
-    <div class="web1-badge-starburst">
-      <span>80th</span>
-    </div>
-
-    <!-- Main Content with Classic Marquee -->
-    <div class="web1-banner-content">
-      <div class="web1-marquee-wrapper">
-        <marquee scrollamount="5" behavior="scroll" direction="left">
-          <span class="web1-txt-saffron">★ HAPPY 80TH INDEPENDENCE DAY INDIA ★</span>
-          <span class="web1-txt-white">CELEBRATING 80 YEARS OF FREEDOM &amp; PROGRESS 🇮🇳</span>
-          <span class="web1-txt-green">JAI HIND! 15 AUGUST 1947 &ndash; 2026 ★</span>
-        </marquee>
-      </div>
-      <div class="web1-banner-sub">
-        <span class="web1-blink">*** 🇮🇳 CELEBRATING 80TH INDEPENDENCE DAY 🇮🇳 ***</span>
-      </div>
-    </div>
-  </div>
+  <a href="#" class="banner banner-1" aria-label="Celebrate 80 Years of Freedom">
+    <span class="banner-1-text">CELEBRATE 80 YEARS OF FREEDOM!</span>
+  </a>
 </div>
 
 <style>
@@ -58,125 +10,54 @@
     margin: 1.5rem 0 2rem 0;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
-  .web1-banner {
-    width: 100%;
-    max-width: 760px;
-    background: #030712;
-    background: linear-gradient(180deg, #070e26 0%, #020510 100%);
-    border-top: 4px solid #FF9933;
-    border-left: 4px outset #FF9933;
-    border-right: 4px outset #138808;
-    border-bottom: 4px solid #138808;
-    padding: 10px 16px;
-    box-shadow: 4px 4px 0px #000000, inset 0 0 12px rgba(255, 153, 51, 0.15);
+  .banner {
     display: flex;
-    align-items: center;
-    gap: 14px;
+    text-decoration: none;
     position: relative;
-    font-family: "Impact", "Comic Sans MS", "Trebuchet MS", sans-serif;
+    overflow: hidden;
     box-sizing: border-box;
-    overflow: hidden;
+    cursor: pointer;
+    /* Standard Full Banner Size */
+    width: 468px;
+    height: 60px;
+    max-width: 100%;
   }
 
-  /* Tricolor accent bar at top */
-  .web1-banner::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+  .banner:hover {
+    opacity: 0.9;
   }
 
-  .web1-flag-box {
-    flex-shrink: 0;
-    width: 52px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
-    animation: web1FlagWiggle 3s ease-in-out infinite alternate;
-  }
-
-  @keyframes web1FlagWiggle {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-2px) rotate(2deg); }
-    100% { transform: translateY(0) rotate(-1deg); }
-  }
-
-  .web1-flag-svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .web1-badge-starburst {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, #FF9933, #FFD700);
-    clip-path: polygon(50% 0%, 65% 20%, 90% 10%, 80% 35%, 100% 50%, 80% 65%, 90% 90%, 65% 80%, 50% 100%, 35% 80%, 10% 90%, 20% 65%, 0% 50%, 20% 35%, 10% 10%, 35% 20%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000080;
-    font-size: 11px;
-    font-weight: 900;
-    transform: rotate(-8deg);
-    animation: web1Pulse 1.2s infinite alternate;
-  }
-
-  @keyframes web1Pulse {
-    0% { transform: rotate(-8deg) scale(0.95); }
-    100% { transform: rotate(-8deg) scale(1.1); }
-  }
-
-  .web1-banner-content {
-    flex-grow: 1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .web1-marquee-wrapper {
-    font-size: 16px;
+  .banner-1 {
+    border: 3px solid #000080; /* Navy Border */
+    font-family: 'Arial Black', Impact, sans-serif;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    animation: indiaFlash 1.5s infinite step-end;
   }
 
-  .web1-txt-saffron { color: #FF9933; text-shadow: 1px 1px 0px #000; }
-  .web1-txt-white { color: #FFFFFF; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
-  .web1-txt-green { color: #00FF66; text-shadow: 1px 1px 0px #000; margin: 0 10px; }
-
-  .web1-banner-sub {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 11px;
-    color: #00FFFF;
-    margin-top: 4px;
-    letter-spacing: 0.5px;
+  .banner-1-text {
+    font-size: 22px;
+    text-shadow: 2px 2px 0px #000;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 0 10px;
   }
 
-  .web1-blink {
-    animation: web1Blink 0.8s steps(2, start) infinite;
+  @keyframes indiaFlash {
+    0% { background-color: #FF9933; color: #FFFFFF; } /* Saffron */
+    33% { background-color: #FFFFFF; color: #000080; text-shadow: none; } /* White */
+    66% { background-color: #138808; color: #FFFFFF; } /* Green */
   }
 
-  @keyframes web1Blink {
-    to { visibility: hidden; }
-  }
-
-  @media (max-width: 640px) {
-    .web1-banner {
-      flex-direction: column;
-      text-align: center;
-      padding: 10px;
-    }
-    .web1-badge-starburst {
-      display: none;
+  @media (max-width: 480px) {
+    .banner-1-text {
+      font-size: 16px;
     }
   }
 </style>
