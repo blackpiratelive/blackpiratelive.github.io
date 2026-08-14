@@ -20,10 +20,9 @@
     overflow: hidden;
     box-sizing: border-box;
     cursor: pointer;
-    /* Standard Full Banner Size */
-    width: 468px;
-    height: 60px;
-    max-width: 100%;
+    width: 100%;
+    min-height: 60px;
+    padding: 12px 16px;
   }
 
   .banner:hover {
@@ -42,22 +41,17 @@
   }
 
   .banner-1-text {
-    font-size: 22px;
+    font-size: clamp(0.9rem, 3.6vw, 1.5rem);
+    line-height: 1.2;
     text-shadow: 2px 2px 0px #000;
     letter-spacing: 1px;
     text-align: center;
-    padding: 0 10px;
+    white-space: nowrap;
   }
 
   @keyframes indiaFlash {
     0% { background-color: #FF9933; color: #FFFFFF; } /* Saffron */
     33% { background-color: #FFFFFF; color: #000080; text-shadow: none; } /* White */
     66% { background-color: #138808; color: #FFFFFF; } /* Green */
-  }
-
-  @media (max-width: 480px) {
-    .banner-1-text {
-      font-size: 16px;
-    }
   }
 </style>
