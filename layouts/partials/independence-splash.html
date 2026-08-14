@@ -21,6 +21,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       z-index: 999999;
       background: radial-gradient(circle at 50% 20%, rgba(255, 153, 51, 0.22) 0%, transparent 55%),
                   radial-gradient(circle at 50% 80%, rgba(19, 136, 8, 0.22) 0%, transparent 55%),
@@ -31,11 +32,12 @@
       justify-content: center;
       color: #ffffff;
       font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      overflow: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       opacity: 1;
       transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       box-sizing: border-box;
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
     }
 
     .id-splash-overlay.id-splash-hiding {
@@ -50,7 +52,7 @@
       top: -150px;
       left: 50%;
       transform: translateX(-50%);
-      width: 650px;
+      width: clamp(300px, 80vw, 650px);
       height: 380px;
       background: radial-gradient(circle, rgba(255, 153, 51, 0.38) 0%, rgba(255, 153, 51, 0) 70%);
       filter: blur(55px);
@@ -62,7 +64,7 @@
       bottom: -150px;
       left: 50%;
       transform: translateX(-50%);
-      width: 650px;
+      width: clamp(300px, 80vw, 650px);
       height: 380px;
       background: radial-gradient(circle, rgba(19, 136, 8, 0.38) 0%, rgba(19, 136, 8, 0) 70%);
       filter: blur(55px);
@@ -90,6 +92,7 @@
       text-align: center;
       max-width: 620px;
       width: 100%;
+      margin: auto;
       animation: idSplashPopIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
@@ -107,9 +110,9 @@
     /* Top Emblem / Chakra Container */
     .id-chakra-container {
       position: relative;
-      width: 110px;
-      height: 110px;
-      margin-bottom: 1.5rem;
+      width: clamp(80px, 20vw, 110px);
+      height: clamp(80px, 20vw, 110px);
+      margin-bottom: clamp(1rem, 3vh, 1.5rem);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -117,7 +120,7 @@
 
     .id-chakra-halo {
       position: absolute;
-      inset: -12px;
+      inset: -10px;
       border-radius: 50%;
       background: conic-gradient(from 0deg, #FF9933, #FFFFFF, #138808, #FF9933);
       filter: blur(12px);
@@ -131,8 +134,8 @@
 
     .id-chakra-svg {
       position: relative;
-      width: 100px;
-      height: 100px;
+      width: 100%;
+      height: 100%;
       animation: idChakraSpin 20s linear infinite;
       filter: drop-shadow(0 0 12px rgba(0, 0, 128, 0.7));
     }
@@ -146,24 +149,24 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.45rem 1.2rem;
+      padding: 0.4rem 1rem;
       border-radius: 50px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 2.5vw, 0.85rem);
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #f1f5f9;
-      margin-bottom: 1.25rem;
+      margin-bottom: clamp(0.8rem, 2.5vh, 1.25rem);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     }
 
     .id-badge-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #FF9933;
       box-shadow: 0 0 8px #FF9933;
@@ -171,7 +174,7 @@
 
     /* Main Headline */
     .id-title-main {
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(1.6rem, 6.5vw, 3.2rem);
       font-weight: 800;
       line-height: 1.15;
       margin: 0 0 0.75rem 0;
@@ -183,13 +186,14 @@
     }
 
     .id-subtitle {
-      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      font-size: clamp(0.85rem, 3vw, 1.15rem);
       font-weight: 400;
       color: rgba(255, 255, 255, 0.85);
-      margin: 0 0 2rem 0;
-      line-height: 1.6;
+      margin: 0 0 clamp(1.2rem, 3vh, 2rem) 0;
+      line-height: 1.5;
       font-family: 'Lora', Georgia, serif;
       font-style: italic;
+      padding: 0 0.5rem;
     }
 
     /* Progress bar and skip section */
@@ -197,9 +201,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
       width: 100%;
-      max-width: 320px;
+      max-width: 280px;
     }
 
     .id-progress-track {
@@ -227,21 +231,22 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.65rem 1.6rem;
+      padding: 0.6rem 1.5rem;
       border-radius: 30px;
       background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.25);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.03em;
       cursor: pointer;
       transition: all 0.25s ease;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      touch-action: manipulation;
     }
 
-    .id-skip-btn:hover {
+    .id-skip-btn:hover, .id-skip-btn:focus {
       background: rgba(255, 255, 255, 0.22);
       border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-2px);
@@ -253,13 +258,33 @@
     }
 
     .id-skip-btn svg {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       transition: transform 0.25s ease;
     }
 
     .id-skip-btn:hover svg {
       transform: translateX(3px);
+    }
+
+    @media (max-height: 600px) {
+      .id-splash-overlay {
+        justify-content: flex-start;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .id-chakra-container {
+        width: 65px;
+        height: 65px;
+        margin-bottom: 0.75rem;
+      }
+      .id-title-main {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .id-subtitle {
+        margin-bottom: 1rem;
+      }
     }
   </style>
 

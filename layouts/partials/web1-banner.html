@@ -54,4 +54,22 @@
     33% { background-color: #FFFFFF; color: #000080; text-shadow: none; } /* White */
     66% { background-color: #138808; color: #FFFFFF; } /* Green */
   }
+
+  @media (max-width: 480px) {
+    .banner {
+      min-height: 52px;
+      padding: 10px 8px;
+    }
+    .banner-1-text {
+      font-size: clamp(0.72rem, 4vw, 1rem);
+      letter-spacing: 0.5px;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .banner-1-text {
+      font-size: 0.68rem;
+      letter-spacing: 0px;
+    }
+  }
 </style>
