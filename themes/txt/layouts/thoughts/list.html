@@ -17,10 +17,9 @@
     {{ range $paginator.Pages }}
     <article class="feed-item" id="thought-{{ .Date.Format "20060102150405" }}">
       <div class="meta">
-        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006 at 15:04" }}</time>
+        <a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006 at 15:04" }}</time></a>
         {{ with .Params.location }} · 📍 {{ .name }}{{ if .city }}, {{ .city }}{{ end }}{{ end }}
         {{ with .Params.trip }} · ✈️ {{ .title }}{{ end }}
-        · <a href="{{ .RelPermalink }}">permalink</a>
       </div>
 
       <div style="margin: 0.35rem 0;">

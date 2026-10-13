@@ -25,22 +25,26 @@
   {{ range $paginator.Pages }}
   <article class="feed-item">
     <div class="meta">
-      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>
-      ·
       {{ if eq .Section "thoughts" }}
+        <a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></a>
+        ·
         <span>[thought]</span>
         {{ with .Params.location }} · 📍 {{ .name }}{{ end }}
         {{ with .Params.trip }} · ✈️ {{ .title }}{{ end }}
-      {{ else if eq .Section "blog" }}
-        <span>[blog]</span>
-      {{ else if eq .Section "books" }}
-        <span>[book]</span>
-      {{ else if eq .Params.feed_type "movies" }}
-        <span>[cinema]</span>
-      {{ else if eq .Params.feed_type "episode" }}
-        <span>[tv]</span>
       {{ else }}
-        <span>[{{ .Section | default "entry" }}]</span>
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>
+        ·
+        {{ if eq .Section "blog" }}
+          <span>[blog]</span>
+        {{ else if eq .Section "books" }}
+          <span>[book]</span>
+        {{ else if eq .Params.feed_type "movies" }}
+          <span>[cinema]</span>
+        {{ else if eq .Params.feed_type "episode" }}
+          <span>[tv]</span>
+        {{ else }}
+          <span>[{{ .Section | default "entry" }}]</span>
+        {{ end }}
       {{ end }}
     </div>
 
@@ -55,7 +59,6 @@
         </div>
         {{ end }}
       </div>
-      <div class="meta"><a href="{{ .RelPermalink }}">[permalink]</a></div>
     {{ else if eq .Params.feed_type "movies" }}
       <div style="margin: 0.35rem 0;">
         <strong>{{ .Title }}</strong>
