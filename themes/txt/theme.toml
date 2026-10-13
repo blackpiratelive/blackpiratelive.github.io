@@ -1,0 +1,10 @@
+name = "txt"
+license = "MIT"
+description = "A plain text, raw HTML, ultra-lightweight theme for Hugo optimized for 2G networks"
+homepage = "https://blackpiratex.com"
+tags = ["minimalist", "text", "raw-html", "fast", "monospace", "lightweight", "2g"]
+min_version = "0.100.0"
+
+[author]
+  name = "Sudip Mandal"
+  homepage = "https://blackpiratex.com"

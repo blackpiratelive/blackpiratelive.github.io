@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "Books" }}</h1>
+    <p class="meta">Book reviews, reading notes, and wishlist.</p>
+    <hr>
+  </header>
+
+  {{ with .Content }}
+    <div style="margin-bottom: 1.5rem;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  {{ $shelves := slice 
+    (dict "id" "currentlyReading" "title" "Currently Reading") 
+    (dict "id" "read" "title" "Read") 
+    (dict "id" "watchlist" "title" "Wishlist") 
+  }}
+
+  {{ range $shelves }}
+    {{ $shelfPages := where $.Pages "Params.shelf" .id }}
+    {{ if gt (len $shelfPages) 0 }}
+      <div style="margin-bottom: 1.5rem;">
+        <h2>{{ .title }} ({{ len $shelfPages }})</h2>
+        <ul style="padding-left: 1.25rem;">
+          {{ range $shelfPages }}
+            <li style="margin-bottom: 0.35rem;">
+              <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+              {{ with .Params.authors }} — by {{ delimit . ", " }}{{ end }}
+              {{ with .Params.rating }} [Rating: {{ . }}/5]{{ end }}
+              {{ if and (eq .Params.shelf "currentlyReading") .Params.readingProgress }}
+                ({{ .Params.readingProgress }}% done)
+              {{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.5rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.25rem;">{{ site.Params.author | default "Sudip Mandal" }}</h1>
+    <p class="meta">@blackpiratex · {{ site.Params.tagline }}</p>
+    <div class="meta" style="margin-top: 0.5rem;">
+      <a href="https://go.blackpiratex.com/github" target="_blank" rel="noopener">[GitHub]</a> ·
+      <a href="https://go.blackpiratex.com/pixelfed" target="_blank" rel="noopener">[Pixelfed]</a> ·
+      <a href="https://go.blackpiratex.com/mastodon" target="_blank" rel="noopener">[Mastodon]</a> ·
+      <a href="https://go.blackpiratex.com/wa" target="_blank" rel="noopener">[WhatsApp]</a> ·
+      <a href="{{ "/guestbook/" | relURL }}">[Guestbook]</a>
+    </div>
+    <hr>
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  {{ $selfies := resources.Match "img/selfie/*" }}
+  {{ if gt (len $selfies) 0 }}
+    <section style="margin-top: 2rem;">
+      <hr>
+      <h2>Captured Moments</h2>
+      <div class="thought-gallery">
+        {{ range $selfies }}
+          <a href="{{ .RelPermalink }}" target="_blank"><img src="{{ .RelPermalink }}" alt="{{ .Name }}" loading="lazy" decoding="async"></a>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+</article>
+{{ end }}

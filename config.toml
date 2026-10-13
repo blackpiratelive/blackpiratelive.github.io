@@ -2,7 +2,7 @@ baseURL = 'https://blackpiratex.com'
 defaultContentLanguage = 'en-us'
 locale = 'en-us'
 title = 'BlackPirateX'
-theme = 'typography-minimal'
+theme = 'txt'
 
 [params]
   author = "Sudip"

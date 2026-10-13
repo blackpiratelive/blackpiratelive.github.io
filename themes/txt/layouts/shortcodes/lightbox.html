@@ -1,0 +1,6 @@
+{{ $images := .Params }}
+<div class="thought-gallery">
+  {{ range $images }}
+    <a href="{{ . }}" target="_blank"><img src="{{ . }}" alt="Image" loading="lazy" decoding="async" style="max-width: 200px; max-height: 150px; object-fit: cover;"></a>
+  {{ end }}
+</div>

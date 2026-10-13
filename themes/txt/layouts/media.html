@@ -1,0 +1,113 @@
+{{ define "main" }}
+{{ $mediaList := slice }}
+
+{{/* 1. Extract media from Gallery section */}}
+{{ range where site.RegularPages "Section" "gallery" }}
+  {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url | default .Params.image.thumbnail.url }}
+  {{ if $imgUrl }}
+    {{ $mediaList = $mediaList | append (dict 
+      "url" $imgUrl
+      "thumb" (.Params.thumbnail_url | default .Params.medium_url | default .Params.image.thumbnail.url | default $imgUrl)
+      "type" "image"
+      "title" .Title
+      "post_url" .RelPermalink
+      "date" .Date
+      "year" (.Date.Format "2006")
+    ) }}
+  {{ end }}
+{{ end }}
+
+{{/* 2. Extract media from Blogs and Thoughts */}}
+{{ range where site.RegularPages "Section" "in" (slice "blog" "thoughts") }}
+  {{ $page := . }}
+  {{ $content := .Content }}
+  
+  {{ $imgTags := findRE `<img[^>]+>` $content }}
+  {{ range $imgTags }}
+    {{ $url := "" }}
+    {{ $dataFull := findRE `data-full-src="[^"]+"` . }}
+    {{ if gt (len $dataFull) 0 }}
+      {{ $url = index $dataFull 0 | replaceRE `data-full-src="([^"]+)"` `$1` }}
+    {{ else }}
+      {{ $srcAttr := findRE `\ssrc="[^"]+"` . }}
+      {{ if gt (len $srcAttr) 0 }}
+        {{ $url = index $srcAttr 0 | replaceRE `\ssrc="([^"]+)"` `$1` }}
+      {{ end }}
+    {{ end }}
+    
+    {{ if and $url (ne $url "") }}
+      {{ $mediaList = $mediaList | append (dict 
+        "url" $url
+        "thumb" $url
+        "type" "image"
+        "title" $page.Title
+        "post_url" $page.RelPermalink
+        "date" $page.Date
+        "year" ($page.Date.Format "2006")
+      ) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Deduplicate mediaList */}}
+{{ $uniqueMedia := slice }}
+{{ range $mediaList }}
+  {{ $current := . }}
+  {{ $filename := path.Base $current.url }}
+  {{ $currentNorm := replaceRE `_hu_[a-f0-9]+` "" $filename }}
+  
+  {{ $isDuplicate := false }}
+  {{ range $uniqueMedia }}
+    {{ $otherFilename := path.Base .url }}
+    {{ $otherNorm := replaceRE `_hu_[a-f0-9]+` "" $otherFilename }}
+    {{ if eq $otherNorm $currentNorm }}
+      {{ $isDuplicate = true }}
+    {{ end }}
+  {{ end }}
+  {{ if not $isDuplicate }}
+    {{ $uniqueMedia = $uniqueMedia | append $current }}
+  {{ end }}
+{{ end }}
+{{ $mediaList = $uniqueMedia }}
+
+{{ $years := slice }}
+{{ range $mediaList }}
+  {{ $years = $years | append .year }}
+{{ end }}
+{{ $years = uniq $years | sort }}
+
+{{ $yearsDesc := slice }}
+{{ range $years }}
+  {{ $yearsDesc = slice . | append $yearsDesc }}
+{{ end }}
+
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "Media" }}</h1>
+    <p class="meta">Unified media archive ({{ len $mediaList }} items)</p>
+    <hr>
+  </header>
+
+  {{ range $year := $yearsDesc }}
+    <div style="margin-bottom: 1.5rem;">
+      <h2>{{ $year }}</h2>
+      <ul style="list-style: none; padding-left: 0;">
+        {{ range $mediaList }}
+          {{ if eq .year $year }}
+            <li style="margin-bottom: 1rem;">
+              <div class="meta">
+                {{ .date.Format "2006-01-02" }} · <a href="{{ .post_url }}">{{ .title }}</a>
+              </div>
+              <div style="margin-top: 0.35rem;">
+                <a href="{{ .url }}" target="_blank">
+                  <img src="{{ .thumb }}" alt="{{ .title }}" loading="lazy" decoding="async" style="max-width: 280px; max-height: 200px; object-fit: cover;">
+                </a>
+              </div>
+            </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </div>
+  {{ end }}
+</section>
+{{ end }}

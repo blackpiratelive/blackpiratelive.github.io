@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "Taxonomy" }}</h1>
+    <hr>
+  </header>
+
+  <div class="content">
+    <ul style="padding-left: 1.25rem;">
+      {{ range .Data.Terms.ByCount }}
+        <li style="margin-bottom: 0.35rem;">
+          <a href="{{ .Page.RelPermalink }}"><strong>#{{ .Page.Title }}</strong></a>
+          <span class="meta">({{ .Count }} entries)</span>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}

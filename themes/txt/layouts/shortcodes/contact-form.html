@@ -1,0 +1,37 @@
+{{ with .Inner }}
+  <h3>{{ . }}</h3>
+{{ end }}
+
+<form id="contact-form-ezkflb9b" style="margin: 1.5rem 0;">
+  <p><label>Name *<br><input type="text" id="name" name="name" required style="width: 100%; max-width: 400px; font-family: inherit; padding: 4px;"></label></p>
+  <p><label>Email *<br><input type="email" id="email" name="email" required style="width: 100%; max-width: 400px; font-family: inherit; padding: 4px;"></label></p>
+  <p><label>Website<br><input type="url" id="website" name="website" style="width: 100%; max-width: 400px; font-family: inherit; padding: 4px;"></label></p>
+  <p><label>Other contact info<br><input type="text" id="other" name="other" style="width: 100%; max-width: 400px; font-family: inherit; padding: 4px;"></label></p>
+  <p><label>Message *<br><textarea id="message" name="message" rows="5" required style="width: 100%; max-width: 500px; font-family: inherit; padding: 4px;"></textarea></label></p>
+  <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+  <button type="submit" style="font-family: inherit; padding: 6px 12px; cursor: pointer;">Submit</button>
+</form>
+
+<script>
+document.getElementById("contact-form-ezkflb9b")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd.entries());
+  try {
+    const res = await fetch("https://guestbook.blackpiratex.com/api/submit?form=ezkflb9b", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    if (res.ok) {
+      alert(result.message || "Form submitted successfully!");
+      e.target.reset();
+    } else {
+      alert(result.error || "Failed to submit form");
+    }
+  } catch (err) {
+    alert("Network error. Please try again or email directly.");
+  }
+});
+</script>

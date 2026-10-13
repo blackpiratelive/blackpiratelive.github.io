@@ -1,0 +1,359 @@
+{{ $gbEntries := slice }}
+{{ $gbResult := try (resources.GetRemote "https://sudip-gb.blackpiratex.com/api/entries?user=sudip") }}
+{{ if $gbResult.Err }}
+  {{ warnf "Failed to fetch guestbook entries: %s" $gbResult.Err }}
+{{ else }}
+  {{ with $gbResult.Value }}
+    {{ $parsedGB := try (.Content | transform.Unmarshal) }}
+    {{ if $parsedGB.Err }}
+      {{ warnf "Guestbook Unmarshal Error: %s" $parsedGB.Err }}
+    {{ else }}
+      {{ $gbEntries = $parsedGB.Value }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $topEntries := slice }}
+{{ $repliesMap := dict }}
+
+{{ range $gbEntries }}
+  {{ $entryId := string .id }}
+  {{ $parentId := "" }}
+  {{ with .parent_id }}{{ $parentId = string . }}{{ end }}
+  
+  {{ if or (eq $parentId "") (eq $parentId "<nil>") }}
+    {{ $topEntries = $topEntries | append . }}
+  {{ else }}
+    {{ $existingReplies := index $repliesMap $parentId | default (slice) }}
+    {{ $existingReplies = $existingReplies | append . }}
+    {{ $repliesMap = merge $repliesMap (dict $parentId $existingReplies) }}
+  {{ end }}
+{{ end }}
+
+<div class="gb-wrap">
+  <form id="guestbook-form" class="gb-form">
+    <div class="gb-field">
+      <label for="gb-name">Name *</label>
+      <input id="gb-name" name="name" type="text" placeholder="Your name or nickname" required />
+    </div>
+    <div class="gb-field">
+      <label for="gb-website">Website (optional)</label>
+      <input id="gb-website" name="website" type="url" placeholder="https://example.com" />
+    </div>
+    <div class="gb-field">
+      <label for="gb-message">Message *</label>
+      <textarea id="gb-message" name="message" rows="4" placeholder="Leave a note or say hi..." required></textarea>
+    </div>
+    
+    <div id="guestbook-reply-context" class="gb-reply-context" style="display:none;">
+      <span>Replying to <strong id="guestbook-reply-name"></strong></span>
+      <button type="button" id="guestbook-reply-cancel" class="gb-action-btn">Cancel</button>
+    </div>
+    
+    <button type="submit" class="gb-submit">Sign Guestbook</button>
+  </form>
+
+  <hr style="margin: 2rem 0 1.5rem;">
+
+  <div style="margin-bottom: 1.5rem;">
+    <h2>Messages ({{ len $gbEntries }})</h2>
+    <p class="meta">Powered by <a href="https://guestbook.blackpiratex.com" target="_blank" rel="noopener">BPX Guestbook</a></p>
+  </div>
+
+  <div id="guestbook-entries">
+    {{ if gt (len $topEntries) 0 }}
+      {{ range $topEntries }}
+        {{ $entryId := string .id }}
+        {{ $senderName := .sender_name | default "Anonymous" }}
+        {{ $isOwner := or .is_owner (eq (lower $senderName) "sudip") }}
+        {{ $website := strings.TrimSpace (.sender_website | default "") }}
+        {{ $replies := index $repliesMap $entryId }}
+
+        <article class="gb-entry" id="entry-{{ $entryId }}">
+          <div class="meta" style="margin-bottom: 0.35rem;">
+            {{ if ne $website "" }}
+              <a href="{{ $website }}" target="_blank" rel="noopener noreferrer"><strong>{{ $senderName }}</strong></a>
+            {{ else }}
+              <strong>{{ $senderName }}</strong>
+            {{ end }}
+            {{ if $isOwner }}
+              <span class="gb-owner-badge">OWNER</span>
+            {{ end }}
+            {{ with .created_at }}
+              · <time datetime="{{ (time.AsTime .).Format "2006-01-02T15:04:05Z07:00" }}">{{ (time.AsTime .).Format "Jan 02, 2006 at 15:04" }}</time>
+            {{ end }}
+          </div>
+
+          <div class="gb-body">{{ .message }}</div>
+
+          <div class="gb-actions">
+            <button type="button" class="gb-action-btn" data-action="like" data-entry-id="{{ $entryId }}">
+              ♥ <span class="gb-like-count">{{ .likes | default 0 }}</span>
+            </button>
+            <button type="button" class="gb-action-btn" data-action="reply" data-entry-id="{{ $entryId }}" data-entry-name="{{ $senderName }}">
+              Reply
+            </button>
+          </div>
+
+          {{ if $replies }}
+            <div class="gb-replies">
+              {{ range $replies }}
+                {{ $replyId := string .id }}
+                {{ $replySenderName := .sender_name | default "Anonymous" }}
+                {{ $replyIsOwner := or .is_owner (eq (lower $replySenderName) "sudip") }}
+                {{ $replyWebsite := strings.TrimSpace (.sender_website | default "") }}
+
+                <article class="gb-entry gb-reply-entry" id="entry-{{ $replyId }}">
+                  <div class="meta" style="margin-bottom: 0.35rem;">
+                    {{ if ne $replyWebsite "" }}
+                      <a href="{{ $replyWebsite }}" target="_blank" rel="noopener noreferrer"><strong>{{ $replySenderName }}</strong></a>
+                    {{ else }}
+                      <strong>{{ $replySenderName }}</strong>
+                    {{ end }}
+                    {{ if $replyIsOwner }}
+                      <span class="gb-owner-badge">OWNER</span>
+                    {{ end }}
+                    {{ with .created_at }}
+                      · <time datetime="{{ (time.AsTime .).Format "2006-01-02T15:04:05Z07:00" }}">{{ (time.AsTime .).Format "Jan 02, 2006 at 15:04" }}</time>
+                    {{ end }}
+                  </div>
+
+                  <div class="gb-body">{{ .message }}</div>
+
+                  <div class="gb-actions">
+                    <button type="button" class="gb-action-btn" data-action="like" data-entry-id="{{ $replyId }}">
+                      ♥ <span class="gb-like-count">{{ .likes | default 0 }}</span>
+                    </button>
+                    <button type="button" class="gb-action-btn" data-action="reply" data-entry-id="{{ $replyId }}" data-entry-name="{{ $replySenderName }}">
+                      Reply
+                    </button>
+                  </div>
+                </article>
+              {{ end }}
+            </div>
+          {{ end }}
+        </article>
+      {{ end }}
+    {{ else }}
+      <p class="meta">No messages yet. Be the first to sign!</p>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+.gb-wrap {
+  margin: 1rem 0 2rem;
+}
+.gb-form {
+  margin-bottom: 1.5rem;
+}
+.gb-field {
+  margin-bottom: 0.85rem;
+}
+.gb-field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 0.25rem;
+}
+.gb-field input, .gb-field textarea {
+  width: 100%;
+  max-width: 480px;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+}
+.gb-field input:focus, .gb-field textarea:focus {
+  outline: 2px solid var(--link);
+}
+.gb-reply-context {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  margin-bottom: 0.85rem;
+  max-width: 480px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+}
+.gb-submit {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  background: var(--code-bg);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.gb-submit:hover {
+  background: var(--border);
+}
+.gb-entry {
+  border: 1px solid var(--border);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  background: var(--bg);
+}
+.gb-reply-entry {
+  margin-bottom: 0.75rem;
+}
+.gb-body {
+  margin: 0.4rem 0 0.6rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.gb-owner-badge {
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 1px 4px;
+  border: 1px solid var(--border);
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+.gb-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+.gb-action-btn {
+  font-family: inherit;
+  font-size: 0.85em;
+  background: var(--code-bg);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+.gb-action-btn:hover {
+  background: var(--border);
+}
+.gb-replies {
+  margin-left: 1.25rem;
+  margin-top: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--border);
+}
+@media (max-width: 500px) {
+  .gb-replies {
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+</style>
+
+<script>
+  (function() {
+    const baseUrl = "https://sudip-gb.blackpiratex.com";
+    const owner = "sudip";
+    let replyParentId = null;
+
+    const formEl = document.getElementById("guestbook-form");
+    const replyContextEl = document.getElementById("guestbook-reply-context");
+    const replyNameEl = document.getElementById("guestbook-reply-name");
+    const replyCancelEl = document.getElementById("guestbook-reply-cancel");
+    const entriesContainer = document.getElementById("guestbook-entries");
+
+    const clearReplyTarget = () => {
+      replyParentId = null;
+      if (replyContextEl) replyContextEl.style.display = "none";
+      if (replyNameEl) replyNameEl.textContent = "";
+    };
+
+    const setReplyTarget = (entryId, senderName) => {
+      replyParentId = entryId;
+      if (replyNameEl) replyNameEl.textContent = senderName || "this entry";
+      if (replyContextEl) replyContextEl.style.display = "flex";
+      formEl?.querySelector("textarea[name='message']")?.focus();
+      formEl?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    if (replyCancelEl) {
+      replyCancelEl.addEventListener("click", clearReplyTarget);
+    }
+
+    if (formEl) {
+      formEl.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        try {
+          const fd = new FormData(e.target);
+          const payload = {
+            owner_username: owner,
+            sender_name: fd.get("name"),
+            sender_website: fd.get("website"),
+            message: fd.get("message"),
+            parent_id: replyParentId ? Number(replyParentId) : null,
+            is_private: false,
+            bot_field: ""
+          };
+          const res = await fetch(baseUrl + "/api/entries", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          
+          if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData.error || "Failed to submit");
+          }
+
+          e.target.reset();
+          clearReplyTarget();
+          alert("Entry posted successfully! It will be published shortly.");
+        } catch (err) {
+          alert("Error: " + err.message);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      });
+    }
+
+    if (entriesContainer) {
+      entriesContainer.addEventListener("click", async (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const entryId = button.dataset.entryId;
+        if (!entryId) return;
+
+        if (action === "reply") {
+          setReplyTarget(entryId, button.dataset.entryName || "this entry");
+        } else if (action === "like") {
+          if (button.disabled) return;
+          button.disabled = true;
+          
+          try {
+            const res = await fetch(`${baseUrl}/api/entries`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ action: "like", id: Number(entryId) })
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              const countEl = button.querySelector(".gb-like-count");
+              if (countEl) countEl.textContent = data.likes;
+            }
+          } catch (err) {
+            console.error("Like failed", err);
+          } finally {
+            button.disabled = false;
+          }
+        }
+      });
+    }
+  })();
+</script>

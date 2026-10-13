@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.5rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "OS" }}</h1>
+    <p class="meta">Operating system configurations and environment.</p>
+    <hr>
+  </header>
+  <div class="content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

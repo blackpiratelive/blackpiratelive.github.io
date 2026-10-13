@@ -1,0 +1,65 @@
+{{ define "main" }}
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">Thoughts</h1>
+    <p class="meta">Short-form notes, daily thoughts, and microblog entries.</p>
+    <hr>
+  </header>
+
+  {{ with .Content }}
+    <div style="margin-bottom: 1.5rem;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  <div class="thoughts-feed">
+    {{ $paginator := .Paginate .Pages 50 }}
+    {{ range $paginator.Pages }}
+    <article class="feed-item" id="thought-{{ .Date.Format "20060102150405" }}">
+      <div class="meta">
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006 at 15:04" }}</time>
+        {{ with .Params.location }} · 📍 {{ .name }}{{ if .city }}, {{ .city }}{{ end }}{{ end }}
+        {{ with .Params.trip }} · ✈️ {{ .title }}{{ end }}
+        · <a href="{{ .RelPermalink }}">permalink</a>
+      </div>
+
+      <div style="margin: 0.35rem 0;">
+        {{ .Content }}
+        {{ with .Params.images }}
+        <div class="thought-gallery">
+          {{ range . }}
+            <a href="{{ . }}" target="_blank"><img src="{{ . }}" alt="Post image" loading="lazy" decoding="async"></a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+
+      {{ with .Params.tags }}
+      <div class="meta">
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">#{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+      <hr style="margin: 1.25rem 0 1rem; border-top: 1px dotted var(--border);">
+    </article>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination">
+    {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}">&lt;-- Newer</a>
+    {{ else }}
+      <span class="meta">&lt;-- Newer</span>
+    {{ end }}
+    <span class="meta">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}">Older --&gt;</a>
+    {{ else }}
+      <span class="meta">Older --&gt;</span>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

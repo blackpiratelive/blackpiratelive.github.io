@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
+    {{ if not .Date.IsZero }}
+    <div class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ if .ReadingTime }} · {{ .ReadingTime }} min read ({{ .WordCount }} words){{ end }}
+      {{ with .Params.tags }}
+        ·
+        {{ range . }}
+          <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">#{{ . }}</a>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+    <hr>
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <footer style="margin-top: 2rem;">
+    <hr>
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">&lt;-- {{ .Title }}</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">{{ .Title }} --&gt;</a>
+      {{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

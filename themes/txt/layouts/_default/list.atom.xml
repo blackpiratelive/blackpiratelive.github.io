@@ -1,0 +1,16 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ if eq .Title site.Title }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ site.Title }}{{ end }}</title>
+  <link href="{{ .Permalink }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ site.BaseURL }}" rel="alternate" type="text/html"/>
+  <updated>{{ now.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+  <id>{{ .Permalink }}</id>
+  {{- range first 15 .Pages -}}
+  <entry>
+    <title>{{ .Title }}</title>
+    <link href="{{ .Permalink }}"/>
+    <id>{{ .Permalink }}</id>
+    <updated>{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+    <summary>{{ .Summary }}</summary>
+  </entry>
+  {{- end -}}
+</feed>

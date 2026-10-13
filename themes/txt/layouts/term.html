@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">#{{ .Title }}</h1>
+    <p class="meta">{{ len .Pages }} entries tagged</p>
+    <hr>
+  </header>
+
+  <div class="list-entries">
+    {{ $paginator := .Paginate .Pages.ByDate.Reverse 30 }}
+    {{ range $paginator.Pages }}
+    <div class="list-item">
+      <div>
+        <span class="meta">{{ .Date.Format "2006-01-02" }} · </span>
+        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+      </div>
+      {{ with .Summary }}
+        <p style="margin: 0.25rem 0 0; color: var(--dim);">{{ . | plainify | truncate 130 }}</p>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination">
+    {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}">&lt;-- Newer</a>
+    {{ else }}
+      <span class="meta">&lt;-- Newer</span>
+    {{ end }}
+    <span class="meta">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}">Older --&gt;</a>
+    {{ else }}
+      <span class="meta">Older --&gt;</span>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

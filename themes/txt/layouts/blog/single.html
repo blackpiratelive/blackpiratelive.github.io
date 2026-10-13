@@ -1,0 +1,56 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.5rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
+    <div class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ if .ReadingTime }} · {{ .ReadingTime }} min read ({{ .WordCount }} words){{ end }}
+      {{ with .Params.tags }}
+        ·
+        {{ range . }}
+          <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">#{{ . }}</a>
+        {{ end }}
+      {{ end }}
+    </div>
+
+    {{ $coverImg := "" }}
+    {{ with .Params.cover }}
+      {{ if reflect.IsMap . }}{{ $coverImg = .image }}{{ else }}{{ $coverImg = . }}{{ end }}
+    {{ else }}
+      {{ with .Params.cover_image_url }}{{ $coverImg = . }}{{ else }}
+        {{ with .Params.image }}{{ $coverImg = . }}{{ end }}
+      {{ end }}
+    {{ end }}
+    {{ with $coverImg }}
+      <div style="margin: 1rem 0;">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" decoding="async">
+      </div>
+    {{ end }}
+    <hr>
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <footer style="margin-top: 2rem;">
+    <hr>
+    <div class="meta" style="margin-bottom: 1rem;">
+      --<br>
+      Have thoughts on this post? Leave a note on the <a href="{{ "/guestbook/" | relURL }}">Guestbook</a>
+      {{ with site.Params.email }} or reply via <a href="{{ . | safeURL }}">Email</a>{{ end }}.
+    </div>
+
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">&lt;-- {{ .Title }}</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">{{ .Title }} --&gt;</a>
+      {{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

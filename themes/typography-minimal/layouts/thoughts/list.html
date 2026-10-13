@@ -29,6 +29,15 @@
       
       <div class="thought-content">
         {{ .Content }}
+        {{ with .Params.images }}
+        <div class="microblog-gallery" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+          {{ range . }}
+            <a href="{{ . }}" target="_blank">
+              <img src="{{ . }}" alt="Post Image" class="gallery-thumbnail" style="max-width: 150px; max-height: 150px; border-radius: 4px; object-fit: cover;" />
+            </a>
+          {{ end }}
+        </div>
+        {{ end }}
       </div>
 
       {{ with .Params.tags }}

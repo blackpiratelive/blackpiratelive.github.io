@@ -1,0 +1,41 @@
+{{ define "main" }}
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">Blog</h1>
+    <p class="meta">Long-form writing, essays, and technical notes.</p>
+    <hr>
+  </header>
+
+  {{ with .Content }}
+    <div style="margin-bottom: 1.5rem;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  {{ $paginator := .Paginate .Pages.ByDate.Reverse 50 }}
+  <ul class="blog-posts">
+    {{ range $paginator.Pages }}
+    <li>
+      <span><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time></span>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination">
+    {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}">&lt;-- Newer</a>
+    {{ else }}
+      <span class="meta">&lt;-- Newer</span>
+    {{ end }}
+    <span class="meta">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}">Older --&gt;</a>
+    {{ else }}
+      <span class="meta">Older --&gt;</span>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

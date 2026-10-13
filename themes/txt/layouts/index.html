@@ -1,0 +1,102 @@
+{{ define "main" }}
+<section style="margin-bottom: 2rem;">
+  <h1 style="margin-top: 0;">Welcome</h1>
+  {{ with site.Params.about }}
+    <p>{{ . | markdownify }}</p>
+  {{ else }}
+    {{ with site.Params.tagline }}
+      <p>{{ . }}</p>
+    {{ else }}
+      <p>Homepage of Sudip Mandal. Thoughts, notes, essays, and media logs.</p>
+    {{ end }}
+  {{ end }}
+</section>
+
+<section>
+  <h2>Recent Feed</h2>
+  <hr>
+  {{ $regularPages := where site.RegularPages "Section" "in" (slice "blog" "thoughts" "books") }}
+  {{ $moviePages := where (where site.RegularPages "Params.type" "movie") "Params.feed_exclude" "ne" true }}
+  {{ $activityPages := where site.RegularPages "Params.feed_type" "in" (slice "movies" "episode" "episodes") }}
+  {{ $feed := $regularPages | union $moviePages | union $activityPages }}
+  {{ $feed = sort $feed "Date" "desc" }}
+  {{ $paginator := .Paginate $feed 30 }}
+
+  {{ range $paginator.Pages }}
+  <article class="feed-item">
+    <div class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>
+      ·
+      {{ if eq .Section "thoughts" }}
+        <span>[thought]</span>
+        {{ with .Params.location }} · 📍 {{ .name }}{{ end }}
+        {{ with .Params.trip }} · ✈️ {{ .title }}{{ end }}
+      {{ else if eq .Section "blog" }}
+        <span>[blog]</span>
+      {{ else if eq .Section "books" }}
+        <span>[book]</span>
+      {{ else if eq .Params.feed_type "movies" }}
+        <span>[cinema]</span>
+      {{ else if eq .Params.feed_type "episode" }}
+        <span>[tv]</span>
+      {{ else }}
+        <span>[{{ .Section | default "entry" }}]</span>
+      {{ end }}
+    </div>
+
+    {{ if eq .Section "thoughts" }}
+      <div style="margin: 0.35rem 0;">
+        {{ .Content }}
+        {{ with .Params.images }}
+        <div class="thought-gallery">
+          {{ range . }}
+            <a href="{{ . }}" target="_blank"><img src="{{ . }}" alt="Image" loading="lazy" decoding="async"></a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+      <div class="meta"><a href="{{ .RelPermalink }}">[permalink]</a></div>
+    {{ else if eq .Params.feed_type "movies" }}
+      <div style="margin: 0.35rem 0;">
+        <strong>{{ .Title }}</strong>
+        {{ if .Params.feed_items }}
+          <ul style="margin: 0.25rem 0 0.5rem; padding-left: 1.25rem;">
+            {{ range .Params.feed_items }}
+              <li><a href="{{ .url }}">{{ .title }}</a> {{ with .year }}({{ . }}){{ end }}</li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </div>
+    {{ else if eq .Params.feed_type "episode" }}
+      <div style="margin: 0.35rem 0;">
+        <a href="{{ .Params.show_url }}"><strong>{{ .Params.show_title }}</strong></a>
+        <span class="meta">— S{{ printf "%02d" (int .Params.season) }}E{{ printf "%02d" (int .Params.episode_number) }}</span>
+      </div>
+    {{ else }}
+      <div style="margin: 0.35rem 0;">
+        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+      </div>
+      {{ with .Summary }}
+        <p style="margin: 0.25rem 0; color: var(--dim);">{{ . | plainify | truncate 150 }}</p>
+      {{ end }}
+    {{ end }}
+  </article>
+  {{ end }}
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination">
+    {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}">&lt;-- Newer</a>
+    {{ else }}
+      <span class="meta">&lt;-- Newer</span>
+    {{ end }}
+    <span class="meta">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}">Older --&gt;</a>
+    {{ else }}
+      <span class="meta">Older --&gt;</span>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

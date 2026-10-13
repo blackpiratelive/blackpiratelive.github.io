@@ -1,0 +1,12 @@
+<header>
+  <div style="margin-bottom: 0.5rem;">
+    <a href="{{ "/" | relURL }}"><strong>{{ site.Title }}</strong></a>
+    {{ with site.Params.tagline }}
+    <span class="meta"> — {{ . }}</span>
+    {{ end }}
+  </div>
+  <nav aria-label="Main menu">
+    {{ partial "menu.html" . }}
+  </nav>
+  <hr>
+</header>

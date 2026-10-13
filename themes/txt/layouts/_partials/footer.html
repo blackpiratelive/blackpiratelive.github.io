@@ -1,0 +1,18 @@
+<footer>
+  <hr>
+  <div class="meta" style="margin-bottom: 0.75rem;">
+    <strong>Webrings:</strong>
+    <a href="https://webring.blackpiratex.com">WebSutra</a> (<a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">&lt;prev</a>·<a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">next&gt;</a>) ·
+    <a href="https://hotlinewebring.club">Hotline</a> (<a href="https://hotlinewebring.club/bpx/previous">&lt;prev</a>·<a href="https://hotlinewebring.club/bpx/next">next&gt;</a>) ·
+    <a href="https://webring.dinhe.net">Retronut</a> (<a href="https://webring.dinhe.net/prev/https://blackpiratex.com">&lt;prev</a>·<a href="https://webring.dinhe.net/next/https://blackpiratex.com">next&gt;</a>)
+  </div>
+  <div class="meta">
+    &copy; {{ now.Format "2006" }} {{ site.Params.author | default "Sudip" }} ·
+    Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> ·
+    <a href="{{ "/rss/" | relURL }}">RSS</a> ·
+    <a href="{{ "/guestbook/" | relURL }}">Guestbook</a> ·
+    <a href="{{ "/links/" | relURL }}">Links</a> ·
+    {{ with site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a> · {{ end }}
+    <a href="#top">^ top</a>
+  </div>
+</footer>

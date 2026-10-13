@@ -1,0 +1,53 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.5rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
+    <p class="meta">A plain-text directory of sections, projects, logs, and pages on this site.</p>
+    <hr>
+  </header>
+
+  <div class="content">
+    <section style="margin-bottom: 1.5rem;">
+      <h2>[ Curations &amp; Connect ]</h2>
+      <ul style="padding-left: 1.25rem;">
+        <li><a href="{{ "/guestbook/" | relURL }}"><strong>Guestbook</strong></a> — Sign my guestbook, say hello, or leave a message.</li>
+        <li><a href="{{ "/contact/" | relURL }}"><strong>Contact</strong></a> — Get in touch with me directly via email or form.</li>
+        <li><a href="{{ "/bookmarks/" | relURL }}"><strong>Bookmarks</strong></a> — A curated list of articles, websites, and tools I like.</li>
+        <li><a href="{{ "/projects/" | relURL }}"><strong>Projects</strong></a> — My web development creations and academic projects.</li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom: 1.5rem;">
+      <h2>[ Media &amp; Logs ]</h2>
+      <ul style="padding-left: 1.25rem;">
+        <li><a href="{{ "/movies/" | relURL }}"><strong>Cinema</strong></a> — Reviews and list of movies and TV shows I have watched.</li>
+        <li><a href="{{ "/books/" | relURL }}"><strong>Book Notes</strong></a> — Notes, ratings, and thoughts on books I read.</li>
+        <li><a href="{{ "/gallery/" | relURL }}"><strong>Gallery</strong></a> — A collection of photos, gifs, and captured moments.</li>
+        <li><a href="{{ "/media/" | relURL }}"><strong>Media</strong></a> — Unified collection of images and videos from across the site.</li>
+        <li><a href="{{ "/music/" | relURL }}"><strong>Music</strong></a> — Favorite records, artists, and listening history.</li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom: 1.5rem;">
+      <h2>[ About Me ]</h2>
+      <ul style="padding-left: 1.25rem;">
+        <li><a href="{{ "/about/" | relURL }}"><strong>About</strong></a> — Who I am, background, and what I do.</li>
+        <li><a href="{{ "/now/" | relURL }}"><strong>Now</strong></a> — A log of what I am currently working on and focused on.</li>
+        <li><a href="{{ "/uses/" | relURL }}"><strong>Uses</strong></a> — The hardware, software, and tools I use daily.</li>
+        <li><a href="{{ "/os/" | relURL }}"><strong>OS</strong></a> — Operating system configurations and desktop environment.</li>
+        <li><a href="{{ "/hobbies/" | relURL }}"><strong>Hobbies</strong></a> — Interests and activities I enjoy in my free time.</li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom: 1.5rem;">
+      <h2>[ Info &amp; Tools ]</h2>
+      <ul style="padding-left: 1.25rem;">
+        <li><a href="{{ "/credits/" | relURL }}"><strong>Credits</strong></a> — Acknowledgements and appreciation to resources and people.</li>
+        <li><a href="{{ "/stats/" | relURL }}"><strong>Stats</strong></a> — Build-time statistics for writing and media logs.</li>
+        <li><a href="{{ "/search/" | relURL }}"><strong>Search</strong></a> — Search posts, thoughts, and notes on the site.</li>
+        <li><a href="{{ "/rss/" | relURL }}"><strong>RSS Feeds</strong></a> — XML feeds to subscribe in your RSS feed reader.</li>
+      </ul>
+    </section>
+  </div>
+</article>
+{{ end }}

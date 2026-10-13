@@ -1,0 +1,36 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
+    <div class="meta">
+      {{ with .Params.authors }}Author: {{ delimit . ", " }} · {{ end }}
+      {{ with .Params.rating }}Rating: {{ . }}/5 · {{ end }}
+      {{ with .Params.shelf }}Shelf: [{{ . }}]{{ end }}
+    </div>
+    {{ with .Params.cover }}
+      <div style="margin: 1rem 0;">
+        <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" decoding="async" style="max-width: 200px;">
+      </div>
+    {{ end }}
+    <hr>
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <footer style="margin-top: 2rem;">
+    <hr>
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">&lt;-- {{ .Title }}</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">{{ .Title }} --&gt;</a>
+      {{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

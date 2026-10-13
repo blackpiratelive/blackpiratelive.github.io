@@ -1,0 +1,13 @@
+{{ $src := .Get "src" }}
+{{ $path := strings.TrimPrefix "/" $src }}
+{{ with resources.Get $path }}
+<figure style="margin: 1rem 0;">
+  <img src="{{ .RelPermalink }}" alt="{{ $.Get "alt" | default .Name }}" loading="lazy" decoding="async">
+  {{ with $.Get "caption" }}<figcaption class="meta" style="margin-top: 0.25rem;">{{ . }}</figcaption>{{ end }}
+</figure>
+{{ else }}
+<figure style="margin: 1rem 0;">
+  <img src="{{ $src | relURL }}" alt="{{ $.Get "alt" | default "" }}" loading="lazy" decoding="async">
+  {{ with $.Get "caption" }}<figcaption class="meta" style="margin-top: 0.25rem;">{{ . }}</figcaption>{{ end }}
+</figure>
+{{ end }}

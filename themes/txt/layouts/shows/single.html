@@ -1,0 +1,36 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }} {{ with .Params.year }}({{ . }}){{ end }}</h1>
+    <div class="meta">
+      Type: TV Series
+      {{ with .Params.seasons_watched }} · {{ . }} Seasons{{ end }}
+      {{ if .Params.is_completed }} · (Completed){{ end }}
+      {{ with .Params.user_rating }} · Rating: {{ . }}/10{{ end }}
+    </div>
+    <hr>
+  </header>
+
+  {{ with .Params.overview }}
+    <p><em>{{ . }}</em></p>
+  {{ end }}
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <footer style="margin-top: 2rem;">
+    <hr>
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">&lt;-- {{ .Title }}</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">{{ .Title }} --&gt;</a>
+      {{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body id="top">
+  <div class="site-layout">
+    <aside class="site-sidebar">
+      <div class="sidebar-sticky">
+        <div class="sidebar-brand">
+          <a href="{{ "/" | relURL }}" style="text-decoration: none; font-size: 1.15rem;"><strong>{{ site.Title }}</strong></a>
+          {{ with site.Params.tagline }}
+            <div class="meta" style="margin-top: 0.25rem;">{{ . }}</div>
+          {{ end }}
+        </div>
+        <hr>
+        <nav aria-label="Main menu">
+          {{ partial "menu.html" . }}
+        </nav>
+        <hr>
+        <div class="meta sidebar-extra">
+          <p style="margin-bottom: 0.35rem;"><strong>Links:</strong></p>
+          <ul style="list-style: none; padding-left: 0; margin: 0 0 1rem; line-height: 1.6;">
+            <li><a href="{{ "/rss/" | relURL }}">RSS Feed</a></li>
+            <li><a href="{{ "/guestbook/" | relURL }}">Guestbook</a></li>
+            <li><a href="{{ "/links/" | relURL }}">Directory</a></li>
+            {{ with site.Params.github }}<li><a href="{{ . }}" target="_blank" rel="noopener">GitHub</a></li>{{ end }}
+          </ul>
+          <p style="margin-bottom: 0.25rem;"><strong>Webrings:</strong></p>
+          <div style="font-size: 0.85em; line-height: 1.6;">
+            WebSutra (<a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">&lt;prev</a>·<a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">next&gt;</a>)<br>
+            Hotline (<a href="https://hotlinewebring.club/bpx/previous">&lt;prev</a>·<a href="https://hotlinewebring.club/bpx/next">next&gt;</a>)<br>
+            Retronut (<a href="https://webring.dinhe.net/prev/https://blackpiratex.com">&lt;prev</a>·<a href="https://webring.dinhe.net/next/https://blackpiratex.com">next&gt;</a>)
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="site-content">
+      <main class="site-main">
+        {{ block "main" . }}{{ end }}
+      </main>
+
+      <footer class="site-footer">
+        <hr>
+        <div class="meta">
+          &copy; {{ now.Format "2006" }} {{ site.Params.author | default "Sudip" }} ·
+          Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> ·
+          <a href="{{ "/guestbook/" | relURL }}">Guestbook</a> ·
+          <a href="{{ "/rss/" | relURL }}">RSS</a> ·
+          <a href="#top">^ top</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

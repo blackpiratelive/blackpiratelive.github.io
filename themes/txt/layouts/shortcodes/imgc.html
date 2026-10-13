@@ -1,0 +1,7 @@
+{{ $src := .Get "src" }}
+{{ $image := resources.GetMatch $src }}
+{{ if $image }}
+  <img src="{{ $image.RelPermalink }}" alt="" loading="lazy" decoding="async">
+{{ else }}
+  <img src="{{ $src | relURL }}" alt="" loading="lazy" decoding="async">
+{{ end }}

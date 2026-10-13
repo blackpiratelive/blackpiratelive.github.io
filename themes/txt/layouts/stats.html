@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{/* 1. Retrieve CineTracker Data */}}
+{{ $export := dict }}
+{{ with resources.Get "cinetracker/export.json" }}
+  {{ $p := try (. | transform.Unmarshal) }}
+  {{ if not $p.Err }}{{ $export = $p.Value }}{{ end }}
+{{ end }}
+{{ $watchedMovies := index $export "movies" | default slice }}
+{{ $watchedShows := index $export "tv_shows" | default slice }}
+{{ $episodesList := index $export "episodes" | default slice }}
+
+{{/* 2. Process Movie Metrics */}}
+{{ $moviesCount := len $watchedMovies }}
+{{ $moviesWatchTime := 0 }}
+{{ range $watchedMovies }}
+    {{ $moviesWatchTime = add $moviesWatchTime (int (.runtime_minutes | default 0)) }}
+{{ end }}
+
+{{/* 3. Process TV Show Metrics */}}
+{{ $showsCount := len $watchedShows }}
+{{ $episodesCount := len $episodesList }}
+{{ $showsWatchTime := 0 }}
+{{ $showsData := slice }}
+
+{{ range $watchedShows }}
+    {{ $showId := .tv_show_id }}
+    {{ $showTitle := .name }}
+    {{ $showEpCount := .number_of_episodes | default 0 }}
+    {{ $matchingEps := 0 }}
+    {{ range $episodesList }}
+        {{ if eq (int .tv_show_id) (int $showId) }}
+            {{ $matchingEps = add $matchingEps 1 }}
+        {{ end }}
+    {{ end }}
+    {{ if gt $matchingEps 0 }}
+        {{ $showEpCount = $matchingEps }}
+    {{ end }}
+    {{ $epRuntime := int (.runtime_minutes | default 30) }}
+    {{ $showRuntime := mul $showEpCount $epRuntime }}
+    {{ $showsWatchTime = add $showsWatchTime $showRuntime }}
+    {{ $showsData = $showsData | append (dict "title" $showTitle "episodes" $showEpCount "runtime" $showRuntime) }}
+{{ end }}
+
+{{ $showsDataSorted := sort $showsData "episodes" "desc" }}
+
+{{/* 4. Combined Watch Time */}}
+{{ $totalWatchTimeMinutes := add $moviesWatchTime $showsWatchTime }}
+{{ $totalWatchTimeDays := div $totalWatchTimeMinutes 1440 }}
+{{ $totalWatchTimeHours := div (mod $totalWatchTimeMinutes 1440) 60 }}
+
+{{/* 5. Writing Stats */}}
+{{ $blogPages := where site.RegularPages "Section" "blog" }}
+{{ $thoughtsPages := where site.RegularPages "Section" "thoughts" }}
+{{ $booksPages := where site.RegularPages "Section" "books" }}
+
+{{ $blogCount := len $blogPages }}
+{{ $thoughtsCount := len $thoughtsPages }}
+{{ $booksCount := len $booksPages }}
+{{ $totalPosts := add $blogCount $thoughtsCount }}
+
+{{ $blogWords := 0 }}
+{{ range $blogPages }}{{ $blogWords = add $blogWords (countwords .Content) }}{{ end }}
+
+{{ $thoughtsWords := 0 }}
+{{ range $thoughtsPages }}{{ $thoughtsWords = add $thoughtsWords (countwords .Content) }}{{ end }}
+
+{{ $totalWords := add $blogWords $thoughtsWords }}
+
+<article>
+  <header style="margin-bottom: 1.5rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "Statistics" }}</h1>
+    <p class="meta">Build-time metrics for writing productivity and media logs.</p>
+    <hr>
+  </header>
+
+  <div class="content">
+    <section style="margin-bottom: 2rem;">
+      <h2>[ Writing &amp; Content ]</h2>
+      <pre>
+Total Posts (Blogs + Thoughts): {{ $totalPosts }}
+Total Words Written:           {{ lang.FormatNumber 0 $totalWords }}
+--------------------------------------------------
+- Blog Posts:                  {{ $blogCount }} ({{ lang.FormatNumber 0 $blogWords }} words)
+- Thoughts / Notes:            {{ $thoughtsCount }} ({{ lang.FormatNumber 0 $thoughtsWords }} words)
+- Books Cataloged:             {{ $booksCount }}
+      </pre>
+    </section>
+
+    <section style="margin-bottom: 2rem;">
+      <h2>[ Media Consumed ]</h2>
+      <pre>
+Total Watch Time:              {{ $totalWatchTimeDays }} days, {{ $totalWatchTimeHours }} hours
+Total Items Watched:           {{ add $moviesCount $episodesCount }} (Movies + Episodes)
+--------------------------------------------------
+- Movies Watched:              {{ $moviesCount }} ({{ div $moviesWatchTime 60 }} hours)
+- Shows Watched:               {{ $showsCount }} ({{ $episodesCount }} episodes, {{ div $showsWatchTime 60 }} hours)
+      </pre>
+
+      <h3>Top TV Shows (by Episodes Watched)</h3>
+      <pre>
+{{ range first 10 $showsDataSorted -}}
+{{ printf "%-30s" (truncate 30 .title) }} : {{ printf "%3d" .episodes }} eps ({{ div .runtime 60 }}h)
+{{ end -}}
+      </pre>
+    </section>
+  </div>
+</article>
+{{ end }}

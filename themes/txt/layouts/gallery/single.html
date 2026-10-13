@@ -1,0 +1,37 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
+    <div class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .Params.album }} · Album: <a href="{{ (printf "/albums/%s/" (. | urlize)) | relURL }}">[{{ . }}]</a>{{ end }}
+    </div>
+    <hr>
+  </header>
+
+  {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url }}
+  {{ with $imgUrl }}
+    <div style="margin: 1rem 0;">
+      <a href="{{ . }}" target="_blank"><img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" decoding="async"></a>
+    </div>
+  {{ end }}
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <footer style="margin-top: 2rem;">
+    <hr>
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">&lt;-- {{ .Title }}</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">{{ .Title }} --&gt;</a>
+      {{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

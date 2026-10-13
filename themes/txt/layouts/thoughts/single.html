@@ -1,0 +1,59 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.25rem;">
+    <div class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 02, 2006 at 15:04" }}</time>
+      {{ with .Params.location }} · 📍 {{ .name }}{{ if .city }}, {{ .city }}{{ end }}{{ end }}
+      {{ with .Params.trip }} · ✈️ {{ .title }}{{ end }}
+    </div>
+    <hr>
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+    {{ with .Params.images }}
+    <div class="thought-gallery">
+      {{ range . }}
+        <a href="{{ . }}" target="_blank"><img src="{{ . }}" alt="Post image" loading="lazy" decoding="async"></a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  {{ with .Params.tags }}
+  <div class="meta" style="margin-top: 1rem;">
+    Tags:
+    {{ range . }}
+    <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">#{{ . }}</a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.related_posts }}
+  <div style="margin-top: 1.5rem;">
+    <p class="meta"><strong>Related:</strong></p>
+    <ul style="padding-left: 1.25rem;">
+      {{ range . }}
+        {{ with site.GetPage (printf "/thoughts/%s" .) }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title | default (.Content | plainify | truncate 80) }}</a> <span class="meta">({{ .Date.Format "2006-01-02" }})</span></li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  <footer style="margin-top: 2rem;">
+    <hr>
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">&lt;-- Previous Thought</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">Next Thought --&gt;</a>
+      {{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

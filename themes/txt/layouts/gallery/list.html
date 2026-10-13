@@ -1,0 +1,50 @@
+{{ define "main" }}
+<section>
+  <header style="margin-bottom: 1.25rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "Gallery" }}</h1>
+    <p class="meta">Captured moments and photos.</p>
+    {{ $albums := site.Taxonomies.albums }}
+    {{ if gt (len $albums) 0 }}
+    <div class="meta" style="margin-top: 0.5rem;">
+      <strong>Albums:</strong>
+      {{ range $name, $taxonomy := $albums }}
+        <a href="{{ (printf "/albums/%s/" ($name | urlize)) | relURL }}">[{{ $name }} ({{ len $taxonomy.Pages }})]</a>
+      {{ end }}
+    </div>
+    {{ end }}
+    <hr>
+  </header>
+
+  {{ with .Content }}
+    <div style="margin-bottom: 1.5rem;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  <div class="gallery-container">
+    {{ range .Pages.GroupByDate "2006" }}
+    <div style="margin-bottom: 1.5rem;">
+      <h2>{{ .Key }} ({{ len .Pages }})</h2>
+      <ul style="padding-left: 1.25rem; list-style: none;">
+        {{ range .Pages }}
+        {{ $thumbUrl := .Params.medium_url | default .Params.thumbnail_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url }}
+        <li style="margin-bottom: 1rem;">
+          <div class="meta">
+            {{ .Date.Format "2006-01-02" }} · <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+            {{ with .Params.album }} · <em>[{{ . }}]</em>{{ end }}
+          </div>
+          {{ with $thumbUrl }}
+            <div style="margin-top: 0.35rem;">
+              <a href="{{ $.RelPermalink }}">
+                <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" decoding="async" style="max-width: 320px; max-height: 240px; object-fit: cover;">
+              </a>
+            </div>
+          {{ end }}
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
