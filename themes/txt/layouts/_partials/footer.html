@@ -1,18 +1,82 @@
-<footer>
+<footer class="site-footer">
   <hr>
-  <div class="meta" style="margin-bottom: 0.75rem;">
-    <strong>Webrings:</strong>
-    <a href="https://webring.blackpiratex.com">WebSutra</a> (<a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">&lt;prev</a>·<a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">next&gt;</a>) ·
-    <a href="https://hotlinewebring.club">Hotline</a> (<a href="https://hotlinewebring.club/bpx/previous">&lt;prev</a>·<a href="https://hotlinewebring.club/bpx/next">next&gt;</a>) ·
-    <a href="https://webring.dinhe.net">Retronut</a> (<a href="https://webring.dinhe.net/prev/https://blackpiratex.com">&lt;prev</a>·<a href="https://webring.dinhe.net/next/https://blackpiratex.com">next&gt;</a>)
+  <details class="footer-webrings" open style="margin-bottom: 1.25rem;">
+    <summary class="meta" style="cursor: pointer; font-weight: 600; margin-bottom: 0.5rem;">[ Webrings &amp; Neighborhood ]</summary>
+    <div style="font-size: 0.9em; line-height: 1.7; margin-top: 0.5rem;">
+      <ul style="list-style: none; padding-left: 0; margin: 0 0 0.75rem;">
+        <li>
+          <strong>WebSutra</strong>:
+          <a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">&lt;prev</a> ·
+          <a href="https://webring.blackpiratex.com/api/ring?action=random">random</a> ·
+          <a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">next&gt;</a> ·
+          <a href="https://webring.blackpiratex.com">hub</a>
+        </li>
+        <li>
+          <strong>Hotline</strong>:
+          <a href="https://hotlinewebring.club/bpx/previous">&lt;prev</a> ·
+          <a href="https://hotlinewebring.club">index</a> ·
+          <a href="https://hotlinewebring.club/bpx/next">next&gt;</a>
+        </li>
+        <li>
+          <strong>Retronut</strong>:
+          <a href="https://webring.dinhe.net/prev/https://blackpiratex.com">&lt;prev</a> ·
+          <a href="https://webring.dinhe.net">index</a> ·
+          <a href="https://webring.dinhe.net/next/https://blackpiratex.com">next&gt;</a>
+        </li>
+        <li>
+          <strong>Bucketfish</strong>:
+          <a href="https://webring.bucketfish.me/redirect.html?to=prev&name=blackpiratex">&lt;prev</a> ·
+          <a href="https://webring.bucketfish.me">index</a> ·
+          <a href="https://webring.bucketfish.me/redirect.html?to=next&name=blackpiratex">next&gt;</a> ·
+          <a href="https://webring.bucketfish.me/redirect.html?to=random&name=blackpiratex">random</a>
+        </li>
+        <li>
+          <strong>Static.Quest</strong>:
+          <a href="https://static.quest/previous/?host=blackpiratex.com">&lt;prev</a> ·
+          <a href="https://static.quest/members">members</a> ·
+          <a href="https://static.quest/next/?host=blackpiratex.com">next&gt;</a> ·
+          <a href="https://static.quest/random">lucky?</a>
+        </li>
+        <li>
+          <strong>Webmaster</strong>:
+          <a href="https://webmasterwebring.netlify.app?bpx-previous">&lt;prev</a> ·
+          <a href="https://webmasterwebring.netlify.app">index</a> ·
+          <a href="https://webmasterwebring.netlify.app?bpx-next">&gt;</a> ·
+          <a href="https://webmasterwebring.netlify.app?bpx-random">random</a>
+        </li>
+      </ul>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 0.75rem;">
+        <a href="https://webring.blackpiratex.com" target="_blank" rel="noopener">
+          <img src="https://webring.blackpiratex.com/graphics/webring-small.png" alt="WebSutra Webring Member" loading="lazy" decoding="async" style="display: inline-block; border: none; height: 31px; width: auto;">
+        </a>
+        <div style="display: inline-flex; align-items: center; gap: 0.35rem;">
+          <a href="https://webmasterwebring.netlify.app?bpx-previous">&lt;</a>
+          <a href="https://webmasterwebring.netlify.app" target="_blank" rel="noopener">
+            <img src="https://file.garden/ZrZSgsrYfQXsO7QH/ww/btn.png" alt="Webmaster Webring" width="88" height="31" loading="lazy" decoding="async" style="display: inline-block; border: none; vertical-align: middle;">
+          </a>
+          <a href="https://webmasterwebring.netlify.app?bpx-random">?</a>
+          <a href="https://webmasterwebring.netlify.app?bpx-next">&gt;</a>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <hr>
+
+  <div class="meta" style="line-height: 1.8;">
+    <div>
+      &copy; {{ now.Format "2006" }} {{ site.Params.author | default "Sudip" }} ·
+      Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> ·
+      <a href="{{ "/guestbook/" | relURL }}">Guestbook</a> ·
+      <a href="{{ "/rss/" | relURL }}">RSS</a> ·
+      <a href="{{ "/links/" | relURL }}">Directory</a> ·
+      {{ with site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a> · {{ end }}
+      <a href="https://go.blackpiratex.com/wa" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="https://go.blackpiratex.com/signal" target="_blank" rel="noopener">Signal</a> ·
+      <a href="#top">^ top</a>
+    </div>
   </div>
-  <div class="meta">
-    &copy; {{ now.Format "2006" }} {{ site.Params.author | default "Sudip" }} ·
-    Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> ·
-    <a href="{{ "/rss/" | relURL }}">RSS</a> ·
-    <a href="{{ "/guestbook/" | relURL }}">Guestbook</a> ·
-    <a href="{{ "/links/" | relURL }}">Links</a> ·
-    {{ with site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a> · {{ end }}
-    <a href="#top">^ top</a>
-  </div>
+
+  <script defer src="https://u-one-livid.vercel.app/script.js" data-website-id="80888a44-8645-40c5-9c06-a1e5a2da24fc"></script>
 </footer>
