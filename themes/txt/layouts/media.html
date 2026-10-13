@@ -89,25 +89,24 @@
   </header>
 
   {{ range $year := $yearsDesc }}
-    <div style="margin-bottom: 1.5rem;">
-      <h2>{{ $year }}</h2>
-      <ul style="list-style: none; padding-left: 0;">
+    <section style="margin-bottom: 2rem;">
+      <h2 style="border-bottom: 1px solid var(--border); padding-bottom: 0.25rem;">{{ $year }}</h2>
+      <div class="gallery-grid">
         {{ range $mediaList }}
           {{ if eq .year $year }}
-            <li style="margin-bottom: 1rem;">
-              <div class="meta">
-                {{ .date.Format "2006-01-02" }} · <a href="{{ .post_url }}">{{ .title }}</a>
+            <article class="gallery-item">
+              <a href="{{ .post_url | default .url }}" class="gallery-thumb-link">
+                <img src="{{ .thumb }}" alt="{{ .title }}" loading="lazy" decoding="async">
+              </a>
+              <div class="gallery-item-meta meta">
+                <a href="{{ .post_url | default .url }}"><strong>{{ .title }}</strong></a>
+                <div><time datetime="{{ .date.Format "2006-01-02" }}">{{ .date.Format "Jan 02, 2006" }}</time></div>
               </div>
-              <div style="margin-top: 0.35rem;">
-                <a href="{{ .url }}" target="_blank">
-                  <img src="{{ .thumb }}" alt="{{ .title }}" loading="lazy" decoding="async" style="max-width: 280px; max-height: 200px; object-fit: cover;">
-                </a>
-              </div>
-            </li>
+            </article>
           {{ end }}
         {{ end }}
-      </ul>
-    </div>
+      </div>
+    </section>
   {{ end }}
 </section>
 {{ end }}

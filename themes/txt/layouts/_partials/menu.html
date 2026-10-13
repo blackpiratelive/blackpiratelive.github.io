@@ -5,6 +5,6 @@
   {{- if $currentPage -}}
     {{- $isActive = or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) (eq ($currentPage.RelPermalink | relURL) (.URL | relURL)) -}}
   {{- end -}}
-  <li><a href="{{ .URL | relURL }}">{{ if $isActive }}&gt; [{{ .Name }}]{{ else }}[{{ .Name }}]{{ end }}</a></li>
+  <li><a href="{{ .URL | relURL }}" class="{{ if $isActive }}active{{ end }}">{{ if $isActive }}&gt; [{{ .Name }}]{{ else }}[{{ .Name }}]{{ end }}</a></li>
 {{- end -}}
 </ul>

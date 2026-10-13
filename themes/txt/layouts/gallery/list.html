@@ -2,10 +2,11 @@
 <section>
   <header style="margin-bottom: 1.25rem;">
     <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "Gallery" }}</h1>
-    <p class="meta">Captured moments and photos.</p>
+    <p class="meta">Captured moments, places, and memories ({{ len .Pages }} photos).</p>
+
     {{ $albums := site.Taxonomies.albums }}
     {{ if gt (len $albums) 0 }}
-    <div class="meta" style="margin-top: 0.5rem;">
+    <div class="meta" style="margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; align-items: baseline;">
       <strong>Albums:</strong>
       {{ range $name, $taxonomy := $albums }}
         <a href="{{ (printf "/albums/%s/" ($name | urlize)) | relURL }}">[{{ $name }} ({{ len $taxonomy.Pages }})]</a>
@@ -21,29 +22,61 @@
     </div>
   {{ end }}
 
-  <div class="gallery-container">
-    {{ range .Pages.GroupByDate "2006" }}
-    <div style="margin-bottom: 1.5rem;">
-      <h2>{{ .Key }} ({{ len .Pages }})</h2>
-      <ul style="padding-left: 1.25rem; list-style: none;">
-        {{ range .Pages }}
+  {{ $featured := where .Pages "Params.featured" true }}
+  {{ $featuredSorted := sort $featured "Params.weight" "asc" }}
+  {{ $regular := where .Pages "Params.featured" "ne" true }}
+
+  {{ if gt (len $featuredSorted) 0 }}
+  <section style="margin-bottom: 2rem;">
+    <h2>Featured Highlights</h2>
+    <div class="gallery-grid">
+      {{ range $featuredSorted }}
+        {{ $photo := . }}
         {{ $thumbUrl := .Params.medium_url | default .Params.thumbnail_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url }}
-        <li style="margin-bottom: 1rem;">
-          <div class="meta">
-            {{ .Date.Format "2006-01-02" }} · <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
-            {{ with .Params.album }} · <em>[{{ . }}]</em>{{ end }}
-          </div>
+        <article class="gallery-item">
           {{ with $thumbUrl }}
-            <div style="margin-top: 0.35rem;">
-              <a href="{{ $.RelPermalink }}">
-                <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" decoding="async" style="max-width: 320px; max-height: 240px; object-fit: cover;">
-              </a>
-            </div>
+            <a href="{{ $photo.RelPermalink }}" class="gallery-thumb-link">
+              <img src="{{ . }}" alt="{{ $photo.Title }}" loading="lazy" decoding="async">
+            </a>
           {{ end }}
-        </li>
-        {{ end }}
-      </ul>
+          <div class="gallery-item-meta meta">
+            <a href="{{ $photo.RelPermalink }}"><strong>{{ $photo.Title }}</strong></a>
+            <div>
+              <time datetime="{{ $photo.Date.Format "2006-01-02" }}">{{ $photo.Date.Format "Jan 02, 2006" }}</time>
+              {{ with $photo.Params.album }} · <em>[{{ . }}]</em>{{ end }}
+            </div>
+          </div>
+        </article>
+      {{ end }}
     </div>
+  </section>
+  {{ end }}
+
+  <div class="gallery-timeline">
+    {{ range $regular.GroupByDate "2006" }}
+    <section style="margin-bottom: 2rem;">
+      <h2 style="border-bottom: 1px solid var(--border); padding-bottom: 0.25rem;">{{ .Key }} ({{ len .Pages }})</h2>
+      <div class="gallery-grid">
+        {{ range .Pages }}
+          {{ $photo := . }}
+          {{ $thumbUrl := .Params.medium_url | default .Params.thumbnail_url | default .Params.large_url | default .Params.original_url | default .Params.image.thumbnail.url }}
+          <article class="gallery-item">
+            {{ with $thumbUrl }}
+              <a href="{{ $photo.RelPermalink }}" class="gallery-thumb-link">
+                <img src="{{ . }}" alt="{{ $photo.Title }}" loading="lazy" decoding="async">
+              </a>
+            {{ end }}
+            <div class="gallery-item-meta meta">
+              <a href="{{ $photo.RelPermalink }}"><strong>{{ $photo.Title }}</strong></a>
+              <div>
+                <time datetime="{{ $photo.Date.Format "2006-01-02" }}">{{ $photo.Date.Format "Jan 02, 2006" }}</time>
+                {{ with $photo.Params.album }} · <em>[{{ . }}]</em>{{ end }}
+              </div>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
     {{ end }}
   </div>
 </section>

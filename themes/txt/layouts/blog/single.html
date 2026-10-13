@@ -1,4 +1,18 @@
 {{ define "main" }}
+{{- $currentPost := . -}}
+{{- $relatedPosts := slice -}}
+{{- if .Params.tags -}}
+  {{- range where site.RegularPages "Section" "blog" -}}
+    {{- if and .File (ne .File.Path $currentPost.File.Path) -}}
+      {{- $sharedTags := intersect $currentPost.Params.tags .Params.tags -}}
+      {{- if gt (len $sharedTags) 0 -}}
+        {{- $relatedPosts = $relatedPosts | append (dict "page" . "score" (len $sharedTags)) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $relatedPosts = sort $relatedPosts "score" "desc" -}}
+
 <article>
   <header style="margin-bottom: 1.5rem;">
     <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
@@ -22,8 +36,8 @@
       {{ end }}
     {{ end }}
     {{ with $coverImg }}
-      <div style="margin: 1rem 0;">
-        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" decoding="async">
+      <div style="margin: 1.25rem 0;">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="eager" decoding="async" style="width: 100%; height: auto; max-height: 500px; object-fit: cover;">
       </div>
     {{ end }}
     <hr>
@@ -34,8 +48,33 @@
   </div>
 
   <footer style="margin-top: 2rem;">
+    <div style="margin: 1.25rem 0;">
+      <button id="share-btn" class="btn-action" type="button">⌲ Share Post</button>
+    </div>
+
     <hr>
-    <div class="meta" style="margin-bottom: 1rem;">
+
+    {{ if gt (len $relatedPosts) 0 }}
+    <section style="margin: 1.5rem 0;">
+      <h3 style="margin-top: 0;">Related Posts</h3>
+      <ul style="list-style: none; padding-left: 0; margin: 0.5rem 0;">
+        {{ range first 3 $relatedPosts }}
+        <li style="margin-bottom: 0.5rem;">
+          <span class="meta">{{ .page.Date.Format "2006-01-02" }}</span> ·
+          <a href="{{ .page.RelPermalink }}"><strong>{{ .page.Title }}</strong></a>
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ end }}
+
+    {{ with .NextInSection }}
+    <div style="margin: 1.5rem 0; padding: 0.75rem 1rem; border: 1px solid var(--border); background: var(--code-bg);">
+      <span class="meta">Read Next:</span> <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong> &rarr;</a>
+    </div>
+    {{ end }}
+
+    <div class="meta" style="margin-bottom: 1.5rem;">
       --<br>
       Have thoughts on this post? Leave a note on the <a href="{{ "/guestbook/" | relURL }}">Guestbook</a>
       {{ with site.Params.email }} or reply via <a href="{{ . | safeURL }}">Email</a>{{ end }}.
@@ -53,4 +92,26 @@
     </div>
   </footer>
 </article>
+
+<script>
+(function() {
+  var btn = document.getElementById('share-btn');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      if (navigator.share) {
+        navigator.share({
+          title: {{ .Title | jsonify }},
+          url: window.location.href
+        }).catch(function() {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var old = btn.textContent;
+          btn.textContent = '✓ Copied Link!';
+          setTimeout(function() { btn.textContent = old; }, 2000);
+        });
+      }
+    });
+  }
+})();
+</script>
 {{ end }}

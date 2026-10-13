@@ -4,21 +4,72 @@
     <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title }}</h1>
     <div class="meta">
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
-      {{ with .Params.album }} · Album: <a href="{{ (printf "/albums/%s/" (. | urlize)) | relURL }}">[{{ . }}]</a>{{ end }}
+      {{ with .Params.album }} · <a href="{{ (printf "/albums/%s/" (. | urlize)) | relURL }}">[{{ . }}]</a>{{ end }}
+      {{ with .Params.location_name }} · 📍 {{ . }}{{ end }}
+      {{ $originalUrl := .Params.original_url | default .Params.large_url | default .Params.image.original.url }}
+      {{ with $originalUrl }}
+        · <a href="{{ . }}" target="_blank" rel="noopener noreferrer">[Original Resolution]</a>
+      {{ end }}
     </div>
     <hr>
   </header>
 
-  {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url }}
+  {{ $imgUrl := .Params.large_url | default .Params.original_url | default .Params.medium_url | default .Params.image.original.url | default .Params.image.thumbnail.url }}
+  {{ $fullUrl := .Params.original_url | default .Params.large_url | default $imgUrl }}
   {{ with $imgUrl }}
-    <div style="margin: 1rem 0;">
-      <a href="{{ . }}" target="_blank"><img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" decoding="async"></a>
+    <div style="margin: 1.25rem 0;">
+      <a href="{{ $fullUrl }}" target="_blank" rel="noopener noreferrer" title="View full size image">
+        <img src="{{ . }}" alt="{{ $.Title }}" loading="eager" decoding="async" style="width: 100%; height: auto; max-height: 85vh; object-fit: contain; background: var(--code-bg);">
+      </a>
     </div>
   {{ end }}
 
-  <div class="content">
-    {{ .Content }}
-  </div>
+  {{ with .Content }}
+    <div class="content" style="margin: 1.5rem 0;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  {{ $camera := .Params.camera | default .Params.exif.model }}
+  {{ $lens := .Params.lens | default .Params.exif.lens }}
+  {{ $aperture := .Params.aperture | default .Params.exif.fstop }}
+  {{ $shutter := .Params.shutter_speed | default .Params.exif.shutter }}
+  {{ $iso := .Params.iso | default .Params.exif.iso }}
+  {{ $focalLength := .Params.focal_length | default .Params.exif.focal_length }}
+  {{ $location := .Params.location_name }}
+  {{ $width := .Params.width }}
+  {{ $height := .Params.height }}
+  {{ $takenAt := .Params.taken_at }}
+
+  {{ if or $camera $lens $aperture $shutter $iso $focalLength $location (and $width $height) $takenAt }}
+  <section style="margin: 2rem 0;">
+    <h3>Shot Details</h3>
+    <table class="exif-table">
+      <tbody>
+        {{ with $camera }}<tr><th scope="row">Camera</th><td>{{ . }}</td></tr>{{ end }}
+        {{ with $lens }}<tr><th scope="row">Lens</th><td>{{ . }}</td></tr>{{ end }}
+        {{ with $aperture }}<tr><th scope="row">Aperture</th><td>{{ if (hasPrefix (printf "%v" .) "f/") }}{{ . }}{{ else }}ƒ/{{ . }}{{ end }}</td></tr>{{ end }}
+        {{ with $shutter }}<tr><th scope="row">Shutter Speed</th><td>{{ . }}{{ if not (hasSuffix (printf "%v" .) "s") }}s{{ end }}</td></tr>{{ end }}
+        {{ with $iso }}<tr><th scope="row">ISO</th><td>{{ . }}</td></tr>{{ end }}
+        {{ with $focalLength }}<tr><th scope="row">Focal Length</th><td>{{ . }}</td></tr>{{ end }}
+        {{ if and $width $height }}<tr><th scope="row">Dimensions</th><td>{{ $width }} × {{ $height }} px</td></tr>{{ end }}
+        {{ with $location }}<tr><th scope="row">Location</th><td>{{ . }}</td></tr>{{ end }}
+        {{ with $takenAt }}<tr><th scope="row">Captured At</th><td>{{ (time.AsTime .).Format "January 2, 2006 at 15:04" }}</td></tr>{{ end }}
+      </tbody>
+    </table>
+  </section>
+  {{ end }}
+
+  {{ with .Params.tags }}
+    {{ if gt (len .) 0 }}
+    <div class="meta" style="margin: 1.25rem 0;">
+      <strong>Tags:</strong>
+      {{ range . }}
+      <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}" class="tag">#{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+  {{ end }}
 
   <footer style="margin-top: 2rem;">
     <hr>

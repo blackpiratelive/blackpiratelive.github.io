@@ -18,7 +18,7 @@
           {{ partial "menu.html" . }}
         </nav>
         <hr>
-        <div class="meta sidebar-extra">
+        <div class="meta sidebar-extra-desktop">
           <p style="margin-bottom: 0.35rem;"><strong>Links:</strong></p>
           <ul style="list-style: none; padding-left: 0; margin: 0 0 1rem; line-height: 1.6;">
             <li><a href="{{ "/rss/" | relURL }}">RSS Feed</a></li>
@@ -33,6 +33,25 @@
             Retronut (<a href="https://webring.dinhe.net/prev/https://blackpiratex.com">&lt;prev</a>·<a href="https://webring.dinhe.net/next/https://blackpiratex.com">next&gt;</a>)
           </div>
         </div>
+
+        <details class="meta sidebar-extra-mobile">
+          <summary style="cursor: pointer; padding: 0.35rem 0;">[+] More Links &amp; Webrings</summary>
+          <div style="margin-top: 0.5rem; padding: 0.5rem; border: 1px solid var(--border); background: var(--code-bg);">
+            <p style="margin-bottom: 0.35rem;"><strong>Links:</strong></p>
+            <ul style="list-style: none; padding-left: 0; margin: 0 0 0.75rem; line-height: 1.6;">
+              <li><a href="{{ "/rss/" | relURL }}">RSS Feed</a></li>
+              <li><a href="{{ "/guestbook/" | relURL }}">Guestbook</a></li>
+              <li><a href="{{ "/links/" | relURL }}">Directory</a></li>
+              {{ with site.Params.github }}<li><a href="{{ . }}" target="_blank" rel="noopener">GitHub</a></li>{{ end }}
+            </ul>
+            <p style="margin-bottom: 0.25rem;"><strong>Webrings:</strong></p>
+            <div style="font-size: 0.85em; line-height: 1.6;">
+              WebSutra (<a href="https://webring.blackpiratex.com/api/ring?action=prev&slug=bpx-home">&lt;prev</a>·<a href="https://webring.blackpiratex.com/api/ring?action=next&slug=bpx-home">next&gt;</a>)<br>
+              Hotline (<a href="https://hotlinewebring.club/bpx/previous">&lt;prev</a>·<a href="https://hotlinewebring.club/bpx/next">next&gt;</a>)<br>
+              Retronut (<a href="https://webring.dinhe.net/prev/https://blackpiratex.com">&lt;prev</a>·<a href="https://webring.dinhe.net/next/https://blackpiratex.com">next&gt;</a>)
+            </div>
+          </div>
+        </details>
       </div>
     </aside>
 
