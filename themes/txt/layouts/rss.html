@@ -1,0 +1,88 @@
+{{ define "main" }}
+<article>
+  <header style="margin-bottom: 1.5rem;">
+    <h1 style="margin-top: 0; margin-bottom: 0.5rem;">{{ .Title | default "RSS Feeds" }}</h1>
+    <p class="meta">Subscribe to stay updated with new content using your favorite feed reader.</p>
+    <hr>
+  </header>
+
+  <section style="margin-bottom: 2rem;">
+    <h2>How to use RSS feeds?</h2>
+    <p>
+      RSS (Really Simple Syndication) allows you to aggregate updates from your favorite blogs and sites in a single interface, without algorithms, ads, or email newsletters tracking your activity.
+    </p>
+    <p>To subscribe:</p>
+    <ol style="padding-left: 1.25rem; line-height: 1.8;">
+      <li>Get a feed reader application (e.g., NetNewsWire, Feedly, Feedbin, Inoreader, NewsBlur, or FreshRSS).</li>
+      <li>Copy one of the feed URLs below.</li>
+      <li>Paste the link into your reader's "Add Feed" or "Subscribe" dialog.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Available Feeds</h2>
+    
+    <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+      <!-- Feed 1: Unified Feed -->
+      <div style="border: 1px solid var(--border); padding: 1rem; background: var(--code-bg);">
+        <h3 style="margin-top: 0; margin-bottom: 0.35rem;">1. Unified Feed</h3>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95em; color: var(--dim);">Combines both blog posts and microblog thoughts into a single aggregated timeline.</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <input type="text" value="{{ "/index.xml" | absURL }}" readonly style="flex: 1; min-width: 220px; padding: 0.4rem 0.6rem; border: 1px solid var(--border); background: var(--bg); color: var(--fg); font-family: monospace; font-size: 0.85em;">
+          <button class="btn-action" onclick="copyFeed(this)" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Feed 2: Blog posts only -->
+      <div style="border: 1px solid var(--border); padding: 1rem; background: var(--code-bg);">
+        <h3 style="margin-top: 0; margin-bottom: 0.35rem;">2. Blog Feed</h3>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95em; color: var(--dim);">Contains only complete long-form blog posts with full HTML content embedded directly in the feed.</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <input type="text" value="{{ "/blog/index.xml" | absURL }}" readonly style="flex: 1; min-width: 220px; padding: 0.4rem 0.6rem; border: 1px solid var(--border); background: var(--bg); color: var(--fg); font-family: monospace; font-size: 0.85em;">
+          <button class="btn-action" onclick="copyFeed(this)" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Feed 3: Thoughts feed -->
+      <div style="border: 1px solid var(--border); padding: 1rem; background: var(--code-bg);">
+        <h3 style="margin-top: 0; margin-bottom: 0.35rem;">3. Thoughts Feed</h3>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95em; color: var(--dim);">Contains microblog thoughts and updates where the feed item's title is the thought content.</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <input type="text" value="{{ "/thoughts/index.xml" | absURL }}" readonly style="flex: 1; min-width: 220px; padding: 0.4rem 0.6rem; border: 1px solid var(--border); background: var(--bg); color: var(--fg); font-family: monospace; font-size: 0.85em;">
+          <button class="btn-action" onclick="copyFeed(this)" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Feed 4: Atom Feed -->
+      <div style="border: 1px solid var(--border); padding: 1rem; background: var(--code-bg);">
+        <h3 style="margin-top: 0; margin-bottom: 0.35rem;">4. Atom Feed</h3>
+        <p style="margin: 0 0 0.75rem; font-size: 0.95em; color: var(--dim);">Standard Atom 1.0 XML syndication format for readers that prefer Atom.</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <input type="text" value="{{ "/atom.xml" | absURL }}" readonly style="flex: 1; min-width: 220px; padding: 0.4rem 0.6rem; border: 1px solid var(--border); background: var(--bg); color: var(--fg); font-family: monospace; font-size: 0.85em;">
+          <button class="btn-action" onclick="copyFeed(this)" type="button">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<script>
+function copyFeed(btn) {
+  var input = btn.previousElementSibling;
+  var text = input.value;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      var orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = orig; }, 2000);
+    });
+  } else {
+    input.select();
+    document.execCommand('copy');
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = orig; }, 2000);
+  }
+}
+</script>
+{{ end }}
